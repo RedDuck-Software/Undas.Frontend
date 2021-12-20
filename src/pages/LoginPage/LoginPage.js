@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { Container, Background } from '../../globalStyles'
+import { Container, Background } from '../../globalStyles';
 import {
   LoginSec,
   TextWrapper,
@@ -11,11 +11,23 @@ import {
   LoginButton,
   ButtonIcon,
   ButtonText,
-} from './LoginPage.styles'
+} from './LoginPage.styles';
 
-import { MetaMask, Coinbase, WalletConnect, Fortmatic } from './imports'
+import { MetaMask, Coinbase, WalletConnect, Fortmatic } from './imports';
+import { useWeb3React } from '@web3-react/core';
+import { injected } from '../../components/Wallets/Connectors';
 
 const LoginPage = () => {
+  const { activate, account } = useWeb3React();
+  async function connectMetaMask() {
+    try {
+      await activate(injected);
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+  console.log(`Your address is ${account}`);
+
   return (
     <>
       <Background>
@@ -33,7 +45,7 @@ const LoginPage = () => {
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
-              <LoginButton>
+              <LoginButton onClick={connectMetaMask}>
                 <ButtonIcon src={MetaMask} />
                 <ButtonText>MetaMask</ButtonText>
               </LoginButton>
@@ -57,7 +69,7 @@ const LoginPage = () => {
         </LoginSec>
       </Background>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
