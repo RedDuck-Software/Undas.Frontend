@@ -28,7 +28,23 @@ const App = () => {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/assets" element={<AllNFTs />} />
         <Route path="/assets/new" element={<NewNFTs />} />
-        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
+        <Route
+          path="/explore/sport"
+          element={<ExplorePage pageType="Sport" />}
+        />
+        <Route
+          path="/explore/girls"
+          element={<ExplorePage pageType="Girls" />}
+        />
+        <Route
+          path="/explore/sport"
+          element={<ExplorePage pageType="Sport" />}
+        />
+        <Route
+          path="/explore/furniture"
+          element={<ExplorePage pageType="Furniture" />}
+        />
         <Route path="/rent-nft" element={<RentNFTPage />} />
       </Routes>
       <Footer />

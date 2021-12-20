@@ -59,6 +59,7 @@ export const CollectionsItem = styled.div`
   display: flex;
   justify-content: space-between;
   transition: border 0.15s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     border: 1px solid #5d3f92;

@@ -57,7 +57,7 @@ const ProductCard = () => {
             <Listing />
             <Offers />
             <Rent />
-            {/* <Staking /> */}
+            <Staking />
           </RightSide>
         </ProductContainer>
         <ProductContainerCenter>

@@ -16,7 +16,7 @@ import {
 
 import { LargeCardList, Paggination } from '../../components'
 
-const ExplorePage = () => {
+const ExplorePage = ({ pageType }) => {
   return (
     <Background>
       <ExploreHeading>
@@ -27,8 +27,10 @@ const ExplorePage = () => {
       <ExploreContainer>
         <ExploreContent>
           <ExploreHeaderContent>
-            <ExploreTitle>Explore Art</ExploreTitle>
-            <ExploreSubtitle>Trending collections in Art</ExploreSubtitle>
+            <ExploreTitle>Explore {pageType}</ExploreTitle>
+            <ExploreSubtitle>
+              Trending collections in {pageType}
+            </ExploreSubtitle>
             <LargeCardList />
           </ExploreHeaderContent>
         </ExploreContent>

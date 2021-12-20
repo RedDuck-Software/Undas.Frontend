@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Container } from '../../../../globalStyles'
 import {
@@ -19,21 +20,27 @@ const BrowseCategory = () => {
       <Container>
         <BrowseTitle>Browse by top category</BrowseTitle>
         <CategoryWrapper>
-          <CategoryContainer>
-            <CategoryImage src={category01} />
-            <CategoryText>Girls</CategoryText>
-            <BlackLayer />
-          </CategoryContainer>
-          <CategoryContainer>
-            <CategoryImage src={category02} />
-            <CategoryText>Sport</CategoryText>
-            <BlackLayer />
-          </CategoryContainer>
-          <CategoryContainer>
-            <CategoryImage src={category03} />
-            <CategoryText>Furniture</CategoryText>
-            <BlackLayer />
-          </CategoryContainer>
+          <Link to="/explore/girls">
+            <CategoryContainer>
+              <CategoryImage src={category01} />
+              <CategoryText>Girls</CategoryText>
+              <BlackLayer />
+            </CategoryContainer>
+          </Link>
+          <Link to="/explore/sport">
+            <CategoryContainer>
+              <CategoryImage src={category02} />
+              <CategoryText>Sport</CategoryText>
+              <BlackLayer />
+            </CategoryContainer>
+          </Link>
+          <Link to="/explore/furniture">
+            <CategoryContainer>
+              <CategoryImage src={category03} />
+              <CategoryText>Furniture</CategoryText>
+              <BlackLayer />
+            </CategoryContainer>
+          </Link>
         </CategoryWrapper>
       </Container>
     </BrowseSec>

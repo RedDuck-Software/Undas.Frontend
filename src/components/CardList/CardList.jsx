@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 import { CardItem, FilterButtons } from '../../components'
@@ -22,6 +23,7 @@ import {
   ButtonView2x2,
   ButtonView3x3,
   CardsWrapper,
+  CardLink,
 } from './CardList.styles'
 
 const CardList = (props) => {
@@ -92,15 +94,33 @@ const CardList = (props) => {
       {props.newFilter ? <FilterButtons /> : <></>}
 
       <CardsWrapper>
-        <CardItem image={card01} />
-        <CardItem image={card02} />
-        <CardItem image={card03} />
-        <CardItem image={card01} />
-        <CardItem image={card02} />
-        <CardItem image={card03} />
-        <CardItem image={card01} />
-        <CardItem image={card02} />
-        <CardItem image={card03} />
+        <CardLink to="/product">
+          <CardItem image={card01} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card02} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card03} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card01} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card02} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card03} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card01} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card02} />
+        </CardLink>
+        <CardLink to="/product">
+          <CardItem image={card03} />
+        </CardLink>
       </CardsWrapper>
     </CardListWrapper>
   )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Carousel from 'react-elastic-carousel'
 
 import { Container, Button } from '../../../../globalStyles'
@@ -109,9 +110,11 @@ const TopBuyers = () => {
             </BuyersItem>
           </Carousel>
           <ButtonWrapper>
-            <Button violet big>
-              Explore to marketplace
-            </Button>
+            <Link to="assets">
+              <Button violet big>
+                Explore to marketplace
+              </Button>
+            </Link>
           </ButtonWrapper>
         </BuyersWrapper>
       </Container>
