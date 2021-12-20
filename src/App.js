@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-function App() {
+import { Navbar, Footer, ScrollToTop } from './components'
+import {
+  HomePage,
+  LoginPage,
+  ProductCard,
+  AccountPage,
+  AllNFTs,
+  NewNFTs,
+  ExplorePage,
+  RentNFTPage,
+} from './pages'
+
+import GlobalStyle from './globalStyles'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <ScrollToTop />
+      <GlobalStyle />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/product" element={<ProductCard />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/assets" element={<AllNFTs />} />
+        <Route path="/assets/new" element={<NewNFTs />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/rent-nft" element={<RentNFTPage />} />
+      </Routes>
+      <Footer />
+    </Router>
+  )
 }
 
-export default App;
+export default App
