@@ -16,7 +16,7 @@ import {
   UserInformation,
   ButtonWrapper,
 } from './TopBuyers.styles'
-import './CarouselStyling.css'
+import '../CarouselStyling.css'
 
 import image from '../../../../images/buyers-image.png'
 import profile from '../../../../icons/buyers-profile.png'

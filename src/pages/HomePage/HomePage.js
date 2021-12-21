@@ -7,6 +7,7 @@ import {
   BrowseCategory,
   TopCollections,
   TopBuyers,
+  RentNFT,
 } from './page-components'
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
         <BrowseCategory />
         <TopCollections />
         <TopBuyers />
+        <RentNFT />
       </Background>
     </>
   )

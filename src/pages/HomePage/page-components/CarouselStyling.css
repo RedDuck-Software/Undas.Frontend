@@ -3,6 +3,7 @@
   background: #fff;
   color: #505050;
   top: 3.5rem;
+  z-index: 2;
 }
 
 .rec.rec-swipable {
@@ -28,5 +29,32 @@ button.rec-dot {
 @media only screen and (max-width: 1049px) {
   .rec.rec-arrow {
     top: 40px;
+  }
+
+  button.rec-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    margin: 0 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .rec.rec-arrow {
+    top: 30px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.4rem;
+    line-height: normal;
+  }
+
+  .rec-slider-container {
+    margin: 0 -2.5rem !important;
+  }
+}
+
+@media only screen and (max-width: 801px) {
+  .rec.rec-arrow {
+    visibility: hidden;
   }
 }

@@ -4,6 +4,10 @@ import violetArrowDown from '../../../../icons/violet-arrow-down.svg'
 
 export const BuyersSec = styled.div`
   padding: 4rem 0;
+
+  @media (max-width: 801px) {
+    padding: 0;
+  }
 `
 
 export const BuyersTitle = styled.h2`
@@ -17,6 +21,19 @@ export const BuyersTitle = styled.h2`
     position: relative;
     right: 8px;
     top: 3px;
+  }
+
+  @media (max-width: 1009px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+
+    &:before {
+      right: 8px;
+      top: 0.6rem;
+    }
   }
 `
 
@@ -33,10 +50,28 @@ export const BuyersTitleViolet = styled.h2`
     left: 8px;
     top: 3px;
   }
+
+  @media (max-width: 1009px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+    padding-left: 0.5rem;
+
+    &:before {
+      right: 8px;
+      top: 0.6rem;
+    }
+  }
 `
 
 export const BuyersWrapper = styled.div`
   padding: 3.75rem 0;
+
+  @media (max-width: 801px) {
+    padding: 2rem 0;
+  }
 `
 
 export const BuyersItem = styled.div`
@@ -66,6 +101,18 @@ export const ProfileImage = styled.img`
   bottom: 26%;
   width: 50px;
   height: 50px;
+
+  @media (max-width: 990px) {
+    bottom: 34%;
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 680px) {
+    bottom: 28%;
+    width: 35px;
+    height: 35px;
+  }
 `
 
 export const TextWrapper = styled.div`
@@ -73,6 +120,17 @@ export const TextWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10% 20%;
+
+  text-align: center;
+
+  @media (max-width: 801px) {
+    font-size: 0.85rem;
+    padding: 10% 10% 15%;
+  }
+
+  @media (max-width: 680px) {
+    padding: 15% 10% 5%;
+  }
 `
 
 export const UserName = styled.span`
