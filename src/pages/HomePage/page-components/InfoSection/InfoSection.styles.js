@@ -24,6 +24,11 @@ export const RightColumn = styled.div`
   @media (max-width: 1199px) {
     width: 60vw;
   }
+
+  @media (max-width: 801px) {
+    max-width: 50vw;
+    overflow: hidden;
+  }
 `
 
 export const TextWrapper = styled.div``
@@ -33,14 +38,36 @@ export const Tagline = styled.h1`
   font-weight: 400;
   word-spacing: 1rem;
 
-  &:before {
-    content: ${(props) => (props.icon ? `url('${OLetter}')` : 'none')};
-    position: relative;
-    top: 2px;
+  &:nth-child(2) {
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 25px;
+      width: 25px;
+      background-size: 25px 25px;
+      background-image: ${(props) =>
+        props.icon ? `url('${OLetter}')` : 'none'};
+      background-repeat: no-repeat;
+      position: relative;
+      top: 2px;
+    }
   }
 
   @media (max-width: 1009px) {
     font-size: ${(props) => (props.big ? '3.2rem' : '1.75rem')};
+  }
+
+  @media (max-width: 801px) {
+    font-size: ${(props) => (props.big ? '2.1rem' : '1.3rem')};
+    word-spacing: 0.3rem;
+
+    &:nth-child(2) {
+      &:before {
+        height: 20px;
+        width: 20px;
+        background-size: 20px 20px;
+      }
+    }
   }
 `
 
@@ -49,6 +76,42 @@ export const ButtonsWrapper = styled.div`
 
   ${Button} {
     margin-right: 1.6rem;
+  }
+
+  @media (max-width: 915px) {
+    button {
+      padding: 0.8rem 3rem;
+    }
+  }
+
+  @media (max-width: 894px) {
+    button {
+      padding: 0.8rem 2rem;
+    }
+  }
+
+  @media (max-width: 823px) {
+    padding-top: 5rem;
+  }
+
+  @media (max-width: 801px) {
+    padding-top: 1rem;
+
+    button {
+      font-size: 1rem;
+      padding: 0.6rem 1.6rem;
+    }
+  }
+
+  @media (max-width: 680px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;%;
+
+    button {
+      font-size: 1rem;
+      padding: 0.6rem 3rem;
+    }
   }
 `
 
@@ -71,6 +134,14 @@ export const ImageGallery = styled.div`
   @media (max-width: 984px) {
     grid-template-columns: 1.6fr 1fr 1fr;
   }
+
+  @media (max-width: 801px) {
+    display: flex;
+
+    img {
+      height: 122px;
+    }
+  }
 `
 
 export const Image = styled.img`
@@ -84,5 +155,13 @@ export const Image = styled.img`
 
   @media (max-width: 1119px) {
     width: 95%;
+  }
+
+  @media (max-width: 801px) {
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6) {
+      display: none;
+    }
   }
 `

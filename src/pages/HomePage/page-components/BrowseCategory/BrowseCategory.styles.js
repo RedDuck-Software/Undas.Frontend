@@ -3,6 +3,10 @@ import violetLine from '../../../../icons/violet-line.svg'
 
 export const BrowseSec = styled.div`
   padding: 4rem 0;
+
+  @media (max-width: 801px) {
+    padding: 0;
+  }
 `
 
 export const BrowseTitle = styled.h2`
@@ -17,6 +21,19 @@ export const BrowseTitle = styled.h2`
     right: 8px;
     top: 3px;
   }
+
+  @media (max-width: 1009px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+
+    &:before {
+      right: 8px;
+      top: 0.6rem;
+    }
+  }
 `
 
 export const CategoryWrapper = styled.div`
@@ -28,6 +45,10 @@ export const CategoryWrapper = styled.div`
 
   @media (max-width: 1239px) {
     margin: 0 1rem;
+  }
+
+  @media (max-width: 801px) {
+    margin: 0;
   }
 `
 
@@ -51,6 +72,10 @@ export const CategoryContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
     border-radius: 10px;
   }
+
+  @media (max-width: 801px) {
+    padding: 2rem 0 0;
+  }
 `
 
 export const BlackLayer = styled.div`
@@ -66,6 +91,11 @@ export const BlackLayer = styled.div`
     position: absolute;
     z-index: 1;
     border-radius: 0px 0px 10px 10px;
+
+    @media (max-width: 801px) {
+      height: 25%;
+    }
+  }
 `
 
 export const CategoryText = styled.span`
@@ -77,5 +107,10 @@ export const CategoryText = styled.span`
   @media (max-width: 1009px) {
     font-size: 1.8rem;
     margin-bottom: 6%;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+    margin-bottom: 8%;
   }
 `

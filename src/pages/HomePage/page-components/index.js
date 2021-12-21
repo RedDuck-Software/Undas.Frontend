@@ -2,3 +2,4 @@ export { default as InfoSection } from '../page-components/InfoSection/InfoSecti
 export { default as BrowseCategory } from '../page-components/BrowseCategory/BrowseCategory'
 export { default as TopCollections } from '../page-components/TopCollections/TopCollections'
 export { default as TopBuyers } from '../page-components/TopBuyers/TopBuyers'
+export { default as RentNFT } from '../page-components/RentNFT/RentNFT'

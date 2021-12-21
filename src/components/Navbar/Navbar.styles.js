@@ -55,6 +55,10 @@ export const NavLink = styled(Link)`
 
   &:hover {
     color: #5d3f92;
+
+    svg {
+      color: #5d3f92;
+    }
   }
 `
 
@@ -62,6 +66,7 @@ export const MenuItemLink = styled(Link)`
   display: flex;
   align-items: center;
 
+  color: #7c7c7c;
   text-decoration: none;
 
   &:visited {
@@ -132,20 +137,60 @@ export const MenuMobileContainer = styled.div`
 
 export const MenuMobile = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
 
   text-align: end;
   background: #fff;
-  padding: 1rem;
   position: absolute;
-  right: 0;
-  top: 40px;
+  right: 16px;
+  top: 46px;
   margin-top: 1rem;
-  min-width: 210px;
+  padding: 1rem;
+  min-height: 8rem;
+  min-width: 11rem;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid #5d3f92;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+  z-index: 99;
+
+  ${NavLinkContainer} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+    a {
+      color: #5d3f92;
+      margin: 0.5rem 1rem;
+    }
+
+    svg {
+      color: #5d3f92;
+    }
+
+    &:nth-child(5) {
+      padding-top: 0.8rem;
+      padding-right: 2rem;
+    }
+  }
+
+  ${NavLink} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0;
+    margin: 1rem;
+  }
+`
+
+export const MenuMobileTitle = styled.span`
+  color: #5d3f92;
+  margin: 0.5rem 1rem;
 `
 
 export const MenuImage = styled.img`
@@ -221,6 +266,10 @@ export const RightLinks = styled.div`
 
   @media (max-width: 1009px) {
     flex: 1;
+  }
+
+  @media (max-width: 641px) {
+    margin-left: -5rem;
   }
 `
 

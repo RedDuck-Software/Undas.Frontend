@@ -5,6 +5,10 @@ import rhombus from '../../../../icons/rhombus.svg'
 
 export const CollectionsSec = styled.div`
   padding: 4rem 0;
+
+  @media (max-width: 801px) {
+    padding: 3.75rem 0;
+  }
 `
 export const CollectionsTitle = styled.h2`
   font-size: 2.8rem;
@@ -17,6 +21,19 @@ export const CollectionsTitle = styled.h2`
     position: relative;
     right: 8px;
     top: 3px;
+  }
+
+  @media (max-width: 1009px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+
+    &:before {
+      right: 8px;
+      top: 0.6rem;
+    }
   }
 `
 
@@ -33,6 +50,20 @@ export const CollectionsTitleViolet = styled.h2`
     left: 8px;
     top: 3px;
   }
+
+  @media (max-width: 1009px) {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 801px) {
+    font-size: 1.4rem;
+    padding-left: 0.5rem;
+
+    &:before {
+      right: 8px;
+      top: 0.6rem;
+    }
+  }
 `
 export const CollectionsWrapper = styled.div`
   display: flex;
@@ -44,6 +75,10 @@ export const CollectionsWrapper = styled.div`
 
   @media (max-width: 1084px) {
     justify-content: space-evenly;
+  }
+
+  @media (max-width: 801px) {
+    padding: 2rem 0 0 0;
   }
 `
 
