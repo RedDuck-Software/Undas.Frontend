@@ -58,3 +58,21 @@ button.rec-dot {
     visibility: hidden;
   }
 }
+
+@media only screen and (max-width: 640px) {
+  button.rec-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0 0.3rem;
+  }
+}
+
+@media only screen and (max-width: 574px) {
+  .rec.rec-swipable {
+    grid-template-columns: 1fr;
+  }
+
+  button.rec-dot {
+    display: none;
+  }
+}

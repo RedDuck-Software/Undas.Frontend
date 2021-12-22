@@ -34,6 +34,16 @@ export const BrowseTitle = styled.h2`
       top: 0.6rem;
     }
   }
+
+  @media (max-width: 574px) {
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+
+    &:before {
+      content: none;
+    }
+  }
 `
 
 export const CategoryWrapper = styled.div`
@@ -49,6 +59,12 @@ export const CategoryWrapper = styled.div`
 
   @media (max-width: 801px) {
     margin: 0;
+  }
+
+  @media (max-width: 574px) {
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    max-width: 265px;
   }
 `
 
@@ -112,5 +128,9 @@ export const CategoryText = styled.span`
   @media (max-width: 801px) {
     font-size: 1.4rem;
     margin-bottom: 8%;
+  }
+
+  @media (max-width: 574px) {
+    font-size: 1.8rem;
   }
 `

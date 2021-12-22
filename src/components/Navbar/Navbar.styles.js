@@ -21,10 +21,6 @@ export const NavbarContainer = styled(Container)`
   justify-content: space-between;
   height: 100%;
 
-  @media (max-width: 984px) {
-    justify-content: center;
-  }
-
   ${Container}
 `
 
@@ -59,6 +55,18 @@ export const NavLink = styled(Link)`
     svg {
       color: #5d3f92;
     }
+  }
+
+  @media (max-width: 584px) {
+    padding: ${({ nopadding }) =>
+      (nopadding === 'Left' && '0.5rem 0.5rem 0.5rem 0') ||
+      (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
+      '1.2rem 1rem'};
+  }
+
+  @media (max-width: 375px) {
+    padding: ${({ nopadding }) =>
+      (nopadding === 'Left' && '0') || (nopadding === 'Right' && '0') || '0'};
   }
 `
 
@@ -118,20 +126,22 @@ export const MenuContainer = styled.div`
 
   @media (max-width: 1009px) {
     visibility: hidden;
+    display: none;
   }
 `
 
 export const MenuMobileContainer = styled.div`
   display: none;
 
-  @media (max-width: 1009px) {
-    display: flex;
-    align-items: center;
-  }
-
   svg {
     cursor: pointer;
     color: #5d3f92;
+  }
+
+  @media (max-width: 1009px) {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
   }
 `
 
@@ -148,7 +158,7 @@ export const MenuMobile = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   min-height: 8rem;
-  min-width: 11rem;
+  min-width: 12rem;
   border-radius: 5px;
   border: 2px solid #5d3f92;
   box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
@@ -171,11 +181,6 @@ export const MenuMobile = styled.div`
     svg {
       color: #5d3f92;
     }
-
-    &:nth-child(5) {
-      padding-top: 0.8rem;
-      padding-right: 2rem;
-    }
   }
 
   ${NavLink} {
@@ -185,6 +190,11 @@ export const MenuMobile = styled.div`
 
     padding: 0;
     margin: 1rem;
+
+    button {
+      padding: 0.85rem 1.25rem;
+      margin: 2rem 0 0 0;
+    }
   }
 `
 
@@ -205,7 +215,11 @@ export const LeftLinks = styled.div`
   justify-self: flex-start;
 
   @media (max-width: 1009px) {
-    flex: 3;
+    width: 80%;
+  }
+
+  @media (max-width: 641px) {
+    width: 100%;
   }
 `
 
@@ -253,24 +267,24 @@ export const Input = styled.input`
   font-size: 1.055rem;
   background: transparent;
   padding-top: 0.3rem;
+  padding-right: 0.5rem;
   outline: none;
+  width: 100%;
 
   &:focus::placeholder {
     color: transparent;
+  }
+
+  @media (max-width: 584px) {
+    &::placeholder {
+      visibility: hidden;
+    }
   }
 `
 
 export const RightLinks = styled.div`
   display: flex;
   align-items: center;
-
-  @media (max-width: 1009px) {
-    flex: 1;
-  }
-
-  @media (max-width: 641px) {
-    margin-left: -5rem;
-  }
 `
 
 export const ProfileIcon = styled(Profile)`

@@ -8,6 +8,12 @@ export const InfoSec = styled.div`
 
 export const InfoRow = styled.div`
   display: flex;
+
+  @media (max-width: 574px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 export const LeftColumn = styled.div`
@@ -15,6 +21,32 @@ export const LeftColumn = styled.div`
 
   @media (max-width: 1199px) {
     width: 50vw;
+  }
+
+  @media (max-width: 680px) {
+    button {
+      width: 30vw;
+    }
+  }
+
+  @media (max-width: 574px) {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 175px;
+    }
+
+    a {
+      text-decoration: none;
+    }
   }
 `
 
@@ -28,6 +60,23 @@ export const RightColumn = styled.div`
   @media (max-width: 801px) {
     max-width: 50vw;
     overflow: hidden;
+  }
+
+  @media (max-width: 680px) {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  @media (max-width: 574px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 3rem;
+    width: 100%;
+    overflow: visible;
+
+    margin-bottom: -5rem;
   }
 `
 
@@ -69,6 +118,19 @@ export const Tagline = styled.h1`
       }
     }
   }
+
+  @media (max-width: 680px) {
+    font-size: ${(props) => (props.big ? '2.1rem' : '1.15rem')};
+    word-spacing: 0.3rem;
+
+    &:nth-child(2) {
+      &:before {
+        height: 15px;
+        width: 15px;
+        background-size: 15px 15px;
+      }
+    }
+  }
 `
 
 export const ButtonsWrapper = styled.div`
@@ -106,11 +168,19 @@ export const ButtonsWrapper = styled.div`
   @media (max-width: 680px) {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;%;
+    gap: 0.8rem;
 
     button {
       font-size: 1rem;
       padding: 0.6rem 3rem;
+    }
+  }
+
+  @media (max-width: 574px) {
+    padding-top: 2rem;
+
+    ${Button} {
+      margin-right: 0.2rem;
     }
   }
 `
@@ -140,6 +210,29 @@ export const ImageGallery = styled.div`
 
     img {
       height: 122px;
+    }
+  }
+
+  @media (max-width: 574px) {
+    display: grid;
+    grid-template-columns: 130px 130px;
+    grid-template-rows: 80px 155px;
+
+    img {
+      object-fit: cover;
+      border-radius: 10px;
+
+      &:nth-child(1) {
+        height: 80px;
+      }
+
+      &:nth-child(2) {
+        height: 175px;
+      }
+
+      &:nth-child(3) {
+        height: 80px;
+      }
     }
   }
 `

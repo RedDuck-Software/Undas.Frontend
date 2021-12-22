@@ -35,6 +35,20 @@ export const CollectionsTitle = styled.h2`
       top: 0.6rem;
     }
   }
+
+  @media (max-width: 574px) {
+    &:before {
+      content: none;
+    }
+
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  @media (max-width: 369px) {
+    font-size: 1.15rem;
+  }
 `
 
 export const CollectionsTitleViolet = styled.h2`
@@ -45,7 +59,13 @@ export const CollectionsTitleViolet = styled.h2`
   color: #5d3f92;
 
   &:after {
-    content: url('${violetArrowDown}');
+    content: '';
+    display: inline-block;
+    height: 22px;
+    width: 27px;
+    background-size: 22px 27px;
+    background-image: url(${violetArrowDown});
+    background-repeat: no-repeat;
     position: relative;
     left: 8px;
     top: 3px;
@@ -64,6 +84,18 @@ export const CollectionsTitleViolet = styled.h2`
       top: 0.6rem;
     }
   }
+
+  @media (max-width: 574px) {
+    &:after {
+      width: 14px;
+      height: 16px;
+      background-size: 14px 16px;
+    }
+  }
+
+  @media (max-width: 369px) {
+    font-size: 1.15rem;
+  }
 `
 export const CollectionsWrapper = styled.div`
   display: flex;
@@ -75,6 +107,11 @@ export const CollectionsWrapper = styled.div`
 
   @media (max-width: 1084px) {
     justify-content: space-evenly;
+  }
+
+  @media (max-width: 854px) {
+    flex-direction: column;
+    align-items: center;
   }
 
   @media (max-width: 801px) {
@@ -99,6 +136,25 @@ export const CollectionsItem = styled.div`
   &:hover {
     border: 1px solid #5d3f92;
   }
+
+  @media (max-width: 1084px) {
+    width: 45%;
+  }
+
+  @media (max-width: 854px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 640px) {
+    width: 425px;
+    height: 70px;
+  }
+
+  @media (max-width: 574px) {
+    max-width: 275px;
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem 0;
+  }
 `
 
 export const LeftSide = styled.div`
@@ -110,6 +166,10 @@ export const LeftSide = styled.div`
   @media (max-width: 1084px) {
     min-width: 60%;
   }
+
+  @media (max-width: 574px) {
+    justify-content: space-between;
+  }
 `
 
 export const RightSide = styled.div`
@@ -119,6 +179,16 @@ export const RightSide = styled.div`
 
 export const Name = styled.span`
   font-size: 1.15rem;
+
+  @media only screen and (max-width: 640px) {
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 574px) {
+    position: relative;
+    right: 8px;
+    font-size: 0.85rem;
+  }
 `
 
 export const Number = styled.span`
@@ -134,10 +204,19 @@ export const Number = styled.span`
     left: 4px;
     top: 8px;
   }
+
+  @media only screen and (max-width: 640px) {
+    font-size: ${(props) => (props.big ? `1rem` : '0.8rem')};
+  }
 `
 
 export const Picture = styled.img`
   border-radius 50%;
+
+  @media (max-width: 574px) {
+    width: 40px;
+    height: 40px;
+  }
 `
 
 export const TextWrapper = styled.div`

@@ -18,7 +18,13 @@ export const FooterContainer = styled(Container)`
     grid-template-columns: 3fr 1fr;
   }
 
-  ${Container}
+  @media (max-width: 634px) {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  ${Container};
 `
 
 export const FooterText = styled.span`
@@ -47,17 +53,40 @@ export const TopLeftWrapper = styled.div`
   flex-direction: column;
 
   align-self: end;
+
+  @media (max-width: 634px) {
+    align-self: center;
+    align-items: center;
+    order: 4;
+
+    padding-top: 2rem;
+  }
 `
 
 export const BottomLeftWrapper = styled(TopLeftWrapper)`
   margin-top: 12%;
   align-self: start;
 
+  @media (max-width: 634px) {
+    align-self: center;
+    order: 3;
+    margin-top: 0rem;
+  }
+
   ${TopLeftWrapper}
 `
 
 export const TopRightWrapper = styled(TopLeftWrapper)`
   flex-direction: row;
+
+  @media (max-width: 634px) {
+    order: 2;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: -6rem;
+  }
+
   ${TopLeftWrapper}
 `
 
@@ -71,7 +100,17 @@ export const BottomRightWrapper = styled(TopLeftWrapper)`
     gap: 2%;
   }
 
-  ${TopLeftWrapper}
+  @media (max-width: 719px) {
+    gap: 4%;
+  }
+
+  @media (max-width: 634px) {
+    align-items: flex-start;
+    margin-top: 4%;
+    order: 1;
+  }
+
+  ${TopLeftWrapper};
 `
 
 export const FooterIconsWrapper = styled.div`
@@ -97,6 +136,10 @@ export const FooterIconsWrapper = styled.div`
 
   @media (max-width: 734px) {
     margin-top: 1rem;
+  }
+
+  @media (max-width: 719px) {
+    gap: 0.75rem;
   }
 `
 
@@ -162,7 +205,7 @@ export const Input = styled.input`
     font-size: 0.75rem;
 
     &::placeholder {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
   }
 `
@@ -221,6 +264,19 @@ export const LeftSide = styled.div`
       height: 108.82px;
     }
   }
+
+  @media (max-width: 719px) {
+    img {
+      width: 105px;
+      height: 83px;
+    }
+  }
+
+  @media (max-width: 634px) {
+    img {
+      visibility: hidden;
+    }
+  }
 `
 
 export const RightSide = styled.div`
@@ -277,18 +333,51 @@ export const RightSide = styled.div`
       width: 90px;
     }
   }
+
+  @media (max-width: 719px) {
+    ${FooterText} {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 634px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 `
 
 export const TopicColumn = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 120px;
+
+  @media (max-width: 969px) {
+    min-width: 100px;
+  }
+
+  @media (max-width: 719px) {
+    min-width: 80px;
+  }
+
+  @media (max-width: 634px) {
+    min-width: 120px;
+  }
+
+  @media (max-width: 464px) {
+    min-width: 110px;
+  }
+
+  @media (max-width: 399px) {
+    min-width: 25vw;
+  }
 `
 
 export const TopicTitle = styled.h2`
   font-weight: 400;
   font-size: 1.8rem;
   margin-bottom: 1.6rem;
+  cursor: pointer;
 
   @media (max-width: 1169px) {
     font-size: 1.5rem;
@@ -304,6 +393,11 @@ export const TopicTitle = styled.h2`
 
   @media (max-width: 734px) {
     font-size: 1.15rem;
+  }
+
+  @media (max-width: 719px) {
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
   }
 `
 
