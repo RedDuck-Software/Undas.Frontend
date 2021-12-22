@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { Container, Background } from '../../globalStyles';
 import {
   LoginSec,
@@ -13,20 +13,39 @@ import {
   ButtonText,
 } from './LoginPage.styles';
 
-import { MetaMask, Coinbase, WalletConnect, Fortmatic } from './imports';
+import { isMobile } from 'react-device-detect';
+import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from './imports';
 import { useWeb3React } from '@web3-react/core';
-import { injected } from '../../components/Wallets/Connectors';
+import {
+  injected,
+  walletconnect,
+  fortmatic,
+  walletlink,
+  resetWalletConnect,
+} from '../../components/Wallets/Connectors';
+import { useDispatch } from 'react-redux';
+import { set } from '../../store';
 
 const LoginPage = () => {
-  const { activate, account } = useWeb3React();
-  async function connectMetaMask() {
+  const dispatch = useDispatch();
+  const [disabled, setDisabled] = useState(false);
+  const web3State = useWeb3React();
+  if (web3State.account) {
+    dispatch(set);
+    return <Navigate to={'/account'} replace={true} />;
+  }
+  console.log(web3State);
+  async function connect(walletConnector) {
+    setDisabled(true);
+    resetWalletConnect(walletConnector);
     try {
-      await activate(injected);
+      await web3State.activate(walletConnector);
+      setDisabled(false);
     } catch (ex) {
       console.log(ex);
     }
   }
-  console.log(`Your address is ${account}`);
+  console.log(`Your address is ${web3State.account}`);
 
   return (
     <>
@@ -45,24 +64,62 @@ const LoginPage = () => {
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
-              <LoginButton onClick={connectMetaMask}>
+              <LoginButton
+                onClick={
+                  isMobile
+                    ? () =>
+                        window.open(
+                          'https://metamask.app.link/dapp/OUR LINK', //it can work only for HTTPS links
+                          '_blank'
+                        )
+                    : () => connect(injected)
+                }
+                disabled={disabled}
+              >
                 <ButtonIcon src={MetaMask} />
-                <ButtonText>MetaMask</ButtonText>
+                <ButtonText>
+                  {isMobile
+                    ? 'will be available on mobile when we host on HTTPS'
+                    : 'MetaMask' + (disabled ? '...' : '')}
+                </ButtonText>
               </LoginButton>
-              <LoginButton>
+              <LoginButton
+                onClick={() => connect(walletlink)}
+                disabled={disabled}
+              >
                 <ButtonIcon src={Coinbase} />
-                <ButtonText>Coinbase</ButtonText>
+                <ButtonText>{'Coinbase' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
-              <LoginButton>
+              <LoginButton
+                onClick={() => connect(walletconnect)}
+                disabled={disabled}
+              >
                 <ButtonIcon src={WalletConnect} />
-                <ButtonText>WalletConnect</ButtonText>
+                <ButtonText>
+                  {'WalletConnect' + (disabled ? '...' : '')}
+                </ButtonText>
               </LoginButton>
-              <LoginButton>
+              <LoginButton
+                onClick={() => connect(fortmatic)}
+                disabled={disabled}
+              >
                 <ButtonIcon src={Fortmatic} />
-                <ButtonText>Fortmatic</ButtonText>
+                <ButtonText>{'Fortmatic' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
-              <LoginButton>
-                <ButtonText>Show more options</ButtonText>
+              <LoginButton
+                onClick={
+                  isMobile
+                    ? () =>
+                        window.open(
+                          'https://link.trustwallet.com/wc?uri=wc%3Aca1fccc0-f4d1-46c2-90b7-c07fce1c0cae%401%3Fbridge%3Dhttps%253A%252F%252Fbridge.walletconnect.org%26key%3Da413d90751839c7628873557c718fd73fcedc5e8e8c07cfecaefc0d3a178b1d8', //i suppose trust also works only for HTTPS
+                          '_blank'
+                        )
+                    : () => connect(walletconnect)
+                }
+                disabled={disabled}
+              >
+                <ButtonIcon src={Trust} />
+                <ButtonText>{'Trust' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
             </ButtonWrapper>
           </Container>

@@ -1,23 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md'
-import { RiPaintBrushFill } from 'react-icons/ri'
+import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
+import { RiPaintBrushFill } from 'react-icons/ri';
 import {
   BsHeart,
   BsEyeSlash,
   BsClockHistory,
   BsFillTagFill,
-} from 'react-icons/bs'
-import { IoIosArrowDown } from 'react-icons/io'
+} from 'react-icons/bs';
+import { IoIosArrowDown } from 'react-icons/io';
 
-import { CardItem } from '../../components'
+import { CardItem } from '../../components';
 
-import { card01, card02, card03, card04 } from './imports'
+import { card01, card02, card03, card04 } from './imports';
 
-import GreyBackground from '../../images/image-account/account01.png'
-import ProfileImage from '../../images/image-account/profile-image.png'
+import GreyBackground from '../../images/image-account/account01.png';
+import ProfileImage from '../../images/image-account/profile-image.png';
 
-import { Container, Background } from '../../globalStyles'
+import { Container, Background } from '../../globalStyles';
 
 import {
   AccoutBackground,
@@ -39,9 +39,11 @@ import {
   ButtonView2x2,
   ButtonView3x3,
   AccountCardsWrapper,
-} from './AccountPage.styles'
+} from './AccountPage.styles';
+import { useLocation } from 'react-router-dom';
 
 const AccountPage = () => {
+  const location = useLocation();
   return (
     <Background>
       <AccoutBackground src={GreyBackground} />
@@ -50,8 +52,9 @@ const AccountPage = () => {
           <AccountInformation>
             <AccountImage src={ProfileImage} />
             <AccountName>Unnamed</AccountName>
-            <AccountAddress>0s83b1...29d7</AccountAddress>
+            <AccountAddress>{location.state}</AccountAddress>
             <AccountJoined>Joined September 2019</AccountJoined>
+            <button>Sign out</button>
           </AccountInformation>
         </Container>
         <AccountMenu>
@@ -118,7 +121,7 @@ const AccountPage = () => {
         </Container>
       </AccountSec>
     </Background>
-  )
-}
+  );
+};
 
-export default AccountPage
+export default AccountPage;
