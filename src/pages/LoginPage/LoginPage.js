@@ -69,7 +69,7 @@ const LoginPage = () => {
                   isMobile
                     ? () =>
                         window.open(
-                          'https://metamask.app.link/dapp/OUR LINK', //it can work only for HTTPS links
+                          'https://metamask.app.link/dapp/https://reverent-allen-ae7346.netlify.app/', //it can work only for HTTPS links
                           '_blank'
                         )
                     : () => connect(injected)
@@ -107,15 +107,7 @@ const LoginPage = () => {
                 <ButtonText>{'Fortmatic' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
               <LoginButton
-                onClick={
-                  isMobile
-                    ? () =>
-                        window.open(
-                          'https://link.trustwallet.com/wc?uri=wc%3Aca1fccc0-f4d1-46c2-90b7-c07fce1c0cae%401%3Fbridge%3Dhttps%253A%252F%252Fbridge.walletconnect.org%26key%3Da413d90751839c7628873557c718fd73fcedc5e8e8c07cfecaefc0d3a178b1d8', //i suppose trust also works only for HTTPS
-                          '_blank'
-                        )
-                    : () => connect(walletconnect)
-                }
+                onClick={() => connect(walletconnect)}
                 disabled={disabled}
               >
                 <ButtonIcon src={Trust} />
