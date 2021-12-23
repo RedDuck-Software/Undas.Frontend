@@ -28,6 +28,7 @@ import {
   AccountAddress,
   AccountJoined,
   AccountMenu,
+  AccountMenuWrapper,
   AccountMenuItem,
   AccountPageContent,
   AccountPageContentHeader,
@@ -56,30 +57,32 @@ const AccountPage = () => {
         </Container>
         <AccountMenu>
           <Container>
-            <AccountMenuItem>
-              <MdOutlineApps />
-              Collected 0
-            </AccountMenuItem>
-            <AccountMenuItem>
-              <RiPaintBrushFill />
-              Created 0
-            </AccountMenuItem>
-            <AccountMenuItem>
-              <BsHeart />
-              Favorited 0
-            </AccountMenuItem>
-            <AccountMenuItem>
-              <BsEyeSlash />
-              Hidden 2
-            </AccountMenuItem>
-            <AccountMenuItem>
-              <BsClockHistory />
-              Activity
-            </AccountMenuItem>
-            <AccountMenuItem>
-              <BsFillTagFill />
-              Offers
-            </AccountMenuItem>
+            <AccountMenuWrapper>
+              <AccountMenuItem>
+                <MdOutlineApps />
+                Collected 0
+              </AccountMenuItem>
+              <AccountMenuItem>
+                <RiPaintBrushFill />
+                <span>Created</span> 0
+              </AccountMenuItem>
+              <AccountMenuItem>
+                <BsHeart />
+                <span>Favorited</span> 0
+              </AccountMenuItem>
+              <AccountMenuItem>
+                <BsEyeSlash />
+                <span>Hidden</span> 2
+              </AccountMenuItem>
+              <AccountMenuItem>
+                <BsClockHistory />
+                <span>Activity</span>
+              </AccountMenuItem>
+              <AccountMenuItem>
+                <BsFillTagFill />
+                <span>Offers</span>
+              </AccountMenuItem>
+            </AccountMenuWrapper>
           </Container>
         </AccountMenu>
         <Container>
