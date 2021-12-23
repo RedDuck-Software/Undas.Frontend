@@ -34,6 +34,20 @@ export const RentNFTTitle = styled.h2`
       top: 0.6rem;
     }
   }
+
+  @media (max-width: 574px) {
+    &:before {
+      content: none;
+    }
+
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  @media (max-width: 369px) {
+    font-size: 1.15rem;
+  }
 `
 
 export const RentNFTWrapper = styled.div`
@@ -57,6 +71,10 @@ export const RentNFTItem = styled.div`
   border: 1px solid #edd2ff;
   box-shadow: 0px 4px 10px rgba(93, 63, 146, 0.5);
   margin-bottom: 1rem;
+
+  @media (max-width: 574px) {
+    max-width: 275px;
+  }
 `
 
 export const Image = styled.img`
@@ -92,6 +110,7 @@ export const RentNFTItemText = styled.span`
   }
 
   @media (max-width: 680px) {
+    margin-bottom: 10%;
     font-size: 0.85rem;
   }
 `
@@ -100,4 +119,9 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
+
+  @media (max-width: 574px) {
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+  }
 `

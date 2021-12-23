@@ -5,27 +5,25 @@ import RhombusWhite from '../../icons/rhombus-white.svg'
 
 export const CardItemContainer = styled.div`
   position: relative;
-  width: 269px;
-  height: 354px;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
   border-radius: 10px;
-
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
-  }
 `
 
 export const CardItemImage = styled.img`
-  position: relative;
   width: 100%;
-  height: 100%;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
+    border-radius: 12px;
+  }
 `
 
 export const TransparentLayer = styled.div`
   &::after {
-    position: absolute;
-    bottom: 0;
+    bottom: 1px;
     left: 0;
     content: '';
     background: #edd2ff;
@@ -36,16 +34,23 @@ export const TransparentLayer = styled.div`
     z-index: 1;
     border-radius: 0px 0px 10px 10px;
   }
+
+  @media (max-with: 533px) {
+    &::after {
+      bottom: 5px;
+    }
+  }
 `
 
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 7% 7% 8%;
 
+  position: absolute;
   width: 100%;
-  padding: 1rem;
-  position: relative;
-  bottom: 20%;
+  bottom: 0;
 `
 
 export const CardTitle = styled.span`
@@ -67,7 +72,7 @@ export const CardNumber = styled.span`
 
 export const CardETH = styled.span`
   position: absolute;
-  bottom: 26%;
+  bottom: 20%;
   right: 4%;
   word-spacing: 1rem;
 

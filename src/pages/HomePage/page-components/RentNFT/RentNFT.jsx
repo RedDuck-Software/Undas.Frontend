@@ -21,13 +21,18 @@ const CarouselSettings = {
   disableArrowsOnEnd: true,
 }
 
+const breakPoints = [
+  { width: 460, itemsToShow: 1 },
+  { width: 462, itemsToShow: 3 },
+]
+
 const RentNFT = () => {
   return (
     <RentNFTSec>
       <Container>
         <RentNFTTitle>Rent NFT</RentNFTTitle>
         <RentNFTWrapper>
-          <Carousel {...CarouselSettings}>
+          <Carousel {...CarouselSettings} breakPoints={breakPoints}>
             <RentNFTItem>
               <Image src={image} />
               <BlackLayer />

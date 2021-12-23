@@ -35,6 +35,20 @@ export const BuyersTitle = styled.h2`
       top: 0.6rem;
     }
   }
+
+  @media (max-width: 574px) {
+    &:before {
+      content: none;
+    }
+
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  @media (max-width: 369px) {
+    font-size: 1.15rem;
+  }
 `
 
 export const BuyersTitleViolet = styled.h2`
@@ -45,7 +59,13 @@ export const BuyersTitleViolet = styled.h2`
   color: #5d3f92;
 
   &:after {
-    content: url('${violetArrowDown}');
+    content: '';
+    display: inline-block;
+    height: 22px;
+    width: 27px;
+    background-size: 22px 27px;
+    background-image: url(${violetArrowDown});
+    background-repeat: no-repeat;
     position: relative;
     left: 8px;
     top: 3px;
@@ -63,6 +83,18 @@ export const BuyersTitleViolet = styled.h2`
       right: 8px;
       top: 0.6rem;
     }
+  }
+
+  @media (max-width: 574px) {
+    &:after {
+      width: 14px;
+      height: 16px;
+      background-size: 14px 16px;
+    }
+  }
+
+  @media (max-width: 369px) {
+    font-size: 1.15rem;
   }
 `
 
@@ -88,6 +120,10 @@ export const BuyersItem = styled.div`
   border: 1px solid #edd2ff;
   box-shadow: 0px 4px 10px rgba(93, 63, 146, 0.5);
   margin-bottom: 1rem;
+
+  @media (max-width: 574px) {
+    max-width: 275px;
+  }
 `
 
 export const Image = styled.img`
@@ -113,6 +149,16 @@ export const ProfileImage = styled.img`
     width: 35px;
     height: 35px;
   }
+
+  @media (max-width: 672px) {
+    bottom: 34%;
+  }
+
+  @media (max-width: 574px) {
+    width: 40px;
+    height: 40px;
+    bottom: 26%;
+  }
 `
 
 export const TextWrapper = styled.div`
@@ -131,6 +177,10 @@ export const TextWrapper = styled.div`
   @media (max-width: 680px) {
     padding: 15% 10% 5%;
   }
+
+  @media (max-width: 574px) {
+    padding: 10%;
+  }
 `
 
 export const UserName = styled.span`
@@ -147,4 +197,9 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
+
+  @media (max-width: 574px) {
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+  }
 `
