@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Container, Background } from '../../globalStyles';
 import {
@@ -24,17 +24,62 @@ import {
   resetWalletConnect,
 } from '../../components/Wallets/Connectors';
 import { useDispatch } from 'react-redux';
-import { set } from '../../store';
+import { setWalletState } from '../../utils/reduxSlices';
+import Cookies from 'universal-cookie';
+
+const cookieOptions = {
+  path: '/',
+  maxAge: 3600,
+  sameSite: 'lax',
+  // secure: true,
+};
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(false);
   const web3State = useWeb3React();
-  if (web3State.account) {
-    dispatch(set);
+  let cookies = new Cookies();
+  let cookieAccount = cookies.get('web3State')?.account;
+  async function connectOnLoad(walletConnector) {
+    try {
+      await web3State.activate(walletConnector);
+      cookies.set('active', cookies.get('active'), cookieOptions);
+      cookies.set('account', cookies.get('account'), cookieOptions);
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  useEffect(() => {
+    cookies.set('active', web3State.active, cookieOptions);
+    cookies.set('account', web3State.account, cookieOptions);
+  }, [web3State]);
+  console.log(`Your address is ${web3State.account}`);
+  if (cookieAccount) {
+    connectOnLoad();
+    const active = cookies.get('web3State')?.active;
+    const chainId = cookies.get('web3State')?.active;
+    dispatch(
+      setWalletState({
+        cookieAccount,
+        active,
+        chainId,
+      })
+    );
     return <Navigate to={'/account'} replace={true} />;
   }
-  console.log(web3State);
+  if (web3State.account) {
+    let { account, active, chainId } = web3State;
+    dispatch(
+      setWalletState({
+        account,
+        active,
+        chainId,
+      })
+    );
+    return <Navigate to={'/account'} replace={true} />;
+  }
+
   async function connect(walletConnector) {
     setDisabled(true);
     resetWalletConnect(walletConnector);
@@ -45,7 +90,6 @@ const LoginPage = () => {
       console.log(ex);
     }
   }
-  console.log(`Your address is ${web3State.account}`);
 
   return (
     <>
@@ -54,7 +98,7 @@ const LoginPage = () => {
           <Container>
             <TextWrapper>
               <LoginTitle>
-                You need an Ethereum wallet to use{' '}
+                You need an Ethereum wallet to use
                 <VioletText>OpenSea.</VioletText>
               </LoginTitle>
               <LoginText>
@@ -67,28 +111,24 @@ const LoginPage = () => {
               <LoginButton
                 onClick={
                   isMobile
-                    ? () =>
-                        window.open(
-                          'https://metamask.app.link/dapp/https://reverent-allen-ae7346.netlify.app/', //it can work only for HTTPS links
-                          '_blank'
-                        )
+                    ? () => connect(walletconnect)
                     : () => connect(injected)
                 }
                 disabled={disabled}
               >
                 <ButtonIcon src={MetaMask} />
-                <ButtonText>
-                  {isMobile
-                    ? 'will be available on mobile when we host on HTTPS'
-                    : 'MetaMask' + (disabled ? '...' : '')}
-                </ButtonText>
+                <ButtonText>{'MetaMask' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
               <LoginButton
                 onClick={() => connect(walletlink)}
-                disabled={disabled}
+                disabled={isMobile ? true : disabled}
               >
                 <ButtonIcon src={Coinbase} />
-                <ButtonText>{'Coinbase' + (disabled ? '...' : '')}</ButtonText>
+                <ButtonText>
+                  {isMobile
+                    ? 'Coinbase (desktop only)'
+                    : 'Coinbase' + (disabled ? '...' : '')}
+                </ButtonText>
               </LoginButton>
               <LoginButton
                 onClick={() => connect(walletconnect)}

@@ -40,10 +40,33 @@ import {
   ButtonView3x3,
   AccountCardsWrapper,
 } from './AccountPage.styles';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWalletState } from '../../utils/reduxSlices';
+import { useWeb3React } from '@web3-react/core';
+import { Navigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const AccountPage = () => {
-  const location = useLocation();
+  const dispatch = useDispatch();
+  let { deactivate } = useWeb3React();
+  const reduxState = useSelector((state) => {
+    return { ...state.wallet };
+  });
+  const cookies = new Cookies();
+  const cookiesAccount = cookies.get('account');
+  console.log(cookiesAccount);
+  console.log(document.cookie);
+  if (!reduxState.active && !cookiesAccount) {
+    return <Navigate to={'/login'} replace={true} />;
+  }
+
+  async function disconnect() {
+    cookies.set('account', '');
+    cookies.set('active', '');
+    await deactivate();
+    dispatch(setWalletState({ account: null, active: false, chainId: null }));
+  }
+
   return (
     <Background>
       <AccoutBackground src={GreyBackground} />
@@ -52,9 +75,9 @@ const AccountPage = () => {
           <AccountInformation>
             <AccountImage src={ProfileImage} />
             <AccountName>Unnamed</AccountName>
-            <AccountAddress>{location.state}</AccountAddress>
+            <AccountAddress>{cookiesAccount}</AccountAddress>
             <AccountJoined>Joined September 2019</AccountJoined>
-            <button>Sign out</button>
+            <button onClick={() => disconnect()}>Sign out</button>
           </AccountInformation>
         </Container>
         <AccountMenu>
