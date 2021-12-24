@@ -151,7 +151,11 @@ const LoginPage = () => {
               <LoginButton
                 onClick={
                   isAndroid11
-                    ? () => connect(injected)
+                    ? () =>
+                        window.open(
+                          'https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app',
+                          '_blank'
+                        )
                     : () => connect(walletconnect)
                 }
                 disabled={disabled}
