@@ -203,14 +203,13 @@ export const TopicTitle = styled.h2`
 `
 
 export const TopicText = styled.span`
+  align-items: flex-start;
   font-size: 1.2rem;
   padding: 0.3rem 0;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
 
   &:hover {
-    font-size: 1.23rem;
-    font-weight: 500px;
+    font-weight: 600;
   }
 
   @media (max-width: 1169px) {

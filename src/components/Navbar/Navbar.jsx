@@ -10,6 +10,7 @@ import {
   NavLinkDropdownMenu,
   MenuMobileContainer,
   MenuItem,
+  MenuItemLink,
   MenuImage,
   NavLink,
   NavLinkExplore,
@@ -75,28 +76,40 @@ const Navbar = () => {
                 </NavLinkExplore>
                 <NavLinkDropdownMenu>
                   <MenuItem>
-                    <MenuImage src={AllNFTsIcon} />
-                    All NFTs
+                    <MenuItemLink to="/assets">
+                      <MenuImage src={AllNFTsIcon} />
+                      All NFTs
+                    </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuImage src={NewIcon} />
-                    New
+                    <MenuItemLink to="/assets/new">
+                      <MenuImage src={NewIcon} />
+                      New
+                    </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuImage src={ArtIcon} />
-                    Art
+                    <MenuItemLink to="/explore/art">
+                      <MenuImage src={ArtIcon} />
+                      Art
+                    </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuImage src={SportIcon} />
-                    Sport
+                    <MenuItemLink to="/explore/sport">
+                      <MenuImage src={SportIcon} />
+                      Sport
+                    </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuImage src={GirlsIcon} />
-                    Girls
+                    <MenuItemLink to="/explore/girls">
+                      <MenuImage src={GirlsIcon} />
+                      Girls
+                    </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuImage src={FurnitureIcon} />
-                    Furniture
+                    <MenuItemLink to="/explore/furniture">
+                      <MenuImage src={FurnitureIcon} />
+                      Furniture
+                    </MenuItemLink>
                   </MenuItem>
                 </NavLinkDropdownMenu>
               </NavLinkContainer>

@@ -25,11 +25,11 @@ function getLibrary(provider, connector) {
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <ScrollToTop />
-        <GlobalStyle />
-        <Web3ReactProvider getLibrary={getLibrary}>
+  <Provider store={store}>
+    <Router>
+      <ScrollToTop />
+      <GlobalStyle />
+      <Web3ReactProvider getLibrary={getLibrary}>
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -38,14 +38,30 @@ const App = () => {
             <Route path="/account" element={<AccountPage />} />
             <Route path="/assets" element={<AllNFTs />} />
             <Route path="/assets/new" element={<NewNFTs />} />
-            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
+            <Route
+              path="/explore/sport"
+              element={<ExplorePage pageType="Sport" />}
+            />
+            <Route
+              path="/explore/girls"
+              element={<ExplorePage pageType="Girls" />}
+            />
+            <Route
+              path="/explore/sport"
+              element={<ExplorePage pageType="Sport" />}
+            />
+            <Route
+              path="/explore/furniture"
+              element={<ExplorePage pageType="Furniture" />}
+            />
             <Route path="/rent-nft" element={<RentNFTPage />} />
           </Routes>
-        </Web3ReactProvider>
-        <Footer />
-      </Router>
-    </Provider>
-  );
-};
+      </Web3ReactProvider>
+      <Footer />
+    </Router>
+  </Provider>
+  )
+}
 
 export default App;

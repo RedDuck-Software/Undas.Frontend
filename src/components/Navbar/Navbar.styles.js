@@ -58,6 +58,17 @@ export const NavLink = styled(Link)`
   }
 `
 
+export const MenuItemLink = styled(Link)`
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+
+  &:visited {
+    color: #7c7c7c;
+  }
+`
+
 export const NavLinkExplore = styled(NavLink)`
   &.hovered-explore + ${NavLinkDropdownMenu} {
     opacity: 1;

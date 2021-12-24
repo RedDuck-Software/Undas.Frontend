@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const CardListWrapper = styled.div`
   flex: 3;
@@ -77,8 +78,10 @@ export const AllItemsMenu = styled.div`
   opacity: 0;
   transition: opacity 150ms ease-in-out;
   z-index: 99;
+  visibility: hidden;
 
   &.active {
+    visibility: visible;
     opacity: 1;
   }
 `
@@ -139,4 +142,12 @@ export const CardsWrapper = styled.div`
 
   gap: 1.6rem;
   margin: 2rem 0 0;
+`
+
+export const CardLink = styled(Link)`
+  text-decoration: none;
+
+  &:visited {
+    color: #7c7c7c;
+  }
 `
