@@ -9,17 +9,20 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
-    
   }
 
 `
 
 export const Container = styled.div`
-  z-index: 1;
+  z-index: 99;
   width: 100%;
   max-width: 80rem;
   margin: 0 auto;
   padding: 0 3rem;
+
+  @media (max-width: 469px) {
+    padding: 0 1rem;
+  }
 `
 
 export const Button = styled.button`
@@ -46,6 +49,18 @@ export const Button = styled.button`
     grid-gap: 0.8rem;
     padding: ${({ big }) => (big ? '0.8rem 6rem' : '4% 14%')};
   }
+
+  @media (max-width: 1009px) {
+    padding: ${({ big }) => (big ? '0.8rem 4rem' : '4% 14%')};
+  }
+
+  @media (max-width: 801px) {
+    padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '4% 14%')};
+  }
+
+  @media (max-width: 664px) {
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '4% 14%')};
+  }
 `
 
 export const Background = styled.div`
@@ -55,6 +70,26 @@ export const Background = styled.div`
   background-position: right 50rem top 12rem, left 60rem top 58rem,
     right 60rem top 112rem;
   background-repeat: no-repeat;
+
+  @media (max-width: 1099px) {
+    background-position: right 40rem top 12rem, left 40rem top 58rem,
+      right 50rem top 112rem;
+  }
+
+  @media (max-width: 801px) {
+    background-position: right 30rem top 12rem, left 20rem top 58rem,
+      right 50rem top 112rem;
+  }
+
+  @media (max-width: 639px) {
+    background-position: right 20rem top 12rem, left 20rem top 58rem,
+      right 50rem top 112rem;
+  }
+
+  @media (max-width: 574px) {
+    background-position: right 10rem top 12rem, left 10rem top 58rem,
+      right 50rem top 112rem;
+  }
 `
 
 export const VioletText = styled.span`
