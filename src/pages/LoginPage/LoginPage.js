@@ -33,7 +33,6 @@ const cookieOptions = {
   sameSite: 'lax',
   // secure: true,
 };
-const isAndroid11 = isAndroid && osVersion === 11;
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -153,7 +152,7 @@ const LoginPage = () => {
               </LoginButton>
               <LoginButton
                 onClick={
-                  isAndroid11
+                  isAndroid && osVersion == 11
                     ? () =>
                         window.open(
                           'https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app',
@@ -164,7 +163,10 @@ const LoginPage = () => {
                 disabled={disabled}
               >
                 <ButtonIcon src={Trust} />
-                <ButtonText>{'Trust' + (disabled ? '...' : '')}</ButtonText>
+                <ButtonText>
+                  {`Trust ${isAndroid && osVersion == 11 ? 'ANDROID 11' : ''}` +
+                    (disabled ? '...' : '')}
+                </ButtonText>
               </LoginButton>
             </ButtonWrapper>
           </Container>
