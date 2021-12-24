@@ -9,7 +9,7 @@ export const OffersTop = styled.div`
   border: 1px solid #5d3f92;
   ${(props) => (props.closed ? `` : 'border-bottom: none')};
   word-spacing: 4px;
-  padding: 1rem 2rem 1rem 4.5rem;
+  padding: 3%;  
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
   cursor pointer;
@@ -48,8 +48,14 @@ export const TableRow = styled.tr`
 `
 
 export const TableHeadTitle = styled.th`
-  padding: 0.8rem 1.5rem;
+  padding: 3%;
   font-weight: 400;
+
+  @media (max-width: 439px) {
+    &:nth-child(1) {
+      width: 20%;
+    }
+  }
 `
 
 export const OffersTableBody = styled.tbody``
@@ -57,17 +63,20 @@ export const OffersTableBody = styled.tbody``
 export const TableColumn = styled.td`
   font-size: 0.85rem;
   color: #7c7c7c;
-  padding: 1rem 1.5rem;
+  padding: 3%;
   background: rgba(251, 245, 255, 0.7) !important;
 
   &:nth-child(1) {
     border-radius: 10px;
   }
 
-  &:nth-child(5) {
-    width: 22.8%;
+  &:nth-child(4) {
     color: #5d3f92;
     border-radius: 10px;
+  }
+
+  @media (max-width: 539px) {
+    font-size: 0.75rem;
   }
 `
 
@@ -80,5 +89,13 @@ export const PriceNumber = styled.span`
     position: relative;
     top: 3px;
     padding-right: 0.4rem;
+  }
+
+  @media (max-width: 539px) {
+    font-size: 1rem;
+
+    &:before {
+      padding-right: 2%;
+    }
   }
 `

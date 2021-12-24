@@ -8,7 +8,7 @@ export const PriceHistoryTop = styled.div`
   background: #ffffff;
   border: 1px solid #5d3f92;
   word-spacing: 4px;
-  padding: 1rem 2rem 1rem 1.8rem;
+  padding: 3%;
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 2rem;
   cursor pointer;
@@ -35,11 +35,19 @@ export const PriceHistoryContainer = styled.div`
   border: 1px solid #5d3f92;
   border-top: none;
   border-radius: 0 0 10px 10px;
+
+  @media (max-width: 1223px) {
+    padding: 4% 8%;
+  }
 `
 
 export const PriceHistoryInterface = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 388px) {
+    flex-direction: column;
+  }
 `
 
 export const PriceHistoryDropdown = styled.div`
@@ -54,6 +62,12 @@ export const PriceHistoryDropdown = styled.div`
   border-radius: 5px;
   min-width: 14rem;
   cursor: pointer;
+
+  @media (max-width: 1136px) {
+    padding: 3% 6%;
+    width: 50%;
+    min-width: 0;
+  }
 `
 
 export const PriceHistoryStatsContainer = styled.div`
@@ -62,6 +76,14 @@ export const PriceHistoryStatsContainer = styled.div`
   display: flex;
   margin: 0 2rem;
   color: #7c7c7c;
+
+  @media (max-width: 1136px) {
+    margin: 0 6%;
+  }
+
+  @media (max-width: 388px) {
+    margin: 6%;
+  }
 `
 
 export const PriceHistoryStatsValue = styled.span`
@@ -94,6 +116,12 @@ export const PriceHistoryGraphContainer = styled.span`
     height: 1px;
     position: relative;
     z-index: 1;
+  }
+
+  @media (max-width: 1253px) {
+    &:after {
+      width: 90%;
+    }
   }
 `
 

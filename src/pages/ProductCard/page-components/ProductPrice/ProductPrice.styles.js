@@ -7,13 +7,18 @@ export const ProductPriceContainer = styled.div`
   min-width: 540px;
   min-height: 120px;
   margin-top: 2.25rem;
+
+  @media (max-width: 1223px) {
+    min-width: 0;
+    width: 100%;
+  }
 `
 
 export const SaleEnds = styled.div`
   background: #ffffff;
   border: 1px solid #5d3f92;
   word-spacing: 4px;
-  padding: 1rem 14rem 1rem 1.8rem;
+  padding: 3% 26% 3% 6%;
   border-radius: 10px 10px 0px 0px;
 
   &:before {
@@ -21,6 +26,10 @@ export const SaleEnds = styled.div`
     position: relative;
     top: 2px;
     padding-right: 1rem;
+  }
+
+  @media (max-width: 1163px) {
+    padding: 3% 6%;
   }
 `
 
@@ -31,6 +40,14 @@ export const CurrentPrice = styled.div`
   border-top: none;
   border-radius: 0px 0px 10px 10px;
   font-size: 1.15rem;
+
+  @media (max-width: 1223px) {
+    padding: 4% 8%;
+  }
+
+  @media (max-width: 531px) {
+    font-size: 1rem;
+  }
 `
 
 export const PriceContainer = styled.div`
@@ -55,10 +72,34 @@ export const PriceContainer = styled.div`
     top: 2px;
     margin-right: 5px;
   }
+
+  @media (max-width: 531px) {
+    h3 {
+      font-size: 1rem;
+    }
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
 `
 
 export const ButtonsContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   gap: 2rem;
+
+  @media (max-width: 1223px) {
+    gap: 5%;
+
+    button {
+      padding: 3% 14%;
+    }
+  }
+
+  @media (max-width: 1133px) {
+    button {
+      padding: 3% 10%;
+    }
+  }
 `

@@ -1,8 +1,16 @@
 import styled from 'styled-components'
 
 export const MoreFromCollectionContainer = styled.div`
-  width: 100%;
-  padding: 1.4rem 6rem 0;
+  margin: 0 auto;
+  width: 80%;
+
+  @media (max-width: 1024px) {
+    width: 484px;
+  }
+
+  @media (max-width: 631px) {
+    width: 100%;
+  }
 `
 
 export const MoreFromCollectionTop = styled.div`
@@ -21,6 +29,14 @@ export const MoreFromCollectionTop = styled.div`
     top: 4px;
     margin-left: auto;
   }
+
+  @media (max-width: 1024px) {
+    padding: 3%;
+  }
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
+  }
 `
 
 export const MoreFromCollectionContent = styled.div`
@@ -37,10 +53,40 @@ export const CardsContainer = styled.div`
   margin: 0 auto;
   padding-top: 1.5rem;
   width: 90%;
+  gap: 4%;
+
+  @media (max-width: 1024px) {
+    div {
+      &:nth-child(1) {
+        margin: 0 auto;
+        width: 284px;
+        display: grid;
+        grid-template-columns: 1fr;
+
+        div {
+          display: flex;
+        }
+      }
+
+      display: none;
+    }
+  }
+
+  @media (max-width: 631px) {
+    div {
+      &:nth-child(1) {
+        width: 100%;
+      }
+    }
+  }
 `
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 2.5rem 0 7.5rem;
+
+  @media (max-width: 1024px) {
+    padding: 10% 0 18%;
+  }
 `

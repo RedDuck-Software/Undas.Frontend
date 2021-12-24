@@ -9,7 +9,7 @@ export const ListingsTop = styled.div`
   border: 1px solid #5d3f92;
   ${(props) => (props.closed ? `` : 'border-bottom: none')};
   word-spacing: 4px;
-  padding: 1rem 2rem 1rem 4.5rem;
+  padding: 3%;
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
   cursor pointer;
@@ -30,8 +30,10 @@ export const ListingContent = styled.div`
 `
 
 export const ListingTable = styled.table`
+  background-color: #fff;
   border-collapse: collapse;
   width: 100%;
+  border-radius: 0px 0px 10px 10px;
 `
 
 export const ListingTableHead = styled.thead`
@@ -48,7 +50,7 @@ export const TableRow = styled.tr`
 `
 
 export const TableHeadTitle = styled.th`
-  padding: 0.8rem 1.5rem;
+  padding: 3%;
   font-weight: 400;
 `
 
@@ -57,21 +59,30 @@ export const ListingTableBody = styled.tbody``
 export const TableColumn = styled.td`
   font-size: 0.85rem;
   color: #7c7c7c;
-  padding: 1rem 1.5rem;
+  padding: 3%;
   background: rgba(251, 245, 255, 0.7) !important;
 
   &:nth-child(1) {
     border-radius: 10px;
   }
 
-  &:nth-child(4) {
+  &:nth-child(3) {
     color: #5d3f92;
+    width: 23%;
   }
 
-  &:nth-child(5) {
+  &:nth-child(4) {
     text-align: right;
     border-radius: 10px;
     width: 23.8%;
+
+    @media (max-width: 559px) {
+      width: 20%;
+    }
+  }
+
+  @media (max-width: 539px) {
+    font-size: 0.75rem;
   }
 `
 
@@ -85,11 +96,18 @@ export const PriceNumber = styled.span`
     top: 3px;
     padding-right: 0.4rem;
   }
+
+  @media (max-width: 539px) {
+    font-size: 1rem;
+
+    &:before {
+      padding-right: 2%;
+    }
+  }
 `
 
 export const BuyButton = styled.button`
-  width: 4rem;
-  height: 2.4rem;
+  padding: 6% 12%;
 
   margin: -0.5rem 0;
   background: #ffffff;
