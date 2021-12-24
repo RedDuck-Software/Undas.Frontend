@@ -13,7 +13,7 @@ import {
   ButtonText,
 } from './LoginPage.styles';
 
-import { isMobile } from 'react-device-detect';
+import { isMobile, isAndroid, osVersion } from 'react-device-detect';
 import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from './imports';
 import { useWeb3React } from '@web3-react/core';
 import {
@@ -33,6 +33,7 @@ const cookieOptions = {
   sameSite: 'lax',
   // secure: true,
 };
+const isAndroid11 = isAndroid && osVersion === 11;
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const LoginPage = () => {
   }, [web3State]);
   console.log(`Your address is ${web3State.account}`);
   if (cookieAccount) {
+    // TODO: pass a connector into function
     connectOnLoad();
     const active = cookies.get('web3State')?.active;
     const chainId = cookies.get('web3State')?.active;
@@ -104,7 +106,7 @@ const LoginPage = () => {
               <LoginText>
                 Connect with one of our available{' '}
                 <VioletText>wallet info</VioletText> providers or create a new
-                one.
+                one. YOU HAVE ANDROID 11
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
@@ -147,7 +149,11 @@ const LoginPage = () => {
                 <ButtonText>{'Fortmatic' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
               <LoginButton
-                onClick={() => connect(walletconnect)}
+                onClick={
+                  isAndroid11
+                    ? () => connect(injected)
+                    : () => connect(walletconnect)
+                }
                 disabled={disabled}
               >
                 <ButtonIcon src={Trust} />
