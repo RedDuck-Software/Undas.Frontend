@@ -106,9 +106,6 @@ const LoginPage = () => {
                 Connect with one of our available{' '}
                 <VioletText>wallet info</VioletText> providers or create a new
                 one.{' '}
-                {`YOUR OS IS ${
-                  isAndroid ? 'ANDROID' : 'NOT ANDROID'
-                }, ITS VERSION IS ${osVersion}`}
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
@@ -163,11 +160,7 @@ const LoginPage = () => {
                 disabled={disabled}
               >
                 <ButtonIcon src={Trust} />
-                <ButtonText>
-                  {`Trust ${
-                    isAndroid && osVersion === '11' ? 'ANDROID 11' : ''
-                  }` + (disabled ? '...' : '')}
-                </ButtonText>
+                <ButtonText>{'Trust' + disabled ? '...' : ''}</ButtonText>
               </LoginButton>
             </ButtonWrapper>
           </Container>
