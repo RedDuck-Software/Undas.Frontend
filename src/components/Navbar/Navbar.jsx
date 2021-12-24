@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { AiOutlineClose } from 'react-icons/ai'
+import { MdOutlineMenu } from 'react-icons/md'
+import { RiCloseFill } from 'react-icons/ri'
+import { IoIosArrowDown, IoIosArrowBack } from 'react-icons/io'
+
+import { Button } from '../../globalStyles'
 
 import {
   Nav,
@@ -9,6 +12,7 @@ import {
   NavLinkContainer,
   NavLinkDropdownMenu,
   MenuMobileContainer,
+  MenuMobileTitle,
   MenuItem,
   MenuItemLink,
   MenuImage,
@@ -39,7 +43,12 @@ import {
 const Navbar = () => {
   const [hoveredExplore, setHoveredExplore] = useState(false)
   const [hoveredActivity, setHoveredActivity] = useState(false)
-  const [toogleMenu, setToggleMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(true)
+
+  const [showExplore, setShowExplore] = useState(false)
+  const [showActivity, setShowActivity] = useState(false)
+
+  const toggleShowMenu = () => setShowMenu(!showMenu)
 
   const toggleHoverExplore = () => {
     setHoveredActivity(false)
@@ -49,6 +58,16 @@ const Navbar = () => {
   const toggleHoverActivity = () => {
     setHoveredExplore(false)
     setHoveredActivity(!hoveredActivity)
+  }
+
+  const toogleShowExplore = () => {
+    setShowActivity(false)
+    setShowExplore(!showExplore)
+  }
+
+  const toogleShowActivity = () => {
+    setShowExplore(false)
+    setShowActivity(!showActivity)
   }
 
   return (
@@ -148,26 +167,119 @@ const Navbar = () => {
             </MenuContainer>
 
             <MenuMobileContainer>
-              <NavLink to="/login">
-                <ProfileIcon />
-              </NavLink>
-
-              {toogleMenu ? (
-                <GiHamburgerMenu
-                  size={32}
-                  onClick={() => setToggleMenu(false)}
-                />
+              {showMenu ? (
+                <MdOutlineMenu size={34} onClick={() => setShowMenu(false)} />
               ) : (
-                <AiOutlineClose size={32} onClick={() => setToggleMenu(true)} />
+                <RiCloseFill size={34} onClick={() => setShowMenu(true)} />
               )}
 
-              {!toogleMenu ? (
+              {!showMenu ? (
                 <MenuMobile>
-                  <NavLinkContainer>
-                    <NavLink to="/">Community</NavLink>
+                  <NavLinkContainer onClick={toogleShowExplore}>
+                    <MenuMobileTitle>Explore</MenuMobileTitle>
+
+                    {showExplore ? (
+                      <IoIosArrowDown size={20} />
+                    ) : (
+                      <IoIosArrowBack size={20} />
+                    )}
+
+                    {showExplore ? (
+                      <MenuMobile>
+                        <NavLinkContainer>
+                          <NavLink to="/assets" onClick={toggleShowMenu}>
+                            <MenuImage src={AllNFTsIcon} />
+                            All NFTs
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/assets/new" onClick={toggleShowMenu}>
+                            <MenuImage src={NewIcon} />
+                            New
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/explore/art" onClick={toggleShowMenu}>
+                            <MenuImage src={ArtIcon} />
+                            Art
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/explore/sport" onClick={toggleShowMenu}>
+                            <MenuImage src={SportIcon} />
+                            Sport
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/explore/girls" onClick={toggleShowMenu}>
+                            <MenuImage src={GirlsIcon} />
+                            Girls
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink
+                            to="/explore/furniture"
+                            onClick={toggleShowMenu}
+                          >
+                            <MenuImage src={FurnitureIcon} />
+                            Furniture
+                          </NavLink>
+                        </NavLinkContainer>
+                      </MenuMobile>
+                    ) : (
+                      <></>
+                    )}
                   </NavLinkContainer>
+
+                  <NavLinkContainer onClick={toogleShowActivity}>
+                    <MenuMobileTitle>Activity</MenuMobileTitle>
+
+                    {showActivity ? (
+                      <IoIosArrowDown size={20} />
+                    ) : (
+                      <IoIosArrowBack size={20} />
+                    )}
+
+                    {showActivity ? (
+                      <MenuMobile>
+                        <NavLinkContainer>
+                          <NavLink to="/" onClick={toggleShowMenu}>
+                            <MenuImage src={ArrowUp} />
+                            Top collection
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/" onClick={toggleShowMenu}>
+                            <MenuImage src={ArrowUp} />
+                            Top buyers
+                          </NavLink>
+                        </NavLinkContainer>
+                        <NavLinkContainer>
+                          <NavLink to="/" onClick={toggleShowMenu}>
+                            <MenuImage src={ArrowUp} />
+                            Top artists
+                          </NavLink>
+                        </NavLinkContainer>
+                      </MenuMobile>
+                    ) : (
+                      <></>
+                    )}
+                  </NavLinkContainer>
+
                   <NavLinkContainer>
-                    <NavLink to="/">Stats</NavLink>
+                    <MenuMobileTitle>Community</MenuMobileTitle>
+                    <IoIosArrowBack size={20} />
+                  </NavLinkContainer>
+
+                  <NavLinkContainer>
+                    <MenuMobileTitle>Stats</MenuMobileTitle>
+                    <IoIosArrowBack size={20} />
+                  </NavLinkContainer>
+
+                  <NavLinkContainer button>
+                    <NavLink to="/login" onClick={toggleShowMenu}>
+                      <Button violet>Connect wallet</Button>
+                    </NavLink>
                   </NavLinkContainer>
                 </MenuMobile>
               ) : (

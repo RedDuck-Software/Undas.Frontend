@@ -16,15 +16,20 @@ import {
   UserInformation,
   ButtonWrapper,
 } from './TopBuyers.styles'
-import './CarouselStyling.css'
+import '../CarouselStyling.css'
 
 import image from '../../../../images/buyers-image.png'
 import profile from '../../../../icons/buyers-profile.png'
 
 const CarouselSettings = {
-  itemsToShow: 3,
   disableArrowsOnEnd: true,
+  itemsToShow: 3,
 }
+
+const breakPoints = [
+  { width: 460, itemsToShow: 1 },
+  { width: 462, itemsToShow: 3 },
+]
 
 const TopBuyers = () => {
   return (
@@ -35,7 +40,7 @@ const TopBuyers = () => {
           <BuyersTitleViolet>last 7 days</BuyersTitleViolet>
         </BuyersTitle>
         <BuyersWrapper>
-          <Carousel {...CarouselSettings}>
+          <Carousel {...CarouselSettings} breakPoints={breakPoints}>
             <BuyersItem>
               <Image src={image} />
               <ProfileImage src={profile} />

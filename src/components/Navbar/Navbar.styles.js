@@ -21,10 +21,6 @@ export const NavbarContainer = styled(Container)`
   justify-content: space-between;
   height: 100%;
 
-  @media (max-width: 984px) {
-    justify-content: center;
-  }
-
   ${Container}
 `
 
@@ -55,6 +51,22 @@ export const NavLink = styled(Link)`
 
   &:hover {
     color: #5d3f92;
+
+    svg {
+      color: #5d3f92;
+    }
+  }
+
+  @media (max-width: 584px) {
+    padding: ${({ nopadding }) =>
+      (nopadding === 'Left' && '0.5rem 0.5rem 0.5rem 0') ||
+      (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
+      '1.2rem 1rem'};
+  }
+
+  @media (max-width: 375px) {
+    padding: ${({ nopadding }) =>
+      (nopadding === 'Left' && '0') || (nopadding === 'Right' && '0') || '0'};
   }
 `
 
@@ -62,6 +74,7 @@ export const MenuItemLink = styled(Link)`
   display: flex;
   align-items: center;
 
+  color: #7c7c7c;
   text-decoration: none;
 
   &:visited {
@@ -113,39 +126,81 @@ export const MenuContainer = styled.div`
 
   @media (max-width: 1009px) {
     visibility: hidden;
+    display: none;
   }
 `
 
 export const MenuMobileContainer = styled.div`
   display: none;
 
-  @media (max-width: 1009px) {
-    display: flex;
-    align-items: center;
-  }
-
   svg {
     cursor: pointer;
     color: #5d3f92;
+  }
+
+  @media (max-width: 1009px) {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
   }
 `
 
 export const MenuMobile = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
 
   text-align: end;
   background: #fff;
-  padding: 1rem;
   position: absolute;
-  right: 0;
-  top: 40px;
+  right: 16px;
+  top: 46px;
   margin-top: 1rem;
-  min-width: 210px;
+  padding: 1rem;
+  min-height: 8rem;
+  min-width: 12rem;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid #5d3f92;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+  z-index: 99;
+
+  ${NavLinkContainer} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+    a {
+      color: #5d3f92;
+      margin: 0.5rem 1rem;
+    }
+
+    svg {
+      color: #5d3f92;
+    }
+  }
+
+  ${NavLink} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0;
+    margin: 1rem;
+
+    button {
+      padding: 0.85rem 1.25rem;
+      margin: 2rem 0 0 0;
+    }
+  }
+`
+
+export const MenuMobileTitle = styled.span`
+  color: #5d3f92;
+  margin: 0.5rem 1rem;
 `
 
 export const MenuImage = styled.img`
@@ -160,7 +215,11 @@ export const LeftLinks = styled.div`
   justify-self: flex-start;
 
   @media (max-width: 1009px) {
-    flex: 3;
+    width: 80%;
+  }
+
+  @media (max-width: 641px) {
+    width: 100%;
   }
 `
 
@@ -208,20 +267,24 @@ export const Input = styled.input`
   font-size: 1.055rem;
   background: transparent;
   padding-top: 0.3rem;
+  padding-right: 0.5rem;
   outline: none;
+  width: 100%;
 
   &:focus::placeholder {
     color: transparent;
+  }
+
+  @media (max-width: 584px) {
+    &::placeholder {
+      visibility: hidden;
+    }
   }
 `
 
 export const RightLinks = styled.div`
   display: flex;
   align-items: center;
-
-  @media (max-width: 1009px) {
-    flex: 1;
-  }
 `
 
 export const ProfileIcon = styled(Profile)`
