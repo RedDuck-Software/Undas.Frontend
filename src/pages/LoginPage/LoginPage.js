@@ -160,7 +160,7 @@ const LoginPage = () => {
                 disabled={disabled}
               >
                 <ButtonIcon src={Trust} />
-                <ButtonText>{'Trust' + disabled ? '...' : ''}</ButtonText>
+                <ButtonText>{'Trust' + (disabled ? '...' : '')}</ButtonText>
               </LoginButton>
             </ButtonWrapper>
           </Container>
