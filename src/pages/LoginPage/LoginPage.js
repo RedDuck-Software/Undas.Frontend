@@ -152,7 +152,7 @@ const LoginPage = () => {
               </LoginButton>
               <LoginButton
                 onClick={
-                  isAndroid && osVersion == 11
+                  isAndroid && osVersion === '11'
                     ? () =>
                         window.open(
                           'https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app',
@@ -164,8 +164,9 @@ const LoginPage = () => {
               >
                 <ButtonIcon src={Trust} />
                 <ButtonText>
-                  {`Trust ${isAndroid && osVersion == 11 ? 'ANDROID 11' : ''}` +
-                    (disabled ? '...' : '')}
+                  {`Trust ${
+                    isAndroid && osVersion === '11' ? 'ANDROID 11' : ''
+                  }` + (disabled ? '...' : '')}
                 </ButtonText>
               </LoginButton>
             </ButtonWrapper>
