@@ -3,8 +3,16 @@ import styled from 'styled-components'
 import Rhombus from '../../../../icons/rhombus.svg'
 
 export const ItemActivityContainer = styled.div`
-  width: 100%;
-  padding: 1.4rem 6rem 0;
+  margin: 0 auto;
+  width: 80%;
+
+  @media (max-width: 1024px) {
+    width: 484px;
+  }
+
+  @media (max-width: 631px) {
+    width: 100%;
+  }
 `
 
 export const ItemActivityTop = styled.div`
@@ -12,7 +20,7 @@ export const ItemActivityTop = styled.div`
   border: 1px solid #5d3f92;
   ${(props) => (props.closed ? `` : '')};
   word-spacing: 4px;
-  padding: 1rem 2rem 1rem 4.5rem;
+  padding: 3%;
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
   cursor pointer;
@@ -24,6 +32,10 @@ export const ItemActivityTop = styled.div`
     top: 4px;
     margin-left: auto;
   }
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
+  }
 `
 
 export const ItemActivityContent = styled.div`
@@ -34,9 +46,9 @@ export const ItemActivityContent = styled.div`
 `
 
 export const ItemActivityFilter = styled.div`
-  max-width: 95%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 0;
+  padding: 3%;
 `
 
 export const FilterDropdown = styled.div`
@@ -44,7 +56,7 @@ export const FilterDropdown = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 1rem;
+  padding: 0 4%;
   min-height: 2.5rem;
   background: #ffffff;
   border: 1px solid #5d3f92;
@@ -54,14 +66,20 @@ export const FilterDropdown = styled.div`
   svg {
     color: #000000;
   }
+
+  @media (max-width: 531px) {
+    padding: 2% 4%;
+    font-size: 0.75rem;
+    min-height: 0;
+  }
 `
 
 export const FilterPropertiesWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem 0;
+  gap: 3%;
+  padding: 3% 0;
 `
 
 export const FilterPropertie = styled.div`
@@ -69,7 +87,7 @@ export const FilterPropertie = styled.div`
   border: 1px solid #893ac2;
   box-shadow: inset 0px 4px 4px rgba(93, 63, 146, 0.31);
   border-radius: 5px;
-  padding: 0.75rem 1rem;
+  padding: 2%;
   cursor: pointer;
 
   svg {
@@ -77,11 +95,20 @@ export const FilterPropertie = styled.div`
     margin-left: 1rem;
     top: 3px;
   }
+
+  @media (max-width: 531px) {
+    padding: 2%;
+    font-size: 0.75rem;
+  }
 `
 
 export const ClearAll = styled.span`
   color: #5d3f92;
   cursor: pointer;
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
+  }
 `
 
 export const ItemActivityTable = styled.table`
@@ -96,13 +123,17 @@ export const ItemActivityTableHead = styled.thead`
     text-align: left;
     color: #7c7c7c;
   }
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
+  }
 `
 export const TableRow = styled.tr`
   border-top: 1px solid #5d3f92;
 `
 
 export const TableHeadTitle = styled.th`
-  padding: 0.8rem 1rem;
+  padding: 3%;
   font-weight: 400;
 `
 
@@ -110,7 +141,7 @@ export const ItemActivityTableBody = styled.tbody``
 
 export const TableColumn = styled.td`
   font-size: 1rem;
-  padding: 1rem 1rem;
+  padding: 3%;
   background: rgba(251, 245, 255, 0.7) !important;
   color: #5d3f92;
 
@@ -121,6 +152,10 @@ export const TableColumn = styled.td`
 
   &:nth-child(5) {
     border-radius: 10px;
+  }
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
   }
 `
 
@@ -133,5 +168,9 @@ export const PriceNumber = styled.span`
     position: relative;
     top: 3px;
     padding-right: 0.4rem;
+  }
+
+  @media (max-width: 531px) {
+    font-size: 0.75rem;
   }
 `

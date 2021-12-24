@@ -20,7 +20,7 @@ import {
 const Rent = () => {
   const [rentOpen, setRentOpen] = useState(true)
   const [isRented, setIsRented] = useState(false)
-  const [canRent] = useState(false)
+  const [canRent] = useState(true)
 
   const startToRentin = () => {
     setIsRented(!isRented)

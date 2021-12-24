@@ -23,9 +23,11 @@ import {
   ProductContainer,
   ProductContainerCenter,
   RightSide,
+  ItemInformation,
   ProductSubtitle,
   ProductTitle,
   GenInformationTitle,
+  ViewsAndLikes,
   ViewsContainer,
   LikesContainer,
 } from './ProductCard.styles'
@@ -39,19 +41,34 @@ const ProductCard = () => {
         <ProductContainer>
           <LeftSide>
             <CardImageContainer>
+              <ItemInformation mobile>
+                <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
+                <ProductTitle>Returne #274</ProductTitle>
+                <GenInformationTitle>
+                  Owned by <VioletText>Hype-eth</VioletText>
+                  <ViewsAndLikes>
+                    <ViewsContainer>91 views</ViewsContainer>
+                    <LikesContainer>10 favorites</LikesContainer>
+                  </ViewsAndLikes>
+                </GenInformationTitle>
+              </ItemInformation>
               <CardImage src={Image} />
               <BookmarkButton>10</BookmarkButton>
             </CardImageContainer>
             <ProductDescription />
           </LeftSide>
           <RightSide>
-            <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-            <ProductTitle>Returne #274</ProductTitle>
-            <GenInformationTitle>
-              Owned by <VioletText>Hype-eth</VioletText>
-              <ViewsContainer>91 views</ViewsContainer>
-              <LikesContainer>10 favorites</LikesContainer>
-            </GenInformationTitle>
+            <ItemInformation>
+              <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
+              <ProductTitle>Returne #274</ProductTitle>
+              <GenInformationTitle>
+                Owned by <VioletText>Hype-eth</VioletText>
+                <ViewsAndLikes>
+                  <ViewsContainer>91 views</ViewsContainer>
+                  <LikesContainer>10 favorites</LikesContainer>
+                </ViewsAndLikes>
+              </GenInformationTitle>
+            </ItemInformation>
             <ProductPrice />
             <PriceHistory />
             <Listing />

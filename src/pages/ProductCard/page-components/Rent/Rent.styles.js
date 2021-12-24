@@ -7,7 +7,7 @@ export const RentTop = styled.div`
   border: 1px solid #5d3f92;
   ${(props) => (props.closed ? `` : 'border-bottom: none')};
   word-spacing: 4px;
-  padding: 1rem 2rem 1rem 4.5rem;
+  padding: 3%;
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
   cursor pointer;
@@ -49,7 +49,7 @@ export const TableRow = styled.tr`
 `
 
 export const TableHeadTitle = styled.th`
-  padding: 0.6rem 1.5rem;
+  padding: 3%;
   font-weight: 400;
 `
 
@@ -59,7 +59,7 @@ export const RentTableBody = styled.tbody`
 
 export const TableColumn = styled.td`
   color: #7c7c7c;
-  padding: 0.8rem 1.5rem;
+  padding: 3%;
   background: rgba(251, 245, 255, 0.7) !important;
 
   &:nth-child(1) {
@@ -74,13 +74,19 @@ export const TableColumn = styled.td`
 export const ButtonRow = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1.5rem 0 2rem;
+  padding: 3%;
   border-top: 1px solid #5d3f92;
   background: rgba(251, 245, 255, 0.7);
   border-radius: 0 0 10px 10px;
   gap: 2rem;
 
   button {
-    min-width: 228px;
+    min-width: 40%;
+  }
+
+  @media (max-width: 661px) {
+    button {
+      min-width: 30%;
+    }
   }
 `

@@ -47,19 +47,24 @@ export const Button = styled.button`
 
   @media (max-width: 1169px) {
     grid-gap: 0.8rem;
-    padding: ${({ big }) => (big ? '0.8rem 6rem' : '4% 14%')};
+    padding: ${({ big }) => (big ? '0.8rem 6rem' : '4% 10%')};
   }
 
   @media (max-width: 1009px) {
-    padding: ${({ big }) => (big ? '0.8rem 4rem' : '4% 14%')};
+    padding: ${({ big }) => (big ? '0.8rem 4rem' : '4% 10%')};
   }
 
   @media (max-width: 801px) {
     padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '4% 14%')};
   }
 
-  @media (max-width: 664px) {
-    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '4% 14%')};
+  @media (max-width: 661px) {
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 10%')};
+  }
+
+  @media (max-width: 539px) {
+    font-size: 0.85rem;
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 8%')};
   }
 `
 
