@@ -106,7 +106,10 @@ const LoginPage = () => {
               <LoginText>
                 Connect with one of our available{' '}
                 <VioletText>wallet info</VioletText> providers or create a new
-                one. YOU HAVE ANDROID 11
+                one.{' '}
+                {`YOUR OS IS ${
+                  isAndroid ? 'ANDROID' : 'NOT ANDROID'
+                }, ITS VERSION IS ${osVersion}`}
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
