@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 import { CardItem, FilterButtons } from '../../components'

@@ -87,6 +87,7 @@ export const PriceContainer = styled.div`
 export const ButtonsContainer = styled.div`
   margin-top: 1rem;
   display: flex;
+  height: 100%;
   gap: 2rem;
 
   @media (max-width: 1223px) {
@@ -95,11 +96,40 @@ export const ButtonsContainer = styled.div`
     button {
       padding: 3% 14%;
     }
+
+    div {
+      width: 100%;
+    }
   }
 
   @media (max-width: 1133px) {
     button {
       padding: 3% 10%;
+    }
+  }
+
+  @media (max-width: 389px) {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 187px;
+      height: 40px;
+      margin-bottom: 5%;
+    }
+
+    div {
+      &:nth-child(2) {
+        width: auto;
+      }
+    }
+  }
+
+  @media (max-width: 321px) {
+    div {
+      &:nth-child(3) {
+        bottom: 15%;
+      }
     }
   }
 `

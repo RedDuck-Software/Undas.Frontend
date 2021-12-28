@@ -1,5 +1,8 @@
 import React from 'react'
 
+import PlaceBid from '../PlaceBid/PlaceBid'
+import PlaceAuction from '../PlaceAuction/PlaceAuction'
+
 import { Button } from '../../../../globalStyles'
 
 import {
@@ -22,7 +25,8 @@ const ProductPrice = () => {
           </PriceContainer>
           <ButtonsContainer>
             <Button violet>Buy now</Button>
-            <Button>Make offer</Button>
+            <PlaceBid />
+            {/* <PlaceAuction /> */}
           </ButtonsContainer>
         </CurrentPrice>
       </ProductPriceContainer>

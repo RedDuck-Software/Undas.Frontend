@@ -1,23 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
-import { RiPaintBrushFill } from 'react-icons/ri';
+import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md'
+import { RiPaintBrushFill } from 'react-icons/ri'
 import {
   BsHeart,
   BsEyeSlash,
   BsClockHistory,
   BsFillTagFill,
-} from 'react-icons/bs';
-import { IoIosArrowDown } from 'react-icons/io';
+} from 'react-icons/bs'
+import { IoIosArrowDown } from 'react-icons/io'
 
-import { CardItem } from '../../components';
+import { CardItem } from '../../components'
 
-import { card01, card02, card03, card04 } from './imports';
+import { card01, card02, card03, card04 } from './imports'
 
-import GreyBackground from '../../images/image-account/account01.png';
-import ProfileImage from '../../images/image-account/profile-image.png';
+import GreyBackground from '../../images/image-account/account01.png'
+import ProfileImage from '../../images/image-account/profile-image.png'
 
-import { Container, Background } from '../../globalStyles';
+import { Container, Background, Button } from '../../globalStyles'
 
 import {
   AccoutBackground,
@@ -40,32 +40,32 @@ import {
   ButtonView2x2,
   ButtonView3x3,
   AccountCardsWrapper,
-} from './AccountPage.styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { setWalletState } from '../../utils/reduxSlices';
-import { useWeb3React } from '@web3-react/core';
-import { Navigate } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+} from './AccountPage.styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { setWalletState } from '../../utils/reduxSlices'
+import { useWeb3React } from '@web3-react/core'
+import { Navigate } from 'react-router-dom'
+import Cookies from 'universal-cookie'
 
 const AccountPage = () => {
-  const dispatch = useDispatch();
-  let { deactivate } = useWeb3React();
+  const dispatch = useDispatch()
+  let { deactivate } = useWeb3React()
   const reduxState = useSelector((state) => {
-    return { ...state.wallet };
-  });
-  const cookies = new Cookies();
-  const cookiesAccount = cookies.get('account');
-  console.log(cookiesAccount);
-  console.log(document.cookie);
+    return { ...state.wallet }
+  })
+  const cookies = new Cookies()
+  const cookiesAccount = cookies.get('account')
+  console.log(cookiesAccount)
+  console.log(document.cookie)
   if (!reduxState.active && !cookiesAccount) {
-    return <Navigate to={'/login'} replace={true} />;
+    return <Navigate to={'/login'} replace={true} />
   }
 
   async function disconnect() {
-    cookies.set('account', '');
-    cookies.set('active', '');
-    await deactivate();
-    dispatch(setWalletState({ account: null, active: false, chainId: null }));
+    cookies.set('account', '')
+    cookies.set('active', '')
+    await deactivate()
+    dispatch(setWalletState({ account: null, active: false, chainId: null }))
   }
 
   return (
@@ -78,7 +78,7 @@ const AccountPage = () => {
             <AccountName>Unnamed</AccountName>
             <AccountAddress>{cookiesAccount}</AccountAddress>
             <AccountJoined>Joined September 2019</AccountJoined>
-            <button onClick={() => disconnect()}>Sign out</button>
+            <Button onClick={() => disconnect()}>Sign out</Button>
           </AccountInformation>
         </Container>
         <AccountMenu>
@@ -147,7 +147,7 @@ const AccountPage = () => {
         </Container>
       </AccountSec>
     </Background>
-  );
-};
+  )
+}
 
-export default AccountPage;
+export default AccountPage
