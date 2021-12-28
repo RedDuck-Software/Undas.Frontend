@@ -5,11 +5,13 @@ import BackgroundImg from '../../images/image-rent/bg-01.png'
 import image01 from '../../images/image-cards/card05.png'
 import image02 from '../../images/image-rent/earn-money.png'
 import doubleCurve from '../../icons/double_curve.svg'
+import doubleCurveMobile from '../../icons/double_curve_mobile.svg'
 
-import { Container, Button } from '../../globalStyles'
+import { Button } from '../../globalStyles'
 
 import {
-  RentNFTContainer,
+  RentNFTHeaderContainer,
+  RentNFTContentContainer,
   RentNFTHeading,
   RentNFTBackground,
   RentNFTContent,
@@ -24,6 +26,7 @@ import {
   RentNFTImage,
   DoubleCurveContainer,
   DoubleCurve,
+  DoubleCurveMobile,
   ButtonsContainer,
 } from './RentNFTPage.styled'
 
@@ -31,13 +34,13 @@ const RentNFTPage = () => {
   return (
     <>
       <RentNFTHeading>
-        <RentNFTContainer>
+        <RentNFTHeaderContainer>
           <RentNFTBackground src={BackgroundImg} />
-        </RentNFTContainer>
+        </RentNFTHeaderContainer>
       </RentNFTHeading>
       <RentNFTContent>
         <RentNFTTitle>Rent NFT</RentNFTTitle>
-        <Container>
+        <RentNFTContentContainer>
           <RentNFTSubtitle>How it works?</RentNFTSubtitle>
           <BlockWrapper>
             <TextWrapper>
@@ -55,6 +58,7 @@ const RentNFTPage = () => {
           </BlockWrapper>
           <DoubleCurveContainer>
             <DoubleCurve src={doubleCurve} />
+            <DoubleCurveMobile src={doubleCurveMobile} />
           </DoubleCurveContainer>
           <BlockWrapper>
             <ImageWrapper>
@@ -75,6 +79,7 @@ const RentNFTPage = () => {
           </BlockWrapper>
           <DoubleCurveContainer>
             <DoubleCurve mirrored src={doubleCurve} />
+            <DoubleCurveMobile mirrored src={doubleCurveMobile} />
           </DoubleCurveContainer>
           <BlockWrapper>
             <TextWrapper>
@@ -102,7 +107,7 @@ const RentNFTPage = () => {
               Rent NFT
             </Button>
           </ButtonsContainer>
-        </Container>
+        </RentNFTContentContainer>
       </RentNFTContent>
     </>
   )
