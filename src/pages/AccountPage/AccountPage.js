@@ -76,7 +76,13 @@ const AccountPage = () => {
           <AccountInformation>
             <AccountImage src={ProfileImage} />
             <AccountName>Unnamed</AccountName>
-            <AccountAddress>{cookiesAccount}</AccountAddress>
+            <AccountAddress
+              onClick={() => {
+                navigator.clipboard.writeText(cookiesAccount)
+              }}
+            >
+              {cookiesAccount}
+            </AccountAddress>
             <AccountJoined>Joined September 2019</AccountJoined>
             <Button onClick={() => disconnect()}>Sign out</Button>
           </AccountInformation>

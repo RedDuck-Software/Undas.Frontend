@@ -36,6 +36,13 @@ export const AccountAddress = styled.span`
   color: #7c7c7c;
 
   cursor: pointer;
+
+  @media (max-width: 521px) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `
 
 export const AccountName = styled.span`
