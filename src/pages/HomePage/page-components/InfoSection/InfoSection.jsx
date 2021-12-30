@@ -37,7 +37,7 @@ const InfoSection = () => {
               <Link to="/">
                 <Button violet>Explore</Button>
               </Link>
-              <Link to="/">
+              <Link to="/product/for-sale">
                 <Button>Create</Button>
               </Link>
             </ButtonsWrapper>

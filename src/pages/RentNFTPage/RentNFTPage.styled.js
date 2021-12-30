@@ -1,4 +1,3 @@
-import { solidityKeccak256 } from 'ethers/lib/utils'
 import styled from 'styled-components'
 
 import { Container } from '../../globalStyles'

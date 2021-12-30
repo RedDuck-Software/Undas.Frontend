@@ -9,30 +9,11 @@ export const PlaceAuctionWrapper = styled.div`
 
 export const PlaceAuctionButton = styled(Button)`
   height: 100%;
-  max-width: 247px;
-
-  padding: 0.8rem 24%;
+  width: 100%;
 
   svg {
     padding-top: 4%;
     margin-left: 12%;
-
-    @media (max-width: 1133px) {
-      margin-left: 8%;
-    }
-
-    @media (max-width: 1025px) {
-      margin-left: 6%;
-    }
-
-    @media (max-width: 539px) {
-      position: relative;
-      top: 2px;
-    }
-  }
-
-  @media (max-width: 539px) {
-    padding: 3% 10% 5% !important;
   }
 
   ${Button};
