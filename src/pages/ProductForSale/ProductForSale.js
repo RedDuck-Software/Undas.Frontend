@@ -10,7 +10,7 @@ import {
   MoreFromCollection,
 } from './page-components'
 
-import { Background, VioletText } from '../../globalStyles'
+import { Background } from '../../globalStyles'
 
 import {
   LeftSide,

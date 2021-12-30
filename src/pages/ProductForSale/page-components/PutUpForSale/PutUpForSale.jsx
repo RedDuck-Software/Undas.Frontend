@@ -1,4 +1,10 @@
 import { useState } from 'react'
+import { ethers } from 'ethers'
+
+import { useSelector } from 'react-redux'
+
+import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers'
+import Marketplace from '../../../../abi/Marketplace.json'
 
 import Image from '../../../../images/card-item.png'
 
@@ -18,8 +24,6 @@ import {
   AuctionDescription,
   MenuLine,
   MenuPrice,
-  MenuAuctionFinish,
-  MenuTerm,
   MenuAgreementLine,
   MenuInput,
   AgreementLink,
@@ -27,9 +31,34 @@ import {
 } from './PutUpForSale.styles'
 
 const PutUpForSale = () => {
+  const connector = useSelector((state) => state.wallet?.connector)
+
   const [isDropdownOpen, setDropdown] = useState(false)
   const [isMenuShown, setMenu] = useState(false)
   const [isButtonsActive, setButtons] = useState('disabled')
+
+  const bid = async () => {
+    if (!connector) return
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    )
+    console.log(provider)
+    const signer = provider.getSigner(0)
+    const contract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      Marketplace['abi'],
+      signer
+    )
+
+    const tx = await contract.bid(
+      '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+      1,
+      ethers.utils.parseEther('35')
+    )
+
+    await tx.wait()
+  }
 
   const toogleDropdown = () => {
     setDropdown(!isDropdownOpen)
@@ -93,7 +122,7 @@ const PutUpForSale = () => {
             <Button className={isButtonsActive} onClick={toogleMenu}>
               Cancle
             </Button>
-            <Button className={isButtonsActive} onClick={toogleMenu} violet>
+            <Button className={isButtonsActive} onClick={bid} violet>
               Confirm
             </Button>
           </MenuButtonsWrapper>

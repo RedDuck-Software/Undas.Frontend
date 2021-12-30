@@ -136,12 +136,12 @@ export const ForSaleMenu = styled.div`
 
   z-index: 99;
 
-  @media (max-width: 829px) {
-    max-width: 90%;
+  @media (max-width: 999px) {
+    padding: 3%;
   }
 
-  @media (max-width: 539px) {
-    padding: 4%;
+  @media (max-width: 899px) {
+    min-width: 320px;
   }
 `
 
@@ -173,6 +173,7 @@ export const AuctionDescription = styled.div`
 export const MenuLine = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 6% 0;
 
   font-size: 1.25rem;
@@ -192,36 +193,39 @@ export const MenuLine = styled.div`
     }
   }
 
+  @media (max-width: 954px) {
+    font-size: 1.1rem;
+  }
+
   @media (max-width: 539px) {
     font-size: 1rem;
   }
 `
 
-export const MenuAuctionFinish = styled.span`
-  font-size: 0.9rem;
-  color: #7c7c7c;
-
-  @media (max-width: 539px) {
-    max-width: 60%;
-    font-size: 0.8rem;
-  }
-`
-
 export const MenuPrice = styled.span`
+  display: flex;
+
   &:before {
     content: url('${Rhombus}');
     position: relative;
     top: 3px;
     right: 6px;
+    padding-left: 1rem;
   }
 `
 
-export const MenuTerm = styled.span``
-
 export const MenuAgreementLine = styled.div`
-  padding: 4% 0;
+  padding: 1.5rem 0;
   display: flex;
   align-items: center;
+
+  @media (max-width: 539px) {
+    padding: 6% 0 2%;
+  }
+
+  @media (max-width: 531px) {
+    font-size: 0.85rem;
+  }
 `
 
 export const MenuInput = styled.input`
