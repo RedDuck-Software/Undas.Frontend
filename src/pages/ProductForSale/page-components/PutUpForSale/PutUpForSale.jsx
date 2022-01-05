@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import { ethers } from 'ethers'
+import { useState } from 'react';
+import { ethers } from 'ethers';
 
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
-import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers'
-import Marketplace from '../../../../abi/Marketplace.json'
+import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers';
+import Marketplace from '../../../../abi/Marketplace.json';
 
-import Image from '../../../../images/card-item.png'
+import Image from '../../../../images/card-item.png';
 
-import { Button } from '../../../../globalStyles'
+import { Button } from '../../../../globalStyles';
 
 import {
   ForSaleWrapper,
@@ -28,60 +28,60 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PutUpForSale.styles'
+} from './PutUpForSale.styles';
 
 const PutUpForSale = () => {
-  const connector = useSelector((state) => state.wallet?.connector)
+  const connector = useSelector((state) => state.wallet?.connector);
 
-  const [isDropdownOpen, setDropdown] = useState(false)
-  const [isMenuShown, setMenu] = useState(false)
-  const [isButtonsActive, setButtons] = useState('disabled')
+  const [isDropdownOpen, setDropdown] = useState(false);
+  const [isMenuShown, setMenu] = useState(false);
+  const [isButtonsActive, setButtons] = useState('disabled');
 
   const bid = async () => {
-    if (!connector) return
+    if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
-    )
-    console.log(provider)
-    const signer = provider.getSigner(0)
+    );
+    console.log(provider);
+    const signer = provider.getSigner(0);
     const contract = new ethers.Contract(
       CONTRACT_ADDRESS,
       Marketplace['abi'],
       signer
-    )
+    );
 
     const tx = await contract.bid(
       '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
       1,
       ethers.utils.parseEther('35')
-    )
+    );
 
-    await tx.wait()
-  }
+    await tx.wait();
+  };
 
   const toogleDropdown = () => {
-    setDropdown(!isDropdownOpen)
-  }
+    setDropdown(!isDropdownOpen);
+  };
 
   const toogleMenu = () => {
     if (!isMenuShown && isButtonsActive === 'disabled') {
-      setMenu(!isMenuShown)
+      setMenu(!isMenuShown);
     } else if (isButtonsActive === 'disabled') {
-      return
+      return;
     } else {
-      setMenu(!isMenuShown)
-      setButtons('disabled')
+      setMenu(!isMenuShown);
+      setButtons('disabled');
     }
-  }
+  };
 
   const toogleButtons = () => {
     if (isButtonsActive === 'disabled') {
-      setButtons('active')
+      setButtons('active');
     } else {
-      setButtons('disabled')
+      setButtons('disabled');
     }
-  }
+  };
 
   return (
     <ForSaleWrapper>
@@ -120,7 +120,7 @@ const PutUpForSale = () => {
           </MenuAgreementLine>
           <MenuButtonsWrapper>
             <Button className={isButtonsActive} onClick={toogleMenu}>
-              Cancle
+              Cancel
             </Button>
             <Button className={isButtonsActive} onClick={bid} violet>
               Confirm
@@ -131,7 +131,7 @@ const PutUpForSale = () => {
         <></>
       )}
     </ForSaleWrapper>
-  )
-}
+  );
+};
 
-export default PutUpForSale
+export default PutUpForSale;
