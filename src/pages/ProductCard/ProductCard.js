@@ -1,4 +1,4 @@
-import React from 'react'
+import { useWeb3React } from '@web3-react/core';
 
 import {
   ProductDescription,
@@ -10,9 +10,9 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components'
+} from './page-components';
 
-import { Background, VioletText } from '../../globalStyles'
+import { Background, VioletText } from '../../globalStyles';
 
 import {
   LeftSide,
@@ -30,11 +30,13 @@ import {
   ViewsAndLikes,
   ViewsContainer,
   LikesContainer,
-} from './ProductCard.styles'
+} from './ProductCard.styles';
 
-import Image from '../../images/card-item.png'
+import Image from '../../images/card-item.png';
 
 const ProductCard = () => {
+  const { account } = useWeb3React();
+  console.log(`your address on product page is ${account}`);
   return (
     <Background>
       <ProductCardSec>
@@ -83,7 +85,7 @@ const ProductCard = () => {
         </ProductContainerCenter>
       </ProductCardSec>
     </Background>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

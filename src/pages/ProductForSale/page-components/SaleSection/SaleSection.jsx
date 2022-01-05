@@ -1,7 +1,7 @@
-import PutUpForSale from '../PutUpForSale/PutUpForSale'
-import PlaceAuction from '../PlaceAuction/PlaceAuction'
+import PutUpForSale from '../PutUpForSale/PutUpForSale';
+import PlaceAuction from '../PlaceAuction/PlaceAuction';
 
-import { SaleSectionContainer, ButtonsContainer } from './SaleSection.styles'
+import { SaleSectionContainer, ButtonsContainer } from './SaleSection.styles';
 
 const SaleSection = () => {
   return (
@@ -13,7 +13,7 @@ const SaleSection = () => {
         </ButtonsContainer>
       </SaleSectionContainer>
     </>
-  )
-}
+  );
+};
 
-export default SaleSection
+export default SaleSection;

@@ -8,9 +8,9 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components'
+} from './page-components';
 
-import { Background } from '../../globalStyles'
+import { Background } from '../../globalStyles';
 
 import {
   LeftSide,
@@ -24,9 +24,8 @@ import {
   ItemInformation,
   ProductSubtitle,
   ProductTitle,
-} from './ProductForSale.styles'
-
-import Image from '../../images/card-item.png'
+} from './ProductForSale.styles';
+import Image from '../../images/card-item.png';
 
 const ProductForSale = () => {
   return (
@@ -63,7 +62,7 @@ const ProductForSale = () => {
         </ProductContainerCenter>
       </ProductForSaleSec>
     </Background>
-  )
-}
+  );
+};
 
-export default ProductForSale
+export default ProductForSale;

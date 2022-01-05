@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import { useState } from 'react';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-import Image from '../../../../images/card-item.png'
+import Image from '../../../../images/card-item.png';
 
-import { Button } from '../../../../globalStyles'
+import { Button } from '../../../../globalStyles';
 
 import {
   PlaceAuctionWrapper,
@@ -25,35 +25,35 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PlaceAuction.styles'
+} from './PlaceAuction.styles';
 
 const PlaceAuction = () => {
-  const [isDropdownOpen, setDropdown] = useState(false)
-  const [isMenuShown, setMenu] = useState(false)
-  const [isButtonsActive, setButtons] = useState('disabled')
+  const [isDropdownOpen, setDropdown] = useState(false);
+  const [isMenuShown, setMenu] = useState(false);
+  const [isButtonsActive, setButtons] = useState('disabled');
 
   const toogleDropdown = () => {
-    setDropdown(!isDropdownOpen)
-  }
+    setDropdown(!isDropdownOpen);
+  };
 
   const toogleMenu = () => {
     if (!isMenuShown && isButtonsActive === 'disabled') {
-      setMenu(!isMenuShown)
+      setMenu(!isMenuShown);
     } else if (isButtonsActive === 'disabled') {
-      return
+      return;
     } else {
-      setMenu(!isMenuShown)
-      setButtons('disabled')
+      setMenu(!isMenuShown);
+      setButtons('disabled');
     }
-  }
+  };
 
   const toogleButtons = () => {
     if (isButtonsActive === 'disabled') {
-      setButtons('active')
+      setButtons('active');
     } else {
-      setButtons('disabled')
+      setButtons('disabled');
     }
-  }
+  };
 
   return (
     <PlaceAuctionWrapper>
@@ -108,7 +108,7 @@ const PlaceAuction = () => {
           </MenuAgreementLine>
           <MenuButtonsWrapper>
             <Button className={isButtonsActive} onClick={toogleMenu}>
-              Cancle
+              Cancel
             </Button>
             <Button className={isButtonsActive} onClick={toogleMenu} violet>
               Confirm
@@ -119,7 +119,7 @@ const PlaceAuction = () => {
         <></>
       )}
     </PlaceAuctionWrapper>
-  )
-}
+  );
+};
 
-export default PlaceAuction
+export default PlaceAuction;
