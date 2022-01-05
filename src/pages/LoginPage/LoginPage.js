@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { Container, Background } from '../../globalStyles';
+import { useEffect, useState, useContext } from 'react'
+import Context from '../../utils/Context'
+
+import { Navigate } from 'react-router-dom'
+import { Container, Background } from '../../globalStyles'
 import {
   LoginSec,
   TextWrapper,
@@ -11,40 +13,42 @@ import {
   LoginButton,
   ButtonIcon,
   ButtonText,
-} from './LoginPage.styles';
+} from './LoginPage.styles'
 
-import { isMobile, isAndroid, osVersion } from 'react-device-detect';
-import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from './imports';
-import { useWeb3React } from '@web3-react/core';
+import { isMobile, isAndroid, osVersion } from 'react-device-detect'
+import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from './imports'
+import { useWeb3React } from '@web3-react/core'
 import {
   injected,
   walletconnect,
   fortmatic,
   walletlink,
   resetWalletConnect,
-} from '../../components/Wallets/Connectors';
-import { useDispatch } from 'react-redux';
-import { setWalletState } from '../../utils/reduxSlices';
-import Cookies from 'universal-cookie';
+} from '../../components/Wallets/Connectors'
+import { useDispatch } from 'react-redux'
+import { setWalletState } from '../../utils/reduxSlices'
+import Cookies from 'universal-cookie'
 
 const cookieOptions = {
   path: '/',
   maxAge: 3600,
   sameSite: 'lax',
   // secure: true,
-};
+}
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const [disabled, setDisabled] = useState(false);
-  let web3Current = useWeb3React();
-  let cookies = new Cookies();
+  const value = useContext(Context)
+
+  const dispatch = useDispatch()
+  const [disabled, setDisabled] = useState(false)
+  let web3Current = useWeb3React()
+  let cookies = new Cookies()
   useEffect(() => {
     if (cookies.get('account')) {
-      console.log(injected);
-      connectOnLoad(injected);
+      console.log(injected)
+      connectOnLoad(injected)
     }
-  }, []);
+  }, [])
 
   async function connectOnLoad(walletConnector) {
     try {
@@ -52,34 +56,35 @@ const LoginPage = () => {
         'customConnector',
         Object.assign({}, walletConnector),
         cookieOptions
-      );
-      await web3Current.activate(walletConnector);
+      )
+      await web3Current.activate(walletConnector)
     } catch (ex) {
-      console.log(ex);
+      console.log(ex)
     }
   }
 
   if (web3Current.account) {
-    let { account, active, chainId, connector } = web3Current;
+    let { account, active, chainId, connector } = web3Current
     dispatch(
       setWalletState({
         account,
         active,
         chainId,
-        connector,
       })
-    );
-    return <Navigate to={'/account'} replace={true} />;
+    )
+    value.setConnectorFun(connector)
+
+    return <Navigate to={'/account'} replace={true} />
   }
 
   async function connect(walletConnector) {
-    setDisabled(true);
-    resetWalletConnect(walletConnector);
+    setDisabled(true)
+    resetWalletConnect(walletConnector)
     try {
-      await web3Current.activate(walletConnector);
-      return <Navigate to={'/account'} replace={true} />;
+      await web3Current.activate(walletConnector)
+      return <Navigate to={'/account'} replace={true} />
     } catch (ex) {
-      console.log(ex);
+      console.log(ex)
     }
   }
 
@@ -105,7 +110,7 @@ const LoginPage = () => {
                   isMobile
                     ? () => connect(walletconnect)
                     : () => {
-                        connect(injected);
+                        connect(injected)
                       }
                 }
                 disabled={disabled}
@@ -160,7 +165,7 @@ const LoginPage = () => {
         </LoginSec>
       </Background>
     </>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

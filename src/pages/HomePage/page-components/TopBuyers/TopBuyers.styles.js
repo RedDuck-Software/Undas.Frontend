@@ -51,7 +51,7 @@ export const BuyersTitle = styled.h2`
   }
 `
 
-export const BuyersTitleViolet = styled.h2`
+export const BuyersTitleViolet = styled.span`
   display: inline;
   font-size: 2.8rem;
   padding-left: 1rem;

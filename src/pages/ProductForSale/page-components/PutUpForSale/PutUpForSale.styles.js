@@ -19,6 +19,7 @@ export const ForSaleButton = styled(Button)`
 `
 
 export const ForSaleDropdown = styled.div`
+  width: 100%;
   background: #ffffff;
   border: 1px solid #5d3f92;
   box-sizing: border-box;
@@ -36,6 +37,19 @@ export const ForSaleDropdown = styled.div`
 
   @media (max-width: 539px) {
     font-size: 0.85rem;
+    padding: 5%;
+  }
+
+  @media (max-width: 389px) {
+    width: 187px;
+
+    div {
+      &:nth-child(3) {
+        button {
+          width: 167px;
+        }
+      }
+    }
   }
 `
 
@@ -50,6 +64,10 @@ export const DropdownLine = styled.div`
     @media (max-width: 539px) {
       margin-bottom: 1rem;
     }
+  }
+
+  @media (max-width: 389px) {
+    margin-bottom: 0;
   }
 `
 

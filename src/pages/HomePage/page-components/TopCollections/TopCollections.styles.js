@@ -51,7 +51,7 @@ export const CollectionsTitle = styled.h2`
   }
 `
 
-export const CollectionsTitleViolet = styled.h2`
+export const CollectionsTitleViolet = styled.span`
   display: inline;
   font-size: 2.8rem;
   padding-left: 1rem;

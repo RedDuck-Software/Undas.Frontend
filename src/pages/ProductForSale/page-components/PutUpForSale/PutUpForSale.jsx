@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { ethers } from 'ethers';
+import { useState, useContext } from 'react'
+import Context from '../../../../utils/Context'
+import { ethers } from 'ethers'
 
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
-import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers';
-import Marketplace from '../../../../abi/Marketplace.json';
+import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers'
+import Marketplace from '../../../../abi/Marketplace.json'
 
-import Image from '../../../../images/card-item.png';
+import Image from '../../../../images/card-item.png'
 
-import { Button } from '../../../../globalStyles';
+import { Button } from '../../../../globalStyles'
 
 import {
   ForSaleWrapper,
@@ -28,60 +29,70 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PutUpForSale.styles';
+} from './PutUpForSale.styles'
 
 const PutUpForSale = () => {
-  const connector = useSelector((state) => state.wallet?.connector);
+  const { connector } = useContext(Context)
+  console.log(connector)
 
-  const [isDropdownOpen, setDropdown] = useState(false);
-  const [isMenuShown, setMenu] = useState(false);
-  const [isButtonsActive, setButtons] = useState('disabled');
+  const [price, setPrice] = useState(35)
+  const [commision, setCommision] = useState(0)
+  const account = useSelector((state) => state.wallet?.account)
+
+  const [isDropdownOpen, setDropdown] = useState(false)
+  const [isMenuShown, setMenu] = useState(false)
+  const [isButtonsActive, setButtons] = useState('disabled')
 
   const bid = async () => {
-    if (!connector) return;
+    if (!connector || isButtonsActive === 'disabled') return
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
-    );
-    console.log(provider);
-    const signer = provider.getSigner(0);
+    )
+    console.log(provider)
+    const signer = provider.getSigner(0)
     const contract = new ethers.Contract(
       CONTRACT_ADDRESS,
       Marketplace['abi'],
       signer
-    );
+    )
 
     const tx = await contract.bid(
       '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
       1,
-      ethers.utils.parseEther('35')
-    );
+      ethers.utils.parseEther(price.toString())
+    )
 
-    await tx.wait();
-  };
+    await tx.wait()
+  }
 
   const toogleDropdown = () => {
-    setDropdown(!isDropdownOpen);
-  };
+    setDropdown(!isDropdownOpen)
+  }
 
   const toogleMenu = () => {
     if (!isMenuShown && isButtonsActive === 'disabled') {
-      setMenu(!isMenuShown);
+      setMenu(!isMenuShown)
     } else if (isButtonsActive === 'disabled') {
-      return;
+      return
     } else {
-      setMenu(!isMenuShown);
-      setButtons('disabled');
+      setMenu(!isMenuShown)
+      setButtons('disabled')
     }
-  };
+  }
 
   const toogleButtons = () => {
     if (isButtonsActive === 'disabled') {
-      setButtons('active');
+      setButtons('active')
     } else {
-      setButtons('disabled');
+      setButtons('disabled')
     }
-  };
+  }
+
+  const calculateCommission = () => {
+    setCommision(price / 10)
+  }
+  console.log(account)
 
   return (
     <ForSaleWrapper>
@@ -92,10 +103,21 @@ const PutUpForSale = () => {
         <ForSaleDropdown>
           <DropdownLine>
             <DropdownPrice>Price</DropdownPrice>
-            <DropdownInput type="number" placeholder="35" />
+            <DropdownInput
+              type="number"
+              placeholder={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </DropdownLine>
           <DropdownLine>
-            <DropdownButton onClick={toogleMenu}>Sell</DropdownButton>
+            <DropdownButton
+              onClick={() => {
+                toogleMenu()
+                calculateCommission()
+              }}
+            >
+              Sell
+            </DropdownButton>
           </DropdownLine>
         </ForSaleDropdown>
       ) : (
@@ -107,10 +129,11 @@ const PutUpForSale = () => {
             <ItemImage src={Image} />
             <AuctionDescription>
               <MenuLine>
-                Price <MenuPrice>35</MenuPrice>
+                Price <MenuPrice>{price}</MenuPrice>
               </MenuLine>
               <MenuLine>
-                <span>Marketplace commission</span> <MenuPrice>3,5</MenuPrice>
+                <span>Marketplace commission</span>{' '}
+                <MenuPrice>{commision}</MenuPrice>
               </MenuLine>
             </AuctionDescription>
           </MenuTop>
@@ -120,7 +143,7 @@ const PutUpForSale = () => {
           </MenuAgreementLine>
           <MenuButtonsWrapper>
             <Button className={isButtonsActive} onClick={toogleMenu}>
-              Cancel
+              Cancle
             </Button>
             <Button className={isButtonsActive} onClick={bid} violet>
               Confirm
@@ -131,7 +154,7 @@ const PutUpForSale = () => {
         <></>
       )}
     </ForSaleWrapper>
-  );
-};
+  )
+}
 
-export default PutUpForSale;
+export default PutUpForSale
