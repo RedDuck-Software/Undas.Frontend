@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import Context from '../../utils/Context'
+
 import { Navigate } from 'react-router-dom'
 import { Container, Background } from '../../globalStyles'
 import {
@@ -35,54 +37,43 @@ const cookieOptions = {
 }
 
 const LoginPage = () => {
+  const value = useContext(Context)
+
   const dispatch = useDispatch()
   const [disabled, setDisabled] = useState(false)
-  const web3State = useWeb3React()
+  let web3Current = useWeb3React()
   let cookies = new Cookies()
-  let cookieAccount = cookies.get('web3State')?.account
+  useEffect(() => {
+    if (cookies.get('account')) {
+      console.log(injected)
+      connectOnLoad(injected)
+    }
+  }, [])
 
   async function connectOnLoad(walletConnector) {
     try {
-      await web3State.activate(walletConnector)
-      cookies.set('active', cookies.get('active'), cookieOptions)
-      cookies.set('account', cookies.get('account'), cookieOptions)
+      cookies.set(
+        'customConnector',
+        Object.assign({}, walletConnector),
+        cookieOptions
+      )
+      await web3Current.activate(walletConnector)
     } catch (ex) {
       console.log(ex)
     }
   }
 
-  useEffect(() => {
-    let cookies = new Cookies()
-    cookies.set('active', web3State.active, cookieOptions)
-    cookies.set('account', web3State.account, cookieOptions)
-  }, [web3State])
-
-  console.log(`Your address is ${web3State.account}`)
-  if (cookieAccount) {
-    // TODO: pass a connector into function
-    connectOnLoad()
-    const active = cookies.get('web3State')?.active
-    const chainId = cookies.get('web3State')?.chainId
-    dispatch(
-      setWalletState({
-        cookieAccount,
-        active,
-        chainId,
-        connector: web3State.connector,
-      })
-    )
-    return <Navigate to={'/account'} replace={true} />
-  }
-  if (web3State.account) {
-    let { account, active, chainId, connector } = web3State
+  if (web3Current.account) {
+    let { account, active, chainId, connector } = web3Current
     dispatch(
       setWalletState({
         account,
         active,
         chainId,
-        connector,
       })
     )
+    value.setConnectorFun(connector)
+
     return <Navigate to={'/account'} replace={true} />
   }
 
@@ -90,8 +81,8 @@ const LoginPage = () => {
     setDisabled(true)
     resetWalletConnect(walletConnector)
     try {
-      await web3State.activate(walletConnector)
-      setDisabled(false)
+      await web3Current.activate(walletConnector)
+      return <Navigate to={'/account'} replace={true} />
     } catch (ex) {
       console.log(ex)
     }
@@ -118,7 +109,9 @@ const LoginPage = () => {
                 onClick={
                   isMobile
                     ? () => connect(walletconnect)
-                    : () => connect(injected)
+                    : () => {
+                        connect(injected)
+                      }
                 }
                 disabled={disabled}
               >

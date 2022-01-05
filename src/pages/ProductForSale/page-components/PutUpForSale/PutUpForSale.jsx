@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import Context from '../../../../utils/Context'
 import { ethers } from 'ethers'
 
 import { useSelector } from 'react-redux'
@@ -35,6 +36,9 @@ const PutUpForSale = () => {
 
   const [price, setPrice] = useState(35)
   const [commision, setCommision] = useState(0)
+  const { connector } = useContext(Context)
+  const account = useSelector((state) => state.wallet?.account)
+
   const [isDropdownOpen, setDropdown] = useState(false)
   const [isMenuShown, setMenu] = useState(false)
   const [isButtonsActive, setButtons] = useState('disabled')
@@ -88,6 +92,7 @@ const PutUpForSale = () => {
   const calculateCommission = () => {
     setCommision(price / 10)
   }
+  console.log(account)
 
   return (
     <ForSaleWrapper>

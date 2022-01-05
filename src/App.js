@@ -1,5 +1,7 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import Context from './utils/Context'
 
 import { Navbar, Footer, ScrollToTop } from './components'
 import {
@@ -14,58 +16,58 @@ import {
   RentNFTPage,
 } from './pages'
 
-import GlobalStyle from './globalStyles'
-import { Web3ReactProvider } from '@web3-react/core'
-import { Web3Provider } from '@ethersproject/providers'
-import store from './store'
-import { Provider } from 'react-redux'
-
-function getLibrary(provider, connector) {
-  return new Web3Provider(provider)
-}
+import { useWeb3React } from '@web3-react/core'
+import connectOnLoad from './utils/connectOnLoad'
 
 const App = () => {
+  const [connector, setConnector] = useState(null)
+
+  const setConnectorFun = (connector) => setConnector(connector)
+
+  let web3Current = useWeb3React()
+
+  useEffect(() => {
+    connectOnLoad(web3Current)
+  }, [])
+
+  const value = {
+    connector,
+    setConnectorFun,
+  }
+
   return (
-    <Provider store={store}>
-      <Router>
-        <ScrollToTop />
-        <GlobalStyle />
-        <Web3ReactProvider getLibrary={getLibrary}>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/product" element={<ProductCard />} />
-            <Route path="/product/for-sale" element={<ProductForSale />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/assets" element={<AllNFTs />} />
-            <Route path="/assets/new" element={<NewNFTs />} />
-            <Route
-              path="/explore/art"
-              element={<ExplorePage pageType="Art" />}
-            />
-            <Route
-              path="/explore/sport"
-              element={<ExplorePage pageType="Sport" />}
-            />
-            <Route
-              path="/explore/girls"
-              element={<ExplorePage pageType="Girls" />}
-            />
-            <Route
-              path="/explore/sport"
-              element={<ExplorePage pageType="Sport" />}
-            />
-            <Route
-              path="/explore/furniture"
-              element={<ExplorePage pageType="Furniture" />}
-            />
-            <Route path="/rent-nft" element={<RentNFTPage />} />
-          </Routes>
-        </Web3ReactProvider>
-        <Footer />
-      </Router>
-    </Provider>
+    <>
+      <Context.Provider value={value}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/product" element={<ProductCard />} />
+          <Route path="/product/for-sale" element={<ProductForSale />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/assets" element={<AllNFTs />} />
+          <Route path="/assets/new" element={<NewNFTs />} />
+          <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
+          <Route
+            path="/explore/sport"
+            element={<ExplorePage pageType="Sport" />}
+          />
+          <Route
+            path="/explore/girls"
+            element={<ExplorePage pageType="Girls" />}
+          />
+          <Route
+            path="/explore/sport"
+            element={<ExplorePage pageType="Sport" />}
+          />
+          <Route
+            path="/explore/furniture"
+            element={<ExplorePage pageType="Furniture" />}
+          />
+          <Route path="/rent-nft" element={<RentNFTPage />} />
+        </Routes>
+      </Context.Provider>
+    </>
   )
 }
 
