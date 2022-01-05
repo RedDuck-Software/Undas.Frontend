@@ -1,4 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { ethers } from 'ethers'
+
+import { CONTRACT_ADDRESS } from '../../utils/addressHelpers'
+import Marketplace from '../../abi/Marketplace.json'
+
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 import { CardItem, FilterButtons } from '../../components'

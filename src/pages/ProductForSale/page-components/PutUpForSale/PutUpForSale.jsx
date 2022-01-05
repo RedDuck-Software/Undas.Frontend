@@ -33,12 +33,14 @@ import {
 const PutUpForSale = () => {
   const connector = useSelector((state) => state.wallet?.connector)
 
+  const [price, setPrice] = useState(35)
+  const [commision, setCommision] = useState(0)
   const [isDropdownOpen, setDropdown] = useState(false)
   const [isMenuShown, setMenu] = useState(false)
   const [isButtonsActive, setButtons] = useState('disabled')
 
   const bid = async () => {
-    if (!connector) return
+    if (!connector || isButtonsActive === 'disabled') return
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
@@ -54,7 +56,7 @@ const PutUpForSale = () => {
     const tx = await contract.bid(
       '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
       1,
-      ethers.utils.parseEther('35')
+      ethers.utils.parseEther(price.toString())
     )
 
     await tx.wait()
@@ -83,6 +85,10 @@ const PutUpForSale = () => {
     }
   }
 
+  const calculateCommission = () => {
+    setCommision(price / 10)
+  }
+
   return (
     <ForSaleWrapper>
       <ForSaleButton violet onClick={toogleDropdown}>
@@ -92,10 +98,21 @@ const PutUpForSale = () => {
         <ForSaleDropdown>
           <DropdownLine>
             <DropdownPrice>Price</DropdownPrice>
-            <DropdownInput type="number" placeholder="35" />
+            <DropdownInput
+              type="number"
+              placeholder={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </DropdownLine>
           <DropdownLine>
-            <DropdownButton onClick={toogleMenu}>Sell</DropdownButton>
+            <DropdownButton
+              onClick={() => {
+                toogleMenu()
+                calculateCommission()
+              }}
+            >
+              Sell
+            </DropdownButton>
           </DropdownLine>
         </ForSaleDropdown>
       ) : (
@@ -107,10 +124,11 @@ const PutUpForSale = () => {
             <ItemImage src={Image} />
             <AuctionDescription>
               <MenuLine>
-                Price <MenuPrice>35</MenuPrice>
+                Price <MenuPrice>{price}</MenuPrice>
               </MenuLine>
               <MenuLine>
-                <span>Marketplace commission</span> <MenuPrice>3,5</MenuPrice>
+                <span>Marketplace commission</span>{' '}
+                <MenuPrice>{commision}</MenuPrice>
               </MenuLine>
             </AuctionDescription>
           </MenuTop>

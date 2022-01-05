@@ -115,7 +115,6 @@ export const ButtonsContainer = styled.div`
     button {
       width: 187px;
       height: 40px;
-      margin-bottom: 5%;
     }
 
     div {

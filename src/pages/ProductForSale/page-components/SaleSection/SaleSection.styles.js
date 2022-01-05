@@ -16,6 +16,10 @@ export const ButtonsContainer = styled.div`
 
   @media (max-width: 679px) {
     button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       height: 40px;
     }
   }
@@ -28,12 +32,6 @@ export const ButtonsContainer = styled.div`
       width: 187px;
       height: 40px;
       margin-bottom: 5%;
-    }
-
-    div {
-      &:nth-child(2) {
-        width: auto;
-      }
     }
   }
 

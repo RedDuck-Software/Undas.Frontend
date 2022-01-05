@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SideBar, CardList, Paggination } from '../../components'
 
 import { Background } from '../../globalStyles'
