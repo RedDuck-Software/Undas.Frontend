@@ -22,7 +22,6 @@ const App = () => {
   useEffect(() => {
     connectOnLoad(web3Current);
   }, []);
-  console.log(`here's your address: ${web3Current.account}`);
   return (
     <>
       <Navbar />
