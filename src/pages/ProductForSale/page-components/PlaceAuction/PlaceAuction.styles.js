@@ -20,6 +20,7 @@ export const PlaceAuctionButton = styled(Button)`
 `
 
 export const PlaceAuctionDropdown = styled.div`
+  width: 100%;
   background: #ffffff;
   border: 1px solid #5d3f92;
   box-sizing: border-box;
@@ -37,6 +38,19 @@ export const PlaceAuctionDropdown = styled.div`
 
   @media (max-width: 539px) {
     font-size: 0.85rem;
+    padding: 5%;
+  }
+
+  @media (max-width: 389px) {
+    width: 187px;
+
+    div {
+      &:nth-child(3) {
+        button {
+          width: 167px;
+        }
+      }
+    }
   }
 `
 
@@ -51,6 +65,10 @@ export const DropdownLine = styled.div`
     @media (max-width: 539px) {
       margin-bottom: 1rem;
     }
+  }
+
+  @media (max-width: 389px) {
+    margin-bottom: 0;
   }
 `
 
@@ -97,6 +115,10 @@ export const DropdownInput = styled.input`
 `
 
 export const DropdownButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
   margin-top: 6%;
 
@@ -120,6 +142,9 @@ export const DropdownButton = styled(Button)`
 `
 
 export const PlaceAuctionMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+
   position: fixed;
   bottom: 30%;
   left: 50%;
@@ -132,13 +157,20 @@ export const PlaceAuctionMenu = styled.div`
 
   max-width: 730px;
   max-height: 429px;
-  padding: 2.25rem;
+  padding: 2%;
   box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
 
   z-index: 99;
 
-  @media (max-width: 829px) {
-    max-width: 90%;
+  @media (max-width: 1024px) {
+    max-height: 65vh;
+    bottom: 30%;
+    min-width: 488px;
+  }
+
+  @media (max-width: 632px) {
+    width: 85%;
+    min-width: 0;
   }
 
   @media (max-width: 539px) {
@@ -160,7 +192,7 @@ export const ItemImage = styled.img`
 
   border-radius: 10px;
 
-  @media (max-width: 374px) {
+  @media (max-width: 632px) {
     display: none;
   }
 `
@@ -183,18 +215,24 @@ export const MenuLine = styled.div`
   }
 
   &:nth-child(4) {
-    @media (max-width: 729px) {
-      display: flex;
-      align-items: center;
-
-      span {
-        max-width: 60%;
+    span {
+      &:nth-child(2) {
+        display: flex;
+        align-items: center;
       }
     }
   }
 
-  @media (max-width: 539px) {
-    font-size: 1rem;
+  @media (max-width: 1024px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 632px) {
+    padding: 3%;
+
+    &:nth-child(3) {
+      padding: 3%;
+    }
   }
 `
 
@@ -214,6 +252,8 @@ export const MenuPrice = styled.span`
     position: relative;
     top: 3px;
     right: 6px;
+
+    padding-left: 16px;
   }
 `
 
@@ -223,6 +263,10 @@ export const MenuAgreementLine = styled.div`
   padding: 4% 0;
   display: flex;
   align-items: center;
+
+  @media (max-width: 632px) {
+    padding: 4% 3%;
+  }
 `
 
 export const MenuInput = styled.input`
