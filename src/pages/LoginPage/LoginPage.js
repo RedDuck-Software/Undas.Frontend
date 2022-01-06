@@ -72,6 +72,7 @@ const LoginPage = () => {
         chainId,
       })
     )
+
     value.setConnectorFun(connector)
 
     return <Navigate to={'/account'} replace={true} />

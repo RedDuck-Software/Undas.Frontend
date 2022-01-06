@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import Context from '../../utils/Context'
+import { useWeb3React } from '@web3-react/core'
 
 import { MdOutlineMenu } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
@@ -69,6 +71,16 @@ const Navbar = () => {
     setShowExplore(false)
     setShowActivity(!showActivity)
   }
+
+  const value = useContext(Context)
+  let web3Current = useWeb3React()
+
+  useEffect(() => {
+    if (web3Current.account) {
+      let { connector } = web3Current
+      value.setConnectorFun(connector)
+    }
+  })
 
   return (
     <>

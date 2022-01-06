@@ -2,8 +2,7 @@ import { useState, useContext } from 'react'
 import Context from '../../../../utils/Context'
 import { ethers } from 'ethers'
 
-import { useSelector } from 'react-redux'
-
+import { useWeb3React } from '@web3-react/core'
 import { CONTRACT_ADDRESS } from '../../../../utils/addressHelpers'
 import Marketplace from '../../../../abi/Marketplace.json'
 
@@ -33,11 +32,9 @@ import {
 
 const PutUpForSale = () => {
   const { connector } = useContext(Context)
-  console.log(connector)
 
   const [price, setPrice] = useState(35)
   const [commision, setCommision] = useState(0)
-  const account = useSelector((state) => state.wallet?.account)
 
   const [isDropdownOpen, setDropdown] = useState(false)
   const [isMenuShown, setMenu] = useState(false)
@@ -49,8 +46,9 @@ const PutUpForSale = () => {
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
     )
-    console.log(provider)
+
     const signer = provider.getSigner(0)
+
     const contract = new ethers.Contract(
       CONTRACT_ADDRESS,
       Marketplace['abi'],
@@ -92,7 +90,6 @@ const PutUpForSale = () => {
   const calculateCommission = () => {
     setCommision(price / 10)
   }
-  console.log(account)
 
   return (
     <ForSaleWrapper>
