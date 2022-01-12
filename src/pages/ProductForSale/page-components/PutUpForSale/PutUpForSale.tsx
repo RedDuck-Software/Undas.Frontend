@@ -40,7 +40,6 @@ import {
 const PutUpForSale = () => {
   const { connector } = useContext(Context);
 
-  let count = useSelector((state: RootState) => state.NFTsCounter.value);
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(35);
@@ -61,8 +60,6 @@ const PutUpForSale = () => {
 
     console.log(connector);
     console.log(signer);
-
-    // const NFTContract = new ethers.Contract(NFT_ADDRESS, NFT['abi'], signer)
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -92,8 +89,6 @@ const PutUpForSale = () => {
     await tx.wait().then(
       () => {
         dispatch(increment());
-        count++;
-        localStorage.setItem('NFTsCounter', count.toString());
       },
       (error) => {
         console.log(error);
