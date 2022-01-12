@@ -1,12 +1,6 @@
-import { ethers } from 'ethers'
-import React, { useState, useContext } from 'react'
-import Context from '../../../../utils/Context'
-
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
-
-import { Button } from '../../../../globalStyles'
-import { MARKETPLACE_ADDRESS } from '../../../../utils/addressHelpers'
-import Marketplace from '../../../../abi/Marketplace.json'
+import { useState } from 'react';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { Button } from '../../../../globalStyles';
 
 import {
   RentContainer,
@@ -19,43 +13,16 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './QuoteRent.styles'
+} from './QuoteRent.styles';
 
 const QuoteRent = () => {
-  const [rentOpen, setRentOpen] = useState(true)
-  const [isRented, setIsRented] = useState(false)
-  const [canRent] = useState(true)
-  const connector = useContext(Context).connector
-
-  const startRenting = async () => {
-    if (!connector) return
-
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
-    )
-    const signer = provider.getSigner(0)
-    const contract = new ethers.Contract(
-      MARKETPLACE_ADDRESS,
-      Marketplace['abi'],
-      signer
-    )
-
-    // const tx = await contract.quoteForStaking(
-    //   '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-    //   1,
-    //   ethers.utils.parseEther('10'),
-    //   ethers.utils.parseEther('2'),
-    //   ethers.utils.parseEther('100') //format of deadlineUTC ???
-    // );
-
-    // await tx.wait();
-
-    // setIsRented(!isRented);
-  }
+  const [rentOpen, setRentOpen] = useState(true);
+  const [isRented, setIsRented] = useState(false);
+  const [canRent] = useState(true);
 
   const toogleRentOpen = () => {
-    setRentOpen(!rentOpen)
-  }
+    setRentOpen(!rentOpen);
+  };
 
   return (
     <RentContainer>
@@ -87,15 +54,13 @@ const QuoteRent = () => {
               {isRented ? (
                 <>
                   <ButtonRow>
-                    <Button violet onClick={startRenting}>
-                      Stop renting
-                    </Button>
+                    <Button violet>Stop renting</Button>
                     <Button violet>Buy</Button>
                   </ButtonRow>
                 </>
               ) : (
                 <ButtonRow>
-                  <Button violet big onClick={startRenting}>
+                  <Button violet big>
                     Rent NFT
                   </Button>
                 </ButtonRow>
@@ -126,7 +91,7 @@ const QuoteRent = () => {
         </RentTop>
       )}
     </RentContainer>
-  )
-}
+  );
+};
 
-export default QuoteRent
+export default QuoteRent;

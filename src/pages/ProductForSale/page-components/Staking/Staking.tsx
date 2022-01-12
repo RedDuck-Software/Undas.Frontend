@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
-
-import { Button } from '../../../../globalStyles'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { Button } from '../../../../globalStyles';
 
 import {
   StakingContainer,
@@ -19,19 +18,78 @@ import {
   TableMenuOption,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles'
+} from './Staking,styles';
+
+import { ethers } from 'ethers';
+import Context from '../../../../utils/Context';
+
+import {
+  MARKETPLACE_ADDRESS,
+  NFT_ADDRESS,
+} from '../../../../utils/addressHelpers';
+import Marketplace from '../../../../abi/Marketplace.json';
+import NFT from '../../../../abi/TestNFT.json';
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
+import intervalIntoTimeStamp from '../../../../utils/intervalIntoTimeStamp';
 
 const Staking = () => {
-  const [stakingOpen, setStakingOpen] = useState(false)
-  const [isPuttedForStaking, setIsPuttedForStaking] = useState(false)
+  const [stakingOpen, setStakingOpen] = useState(false);
+  const [isPuttedForStaking, setIsPuttedForStaking] = useState(false);
+
+  const { connector } = useContext(Context);
+  const [price, setPrice] = useState(280);
+  const [premium, setPremium] = useState(0);
+  const [deadline, setDeadline] = useState('for 7 days');
+
+  const quoteForStaking = async () => {
+    if (!connector || !stakingOpen) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+    const signer = provider.getSigner(0);
+
+    console.log(connector);
+    console.log(signer);
+
+    // const NFTContract = new ethers.Contract(
+    //   NFT_ADDRESS,
+    //   Marketplace['abi'],
+    //   signer
+    // );
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const isApprovedForAll = await NFTContract.isApprovedForAll(
+      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+    );
+
+    if (!isApprovedForAll) {
+      await (
+        await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
+
+    const tx = await MarketplaceContract.quoteForStaking(
+      NFT_ADDRESS,
+      0,
+      ethers.utils.parseEther(price.toString()),
+      15,
+      intervalIntoTimeStamp(deadline)
+    );
+    await tx.wait();
+    setIsPuttedForStaking(!isPuttedForStaking);
+  };
 
   const toogleStakingOpen = () => {
-    setStakingOpen(!stakingOpen)
-  }
-
-  const putForStaking = () => {
-    setIsPuttedForStaking(!isPuttedForStaking)
-  }
+    setStakingOpen(!stakingOpen);
+  };
 
   return (
     <StakingContainer>
@@ -46,7 +104,12 @@ const Staking = () => {
                 <TableRow>
                   <TableHeadTitle>Price (ETH)</TableHeadTitle>
                   <TableHeadTitle>
-                    <TableInput placeholder="280" id="price" />
+                    <TableInput
+                      type="number"
+                      placeholder={price.toString()}
+                      id="price"
+                      onChange={(e) => setPrice(+e.target.value)}
+                    />
                   </TableHeadTitle>
                 </TableRow>
               </StakingTableHead>
@@ -60,7 +123,10 @@ const Staking = () => {
                 <TableRow>
                   <TableColumn>Term</TableColumn>
                   <TableColumn>
-                    <TableSelectMenu>
+                    <TableSelectMenu
+                      value={deadline}
+                      onChange={(e) => setDeadline(e.target.value)}
+                    >
                       <TableMenuOption>for 7 days</TableMenuOption>
                       <TableMenuOption>for 14 days</TableMenuOption>
                     </TableSelectMenu>
@@ -71,14 +137,14 @@ const Staking = () => {
             {isPuttedForStaking ? (
               <CongratulationContainer>
                 <span>Congratulations! You have put your NFT for staking.</span>
-                <Button violet onClick={putForStaking}>
+                <Button violet onClick={quoteForStaking}>
                   Cancel
                 </Button>
               </CongratulationContainer>
             ) : (
               <>
                 <ButtonRow>
-                  <Button violet big onClick={putForStaking}>
+                  <Button violet big onClick={quoteForStaking}>
                     Put for staking
                   </Button>
                 </ButtonRow>
@@ -94,7 +160,7 @@ const Staking = () => {
         </>
       )}
     </StakingContainer>
-  )
-}
+  );
+};
 
-export default Staking
+export default Staking;

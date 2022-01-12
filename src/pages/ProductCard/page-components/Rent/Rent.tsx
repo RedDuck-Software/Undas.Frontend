@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import { ethers } from 'ethers';
+import React, { useState, useContext } from 'react';
+import Context from '../../../../utils/Context';
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from '../../../../globalStyles'
+import { Button } from '../../../../globalStyles';
+import {
+  MARKETPLACE_ADDRESS,
+  NFT_ADDRESS,
+} from '../../../../utils/addressHelpers';
+import Marketplace from '../../../../abi/Marketplace.json';
+import NFT from '../../../../abi/TestNFT.json';
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
 import {
   RentContainer,
@@ -15,20 +24,60 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './Rent.styles'
-
+} from './Rent.styles';
 const Rent = () => {
-  const [rentOpen, setRentOpen] = useState(true)
-  const [isRented, setIsRented] = useState(false)
-  const [canRent] = useState(true)
+  const [rentOpen, setRentOpen] = useState(true);
+  const [isRented, setIsRented] = useState(false);
+  const [canRent] = useState(true);
+  const { connector } = useContext(Context);
 
-  const startToRentin = () => {
-    setIsRented(!isRented)
-  }
+  const startRenting = async () => {
+    if (!connector || !rentOpen) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+    const signer = provider.getSigner(0);
+
+    console.log(connector);
+    console.log(signer);
+
+    // const NFTContract = new ethers.Contract(
+    //   NFT_ADDRESS,
+    //   Marketplace['abi'],
+    //   signer
+    // );
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const isApprovedForAll = await NFTContract.isApprovedForAll(
+      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+    );
+
+    if (!isApprovedForAll) {
+      await (
+        await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
+
+    // const tx = await MarketplaceContract.rentNFT(
+    //   NFT_ADDRESS,
+    //   0,
+    //   ethers.utils.parseEther(price.toString()),
+    //   { value: ethers.utils.parseEther('0.0001') }
+    // );
+    // await tx.wait();
+  };
 
   const toogleRentOpen = () => {
-    setRentOpen(!rentOpen)
-  }
+    setRentOpen(!rentOpen);
+  };
 
   return (
     <RentContainer>
@@ -60,7 +109,7 @@ const Rent = () => {
               {isRented ? (
                 <>
                   <ButtonRow>
-                    <Button violet onClick={startToRentin}>
+                    <Button violet onClick={startRenting}>
                       Stop renting
                     </Button>
                     <Button violet>Buy</Button>
@@ -68,7 +117,7 @@ const Rent = () => {
                 </>
               ) : (
                 <ButtonRow>
-                  <Button violet big onClick={startToRentin}>
+                  <Button violet big onClick={startRenting}>
                     Rent NFT
                   </Button>
                 </ButtonRow>
@@ -99,7 +148,7 @@ const Rent = () => {
         </RentTop>
       )}
     </RentContainer>
-  )
-}
+  );
+};
 
-export default Rent
+export default Rent;
