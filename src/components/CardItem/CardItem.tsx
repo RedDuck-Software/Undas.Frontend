@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   CardItemContainer,
   CardItemImage,
@@ -8,24 +6,26 @@ import {
   CardTitle,
   CardNumber,
   CardETH,
-} from './CardItem.styles'
+} from './CardItem.styles';
 
 interface CardItemProps {
-  image: string
+  image?: string;
+  id?: string;
+  price?: string;
 }
 
-const CardItem: React.FC<CardItemProps> = ({ image }) => {
+const CardItem: React.FC<CardItemProps> = ({ image, id, price }) => {
   return (
     <CardItemContainer>
       <CardItemImage src={image} />
       <TransparentLayer />
       <InfoContainer>
         <CardTitle>Returne by Borya Borya</CardTitle>
-        <CardNumber>Returne #204</CardNumber>
-        <CardETH>Last 3</CardETH>
+        <CardNumber>Returne {id}</CardNumber>
+        <CardETH>Last {price}</CardETH>
       </InfoContainer>
     </CardItemContainer>
-  )
-}
+  );
+};
 
-export default CardItem
+export default CardItem;
