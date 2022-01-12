@@ -1,11 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface WalletState {
+  wallet: string | null;
+}
+
+const initialState: WalletState = {
+  wallet: null,
+};
+
 export const walletSlice = createSlice({
   name: 'wallet',
-  initialState: null,
+  initialState,
   reducers: {
     setWalletState: (state, action) => {
-      state = action.payload;
+      state.wallet = action.payload;
       return state;
     },
   },

@@ -40,7 +40,7 @@ import {
   AccountCardsWrapper,
 } from './AccountPage.styles';
 import { useDispatch } from 'react-redux';
-import { setWalletState } from '../../utils/reduxSlices';
+import { setWalletState } from '../../utils/ReduxSlices/walletSlice';
 import { useWeb3React } from '@web3-react/core';
 import Cookies from 'universal-cookie';
 
@@ -60,6 +60,8 @@ const AccountPage = () => {
 
   function disconnect() {
     cookies.set('account', '');
+    cookies.set('active', '');
+    cookies.set('customConnector', '');
     deactivate();
     dispatch(setWalletState({ account: null, active: false, chainId: null }));
   }

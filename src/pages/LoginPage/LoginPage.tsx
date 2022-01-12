@@ -28,7 +28,7 @@ import {
   resetWalletConnect,
 } from '../../components/Wallets/Connectors';
 import { useDispatch } from 'react-redux';
-import { setWalletState } from '../../utils/reduxSlices';
+import { setWalletState } from '../../utils/ReduxSlices/walletSlice';
 import Cookies from 'universal-cookie';
 
 const cookieOptions = {
@@ -46,7 +46,7 @@ const LoginPage = () => {
   let web3Current = useWeb3React();
   let cookies = new Cookies();
   useEffect(() => {
-    if (cookies.get('account') && cookies.get('account') !== 'undefined') {
+    if (cookies.get('account')) {
       console.log(injected);
       connectOnLoad(injected);
     }
@@ -54,6 +54,11 @@ const LoginPage = () => {
 
   async function connectOnLoad(walletConnector: AbstractConnector) {
     try {
+      cookies.set(
+        'customConnector',
+        Object.assign({}, walletConnector),
+        cookieOptions
+      );
       await web3Current.activate(walletConnector);
     } catch (ex) {
       console.log(ex);

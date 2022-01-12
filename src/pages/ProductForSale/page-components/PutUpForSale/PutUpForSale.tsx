@@ -1,20 +1,21 @@
-import { useState, useContext } from 'react'
-import Context from '../../../../utils/Context'
-import { ethers, providers } from 'ethers'
+import { useState, useContext } from 'react';
+import Context from '../../../../utils/Context';
+import { ethers } from 'ethers';
 
-import { useWeb3React } from '@web3-react/core'
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers'
-import Marketplace from '../../../../abi/Marketplace.json'
-import NFT from '../../../../abi/TestNFT.json'
+} from '../../../../utils/addressHelpers';
 
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain'
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
-import Image from '../../../../images/card-item.png'
+import { RootState } from '../../../../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment } from '../../../../utils/ReduxSlices/NFTsCounterSlice';
 
-import { Button } from '../../../../globalStyles'
+import Image from '../../../../images/card-item.png';
+
+import { Button } from '../../../../globalStyles';
 
 import {
   ForSaleWrapper,
@@ -34,87 +35,98 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PutUpForSale.styles'
+} from './PutUpForSale.styles';
 
 const PutUpForSale = () => {
-  const { connector } = useContext(Context)
-  let { account } = useWeb3React()
+  const { connector } = useContext(Context);
 
-  const [price, setPrice] = useState(35)
-  const [commision, setCommision] = useState(0)
+  let count = useSelector((state: RootState) => state.NFTsCounter.value);
+  const dispatch = useDispatch();
 
-  const [isDropdownOpen, setDropdown] = useState(false)
-  const [isMenuShown, setMenu] = useState(false)
-  const [isButtonsActive, setButtons] = useState('disabled')
+  const [price, setPrice] = useState(35);
+  const [commision, setCommision] = useState(0);
+
+  const [isDropdownOpen, setDropdown] = useState(false);
+  const [isMenuShown, setMenu] = useState(false);
+  const [isButtonsActive, setButtons] = useState('disabled');
 
   const bid = async () => {
-    if (!connector || isButtonsActive === 'disabled') return
+    if (!connector || isButtonsActive === 'disabled') return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
-    )
+    );
 
-    const signer = provider.getSigner(0)
+    const signer = provider.getSigner(0);
 
-    console.log(connector)
-    console.log(signer)
+    console.log(connector);
+    console.log(signer);
 
     // const NFTContract = new ethers.Contract(NFT_ADDRESS, NFT['abi'], signer)
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer)
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer
-    )
+    );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
       '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
-    )
+    );
 
     if (!isApprovedForAll) {
       await (
         await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
-      ).wait()
+      ).wait();
     }
 
     const tx = await MarketplaceContract.bid(
       NFT_ADDRESS,
-      0,
+      1,
       ethers.utils.parseEther(price.toString()),
-      { value: ethers.utils.parseEther('0.0001') }
-    )
+      { value: ethers.utils.parseEther(commision.toString()) }
+    );
 
-    await tx.wait()
-  }
+    await tx.wait().then(
+      () => {
+        dispatch(increment());
+        count++;
+        localStorage.setItem('NFTsCounter', count.toString());
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 
   const toogleDropdown = () => {
-    setDropdown(!isDropdownOpen)
-  }
+    setDropdown(!isDropdownOpen);
+  };
 
   const toogleMenu = () => {
     if (!isMenuShown && isButtonsActive === 'disabled') {
-      setMenu(!isMenuShown)
+      setMenu(!isMenuShown);
     } else if (isButtonsActive === 'disabled') {
-      return
+      return;
     } else {
-      setMenu(!isMenuShown)
-      setButtons('disabled')
+      setMenu(!isMenuShown);
+      setButtons('disabled');
     }
-  }
+  };
 
   const toogleButtons = () => {
     if (isButtonsActive === 'disabled') {
-      setButtons('active')
+      setButtons('active');
     } else {
-      setButtons('disabled')
+      setButtons('disabled');
     }
-  }
+  };
 
   const calculateCommission = () => {
-    setCommision(price / 10)
-  }
+    setCommision(price / 10);
+  };
 
   return (
     <ForSaleWrapper>
@@ -134,8 +146,8 @@ const PutUpForSale = () => {
           <DropdownLine>
             <DropdownButton
               onClick={() => {
-                toogleMenu()
-                calculateCommission()
+                toogleMenu();
+                calculateCommission();
               }}
             >
               Sell
@@ -176,7 +188,7 @@ const PutUpForSale = () => {
         <></>
       )}
     </ForSaleWrapper>
-  )
-}
+  );
+};
 
-export default PutUpForSale
+export default PutUpForSale;
