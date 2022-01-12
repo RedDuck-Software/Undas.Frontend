@@ -1,9 +1,10 @@
-import React from 'react'
+import { SideBar, CardList, Paggination } from '../../components';
 
-import { SideBar, CardList, Paggination } from '../../components'
-
-import { Background } from '../../globalStyles'
-import { AllNFTsContainer, AllNFTsPagginationContainer } from './AllNFTs.styles'
+import { Background } from '../../globalStyles';
+import {
+  AllNFTsContainer,
+  AllNFTsPagginationContainer,
+} from './AllNFTs.styles';
 
 const AllNFTs = () => {
   return (
@@ -16,7 +17,7 @@ const AllNFTs = () => {
         <Paggination />
       </AllNFTsPagginationContainer>
     </Background>
-  )
-}
+  );
+};
 
-export default AllNFTs
+export default AllNFTs;

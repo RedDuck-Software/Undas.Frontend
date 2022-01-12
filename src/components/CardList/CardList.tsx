@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import React, { useEffect, useState } from 'react';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { useContext } from 'react';
+import Context from '../../utils/Context';
+import { BigNumber, ethers } from 'ethers';
 
-import { CardItem, FilterButtons } from '..'
+import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
 
-import { card01, card02, card03 } from './imports'
+import { Marketplace__factory } from '../../typechain';
 
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md'
+import { CardItem, FilterButtons } from '..';
+
+import { card01, card02, card03 } from './imports';
+
+import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
 import {
   CardListWrapper,
   CardListHeading,
@@ -23,31 +30,106 @@ import {
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from './CardList.styles'
+} from './CardList.styles';
 
 interface CardListProps {
-  newFilter?: boolean
+  newFilter?: boolean;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
-  const [itemsMenuShow, setItemsMenuShow] = useState('')
-  const [sortByMenuShow, setSortByMenuShow] = useState('')
+  const { connector } = useContext(Context);
+
+  const [itemsMenuShow, setItemsMenuShow] = useState('');
+  const [sortByMenuShow, setSortByMenuShow] = useState('');
 
   const toggleItemsMenuShow = () => {
     if (itemsMenuShow) {
-      setItemsMenuShow('')
+      setItemsMenuShow('');
     } else {
-      setItemsMenuShow('active')
+      setItemsMenuShow('active');
     }
-  }
+  };
 
   const toggleSortByMenuShow = () => {
     if (sortByMenuShow) {
-      setSortByMenuShow('')
+      setSortByMenuShow('');
     } else {
-      setSortByMenuShow('active')
+      setSortByMenuShow('active');
     }
+  };
+
+  const getId = (number: number) => {
+    let id = '';
+    number++;
+
+    if (number < 100) {
+      id = `00${number}`;
+    } else if (number < 200) {
+      id = `0${number}`;
+    } else {
+      id = `${number}`;
+    }
+
+    return id;
+  };
+
+  const getListing = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.getListing(itemId);
+
+    return tx;
+  };
+
+  const getCards = async () => {
+    const items: JSX.Element[] = [];
+
+    for (let i = 0; i < countNum; i++) {
+      const CardProps = await getListing(i);
+
+      if (!CardProps) {
+        continue;
+      }
+
+      const { price } = CardProps;
+      const priceInNum = ethers.utils.formatUnits(price, 18);
+
+      const id = getId(i);
+      console.log(priceInNum, id);
+      items.push(
+        <CardItem key={i} image={card01} id={id} price={priceInNum} />
+      );
+      console.log(items);
+
+      // console.log(priceInNum);
+      // const priceInWei = ethers.utils.parseUnits(priceInNum, 18);
+      // console.log(priceInWei.toString());
+    }
+
+    return items;
+  };
+
+  const count = JSON.parse(localStorage.getItem('NFTsCounter') || '0');
+  let countNum = 0;
+
+  if (!count) {
+    countNum = parseInt(count);
   }
+
+  useEffect(() => {
+    getCards();
+  });
 
   return (
     <CardListWrapper>
@@ -95,7 +177,8 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       {newFilter ? <FilterButtons /> : <></>}
 
       <CardsWrapper>
-        <CardLink to="/product">
+        {/* {items} */}
+        {/* <CardLink to="/product">
           <CardItem image={card01} />
         </CardLink>
         <CardLink to="/product">
@@ -121,10 +204,10 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
         </CardLink>
         <CardLink to="/product">
           <CardItem image={card03} />
-        </CardLink>
+        </CardLink> */}
       </CardsWrapper>
     </CardListWrapper>
-  )
-}
+  );
+};
 
-export default CardList
+export default CardList;
