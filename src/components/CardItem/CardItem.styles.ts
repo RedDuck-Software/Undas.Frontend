@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import CheckMark from '../../icons/check-mark.svg'
-import RhombusWhite from '../../icons/rhombus-white.svg'
+import CheckMark from '../../icons/check-mark.svg';
+import RhombusWhite from '../../icons/rhombus-white.svg';
 
 export const CardItemContainer = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const CardItemContainer = styled.div`
   height: 100%;
   cursor: pointer;
   border-radius: 10px;
-`
+`;
 
 export const CardItemImage = styled.img`
   width: 100%;
@@ -20,7 +20,7 @@ export const CardItemImage = styled.img`
     box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
     border-radius: 12px;
   }
-`
+`;
 
 export const TransparentLayer = styled.div`
   &::after {
@@ -41,7 +41,7 @@ export const TransparentLayer = styled.div`
       bottom: 5px;
     }
   }
-`
+`;
 
 export const InfoContainer = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ export const InfoContainer = styled.div`
   position: absolute;
   width: 100%;
   bottom: 0;
-`
+`;
 
 export const CardTitle = styled.span`
   color: #c4c4c4;
@@ -64,26 +64,28 @@ export const CardTitle = styled.span`
     left: 7px;
     bottom: 3px;
   }
-`
+`;
 
 export const CardNumber = styled.span`
   color: #ffffff;
   font-size: 0.75rem;
-`
+`;
+
+export const CardPrice = styled.span`
+  &:before {
+    content: url('${RhombusWhite}');
+    position: relative;
+    top: 4px;
+    right: 5%;
+  }
+`;
 
 export const CardETH = styled.span`
   position: absolute;
   bottom: 20%;
   right: 4%;
-  word-spacing: 1rem;
+  word-spacing: 0.5rem;
 
   color: #ffffff;
   font-size: 0.75rem;
-
-  &:after {
-    content: url('${RhombusWhite}');
-    position: relative;
-    right: 22px;
-    top: 4px;
-  }
-`
+`;
