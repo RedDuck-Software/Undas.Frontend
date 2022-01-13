@@ -1,8 +1,13 @@
-import React from 'react'
+import { useState, useEffect, useContext } from 'react';
+import Context from '../../../../utils/Context';
 
-import PlaceBid from '../PlaceBid/PlaceBid'
+import { ethers } from 'ethers';
+import { MARKETPLACE_ADDRESS } from '../../../../utils/addressHelpers';
+import { Marketplace__factory } from '../../../../typechain';
 
-import { Button } from '../../../../globalStyles'
+import PlaceBid from '../PlaceBid/PlaceBid';
+
+import { Button } from '../../../../globalStyles';
 
 import {
   ProductPriceContainer,
@@ -10,9 +15,48 @@ import {
   CurrentPrice,
   PriceContainer,
   ButtonsContainer,
-} from './ProductPrice.styles'
+} from './ProductPrice.styles';
 
-const ProductPrice = () => {
+const ProductPrice = ({ id }: { id: number }) => {
+  const { connector } = useContext(Context);
+  const [price, setPrice] = useState(0);
+
+  const getListing = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.getListing(itemId);
+
+    return tx;
+  };
+
+  useEffect(() => {
+    async function getProductPrice() {
+      const ProductPrice = await getListing(id);
+
+      if (!ProductPrice) {
+        return;
+      }
+
+      const { price } = ProductPrice;
+      const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+
+      setPrice(priceInNum);
+    }
+
+    getProductPrice();
+  }, []);
+
   return (
     <>
       <ProductPriceContainer>
@@ -20,7 +64,7 @@ const ProductPrice = () => {
         <CurrentPrice>
           Current price
           <PriceContainer>
-            <h3>2,5</h3> <span>($18 465,32)</span>
+            <h3>{price}</h3> <span>($18 465,32)</span>
           </PriceContainer>
           <ButtonsContainer>
             <Button violet>Buy now</Button>
@@ -29,7 +73,7 @@ const ProductPrice = () => {
         </CurrentPrice>
       </ProductPriceContainer>
     </>
-  )
-}
+  );
+};
 
-export default ProductPrice
+export default ProductPrice;

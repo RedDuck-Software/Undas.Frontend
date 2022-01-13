@@ -4,17 +4,26 @@ import {
   ThunkAction,
   Action,
 } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { walletReducer } from '../utils/ReduxSlices/walletSlice';
 import { NFTsCounterReducer } from '../utils/ReduxSlices/NFTsCounterSlice';
+
+const persistConfig = {
+  key: 'persist-key',
+  storage,
+};
 
 const rootReducer = combineReducers({
   wallet: walletReducer,
   NFTsCounter: NFTsCounterReducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 

@@ -1,4 +1,6 @@
-import { useWeb3React } from '@web3-react/core';
+import { useParams } from 'react-router-dom';
+
+import { getId } from '../../utils/Functions/getId';
 
 import {
   ProductDescription,
@@ -35,8 +37,12 @@ import {
 import Image from '../../images/card-item.png';
 
 const ProductCard = () => {
-  const { account } = useWeb3React();
-  console.log(`your address on product page is ${account}`);
+  let { id: pageId } = useParams();
+
+  let productId: string;
+
+  productId = getId(+pageId!);
+
   return (
     <Background>
       <ProductCardSec>
@@ -45,7 +51,7 @@ const ProductCard = () => {
             <CardImageContainer>
               <ItemInformation mobile>
                 <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-                <ProductTitle>Returne #274</ProductTitle>
+                <ProductTitle>Returne #{productId}</ProductTitle>
                 <GenInformationTitle>
                   Owned by <VioletText>Hype-eth</VioletText>
                   <ViewsAndLikes>
@@ -62,7 +68,7 @@ const ProductCard = () => {
           <RightSide>
             <ItemInformation>
               <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-              <ProductTitle>Returne #274</ProductTitle>
+              <ProductTitle>Returne #{productId}</ProductTitle>
               <GenInformationTitle>
                 Owned by <VioletText>Hype-eth</VioletText>
                 <ViewsAndLikes>
@@ -71,7 +77,7 @@ const ProductCard = () => {
                 </ViewsAndLikes>
               </GenInformationTitle>
             </ItemInformation>
-            <ProductPrice />
+            <ProductPrice id={+pageId! - 1} />
             <PriceHistory />
             <Listing />
             <Offers />

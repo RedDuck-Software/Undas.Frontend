@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { ConnectorState } from './types/ConnectorState'
+import { ConnectorState } from './types/ConnectorState';
 
-import { AbstractConnector } from '@web3-react/abstract-connector'
+import { AbstractConnector } from '@web3-react/abstract-connector';
 
-import Context from './utils/Context'
+import Context from './utils/Context';
 
-import { Navbar, Footer, ScrollToTop } from './components'
+import { Navbar, Footer, ScrollToTop } from './components';
 import {
   HomePage,
   LoginPage,
@@ -18,27 +18,27 @@ import {
   NewNFTs,
   ExplorePage,
   RentNFTPage,
-} from './pages'
+} from './pages';
 
-import { useWeb3React } from '@web3-react/core'
-import connectOnLoad from './utils/connectOnLoad'
+import { useWeb3React } from '@web3-react/core';
+import connectOnLoad from './utils/connectOnLoad';
 
 const App = () => {
-  const [connector, setConnector] = useState<AbstractConnector | null>(null)
+  const [connector, setConnector] = useState<AbstractConnector | null>(null);
 
   const setConnectorFun = (connector: AbstractConnector) =>
-    setConnector(connector)
+    setConnector(connector);
 
-  let web3Current = useWeb3React()
+  let web3Current = useWeb3React();
 
   useEffect(() => {
-    connectOnLoad(web3Current)
-  }, [])
+    connectOnLoad(web3Current);
+  }, []);
 
   const value: ConnectorState = {
     connector,
     setConnectorFun,
-  }
+  };
 
   return (
     <>
@@ -47,7 +47,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/product" element={<ProductCard />} />
+          <Route path="/product/:id" element={<ProductCard />} />
           <Route path="/product/for-sale" element={<ProductForSale />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/assets" element={<AllNFTs />} />
@@ -73,7 +73,7 @@ const App = () => {
         </Routes>
       </Context.Provider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

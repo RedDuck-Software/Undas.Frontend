@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Context from '../../utils/Context';
-import { BigNumber, ethers } from 'ethers';
 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+
+import { ethers } from 'ethers';
 import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
-
 import { Marketplace__factory } from '../../typechain';
+
+import { getId } from '../../utils/Functions/getId';
 
 import { CardItem, FilterButtons } from '..';
 
 import { card01, card02, card03 } from './imports';
 
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
 import {
   CardListWrapper,
@@ -36,9 +39,19 @@ interface CardListProps {
   newFilter?: boolean;
 }
 
+interface ItemsProps {
+  priceInNum: number;
+  id: string;
+}
+
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
+  const count = useSelector((state: RootState) => state.NFTsCounter.value);
+  console.log(count);
 
+  const items: ItemsProps[] = [];
+
+  const [list, setList] = useState<ItemsProps[]>([]);
   const [itemsMenuShow, setItemsMenuShow] = useState('');
   const [sortByMenuShow, setSortByMenuShow] = useState('');
 
@@ -56,21 +69,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     } else {
       setSortByMenuShow('active');
     }
-  };
-
-  const getId = (number: number) => {
-    let id = '';
-    number++;
-
-    if (number < 100) {
-      id = `00${number}`;
-    } else if (number < 200) {
-      id = `0${number}`;
-    } else {
-      id = `${number}`;
-    }
-
-    return id;
   };
 
   const getListing = async (itemId: number) => {
@@ -93,9 +91,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   };
 
   const getCards = async () => {
-    const items: JSX.Element[] = [];
-
-    for (let i = 0; i < countNum; i++) {
+    for (let i = 0; i < count; i++) {
       const CardProps = await getListing(i);
 
       if (!CardProps) {
@@ -103,38 +99,29 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       }
 
       const { price } = CardProps;
-      const priceInNum = ethers.utils.formatUnits(price, 18);
+      const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-      const id = getId(i);
-      console.log(priceInNum, id);
-      items.push(
-        <CardItem key={i} image={card01} id={id} price={priceInNum} />
-      );
-      console.log(items);
+      let id = getId(i + 1);
 
-      // console.log(priceInNum);
-      // const priceInWei = ethers.utils.parseUnits(priceInNum, 18);
-      // console.log(priceInWei.toString());
+      items.push({ priceInNum, id });
     }
 
     return items;
   };
 
-  const count = JSON.parse(localStorage.getItem('NFTsCounter') || '0');
-  let countNum = 0;
-
-  if (!count) {
-    countNum = parseInt(count);
-  }
-
   useEffect(() => {
-    getCards();
-  });
+    async function getCardsData() {
+      const response = await getCards();
+      setList(response);
+    }
+
+    getCardsData();
+  }, []);
 
   return (
     <CardListWrapper>
       <CardListHeading>
-        <CardListResults>19 364 263 results</CardListResults>
+        <CardListResults>{count} results</CardListResults>
         <CardListFilters>
           <AllItemsDropdown>
             <AllItemsButton onClick={toggleItemsMenuShow}>
@@ -177,34 +164,22 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       {newFilter ? <FilterButtons /> : <></>}
 
       <CardsWrapper>
-        {/* {items} */}
-        {/* <CardLink to="/product">
-          <CardItem image={card01} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card02} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card03} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card01} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card02} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card03} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card01} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card02} />
-        </CardLink>
-        <CardLink to="/product">
-          <CardItem image={card03} />
-        </CardLink> */}
+        {count ? (
+          list.map((item, index) => {
+            return (
+              <CardLink to={'/product/' + ++index}>
+                <CardItem
+                  key={index}
+                  image={card01}
+                  price={item.priceInNum}
+                  id={item.id}
+                />
+              </CardLink>
+            );
+          })
+        ) : (
+          <span>There is no NFTs on the marketplace</span>
+        )}
       </CardsWrapper>
     </CardListWrapper>
   );

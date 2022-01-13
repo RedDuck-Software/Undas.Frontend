@@ -5,13 +5,14 @@ import {
   InfoContainer,
   CardTitle,
   CardNumber,
+  CardPrice,
   CardETH,
 } from './CardItem.styles';
 
 interface CardItemProps {
   image?: string;
   id?: string;
-  price?: string;
+  price?: number;
 }
 
 const CardItem: React.FC<CardItemProps> = ({ image, id, price }) => {
@@ -21,8 +22,10 @@ const CardItem: React.FC<CardItemProps> = ({ image, id, price }) => {
       <TransparentLayer />
       <InfoContainer>
         <CardTitle>Returne by Borya Borya</CardTitle>
-        <CardNumber>Returne {id}</CardNumber>
-        <CardETH>Last {price}</CardETH>
+        <CardNumber>Returne #{id}</CardNumber>
+        <CardETH>
+          Last <CardPrice>{price}</CardPrice>
+        </CardETH>
       </InfoContainer>
     </CardItemContainer>
   );
