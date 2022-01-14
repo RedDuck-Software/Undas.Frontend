@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { getId } from '../../utils/Functions/getId';
+import { getId } from '../../utils/getId';
 
 import {
   ProductDescription,

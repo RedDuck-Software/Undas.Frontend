@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Context from '../../utils/Context';
 
-import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 import { ethers } from 'ethers';
-import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
-import { Marketplace__factory } from '../../typechain';
 
-import { getId } from '../../utils/Functions/getId';
+import { getId } from '../../utils/getId';
+import { getListing } from '../../utils/getListing';
 
 import { CardItem, FilterButtons } from '..';
 
@@ -39,19 +38,19 @@ interface CardListProps {
   newFilter?: boolean;
 }
 
-interface ItemsProps {
+export interface ItemsProps {
   priceInNum: number;
   id: string;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
+
   const count = useSelector((state: RootState) => state.NFTsCounter.value);
-  console.log(count);
 
   const items: ItemsProps[] = [];
 
-  const [list, setList] = useState<ItemsProps[]>([]);
+  const [list, setList] = useState<ItemsProps[]>();
   const [itemsMenuShow, setItemsMenuShow] = useState('');
   const [sortByMenuShow, setSortByMenuShow] = useState('');
 
@@ -71,28 +70,13 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     }
   };
 
-  const getListing = async (itemId: number) => {
-    if (!connector) return;
-
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
-    );
-
-    const signer = provider.getSigner(0);
-
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer
-    );
-
-    const tx = await MarketplaceContract.getListing(itemId);
-
-    return tx;
-  };
-
   const getCards = async () => {
     for (let i = 0; i < count; i++) {
-      const CardProps = await getListing(i);
+      if (!connector) {
+        return;
+      }
+
+      const CardProps = await getListing(i, connector);
 
       if (!CardProps) {
         continue;
@@ -109,14 +93,18 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     return items;
   };
 
+  async function getCardsData() {
+    const response = await getCards();
+    setList(response);
+  }
+
   useEffect(() => {
-    async function getCardsData() {
-      const response = await getCards();
-      setList(response);
+    if (!connector) {
+      return console.log('loading');
     }
 
     getCardsData();
-  }, []);
+  }, [connector]);
 
   return (
     <CardListWrapper>
@@ -165,9 +153,9 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
       <CardsWrapper>
         {count ? (
-          list.map((item, index) => {
+          list?.map((item, index) => {
             return (
-              <CardLink to={'/product/' + ++index}>
+              <CardLink key={index} to={'/product/' + ++index}>
                 <CardItem
                   key={index}
                   image={card01}
