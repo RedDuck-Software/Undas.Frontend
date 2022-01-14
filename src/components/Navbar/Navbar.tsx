@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react'
-import Context from '../../utils/Context'
-import { useWeb3React } from '@web3-react/core'
+import React, { useEffect, useState, useContext } from 'react';
+import Context from '../../utils/Context';
 
-import { MdOutlineMenu } from 'react-icons/md'
-import { RiCloseFill } from 'react-icons/ri'
-import { IoIosArrowDown, IoIosArrowBack } from 'react-icons/io'
+import { useWeb3React } from '@web3-react/core';
 
-import { Button } from '../../globalStyles'
+import { MdOutlineMenu } from 'react-icons/md';
+import { RiCloseFill } from 'react-icons/ri';
+import { IoIosArrowDown, IoIosArrowBack } from 'react-icons/io';
+
+import { Button } from '../../globalStyles';
 
 import {
   Nav,
@@ -30,7 +31,7 @@ import {
   MenuContainer,
   MenuMobile,
   ProfileIcon,
-} from './Navbar.styles'
+} from './Navbar.styles';
 
 import {
   AllNFTsIcon,
@@ -40,49 +41,49 @@ import {
   GirlsIcon,
   FurnitureIcon,
   ArrowUp,
-} from './imports'
+} from './imports';
 
 const Navbar = () => {
-  const [hoveredExplore, setHoveredExplore] = useState(false)
-  const [hoveredActivity, setHoveredActivity] = useState(false)
-  const [showMenu, setShowMenu] = useState(true)
+  const [hoveredExplore, setHoveredExplore] = useState(false);
+  const [hoveredActivity, setHoveredActivity] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
-  const [showExplore, setShowExplore] = useState(false)
-  const [showActivity, setShowActivity] = useState(false)
+  const [showExplore, setShowExplore] = useState(false);
+  const [showActivity, setShowActivity] = useState(false);
 
-  const toggleShowMenu = () => setShowMenu(!showMenu)
+  const toggleShowMenu = () => setShowMenu(!showMenu);
 
   const toggleHoverExplore = () => {
-    setHoveredActivity(false)
-    setHoveredExplore(!hoveredExplore)
-  }
+    setHoveredActivity(false);
+    setHoveredExplore(!hoveredExplore);
+  };
 
   const toggleHoverActivity = () => {
-    setHoveredExplore(false)
-    setHoveredActivity(!hoveredActivity)
-  }
+    setHoveredExplore(false);
+    setHoveredActivity(!hoveredActivity);
+  };
 
   const toogleShowExplore = () => {
-    setShowActivity(false)
-    setShowExplore(!showExplore)
-  }
+    setShowActivity(false);
+    setShowExplore(!showExplore);
+  };
 
   const toogleShowActivity = () => {
-    setShowExplore(false)
-    setShowActivity(!showActivity)
-  }
+    setShowExplore(false);
+    setShowActivity(!showActivity);
+  };
 
-  const value = useContext(Context)
-  let web3Current = useWeb3React()
+  const value = useContext(Context);
+  let web3Current = useWeb3React();
 
   useEffect(() => {
     if (web3Current.account) {
-      let { connector } = web3Current
+      let { connector } = web3Current;
       if (connector) {
-        value.setConnectorFun(connector)
+        value.setConnectorFun(connector);
       }
     }
-  })
+  });
 
   return (
     <>
@@ -304,7 +305,7 @@ const Navbar = () => {
         </NavbarContainer>
       </Nav>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
