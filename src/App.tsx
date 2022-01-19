@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product/:id" element={<ProductCard />} />
-          <Route path="/product/for-sale" element={<ProductForSale />} />
+          <Route path="/product/for-sale/:id" element={<ProductForSale />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/assets" element={<AllNFTs />} />
           <Route path="/assets/new" element={<NewNFTs />} />

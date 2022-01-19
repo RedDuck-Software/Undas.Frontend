@@ -60,9 +60,9 @@ const PlaceAuction = () => {
       <PlaceAuctionButton onClick={toogleDropdown}>
         Put up for auction{' '}
         {isDropdownOpen ? (
-          <IoIosArrowDown size={20} />
+          <IoIosArrowDown size={14} />
         ) : (
-          <IoIosArrowUp size={20} />
+          <IoIosArrowUp size={14} />
         )}
       </PlaceAuctionButton>
       {isDropdownOpen ? (
