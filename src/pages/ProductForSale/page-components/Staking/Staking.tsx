@@ -78,7 +78,7 @@ const Staking = () => {
 
     const tx = await MarketplaceContract.quoteForStaking(
       NFT_ADDRESS,
-      1,
+      2,
       ethers.utils.parseEther(price.toString()),
       ethers.utils.parseEther(commision.toString()),
       intervalIntoTimeStamp(deadline),

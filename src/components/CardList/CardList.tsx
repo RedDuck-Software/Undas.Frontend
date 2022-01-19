@@ -1,21 +1,26 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Context from '../../utils/Context';
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../utils/Context";
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
-import { ethers } from 'ethers';
-import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
-import { Marketplace__factory } from '../../typechain';
+import { BigNumber, BigNumberish, ethers } from "ethers";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Marketplace__factory } from "../../typechain";
 
-import { getId } from '../../utils/Functions/getId';
+import { getId } from "../../utils/Functions/getId";
+import useStakings from "../../utils/useStakings";
 
-import { CardItem, FilterButtons } from '..';
+import { CardItem, FilterButtons } from "..";
 
-import { card01, card02, card03 } from './imports';
+import { card01, card02, card03 } from "./imports";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import {
+  MdOutlineApps,
+  MdOutlineGridView,
+  MdOutlineSignalWifiStatusbarConnectedNoInternet4,
+} from "react-icons/md";
 import {
   CardListWrapper,
   CardListHeading,
@@ -33,7 +38,8 @@ import {
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from './CardList.styles';
+} from "./CardList.styles";
+import { text } from "stream/consumers";
 
 interface CardListProps {
   newFilter?: boolean;
@@ -52,24 +58,50 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const items: ItemsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>([]);
-  const [itemsMenuShow, setItemsMenuShow] = useState('');
-  const [sortByMenuShow, setSortByMenuShow] = useState('');
+  const [itemsMenuShow, setItemsMenuShow] = useState("");
+  const [sortByMenuShow, setSortByMenuShow] = useState("");
 
   const toggleItemsMenuShow = () => {
     if (itemsMenuShow) {
-      setItemsMenuShow('');
+      setItemsMenuShow("");
     } else {
-      setItemsMenuShow('active');
+      setItemsMenuShow("active");
     }
   };
 
   const toggleSortByMenuShow = () => {
     if (sortByMenuShow) {
-      setSortByMenuShow('');
+      setSortByMenuShow("");
     } else {
-      setSortByMenuShow('active');
+      setSortByMenuShow("active");
     }
   };
+
+  // let usedStakings = useStakings();
+  // let lastIndexData: BigNumberish = 0;
+  // const lastIndex = async () => {await usedStakings.then((res) => lastIndexData = res.lastIndex)}
+
+  // const stakings = [];
+  // for (let i = 0; i<lastIndexData; i++) {
+  const usedStaking = useStakings(0); //for now only 1 staking is showed as Kostia is yet developing suitable _stakings list
+  let stakingData:
+    | [
+        number,
+        string,
+        string,
+        BigNumber,
+        BigNumber,
+        BigNumber,
+        BigNumber,
+        BigNumber,
+        string,
+        BigNumber
+      ]
+    | undefined = undefined;
+  const staking = async () => {
+    await usedStaking.then((res) => (stakingData = res.tx));
+  };
+  // }
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -167,14 +199,24 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
         {count ? (
           list.map((item, index) => {
             return (
-              <CardLink to={'/product/' + ++index}>
-                <CardItem
-                  key={index}
-                  image={card01}
-                  price={item.priceInNum}
-                  id={item.id}
-                />
-              </CardLink>
+              <>
+                <CardLink to={"/product/" + ++index}>
+                  <CardItem
+                    key={index}
+                    image={card01}
+                    price={item.priceInNum}
+                    id={item.id}
+                  />
+                </CardLink>
+                <CardLink to={"/product/rent"}>
+                  <CardItem
+                    key={++index}
+                    image={card01}
+                    price={stakingData?.[0]!}
+                    id={stakingData?.[9].toString()}
+                  />
+                </CardLink>
+              </>
             );
           })
         ) : (
