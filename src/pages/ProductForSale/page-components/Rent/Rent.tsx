@@ -13,7 +13,7 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './QuoteRent.styles';
+} from './Rent.styles';
 
 const QuoteRent = () => {
   const [rentOpen, setRentOpen] = useState(true);
