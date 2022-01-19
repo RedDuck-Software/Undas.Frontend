@@ -161,7 +161,7 @@ const PutUpForSale = () => {
                 Price <MenuPrice>{price}</MenuPrice>
               </MenuLine>
               <MenuLine>
-                <span>Marketplace commission</span>{' '}
+                <span>Marketplace commision</span>{' '}
                 <MenuPrice>{commision}</MenuPrice>
               </MenuLine>
             </AuctionDescription>
