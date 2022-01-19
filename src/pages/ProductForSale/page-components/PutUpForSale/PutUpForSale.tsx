@@ -81,7 +81,7 @@ const PutUpForSale = () => {
 
     const tx = await MarketplaceContract.bid(
       NFT_ADDRESS,
-      1,
+      0,
       ethers.utils.parseEther(price.toString()),
       { value: ethers.utils.parseEther(commision.toString()) }
     );

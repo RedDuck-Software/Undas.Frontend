@@ -1,13 +1,13 @@
-import Cookies from 'universal-cookie'
-import { injected } from '../components/Wallets/Connectors'
+import Cookies from 'universal-cookie';
+import { injected } from '../components/Wallets/Connectors';
 
 async function useConnectOnLoad(web3Current: any) {
-  let cookies = new Cookies()
+  let cookies = new Cookies();
   try {
-    web3Current.activate(injected)
+    web3Current.activate(injected);
   } catch (ex) {
-    console.log(ex)
+    console.log(ex);
   }
 }
 
-export default useConnectOnLoad
+export default useConnectOnLoad;

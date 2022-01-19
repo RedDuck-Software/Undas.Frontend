@@ -8,8 +8,11 @@ import { BigNumber, BigNumberish, ethers } from "ethers";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
 
-import { getId } from "../../utils/Functions/getId";
 import useStakings from "../../utils/useStakings";
+
+import { getId } from '../../utils/getId';
+import { getListing } from '../../utils/getListing';
+
 
 import { CardItem, FilterButtons } from "..";
 
@@ -45,22 +48,22 @@ interface CardListProps {
   newFilter?: boolean;
 }
 
-interface ItemsProps {
+export interface ItemsProps {
   priceInNum: number;
   id: string;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
+
   const count = useSelector((state: RootState) => state.NFTsCounter.value);
-  console.log(count);
 
   const items: ItemsProps[] = [];
 
-  const [list, setList] = useState<ItemsProps[]>([]);
-  const [itemsMenuShow, setItemsMenuShow] = useState("");
-  const [sortByMenuShow, setSortByMenuShow] = useState("");
-
+  const [list, setList] = useState<ItemsProps[]>();
+  const [itemsMenuShow, setItemsMenuShow] = useState('');
+  const [sortByMenuShow, setSortByMenuShow] = useState('');
+  
   const toggleItemsMenuShow = () => {
     if (itemsMenuShow) {
       setItemsMenuShow("");
@@ -121,10 +124,14 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
     return tx;
   };
-
+    
   const getCards = async () => {
     for (let i = 0; i < count; i++) {
-      const CardProps = await getListing(i);
+      if (!connector) {
+        return;
+      }
+
+      const CardProps = await getListing(i, connector);
 
       if (!CardProps) {
         continue;
@@ -141,14 +148,18 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     return items;
   };
 
+  async function getCardsData() {
+    const response = await getCards();
+    setList(response);
+  }
+
   useEffect(() => {
-    async function getCardsData() {
-      const response = await getCards();
-      setList(response);
+    if (!connector) {
+      return console.log('loading');
     }
 
     getCardsData();
-  }, []);
+  }, [connector]);
 
   return (
     <CardListWrapper>
@@ -197,8 +208,9 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
       <CardsWrapper>
         {count ? (
-          list.map((item, index) => {
+          list?.map((item, index) => {
             return (
+
               <>
                 <CardLink to={"/product/" + ++index}>
                   <CardItem
@@ -217,6 +229,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                   />
                 </CardLink>
               </>
+
             );
           })
         ) : (
