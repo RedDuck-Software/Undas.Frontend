@@ -1,9 +1,9 @@
 export const getId = (number: number) => {
   let id = '';
 
-  if (number < 100) {
+  if (number < 10) {
     id = `00${number}`;
-  } else if (number < 200) {
+  } else if (number < 100) {
     id = `0${number}`;
   } else {
     id = `${number}`;

@@ -3,12 +3,12 @@ import PlaceAuction from '../PlaceAuction/PlaceAuction';
 
 import { SaleSectionContainer, ButtonsContainer } from './SaleSection.styles';
 
-const SaleSection = () => {
+const SaleSection = ({ itemId }: { itemId: string }) => {
   return (
     <>
       <SaleSectionContainer>
         <ButtonsContainer>
-          <PutUpForSale />
+          <PutUpForSale itemId={itemId} />
           <PlaceAuction />
         </ButtonsContainer>
       </SaleSectionContainer>

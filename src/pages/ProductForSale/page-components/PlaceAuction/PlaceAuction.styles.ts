@@ -1,23 +1,27 @@
-import styled from 'styled-components'
-import { Button } from '../../../../globalStyles'
+import styled from 'styled-components';
+import { Button } from '../../../../globalStyles';
 
-import Rhombus from '../../../../icons/rhombus.svg'
+import Rhombus from '../../../../icons/rhombus.svg';
 
 export const PlaceAuctionWrapper = styled.div`
   position: relative;
-`
+`;
 
 export const PlaceAuctionButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   height: 100%;
   width: 100%;
 
   svg {
-    padding-top: 4%;
-    margin-left: 12%;
+    position: absolute;
+    margin-left: 70%;
   }
 
   ${Button};
-`
+`;
 
 export const PlaceAuctionDropdown = styled.div`
   width: 100%;
@@ -52,7 +56,7 @@ export const PlaceAuctionDropdown = styled.div`
       }
     }
   }
-`
+`;
 
 export const DropdownLine = styled.div`
   display: flex;
@@ -60,6 +64,7 @@ export const DropdownLine = styled.div`
 
   margin-bottom: 0.5rem;
   gap: 1rem;
+  margin-right: 0% !important;
 
   &:nth-child(1) {
     @media (max-width: 539px) {
@@ -70,7 +75,7 @@ export const DropdownLine = styled.div`
   @media (max-width: 389px) {
     margin-bottom: 0;
   }
-`
+`;
 
 export const DropdownPrice = styled.span`
   &:after {
@@ -79,7 +84,7 @@ export const DropdownPrice = styled.span`
     top: 6px;
     left: 4px;
   }
-`
+`;
 
 export const DropdownInput = styled.input`
   max-width: 60px;
@@ -112,7 +117,7 @@ export const DropdownInput = styled.input`
   @media (max-width: 539px) {
     max-width: 40px;
   }
-`
+`;
 
 export const DropdownButton = styled(Button)`
   display: flex;
@@ -139,7 +144,7 @@ export const DropdownButton = styled(Button)`
       : ''}
 
   ${Button}
-`
+`;
 
 export const PlaceAuctionMenu = styled.div`
   display: flex;
@@ -176,13 +181,13 @@ export const PlaceAuctionMenu = styled.div`
   @media (max-width: 539px) {
     padding: 4%;
   }
-`
+`;
 
 export const MenuTop = styled.div`
   display: flex;
   align-items: center;
   gap: 5%;
-`
+`;
 
 export const ItemImage = styled.img`
   flex: 1;
@@ -195,13 +200,13 @@ export const ItemImage = styled.img`
   @media (max-width: 632px) {
     display: none;
   }
-`
+`;
 
 export const AuctionDescription = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const MenuLine = styled.div`
   display: flex;
@@ -234,7 +239,7 @@ export const MenuLine = styled.div`
       padding: 3%;
     }
   }
-`
+`;
 
 export const MenuAuctionFinish = styled.span`
   font-size: 0.9rem;
@@ -244,7 +249,7 @@ export const MenuAuctionFinish = styled.span`
     max-width: 60%;
     font-size: 0.8rem;
   }
-`
+`;
 
 export const MenuPrice = styled.span`
   &:before {
@@ -255,9 +260,9 @@ export const MenuPrice = styled.span`
 
     padding-left: 16px;
   }
-`
+`;
 
-export const MenuTerm = styled.span``
+export const MenuTerm = styled.span``;
 
 export const MenuAgreementLine = styled.div`
   padding: 4% 0;
@@ -267,7 +272,7 @@ export const MenuAgreementLine = styled.div`
   @media (max-width: 632px) {
     padding: 4% 3%;
   }
-`
+`;
 
 export const MenuInput = styled.input`
   margin-right: 2%;
@@ -312,14 +317,14 @@ export const MenuInput = styled.input`
     width: 1rem;
     height: 1rem;
   }
-`
+`;
 
 export const AgreementLink = styled.a`
   cursor: pointer;
   padding: 0 1%;
   color: #0051ca;
   border-bottom: 1.5px solid #0051ca;
-`
+`;
 
 export const MenuButtonsWrapper = styled.div`
   display: flex;
@@ -340,4 +345,4 @@ export const MenuButtonsWrapper = styled.div`
   @media (max-width: 539px) {
     margin-top: 5%;
   }
-`
+`;

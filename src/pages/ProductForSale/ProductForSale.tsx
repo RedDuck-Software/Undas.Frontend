@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import {
   ProductDescription,
   SaleSection,
@@ -8,9 +10,11 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components'
+} from './page-components';
 
-import { Background } from '../../globalStyles'
+import { getId } from '../../utils/getId';
+
+import { Background } from '../../globalStyles';
 
 import {
   LeftSide,
@@ -24,10 +28,14 @@ import {
   ItemInformation,
   ProductSubtitle,
   ProductTitle,
-} from './ProductForSale.styles'
-import Image from '../../images/card-item.png'
+} from './ProductForSale.styles';
+import Image from '../../images/card-item.png';
 
 const ProductForSale = () => {
+  let { id: pageId } = useParams();
+
+  const productId = getId(+pageId! + 1);
+
   return (
     <Background>
       <ProductForSaleSec>
@@ -36,7 +44,7 @@ const ProductForSale = () => {
             <CardImageContainer>
               <ItemInformation mobile>
                 <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-                <ProductTitle>Returne #274</ProductTitle>
+                <ProductTitle>Returne #{productId}</ProductTitle>
               </ItemInformation>
               <CardImage src={Image} />
               <BookmarkButton>10</BookmarkButton>
@@ -46,9 +54,9 @@ const ProductForSale = () => {
           <RightSide>
             <ItemInformation>
               <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-              <ProductTitle>Returne #274</ProductTitle>
+              <ProductTitle>Returne #{productId}</ProductTitle>
             </ItemInformation>
-            <SaleSection />
+            <SaleSection itemId={pageId!} />
             <PriceHistory />
             <Listing />
             <Offers />
@@ -62,7 +70,7 @@ const ProductForSale = () => {
         </ProductContainerCenter>
       </ProductForSaleSec>
     </Background>
-  )
-}
+  );
+};
 
-export default ProductForSale
+export default ProductForSale;

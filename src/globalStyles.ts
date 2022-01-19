@@ -1,10 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components'
-import background from './images/background-image.png'
-import backgroundRotated from './images/background-image-rotated.png'
+import styled, { createGlobalStyle } from 'styled-components';
+import background from './images/background-image.png';
+import backgroundRotated from './images/background-image-rotated.png';
 
 interface GlobalStylesProps {
-  violet?: boolean
-  big?: boolean
+  violet?: boolean;
+  big?: boolean;
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Lato', sans-serif;
   }
 
-`
+`;
 
 export const Container = styled.div`
   z-index: 99;
@@ -28,7 +28,7 @@ export const Container = styled.div`
   @media (max-width: 469px) {
     padding: 0 1rem;
   }
-`
+`;
 
 export const Button = styled.button<GlobalStylesProps>`
   border-radius: 0.5rem;
@@ -52,26 +52,26 @@ export const Button = styled.button<GlobalStylesProps>`
 
   @media (max-width: 1169px) {
     grid-gap: 0.8rem;
-    padding: ${({ big }) => (big ? '0.8rem 6rem' : '4% 10%')};
+    padding: ${({ big }) => (big ? '0.8rem 6rem' : '0.8rem 4rem')};
   }
 
   @media (max-width: 1009px) {
-    padding: ${({ big }) => (big ? '0.8rem 4rem' : '4% 10%')};
+    padding: ${({ big }) => (big ? '0.8rem 4rem' : '0.8rem 3.6rem')};
   }
 
   @media (max-width: 801px) {
-    padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '4% 14%')};
+    padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '0.8rem 3rem')};
   }
 
   @media (max-width: 661px) {
-    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 10%')};
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '0.6rem 2rem')};
   }
 
   @media (max-width: 539px) {
     font-size: 0.85rem;
     padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 8%')};
   }
-`
+`;
 
 export const Background = styled.div`
   width: 100%;
@@ -100,11 +100,11 @@ export const Background = styled.div`
     background-position: right 10rem top 12rem, left 10rem top 58rem,
       right 50rem top 112rem;
   }
-`
+`;
 
 export const VioletText = styled.span`
   color: #5d3f92;
-`
+`;
 
 export const Overlay = styled.div`
   opacity: 0;
@@ -115,6 +115,6 @@ export const Overlay = styled.div`
   left: 0px;
   background-image: linear-gradient(hsl(233, 26%, 24%), transparent);
   z-index: 1;
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

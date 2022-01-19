@@ -1,15 +1,15 @@
-import styled from 'styled-components'
-import { Button } from '../../../../globalStyles'
-import OLetter from '../../../../icons/o-letter.svg'
+import styled from 'styled-components';
+import { Button } from '../../../../globalStyles';
+import OLetter from '../../../../icons/o-letter.svg';
 
 interface InfoSectionProps {
-  big?: boolean
-  icon?: boolean
+  big?: boolean;
+  icon?: boolean;
 }
 
 export const InfoSec = styled.div`
   padding: 3.75rem 0;
-`
+`;
 
 export const InfoRow = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ export const InfoRow = styled.div`
     align-items: center;
     justify-content: center;
   }
-`
+`;
 
 export const LeftColumn = styled.div`
   width: 50vw;
@@ -53,7 +53,7 @@ export const LeftColumn = styled.div`
       text-decoration: none;
     }
   }
-`
+`;
 
 export const RightColumn = styled.div`
   width: 50vw;
@@ -83,9 +83,9 @@ export const RightColumn = styled.div`
 
     margin-bottom: -5rem;
   }
-`
+`;
 
-export const TextWrapper = styled.div``
+export const TextWrapper = styled.div``;
 
 export const Tagline = styled.h1<InfoSectionProps>`
   font-size: ${({ big }) => (big ? '3.8rem' : '2.05rem')};
@@ -136,13 +136,14 @@ export const Tagline = styled.h1<InfoSectionProps>`
       }
     }
   }
-`
+`;
 
 export const ButtonsWrapper = styled.div`
-  padding-top: 7rem;
+  padding-top: 6.5rem;
 
   ${Button} {
     margin-right: 1.6rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (max-width: 915px) {
@@ -173,7 +174,6 @@ export const ButtonsWrapper = styled.div`
   @media (max-width: 680px) {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
 
     button {
       font-size: 1rem;
@@ -188,7 +188,7 @@ export const ButtonsWrapper = styled.div`
       margin-right: 0.2rem;
     }
   }
-`
+`;
 
 export const ImageGallery = styled.div`
   display: grid;
@@ -240,7 +240,7 @@ export const ImageGallery = styled.div`
       }
     }
   }
-`
+`;
 
 export const Image = styled.img`
   cursor: pointer;
@@ -262,4 +262,4 @@ export const Image = styled.img`
       display: none;
     }
   }
-`
+`;

@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { Button } from '../../../../globalStyles'
+import styled from 'styled-components';
+import { Button } from '../../../../globalStyles';
 
-import Rhombus from '../../../../icons/rhombus.svg'
+import Rhombus from '../../../../icons/rhombus.svg';
 
 export const ForSaleWrapper = styled.div`
   position: relative;
@@ -9,14 +9,14 @@ export const ForSaleWrapper = styled.div`
   @media (max-width: 589px) {
     max-width: 100%;
   }
-`
+`;
 
 export const ForSaleButton = styled(Button)`
   height: 100%;
   width: 100%;
 
   ${Button};
-`
+`;
 
 export const ForSaleDropdown = styled.div`
   width: 100%;
@@ -51,7 +51,7 @@ export const ForSaleDropdown = styled.div`
       }
     }
   }
-`
+`;
 
 export const DropdownLine = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ export const DropdownLine = styled.div`
   @media (max-width: 389px) {
     margin-bottom: 0;
   }
-`
+`;
 
 export const DropdownPrice = styled.span`
   &:after {
@@ -78,7 +78,7 @@ export const DropdownPrice = styled.span`
     top: 6px;
     left: 4px;
   }
-`
+`;
 
 export const DropdownInput = styled.input`
   max-width: 60px;
@@ -111,7 +111,7 @@ export const DropdownInput = styled.input`
   @media (max-width: 539px) {
     max-width: 40px;
   }
-`
+`;
 
 export const DropdownButton = styled(Button)`
   width: 100%;
@@ -134,7 +134,7 @@ export const DropdownButton = styled(Button)`
       : ''}
 
   ${Button}
-`
+`;
 
 export const ForSaleMenu = styled.div`
   position: fixed;
@@ -161,13 +161,13 @@ export const ForSaleMenu = styled.div`
   @media (max-width: 899px) {
     min-width: 320px;
   }
-`
+`;
 
 export const MenuTop = styled.div`
   display: flex;
   align-items: center;
   gap: 5%;
-`
+`;
 
 export const ItemImage = styled.img`
   flex: 1;
@@ -180,19 +180,20 @@ export const ItemImage = styled.img`
   @media (max-width: 374px) {
     display: none;
   }
-`
+`;
 
 export const AuctionDescription = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const MenuLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 6% 0;
+  margin-right: 0%;
 
   font-size: 1.25rem;
 
@@ -218,7 +219,7 @@ export const MenuLine = styled.div`
   @media (max-width: 539px) {
     font-size: 1rem;
   }
-`
+`;
 
 export const MenuPrice = styled.span`
   display: flex;
@@ -230,7 +231,7 @@ export const MenuPrice = styled.span`
     right: 6px;
     padding-left: 1rem;
   }
-`
+`;
 
 export const MenuAgreementLine = styled.div`
   padding: 1.5rem 0;
@@ -244,7 +245,7 @@ export const MenuAgreementLine = styled.div`
   @media (max-width: 531px) {
     font-size: 0.85rem;
   }
-`
+`;
 
 export const MenuInput = styled.input`
   margin-right: 2%;
@@ -289,14 +290,14 @@ export const MenuInput = styled.input`
     width: 1rem;
     height: 1rem;
   }
-`
+`;
 
 export const AgreementLink = styled.a`
   cursor: pointer;
   padding: 0 1%;
   color: #0051ca;
   border-bottom: 1.5px solid #0051ca;
-`
+`;
 
 export const MenuButtonsWrapper = styled.div`
   display: flex;
@@ -317,4 +318,4 @@ export const MenuButtonsWrapper = styled.div`
   @media (max-width: 539px) {
     margin-top: 5%;
   }
-`
+`;
