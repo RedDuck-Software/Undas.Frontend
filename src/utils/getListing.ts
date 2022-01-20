@@ -1,8 +1,8 @@
-import { ethers } from 'ethers';
-import { AbstractConnector } from '@web3-react/abstract-connector';
+import { ethers } from "ethers";
+import { AbstractConnector } from "@web3-react/abstract-connector";
 
-import { Marketplace__factory } from '../typechain';
-import { MARKETPLACE_ADDRESS } from './addressHelpers';
+import { Marketplace__factory } from "../typechain";
+import { MARKETPLACE_ADDRESS } from "./addressHelpers";
 
 export const getListing = async (
   itemId: number,

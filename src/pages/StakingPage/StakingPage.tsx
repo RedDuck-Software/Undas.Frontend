@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import { ethers } from 'ethers';
+import { useState, useContext } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
 
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
-import { TestNFT__factory, Marketplace__factory } from '../../typechain';
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
+import { TestNFT__factory, Marketplace__factory } from "../../typechain";
 
-import { ModalWindow } from '../../components';
-import { Background } from '../../globalStyles';
+import { ModalWindow } from "../../components";
+import { Background } from "../../globalStyles";
 
 import {
   StakingSec,
@@ -24,17 +24,18 @@ import {
   StakingSelectMenu,
   SelectOption,
   StakingButton,
-} from './StakingPage.styles';
-import Image from '../../images/card-item.png';
+} from "./StakingPage.styles";
+import Image from "../../images/card-item.png";
+import intervalIntoTimeStamp from "../../utils/intervalIntoTimeStamp";
 
 const StakingPage = () => {
   const { connector } = useContext(Context);
 
-  const [NFTAddress, setNFTAddress] = useState('');
-  const [tokenId, setTokenId] = useState('');
-  const [price, setPrice] = useState('');
-  const [premium, setPremium] = useState('');
-  const [term, setTerm] = useState('');
+  const [NFTAddress, setNFTAddress] = useState("");
+  const [tokenId, setTokenId] = useState("");
+  const [price, setPrice] = useState("");
+  const [premium, setPremium] = useState("");
+  const [term, setTerm] = useState("for 7 days");
 
   const quoteForStaking = async () => {
     if (!connector) return;
@@ -52,8 +53,8 @@ const StakingPage = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
     );
 
     if (!isApprovedForAll) {
@@ -65,10 +66,10 @@ const StakingPage = () => {
     const tx = await MarketplaceContract.quoteForStaking(
       NFTAddress,
       tokenId,
-      ethers.utils.parseEther(price),
-      premium,
-      7,
-      { value: ethers.utils.parseEther('0.1') }
+      ethers.utils.parseEther(price.toString()),
+      premium.toString(),
+      intervalIntoTimeStamp(term),
+      { value: ethers.utils.parseEther("0.1") }
     );
     await tx.wait();
   };
@@ -133,11 +134,11 @@ const StakingPage = () => {
             </StakingForm>
             <StakingSelectLabel htmlFor="term">Term</StakingSelectLabel>
             <StakingSelectMenu
-              id="term"
+              value={term}
               onChange={(e) => setTerm(e.target.value)}
             >
-              <SelectOption value={7}>for 7 days</SelectOption>
-              <SelectOption value={14}>for 14 days</SelectOption>
+              <SelectOption>for 7 days</SelectOption>
+              <SelectOption>for 14 days</SelectOption>
             </StakingSelectMenu>
             <StakingButton onClick={quoteForStaking} violet big>
               Put NFT on staking
