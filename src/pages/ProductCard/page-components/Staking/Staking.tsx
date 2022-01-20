@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from '../../../../globalStyles'
+import { Button } from '../../../../globalStyles';
 
 import {
   StakingContainer,
@@ -19,19 +19,19 @@ import {
   TableMenuOption,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles'
+} from './Staking,styles';
 
 const Staking = () => {
-  const [stakingOpen, setStakingOpen] = useState(false)
-  const [isPuttedForStaking, setIsPuttedForStaking] = useState(false)
+  const [stakingOpen, setStakingOpen] = useState(false);
+  const [isPuttedForStaking, setIsPuttedForStaking] = useState(false);
 
   const toogleStakingOpen = () => {
-    setStakingOpen(!stakingOpen)
-  }
+    setStakingOpen(!stakingOpen);
+  };
 
   const putForStaking = () => {
-    setIsPuttedForStaking(!isPuttedForStaking)
-  }
+    setIsPuttedForStaking(!isPuttedForStaking);
+  };
 
   return (
     <StakingContainer>
@@ -45,9 +45,7 @@ const Staking = () => {
               <StakingTableHead>
                 <TableRow>
                   <TableHeadTitle>Price (ETH)</TableHeadTitle>
-                  <TableHeadTitle>
-                    <TableInput placeholder="280" id="price" />
-                  </TableHeadTitle>
+                  <TableHeadTitle placeholder="280" id="price" />
                 </TableRow>
               </StakingTableHead>
               <StakingTableBody>
@@ -78,7 +76,7 @@ const Staking = () => {
             ) : (
               <>
                 <ButtonRow>
-                  <Button violet big onClick={putForStaking}>
+                  <Button disabled={true} violet big onClick={putForStaking}>
                     Put for staking
                   </Button>
                 </ButtonRow>
@@ -94,7 +92,7 @@ const Staking = () => {
         </>
       )}
     </StakingContainer>
-  )
-}
+  );
+};
 
-export default Staking
+export default Staking;
