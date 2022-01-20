@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const CardListWrapper = styled.div`
   flex: 3;
@@ -73,7 +73,49 @@ export const CardListFilters = styled.div`
   }
 `;
 
-export const MenuItem = styled.div`
+export const AllItemsMenu = styled.select`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ffffff;
+  border: 1px solid #5d3f92;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  min-width: 166px;
+  outline: none;
+
+  font-size: 1rem;
+  color: #000000;
+
+  @media (max-width: 1059px) {
+    min-width: 16vw;
+  }
+
+  @media (max-width: 958px) {
+    min-width: 14vw;
+  }
+
+  @media (max-width: 849px) {
+    min-width: 18vw;
+  }
+
+  @media (max-width: 649px) {
+    min-width: 30vw;
+    margin-top: 4%;
+  }
+
+  @media (max-width: 469px) {
+    margin-top: 10%;
+  }
+
+  @media (max-width: 459px) {
+    min-width: 40vw;
+  }
+`;
+
+export const AllItemsOption = styled.option`
   display: flex;
   align-items: center;
 
@@ -125,52 +167,6 @@ export const MenuItem = styled.div`
     font-size: 1rem;
     min-width: 30vw;
     display: block;
-  }
-
-  @media (max-width: 459px) {
-    min-width: 40vw;
-  }
-`;
-
-export const AllItemsMenu = styled.select`
-  postion: relative;
-`;
-
-export const AllItemsOption = styled.option`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: #ffffff;
-  border: 1px solid #5d3f92;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 0.6rem 1rem;
-  min-width: 166px;
-  outline: none;
-
-  font-size: 1rem;
-  color: #000000;
-
-  @media (max-width: 1059px) {
-    min-width: 16vw;
-  }
-
-  @media (max-width: 958px) {
-    min-width: 14vw;
-  }
-
-  @media (max-width: 849px) {
-    min-width: 18vw;
-  }
-
-  @media (max-width: 649px) {
-    min-width: 30vw;
-    margin-top: 4%;
-  }
-
-  @media (max-width: 469px) {
-    margin-top: 10%;
   }
 
   @media (max-width: 459px) {

@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 
-import { getId } from '../../utils/getId';
-
 import {
   ProductDescription,
   ProductPrice,
@@ -39,10 +37,6 @@ import Image from '../../images/card-item.png';
 const ProductCard = () => {
   let { id: pageId } = useParams();
 
-  let productId: string;
-
-  productId = getId(+pageId!);
-
   return (
     <Background>
       <ProductCardSec>
@@ -51,7 +45,7 @@ const ProductCard = () => {
             <CardImageContainer>
               <ItemInformation mobile>
                 <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-                <ProductTitle>Returne #{productId}</ProductTitle>
+                <ProductTitle>Returne #</ProductTitle>
                 <GenInformationTitle>
                   Owned by <VioletText>Hype-eth</VioletText>
                   <ViewsAndLikes>
@@ -68,7 +62,7 @@ const ProductCard = () => {
           <RightSide>
             <ItemInformation>
               <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-              <ProductTitle>Returne #{productId}</ProductTitle>
+              <ProductTitle>Returne #</ProductTitle>
               <GenInformationTitle>
                 Owned by <VioletText>Hype-eth</VioletText>
                 <ViewsAndLikes>
