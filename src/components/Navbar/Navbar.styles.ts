@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import { ReactComponent as Logo } from '../../icons/logo.svg'
-import { ReactComponent as Search } from '../../icons/search.svg'
-import { ReactComponent as Profile } from '../../icons/profile.svg'
-import { Link } from 'react-router-dom'
-import { Container } from '../../globalStyles'
+import styled from 'styled-components';
+import { ReactComponent as Logo } from '../../icons/logo.svg';
+import { ReactComponent as Search } from '../../icons/search.svg';
+import { ReactComponent as Profile } from '../../icons/profile.svg';
+import { Link } from 'react-router-dom';
+import { Container } from '../../globalStyles';
 
 interface NavbarStylesProps {
-  nopadding?: string
+  nopadding?: string;
 }
 
 export const Nav = styled.nav`
@@ -17,7 +17,7 @@ export const Nav = styled.nav`
   z-index: 999;
   border: 2px solid #edd2ff;
   background: #fff;
-`
+`;
 
 export const NavbarContainer = styled(Container)`
   display: flex;
@@ -26,12 +26,12 @@ export const NavbarContainer = styled(Container)`
   height: 100%;
 
   ${Container}
-`
+`;
 
 export const NavLinkContainer = styled.div`
   display: inline-block;
   position: relative;
-`
+`;
 
 export const NavLinkDropdownMenu = styled.div`
   position: absolute;
@@ -41,7 +41,7 @@ export const NavLinkDropdownMenu = styled.div`
   opacity: 0;
   visibility: hidden;
   z-index: 99;
-`
+`;
 
 export const NavLink = styled(Link)<NavbarStylesProps>`
   padding: ${({ nopadding }) =>
@@ -72,7 +72,7 @@ export const NavLink = styled(Link)<NavbarStylesProps>`
     padding: ${({ nopadding }) =>
       (nopadding === 'Left' && '0') || (nopadding === 'Right' && '0') || '0'};
   }
-`
+`;
 
 export const MenuItemLink = styled(Link)`
   display: flex;
@@ -84,7 +84,7 @@ export const MenuItemLink = styled(Link)`
   &:visited {
     color: #7c7c7c;
   }
-`
+`;
 
 export const NavLinkExplore = styled(NavLink)`
   &.hovered-explore + ${NavLinkDropdownMenu} {
@@ -92,7 +92,7 @@ export const NavLinkExplore = styled(NavLink)`
     visibility: visible;
     cursor: pointer;
   }
-`
+`;
 
 export const NavLinkActivity = styled(NavLink)`
   &.hovered-activity + ${NavLinkDropdownMenu} {
@@ -100,7 +100,7 @@ export const NavLinkActivity = styled(NavLink)`
     visibility: visible;
     cursor: pointer;
   }
-`
+`;
 
 export const MenuItem = styled.div`
   display: flex;
@@ -123,7 +123,7 @@ export const MenuItem = styled.div`
     box-shadow: inset rgba(0, 0, 0, 0.19) 0px 1px 2px,
       rgba(0, 0, 0, 0.23) 0px 3px 3px;
   }
-`
+`;
 
 export const MenuContainer = styled.div`
   visibility: visible;
@@ -132,7 +132,7 @@ export const MenuContainer = styled.div`
     visibility: hidden;
     display: none;
   }
-`
+`;
 
 export const MenuMobileContainer = styled.div`
   display: none;
@@ -147,7 +147,7 @@ export const MenuMobileContainer = styled.div`
     align-items: center;
     padding-left: 1rem;
   }
-`
+`;
 
 export const MenuMobile = styled.div`
   display: flex;
@@ -200,18 +200,18 @@ export const MenuMobile = styled.div`
       margin: 2rem 0 0 0;
     }
   }
-`
+`;
 
 export const MenuMobileTitle = styled.span`
   color: #5d3f92;
   margin: 0.5rem 1rem;
-`
+`;
 
 export const MenuImage = styled.img`
   max-width: 24px;
   max-height: 24px;
   margin-right: 0.5rem;
-`
+`;
 
 export const LeftLinks = styled.div`
   display: flex;
@@ -225,7 +225,7 @@ export const LeftLinks = styled.div`
   @media (max-width: 641px) {
     width: 100%;
   }
-`
+`;
 
 export const NavIcon = styled(Logo)`
   display: flex;
@@ -234,36 +234,33 @@ export const NavIcon = styled(Logo)`
 
   position: relative;
   left: -4px;
-`
+`;
 
 export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 450px;
+  width: 22vw;
   height: 40px;
   background: #ebdfff;
   border-radius: 8px;
   margin-left: 4rem;
 
   @media (max-width: 1119px) {
-    max-width: 400px;
-  }
-
-  @media (max-width: 1069px) {
     margin-left: 0rem;
+    max-width: 400px;
   }
 
   @media (max-width: 1009px) {
     width: 100%;
     max-width: 909px;
   }
-`
+`;
 
 export const SearchIcon = styled(Search)`
   width: 18px;
   height: 17px;
   margin: 0.625rem 0.625rem 0.625rem 1rem;
-`
+`;
 
 export const Input = styled.input`
   color: #7c7c7c;
@@ -284,12 +281,12 @@ export const Input = styled.input`
       visibility: hidden;
     }
   }
-`
+`;
 
 export const RightLinks = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const ProfileIcon = styled(Profile)`
   width: 24px;
@@ -303,4 +300,4 @@ export const ProfileIcon = styled(Profile)`
       stroke: #5d3f92;
     }
   }
-`
+`;

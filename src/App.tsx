@@ -16,6 +16,8 @@ import {
   AccountPage,
   AllNFTs,
   NewNFTs,
+  Listing,
+  StakingPage,
   ExplorePage,
   RentNFTPage,
 } from './pages';
@@ -52,6 +54,8 @@ const App = () => {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/assets" element={<AllNFTs />} />
           <Route path="/assets/new" element={<NewNFTs />} />
+          <Route path="/listing" element={<Listing />} />
+          <Route path="/staking" element={<StakingPage />} />
           <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
           <Route
             path="/explore/sport"

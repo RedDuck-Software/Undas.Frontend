@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
-import { Container } from '../../globalStyles';
+import { Container, Button } from '../../globalStyles';
 
-import Like from '../../icons/like.svg';
-import View from '../../icons/view.svg';
-import LikeGrey from '../../icons/like-grey.svg';
-import Graph from '../../icons/graph.svg';
-
-interface ProductForSaleProps {
+interface StakingProps {
   mobile?: boolean;
 }
 
-export const ProductForSaleSec = styled.div`
+export const StakingSec = styled.div`
   padding: 7rem 0;
 
   @media (max-width: 1024px) {
@@ -19,7 +14,7 @@ export const ProductForSaleSec = styled.div`
   }
 `;
 
-export const ProductContainer = styled(Container)`
+export const StakingContainer = styled(Container)`
   display: flex;
 
   @media (max-width: 1024px) {
@@ -39,7 +34,7 @@ export const ProductContainer = styled(Container)`
   ${Container}
 `;
 
-export const ProductContainerCenter = styled(Container)`
+export const StakingContainerCenter = styled(Container)`
   display: flex;
   flex-direction: column;
 
@@ -73,7 +68,7 @@ export const RightSide = styled.div`
   height: 100%;
 `;
 
-export const ItemInformation = styled.div<ProductForSaleProps>`
+export const ItemInformation = styled.div<StakingProps>`
   width: 100%;
 
   ${({ mobile }) =>
@@ -91,22 +86,6 @@ export const ItemInformation = styled.div<ProductForSaleProps>`
       `};
 `;
 
-export const ProductSubtitle = styled.h2`
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #5d3f92;
-  margin-bottom: 5px;
-`;
-
-export const ProductTitle = styled.h1`
-  font-size: 2.7rem;
-  font-weight: 400;
-
-  @media (max-width: 1024px) {
-    padding-bottom: 5%;
-  }
-`;
-
 export const CardImageContainer = styled.div`
   position: relative;
 
@@ -119,30 +98,68 @@ export const CardImage = styled.img`
   width: 100%;
 `;
 
-export const BookmarkButton = styled.button`
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  font-size: 0.8rem;
-  background: #ffffff;
-  border: 1px solid #5d3f92;
-  border-radius: 10px;
-  width: 55px;
-  height: 35px;
+export const StakingForm = styled.form`
+  width: 100%;
+`;
 
-  &:before {
-    cursor: pointer;
-    content: url('${Like}');
-    position: relative;
-    top: 1px;
-    right: 4px;
+export const StakingFieldset = styled.fieldset`
+  border: none;
+  width: 100%;
+
+  margin: 1rem 0;
+`;
+
+export const StakingLabel = styled.label`
+  font-size: 1.5rem;
+`;
+
+export const StakingInput = styled.input`
+  width: 24rem;
+  height: 2rem;
+
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  padding-left: 1rem;
+
+  &:focus {
+    outline: none !important;
+    border: 1px solid #5d3f92;
+    box-shadow: 0 0 4px #893ac2;
   }
 
   @media (max-width: 1024px) {
-    top: 7rem;
+    width: 100%;
   }
+`;
 
-  @media (max-width: 470px) {
-    top: 6.75rem;
+export const StakingButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 1rem;
+  max-width: 24rem;
+`;
+
+export const StakingSelectLabel = styled.label`
+  font-size: 1.5rem;
+`;
+
+export const StakingSelectMenu = styled.select`
+  font-size: 1.15rem;
+  outline: none;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  width: 24rem;
+  height: 2rem;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
+
+  @media (max-width: 1024px) {
+    width: 100%;
   }
+`;
+
+export const SelectOption = styled.option`
+  font-size: 1.15rem;
 `;

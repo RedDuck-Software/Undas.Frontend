@@ -100,6 +100,8 @@ const Navbar = () => {
           </LeftLinks>
           <RightLinks>
             <MenuContainer>
+              <NavLinkExplore to="/listing">Listing</NavLinkExplore>
+              <NavLinkExplore to="/staking">Staking</NavLinkExplore>
               <NavLinkContainer onMouseLeave={toggleHoverExplore}>
                 <NavLinkExplore
                   to="/"
@@ -190,6 +192,16 @@ const Navbar = () => {
 
               {!showMenu ? (
                 <MenuMobile>
+                  <NavLinkContainer>
+                    <NavLink to="/listing">
+                      <MenuMobileTitle>Listing</MenuMobileTitle>
+                    </NavLink>
+                  </NavLinkContainer>
+                  <NavLinkContainer>
+                    <NavLink to="/staking">
+                      <MenuMobileTitle>Staking</MenuMobileTitle>
+                    </NavLink>
+                  </NavLinkContainer>
                   <NavLinkContainer onClick={toogleShowExplore}>
                     <MenuMobileTitle>Explore</MenuMobileTitle>
 
