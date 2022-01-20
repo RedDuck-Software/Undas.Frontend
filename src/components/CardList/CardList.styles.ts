@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const CardListWrapper = styled.div`
   flex: 3;
@@ -10,7 +10,7 @@ export const CardListWrapper = styled.div`
   @media (max-width: 849px) {
     padding-left: 0;
   }
-`
+`;
 
 export const CardListHeading = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const CardListHeading = styled.div`
   @media (max-width: 849px) {
     justify-content: flex-end;
   }
-`
+`;
 
 export const CardListResults = styled.span`
   flex-basis: 20%;
@@ -30,7 +30,7 @@ export const CardListResults = styled.span`
   @media (max-width: 849px) {
     font-size: 0;
   }
-`
+`;
 
 export const CardListFilters = styled.div`
   flex-basis: 55%;
@@ -71,7 +71,7 @@ export const CardListFilters = styled.div`
   @media (max-width: 469px) {
     flex-basis: 45%;
   }
-`
+`;
 
 export const MenuItem = styled.div`
   display: flex;
@@ -130,13 +130,13 @@ export const MenuItem = styled.div`
   @media (max-width: 459px) {
     min-width: 40vw;
   }
-`
+`;
 
-export const AllItemsDropdown = styled.div`
+export const AllItemsMenu = styled.select`
   postion: relative;
-`
+`;
 
-export const AllItemsButton = styled.button`
+export const AllItemsOption = styled.option`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -176,37 +176,20 @@ export const AllItemsButton = styled.button`
   @media (max-width: 459px) {
     min-width: 40vw;
   }
-`
-
-export const AllItemsMenu = styled.div`
-  position: absolute;
-  opacity: 0;
-  transition: opacity 150ms ease-in-out;
-  z-index: 99;
-  visibility: hidden;
-
-  &.active {
-    visibility: visible;
-    opacity: 1;
-  }
-`
-
-export const SortByDropdown = styled(AllItemsDropdown)`
-  ${AllItemsDropdown}
-`
-
-export const SortByButton = styled(AllItemsButton)`
-  ${AllItemsButton}
-`
+`;
 
 export const SortByMenu = styled(AllItemsMenu)`
   ${AllItemsMenu}
-`
+`;
+
+export const SortByOption = styled(AllItemsOption)`
+  ${AllItemsOption}
+`;
 
 export const ToggleMarkupContainer = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const ButtonView2x2 = styled.button`
   background: #ffffff;
@@ -234,7 +217,7 @@ export const ButtonView2x2 = styled.button`
   @media (max-width: 469px) {
     margin-top: 10%;
   }
-`
+`;
 
 export const ButtonView3x3 = styled(ButtonView2x2)`
   border-left: none;
@@ -246,7 +229,7 @@ export const ButtonView3x3 = styled(ButtonView2x2)`
   }
 
   ${ButtonView2x2}
-`
+`;
 
 export const CardsWrapper = styled.div`
   display: grid;
@@ -273,7 +256,7 @@ export const CardsWrapper = styled.div`
 
     margin: 15vh 0 100%;
   }
-`
+`;
 
 export const CardLink = styled(Link)`
   text-decoration: none;
@@ -281,4 +264,4 @@ export const CardLink = styled(Link)`
   &:visited {
     color: #7c7c7c;
   }
-`
+`;

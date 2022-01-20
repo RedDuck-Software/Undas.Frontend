@@ -7,7 +7,7 @@ import Context from "./Context";
 const useStakings = async (itemId?: number) => {
   const { connector } = useContext(Context);
   const provider = new ethers.providers.Web3Provider(
-    async () => await connector!.getProvider()
+    async () => await connector?.getProvider()
   );
   const signer = provider.getSigner(0);
   const MarketplaceContract = Marketplace__factory.connect(
