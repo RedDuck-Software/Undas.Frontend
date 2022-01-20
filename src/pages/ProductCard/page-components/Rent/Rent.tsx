@@ -25,6 +25,7 @@ import {
   TableColumn,
   ButtonRow,
 } from "./Rent.styles";
+
 const Rent = () => {
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);

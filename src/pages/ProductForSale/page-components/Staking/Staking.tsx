@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { Button } from '../../../../globalStyles';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { Button } from "../../../../globalStyles";
 
 import {
   StakingContainer,
@@ -18,19 +18,19 @@ import {
   TableMenuOption,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles';
+} from "./Staking,styles";
 
-import { ethers } from 'ethers';
-import Context from '../../../../utils/Context';
+import { ethers } from "ethers";
+import Context from "../../../../utils/Context";
 
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import Marketplace from '../../../../abi/Marketplace.json';
-import NFT from '../../../../abi/TestNFT.json';
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
-import intervalIntoTimeStamp from '../../../../utils/intervalIntoTimeStamp';
+} from "../../../../utils/addressHelpers";
+import Marketplace from "../../../../abi/Marketplace.json";
+import NFT from "../../../../abi/TestNFT.json";
+import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
+import intervalIntoTimeStamp from "../../../../utils/intervalIntoTimeStamp";
 
 const Staking = () => {
   const [stakingOpen, setStakingOpen] = useState(false);
@@ -38,6 +38,7 @@ const Staking = () => {
 
   const { connector } = useContext(Context);
   const [price, setPrice] = useState(280);
+  const [deadline, setDeadline] = useState("for 7 days");
   const [premium, setPremium] = useState(0);
   const [deadline, setDeadline] = useState('for 7 days');
 
@@ -57,8 +58,8 @@ const Staking = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
     );
 
     if (!isApprovedForAll) {
