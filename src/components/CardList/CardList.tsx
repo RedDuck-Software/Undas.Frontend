@@ -1,43 +1,41 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/react';
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../utils/Context";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
-import { RootState } from '../../store';
-import { useSelector } from 'react-redux';
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 
-import { getId } from '../../utils/getId';
-import { getListing } from '../../utils/getListing';
-import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
-import { isBuyableFunction } from '../../utils/isBuyable';
+import { getId } from "../../utils/getId";
+import { getListing } from "../../utils/getListing";
+import { getListingsLastIndex } from "../../utils/getListingsLastIndex";
+import { isBuyableFunction } from "../../utils/isBuyable";
 
-import { CardItem, FilterButtons } from '..';
+import { CardItem, FilterButtons } from "..";
 
-import { card01, card02, card03 } from './imports';
-import Pagination from '../Pagination/Pagination';
+import { card01, card02, card03 } from "./imports";
+import Pagination from "../Pagination/Pagination";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
 import {
   CardListWrapper,
   CardListHeading,
   CardListResults,
   CardListFilters,
   MenuItem,
-  AllItemsDropdown,
-  AllItemsButton,
   AllItemsMenu,
-  SortByDropdown,
-  SortByButton,
+  AllItemsOption,
   SortByMenu,
+  SortByOption,
   ToggleMarkupContainer,
   ButtonView2x2,
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from './CardList.styles';
+} from "./CardList.styles";
 
 interface CardListProps {
   newFilter?: boolean;
@@ -56,11 +54,12 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   const [list, setList] = useState<ItemsProps[]>();
   const [loading, setLoading] = useState(true);
-  const [itemsMenuShow, setItemsMenuShow] = useState('');
-  const [sortByMenuShow, setSortByMenuShow] = useState('');
+  const [itemsMenuShow, setItemsMenuShow] = useState("");
+  const [sortByMenuShow, setSortByMenuShow] = useState("");
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [showList, setShowList] = useState("NFT to buy");
 
   const override = css`
     display: block;
@@ -69,17 +68,17 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   const toggleItemsMenuShow = () => {
     if (itemsMenuShow) {
-      setItemsMenuShow('');
+      setItemsMenuShow("");
     } else {
-      setItemsMenuShow('active');
+      setItemsMenuShow("active");
     }
   };
 
   const toggleSortByMenuShow = () => {
     if (sortByMenuShow) {
-      setSortByMenuShow('');
+      setSortByMenuShow("");
     } else {
-      setSortByMenuShow('active');
+      setSortByMenuShow("active");
     }
   };
 
@@ -120,7 +119,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
     setLoading(false);
 
@@ -131,7 +130,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     <CardListWrapper>
       {loading ? (
         <ClipLoader
-          color={'#BD10E0'}
+          color={"#BD10E0"}
           css={override}
           loading={loading}
           size={150}
@@ -141,19 +140,26 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
           <CardListHeading>
             <CardListResults>{amountOfNFTs} results</CardListResults>
             <CardListFilters>
-              <AllItemsDropdown>
-                <AllItemsButton onClick={toggleItemsMenuShow}>
-                  All items{' '}
-                  {itemsMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                </AllItemsButton>
-                <AllItemsMenu className={itemsMenuShow}>
-                  <MenuItem>Single Items</MenuItem>
-                  <MenuItem>Bunbles</MenuItem>
-                </AllItemsMenu>
-              </AllItemsDropdown>
-              <SortByDropdown>
+              <AllItemsMenu
+                value={showList}
+                onChange={(e) => {
+                  setShowList(e.target.value);
+                  console.log(e.target.value);
+                }}
+              >
+                {/* <TableSelectMenu
+                      value={deadline}
+                      onChange={(e) => setDeadline(e.target.value)}
+                    >
+                      <TableMenuOption>for 7 days</TableMenuOption>
+                      <TableMenuOption>for 14 days</TableMenuOption>
+                    </TableSelectMenu> */}
+                <AllItemsOption value="NFT to buy">NFT to buy</AllItemsOption>
+                <AllItemsOption value="NFT to rent">NFT to rent</AllItemsOption>
+              </AllItemsMenu>
+              {/* <SortByDropdown>
                 <SortByButton onClick={toggleSortByMenuShow}>
-                  Sort by{' '}
+                  Sort by{" "}
                   {sortByMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
                 </SortByButton>
                 <SortByMenu className={sortByMenuShow}>
@@ -169,7 +175,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                   <MenuItem>Most Favorited</MenuItem>
                   <MenuItem>Oldest</MenuItem>
                 </SortByMenu>
-              </SortByDropdown>
+              </SortByDropdown> */}
               <ToggleMarkupContainer>
                 <ButtonView2x2>
                   <MdOutlineGridView />
@@ -180,27 +186,30 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
               </ToggleMarkupContainer>
             </CardListFilters>
           </CardListHeading>
-
           {newFilter ? <FilterButtons /> : <></>}
-
           <CardsWrapper>
             {amountOfNFTs ? (
-              list?.map((item, index) => {
-                return (
-                  <CardLink key={index} to={'/product/' + item.id}>
-                    <CardItem
-                      key={index}
-                      image={card01}
-                      price={item.priceInNum}
-                      id={item.id}
-                    />
-                  </CardLink>
-                );
-              })
+              showList === "NFT to buy" ? (
+                list?.map((item, index) => {
+                  return (
+                    <CardLink key={index} to={"/product/" + item.id}>
+                      <CardItem
+                        key={index}
+                        image={card01}
+                        price={item.priceInNum}
+                        id={item.id}
+                      />
+                    </CardLink>
+                  );
+                })
+              ) : (
+                <div>HERE COME STAKINGS</div>
+              )
             ) : (
               <span>There is no NFTs on the marketplace</span>
             )}
           </CardsWrapper>
+          ;
         </>
       )}
       <Pagination itemPerPage={itemsPerPage} totalItems={1} />
