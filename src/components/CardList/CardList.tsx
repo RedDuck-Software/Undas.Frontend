@@ -9,8 +9,7 @@ import { getId } from '../../utils/getId';
 import { getListing } from '../../utils/getListing';
 import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
 import { isBuyableFunction } from '../../utils/isBuyable';
-
-import { CardItem, FilterButtons } from '..';
+import { getStakingsLastIndex } from "../../utils/getStakingsLastIndex";
 
 import { card01, card02, card03 } from './imports';
 import Pagination from '../Pagination/Pagination';
@@ -42,12 +41,18 @@ export interface ItemsProps {
   id: number;
   structId: number;
 }
+export interface StakingsProps {
+  premiumInNum: number;
+  id: string;
+}
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
+  const stakings: StakingsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>();
+  const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +64,9 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     margin: auto;
   `;
 
-  const getCards = async () => {
+
+  const getListings = async () => {
+    setAmountOfNFTs(0);
     if (!connector) {
       return;
     }
@@ -90,9 +97,43 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     return items;
   };
 
-  async function getCardsData() {
-    const response = await getCards();
+  const getStakings = async () => {
+    setAmountOfNFTs(0);
+    if (!connector) {
+      return;
+    }
+    const lastIndex = await getStakingsLastIndex(connector);
+    if (!lastIndex) return;
+
+    for (let i = 0; i < lastIndex?.toNumber(); i++) {
+      const CardProps = await getStaking(i, connector);
+      const isBuyable = await isBuyableFunction(i, connector);
+
+      if (!CardProps) {
+        continue;
+      }
+
+      const { premium, tokenId } = CardProps;
+      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
+
+      let id = getId(tokenId.toNumber() + 1);
+
+      if (isBuyable) {
+        stakings.push({ premiumInNum, id });
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
+    }
+    return stakings;
+  };
+
+  async function getListingsData() {
+    const response = await getListings();
     setList(response);
+  }
+
+  async function getStakingsData() {
+    const response = await getStakings();
+    setStakingsList(response);
   }
 
   useEffect(() => {
@@ -101,7 +142,8 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     }
     setLoading(false);
 
-    getCardsData();
+    getListingsData();
+    getStakingsData();
   }, [connector]);
 
   return (
@@ -127,25 +169,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                 <AllItemsOption value="NFT to buy">NFT to buy</AllItemsOption>
                 <AllItemsOption value="NFT to rent">NFT to rent</AllItemsOption>
               </AllItemsMenu>
-              {/* <SortByDropdown>
-                <SortByButton onClick={toggleSortByMenuShow}>
-                  Sort by{" "}
-                  {sortByMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                </SortByButton>
-                <SortByMenu className={sortByMenuShow}>
-                  <MenuItem>Recently Created</MenuItem>
-                  <MenuItem>Recently Sold</MenuItem>
-                  <MenuItem>Recently Received</MenuItem>
-                  <MenuItem>Rent NFT</MenuItem>
-                  <MenuItem>Ending Soon</MenuItem>
-                  <MenuItem>Price: Low to High</MenuItem>
-                  <MenuItem>Price: High to Low</MenuItem>
-                  <MenuItem>Highest Last Sale</MenuItem>
-                  <MenuItem>Most Viewed</MenuItem>
-                  <MenuItem>Most Favorited</MenuItem>
-                  <MenuItem>Oldest</MenuItem>
-                </SortByMenu>
-              </SortByDropdown> */}
               <ToggleMarkupContainer>
                 <ButtonView2x2>
                   <MdOutlineGridView />
@@ -173,7 +196,18 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                   );
                 })
               ) : (
-                <div>HERE COME STAKINGS</div>
+                stakingsList?.map((item, index) => {
+                  return (
+                    <CardLink key={index} to={"/product/" + item.id}>
+                      <CardItem
+                        key={index}
+                        image={card01}
+                        price={item.premiumInNum}
+                        id={item.id}
+                      />
+                    </CardLink>
+                  );
+                })
               )
             ) : (
               <span>There is no NFTs on the marketplace</span>
