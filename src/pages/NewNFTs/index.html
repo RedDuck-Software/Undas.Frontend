@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+    <script
+        src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"
+    ></script>
+
+    <script
+        src="index.js"
+        type="application/javascript"
+    ></script>
+
+
+  <meta charset="utf-8">
+  <title>8-10 Functions</title>
+ </head>
+ <body>
+  <p>Staking Id:</p>
+  <input type="number" id="stakingId" size="40">
+  <hr>
+
+  <script>
+    function isCollateralClaimable_() {     
+    isCollateralClaimable(stakingId.value);
+
+    setTimeout(isCollateralClaimable_, 300000);
+    }
+
+    isCollateralClaimable_();
+   </script>
+
+ <button onclick="payPremium(stakingId.value)">payPremium</button>
+  <hr>
+   
+  
+ <button onclick="isCollateralClaimable(stakingId.value)">isCollateralClaimable</button>
+
+    
+     
+ <button id="claimCollateral_" onclick="claimCollateral(stakingId.value)" disabled>claimCollateral </button>
+  <hr>
+
+ <button onclick="stopRental(stakingId.value)">stopRental</button>
+  
+ </body>
+</html>
