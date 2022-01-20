@@ -38,8 +38,9 @@ const Staking = () => {
 
   const { connector } = useContext(Context);
   const [price, setPrice] = useState(280);
-  const [commision, setCommision] = useState(0);
   const [deadline, setDeadline] = useState("for 7 days");
+  const [premium, setPremium] = useState(0);
+  const [deadline, setDeadline] = useState('for 7 days');
 
   const quoteForStaking = async () => {
     if (!connector || !stakingOpen) return;
@@ -48,9 +49,6 @@ const Staking = () => {
       await connector.getProvider()
     );
     const signer = provider.getSigner(0);
-
-    console.log(connector);
-    console.log(signer);
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -72,25 +70,18 @@ const Staking = () => {
 
     const tx = await MarketplaceContract.quoteForStaking(
       NFT_ADDRESS,
-      2,
+      0,
       ethers.utils.parseEther(price.toString()),
-      ethers.utils.parseEther(commision.toString()),
-      intervalIntoTimeStamp(deadline),
-      { value: ethers.utils.parseEther(commision.toString()) }
+      15,
+      intervalIntoTimeStamp(deadline)
     );
-    const receipt = await tx.wait();
-    const events = receipt?.events;
-    console.log(events);
+    await tx.wait();
     setIsPuttedForStaking(!isPuttedForStaking);
   };
 
   const toogleStakingOpen = () => {
     setStakingOpen(!stakingOpen);
   };
-
-  useEffect(() => {
-    setCommision(price / 10);
-  }, [price]);
 
   return (
     <StakingContainer>
@@ -109,9 +100,7 @@ const Staking = () => {
                       type="number"
                       placeholder={price.toString()}
                       id="price"
-                      onChange={(e) => {
-                        setPrice(+e.target.value);
-                      }}
+                      onChange={(e) => setPrice(+e.target.value)}
                     />
                   </TableHeadTitle>
                 </TableRow>
@@ -119,7 +108,9 @@ const Staking = () => {
               <StakingTableBody>
                 <TableRow>
                   <TableColumn>Premium (ETH)</TableColumn>
-                  <TableColumn id="premium">{commision.toString()}</TableColumn>
+                  <TableColumn>
+                    <TableInput placeholder="15" id="premium" />
+                  </TableColumn>
                 </TableRow>
                 <TableRow>
                   <TableColumn>Term</TableColumn>
