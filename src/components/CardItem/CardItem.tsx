@@ -11,7 +11,7 @@ import {
 
 interface CardItemProps {
   image?: string;
-  id?: string;
+  id?: number;
   price?: number;
 }
 

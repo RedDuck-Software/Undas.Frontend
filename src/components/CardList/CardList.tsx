@@ -1,31 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
-import Context from "../../utils/Context";
-import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/react";
+import React, { useEffect, useState, useContext } from 'react';
+import Context from '../../utils/Context';
+import { ethers } from 'ethers';
 
-import { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/react';
 
-import { ethers } from "ethers";
+import { getId } from '../../utils/getId';
+import { getListing } from '../../utils/getListing';
+import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
+import { isBuyableFunction } from '../../utils/isBuyable';
 
-import { getId } from "../../utils/getId";
-import { getListing } from "../../utils/getListing";
-import { getListingsLastIndex } from "../../utils/getListingsLastIndex";
-import { isBuyableFunction } from "../../utils/isBuyable";
+import { CardItem, FilterButtons } from '..';
 
-import { CardItem, FilterButtons } from "..";
+import { card01, card02, card03 } from './imports';
+import Pagination from '../Pagination/Pagination';
 
-import { card01, card02, card03 } from "./imports";
-import Pagination from "../Pagination/Pagination";
-
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
 import {
   CardListWrapper,
   CardListHeading,
   CardListResults,
   CardListFilters,
-  MenuItem,
   AllItemsMenu,
   AllItemsOption,
   SortByMenu,
@@ -35,7 +31,7 @@ import {
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from "./CardList.styles";
+} from './CardList.styles';
 
 interface CardListProps {
   newFilter?: boolean;
@@ -43,44 +39,25 @@ interface CardListProps {
 
 export interface ItemsProps {
   priceInNum: number;
-  id: string;
+  id: number;
+  structId: number;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
-
-  const count = useSelector((state: RootState) => state.NFTsCounter.value);
   const items: ItemsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>();
   const [loading, setLoading] = useState(true);
-  const [itemsMenuShow, setItemsMenuShow] = useState("");
-  const [sortByMenuShow, setSortByMenuShow] = useState("");
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
-  const [showList, setShowList] = useState("NFT to buy");
+  const [showList, setShowList] = useState('NFT to buy');
 
   const override = css`
     display: block;
     margin: auto;
   `;
-
-  const toggleItemsMenuShow = () => {
-    if (itemsMenuShow) {
-      setItemsMenuShow("");
-    } else {
-      setItemsMenuShow("active");
-    }
-  };
-
-  const toggleSortByMenuShow = () => {
-    if (sortByMenuShow) {
-      setSortByMenuShow("");
-    } else {
-      setSortByMenuShow("active");
-    }
-  };
 
   const getCards = async () => {
     if (!connector) {
@@ -100,11 +77,12 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
       const { price, tokenId } = CardProps;
       const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-
-      let id = getId(tokenId.toNumber() + 1);
+      const id = tokenId.toNumber();
 
       if (isBuyable) {
-        items.push({ priceInNum, id });
+        let structId = i + 1;
+
+        items.push({ priceInNum, id, structId });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -119,7 +97,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
     setLoading(false);
 
@@ -130,7 +108,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     <CardListWrapper>
       {loading ? (
         <ClipLoader
-          color={"#BD10E0"}
+          color={'#BD10E0'}
           css={override}
           loading={loading}
           size={150}
@@ -144,16 +122,8 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                 value={showList}
                 onChange={(e) => {
                   setShowList(e.target.value);
-                  console.log(e.target.value);
                 }}
               >
-                {/* <TableSelectMenu
-                      value={deadline}
-                      onChange={(e) => setDeadline(e.target.value)}
-                    >
-                      <TableMenuOption>for 7 days</TableMenuOption>
-                      <TableMenuOption>for 14 days</TableMenuOption>
-                    </TableSelectMenu> */}
                 <AllItemsOption value="NFT to buy">NFT to buy</AllItemsOption>
                 <AllItemsOption value="NFT to rent">NFT to rent</AllItemsOption>
               </AllItemsMenu>
@@ -189,10 +159,10 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
           {newFilter ? <FilterButtons /> : <></>}
           <CardsWrapper>
             {amountOfNFTs ? (
-              showList === "NFT to buy" ? (
+              showList === 'NFT to buy' ? (
                 list?.map((item, index) => {
                   return (
-                    <CardLink key={index} to={"/product/" + item.id}>
+                    <CardLink key={index} to={'/product/' + item.structId}>
                       <CardItem
                         key={index}
                         image={card01}
@@ -209,7 +179,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
               <span>There is no NFTs on the marketplace</span>
             )}
           </CardsWrapper>
-          ;
         </>
       )}
       <Pagination itemPerPage={itemsPerPage} totalItems={1} />
