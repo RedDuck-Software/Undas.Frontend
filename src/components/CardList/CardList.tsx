@@ -9,9 +9,11 @@ import { getId } from '../../utils/getId';
 import { getListing } from '../../utils/getListing';
 import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
 import { isBuyableFunction } from '../../utils/isBuyable';
-import { getStakingsLastIndex } from "../../utils/getStakingsLastIndex";
+import { getStaking } from '../../utils/getStaking';
+import { getStakingsLastIndex } from '../../utils/getStakingsLastIndex';
 
 import { card01, card02, card03 } from './imports';
+import { CardItem, FilterButtons } from '../';
 import Pagination from '../Pagination/Pagination';
 
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
@@ -43,7 +45,8 @@ export interface ItemsProps {
 }
 export interface StakingsProps {
   premiumInNum: number;
-  id: string;
+  id: number;
+  structId: number;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
@@ -63,7 +66,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     display: block;
     margin: auto;
   `;
-
 
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -115,11 +117,12 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
       const { premium, tokenId } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-
-      let id = getId(tokenId.toNumber() + 1);
+      const id = tokenId.toNumber();
 
       if (isBuyable) {
-        stakings.push({ premiumInNum, id });
+        let structId = i + 1;
+
+        stakings.push({ premiumInNum, id, structId });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -198,7 +201,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
               ) : (
                 stakingsList?.map((item, index) => {
                   return (
-                    <CardLink key={index} to={"/product/" + item.id}>
+                    <CardLink key={index} to={'/product/' + item.structId}>
                       <CardItem
                         key={index}
                         image={card01}
