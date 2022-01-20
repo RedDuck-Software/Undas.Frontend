@@ -127,9 +127,8 @@ const Rent = () => {
               Rent <IoIosArrowUp />
             </RentTop>
             <RentContent grey>
-              Sorry, but you cannot currently rent this NTF because the owner
-              has not yet given permission to do so. Try to rent this to NTF
-              later
+              Sorry, but you cannot currently rent this NFT because the owner
+              has not yet given permission to do so. Try to rent this NFT later
             </RentContent>
           </>
         )
