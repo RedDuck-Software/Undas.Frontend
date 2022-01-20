@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Container, Button } from '../../../../globalStyles'
+import { Container, Button } from '../../../../globalStyles';
 import {
   InfoSec,
   InfoRow,
@@ -12,7 +12,7 @@ import {
   ButtonsWrapper,
   ImageGallery,
   Image,
-} from './InfoSection.styles'
+} from './InfoSection.styles';
 
 import {
   gallery01,
@@ -21,7 +21,7 @@ import {
   gallery04,
   gallery05,
   gallery06,
-} from './imports'
+} from './imports';
 
 const InfoSection = () => {
   return (
@@ -37,7 +37,7 @@ const InfoSection = () => {
               <Link to="/">
                 <Button violet>Explore</Button>
               </Link>
-              <Link to="/product/for-sale">
+              <Link to="/product/for-sale/0">
                 <Button>Create</Button>
               </Link>
             </ButtonsWrapper>
@@ -55,7 +55,7 @@ const InfoSection = () => {
         </InfoRow>
       </Container>
     </InfoSec>
-  )
-}
+  );
+};
 
-export default InfoSection
+export default InfoSection;

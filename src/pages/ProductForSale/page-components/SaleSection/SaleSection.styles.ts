@@ -1,17 +1,20 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SaleSectionContainer = styled.div`
   width: 100%;
-`
+`;
 
 export const ButtonsContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   height: 100%;
-  gap: 5%;
 
   div {
     flex: 1;
+
+    &:nth-child(1) {
+      margin-right: 4%;
+    }
   }
 
   @media (max-width: 679px) {
@@ -31,6 +34,10 @@ export const ButtonsContainer = styled.div`
     }
 
     div {
+      &:nth-child(1) {
+        margin-right: 0;
+      }
+
       &:nth-child(2) {
         width: auto;
       }
@@ -44,4 +51,4 @@ export const ButtonsContainer = styled.div`
       }
     }
   }
-`
+`;

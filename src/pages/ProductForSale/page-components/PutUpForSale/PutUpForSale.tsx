@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Context from '../../../../utils/Context';
 import { ethers } from 'ethers';
 
@@ -9,9 +9,10 @@ import {
 
 import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
-import { RootState } from '../../../../store';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { increment } from '../../../../utils/ReduxSlices/NFTsCounterSlice';
+
+import { isBuyableFunction } from '../../../../utils/isBuyable';
 
 import Image from '../../../../images/card-item.png';
 
@@ -37,17 +38,18 @@ import {
   MenuButtonsWrapper,
 } from './PutUpForSale.styles';
 
-const PutUpForSale = () => {
+const PutUpForSale = ({ itemId }: { itemId: string }) => {
   const { connector } = useContext(Context);
 
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(35);
-  const [commision, setCommision] = useState(0);
+  // const [commision, setCommision] = useState(0);
 
   const [isDropdownOpen, setDropdown] = useState(false);
-  const [isMenuShown, setMenu] = useState(false);
+  const [isMenuShown, setMenuShown] = useState(false);
   const [isButtonsActive, setButtons] = useState('disabled');
+  const [isBuyable, setIsBuyable] = useState<boolean | undefined>(undefined);
 
   const bid = async () => {
     if (!connector || isButtonsActive === 'disabled') return;
@@ -81,14 +83,43 @@ const PutUpForSale = () => {
 
     const tx = await MarketplaceContract.bid(
       NFT_ADDRESS,
-      0,
+      itemId,
       ethers.utils.parseEther(price.toString()),
-      { value: ethers.utils.parseEther(commision.toString()) }
+      { value: ethers.utils.parseEther('0.1') }
     );
 
     await tx.wait().then(
       () => {
         dispatch(increment());
+        toogleMenu();
+        toogleDropdown();
+        setIsBuyable(true);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+
+  const Cancel = async () => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.cancel(itemId);
+
+    await tx.wait().then(
+      () => {
+        setIsBuyable(false);
       },
       (error) => {
         console.log(error);
@@ -102,11 +133,11 @@ const PutUpForSale = () => {
 
   const toogleMenu = () => {
     if (!isMenuShown && isButtonsActive === 'disabled') {
-      setMenu(!isMenuShown);
+      setMenuShown(!isMenuShown);
     } else if (isButtonsActive === 'disabled') {
       return;
     } else {
-      setMenu(!isMenuShown);
+      setMenuShown(!isMenuShown);
       setButtons('disabled');
     }
   };
@@ -119,15 +150,33 @@ const PutUpForSale = () => {
     }
   };
 
-  const calculateCommission = () => {
-    setCommision(price / 10);
-  };
+  // const calculateCommission = () => {
+  //   setCommision(price / 10);
+  // };
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log('loading');
+    }
+
+    isBuyableFunction(+itemId, connector)
+      .then((result) => {
+        setIsBuyable(result);
+      })
+      .catch(() => setIsBuyable(false));
+  }, [connector]);
 
   return (
     <ForSaleWrapper>
-      <ForSaleButton violet onClick={toogleDropdown}>
-        Sell
-      </ForSaleButton>
+      {isBuyable ? (
+        <ForSaleButton violet onClick={Cancel}>
+          Cancel
+        </ForSaleButton>
+      ) : (
+        <ForSaleButton violet onClick={toogleDropdown}>
+          Sell
+        </ForSaleButton>
+      )}
       {isDropdownOpen ? (
         <ForSaleDropdown>
           <DropdownLine>
@@ -142,7 +191,7 @@ const PutUpForSale = () => {
             <DropdownButton
               onClick={() => {
                 toogleMenu();
-                calculateCommission();
+                // calculateCommission();
               }}
             >
               Sell
@@ -160,10 +209,10 @@ const PutUpForSale = () => {
               <MenuLine>
                 Price <MenuPrice>{price}</MenuPrice>
               </MenuLine>
-              <MenuLine>
+              {/* <MenuLine>
                 <span>Marketplace commission</span>{' '}
                 <MenuPrice>{commision}</MenuPrice>
-              </MenuLine>
+              </MenuLine> */}
             </AuctionDescription>
           </MenuTop>
           <MenuAgreementLine>

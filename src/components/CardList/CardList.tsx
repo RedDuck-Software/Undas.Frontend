@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Context from '../../utils/Context';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/react';
 
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
@@ -8,10 +10,13 @@ import { ethers } from 'ethers';
 
 import { getId } from '../../utils/getId';
 import { getListing } from '../../utils/getListing';
+import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
+import { isBuyableFunction } from '../../utils/isBuyable';
 
 import { CardItem, FilterButtons } from '..';
 
 import { card01, card02, card03 } from './imports';
+import Pagination from '../Pagination/Pagination';
 
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
@@ -47,12 +52,20 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const { connector } = useContext(Context);
 
   const count = useSelector((state: RootState) => state.NFTsCounter.value);
-
   const items: ItemsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>();
+  const [loading, setLoading] = useState(true);
   const [itemsMenuShow, setItemsMenuShow] = useState('');
   const [sortByMenuShow, setSortByMenuShow] = useState('');
+  const [amountOfNFTs, setAmountOfNFTs] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+
+  const override = css`
+    display: block;
+    margin: auto;
+  `;
 
   const toggleItemsMenuShow = () => {
     if (itemsMenuShow) {
@@ -71,23 +84,30 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   };
 
   const getCards = async () => {
-    for (let i = 0; i < count; i++) {
-      if (!connector) {
-        return;
-      }
+    if (!connector) {
+      return;
+    }
 
+    const lastIndex = await getListingsLastIndex(connector);
+    if (!lastIndex) return;
+
+    for (let i = 0; i < lastIndex?.toNumber(); i++) {
       const CardProps = await getListing(i, connector);
+      const isBuyable = await isBuyableFunction(i, connector);
 
       if (!CardProps) {
         continue;
       }
 
-      const { price } = CardProps;
+      const { price, tokenId } = CardProps;
       const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-      let id = getId(i + 1);
+      let id = getId(tokenId.toNumber() + 1);
 
-      items.push({ priceInNum, id });
+      if (isBuyable) {
+        items.push({ priceInNum, id });
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
     }
 
     return items;
@@ -102,73 +122,88 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     if (!connector) {
       return console.log('loading');
     }
+    setLoading(false);
 
     getCardsData();
   }, [connector]);
 
   return (
     <CardListWrapper>
-      <CardListHeading>
-        <CardListResults>{count} results</CardListResults>
-        <CardListFilters>
-          <AllItemsDropdown>
-            <AllItemsButton onClick={toggleItemsMenuShow}>
-              All items {itemsMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-            </AllItemsButton>
-            <AllItemsMenu className={itemsMenuShow}>
-              <MenuItem>Single Items</MenuItem>
-              <MenuItem>Bunbles</MenuItem>
-            </AllItemsMenu>
-          </AllItemsDropdown>
-          <SortByDropdown>
-            <SortByButton onClick={toggleSortByMenuShow}>
-              Sort by {sortByMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-            </SortByButton>
-            <SortByMenu className={sortByMenuShow}>
-              <MenuItem>Recently Created</MenuItem>
-              <MenuItem>Recently Sold</MenuItem>
-              <MenuItem>Recently Received</MenuItem>
-              <MenuItem>Rent NFT</MenuItem>
-              <MenuItem>Ending Soon</MenuItem>
-              <MenuItem>Price: Low to High</MenuItem>
-              <MenuItem>Price: High to Low</MenuItem>
-              <MenuItem>Highest Last Sale</MenuItem>
-              <MenuItem>Most Viewed</MenuItem>
-              <MenuItem>Most Favorited</MenuItem>
-              <MenuItem>Oldest</MenuItem>
-            </SortByMenu>
-          </SortByDropdown>
-          <ToggleMarkupContainer>
-            <ButtonView2x2>
-              <MdOutlineGridView />
-            </ButtonView2x2>
-            <ButtonView3x3>
-              <MdOutlineApps />
-            </ButtonView3x3>
-          </ToggleMarkupContainer>
-        </CardListFilters>
-      </CardListHeading>
+      {loading ? (
+        <ClipLoader
+          color={'#BD10E0'}
+          css={override}
+          loading={loading}
+          size={150}
+        />
+      ) : (
+        <>
+          <CardListHeading>
+            <CardListResults>{amountOfNFTs} results</CardListResults>
+            <CardListFilters>
+              <AllItemsDropdown>
+                <AllItemsButton onClick={toggleItemsMenuShow}>
+                  All items{' '}
+                  {itemsMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </AllItemsButton>
+                <AllItemsMenu className={itemsMenuShow}>
+                  <MenuItem>Single Items</MenuItem>
+                  <MenuItem>Bunbles</MenuItem>
+                </AllItemsMenu>
+              </AllItemsDropdown>
+              <SortByDropdown>
+                <SortByButton onClick={toggleSortByMenuShow}>
+                  Sort by{' '}
+                  {sortByMenuShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </SortByButton>
+                <SortByMenu className={sortByMenuShow}>
+                  <MenuItem>Recently Created</MenuItem>
+                  <MenuItem>Recently Sold</MenuItem>
+                  <MenuItem>Recently Received</MenuItem>
+                  <MenuItem>Rent NFT</MenuItem>
+                  <MenuItem>Ending Soon</MenuItem>
+                  <MenuItem>Price: Low to High</MenuItem>
+                  <MenuItem>Price: High to Low</MenuItem>
+                  <MenuItem>Highest Last Sale</MenuItem>
+                  <MenuItem>Most Viewed</MenuItem>
+                  <MenuItem>Most Favorited</MenuItem>
+                  <MenuItem>Oldest</MenuItem>
+                </SortByMenu>
+              </SortByDropdown>
+              <ToggleMarkupContainer>
+                <ButtonView2x2>
+                  <MdOutlineGridView />
+                </ButtonView2x2>
+                <ButtonView3x3>
+                  <MdOutlineApps />
+                </ButtonView3x3>
+              </ToggleMarkupContainer>
+            </CardListFilters>
+          </CardListHeading>
 
-      {newFilter ? <FilterButtons /> : <></>}
+          {newFilter ? <FilterButtons /> : <></>}
 
-      <CardsWrapper>
-        {count ? (
-          list?.map((item, index) => {
-            return (
-              <CardLink key={index} to={'/product/' + ++index}>
-                <CardItem
-                  key={index}
-                  image={card01}
-                  price={item.priceInNum}
-                  id={item.id}
-                />
-              </CardLink>
-            );
-          })
-        ) : (
-          <span>There is no NFTs on the marketplace</span>
-        )}
-      </CardsWrapper>
+          <CardsWrapper>
+            {amountOfNFTs ? (
+              list?.map((item, index) => {
+                return (
+                  <CardLink key={index} to={'/product/' + item.id}>
+                    <CardItem
+                      key={index}
+                      image={card01}
+                      price={item.priceInNum}
+                      id={item.id}
+                    />
+                  </CardLink>
+                );
+              })
+            ) : (
+              <span>There is no NFTs on the marketplace</span>
+            )}
+          </CardsWrapper>
+        </>
+      )}
+      <Pagination itemPerPage={itemsPerPage} totalItems={1} />
     </CardListWrapper>
   );
 };

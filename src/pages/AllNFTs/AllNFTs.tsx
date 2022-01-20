@@ -1,10 +1,7 @@
-import { SideBar, CardList, Paggination } from '../../components';
+import { SideBar, CardList } from '../../components';
 
 import { Background } from '../../globalStyles';
-import {
-  AllNFTsContainer,
-  AllNFTsPagginationContainer,
-} from './AllNFTs.styles';
+import { AllNFTsContainer } from './AllNFTs.styles';
 
 const AllNFTs = () => {
   return (
@@ -13,9 +10,6 @@ const AllNFTs = () => {
         <SideBar />
         <CardList />
       </AllNFTsContainer>
-      <AllNFTsPagginationContainer>
-        <Paggination />
-      </AllNFTsPagginationContainer>
     </Background>
   );
 };
