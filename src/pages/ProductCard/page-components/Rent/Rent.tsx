@@ -1,17 +1,17 @@
-import { ethers } from 'ethers';
-import React, { useState, useContext } from 'react';
-import Context from '../../../../utils/Context';
+import { ethers } from "ethers";
+import React, { useState, useContext, useEffect } from "react";
+import Context from "../../../../utils/Context";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import Marketplace from '../../../../abi/Marketplace.json';
-import NFT from '../../../../abi/TestNFT.json';
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
+} from "../../../../utils/addressHelpers";
+import Marketplace from "../../../../abi/Marketplace.json";
+import NFT from "../../../../abi/TestNFT.json";
+import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
 
 import {
   RentContainer,
@@ -24,24 +24,42 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './Rent.styles';
+} from "./Rent.styles";
 
 const Rent = ({ id }: { id: number }) => {
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);
   const [canRent] = useState(true);
   const { connector } = useContext(Context);
+  const [premium, setPremium] = useState(0);
+  const [collateral, setCollateral] = useState(0);
 
-  const startRenting = async () => {
+  const getStakings = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.getStaking(itemId);
+
+    return tx;
+  };
+
+  const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
     );
     const signer = provider.getSigner(0);
-
-    console.log(connector);
-    console.log(signer);
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -51,8 +69,8 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
     );
 
     if (!isApprovedForAll) {
@@ -61,11 +79,34 @@ const Rent = ({ id }: { id: number }) => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.rentNFT(1, {
-      value: ethers.utils.parseEther('0.01'),
+    const tx = await MarketplaceContract.rentNFT(itemId, {
+      value: ethers.utils.parseEther((premium + collateral).toString()),
     });
     await tx.wait();
   };
+
+  async function getProductValue() {
+    const ProductValue = await getStakings(id);
+
+    if (!ProductValue) {
+      return;
+    }
+
+    const { collateral, premium } = ProductValue;
+    const premiumInNum = +premium;
+    const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
+
+    setCollateral(collateralInNum);
+    setPremium(premiumInNum);
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    getProductValue();
+  }, [connector]);
 
   const toogleRentOpen = () => {
     setRentOpen(!rentOpen);
@@ -84,13 +125,13 @@ const Rent = ({ id }: { id: number }) => {
                 <RentTableHead>
                   <TableRow>
                     <TableHeadTitle>Price</TableHeadTitle>
-                    <TableHeadTitle>280</TableHeadTitle>
+                    <TableHeadTitle>{collateral}</TableHeadTitle>
                   </TableRow>
                 </RentTableHead>
                 <RentTableBody>
                   <TableRow>
                     <TableColumn>Pledge value</TableColumn>
-                    <TableColumn>280</TableColumn>
+                    <TableColumn>{premium}</TableColumn>
                   </TableRow>
                   <TableRow>
                     <TableColumn>Term</TableColumn>
@@ -101,7 +142,7 @@ const Rent = ({ id }: { id: number }) => {
               {isRented ? (
                 <>
                   <ButtonRow>
-                    <Button violet onClick={startRenting}>
+                    <Button violet onClick={() => startRenting(id)}>
                       Stop renting
                     </Button>
                     <Button violet>Buy</Button>
@@ -109,7 +150,7 @@ const Rent = ({ id }: { id: number }) => {
                 </>
               ) : (
                 <ButtonRow>
-                  <Button violet big onClick={startRenting}>
+                  <Button violet big onClick={() => startRenting(id)}>
                     Rent NFT
                   </Button>
                 </ButtonRow>
