@@ -104,12 +104,12 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     if (!connector) {
       return;
     }
+
     const lastIndex = await getStakingsLastIndex(connector);
     if (!lastIndex) return;
 
     for (let i = 0; i < lastIndex?.toNumber(); i++) {
       const CardProps = await getStaking(i, connector);
-      const isBuyable = await isBuyableFunction(i, connector);
 
       if (!CardProps) {
         continue;
@@ -118,14 +118,12 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       const { premium, tokenId } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
       const id = tokenId.toNumber();
-
-      if (isBuyable) {
-        let structId = i + 1;
-
-        stakings.push({ premiumInNum, id, structId });
-        setAmountOfNFTs(amountOfNFTs + 1);
-      }
+      let structId = i + 1;
+      stakings.push({ premiumInNum, id, structId });
+      setAmountOfNFTs(amountOfNFTs + 1);
     }
+
+    console.log(stakings);
     return stakings;
   };
 
