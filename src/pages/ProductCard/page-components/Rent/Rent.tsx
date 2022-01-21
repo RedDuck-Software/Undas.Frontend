@@ -26,7 +26,7 @@ import {
   ButtonRow,
 } from './Rent.styles';
 
-const Rent = () => {
+const Rent = ({ id }: { id: number }) => {
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);
   const [canRent] = useState(true);
@@ -42,12 +42,6 @@ const Rent = () => {
 
     console.log(connector);
     console.log(signer);
-
-    // const NFTContract = new ethers.Contract(
-    //   NFT_ADDRESS,
-    //   Marketplace['abi'],
-    //   signer
-    // );
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 

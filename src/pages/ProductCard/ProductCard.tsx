@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import {
   ProductDescription,
@@ -10,9 +10,9 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components';
+} from "./page-components";
 
-import { Background, VioletText } from '../../globalStyles';
+import { Background, VioletText } from "../../globalStyles";
 
 import {
   LeftSide,
@@ -30,9 +30,9 @@ import {
   ViewsAndLikes,
   ViewsContainer,
   LikesContainer,
-} from './ProductCard.styles';
+} from "./ProductCard.styles";
 
-import Image from '../../images/card-item.png';
+import Image from "../../images/card-item.png";
 
 const ProductCard = () => {
   let { id: pageId } = useParams();
@@ -75,7 +75,7 @@ const ProductCard = () => {
             <PriceHistory />
             <Listing />
             <Offers />
-            <Rent />
+            <Rent id={+pageId! - 1} />
             <Staking />
           </RightSide>
         </ProductContainer>
