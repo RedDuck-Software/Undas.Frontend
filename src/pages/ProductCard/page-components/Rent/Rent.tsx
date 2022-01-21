@@ -1,16 +1,16 @@
-import { ethers } from "ethers";
-import React, { useState, useContext, useEffect } from "react";
-import Context from "../../../../utils/Context";
+import { ethers } from 'ethers';
+import React, { useState, useContext, useEffect } from 'react';
+import Context from '../../../../utils/Context';
 
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from "../../../../globalStyles";
+import { Button } from '../../../../globalStyles';
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from "../../../../utils/addressHelpers";
+} from '../../../../utils/addressHelpers';
 
-import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
 import {
   RentContainer,
@@ -23,7 +23,7 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from "./Rent.styles";
+} from './Rent.styles';
 
 const Rent = ({ id }: { id: number }) => {
   const [rentOpen, setRentOpen] = useState(true);
@@ -59,6 +59,7 @@ const Rent = ({ id }: { id: number }) => {
       await connector.getProvider()
     );
     const signer = provider.getSigner(0);
+    const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -68,8 +69,8 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
-      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      SIGNER_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -92,6 +93,25 @@ const Rent = ({ id }: { id: number }) => {
     );
     const signer = provider.getSigner(0);
 
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.payPremium(itemId, {
+      value: ethers.utils.parseEther(premium.toString()),
+    });
+    await tx.wait();
+  };
+
+  const stopRental = async (itemId: number) => {
+    if (!connector) return;
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+    const signer = provider.getSigner(0);
+    const SIGNER_ADDRESS = await signer.getAddress();
+
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
@@ -99,17 +119,18 @@ const Rent = ({ id }: { id: number }) => {
       signer
     );
 
-    // const isApprovedForAll = await NFTContract.isApprovedForAll(
-    //   "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
-    //   "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
-    // );
+    const isApprovedForAll = await NFTContract.isApprovedForAll(
+      SIGNER_ADDRESS,
+      MARKETPLACE_ADDRESS
+    );
 
-    //   await (
-    //     await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
-    //   ).wait();
-    const tx = await MarketplaceContract.payPremium(itemId, {
-      value: ethers.utils.parseEther(premium.toString()),
-    });
+    if (!isApprovedForAll) {
+      await (
+        await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
+
+    const tx = await MarketplaceContract.stopStaking(itemId);
     await tx.wait();
   };
 
@@ -120,6 +141,7 @@ const Rent = ({ id }: { id: number }) => {
       return;
     }
 
+    //TODO add term rendering
     const { collateral, premium } = ProductValue;
     const premiumInNum = +premium;
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
@@ -130,7 +152,7 @@ const Rent = ({ id }: { id: number }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
 
     getProductValue();
@@ -170,7 +192,7 @@ const Rent = ({ id }: { id: number }) => {
               {isRented ? (
                 <>
                   <ButtonRow>
-                    <Button violet onClick={() => startRenting(id)}>
+                    <Button violet onClick={() => stopRental(id)}>
                       Stop renting
                     </Button>
                     <Button violet onClick={() => payPremium(id)}>

@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import Context from "../../utils/Context";
-import { ethers } from "ethers";
+import { useState, useContext } from 'react';
+import Context from '../../utils/Context';
+import { ethers } from 'ethers';
 
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
-import { TestNFT__factory, Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
+import { TestNFT__factory, Marketplace__factory } from '../../typechain';
 
-import { ModalWindow } from "../../components";
-import { Background } from "../../globalStyles";
+import { ModalWindow } from '../../components';
+import { Background } from '../../globalStyles';
 
 import {
   StakingSec,
@@ -24,18 +24,18 @@ import {
   StakingSelectMenu,
   SelectOption,
   StakingButton,
-} from "./StakingPage.styles";
-import Image from "../../images/card-item.png";
-import intervalIntoTimeStamp from "../../utils/intervalIntoTimeStamp";
+} from './StakingPage.styles';
+import Image from '../../images/card-item.png';
+import intervalIntoTimeStamp from '../../utils/intervalIntoTimeStamp';
 
 const StakingPage = () => {
   const { connector } = useContext(Context);
 
-  const [NFTAddress, setNFTAddress] = useState("");
-  const [tokenId, setTokenId] = useState("");
-  const [price, setPrice] = useState("");
-  const [premium, setPremium] = useState("");
-  const [term, setTerm] = useState("for 7 days");
+  const [NFTAddress, setNFTAddress] = useState('');
+  const [tokenId, setTokenId] = useState('');
+  const [price, setPrice] = useState('');
+  const [premium, setPremium] = useState('');
+  const [term, setTerm] = useState('for 7 days');
 
   const quoteForStaking = async () => {
     if (!connector) return;
@@ -44,6 +44,7 @@ const StakingPage = () => {
       await connector.getProvider()
     );
     const signer = provider.getSigner(0);
+    const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -53,8 +54,8 @@ const StakingPage = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
-      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      SIGNER_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -69,7 +70,7 @@ const StakingPage = () => {
       ethers.utils.parseEther(price.toString()),
       premium.toString(),
       intervalIntoTimeStamp(term),
-      { value: ethers.utils.parseEther("0.1") }
+      { value: ethers.utils.parseEther('0.1') }
     );
     await tx.wait();
   };

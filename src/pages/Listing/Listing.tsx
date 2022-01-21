@@ -41,6 +41,7 @@ const Listing = () => {
     );
 
     const signer = provider.getSigner(0);
+    const SIGNER_ADDRESS = await signer.getAddress();
 
     console.log(connector);
     console.log(signer);
@@ -54,8 +55,8 @@ const Listing = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+      SIGNER_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -72,7 +73,7 @@ const Listing = () => {
     );
 
     await tx.wait().then(() => {
-      setShowModalWindow(true);
+      setShowModalWindow(false);
     });
   };
 

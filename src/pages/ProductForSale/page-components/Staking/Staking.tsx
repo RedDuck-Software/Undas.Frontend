@@ -48,6 +48,7 @@ const Staking = () => {
       await connector.getProvider()
     );
     const signer = provider.getSigner(0);
+    const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
@@ -57,8 +58,8 @@ const Staking = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
+      SIGNER_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
