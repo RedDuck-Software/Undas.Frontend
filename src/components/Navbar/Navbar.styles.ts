@@ -240,6 +240,7 @@ export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 22vw;
+  max-width: 385px;
   height: 40px;
   background: #ebdfff;
   border-radius: 8px;
