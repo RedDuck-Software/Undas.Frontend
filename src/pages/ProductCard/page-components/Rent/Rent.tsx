@@ -1,17 +1,17 @@
-import { ethers } from "ethers";
-import React, { useState, useContext } from "react";
-import Context from "../../../../utils/Context";
+import { ethers } from 'ethers';
+import React, { useState, useContext } from 'react';
+import Context from '../../../../utils/Context';
 
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from "../../../../globalStyles";
+import { Button } from '../../../../globalStyles';
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from "../../../../utils/addressHelpers";
-import Marketplace from "../../../../abi/Marketplace.json";
-import NFT from "../../../../abi/TestNFT.json";
-import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
+} from '../../../../utils/addressHelpers';
+import Marketplace from '../../../../abi/Marketplace.json';
+import NFT from '../../../../abi/TestNFT.json';
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
 import {
   RentContainer,
@@ -24,7 +24,7 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from "./Rent.styles";
+} from './Rent.styles';
 
 const Rent = () => {
   const [rentOpen, setRentOpen] = useState(true);
@@ -57,8 +57,8 @@ const Rent = () => {
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
-      "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
-      "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+      '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'
     );
 
     if (!isApprovedForAll) {
@@ -67,8 +67,8 @@ const Rent = () => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.rentNFT(0, {
-      value: ethers.utils.parseEther("0.0001"),
+    const tx = await MarketplaceContract.rentNFT(1, {
+      value: ethers.utils.parseEther('0.01'),
     });
     await tx.wait();
   };
