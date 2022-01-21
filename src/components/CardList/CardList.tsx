@@ -1,23 +1,23 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import { ethers } from 'ethers';
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
 
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/react';
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
-import { getId } from '../../utils/getId';
-import { getListing } from '../../utils/getListing';
-import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
-import { isBuyableFunction } from '../../utils/isBuyable';
-import { getStaking } from '../../utils/getStaking';
-import { getStakingsLastIndex } from '../../utils/getStakingsLastIndex';
+import { getId } from "../../utils/getId";
+import { getListing } from "../../utils/getListing";
+import { getListingsLastIndex } from "../../utils/getListingsLastIndex";
+import { isBuyableFunction } from "../../utils/isBuyable";
+import { getStaking } from "../../utils/getStaking";
+import { getStakingsLastIndex } from "../../utils/getStakingsLastIndex";
 
-import { card01, card02, card03 } from './imports';
-import { CardItem, FilterButtons } from '../';
-import Pagination from '../Pagination/Pagination';
+import { card01, card02, card03 } from "./imports";
+import { CardItem, FilterButtons } from "../";
+import Pagination from "../Pagination/Pagination";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
 import {
   CardListWrapper,
   CardListHeading,
@@ -32,7 +32,7 @@ import {
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from './CardList.styles';
+} from "./CardList.styles";
 
 interface CardListProps {
   newFilter?: boolean;
@@ -60,7 +60,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
-  const [showList, setShowList] = useState('NFT to buy');
+  const [showList, setShowList] = useState("NFT to buy");
 
   const override = css`
     display: block;
@@ -116,7 +116,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       }
 
       const { premium, tokenId } = CardProps;
-      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
+      const premiumInNum = +premium;
       const id = tokenId.toNumber();
       let structId = i + 1;
       stakings.push({ premiumInNum, id, structId });
@@ -139,7 +139,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
     setLoading(false);
 
@@ -151,7 +151,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     <CardListWrapper>
       {loading ? (
         <ClipLoader
-          color={'#BD10E0'}
+          color={"#BD10E0"}
           css={override}
           loading={loading}
           size={150}
@@ -183,10 +183,10 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
           {newFilter ? <FilterButtons /> : <></>}
           <CardsWrapper>
             {amountOfNFTs ? (
-              showList === 'NFT to buy' ? (
+              showList === "NFT to buy" ? (
                 list?.map((item, index) => {
                   return (
-                    <CardLink key={index} to={'/product/' + item.structId}>
+                    <CardLink key={index} to={"/product/" + item.structId}>
                       <CardItem
                         key={index}
                         image={card01}
@@ -199,7 +199,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
               ) : (
                 stakingsList?.map((item, index) => {
                   return (
-                    <CardLink key={index} to={'/product/' + item.structId}>
+                    <CardLink key={index} to={"/product/" + item.structId}>
                       <CardItem
                         key={index}
                         image={card01}

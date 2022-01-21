@@ -9,8 +9,7 @@ import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
 } from "../../../../utils/addressHelpers";
-import Marketplace from "../../../../abi/Marketplace.json";
-import NFT from "../../../../abi/TestNFT.json";
+
 import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
 
 import {
@@ -83,6 +82,33 @@ const Rent = ({ id }: { id: number }) => {
       value: ethers.utils.parseEther((premium + collateral).toString()),
     });
     await tx.wait();
+    setIsRented(true);
+  };
+
+  const payPremium = async (itemId: number) => {
+    if (!connector || !rentOpen) return;
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+    const signer = provider.getSigner(0);
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    // const isApprovedForAll = await NFTContract.isApprovedForAll(
+    //   "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    //   "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+    // );
+
+    //   await (
+    //     await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+    //   ).wait();
+    const tx = await MarketplaceContract.payPremium(itemId);
+    await tx.wait();
   };
 
   async function getProductValue() {
@@ -145,7 +171,9 @@ const Rent = ({ id }: { id: number }) => {
                     <Button violet onClick={() => startRenting(id)}>
                       Stop renting
                     </Button>
-                    <Button violet>Buy</Button>
+                    <Button violet onClick={() => payPremium(id)}>
+                      Pay premium
+                    </Button>
                   </ButtonRow>
                 </>
               ) : (
