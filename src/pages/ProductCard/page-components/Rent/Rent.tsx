@@ -107,7 +107,9 @@ const Rent = ({ id }: { id: number }) => {
     //   await (
     //     await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
     //   ).wait();
-    const tx = await MarketplaceContract.payPremium(itemId);
+    const tx = await MarketplaceContract.payPremium(itemId, {
+      value: ethers.utils.parseEther(premium.toString()),
+    });
     await tx.wait();
   };
 
