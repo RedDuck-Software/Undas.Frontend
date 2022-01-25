@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Container } from '../../../../globalStyles'
+import { Container, ComingSoonImage } from '../../../../globalStyles';
 import {
   BrowseSec,
   BrowseTitle,
@@ -10,41 +10,50 @@ import {
   CategoryImage,
   BlackLayer,
   CategoryText,
-} from './BrowseCategory.styles'
+} from './BrowseCategory.styles';
 
-import { category01, category02, category03 } from './imports'
+import { category01, category02, category03 } from './imports';
+import comingSoon from '../../../../images/coming-soon.png';
 
 const BrowseCategory = () => {
+  const [showCategory] = useState(false);
+
   return (
     <BrowseSec>
       <Container>
-        <BrowseTitle>Browse by top category</BrowseTitle>
-        <CategoryWrapper>
-          <Link to="/explore/girls">
-            <CategoryContainer>
-              <CategoryImage src={category01} />
-              <CategoryText>Girls</CategoryText>
-              <BlackLayer />
-            </CategoryContainer>
-          </Link>
-          <Link to="/explore/sport">
-            <CategoryContainer>
-              <CategoryImage src={category02} />
-              <CategoryText>Sport</CategoryText>
-              <BlackLayer />
-            </CategoryContainer>
-          </Link>
-          <Link to="/explore/furniture">
-            <CategoryContainer>
-              <CategoryImage src={category03} />
-              <CategoryText>Furniture</CategoryText>
-              <BlackLayer />
-            </CategoryContainer>
-          </Link>
-        </CategoryWrapper>
+        <BrowseTitle>
+          Browse by top category <ComingSoonImage src={comingSoon} />
+        </BrowseTitle>
+        {showCategory ? (
+          <CategoryWrapper>
+            <Link to="">
+              <CategoryContainer>
+                <CategoryImage src={category01} />
+                <CategoryText>Girls</CategoryText>
+                <BlackLayer />
+              </CategoryContainer>
+            </Link>
+            <Link to="">
+              <CategoryContainer>
+                <CategoryImage src={category02} />
+                <CategoryText>Sport</CategoryText>
+                <BlackLayer />
+              </CategoryContainer>
+            </Link>
+            <Link to="">
+              <CategoryContainer>
+                <CategoryImage src={category03} />
+                <CategoryText>Furniture</CategoryText>
+                <BlackLayer />
+              </CategoryContainer>
+            </Link>
+          </CategoryWrapper>
+        ) : (
+          <></>
+        )}
       </Container>
     </BrowseSec>
-  )
-}
+  );
+};
 
-export default BrowseCategory
+export default BrowseCategory;

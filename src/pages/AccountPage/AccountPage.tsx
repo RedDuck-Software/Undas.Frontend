@@ -95,22 +95,6 @@ const AccountPage = () => {
                 <RiPaintBrushFill />
                 <span>Created</span> 0
               </AccountMenuItem>
-              <AccountMenuItem>
-                <BsHeart />
-                <span>Favorited</span> 0
-              </AccountMenuItem>
-              <AccountMenuItem>
-                <BsEyeSlash />
-                <span>Hidden</span> 2
-              </AccountMenuItem>
-              <AccountMenuItem>
-                <BsClockHistory />
-                <span>Activity</span>
-              </AccountMenuItem>
-              <AccountMenuItem>
-                <BsFillTagFill />
-                <span>Offers</span>
-              </AccountMenuItem>
             </AccountMenuWrapper>
           </Container>
         </AccountMenu>
@@ -121,7 +105,7 @@ const AccountPage = () => {
                 <SearchIcon />
                 <SearchInput type="text" placeholder="Search" />
               </AccountSearchWrapper>
-              <AccountDropdown>
+              {/* <AccountDropdown>
                 Single items <IoIosArrowDown />
               </AccountDropdown>
               <AccountDropdown>
@@ -134,7 +118,7 @@ const AccountPage = () => {
                 <ButtonView3x3>
                   <MdOutlineApps />
                 </ButtonView3x3>
-              </ButtonsWrapper>
+              </ButtonsWrapper> */}
             </AccountPageContentHeader>
             <AccountCardsWrapper>
               <CardItem image={card01} />

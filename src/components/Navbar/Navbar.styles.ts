@@ -178,8 +178,8 @@ export const MenuMobile = styled.div`
     cursor: pointer;
 
     a {
+      font-size: 1.2rem;
       color: #5d3f92;
-      margin: 0.5rem 1rem;
     }
 
     svg {
@@ -193,7 +193,6 @@ export const MenuMobile = styled.div`
     align-items: center;
 
     padding: 0;
-    margin: 1rem;
 
     button {
       padding: 0.85rem 1.25rem;

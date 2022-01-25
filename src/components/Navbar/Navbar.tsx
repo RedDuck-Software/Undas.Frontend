@@ -51,6 +51,8 @@ const Navbar = () => {
   const [showExplore, setShowExplore] = useState(false);
   const [showActivity, setShowActivity] = useState(false);
 
+  const [showSearch] = useState(false);
+
   const toggleShowMenu = () => setShowMenu(!showMenu);
 
   const toggleHoverExplore = () => {
@@ -93,10 +95,14 @@ const Navbar = () => {
             <NavLink nopadding="Left" to="/">
               <NavIcon />
             </NavLink>
-            <SearchWrapper>
-              <SearchIcon />
-              <Input type="text" placeholder="Collection, item or user" />
-            </SearchWrapper>
+            {showSearch ? (
+              <SearchWrapper>
+                <SearchIcon />
+                <Input type="text" placeholder="Collection, item or user" />
+              </SearchWrapper>
+            ) : (
+              <></>
+            )}
           </LeftLinks>
           <RightLinks>
             <MenuContainer>

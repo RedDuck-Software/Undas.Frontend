@@ -34,7 +34,7 @@ const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
   const [premium, setPremium] = useState(0);
   const [collateral, setCollateral] = useState(0);
-  const [term, setTerm] = useState(0);
+  const [term, setTerm] = useState<number | undefined>(0);
 
   const getStakings = async (itemId: number) => {
     if (!connector) return;

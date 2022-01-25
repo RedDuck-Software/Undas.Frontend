@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { ReactComponent as Search } from '../../icons/search.svg'
+import { ReactComponent as Search } from '../../icons/search.svg';
 
 export const AccoutBackground = styled.img`
   max-height: 150px;
@@ -10,9 +10,9 @@ export const AccoutBackground = styled.img`
     object-fit: cover;
     height: 120px;
   }
-`
+`;
 
-export const AccountSec = styled.div``
+export const AccountSec = styled.div``;
 
 export const AccountInformation = styled.div`
   display: flex;
@@ -27,9 +27,9 @@ export const AccountInformation = styled.div`
   @media (max-width: 749px) {
     padding-bottom: 2.5rem;
   }
-`
+`;
 
-export const AccountImage = styled.img``
+export const AccountImage = styled.img``;
 
 export const AccountAddress = styled.span`
   font-size: 1rem;
@@ -43,17 +43,17 @@ export const AccountAddress = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-`
+`;
 
 export const AccountName = styled.span`
   font-size: 2.15rem;
   color: #000000;
-`
+`;
 
 export const AccountJoined = styled.span`
   font-size: 1rem;
   color: #7c7c7c;
-`
+`;
 
 export const AccountMenu = styled.ul`
   display: flex;
@@ -62,13 +62,14 @@ export const AccountMenu = styled.ul`
   height: 50px;
   background: #ffffff;
   border: 1px solid #5d3f92;
-`
+`;
 
 export const AccountMenuWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-`
+  justify-content: center;
+  gap: 10%;
+`;
 
 export const AccountMenuItem = styled.li`
   display: inline-block;
@@ -138,11 +139,11 @@ export const AccountMenuItem = styled.li`
       height: 18px;
     }
   }
-`
+`;
 
 export const AccountPageContent = styled.div`
   padding: 2rem 0;
-`
+`;
 
 export const AccountPageContentHeader = styled.div`
   display: flex;
@@ -152,7 +153,7 @@ export const AccountPageContentHeader = styled.div`
   @media (max-width: 745px) {
     flex-wrap: wrap;
   }
-`
+`;
 
 export const AccountSearchWrapper = styled.div`
   flex: 2;
@@ -177,14 +178,14 @@ export const AccountSearchWrapper = styled.div`
   @media (max-width: 533px) {
     font-size: 0.75rem;
   }
-`
+`;
 
 export const SearchIcon = styled(Search)`
   width: 20px;
   height: 20px;
   position: relative;
   left: 1rem;
-`
+`;
 
 export const SearchInput = styled.input`
   padding: 0.5rem 1rem 0.5rem 2rem;
@@ -207,7 +208,7 @@ export const SearchInput = styled.input`
     font-size: 0.75rem;
     max-height: 35px;
   }
-`
+`;
 
 export const AccountDropdown = styled.div`
   display: flex;
@@ -243,12 +244,12 @@ export const AccountDropdown = styled.div`
   @media (max-width: 533px) {
     padding: 0% 2%;
   }
-`
+`;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const ButtonView2x2 = styled.button`
   background: #ffffff;
@@ -283,7 +284,7 @@ export const ButtonView2x2 = styled.button`
       width: 22px;
     }
   }
-`
+`;
 
 export const ButtonView3x3 = styled(ButtonView2x2)`
   border-left: none;
@@ -302,7 +303,7 @@ export const ButtonView3x3 = styled(ButtonView2x2)`
   }
 
   ${ButtonView2x2};
-`
+`;
 
 export const AccountCardsWrapper = styled.div`
   display: grid;
@@ -310,7 +311,7 @@ export const AccountCardsWrapper = styled.div`
   grid-template-rows: 1fr 1fr;
   gap: 3%;
 
-  margin: 4rem 0;
+  margin: 2.5rem 0 4rem;
 
   @media (max-width: 1209px) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -335,4 +336,4 @@ export const AccountCardsWrapper = styled.div`
       max-width: 270px;
     }
   }
-`
+`;

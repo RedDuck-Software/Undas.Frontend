@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
   FooterSec,
@@ -20,7 +20,7 @@ import {
   TopicTitle,
   TopicText,
   Year,
-} from './Footer.styles'
+} from './Footer.styles';
 
 import {
   Twitter,
@@ -30,7 +30,7 @@ import {
   Instagram,
   AppStore,
   Phone,
-} from './imports'
+} from './imports';
 
 const Footer = () => {
   return (
@@ -93,9 +93,9 @@ const Footer = () => {
           </TopicColumn>
         </BottomRightWrapper>
       </FooterContainer>
-      <Year>2021</Year>
+      <Year>2022</Year>
     </FooterSec>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

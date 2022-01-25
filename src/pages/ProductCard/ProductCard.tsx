@@ -1,18 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import {
   ProductDescription,
   ProductPrice,
   PriceHistory,
-  Listing,
-  Offers,
   Rent,
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from "./page-components";
+} from './page-components';
 
-import { Background, VioletText } from "../../globalStyles";
+import { Background, VioletText } from '../../globalStyles';
 
 import {
   LeftSide,
@@ -23,19 +22,14 @@ import {
   ProductContainer,
   ProductContainerCenter,
   RightSide,
-  ItemInformation,
-  ProductSubtitle,
-  ProductTitle,
-  GenInformationTitle,
-  ViewsAndLikes,
-  ViewsContainer,
-  LikesContainer,
-} from "./ProductCard.styles";
+} from './ProductCard.styles';
 
-import Image from "../../images/card-item.png";
+import Image from '../../images/card-item.png';
 
 const ProductCard = () => {
   let { id: pageId } = useParams();
+
+  const [showPriceHistory, setShowPriceHistory] = useState(false);
 
   return (
     <Background>
@@ -43,38 +37,14 @@ const ProductCard = () => {
         <ProductContainer>
           <LeftSide>
             <CardImageContainer>
-              <ItemInformation mobile>
-                <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-                <ProductTitle>Returne #</ProductTitle>
-                <GenInformationTitle>
-                  Owned by <VioletText>Hype-eth</VioletText>
-                  <ViewsAndLikes>
-                    <ViewsContainer>91 views</ViewsContainer>
-                    <LikesContainer>10 favorites</LikesContainer>
-                  </ViewsAndLikes>
-                </GenInformationTitle>
-              </ItemInformation>
               <CardImage src={Image} />
               <BookmarkButton>10</BookmarkButton>
             </CardImageContainer>
             <ProductDescription />
           </LeftSide>
           <RightSide>
-            <ItemInformation>
-              <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
-              <ProductTitle>Returne #</ProductTitle>
-              <GenInformationTitle>
-                Owned by <VioletText>Hype-eth</VioletText>
-                <ViewsAndLikes>
-                  <ViewsContainer>91 views</ViewsContainer>
-                  <LikesContainer>10 favorites</LikesContainer>
-                </ViewsAndLikes>
-              </GenInformationTitle>
-            </ItemInformation>
             <ProductPrice id={+pageId! - 1} />
-            <PriceHistory />
-            <Listing />
-            <Offers />
+            {showPriceHistory ? <PriceHistory /> : <></>}
             <Rent id={+pageId! - 1} />
             <Staking />
           </RightSide>
