@@ -118,7 +118,8 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       }
 
       const { premium, tokenId } = CardProps;
-      const premiumInNum = +premium;
+      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
+      console.log(premiumInNum);
       const id = tokenId.toNumber();
 
       if (canRentNFT) {

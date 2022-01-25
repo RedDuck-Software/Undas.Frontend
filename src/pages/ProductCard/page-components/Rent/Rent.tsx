@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Context from '../../../../utils/Context';
 
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
@@ -11,6 +11,8 @@ import {
 } from '../../../../utils/addressHelpers';
 
 import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
+
+import { calculateTerm } from '../../../../utils/calculateTerm';
 
 import {
   RentContainer,
@@ -32,6 +34,7 @@ const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
   const [premium, setPremium] = useState(0);
   const [collateral, setCollateral] = useState(0);
+  const [term, setTerm] = useState(0);
 
   const getStakings = async (itemId: number) => {
     if (!connector) return;
@@ -142,12 +145,16 @@ const Rent = ({ id }: { id: number }) => {
     }
 
     //TODO add term rendering
-    const { collateral, premium } = ProductValue;
-    const premiumInNum = +premium;
+    const { collateral, premium, deadline } = ProductValue;
+    const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
+    const termInNum = calculateTerm(deadlineInNum);
+
+    const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
 
     setCollateral(collateralInNum);
     setPremium(premiumInNum);
+    setTerm(termInNum);
   }
 
   useEffect(() => {
@@ -180,12 +187,12 @@ const Rent = ({ id }: { id: number }) => {
                 </RentTableHead>
                 <RentTableBody>
                   <TableRow>
-                    <TableColumn>Pledge value</TableColumn>
+                    <TableColumn>Premium</TableColumn>
                     <TableColumn>{premium}</TableColumn>
                   </TableRow>
                   <TableRow>
                     <TableColumn>Term</TableColumn>
-                    <TableColumn>For 7 days</TableColumn>
+                    <TableColumn>For {term} days</TableColumn>
                   </TableRow>
                 </RentTableBody>
               </RentTable>
