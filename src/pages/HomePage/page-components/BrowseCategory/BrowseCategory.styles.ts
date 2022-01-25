@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import violetLine from '../../../../icons/violet-line.svg'
+import styled from 'styled-components';
+import violetLine from '../../../../icons/violet-line.svg';
 
 export const BrowseSec = styled.div`
   padding: 4rem 0;
@@ -7,7 +7,7 @@ export const BrowseSec = styled.div`
   @media (max-width: 801px) {
     padding: 0;
   }
-`
+`;
 
 export const BrowseTitle = styled.h2`
   font-size: 2.8rem;
@@ -38,13 +38,15 @@ export const BrowseTitle = styled.h2`
   @media (max-width: 574px) {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-left: 0;
 
     &:before {
       content: none;
     }
   }
-`
+`;
 
 export const CategoryWrapper = styled.div`
   display: grid;
@@ -66,12 +68,12 @@ export const CategoryWrapper = styled.div`
     grid-template-columns: 1fr;
     max-width: 265px;
   }
-`
+`;
 
 export const CategoryImage = styled.img`
   transition: all 0.2s ease-in-out;
   width: 100%;
-`
+`;
 
 export const CategoryContainer = styled.div`
   display: flex;
@@ -82,17 +84,17 @@ export const CategoryContainer = styled.div`
   padding: 3.75rem 0 0;
   text-align: center;
   color: white;
-  cursor: pointer;
+  // cursor: pointer;
 
-  &:hover ${CategoryImage} {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
-    border-radius: 10px;
-  }
+  // &:hover ${CategoryImage} {
+  //   box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 9px, rgba(0, 0, 0, 0.23) 0px 6px 9px;
+  //   border-radius: 10px;
+  // }
 
   @media (max-width: 801px) {
     padding: 2rem 0 0;
   }
-`
+`;
 
 export const BlackLayer = styled.div`
   &::after {
@@ -112,7 +114,7 @@ export const BlackLayer = styled.div`
       height: 25%;
     }
   }
-`
+`;
 
 export const CategoryText = styled.span`
   font-size: 2.5rem;
@@ -133,4 +135,4 @@ export const CategoryText = styled.span`
   @media (max-width: 574px) {
     font-size: 1.8rem;
   }
-`
+`;

@@ -117,4 +117,17 @@ export const Overlay = styled.div`
   z-index: 1;
 `;
 
+export const ComingSoonImage = styled.img`
+  max-width: 180px;
+  width: 100%;
+
+  position: relative;
+  top: 1rem;
+  left: 1rem;
+
+  @media (max-width: 574px) {
+    left: 0;
+  }
+`;
+
 export default GlobalStyle;

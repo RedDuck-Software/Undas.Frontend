@@ -1,14 +1,14 @@
-import styled from 'styled-components'
-import violetLine from '../../../../icons/violet-line.svg'
-import violetArrowDown from '../../../../icons/violet-arrow-down.svg'
+import styled from 'styled-components';
+import violetLine from '../../../../icons/violet-line.svg';
+import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
 
 export const BuyersSec = styled.div`
   padding: 4rem 0;
 
   @media (max-width: 801px) {
-    padding: 0;
+    padding: 0 0 4rem;
   }
-`
+`;
 
 export const BuyersTitle = styled.h2`
   font-size: 2.8rem;
@@ -43,13 +43,15 @@ export const BuyersTitle = styled.h2`
 
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-left: 0;
   }
 
   @media (max-width: 369px) {
     font-size: 1.15rem;
   }
-`
+`;
 
 export const BuyersTitleViolet = styled.span`
   display: inline;
@@ -96,7 +98,7 @@ export const BuyersTitleViolet = styled.span`
   @media (max-width: 369px) {
     font-size: 1.15rem;
   }
-`
+`;
 
 export const BuyersWrapper = styled.div`
   padding: 3.75rem 0;
@@ -104,7 +106,7 @@ export const BuyersWrapper = styled.div`
   @media (max-width: 801px) {
     padding: 2rem 0;
   }
-`
+`;
 
 export const BuyersItem = styled.div`
   display: flex;
@@ -124,12 +126,12 @@ export const BuyersItem = styled.div`
   @media (max-width: 574px) {
     max-width: 275px;
   }
-`
+`;
 
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-`
+`;
 
 export const ProfileImage = styled.img`
   position: absolute;
@@ -159,7 +161,7 @@ export const ProfileImage = styled.img`
     height: 40px;
     bottom: 26%;
   }
-`
+`;
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -181,7 +183,7 @@ export const TextWrapper = styled.div`
   @media (max-width: 574px) {
     padding: 10%;
   }
-`
+`;
 
 export const UserName = styled.span`
   margin-bottom: 1rem;
@@ -189,9 +191,9 @@ export const UserName = styled.span`
   @media (max-width: 1109px) {
     margin-bottom: 0.5rem;
   }
-`
+`;
 
-export const UserInformation = styled.span``
+export const UserInformation = styled.span``;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -202,4 +204,4 @@ export const ButtonWrapper = styled.div`
     margin-top: 0rem;
     margin-bottom: 2rem;
   }
-`
+`;
