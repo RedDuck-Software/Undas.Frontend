@@ -7,7 +7,7 @@ import {
   CardNumber,
   CardPrice,
   CardETH,
-} from './CardItem.styles';
+} from "./CardItem.styles";
 
 interface CardItemProps {
   image?: string;
@@ -21,7 +21,6 @@ const CardItem: React.FC<CardItemProps> = ({ image, id, price }) => {
       <CardItemImage src={image} />
       <TransparentLayer />
       <InfoContainer>
-        <CardTitle>Returne by Borya Borya</CardTitle>
         <CardNumber>Returne #{id}</CardNumber>
         <CardETH>
           Last <CardPrice>{price}</CardPrice>

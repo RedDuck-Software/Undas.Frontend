@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../icons/logo.svg';
-import { ReactComponent as Search } from '../../icons/search.svg';
-import { ReactComponent as Profile } from '../../icons/profile.svg';
-import { Link } from 'react-router-dom';
-import { Container } from '../../globalStyles';
+import styled from "styled-components";
+import { ReactComponent as Logo } from "../../icons/logo.svg";
+import { ReactComponent as Search } from "../../icons/search.svg";
+import { ReactComponent as Profile } from "../../icons/profile.svg";
+import { Link } from "react-router-dom";
+import { Container } from "../../globalStyles";
 
 interface NavbarStylesProps {
   nopadding?: string;
@@ -45,9 +45,9 @@ export const NavLinkDropdownMenu = styled.div`
 
 export const NavLink = styled(Link)<NavbarStylesProps>`
   padding: ${({ nopadding }) =>
-    (nopadding === 'Left' && '1.15rem 1rem 1rem 0') ||
-    (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
-    '1.2rem 1rem'};
+    (nopadding === "Left" && "1.15rem 1rem 1rem 0") ||
+    (nopadding === "Right" && "1.2rem 0 1rem 1rem") ||
+    "1.2rem 1rem"};
   text-decoration: none;
   font-size: 1.1rem;
   color: #7c7c7c;
@@ -63,14 +63,26 @@ export const NavLink = styled(Link)<NavbarStylesProps>`
 
   @media (max-width: 584px) {
     padding: ${({ nopadding }) =>
-      (nopadding === 'Left' && '0.5rem 0.5rem 0.5rem 0') ||
-      (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
-      '1.2rem 1rem'};
+      (nopadding === "Left" && "0.5rem 0.5rem 0.5rem 0") ||
+      (nopadding === "Right" && "1.2rem 0 1rem 1rem") ||
+      "1.2rem 1rem"};
   }
 
   @media (max-width: 375px) {
     padding: ${({ nopadding }) =>
-      (nopadding === 'Left' && '0') || (nopadding === 'Right' && '0') || '0'};
+      (nopadding === "Left" && "0") || (nopadding === "Right" && "0") || "0"};
+  }
+`;
+
+export const MenuItemLinkDisabled = styled.div`
+  display: flex;
+  align-items: center;
+
+  color: #7c7c7c;
+  text-decoration: none;
+
+  &:visited {
+    color: #7c7c7c;
   }
 `;
 
@@ -102,6 +114,15 @@ export const NavLinkActivity = styled(NavLink)`
   }
 `;
 
+export const NavLinkActivityDisabled = styled.div`
+  cursor: not-allowed;
+  font-size: 1.1rem;
+  color: #7c7c7c;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 0px 0px 10px 10px;
+`;
+
 export const MenuItem = styled.div`
   display: flex;
   align-items: center;
@@ -115,9 +136,17 @@ export const MenuItem = styled.div`
 
   color: #7c7c7c;
 
-  &:last-child {
-    border-radius: 0px 0px 10px 10px;
+  &:first-child {
+    cursor: pointer;
+    opacity: 1;
   }
+
+  cursor: not-allowed;
+  opacity: 0.4;
+
+  /* &:last-child {
+    border-radius: 0px 0px 10px 10px;
+  } */
 
   &:hover {
     box-shadow: inset rgba(0, 0, 0, 0.19) 0px 1px 2px,

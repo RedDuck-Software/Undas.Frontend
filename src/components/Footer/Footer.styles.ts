@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { Container } from '../../globalStyles'
+import styled from "styled-components";
+import { Container } from "../../globalStyles";
 
 export const FooterSec = styled.footer`
   background: #f6e9ff;
-`
+`;
 
 export const FooterContainer = styled(Container)`
   display: grid;
@@ -25,7 +25,7 @@ export const FooterContainer = styled(Container)`
   }
 
   ${Container};
-`
+`;
 
 export const FooterText = styled.span`
   font-size: 1.5rem;
@@ -46,7 +46,7 @@ export const FooterText = styled.span`
   @media (max-width: 734px) {
     font-size: 0.85rem;
   }
-`
+`;
 
 export const TopLeftWrapper = styled.div`
   display: flex;
@@ -61,7 +61,7 @@ export const TopLeftWrapper = styled.div`
 
     padding-top: 2rem;
   }
-`
+`;
 
 export const BottomLeftWrapper = styled(TopLeftWrapper)`
   margin-top: 12%;
@@ -74,7 +74,7 @@ export const BottomLeftWrapper = styled(TopLeftWrapper)`
   }
 
   ${TopLeftWrapper}
-`
+`;
 
 export const TopRightWrapper = styled(TopLeftWrapper)`
   flex-direction: row;
@@ -88,7 +88,7 @@ export const TopRightWrapper = styled(TopLeftWrapper)`
   }
 
   ${TopLeftWrapper}
-`
+`;
 
 export const BottomRightWrapper = styled(TopLeftWrapper)`
   margin-top: 10%;
@@ -111,7 +111,7 @@ export const BottomRightWrapper = styled(TopLeftWrapper)`
   }
 
   ${TopLeftWrapper};
-`
+`;
 
 export const FooterIconsWrapper = styled.div`
   margin-top: 1.625rem;
@@ -141,7 +141,7 @@ export const FooterIconsWrapper = styled.div`
   @media (max-width: 719px) {
     gap: 0.75rem;
   }
-`
+`;
 
 export const FooterIcon = styled.img`
   cursor: pointer;
@@ -155,7 +155,7 @@ export const FooterIcon = styled.img`
   @media (max-width: 869px) {
     border-radius: 5px;
   }
-`
+`;
 
 export const CustomSearch = styled.div`
   width: 350px;
@@ -168,7 +168,7 @@ export const CustomSearch = styled.div`
   @media (max-width: 869px) {
     width: 215px;
   }
-`
+`;
 
 export const Input = styled.input`
   background: #ffffff;
@@ -208,7 +208,7 @@ export const Input = styled.input`
       font-size: 0.75rem;
     }
   }
-`
+`;
 
 export const ButtonSubmit = styled.button`
   position: absolute;
@@ -243,7 +243,7 @@ export const ButtonSubmit = styled.button`
     height: 24px;
     font-size: 0.75rem;
   }
-`
+`;
 
 export const PhoneImage = styled.img`
   width: 255px;
@@ -255,7 +255,7 @@ export const PhoneImage = styled.img`
   @media (max-width: 1019px) {
     width: 170px;
   }
-`
+`;
 
 export const LeftSide = styled.div`
   @media (max-width: 801px) {
@@ -277,7 +277,7 @@ export const LeftSide = styled.div`
       visibility: hidden;
     }
   }
-`
+`;
 
 export const RightSide = styled.div`
   max-width: 500px;
@@ -345,7 +345,7 @@ export const RightSide = styled.div`
     align-items: center;
     flex-direction: column;
   }
-`
+`;
 
 export const TopicColumn = styled.div`
   display: flex;
@@ -371,7 +371,7 @@ export const TopicColumn = styled.div`
   @media (max-width: 399px) {
     min-width: 25vw;
   }
-`
+`;
 
 export const TopicTitle = styled.h2`
   font-weight: 400;
@@ -399,13 +399,14 @@ export const TopicTitle = styled.h2`
     margin-bottom: 0.75rem;
     font-size: 1.05rem;
   }
-`
+`;
 
 export const TopicText = styled.span`
+  cursor: not-allowed;
+  opacity: 0.4;
   align-items: flex-start;
   font-size: 1.2rem;
   padding: 0.3rem 0;
-  cursor: pointer;
 
   &:hover {
     font-weight: 600;
@@ -422,7 +423,12 @@ export const TopicText = styled.span`
   @media (max-width: 734px) {
     font-size: 0.9rem;
   }
-`
+`;
+
+export const TopicFirst = styled(TopicText)`
+  cursor: pointer;
+  opacity: 1;
+`;
 
 export const Year = styled.div`
   display: flex;
@@ -430,4 +436,4 @@ export const Year = styled.div`
   padding: 2rem 0 4rem;
   color: #7c7c7c;
   font-size: 16px;
-`
+`;

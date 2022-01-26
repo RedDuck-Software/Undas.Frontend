@@ -1,21 +1,22 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import Graph from '../../../../icons/graph.svg'
+import Graph from "../../../../icons/graph.svg";
 
 interface PriceHistory {
-  closed?: boolean
+  closed?: boolean;
 }
 
 export const PriceHistoryTop = styled.div<PriceHistory>`
+  pointer-events: none;
+  opacity: 0.4;
   border-radius: 10px 10px 0px 0px;
 
   background: #ffffff;
   border: 1px solid #5d3f92;
   word-spacing: 4px;
   padding: 3%;
-  border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
+  border-radius: ${({ closed }) => (closed ? `10px` : "10px 10px 0px 0px")};
   margin-top: 2rem;
-  cursor pointer;
 
   display: flex;
 
@@ -26,12 +27,12 @@ export const PriceHistoryTop = styled.div<PriceHistory>`
   }
 
   &:before {
-    content: url('${Graph}');
+    content: url("${Graph}");
     position: relative;
     top: 2px;
     padding-right: 1rem;
   }
-`
+`;
 
 export const PriceHistoryContainer = styled.div`
   padding: 1rem 2rem;
@@ -43,7 +44,7 @@ export const PriceHistoryContainer = styled.div`
   @media (max-width: 1223px) {
     padding: 4% 8%;
   }
-`
+`;
 
 export const PriceHistoryInterface = styled.div`
   display: flex;
@@ -52,7 +53,7 @@ export const PriceHistoryInterface = styled.div`
   @media (max-width: 388px) {
     flex-direction: column;
   }
-`
+`;
 
 export const PriceHistoryDropdown = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ export const PriceHistoryDropdown = styled.div`
     width: 50%;
     min-width: 0;
   }
-`
+`;
 
 export const PriceHistoryStatsContainer = styled.div`
   display: block;
@@ -88,7 +89,7 @@ export const PriceHistoryStatsContainer = styled.div`
   @media (max-width: 388px) {
     margin: 6%;
   }
-`
+`;
 
 export const PriceHistoryStatsValue = styled.span`
   color: #5d3f92;
@@ -98,20 +99,20 @@ export const PriceHistoryStatsValue = styled.span`
     top: 4px;
     padding-right: 2px;
   }
-`
+`;
 
 export const PriceHistoryGraph = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-`
+`;
 
 export const PriceHistoryGraphContainer = styled.span`
   color: #7c7c7c;
   padding-bottom: 0.5rem;
 
   &:after {
-    content: '';
+    content: "";
     display: block;
     border-top: solid 1px #7c7c7c;
     width: 28rem;
@@ -127,7 +128,7 @@ export const PriceHistoryGraphContainer = styled.span`
       width: 90%;
     }
   }
-`
+`;
 
 export const PriceHistoryPage = styled.div`
   display: flex;
@@ -137,4 +138,4 @@ export const PriceHistoryPage = styled.div`
   font-size: 0.85rem;
   color: #c4c4c4;
   padding-bottom: 2rem;
-`
+`;

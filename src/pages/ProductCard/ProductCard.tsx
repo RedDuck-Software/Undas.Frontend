@@ -1,11 +1,8 @@
 import { useParams } from "react-router-dom";
 
 import {
-  ProductDescription,
   ProductPrice,
   PriceHistory,
-  Listing,
-  Offers,
   Rent,
   Staking,
   ItemActivity,
@@ -27,15 +24,56 @@ import {
   ProductSubtitle,
   ProductTitle,
   GenInformationTitle,
-  ViewsAndLikes,
-  ViewsContainer,
-  LikesContainer,
 } from "./ProductCard.styles";
 
 import Image from "../../images/card-item.png";
+import { useContext, useEffect, useState } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 const ProductCard = () => {
+  const { connector } = useContext(Context);
   let { id: pageId } = useParams();
+  const [makerWallet, setMakerWallet] = useState("");
+
+  const getStakings = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.getStaking(itemId);
+
+    return tx;
+  };
+
+  async function getProductValue() {
+    const ProductValue = await getStakings(+pageId! - 1);
+    console.log(ProductValue);
+    if (!ProductValue) {
+      return;
+    }
+    const { maker } = ProductValue;
+    setMakerWallet(maker);
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    getProductValue();
+  }, [connector]);
 
   return (
     <Background>
@@ -44,37 +82,24 @@ const ProductCard = () => {
           <LeftSide>
             <CardImageContainer>
               <ItemInformation mobile>
-                <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
                 <ProductTitle>Returne #</ProductTitle>
                 <GenInformationTitle>
-                  Owned by <VioletText>Hype-eth</VioletText>
-                  <ViewsAndLikes>
-                    <ViewsContainer>91 views</ViewsContainer>
-                    <LikesContainer>10 favorites</LikesContainer>
-                  </ViewsAndLikes>
+                  Owned by <VioletText>{makerWallet}</VioletText>
                 </GenInformationTitle>
               </ItemInformation>
               <CardImage src={Image} />
               <BookmarkButton>10</BookmarkButton>
             </CardImageContainer>
-            <ProductDescription />
           </LeftSide>
           <RightSide>
             <ItemInformation>
-              <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
               <ProductTitle>Returne #</ProductTitle>
               <GenInformationTitle>
-                Owned by <VioletText>Hype-eth</VioletText>
-                <ViewsAndLikes>
-                  <ViewsContainer>91 views</ViewsContainer>
-                  <LikesContainer>10 favorites</LikesContainer>
-                </ViewsAndLikes>
+                Owned by <VioletText>{makerWallet}</VioletText>
               </GenInformationTitle>
             </ItemInformation>
             <ProductPrice id={+pageId! - 1} />
             <PriceHistory />
-            <Listing />
-            <Offers />
             <Rent id={+pageId! - 1} />
             <Staking />
           </RightSide>

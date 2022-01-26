@@ -1,21 +1,21 @@
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
-import { RiPaintBrushFill } from 'react-icons/ri';
+import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
+import { RiPaintBrushFill } from "react-icons/ri";
 import {
   BsHeart,
   BsEyeSlash,
   BsClockHistory,
   BsFillTagFill,
-} from 'react-icons/bs';
-import { IoIosArrowDown } from 'react-icons/io';
+} from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 
-import { CardItem } from '../../components';
+import { CardItem } from "../../components";
 
-import { card01, card02, card03, card04 } from './imports';
+import { card01, card02, card03, card04 } from "./imports";
 
-import GreyBackground from '../../images/image-account/account01.png';
-import ProfileImage from '../../images/image-account/profile-image.png';
+import GreyBackground from "../../images/image-account/account01.png";
+import ProfileImage from "../../images/image-account/profile-image.png";
 
-import { Container, Background, Button } from '../../globalStyles';
+import { Container, Background, Button } from "../../globalStyles";
 
 import {
   AccoutBackground,
@@ -38,30 +38,30 @@ import {
   ButtonView2x2,
   ButtonView3x3,
   AccountCardsWrapper,
-} from './AccountPage.styles';
-import { useDispatch } from 'react-redux';
-import { setWalletState } from '../../utils/ReduxSlices/walletSlice';
-import { useWeb3React } from '@web3-react/core';
-import Cookies from 'universal-cookie';
+} from "./AccountPage.styles";
+import { useDispatch } from "react-redux";
+import { setWalletState } from "../../utils/ReduxSlices/walletSlice";
+import { useWeb3React } from "@web3-react/core";
+import Cookies from "universal-cookie";
 
 const AccountPage = () => {
   const cookies = new Cookies();
   const dispatch = useDispatch();
   let { account, deactivate } = useWeb3React();
 
-  cookies.set('account', account, {
-    path: '/',
+  cookies.set("account", account, {
+    path: "/",
     maxAge: 3600,
-    sameSite: 'lax',
+    sameSite: "lax",
     // secure: true,
   });
 
   console.log(`your account on account page is ${account}`);
 
   function disconnect() {
-    cookies.set('account', '');
-    cookies.set('active', '');
-    cookies.set('customConnector', '');
+    cookies.set("account", "");
+    cookies.set("active", "");
+    cookies.set("customConnector", "");
     deactivate();
     dispatch(setWalletState({ account: null, active: false, chainId: null }));
   }
@@ -109,7 +109,6 @@ const AccountPage = () => {
               </AccountMenuItem>
               <AccountMenuItem>
                 <BsFillTagFill />
-                <span>Offers</span>
               </AccountMenuItem>
             </AccountMenuWrapper>
           </Container>

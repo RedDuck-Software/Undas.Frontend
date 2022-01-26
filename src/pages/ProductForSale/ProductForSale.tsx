@@ -1,20 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import {
-  ProductDescription,
   SaleSection,
   PriceHistory,
-  Listing,
-  Offers,
   Rent,
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components';
+} from "./page-components";
 
-import { getId } from '../../utils/getId';
+import { getId } from "../../utils/getId";
 
-import { Background } from '../../globalStyles';
+import { Background } from "../../globalStyles";
 
 import {
   LeftSide,
@@ -28,8 +25,8 @@ import {
   ItemInformation,
   ProductSubtitle,
   ProductTitle,
-} from './ProductForSale.styles';
-import Image from '../../images/card-item.png';
+} from "./ProductForSale.styles";
+import Image from "../../images/card-item.png";
 
 const ProductForSale = () => {
   let { id: pageId } = useParams();
@@ -43,23 +40,18 @@ const ProductForSale = () => {
           <LeftSide>
             <CardImageContainer>
               <ItemInformation mobile>
-                <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
                 <ProductTitle>Returne #{productId}</ProductTitle>
               </ItemInformation>
               <CardImage src={Image} />
               <BookmarkButton>10</BookmarkButton>
             </CardImageContainer>
-            <ProductDescription />
           </LeftSide>
           <RightSide>
             <ItemInformation>
-              <ProductSubtitle>Returne by Borya Borya</ProductSubtitle>
               <ProductTitle>Returne #{productId}</ProductTitle>
             </ItemInformation>
             <SaleSection itemId={pageId!} />
             <PriceHistory />
-            <Listing />
-            <Offers />
             <Rent />
             <Staking />
           </RightSide>
