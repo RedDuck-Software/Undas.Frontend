@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Context from '../../utils/Context';
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../utils/Context";
 
-import { useWeb3React } from '@web3-react/core';
+import { useWeb3React } from "@web3-react/core";
 
-import { MdOutlineMenu } from 'react-icons/md';
-import { RiCloseFill } from 'react-icons/ri';
-import { IoIosArrowDown, IoIosArrowBack } from 'react-icons/io';
+import { MdOutlineMenu } from "react-icons/md";
+import { RiCloseFill } from "react-icons/ri";
+import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
 
-import { Button } from '../../globalStyles';
+import { Button } from "../../globalStyles";
 
 import {
   Nav,
@@ -31,7 +31,9 @@ import {
   MenuContainer,
   MenuMobile,
   ProfileIcon,
-} from './Navbar.styles';
+  MenuItemLinkDisabled,
+  NavLinkActivityDisabled,
+} from "./Navbar.styles";
 
 import {
   AllNFTsIcon,
@@ -41,7 +43,7 @@ import {
   GirlsIcon,
   FurnitureIcon,
   ArrowUp,
-} from './imports';
+} from "./imports";
 
 const Navbar = () => {
   const [hoveredExplore, setHoveredExplore] = useState(false);
@@ -62,7 +64,7 @@ const Navbar = () => {
 
   const toggleHoverActivity = () => {
     setHoveredExplore(false);
-    setHoveredActivity(!hoveredActivity);
+    // setHoveredActivity(!hoveredActivity);
   };
 
   const toogleShowExplore = () => {
@@ -72,7 +74,7 @@ const Navbar = () => {
 
   const toogleShowActivity = () => {
     setShowExplore(false);
-    setShowActivity(!showActivity);
+    // setShowActivity(!showActivity);
   };
 
   const value = useContext(Context);
@@ -112,7 +114,7 @@ const Navbar = () => {
                 <NavLinkExplore
                   to="/"
                   onMouseEnter={toggleHoverExplore}
-                  className={hoveredExplore ? 'hovered-explore' : ''}
+                  className={hoveredExplore ? "hovered-explore" : ""}
                 >
                   Explore
                 </NavLinkExplore>
@@ -124,45 +126,44 @@ const Navbar = () => {
                     </MenuItemLink>
                   </MenuItem>
                   <MenuItem>
-                    <MenuItemLink to="/assets/new">
+                    <MenuItemLinkDisabled>
                       <MenuImage src={NewIcon} />
                       New
-                    </MenuItemLink>
+                    </MenuItemLinkDisabled>
                   </MenuItem>
                   <MenuItem>
-                    <MenuItemLink to="/explore/art">
+                    <MenuItemLinkDisabled>
                       <MenuImage src={ArtIcon} />
                       Art
-                    </MenuItemLink>
+                    </MenuItemLinkDisabled>
                   </MenuItem>
                   <MenuItem>
-                    <MenuItemLink to="/explore/sport">
+                    <MenuItemLinkDisabled>
                       <MenuImage src={SportIcon} />
                       Sport
-                    </MenuItemLink>
+                    </MenuItemLinkDisabled>
                   </MenuItem>
                   <MenuItem>
-                    <MenuItemLink to="/explore/girls">
+                    <MenuItemLinkDisabled>
                       <MenuImage src={GirlsIcon} />
                       Girls
-                    </MenuItemLink>
+                    </MenuItemLinkDisabled>
                   </MenuItem>
                   <MenuItem>
-                    <MenuItemLink to="/explore/furniture">
+                    <MenuItemLinkDisabled>
                       <MenuImage src={FurnitureIcon} />
                       Furniture
-                    </MenuItemLink>
+                    </MenuItemLinkDisabled>
                   </MenuItem>
                 </NavLinkDropdownMenu>
               </NavLinkContainer>
               <NavLinkContainer onMouseLeave={toggleHoverActivity}>
-                <NavLinkActivity
-                  to="/"
-                  onMouseEnter={toggleHoverActivity}
-                  className={hoveredActivity ? 'hovered-activity' : ''}
+                <NavLinkActivityDisabled
+                // onMouseEnter={toggleHoverActivity}
+                // className={hoveredActivity ? "hovered-activity" : ""}
                 >
                   Activity
-                </NavLinkActivity>
+                </NavLinkActivityDisabled>
                 <NavLinkDropdownMenu>
                   <MenuItem>
                     <MenuImage src={ArrowUp} />
@@ -182,7 +183,7 @@ const Navbar = () => {
                 <NavLink to="/">Community</NavLink>
               </NavLinkContainer>
               <NavLinkContainer>
-                <NavLink to="/">Stats</NavLink>
+                <NavLinkActivityDisabled>Stats</NavLinkActivityDisabled>
               </NavLinkContainer>
               <NavLink nopadding="Right" to="/login">
                 <ProfileIcon />

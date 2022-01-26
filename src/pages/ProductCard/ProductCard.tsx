@@ -5,7 +5,6 @@ import Context from '../../utils/Context';
 import { isBuyableFunction } from '../../utils/isBuyable';
 
 import {
-  ProductDescription,
   ProductPrice,
   PriceHistory,
   Rent,
@@ -32,6 +31,44 @@ const ProductCard = () => {
   const { connector } = useContext(Context);
 
   let { id: pageId } = useParams();
+  const [makerWallet, setMakerWallet] = useState("");
+
+  const getStakings = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.getStaking(itemId);
+
+    return tx;
+  };
+
+  async function getProductValue() {
+    const ProductValue = await getStakings(+pageId! - 1);
+    console.log(ProductValue);
+    if (!ProductValue) {
+      return;
+    }
+    const { maker } = ProductValue;
+    setMakerWallet(maker);
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    getProductValue();
+  }, [connector]);
 
   const [showPriceHistory] = useState(false);
 
@@ -51,7 +88,6 @@ const ProductCard = () => {
             <CardImageContainer>
               <CardImage src={Image} />
             </CardImageContainer>
-            <ProductDescription />
           </LeftSide>
           <RightSide>
             <ProductPrice id={Number(pageId!)} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   FooterSec,
@@ -20,7 +20,8 @@ import {
   TopicTitle,
   TopicText,
   Year,
-} from './Footer.styles';
+  TopicFirst,
+} from "./Footer.styles";
 
 import {
   Twitter,
@@ -28,9 +29,8 @@ import {
   YouTube,
   Telegram,
   Instagram,
-  AppStore,
   Phone,
-} from './imports';
+} from "./imports";
 
 const Footer = () => {
   return (
@@ -54,7 +54,7 @@ const Footer = () => {
             <FooterText>
               Download the Only1.art app to explore any NFTs
             </FooterText>
-            <FooterIcon src={AppStore} />
+            <FooterIcon />
           </RightSide>
         </TopRightWrapper>
         <BottomLeftWrapper>
@@ -72,7 +72,7 @@ const Footer = () => {
         <BottomRightWrapper>
           <TopicColumn>
             <TopicTitle>Explore</TopicTitle>
-            <TopicText>All NFTs</TopicText>
+            <TopicFirst>All NFTs</TopicFirst>
             <TopicText>New</TopicText>
             <TopicText>Art</TopicText>
             <TopicText>Sport</TopicText>

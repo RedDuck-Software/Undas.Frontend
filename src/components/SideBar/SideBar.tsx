@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { MdOutlineArrowBackIosNew } from 'react-icons/md'
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import {
   CollectionIcon,
@@ -14,7 +14,7 @@ import {
   SportIcon,
   GirlsIcon,
   FurnitureIcon,
-} from './imports'
+} from "./imports";
 
 import {
   SideBarContainer,
@@ -45,34 +45,34 @@ import {
   SideBarCategoriesContent,
   CategoriesList,
   CategoriesListItem,
-} from './SideBar.styles'
+} from "./SideBar.styles";
 
 const SideBar = () => {
-  const [statusOpen, setStatusOpen] = useState(true)
-  const [priceOpen, setPriceOpen] = useState(true)
-  const [collectionsOpen, setCollectionsOpen] = useState(false)
-  const [chainsOpen, setChainsOpen] = useState(false)
-  const [categoriesOpen, setCategoriesOpen] = useState(false)
+  const [statusOpen, setStatusOpen] = useState(true);
+  const [priceOpen, setPriceOpen] = useState(true);
+  const [collectionsOpen, setCollectionsOpen] = useState(false);
+  const [chainsOpen, setChainsOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const toogleStatusView = () => {
-    setStatusOpen(!statusOpen)
-  }
+    setStatusOpen(!statusOpen);
+  };
 
   const tooglePriceView = () => {
-    setPriceOpen(!priceOpen)
-  }
+    setPriceOpen(!priceOpen);
+  };
 
   const toggleCollectionsView = () => {
-    setCollectionsOpen(!collectionsOpen)
-  }
+    setCollectionsOpen(!collectionsOpen);
+  };
 
   const toggleChainsView = () => {
-    setChainsOpen(!chainsOpen)
-  }
+    setChainsOpen(!chainsOpen);
+  };
 
   const toggleCategoriesView = () => {
-    setCategoriesOpen(!categoriesOpen)
-  }
+    setCategoriesOpen(!categoriesOpen);
+  };
 
   return (
     <SideBarContainer>
@@ -90,7 +90,6 @@ const SideBar = () => {
             <StatusButton>Buy now</StatusButton>
             <StatusButton>On Auction</StatusButton>
             <StatusButton>New</StatusButton>
-            <StatusButton>Has Offers</StatusButton>
           </SideBarStatusContent>
         </>
       ) : (
@@ -234,7 +233,7 @@ const SideBar = () => {
         </>
       )}
     </SideBarContainer>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-import { GiHamburgerMenu } from 'react-icons/gi'
+import React, { useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 import {
   PriceHistoryTop,
@@ -12,20 +12,20 @@ import {
   PriceHistoryGraph,
   PriceHistoryGraphContainer,
   PriceHistoryPage,
-} from './PriceHistory.styles'
+} from "./PriceHistory.styles";
 
 const PriceHistory = () => {
-  const [isPriceHistoryOpen, setPriceHistory] = useState(true)
+  const [isPriceHistoryOpen, setPriceHistory] = useState(false);
 
   const tooglePriceHistory = () => {
-    setPriceHistory(!isPriceHistoryOpen)
-  }
+    setPriceHistory(!isPriceHistoryOpen);
+  };
 
   return (
     <>
       {isPriceHistoryOpen ? (
         <>
-          <PriceHistoryTop onClick={tooglePriceHistory}>
+          <PriceHistoryTop>
             Price History <IoIosArrowUp />
           </PriceHistoryTop>
           <PriceHistoryContainer>
@@ -52,13 +52,13 @@ const PriceHistory = () => {
         </>
       ) : (
         <>
-          <PriceHistoryTop closed onClick={tooglePriceHistory}>
+          <PriceHistoryTop>
             Price History <IoIosArrowDown />
           </PriceHistoryTop>
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default PriceHistory
+export default PriceHistory;
