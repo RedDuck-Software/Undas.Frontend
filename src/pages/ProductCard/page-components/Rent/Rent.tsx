@@ -13,6 +13,8 @@ import {
 import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
 import { calculateTerm } from '../../../../utils/calculateTerm';
+import { getStaking } from '../../../../utils/getStaking';
+import { canRentNFTFunction } from '../../../../utils/canRentNFT';
 
 import {
   RentContainer,
@@ -28,32 +30,15 @@ import {
 } from './Rent.styles';
 
 const Rent = ({ id }: { id: number }) => {
+  const { connector } = useContext(Context);
+
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);
   const [canRent] = useState(true);
-  const { connector } = useContext(Context);
   const [premium, setPremium] = useState(0);
   const [collateral, setCollateral] = useState(0);
   const [term, setTerm] = useState<number | undefined>(0);
-
-  const getStakings = async (itemId: number) => {
-    if (!connector) return;
-
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
-    );
-
-    const signer = provider.getSigner(0);
-
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer
-    );
-
-    const tx = await MarketplaceContract.getStaking(itemId);
-
-    return tx;
-  };
+  const [paymentsAmount, setPaymentsAmount] = useState(0);
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
@@ -86,6 +71,8 @@ const Rent = ({ id }: { id: number }) => {
       value: ethers.utils.parseEther((premium + collateral).toString()),
     });
     await tx.wait();
+
+    setPaymentsAmount(paymentsAmount + 1);
     setIsRented(true);
   };
 
@@ -105,6 +92,8 @@ const Rent = ({ id }: { id: number }) => {
       value: ethers.utils.parseEther(premium.toString()),
     });
     await tx.wait();
+
+    setPaymentsAmount(paymentsAmount + 1);
   };
 
   const stopRental = async (itemId: number) => {
@@ -138,23 +127,33 @@ const Rent = ({ id }: { id: number }) => {
   };
 
   async function getProductValue() {
-    const ProductValue = await getStakings(id);
+    if (!connector) return;
+
+    const ProductValue = await getStaking(id, connector);
+    const canRentNFT = await canRentNFTFunction(id, connector);
+
+    if (!canRentNFT) {
+      setIsRented(true);
+    }
 
     if (!ProductValue) {
       return;
     }
 
-    //TODO add term rendering
-    const { collateral, premium, deadline } = ProductValue;
+    const { collateral, premium, deadline, paymentsAmount } = ProductValue;
+
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const termInNum = calculateTerm(deadlineInNum);
-
     const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
+    const paymentsAmountinNum = Number(
+      ethers.utils.formatUnits(paymentsAmount, 0)
+    );
 
     setCollateral(collateralInNum);
     setPremium(premiumInNum);
     setTerm(termInNum);
+    setPaymentsAmount(paymentsAmountinNum);
   }
 
   useEffect(() => {
@@ -193,6 +192,10 @@ const Rent = ({ id }: { id: number }) => {
                   <TableRow>
                     <TableColumn>Term</TableColumn>
                     <TableColumn>For {term} days</TableColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableColumn>Number of payments made</TableColumn>
+                    <TableColumn>{paymentsAmount}</TableColumn>
                   </TableRow>
                 </RentTableBody>
               </RentTable>
