@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { ReactComponent as Logo } from "../../icons/logo.svg";
-import { ReactComponent as Search } from "../../icons/search.svg";
-import { ReactComponent as Profile } from "../../icons/profile.svg";
-import { Link } from "react-router-dom";
-import { Container } from "../../globalStyles";
+import styled from 'styled-components';
+import { ReactComponent as Logo } from '../../icons/logo.svg';
+import { ReactComponent as Search } from '../../icons/search.svg';
+import { ReactComponent as Profile } from '../../icons/profile.svg';
+import { Link } from 'react-router-dom';
+import { Container } from '../../globalStyles';
 
 interface NavbarStylesProps {
   nopadding?: string;
@@ -45,9 +45,9 @@ export const NavLinkDropdownMenu = styled.div`
 
 export const NavLink = styled(Link)<NavbarStylesProps>`
   padding: ${({ nopadding }) =>
-    (nopadding === "Left" && "1.15rem 1rem 1rem 0") ||
-    (nopadding === "Right" && "1.2rem 0 1rem 1rem") ||
-    "1.2rem 1rem"};
+    (nopadding === 'Left' && '1.15rem 1rem 1rem 0') ||
+    (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
+    '1.2rem 1rem'};
   text-decoration: none;
   font-size: 1.1rem;
   color: #7c7c7c;
@@ -63,14 +63,14 @@ export const NavLink = styled(Link)<NavbarStylesProps>`
 
   @media (max-width: 584px) {
     padding: ${({ nopadding }) =>
-      (nopadding === "Left" && "0.5rem 0.5rem 0.5rem 0") ||
-      (nopadding === "Right" && "1.2rem 0 1rem 1rem") ||
-      "1.2rem 1rem"};
+      (nopadding === 'Left' && '0.5rem 0.5rem 0.5rem 0') ||
+      (nopadding === 'Right' && '1.2rem 0 1rem 1rem') ||
+      '1.2rem 1rem'};
   }
 
   @media (max-width: 375px) {
     padding: ${({ nopadding }) =>
-      (nopadding === "Left" && "0") || (nopadding === "Right" && "0") || "0"};
+      (nopadding === 'Left' && '0') || (nopadding === 'Right' && '0') || '0'};
   }
 `;
 
@@ -265,6 +265,9 @@ export const NavIcon = styled(Logo)`
 `;
 
 export const SearchWrapper = styled.div`
+  cursor: not-allowed;
+  opacity: 0.4;
+
   display: flex;
   align-items: center;
   width: 22vw;
@@ -292,6 +295,8 @@ export const SearchIcon = styled(Search)`
 `;
 
 export const Input = styled.input`
+  cursor: not-allowed;
+
   color: #7c7c7c;
   border: transparent;
   font-size: 1.055rem;

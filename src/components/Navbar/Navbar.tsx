@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import Context from "../../utils/Context";
+import React, { useEffect, useState, useContext } from 'react';
+import Context from '../../utils/Context';
 
-import { useWeb3React } from "@web3-react/core";
+import { useWeb3React } from '@web3-react/core';
 
-import { MdOutlineMenu } from "react-icons/md";
-import { RiCloseFill } from "react-icons/ri";
-import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
+import { MdOutlineMenu } from 'react-icons/md';
+import { RiCloseFill } from 'react-icons/ri';
+import { IoIosArrowDown, IoIosArrowBack } from 'react-icons/io';
 
-import { Button } from "../../globalStyles";
+import { Button } from '../../globalStyles';
 
 import {
   Nav,
@@ -33,7 +33,7 @@ import {
   ProfileIcon,
   MenuItemLinkDisabled,
   NavLinkActivityDisabled,
-} from "./Navbar.styles";
+} from './Navbar.styles';
 
 import {
   AllNFTsIcon,
@@ -43,7 +43,7 @@ import {
   GirlsIcon,
   FurnitureIcon,
   ArrowUp,
-} from "./imports";
+} from './imports';
 
 const Navbar = () => {
   const [hoveredExplore, setHoveredExplore] = useState(false);
@@ -53,7 +53,7 @@ const Navbar = () => {
   const [showExplore, setShowExplore] = useState(false);
   const [showActivity, setShowActivity] = useState(false);
 
-  const [showSearch] = useState(false);
+  const [showSearch] = useState(true);
 
   const toggleShowMenu = () => setShowMenu(!showMenu);
 
@@ -100,7 +100,11 @@ const Navbar = () => {
             {showSearch ? (
               <SearchWrapper>
                 <SearchIcon />
-                <Input type="text" placeholder="Collection, item or user" />
+                <Input
+                  disabled
+                  type="text"
+                  placeholder="Collection, item or user"
+                />
               </SearchWrapper>
             ) : (
               <></>
@@ -114,7 +118,7 @@ const Navbar = () => {
                 <NavLinkExplore
                   to="/"
                   onMouseEnter={toggleHoverExplore}
-                  className={hoveredExplore ? "hovered-explore" : ""}
+                  className={hoveredExplore ? 'hovered-explore' : ''}
                 >
                   Explore
                 </NavLinkExplore>
