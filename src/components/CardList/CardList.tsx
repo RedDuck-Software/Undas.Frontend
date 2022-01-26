@@ -90,7 +90,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       const id = tokenId.toNumber();
 
       if (isBuyable) {
-        let structId = i + 1;
+        let structId = i;
 
         items.push({ priceInNum, id, structId });
         setAmountOfNFTs(amountOfNFTs + 1);
@@ -123,7 +123,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       const id = tokenId.toNumber();
 
       if (canRentNFT) {
-        let structId = i + 1;
+        let structId = i;
 
         stakings.push({ premiumInNum, id, structId });
         setAmountOfNFTs(amountOfNFTs + 1);

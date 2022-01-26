@@ -13,7 +13,6 @@ const ProductPrice = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
 
   const [price, setPrice] = useState(0);
-  const [ethPrice, setEthPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
 
   const getListing = async (itemId: number) => {

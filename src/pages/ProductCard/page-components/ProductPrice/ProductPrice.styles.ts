@@ -6,10 +6,6 @@ export const Price = styled.div`
   padding: 1rem 0;
   font-size: 1.5rem;
 
-  @media (max-width: 1223px) {
-    padding: 4% 8%;
-  }
-
   @media (max-width: 531px) {
     font-size: 1rem;
   }
