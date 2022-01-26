@@ -42,12 +42,10 @@ interface CardListProps {
 export interface ItemsProps {
   priceInNum: number;
   id: number;
-  structId: number;
 }
 export interface StakingsProps {
   premiumInNum: number;
   id: number;
-  structId: number;
 }
 
 const CardList: React.FC<CardListProps> = ({ newFilter }) => {
@@ -90,9 +88,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       const id = tokenId.toNumber();
 
       if (isBuyable) {
-        let structId = i;
-
-        items.push({ priceInNum, id, structId });
+        items.push({ priceInNum, id });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -119,13 +115,10 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
       const { premium, tokenId } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-      console.log(premiumInNum);
       const id = tokenId.toNumber();
 
       if (canRentNFT) {
-        let structId = i;
-
-        stakings.push({ premiumInNum, id, structId });
+        stakings.push({ premiumInNum, id });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -191,11 +184,11 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
           <CardsWrapper>
             {amountOfNFTs ? (
               showList === 'NFT to buy' ? (
-                list?.map((item, index) => {
+                list?.map((item) => {
                   return (
-                    <CardLink key={index} to={'/product/' + item.structId}>
+                    <CardLink key={item.id} to={'/product/' + item.id}>
                       <CardItem
-                        key={index}
+                        key={item.id}
                         image={card01}
                         price={item.priceInNum}
                         id={item.id}
@@ -204,11 +197,11 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                   );
                 })
               ) : (
-                stakingsList?.map((item, index) => {
+                stakingsList?.map((item) => {
                   return (
-                    <CardLink key={index} to={'/product/' + item.structId}>
+                    <CardLink key={item.id} to={'/product/' + item.id}>
                       <CardItem
-                        key={index}
+                        key={item.id}
                         image={card01}
                         price={item.premiumInNum}
                         id={item.id}
