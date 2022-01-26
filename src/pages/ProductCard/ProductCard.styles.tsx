@@ -2,14 +2,7 @@ import styled from 'styled-components';
 
 import { Container } from '../../globalStyles';
 
-import Like from '../../icons/like.svg';
-import View from '../../icons/view.svg';
-import LikeGrey from '../../icons/like-grey.svg';
 import Graph from '../../icons/graph.svg';
-
-interface ProductCardProps {
-  mobile?: boolean;
-}
 
 export const ProductCardSec = styled.div`
   padding: 7rem 0;
@@ -108,32 +101,4 @@ export const CardImageContainer = styled.div`
 
 export const CardImage = styled.img`
   width: 100%;
-`;
-
-export const BookmarkButton = styled.button`
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  font-size: 0.8rem;
-  background: #ffffff;
-  border: 1px solid #5d3f92;
-  border-radius: 10px;
-  width: 55px;
-  height: 35px;
-
-  &:before {
-    cursor: pointer;
-    content: url('${Like}');
-    position: relative;
-    top: 1px;
-    right: 4px;
-  }
-
-  @media (max-width: 1024px) {
-    top: 9.5rem;
-  }
-
-  @media (max-width: 470px) {
-    top: 9.25rem;
-  }
 `;
