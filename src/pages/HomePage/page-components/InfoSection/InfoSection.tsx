@@ -34,10 +34,10 @@ const InfoSection = () => {
               <Tagline icon>f the new generation</Tagline>
             </TextWrapper>
             <ButtonsWrapper>
-              <Link to="/">
+              <Link to="/assets">
                 <Button violet>Explore</Button>
               </Link>
-              <Link to="/product/for-sale/0">
+              <Link to="/">
                 <Button>Create</Button>
               </Link>
             </ButtonsWrapper>

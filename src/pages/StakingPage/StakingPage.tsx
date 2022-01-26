@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
 import { TestNFT__factory, Marketplace__factory } from '../../typechain';
 
-import { ModalWindow } from '../../components';
+// import { ModalWindow } from '../../components';
 import { Background } from '../../globalStyles';
 
 import {
@@ -20,10 +20,8 @@ import {
   StakingFieldset,
   StakingLabel,
   StakingInput,
-  StakingSelectLabel,
-  StakingSelectMenu,
-  SelectOption,
   StakingButton,
+  StakingWarning,
 } from './StakingPage.styles';
 import Image from '../../images/card-item.png';
 import intervalIntoTimeStamp from '../../utils/intervalIntoTimeStamp';
@@ -35,10 +33,15 @@ const StakingPage = () => {
   const [tokenId, setTokenId] = useState('');
   const [price, setPrice] = useState('');
   const [premium, setPremium] = useState('');
-  const [term, setTerm] = useState('for 7 days');
+  const [term, setTerm] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
 
   const quoteForStaking = async () => {
     if (!connector) return;
+    if (+term < 7) {
+      setShowWarning(true);
+      return;
+    }
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
@@ -68,10 +71,13 @@ const StakingPage = () => {
       NFTAddress,
       tokenId,
       ethers.utils.parseEther(price.toString()),
-      premium.toString(),
+      ethers.utils.parseEther(premium.toString()),
       intervalIntoTimeStamp(term),
       { value: ethers.utils.parseEther('0.1') }
     );
+
+    setShowWarning(false);
+
     await tx.wait();
   };
 
@@ -132,15 +138,25 @@ const StakingPage = () => {
                   onChange={(e) => setPremium(e.target.value)}
                 />
               </StakingFieldset>
+              <StakingFieldset>
+                <StakingLabel htmlFor="term">Term</StakingLabel>
+                <br />
+                <StakingInput
+                  type="number"
+                  id="term"
+                  name="term"
+                  value={term}
+                  onChange={(e) => setTerm(e.target.value)}
+                />
+              </StakingFieldset>
             </StakingForm>
-            <StakingSelectLabel htmlFor="term">Term</StakingSelectLabel>
-            <StakingSelectMenu
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-            >
-              <SelectOption>for 7 days</SelectOption>
-              <SelectOption>for 14 days</SelectOption>
-            </StakingSelectMenu>
+            {showWarning ? (
+              <StakingWarning>
+                Term cannot be smaller tnan 7 days{' '}
+              </StakingWarning>
+            ) : (
+              <></>
+            )}
             <StakingButton onClick={quoteForStaking} violet big>
               Put NFT on staking
             </StakingButton>

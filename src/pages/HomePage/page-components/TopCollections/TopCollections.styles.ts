@@ -1,11 +1,10 @@
-import styled from 'styled-components'
-import violetLine from '../../../../icons/violet-line.svg'
-import violetArrowDown from '../../../../icons/violet-arrow-down.svg'
-import rhombus from '../../../../icons/rhombus.svg'
+import styled from 'styled-components';
+import violetLine from '../../../../icons/violet-line.svg';
+import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
 
 interface TopCollectionsProps {
-  big?: boolean
-  rhombus?: boolean
+  big?: boolean;
+  rhombus?: boolean;
 }
 
 export const CollectionsSec = styled.div`
@@ -14,7 +13,7 @@ export const CollectionsSec = styled.div`
   @media (max-width: 801px) {
     padding: 3.75rem 0;
   }
-`
+`;
 export const CollectionsTitle = styled.h2`
   font-size: 2.8rem;
   font-weight: 400;
@@ -48,13 +47,15 @@ export const CollectionsTitle = styled.h2`
 
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-left: 0;
   }
 
   @media (max-width: 369px) {
     font-size: 1.15rem;
   }
-`
+`;
 
 export const CollectionsTitleViolet = styled.span`
   display: inline;
@@ -101,7 +102,7 @@ export const CollectionsTitleViolet = styled.span`
   @media (max-width: 369px) {
     font-size: 1.15rem;
   }
-`
+`;
 export const CollectionsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -122,7 +123,7 @@ export const CollectionsWrapper = styled.div`
   @media (max-width: 801px) {
     padding: 2rem 0 0 0;
   }
-`
+`;
 
 export const CollectionsItem = styled.div`
   width: 445px;
@@ -160,7 +161,7 @@ export const CollectionsItem = styled.div`
     padding: 0.5rem 1.5rem;
     margin: 0.5rem 0;
   }
-`
+`;
 
 export const LeftSide = styled.div`
   display: flex;
@@ -175,12 +176,12 @@ export const LeftSide = styled.div`
   @media (max-width: 574px) {
     justify-content: space-between;
   }
-`
+`;
 
 export const RightSide = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const Name = styled.span`
   font-size: 1.15rem;
@@ -194,7 +195,7 @@ export const Name = styled.span`
     right: 8px;
     font-size: 0.85rem;
   }
-`
+`;
 
 export const Number = styled.span<TopCollectionsProps>`
   color: ${({ color }) =>
@@ -213,7 +214,7 @@ export const Number = styled.span<TopCollectionsProps>`
   @media only screen and (max-width: 640px) {
     font-size: ${(props) => (props.big ? `1rem` : '0.8rem')};
   }
-`
+`;
 
 export const Picture = styled.img`
   border-radius 50%;
@@ -222,10 +223,10 @@ export const Picture = styled.img`
     width: 40px;
     height: 40px;
   }
-`
+`;
 
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;

@@ -141,25 +141,6 @@ export const StakingButton = styled(Button)`
   max-width: 24rem;
 `;
 
-export const StakingSelectLabel = styled.label`
-  font-size: 1.5rem;
-`;
-
-export const StakingSelectMenu = styled.select`
-  font-size: 1.15rem;
-  outline: none;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  width: 24rem;
-  height: 2rem;
-  margin: 1rem 0;
-  padding: 0 0.5rem;
-
-  @media (max-width: 1024px) {
-    width: 100%;
-  }
-`;
-
-export const SelectOption = styled.option`
-  font-size: 1.15rem;
+export const StakingWarning = styled.span`
+  color: #dc143c;
 `;

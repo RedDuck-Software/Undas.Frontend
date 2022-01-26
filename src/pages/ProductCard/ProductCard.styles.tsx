@@ -1,15 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Container } from "../../globalStyles";
+import { Container } from '../../globalStyles';
 
-import Like from "../../icons/like.svg";
-import View from "../../icons/view.svg";
-import LikeGrey from "../../icons/like-grey.svg";
-import Graph from "../../icons/graph.svg";
-
-interface ProductCardProps {
-  mobile?: boolean;
-}
+import Graph from '../../icons/graph.svg';
 
 export const ProductCardSec = styled.div`
   padding: 7rem 0;
@@ -73,43 +66,6 @@ export const RightSide = styled.div`
   height: 100%;
 `;
 
-export const ItemInformation = styled.div<ProductCardProps>`
-  width: 100%;
-
-  ${({ mobile }) =>
-    mobile
-      ? `display: none;
-  
-        @media (max-width: 1024px) {
-          display: block;
-        }`
-      : `display: block; 
-        
-        @media (max-width: 1024px) {
-          display: none;
-        }
-      `};
-`;
-
-export const ProductSubtitle = styled.h2`
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #5d3f92;
-  margin-bottom: 5px;
-`;
-
-export const ProductTitle = styled.h1`
-  font-size: 2.7rem;
-  font-weight: 400;
-`;
-
-export const GenInformationTitle = styled.h3`
-  font-size: 1rem;
-  font-weight: 400;
-  color: #7c7c7c;
-  margin-top: 0.4rem;
-`;
-
 export const PriceHistoryClosed = styled.div`
   background: #ffffff;
   border: 1px solid #5d3f92;
@@ -145,32 +101,4 @@ export const CardImageContainer = styled.div`
 
 export const CardImage = styled.img`
   width: 100%;
-`;
-
-export const BookmarkButton = styled.button`
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  font-size: 0.8rem;
-  background: #ffffff;
-  border: 1px solid #5d3f92;
-  border-radius: 10px;
-  width: 55px;
-  height: 35px;
-
-  &:before {
-    cursor: pointer;
-    content: url("${Like}");
-    position: relative;
-    top: 1px;
-    right: 4px;
-  }
-
-  @media (max-width: 1024px) {
-    top: 9.5rem;
-  }
-
-  @media (max-width: 470px) {
-    top: 9.25rem;
-  }
 `;

@@ -93,7 +93,7 @@ const Footer = () => {
           </TopicColumn>
         </BottomRightWrapper>
       </FooterContainer>
-      <Year>2021</Year>
+      <Year>2022</Year>
     </FooterSec>
   );
 };

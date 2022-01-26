@@ -1,4 +1,8 @@
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import Context from '../../utils/Context';
+
+import { isBuyableFunction } from '../../utils/isBuyable';
 
 import {
   ProductPrice,
@@ -7,34 +11,25 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from "./page-components";
+} from './page-components';
 
-import { Background, VioletText } from "../../globalStyles";
+import { Background } from '../../globalStyles';
 
 import {
   LeftSide,
   CardImageContainer,
   CardImage,
-  BookmarkButton,
   ProductCardSec,
   ProductContainer,
   ProductContainerCenter,
   RightSide,
-  ItemInformation,
-  ProductSubtitle,
-  ProductTitle,
-  GenInformationTitle,
-} from "./ProductCard.styles";
+} from './ProductCard.styles';
 
-import Image from "../../images/card-item.png";
-import { useContext, useEffect, useState } from "react";
-import Context from "../../utils/Context";
-import { ethers } from "ethers";
-import { Marketplace__factory } from "../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Image from '../../images/card-item.png';
 
 const ProductCard = () => {
   const { connector } = useContext(Context);
+
   let { id: pageId } = useParams();
   const [makerWallet, setMakerWallet] = useState("");
 
@@ -75,32 +70,29 @@ const ProductCard = () => {
     getProductValue();
   }, [connector]);
 
+  const [showPriceHistory] = useState(false);
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log('loading');
+    }
+
+    console.log(isBuyableFunction(Number(pageId), connector));
+  }, []);
+
   return (
     <Background>
       <ProductCardSec>
         <ProductContainer>
           <LeftSide>
             <CardImageContainer>
-              <ItemInformation mobile>
-                <ProductTitle>Returne #</ProductTitle>
-                <GenInformationTitle>
-                  Owned by <VioletText>{makerWallet}</VioletText>
-                </GenInformationTitle>
-              </ItemInformation>
               <CardImage src={Image} />
-              <BookmarkButton>10</BookmarkButton>
             </CardImageContainer>
           </LeftSide>
           <RightSide>
-            <ItemInformation>
-              <ProductTitle>Returne #</ProductTitle>
-              <GenInformationTitle>
-                Owned by <VioletText>{makerWallet}</VioletText>
-              </GenInformationTitle>
-            </ItemInformation>
-            <ProductPrice id={+pageId! - 1} />
-            <PriceHistory />
-            <Rent id={+pageId! - 1} />
+            <ProductPrice id={Number(pageId!)} />
+            {showPriceHistory ? <PriceHistory /> : <></>}
+            <Rent id={Number(pageId!)} />
             <Staking />
           </RightSide>
         </ProductContainer>
