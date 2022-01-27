@@ -12,10 +12,10 @@ import {
 
 import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
 
-import { calculateTerm } from '../../../../utils/calculateTerm';
-import { calculateRequiredPayments } from '../../../../utils/calculateRequiredPayments';
-import { getStaking } from '../../../../utils/getStaking';
-import { canRentNFTFunction } from '../../../../utils/canRentNFT';
+import { calculateTerm } from "../../../../utils/calculateTerm";
+import { calculateRequiredPayments } from "../../../../utils/calculateRequiredPayments";
+import { getStaking } from "../../../../utils/getStaking";
+import { canRentNFTFunction } from "../../../../utils/canRentNFT";
 
 import {
   RentContainer,
@@ -229,7 +229,7 @@ const Rent = ({ id }: { id: number }) => {
     setCollateral(collateralInNum);
     setPremium(premiumInNum);
     setTerm(termInNum);
-    setPaymentsAmount(paymentsAmountinNum);
+    setPaymentsAmount(paymentsAmountInNum);
     setNextPaymentDate(dateOfNextPaymentInNum / 86400);
   }
 
