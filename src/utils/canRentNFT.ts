@@ -23,5 +23,7 @@ export const canRentNFTFunction = async (
 
   const tx = await MarketplaceContract.canRentNFT(itemId);
 
+  console.log(tx);
+
   return tx;
 };

@@ -67,6 +67,7 @@ const StakingPage = () => {
       ).wait();
     }
 
+    console.log('Item data' + NFTAddress, tokenId, price, premium, term);
     const tx = await MarketplaceContract.quoteForStaking(
       NFTAddress,
       tokenId,

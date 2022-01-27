@@ -12,9 +12,10 @@ import {
 
 import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
 
-import { calculateTerm } from "../../../../utils/calculateTerm";
-import { getStaking } from "../../../../utils/getStaking";
-import { canRentNFTFunction } from "../../../../utils/canRentNFT";
+import { calculateTerm } from '../../../../utils/calculateTerm';
+import { calculateRequiredPayments } from '../../../../utils/calculateRequiredPayments';
+import { getStaking } from '../../../../utils/getStaking';
+import { canRentNFTFunction } from '../../../../utils/canRentNFT';
 
 import {
   RentContainer,
@@ -38,8 +39,11 @@ const Rent = ({ id }: { id: number }) => {
   const [premium, setPremium] = useState(0);
   const [collateral, setCollateral] = useState(0);
   const [term, setTerm] = useState<number | undefined>(0);
+  const [showRentInfo, setShowRentInfo] = useState(false);
   const [paymentsAmount, setPaymentsAmount] = useState(0);
+
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
+  const [requiredPayments, setRequiredPayments] = useState(0);
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
@@ -51,7 +55,6 @@ const Rent = ({ id }: { id: number }) => {
     const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
-
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer
@@ -71,10 +74,32 @@ const Rent = ({ id }: { id: number }) => {
     const tx = await MarketplaceContract.rentNFT(itemId, {
       value: ethers.utils.parseEther((premium + collateral).toString()),
     });
+
     await tx.wait();
 
     setPaymentsAmount(paymentsAmount + 1);
     setIsRented(true);
+
+    const ProductValue = await getStaking(itemId, connector);
+
+    if (!ProductValue) {
+      return;
+    }
+
+    const { deadline, startRentalUTC } = ProductValue;
+
+    const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
+    const startRentalUTCInNum = Number(
+      ethers.utils.formatUnits(startRentalUTC, 0)
+    );
+
+    const requiredPayments = calculateRequiredPayments(
+      deadlineInNum,
+      startRentalUTCInNum
+    );
+
+    setRequiredPayments(requiredPayments);
+    setShowRentInfo(true);
   };
 
   const payPremium = async (itemId: number) => {
@@ -125,6 +150,9 @@ const Rent = ({ id }: { id: number }) => {
 
     const tx = await MarketplaceContract.stopStaking(itemId);
     await tx.wait();
+
+    setIsRented(false);
+    setShowRentInfo(false);
   };
 
   const getDateOfNextPayment = async (itemId: number) => {
@@ -194,7 +222,7 @@ const Rent = ({ id }: { id: number }) => {
 
     const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
-    const paymentsAmountinNum = Number(
+    const paymentsAmountInNum = Number(
       ethers.utils.formatUnits(paymentsAmount, 0)
     );
 
@@ -242,14 +270,24 @@ const Rent = ({ id }: { id: number }) => {
                     <TableColumn>Term</TableColumn>
                     <TableColumn>For {term} days</TableColumn>
                   </TableRow>
-                  <TableRow>
-                    <TableColumn>Number of payments made</TableColumn>
-                    <TableColumn>{paymentsAmount}</TableColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableColumn>Next payment must be made</TableColumn>
-                    <TableColumn>in {nextPaymentDate} days</TableColumn>
-                  </TableRow>
+                  {showRentInfo ? (
+                    <>
+                      <TableRow>
+                        <TableColumn>Number of payments made</TableColumn>
+                        <TableColumn>{paymentsAmount}</TableColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableColumn>Number of required payments</TableColumn>
+                        <TableColumn>{requiredPayments}</TableColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableColumn>Next payment must be made</TableColumn>
+                        <TableColumn>in {nextPaymentDate} days</TableColumn>
+                      </TableRow>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </RentTableBody>
               </RentTable>
               {isRented ? (
