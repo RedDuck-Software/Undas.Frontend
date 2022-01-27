@@ -27,13 +27,14 @@ import {
 
 import Image from '../../images/card-item.png';
 import { ethers } from 'ethers';
-import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
-import { Marketplace__factory } from '../../typechain';
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
+import { Marketplace__factory, TestNFT__factory } from '../../typechain';
 
 const ProductCard = () => {
   const { connector } = useContext(Context);
 
   let { id: pageId } = useParams();
+  const [showPriceHistory] = useState(false);
   const [makerWallet, setMakerWallet] = useState('');
 
   const getStakings = async (itemId: number) => {
@@ -55,6 +56,21 @@ const ProductCard = () => {
     return tx;
   };
 
+  const getShowStaking = async (itemId: number) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const address = await signer.getAddress();
+    console.log(address);
+  };
+
   async function getProductValue() {
     const ProductValue = await getStakings(+pageId!);
     console.log(ProductValue);
@@ -70,18 +86,11 @@ const ProductCard = () => {
       return console.log('loading');
     }
 
+    getShowStaking(Number(pageId));
     getProductValue();
-  }, [connector]);
-
-  const [showPriceHistory] = useState(false);
-
-  useEffect(() => {
-    if (!connector) {
-      return console.log('loading');
-    }
 
     console.log(isBuyableFunction(Number(pageId), connector));
-  }, []);
+  }, [connector]);
 
   return (
     <Background>
