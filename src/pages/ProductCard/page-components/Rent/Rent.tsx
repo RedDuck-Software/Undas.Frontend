@@ -1,21 +1,21 @@
-import { BigNumberish, ethers } from 'ethers';
-import { useState, useContext, useEffect } from 'react';
-import Context from '../../../../utils/Context';
+import { BigNumberish, ethers } from "ethers";
+import { useState, useContext, useEffect } from "react";
+import Context from "../../../../utils/Context";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
+} from "../../../../utils/addressHelpers";
 
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
+import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
 
-import { calculateTerm } from '../../../../utils/calculateTerm';
-import { calculateRequiredPayments } from '../../../../utils/calculateRequiredPayments';
-import { getStaking } from '../../../../utils/getStaking';
-import { canRentNFTFunction } from '../../../../utils/canRentNFT';
+import { calculateTerm } from "../../../../utils/calculateTerm";
+import { calculateRequiredPayments } from "../../../../utils/calculateRequiredPayments";
+import { getStaking } from "../../../../utils/getStaking";
+import { canRentNFTFunction } from "../../../../utils/canRentNFT";
 
 import {
   RentContainer,
@@ -28,10 +28,14 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './Rent.styles';
+} from "./Rent.styles";
+import { useWeb3React } from "@web3-react/core";
 
 const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
+
+  let web3React = useWeb3React();
+  let account = web3React.account;
 
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);
@@ -44,6 +48,8 @@ const Rent = ({ id }: { id: number }) => {
 
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
+  const [isViewerOwner, setIsViewerOwner] = useState(true);
+  const [maker, setMaker] = useState("");
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
@@ -168,7 +174,7 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const tx = await MarketplaceContract.dateOfNextPayment(itemId);
-    if (!tx) return 'null';
+    if (!tx) return "null";
     return tx;
   };
 
@@ -185,7 +191,7 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const tx = await MarketplaceContract.paymentsDue(itemId);
-    if (!tx) return 'null';
+    if (!tx) return "null";
     return tx;
   };
 
@@ -211,7 +217,8 @@ const Rent = ({ id }: { id: number }) => {
       return;
     }
 
-    const { collateral, premium, deadline, paymentsAmount } = ProductValue;
+    const { collateral, premium, deadline, paymentsAmount, maker } =
+      ProductValue;
 
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const deadlineInSecs = deadlineInNum;
@@ -232,15 +239,16 @@ const Rent = ({ id }: { id: number }) => {
     setTerm(termInNum);
     setPaymentsAmount(paymentsAmountInNum);
     setNextPaymentDate(dateOfNextPaymentInNum / 86400);
+    setMaker(maker);
   }
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     getProductValue();
-  }, [connector]);
+  }, [connector, web3React]);
 
   const toogleRentOpen = () => {
     setRentOpen(!rentOpen);
@@ -248,7 +256,9 @@ const Rent = ({ id }: { id: number }) => {
 
   return (
     <RentContainer>
-      {rentOpen ? (
+      {maker === account ? (
+        <></>
+      ) : rentOpen ? (
         canRent ? (
           <>
             <RentTop onClick={toogleRentOpen}>
