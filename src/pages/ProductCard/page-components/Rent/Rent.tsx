@@ -1,21 +1,21 @@
-import { BigNumberish, ethers } from "ethers";
-import { useState, useContext, useEffect } from "react";
-import Context from "../../../../utils/Context";
+import { BigNumberish, ethers } from 'ethers';
+import { useState, useContext, useEffect } from 'react';
+import Context from '../../../../utils/Context';
 
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { Button } from "../../../../globalStyles";
+import { Button } from '../../../../globalStyles';
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from "../../../../utils/addressHelpers";
+} from '../../../../utils/addressHelpers';
 
-import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
+import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
 
-import { calculateTerm } from "../../../../utils/calculateTerm";
-import { calculateRequiredPayments } from "../../../../utils/calculateRequiredPayments";
-import { getStaking } from "../../../../utils/getStaking";
-import { canRentNFTFunction } from "../../../../utils/canRentNFT";
+import { calculateTerm } from '../../../../utils/calculateTerm';
+import { calculateRequiredPayments } from '../../../../utils/calculateRequiredPayments';
+import { getStaking } from '../../../../utils/getStaking';
+import { canRentNFTFunction } from '../../../../utils/canRentNFT';
 
 import {
   RentContainer,
@@ -28,7 +28,7 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from "./Rent.styles";
+} from './Rent.styles';
 
 const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
@@ -168,7 +168,7 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const tx = await MarketplaceContract.dateOfNextPayment(itemId);
-    if (!tx) return "null";
+    if (!tx) return 'null';
     return tx;
   };
 
@@ -185,7 +185,7 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const tx = await MarketplaceContract.paymentsDue(itemId);
-    if (!tx) return "null";
+    if (!tx) return 'null';
     return tx;
   };
 
@@ -200,6 +200,7 @@ const Rent = ({ id }: { id: number }) => {
 
     if (!canRentNFT) {
       setIsRented(true);
+      setShowRentInfo(true);
     }
 
     if (!ProductValue) {
@@ -235,7 +236,7 @@ const Rent = ({ id }: { id: number }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
 
     getProductValue();
