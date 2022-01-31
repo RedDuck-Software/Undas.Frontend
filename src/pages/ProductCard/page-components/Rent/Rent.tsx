@@ -48,7 +48,6 @@ const Rent = ({ id }: { id: number }) => {
 
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
-  const [isViewerOwner, setIsViewerOwner] = useState(true);
   const [maker, setMaker] = useState("");
 
   const startRenting = async (itemId: number) => {

@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import Context from '../../utils/Context';
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import Context from "../../utils/Context";
 
-import { isBuyableFunction } from '../../utils/isBuyable';
-import { getStaking } from '../../utils/getStaking';
+import { isBuyableFunction } from "../../utils/isBuyable";
+import { getStaking } from "../../utils/getStaking";
 
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/react';
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
 import {
   ProductPrice,
@@ -15,9 +15,9 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components';
+} from "./page-components";
 
-import { Background } from '../../globalStyles';
+import { Background } from "../../globalStyles";
 
 import {
   LeftSide,
@@ -27,13 +27,15 @@ import {
   ProductContainer,
   ProductContainerCenter,
   RightSide,
-} from './ProductCard.styles';
+} from "./ProductCard.styles";
 
-import Image from '../../images/card-item.png';
-import { ethers } from 'ethers';
-import { NFT_ADDRESS } from '../../utils/addressHelpers';
-import { TestNFT__factory } from '../../typechain';
-import { getNFTStakingIds } from '../../utils/getNFTStakingIds';
+import Image from "../../images/card-item.png";
+import { ethers } from "ethers";
+import { NFT_ADDRESS } from "../../utils/addressHelpers";
+import { TestNFT__factory } from "../../typechain";
+import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
+import { getListing } from "../../utils/getListing";
+import { getNFTListingIds } from "../../utils/getNFTListingIds";
 
 const ProductCard = () => {
   const { connector } = useContext(Context);
@@ -41,10 +43,12 @@ const ProductCard = () => {
   let { id: pageId } = useParams();
 
   const [stakingId, setStakingId] = useState(0);
+  const [listingId, setListingId] = useState(0);
 
   const [loading, setLoading] = useState(true);
   const [showPriceHistory] = useState(false);
   const [showStaking, setShowStaking] = useState(false);
+  const [showBuy, setShowBuy] = useState(false);
 
   const override = css`
     display: block;
@@ -73,9 +77,37 @@ const ProductCard = () => {
 
     if (
       address === owner &&
-      maker === '0x0000000000000000000000000000000000000000'
+      maker === "0x0000000000000000000000000000000000000000"
     ) {
       setShowStaking(true);
+    }
+  };
+
+  const getShowBuy = async () => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const address = await signer.getAddress();
+    const owner = await NFTContract.owner();
+
+    const ProductValue = await getListing(listingId, connector);
+
+    if (!ProductValue) return;
+
+    const { seller } = ProductValue;
+
+    if (
+      address === owner &&
+      seller === "0x0000000000000000000000000000000000000000"
+    ) {
+      setShowBuy(true);
     }
   };
 
@@ -96,9 +128,25 @@ const ProductCard = () => {
     setLoading(false);
   }
 
+  async function getListingId() {
+    setLoading(true);
+    if (!connector) return;
+
+    const listingId = await getNFTListingIds(
+      NFT_ADDRESS,
+      Number(pageId),
+      connector
+    );
+
+    setListingId(listingId!.toNumber());
+    await getShowBuy();
+    setLoading(false);
+  }
+
   useEffect(() => {
     if (connector) {
       getStakingId();
+      getListingId();
     }
 
     // console.log(isBuyableFunction(Number(pageId), connector));
@@ -108,7 +156,7 @@ const ProductCard = () => {
     <Background>
       {loading ? (
         <ClipLoader
-          color={'#BD10E0'}
+          color={"#BD10E0"}
           css={override}
           loading={loading}
           size={150}
@@ -123,7 +171,7 @@ const ProductCard = () => {
               </CardImageContainer>
             </LeftSide>
             <RightSide>
-              <ProductPrice id={stakingId} />
+              <ProductPrice id={listingId} />
               {showPriceHistory ? <PriceHistory /> : <></>}
               <Rent id={stakingId} />
               {showStaking ? <Staking id={stakingId.toString()} /> : <></>}
