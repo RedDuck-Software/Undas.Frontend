@@ -4,8 +4,9 @@ import { AbstractConnector } from '@web3-react/abstract-connector';
 import { Marketplace__factory } from '../typechain';
 import { MARKETPLACE_ADDRESS } from './addressHelpers';
 
-export const getStaking = async (
-  stakingId: number,
+export const getNFTListingIds = async (
+  address: string,
+  itemId: number,
   connector: AbstractConnector
 ) => {
   if (!connector) return;
@@ -20,6 +21,6 @@ export const getStaking = async (
     signer
   );
 
-  const tx = await MarketplaceContract.getStaking(stakingId);
+  const tx = await MarketplaceContract.nftListingIds(address, itemId);
   return tx;
 };
