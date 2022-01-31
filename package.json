@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -39,6 +40,7 @@
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-elastic-carousel": "^0.11.5",
+    "react-hook-form": "^7.25.1",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
@@ -55,7 +57,8 @@
     "universal-cookie": "^4.0.4",
     "url-parse": "^1.5.2",
     "web-vitals": "^1.0.1",
-    "ws": "^7.4.6"
+    "ws": "^7.4.6",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "yarn run codegen && react-scripts start",

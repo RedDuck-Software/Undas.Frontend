@@ -35,6 +35,7 @@ const ProductCard = () => {
 
   let { id: pageId } = useParams();
   const [showPriceHistory] = useState(false);
+  const [showStaking, setShowStaking] = useState(false);
   const [makerWallet, setMakerWallet] = useState('');
 
   const getStakings = async (itemId: number) => {
@@ -68,7 +69,20 @@ const ProductCard = () => {
     const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
 
     const address = await signer.getAddress();
-    console.log(address);
+    const owner = await NFTContract.owner();
+
+    const ProductValue = await getStakings(itemId);
+
+    if (!ProductValue) return;
+
+    const { maker } = ProductValue;
+
+    if (
+      address === owner &&
+      maker === '0x0000000000000000000000000000000000000000'
+    ) {
+      setShowStaking(true);
+    }
   };
 
   async function getProductValue() {
@@ -105,7 +119,7 @@ const ProductCard = () => {
             <ProductPrice id={Number(pageId!)} />
             {showPriceHistory ? <PriceHistory /> : <></>}
             <Rent id={Number(pageId!)} />
-            <Staking />
+            {showStaking ? <Staking id={pageId!} /> : <></>}
           </RightSide>
         </ProductContainer>
         <ProductContainerCenter>
