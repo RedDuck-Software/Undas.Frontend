@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import Context from '../../utils/Context';
 
 import { isBuyableFunction } from '../../utils/isBuyable';
+import { getStaking } from '../../utils/getStaking';
+
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/react';
 
 import {
   ProductPrice,
@@ -27,37 +31,27 @@ import {
 
 import Image from '../../images/card-item.png';
 import { ethers } from 'ethers';
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
-import { Marketplace__factory, TestNFT__factory } from '../../typechain';
+import { NFT_ADDRESS } from '../../utils/addressHelpers';
+import { TestNFT__factory } from '../../typechain';
+import { getNFTStakingIds } from '../../utils/getNFTStakingIds';
 
 const ProductCard = () => {
   const { connector } = useContext(Context);
 
   let { id: pageId } = useParams();
+
+  const [stakingId, setStakingId] = useState(0);
+
+  const [loading, setLoading] = useState(true);
   const [showPriceHistory] = useState(false);
   const [showStaking, setShowStaking] = useState(false);
-  const [makerWallet, setMakerWallet] = useState('');
 
-  const getStakings = async (itemId: number) => {
-    if (!connector) return;
+  const override = css`
+    display: block;
+    margin: auto;
+  `;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
-    );
-
-    const signer = provider.getSigner(0);
-
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer
-    );
-
-    const tx = await MarketplaceContract.getStaking(itemId);
-
-    return tx;
-  };
-
-  const getShowStaking = async (itemId: number) => {
+  const getShowStaking = async () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -71,7 +65,7 @@ const ProductCard = () => {
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
 
-    const ProductValue = await getStakings(itemId);
+    const ProductValue = await getStaking(stakingId, connector);
 
     if (!ProductValue) return;
 
@@ -85,48 +79,62 @@ const ProductCard = () => {
     }
   };
 
-  async function getProductValue() {
-    const ProductValue = await getStakings(+pageId!);
-    console.log(ProductValue);
-    if (!ProductValue) {
-      return;
-    }
-    const { maker } = ProductValue;
-    setMakerWallet(maker);
+  async function getStakingId() {
+    setLoading(true);
+    if (!connector) return;
+
+    const stakingId = await getNFTStakingIds(
+      NFT_ADDRESS,
+      Number(pageId),
+      connector
+    );
+
+    setStakingId(stakingId!.toNumber());
+
+    await getShowStaking();
+
+    setLoading(false);
   }
 
   useEffect(() => {
-    if (!connector) {
-      return console.log('loading');
+    if (connector) {
+      getStakingId();
     }
 
-    getShowStaking(Number(pageId));
-    getProductValue();
-
-    console.log(isBuyableFunction(Number(pageId), connector));
+    // console.log(isBuyableFunction(Number(pageId), connector));
   }, [connector]);
 
   return (
     <Background>
-      <ProductCardSec>
-        <ProductContainer>
-          <LeftSide>
-            <CardImageContainer>
-              <CardImage src={Image} />
-            </CardImageContainer>
-          </LeftSide>
-          <RightSide>
-            <ProductPrice id={Number(pageId!)} />
-            {showPriceHistory ? <PriceHistory /> : <></>}
-            <Rent id={Number(pageId!)} />
-            {showStaking ? <Staking id={pageId!} /> : <></>}
-          </RightSide>
-        </ProductContainer>
-        <ProductContainerCenter>
-          <ItemActivity />
-          <MoreFromCollection />
-        </ProductContainerCenter>
-      </ProductCardSec>
+      {loading ? (
+        <ClipLoader
+          color={'#BD10E0'}
+          css={override}
+          loading={loading}
+          size={150}
+        />
+      ) : (
+        <ProductCardSec>
+          {console.log(stakingId)}
+          <ProductContainer>
+            <LeftSide>
+              <CardImageContainer>
+                <CardImage src={Image} />
+              </CardImageContainer>
+            </LeftSide>
+            <RightSide>
+              <ProductPrice id={stakingId} />
+              {showPriceHistory ? <PriceHistory /> : <></>}
+              <Rent id={stakingId} />
+              {showStaking ? <Staking id={stakingId.toString()} /> : <></>}
+            </RightSide>
+          </ProductContainer>
+          <ProductContainerCenter>
+            <ItemActivity />
+            <MoreFromCollection />
+          </ProductContainerCenter>
+        </ProductCardSec>
+      )}
     </Background>
   );
 };

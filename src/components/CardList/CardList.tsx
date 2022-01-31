@@ -141,6 +141,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     if (!connector) {
       return console.log('loading');
     }
+
     setLoading(false);
 
     getListingsData();
