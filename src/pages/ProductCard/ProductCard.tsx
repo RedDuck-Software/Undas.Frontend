@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Context from '../../utils/Context';
 
-import { isBuyableFunction } from '../../utils/isBuyable';
 import { getStaking } from '../../utils/getStaking';
 
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -45,6 +44,7 @@ const ProductCard = () => {
   const [loading, setLoading] = useState(true);
   const [showPriceHistory] = useState(false);
   const [showStaking, setShowStaking] = useState(false);
+  const [showRent, setShowRent] = useState(false);
 
   const override = css`
     display: block;
@@ -79,6 +79,34 @@ const ProductCard = () => {
     }
   };
 
+  async function getShowRent() {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const address = await signer.getAddress();
+    const owner = await NFTContract.owner();
+
+    const ProductValue = await getStaking(stakingId, connector);
+
+    if (!ProductValue) return;
+
+    const { maker } = ProductValue;
+
+    if (
+      address !== owner &&
+      maker !== '0x0000000000000000000000000000000000000000'
+    ) {
+      setShowRent(true);
+    }
+  }
+
   async function getStakingId() {
     setLoading(true);
     if (!connector) return;
@@ -92,6 +120,7 @@ const ProductCard = () => {
     setStakingId(stakingId!.toNumber());
 
     await getShowStaking();
+    await getShowRent();
 
     setLoading(false);
   }
@@ -100,8 +129,6 @@ const ProductCard = () => {
     if (connector) {
       getStakingId();
     }
-
-    // console.log(isBuyableFunction(Number(pageId), connector));
   }, [connector]);
 
   return (
@@ -115,7 +142,6 @@ const ProductCard = () => {
         />
       ) : (
         <ProductCardSec>
-          {console.log(stakingId)}
           <ProductContainer>
             <LeftSide>
               <CardImageContainer>
@@ -125,7 +151,7 @@ const ProductCard = () => {
             <RightSide>
               <ProductPrice id={stakingId} />
               {showPriceHistory ? <PriceHistory /> : <></>}
-              <Rent id={stakingId} />
+              {showRent ? <Rent id={stakingId} /> : <></>}
               {showStaking ? <Staking id={stakingId.toString()} /> : <></>}
             </RightSide>
           </ProductContainer>
