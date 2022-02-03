@@ -48,6 +48,7 @@ const Rent = ({ id }: { id: number }) => {
 
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
+  const [maker, setMaker] = useState("");
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;

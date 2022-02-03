@@ -1,19 +1,24 @@
-import { useState, useEffect, useContext } from 'react';
-import Context from '../../../../utils/Context';
+import { useState, useEffect, useContext } from "react";
+import Context from "../../../../utils/Context";
 
-import { ethers } from 'ethers';
-import { MARKETPLACE_ADDRESS } from '../../../../utils/addressHelpers';
-import { Marketplace__factory } from '../../../../typechain';
+import { ethers } from "ethers";
+import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+import { Marketplace__factory } from "../../../../typechain";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 
-import { Price, PriceContainer, ButtonsContainer } from './ProductPrice.styles';
+import { Price, PriceContainer, ButtonsContainer } from "./ProductPrice.styles";
+import { useWeb3React } from "@web3-react/core";
 
 const ProductPrice = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
 
+  let web3React = useWeb3React();
+  let account = web3React.account;
+
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
+  const [seller, setSeller] = useState("");
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -57,7 +62,7 @@ const ProductPrice = ({ id }: { id: number }) => {
 
   async function getEthPrice() {
     const API_URL =
-      'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD';
+      "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
     const response = await fetch(API_URL);
     const responseInJson = await response.json();
     return responseInJson;
@@ -70,7 +75,7 @@ const ProductPrice = ({ id }: { id: number }) => {
       return;
     }
 
-    const { price } = await ProductPrice;
+    const { price, seller } = await ProductPrice;
     const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
     const ethPrice = await getEthPrice();
@@ -78,15 +83,16 @@ const ProductPrice = ({ id }: { id: number }) => {
 
     setPriceInEth(Number(NFTPrice));
     setPrice(priceInNum);
+    setSeller(seller);
   }
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     getProductPrice();
-  }, [connector]);
+  }, [connector, web3React]);
 
   return (
     <>
@@ -95,11 +101,15 @@ const ProductPrice = ({ id }: { id: number }) => {
         <PriceContainer>
           <h3>{price}</h3> <span>($ {priceInEth})</span>
         </PriceContainer>
-        <ButtonsContainer>
-          <Button violet onClick={() => buyToken(id)}>
-            Buy now
-          </Button>
-        </ButtonsContainer>
+        {seller === account && id >= 0 ? (
+          <></>
+        ) : (
+          <ButtonsContainer>
+            <Button violet onClick={() => buyToken(id)}>
+              Buy now
+            </Button>
+          </ButtonsContainer>
+        )}
       </Price>
     </>
   );
