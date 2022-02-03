@@ -110,8 +110,6 @@ const ProductCard = () => {
     }
   };
       
-      
-  }
   async function getShowRent() {
     if (!connector) return;
 
