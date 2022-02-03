@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Context from "../../utils/Context";
-
 import { isBuyableFunction } from "../../utils/isBuyable";
 import { getStaking } from "../../utils/getStaking";
 
@@ -97,18 +96,17 @@ const ProductCard = () => {
 
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
-
-    const ProductValue = await getStaking(stakingId, connector);
+    const ProductValue = await getListing(listingId, connector);
 
     if (!ProductValue) return;
 
-    const { maker } = ProductValue;
+    const { seller } = ProductValue;
 
     if (
-      address !== owner &&
-      maker !== "0x0000000000000000000000000000000000000000"
+      address === owner &&
+      seller === "0x0000000000000000000000000000000000000000"
     ) {
-      setShowRent(true);
+      setShowBuy(true);
     }
   };
 
@@ -126,17 +124,17 @@ const ProductCard = () => {
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
 
-    const ProductValue = await getListing(listingId, connector);
+    const ProductValue = await getStaking(stakingId, connector);
 
     if (!ProductValue) return;
 
-    const { seller } = ProductValue;
+    const { maker } = ProductValue;
 
     if (
-      address === owner &&
-      seller === "0x0000000000000000000000000000000000000000"
+      address !== owner &&
+      maker !== "0x0000000000000000000000000000000000000000"
     ) {
-      setShowBuy(true);
+      setShowRent(true);
     }
   }
 
