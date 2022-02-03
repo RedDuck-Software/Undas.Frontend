@@ -31,7 +31,7 @@ import {
 import Image from "../../images/card-item.png";
 import { ethers } from "ethers";
 import { NFT_ADDRESS } from "../../utils/addressHelpers";
-import { TestNFT__factory } from "../../typechain";
+import { UndasGeneralNFT__factory } from "../../typechain";
 import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
 import { getListing } from "../../utils/getListing";
 import { getNFTListingIds } from "../../utils/getNFTListingIds";
@@ -64,7 +64,7 @@ const ProductCard = () => {
 
     const signer = provider.getSigner(0);
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
@@ -84,7 +84,7 @@ const ProductCard = () => {
   };
 
   const getShowBuy = async () => {
-          if (!connector) return;
+    if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
@@ -92,11 +92,11 @@ const ProductCard = () => {
 
     const signer = provider.getSigner(0);
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
-          const ProductValue = await getListing(listingId, connector);
+    const ProductValue = await getListing(listingId, connector);
 
     if (!ProductValue) return;
 
@@ -109,7 +109,7 @@ const ProductCard = () => {
       setShowBuy(true);
     }
   };
-      
+
   async function getShowRent() {
     if (!connector) return;
 
@@ -119,7 +119,7 @@ const ProductCard = () => {
 
     const signer = provider.getSigner(0);
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
@@ -132,7 +132,7 @@ const ProductCard = () => {
 
     if (
       address !== owner &&
-      maker !== '0x0000000000000000000000000000000000000000'
+      maker !== "0x0000000000000000000000000000000000000000"
     ) {
       setShowRent(true);
     }
@@ -204,7 +204,11 @@ const ProductCard = () => {
           </ProductContainer>
           <ProductContainerCenter>
             <ItemActivity />
-            <MoreFromCollection />
+            {listingId >= 0 ? (
+              <MoreFromCollection id={listingId} />
+            ) : (
+              <MoreFromCollection id={stakingId} />
+            )}
           </ProductContainerCenter>
         </ProductCardSec>
       )}

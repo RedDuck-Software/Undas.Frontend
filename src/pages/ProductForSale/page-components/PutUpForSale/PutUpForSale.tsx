@@ -1,22 +1,25 @@
-import { useState, useEffect, useContext } from 'react';
-import Context from '../../../../utils/Context';
-import { ethers } from 'ethers';
+import { useState, useEffect, useContext } from "react";
+import Context from "../../../../utils/Context";
+import { ethers } from "ethers";
 
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
+} from "../../../../utils/addressHelpers";
 
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from "../../../../typechain";
 
-import { useDispatch } from 'react-redux';
-import { increment } from '../../../../utils/ReduxSlices/NFTsCounterSlice';
+import { useDispatch } from "react-redux";
+import { increment } from "../../../../utils/ReduxSlices/NFTsCounterSlice";
 
-import { isBuyableFunction } from '../../../../utils/isBuyable';
+import { isBuyableFunction } from "../../../../utils/isBuyable";
 
-import Image from '../../../../images/card-item.png';
+import Image from "../../../../images/card-item.png";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 
 import {
   ForSaleWrapper,
@@ -36,7 +39,7 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PutUpForSale.styles';
+} from "./PutUpForSale.styles";
 
 const PutUpForSale = ({ itemId }: { itemId: string }) => {
   const { connector } = useContext(Context);
@@ -48,11 +51,11 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
 
   const [isDropdownOpen, setDropdown] = useState(false);
   const [isMenuShown, setMenuShown] = useState(false);
-  const [isButtonsActive, setButtons] = useState('disabled');
+  const [isButtonsActive, setButtons] = useState("disabled");
   const [isBuyable, setIsBuyable] = useState<boolean | undefined>(undefined);
 
   const bid = async () => {
-    if (!connector || isButtonsActive === 'disabled') return;
+    if (!connector || isButtonsActive === "disabled") return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
@@ -64,7 +67,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
     console.log(connector);
     console.log(signer);
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -86,7 +89,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
       NFT_ADDRESS,
       itemId,
       ethers.utils.parseEther(price.toString()),
-      { value: ethers.utils.parseEther('0.1') }
+      { value: ethers.utils.parseEther("0.1") }
     );
 
     await tx.wait().then(
@@ -133,21 +136,21 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
   };
 
   const toogleMenu = () => {
-    if (!isMenuShown && isButtonsActive === 'disabled') {
+    if (!isMenuShown && isButtonsActive === "disabled") {
       setMenuShown(!isMenuShown);
-    } else if (isButtonsActive === 'disabled') {
+    } else if (isButtonsActive === "disabled") {
       return;
     } else {
       setMenuShown(!isMenuShown);
-      setButtons('disabled');
+      setButtons("disabled");
     }
   };
 
   const toogleButtons = () => {
-    if (isButtonsActive === 'disabled') {
-      setButtons('active');
+    if (isButtonsActive === "disabled") {
+      setButtons("active");
     } else {
-      setButtons('disabled');
+      setButtons("disabled");
     }
   };
 
@@ -157,7 +160,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     isBuyableFunction(+itemId, connector)

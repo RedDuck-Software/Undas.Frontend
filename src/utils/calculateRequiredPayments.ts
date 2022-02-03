@@ -5,6 +5,6 @@ export const calculateRequiredPayments = (
   if (startRentalUTC === 0) return 0;
 
   let requiredPaymentsInSec = Math.abs(deadline - startRentalUTC);
-  const requiredPayments = Math.ceil(requiredPaymentsInSec / 86400) / 7;
+  const requiredPayments = Math.round(requiredPaymentsInSec / 86400) / 7;
   return requiredPayments;
 };

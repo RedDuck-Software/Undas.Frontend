@@ -1,24 +1,24 @@
-import React, { useEffect, useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import { ethers } from 'ethers';
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
 
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/react';
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
-import { getId } from '../../utils/getId';
-import { getListing } from '../../utils/getListing';
-import { getListingsLastIndex } from '../../utils/getListingsLastIndex';
-import { isBuyableFunction } from '../../utils/isBuyable';
-import { canRentNFTFunction } from '../../utils/canRentNFT';
-import { getStaking } from '../../utils/getStaking';
-import { getStakingsLastIndex } from '../../utils/getStakingsLastIndex';
+import { getId } from "../../utils/getId";
+import { getListing } from "../../utils/getListing";
+import { getListingsLastIndex } from "../../utils/getListingsLastIndex";
+import { isBuyableFunction } from "../../utils/isBuyable";
+import { canRentNFTFunction } from "../../utils/canRentNFT";
+import { getStaking } from "../../utils/getStaking";
+import { getStakingsLastIndex } from "../../utils/getStakingsLastIndex";
 
-import { card01, card02, card03 } from './imports';
-import { CardItem, FilterButtons } from '../';
-import Pagination from '../Pagination/Pagination';
+import { card01, card02, card03 } from "./imports";
+import { CardItem, FilterButtons } from "../";
+import Pagination from "../Pagination/Pagination";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
 import {
   CardListWrapper,
   CardListHeading,
@@ -33,7 +33,7 @@ import {
   ButtonView3x3,
   CardsWrapper,
   CardLink,
-} from './CardList.styles';
+} from "./CardList.styles";
 
 interface CardListProps {
   newFilter?: boolean;
@@ -59,7 +59,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
-  const [showList, setShowList] = useState('NFT to buy');
+  const [showList, setShowList] = useState("NFT to buy");
 
   const override = css`
     display: block;
@@ -107,7 +107,11 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
     for (let i = 0; i < lastIndex?.toNumber(); i++) {
       const CardProps = await getStaking(i, connector);
-      const canRentNFT = await canRentNFTFunction(i, connector);
+
+      let canRentNFT;
+      if (CardProps?.tokenId._hex !== "0x00") {
+        canRentNFT = await canRentNFTFunction(i, connector);
+      }
 
       if (!CardProps) {
         continue;
@@ -123,7 +127,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
       }
     }
 
-    console.log(stakings);
     return stakings;
   };
 
@@ -139,7 +142,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     setLoading(false);
@@ -152,7 +155,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     <CardListWrapper>
       {loading ? (
         <ClipLoader
-          color={'#BD10E0'}
+          color={"#BD10E0"}
           css={override}
           loading={loading}
           size={150}
@@ -184,10 +187,10 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
           {newFilter ? <FilterButtons /> : <></>}
           <CardsWrapper>
             {amountOfNFTs ? (
-              showList === 'NFT to buy' ? (
+              showList === "NFT to buy" ? (
                 list?.map((item) => {
                   return (
-                    <CardLink key={item.id} to={'/product/' + item.id}>
+                    <CardLink key={item.id} to={"/product/" + item.id}>
                       <CardItem
                         key={item.id}
                         image={card01}
@@ -200,7 +203,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
               ) : (
                 stakingsList?.map((item) => {
                   return (
-                    <CardLink key={item.id} to={'/product/' + item.id}>
+                    <CardLink key={item.id} to={"/product/" + item.id}>
                       <CardItem
                         key={item.id}
                         image={card01}

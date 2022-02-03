@@ -1,13 +1,16 @@
-import { useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import { ethers } from 'ethers';
+import { useState, useContext } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
 
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
 
-import { TestNFT__factory, Marketplace__factory } from '../../typechain';
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from "../../typechain";
 
-import { ModalWindow } from '../../components';
-import { Background } from '../../globalStyles';
+import { ModalWindow } from "../../components";
+import { Background } from "../../globalStyles";
 
 import {
   ListingSec,
@@ -22,15 +25,15 @@ import {
   ListingLabel,
   ListingInput,
   ListingButton,
-} from './Listing.styles';
-import Image from '../../images/card-item.png';
+} from "./Listing.styles";
+import Image from "../../images/card-item.png";
 
 const Listing = () => {
   const { connector } = useContext(Context);
 
-  const [tokenId, setTokenId] = useState('');
-  const [NFTAddress, setNFTAddress] = useState('');
-  const [price, setPrice] = useState('');
+  const [tokenId, setTokenId] = useState("");
+  const [NFTAddress, setNFTAddress] = useState("");
+  const [price, setPrice] = useState("");
   const [showModalWindow, setShowModalWindow] = useState(false);
 
   const bid = async () => {
@@ -47,7 +50,7 @@ const Listing = () => {
     console.log(signer);
     console.log(tokenId, NFTAddress, price);
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -69,7 +72,7 @@ const Listing = () => {
       NFTAddress,
       tokenId,
       ethers.utils.parseEther(price),
-      { value: ethers.utils.parseEther('0.1') }
+      { value: ethers.utils.parseEther("0.1") }
     );
 
     await tx.wait().then(() => {
