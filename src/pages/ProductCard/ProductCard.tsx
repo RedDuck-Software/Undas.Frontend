@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Context from "../../utils/Context";
-
 import { isBuyableFunction } from "../../utils/isBuyable";
 import { getStaking } from "../../utils/getStaking";
 
@@ -49,6 +48,7 @@ const ProductCard = () => {
   const [showPriceHistory] = useState(false);
   const [showStaking, setShowStaking] = useState(false);
   const [showBuy, setShowBuy] = useState(false);
+  const [showRent, setShowRent] = useState(false);
 
   const override = css`
     display: block;
@@ -84,6 +84,35 @@ const ProductCard = () => {
   };
 
   const getShowBuy = async () => {
+          if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+
+    const signer = provider.getSigner(0);
+
+    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const address = await signer.getAddress();
+    const owner = await NFTContract.owner();
+          const ProductValue = await getListing(listingId, connector);
+
+    if (!ProductValue) return;
+
+    const { seller } = ProductValue;
+
+    if (
+      address === owner &&
+      seller === "0x0000000000000000000000000000000000000000"
+    ) {
+      setShowBuy(true);
+    }
+  };
+      
+      
+  }
+  async function getShowRent() {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -97,19 +126,19 @@ const ProductCard = () => {
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
 
-    const ProductValue = await getListing(listingId, connector);
+    const ProductValue = await getStaking(stakingId, connector);
 
     if (!ProductValue) return;
 
-    const { seller } = ProductValue;
+    const { maker } = ProductValue;
 
     if (
-      address === owner &&
-      seller === "0x0000000000000000000000000000000000000000"
+      address !== owner &&
+      maker !== '0x0000000000000000000000000000000000000000'
     ) {
-      setShowBuy(true);
+      setShowRent(true);
     }
-  };
+  }
 
   async function getStakingId() {
     setLoading(true);
@@ -124,6 +153,7 @@ const ProductCard = () => {
     setStakingId(stakingId!.toNumber());
 
     await getShowStaking();
+    await getShowRent();
 
     setLoading(false);
   }
@@ -148,8 +178,6 @@ const ProductCard = () => {
       getStakingId();
       getListingId();
     }
-
-    // console.log(isBuyableFunction(Number(pageId), connector));
   }, [connector]);
 
   return (
@@ -163,7 +191,6 @@ const ProductCard = () => {
         />
       ) : (
         <ProductCardSec>
-          {console.log(stakingId)}
           <ProductContainer>
             <LeftSide>
               <CardImageContainer>
@@ -173,7 +200,7 @@ const ProductCard = () => {
             <RightSide>
               <ProductPrice id={listingId} />
               {showPriceHistory ? <PriceHistory /> : <></>}
-              <Rent id={stakingId} />
+              {showRent ? <Rent id={stakingId} /> : <></>}
               {showStaking ? <Staking id={stakingId.toString()} /> : <></>}
             </RightSide>
           </ProductContainer>
