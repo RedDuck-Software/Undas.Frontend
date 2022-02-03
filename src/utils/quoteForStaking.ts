@@ -1,10 +1,10 @@
-import { ethers } from 'ethers';
-import { AbstractConnector } from '@web3-react/abstract-connector';
+import { ethers } from "ethers";
+import { AbstractConnector } from "@web3-react/abstract-connector";
 
-import intervalIntoTimeStamp from './intervalIntoTimeStamp';
+import intervalIntoTimeStamp from "./intervalIntoTimeStamp";
 
-import { Marketplace__factory, TestNFT__factory } from '../typechain';
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from './addressHelpers';
+import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
 
 export const quoteForStaking = async (
   tokenId: string,
@@ -21,7 +21,7 @@ export const quoteForStaking = async (
   const signer = provider.getSigner(0);
   const SIGNER_ADDRESS = await signer.getAddress();
 
-  const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+  const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
@@ -39,14 +39,14 @@ export const quoteForStaking = async (
     ).wait();
   }
 
-  console.log('Item data' + NFT_ADDRESS, tokenId, price, premium, term);
+  console.log("Item data" + NFT_ADDRESS, tokenId, price, premium, term);
   const tx = await MarketplaceContract.quoteForStaking(
     NFT_ADDRESS,
     tokenId,
     ethers.utils.parseEther(price.toString()),
     ethers.utils.parseEther(premium.toString()),
     intervalIntoTimeStamp(term),
-    { value: ethers.utils.parseEther('0.1') }
+    { value: ethers.utils.parseEther("0.1") }
   );
 
   await tx.wait();

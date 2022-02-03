@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { Button } from '../../../../globalStyles';
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { Button } from "../../../../globalStyles";
 
 import {
   StakingContainer,
@@ -18,19 +18,22 @@ import {
   TableMenuOption,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles';
+} from "./Staking,styles";
 
-import { ethers } from 'ethers';
-import Context from '../../../../utils/Context';
+import { ethers } from "ethers";
+import Context from "../../../../utils/Context";
 
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import Marketplace from '../../../../abi/Marketplace.json';
-import NFT from '../../../../abi/TestNFT.json';
-import { TestNFT__factory, Marketplace__factory } from '../../../../typechain';
-import intervalIntoTimeStamp from '../../../../utils/intervalIntoTimeStamp';
+} from "../../../../utils/addressHelpers";
+import Marketplace from "../../../../abi/Marketplace.json";
+import NFT from "../../../../abi/UndasGeneralNFT.json";
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from "../../../../typechain";
+import intervalIntoTimeStamp from "../../../../utils/intervalIntoTimeStamp";
 
 const Staking = () => {
   const [stakingOpen, setStakingOpen] = useState(false);
@@ -38,7 +41,7 @@ const Staking = () => {
 
   const { connector } = useContext(Context);
   const [price, setPrice] = useState(280);
-  const [deadline, setDeadline] = useState('for 7 days');
+  const [deadline, setDeadline] = useState("for 7 days");
   const [premium, setPremium] = useState(0);
 
   const quoteForStaking = async () => {
@@ -50,7 +53,7 @@ const Staking = () => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,

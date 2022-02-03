@@ -1,12 +1,15 @@
-import { useState, useContext } from 'react';
-import Context from '../../utils/Context';
-import { ethers } from 'ethers';
+import { useState, useContext } from "react";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
 
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from '../../utils/addressHelpers';
-import { TestNFT__factory, Marketplace__factory } from '../../typechain';
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from "../../typechain";
 
 // import { ModalWindow } from '../../components';
-import { Background } from '../../globalStyles';
+import { Background } from "../../globalStyles";
 
 import {
   StakingSec,
@@ -22,18 +25,18 @@ import {
   StakingInput,
   StakingButton,
   StakingWarning,
-} from './StakingPage.styles';
-import Image from '../../images/card-item.png';
-import intervalIntoTimeStamp from '../../utils/intervalIntoTimeStamp';
+} from "./StakingPage.styles";
+import Image from "../../images/card-item.png";
+import intervalIntoTimeStamp from "../../utils/intervalIntoTimeStamp";
 
 const StakingPage = () => {
   const { connector } = useContext(Context);
 
-  const [NFTAddress, setNFTAddress] = useState('');
-  const [tokenId, setTokenId] = useState('');
-  const [price, setPrice] = useState('');
-  const [premium, setPremium] = useState('');
-  const [term, setTerm] = useState('');
+  const [NFTAddress, setNFTAddress] = useState("");
+  const [tokenId, setTokenId] = useState("");
+  const [price, setPrice] = useState("");
+  const [premium, setPremium] = useState("");
+  const [term, setTerm] = useState("");
   const [showWarning, setShowWarning] = useState(false);
 
   const quoteForStaking = async () => {
@@ -49,7 +52,7 @@ const StakingPage = () => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -67,14 +70,14 @@ const StakingPage = () => {
       ).wait();
     }
 
-    console.log('Item data' + NFTAddress, tokenId, price, premium, term);
+    console.log("Item data" + NFTAddress, tokenId, price, premium, term);
     const tx = await MarketplaceContract.quoteForStaking(
       NFTAddress,
       tokenId,
       ethers.utils.parseEther(price.toString()),
       ethers.utils.parseEther(premium.toString()),
       intervalIntoTimeStamp(term),
-      { value: ethers.utils.parseEther('0.1') }
+      { value: ethers.utils.parseEther("0.1") }
     );
 
     setShowWarning(false);
@@ -153,7 +156,7 @@ const StakingPage = () => {
             </StakingForm>
             {showWarning ? (
               <StakingWarning>
-                Term cannot be smaller tnan 7 days{' '}
+                Term cannot be smaller tnan 7 days{" "}
               </StakingWarning>
             ) : (
               <></>

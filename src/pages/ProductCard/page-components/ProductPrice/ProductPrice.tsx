@@ -79,8 +79,9 @@ const ProductPrice = ({ id }: { id: number }) => {
     const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
     const ethPrice = await getEthPrice();
+    const NFTPrice = (ethPrice.USD * priceInNum).toFixed(2);
 
-    setPriceInEth(ethPrice.USD * priceInNum);
+    setPriceInEth(Number(NFTPrice));
     setPrice(priceInNum);
     setSeller(seller);
   }

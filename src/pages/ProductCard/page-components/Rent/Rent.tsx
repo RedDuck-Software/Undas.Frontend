@@ -10,7 +10,10 @@ import {
   NFT_ADDRESS,
 } from "../../../../utils/addressHelpers";
 
-import { TestNFT__factory, Marketplace__factory } from "../../../../typechain";
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from "../../../../typechain";
 
 import { calculateTerm } from "../../../../utils/calculateTerm";
 import { calculateRequiredPayments } from "../../../../utils/calculateRequiredPayments";
@@ -30,6 +33,7 @@ import {
   ButtonRow,
 } from "./Rent.styles";
 import { useWeb3React } from "@web3-react/core";
+import { isReturnStatement } from "@babel/types";
 
 const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
@@ -45,7 +49,7 @@ const Rent = ({ id }: { id: number }) => {
   const [term, setTerm] = useState<number | undefined>(0);
   const [showRentInfo, setShowRentInfo] = useState(false);
   const [paymentsAmount, setPaymentsAmount] = useState(0);
-
+  const [paymentsDue, setPaymentsDue] = useState(0x00);
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
   const [maker, setMaker] = useState("");
@@ -59,7 +63,7 @@ const Rent = ({ id }: { id: number }) => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer
@@ -84,26 +88,6 @@ const Rent = ({ id }: { id: number }) => {
 
     setPaymentsAmount(paymentsAmount + 1);
     setIsRented(true);
-
-    const ProductValue = await getStaking(itemId, connector);
-
-    if (!ProductValue) {
-      return;
-    }
-
-    const { deadline, startRentalUTC } = ProductValue;
-
-    const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
-    const startRentalUTCInNum = Number(
-      ethers.utils.formatUnits(startRentalUTC, 0)
-    );
-
-    const requiredPayments = calculateRequiredPayments(
-      deadlineInNum,
-      startRentalUTCInNum
-    );
-
-    setRequiredPayments(requiredPayments);
     setShowRentInfo(true);
   };
 
@@ -135,7 +119,7 @@ const Rent = ({ id }: { id: number }) => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    const NFTContract = TestNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -153,7 +137,7 @@ const Rent = ({ id }: { id: number }) => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.stopStaking(itemId);
+    const tx = await MarketplaceContract.stopRental(itemId);
     await tx.wait();
 
     setIsRented(false);
@@ -173,12 +157,15 @@ const Rent = ({ id }: { id: number }) => {
     );
 
     const tx = await MarketplaceContract.dateOfNextPayment(itemId);
-    if (!tx) return "null";
     return tx;
   };
 
-  const getPaymentsDue = async (itemId: number) => {
+  const getAsyncValues = async (itemId: number) => {
     if (!connector) return;
+
+    if (!isRented) {
+      return;
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
     );
@@ -189,9 +176,23 @@ const Rent = ({ id }: { id: number }) => {
       signer
     );
 
-    const tx = await MarketplaceContract.paymentsDue(itemId);
-    if (!tx) return "null";
-    return tx;
+    const productValue = await getStaking(id, connector);
+    if (!productValue) {
+      return;
+    }
+    const { deadline, startRentalUTC } = productValue;
+    const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
+    const startRentalUTCInNum = Number(
+      ethers.utils.formatUnits(startRentalUTC, 0)
+    );
+
+    const requiredPayments = calculateRequiredPayments(
+      deadlineInNum,
+      startRentalUTCInNum
+    );
+    const paymentsDue = await MarketplaceContract.paymentsDue(itemId);
+
+    return { paymentsDue, requiredPayments };
   };
 
   async function getProductValue() {
@@ -199,9 +200,6 @@ const Rent = ({ id }: { id: number }) => {
 
     const ProductValue = await getStaking(id, connector);
     const canRentNFT = await canRentNFTFunction(id, connector);
-    const dateOfNextPayment = await getDateOfNextPayment(id);
-    const paymentsDue = await getPaymentsDue(id);
-    console.log(paymentsDue);
 
     if (!canRentNFT) {
       setIsRented(true);
@@ -212,20 +210,12 @@ const Rent = ({ id }: { id: number }) => {
       return;
     }
 
-    if (!dateOfNextPayment) {
-      return;
-    }
-
-    const { collateral, premium, deadline, paymentsAmount, maker } =
+    const { collateral, premium, deadline, paymentsAmount, startRentalUTC } =
       ProductValue;
 
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const deadlineInSecs = deadlineInNum;
     const termInNum = calculateTerm(deadlineInSecs);
-
-    const dateOfNextPaymentInNum = Number(
-      ethers.utils.formatUnits(dateOfNextPayment, 0)
-    );
 
     const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
@@ -237,9 +227,43 @@ const Rent = ({ id }: { id: number }) => {
     setPremium(premiumInNum);
     setTerm(termInNum);
     setPaymentsAmount(paymentsAmountInNum);
-    setNextPaymentDate(dateOfNextPaymentInNum / 86400);
-    setMaker(maker);
   }
+
+  const callAsyncValues = async () => {
+    const asyncValues = await getAsyncValues(id);
+    if (!asyncValues) {
+      return;
+    }
+    const { paymentsDue, requiredPayments } = asyncValues;
+
+    const paymentsDueInNum = Number(paymentsDue);
+
+    const dateOfNextPayment = await getDateOfNextPayment(id);
+    if (!dateOfNextPayment) {
+      return;
+    }
+    const dateOfNextPaymentInNum = Number(
+      ethers.utils.formatUnits(dateOfNextPayment, 0)
+    );
+    const now = Date.now();
+    const nextPaymentDateInDays = Math.round(
+      (dateOfNextPaymentInNum - now / 1000) / 86400
+    );
+
+    setNextPaymentDate(Math.round(nextPaymentDateInDays));
+    setPaymentsDue(paymentsDueInNum);
+    setRequiredPayments(requiredPayments);
+  };
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    if (isRented) {
+      callAsyncValues();
+    }
+  }, [connector, isRented]);
 
   useEffect(() => {
     if (!connector) {
@@ -255,9 +279,7 @@ const Rent = ({ id }: { id: number }) => {
 
   return (
     <RentContainer>
-      {maker === account ? (
-        <></>
-      ) : rentOpen ? (
+      {rentOpen ? (
         canRent ? (
           <>
             <RentTop onClick={toogleRentOpen}>
@@ -293,6 +315,12 @@ const Rent = ({ id }: { id: number }) => {
                       <TableRow>
                         <TableColumn>Next payment must be made</TableColumn>
                         <TableColumn>in {nextPaymentDate} days</TableColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableColumn>Payments to be made already</TableColumn>
+                        <TableColumn>
+                          {paymentsDue > 0 ? paymentsDue : "All paid!"}
+                        </TableColumn>
                       </TableRow>
                     </>
                   ) : (
