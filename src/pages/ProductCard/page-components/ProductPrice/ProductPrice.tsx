@@ -96,21 +96,21 @@ const ProductPrice = ({ id }: { id: number }) => {
 
   return (
     <>
-      <Price>
-        Price
-        <PriceContainer>
-          <h3>{price}</h3> <span>($ {priceInEth})</span>
-        </PriceContainer>
-        {seller === account && id >= 0 ? (
-          <></>
-        ) : (
+      {seller === account || id <= 0 ? (
+        <></>
+      ) : (
+        <Price>
+          Price
+          <PriceContainer>
+            <h3>{price}</h3> <span>($ {priceInEth})</span>
+          </PriceContainer>
           <ButtonsContainer>
             <Button violet onClick={() => buyToken(id)}>
               Buy now
             </Button>
           </ButtonsContainer>
-        )}
-      </Price>
+        </Price>
+      )}
     </>
   );
 };
