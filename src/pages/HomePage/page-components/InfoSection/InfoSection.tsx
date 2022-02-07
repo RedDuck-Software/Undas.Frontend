@@ -37,7 +37,7 @@ const InfoSection = () => {
               <Link to="/assets">
                 <Button violet>Explore</Button>
               </Link>
-              <Link to="/">
+              <Link to="/create">
                 <Button>Create</Button>
               </Link>
             </ButtonsWrapper>
