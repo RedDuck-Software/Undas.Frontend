@@ -1,9 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import { CardItem } from "../../../../components";
-
-import { card01, card02, card03 } from "./imports";
 
 import { Button } from "../../../../globalStyles";
 
@@ -16,11 +14,12 @@ import {
 } from "./MoreFromCollection.styles";
 import Context from "../../../../utils/Context";
 import { ethers } from "ethers";
-import {
-  Marketplace__factory,
-  UndasGeneralNFT__factory,
-} from "../../../../typechain";
+import { UndasGeneralNFT__factory } from "../../../../typechain";
 import { NFT_ADDRESS } from "../../../../utils/addressHelpers";
+import { CardLink } from "../../../../components/CardList/CardList.styles";
+import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
+import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
+import getTokenURI from "../../../../utils/getTokenURI";
 
 export interface ItemsProps {
   priceInNum: number;
@@ -37,63 +36,98 @@ interface CollectionProps {
 
 const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
   const { connector } = useContext(Context);
-  const items: ItemsProps[] = [];
-  const stakings: StakingsProps[] = [];
+  const items: { URI: string; id: number }[] = [];
 
   const [Collection, setCollection] = useState(true);
-  const [list, setList] = useState<ItemsProps[]>();
-  const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
-  const [tokenURI, setTokenURI] = useState("");
+  const [list, setList] = useState<{ URI: string; id: number }[]>();
+  const [itemsToShow, setItemsToShow] = useState(3);
 
-  const getTokenURI = async () => {
+  const getItems = async () => {
     if (!connector) {
       return;
     }
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+
+    const listingsLastIndex = await getListingsLastIndex(connector);
+    const stakingsLastIndex = await getStakingsLastIndex(connector);
+    if (!listingsLastIndex || !stakingsLastIndex) return;
+    const lastIndex = Math.max(
+      listingsLastIndex?.toNumber(),
+      stakingsLastIndex?.toNumber()
     );
 
-    const signer = provider.getSigner(0);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-    const tx = await NFTContract.tokenURI(0x0a9e);
-    setTokenURI(tx);
+    for (let i = 0; i < lastIndex; i++) {
+      let data = await getTokenURI(i, connector);
+      if (!data || i === id) {
+        continue;
+      }
+      items.push({ URI: data, id: i });
+    }
+    return items;
   };
+  async function getItemsData() {
+    const response = await getItems();
+    setList(response);
+  }
 
-  console.log(tokenURI);
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+    getItemsData();
+  }, [connector]);
 
   const toogleCollection = () => {
     setCollection(!Collection);
+    console.log(itemsToShow);
   };
 
   return (
-    <MoreFromCollectionContainer>
-      {Collection ? (
-        <>
-          <MoreFromCollectionTop onClick={toogleCollection}>
-            More from this collection <IoIosArrowUp />
-          </MoreFromCollectionTop>
-          <MoreFromCollectionContent>
-            <CardsContainer>
-              <CardItem image={card01} />
-              <CardItem image={card02} />
-              <CardItem image={card03} />
-            </CardsContainer>
-            <ButtonContainer>
-              <Button violet big>
-                View Collection
-              </Button>
-            </ButtonContainer>
-          </MoreFromCollectionContent>
-        </>
-      ) : (
-        <>
+    <>
+      <MoreFromCollectionContainer>
+        {Collection && list ? (
+          <>
+            <MoreFromCollectionTop onClick={toogleCollection}>
+              More from this collection <IoIosArrowUp />
+            </MoreFromCollectionTop>
+            <MoreFromCollectionContent>
+              <CardsContainer>
+                {list?.slice(0, itemsToShow).map((item) => {
+                  return (
+                    <CardLink key={item.id} to={"/product/" + item.id}>
+                      <CardItem
+                        key={item.id}
+                        image={item.URI}
+                        id={item.id}
+                        price={1}
+                      />
+                    </CardLink>
+                  );
+                })}
+              </CardsContainer>
+              <ButtonContainer>
+                {itemsToShow < list?.length ? (
+                  <Button
+                    violet
+                    big
+                    onClick={() => setItemsToShow(itemsToShow + 3)}
+                  >
+                    Show More
+                  </Button>
+                ) : (
+                  <Button violet big onClick={() => setItemsToShow(3)}>
+                    Hide
+                  </Button>
+                )}
+              </ButtonContainer>
+            </MoreFromCollectionContent>
+          </>
+        ) : (
           <MoreFromCollectionTop closed onClick={toogleCollection}>
             More from this collection <IoIosArrowDown />
           </MoreFromCollectionTop>
-        </>
-      )}
-    </MoreFromCollectionContainer>
+        )}
+      </MoreFromCollectionContainer>
+    </>
   );
 };
 

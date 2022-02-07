@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import violetLine from '../../../../icons/violet-line.svg'
+import styled from "styled-components";
+import violetLine from "../../../../icons/violet-line.svg";
 
 export const RentNFTSec = styled.div`
   padding: 4rem 0 8rem;
@@ -7,7 +7,7 @@ export const RentNFTSec = styled.div`
   @media (max-width: 801px) {
     padding: 0;
   }
-`
+`;
 
 export const RentNFTTitle = styled.h2`
   font-size: 2.8rem;
@@ -16,7 +16,7 @@ export const RentNFTTitle = styled.h2`
   margin-left: 0.5rem;
 
   &:before {
-    content: url('${violetLine}');
+    content: url("${violetLine}");
     position: relative;
     right: 8px;
     top: 3px;
@@ -48,7 +48,7 @@ export const RentNFTTitle = styled.h2`
   @media (max-width: 369px) {
     font-size: 1.15rem;
   }
-`
+`;
 
 export const RentNFTWrapper = styled.div`
   padding: 3.75rem 0;
@@ -56,7 +56,7 @@ export const RentNFTWrapper = styled.div`
   @media (max-width: 801px) {
     padding: 2rem 0;
   }
-`
+`;
 
 export const RentNFTItem = styled.div`
   display: flex;
@@ -75,20 +75,20 @@ export const RentNFTItem = styled.div`
   @media (max-width: 574px) {
     max-width: 275px;
   }
-`
+`;
 
 export const Image = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-`
+`;
 
 export const BlackLayer = styled.div`
   &::after {
     position: absolute;
     bottom: -1px;
     left: 0;
-    content: '';
+    content: "";
     background: black;
     opacity: 0.5;
     width: 100%;
@@ -96,7 +96,8 @@ export const BlackLayer = styled.div`
     position: absolute;
     z-index: 1;
     border-radius: 0px 0px 10px 10px;
-`
+  }
+`;
 
 export const RentNFTItemText = styled.span`
   color: #fff;
@@ -113,7 +114,7 @@ export const RentNFTItemText = styled.span`
     margin-bottom: 10%;
     font-size: 0.85rem;
   }
-`
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -124,4 +125,4 @@ export const ButtonWrapper = styled.div`
     margin-top: 0rem;
     margin-bottom: 2rem;
   }
-`
+`;
