@@ -52,8 +52,8 @@ export const MoreFromCollectionContent = styled.div`
 
 export const CardsContainer = styled.div`
   display: grid;
+  grid-auto-rows: auto;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 3%;
   margin: 0 1.5rem;
   padding-top: 1.5rem;
