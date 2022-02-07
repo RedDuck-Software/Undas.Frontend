@@ -12,7 +12,6 @@ import {
   HomePage,
   LoginPage,
   ProductCard,
-  ProductForSale,
   AccountPage,
   AllNFTs,
   NewNFTs,
@@ -20,6 +19,7 @@ import {
   StakingPage,
   ExplorePage,
   RentNFTPage,
+  Create,
 } from './pages';
 
 import { useWeb3React } from '@web3-react/core';
@@ -50,12 +50,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product/:id" element={<ProductCard />} />
-          <Route path="/product/for-sale/:id" element={<ProductForSale />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/assets" element={<AllNFTs />} />
           <Route path="/assets/new" element={<NewNFTs />} />
           <Route path="/listing" element={<Listing />} />
           <Route path="/staking" element={<StakingPage />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
           <Route
             path="/explore/sport"
