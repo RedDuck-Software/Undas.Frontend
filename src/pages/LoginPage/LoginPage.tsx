@@ -28,7 +28,6 @@ import {
   resetWalletConnect,
 } from '../../components/Wallets/Connectors';
 import { useDispatch } from 'react-redux';
-import { setWalletState } from '../../utils/ReduxSlices/walletSlice';
 import Cookies from 'universal-cookie';
 
 const cookieOptions = {
@@ -41,7 +40,6 @@ const cookieOptions = {
 const LoginPage = () => {
   const value = useContext(Context);
 
-  const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(false);
   let web3Current = useWeb3React();
   let cookies = new Cookies();
@@ -66,14 +64,7 @@ const LoginPage = () => {
   }
 
   if (web3Current.account) {
-    let { account, active, chainId, connector } = web3Current;
-    dispatch(
-      setWalletState({
-        account,
-        active,
-        chainId,
-      })
-    );
+    let { connector } = web3Current;
 
     if (connector) {
       console.log(connector.getProvider());
