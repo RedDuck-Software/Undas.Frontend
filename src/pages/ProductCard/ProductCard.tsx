@@ -148,7 +148,7 @@ const ProductCard = () => {
       connector
     );
 
-    setStakingId(stakingId!.toNumber());
+    setStakingId(stakingId!.value.toNumber());
 
     await getShowStaking();
     await getShowRent();
@@ -166,7 +166,7 @@ const ProductCard = () => {
       connector
     );
 
-    setListingId(listingId!.toNumber());
+    setListingId(listingId!.value.toNumber());
     await getShowBuy();
     setLoading(false);
   }
@@ -204,11 +204,7 @@ const ProductCard = () => {
           </ProductContainer>
           <ProductContainerCenter>
             <ItemActivity />
-            {listingId >= 0 ? (
-              <MoreFromCollection id={listingId} />
-            ) : (
-              <MoreFromCollection id={stakingId} />
-            )}
+            <MoreFromCollection id={+pageId!} />
           </ProductContainerCenter>
         </ProductCardSec>
       )}
