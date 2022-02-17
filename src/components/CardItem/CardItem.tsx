@@ -11,19 +11,19 @@ import {
 
 interface CardItemProps {
   image?: string;
-  id?: number;
+  name?: string;
   price?: number;
 }
 
-const CardItem: React.FC<CardItemProps> = ({ image, id, price }) => {
+const CardItem: React.FC<CardItemProps> = ({ image, name, price }) => {
   return (
     <CardItemContainer>
       <CardItemImage src={image} />
       <TransparentLayer />
       <InfoContainer>
-        <CardNumber>Returne #{id}</CardNumber>
+        <CardNumber>{name}</CardNumber>
         <CardETH>
-          Last <CardPrice>{price}</CardPrice>
+          <CardPrice>{price}</CardPrice>
         </CardETH>
       </InfoContainer>
     </CardItemContainer>

@@ -39,15 +39,10 @@ const RentNFT = () => {
       return;
     }
 
-    const listingsLastIndex = await getListingsLastIndex(connector);
-    const stakingsLastIndex = await getStakingsLastIndex(connector);
-    if (!listingsLastIndex || !stakingsLastIndex) return;
-    const lastIndex = Math.max(
-      listingsLastIndex?.toNumber(),
-      stakingsLastIndex?.toNumber()
-    );
+    const lastIndex = await getStakingsLastIndex(connector);
+    if (!lastIndex) return;
 
-    for (let i = 0; i < lastIndex; i++) {
+    for (let i = 0; i < +lastIndex; i++) {
       let data = await getTokenURI(i, connector);
       if (!data) {
         continue;

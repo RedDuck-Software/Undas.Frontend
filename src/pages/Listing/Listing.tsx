@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
 
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 import {
   UndasGeneralNFT__factory,
@@ -50,7 +50,10 @@ const Listing = () => {
     console.log(signer);
     console.log(tokenId, NFTAddress, price);
 
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(
+      "0xB073DeaC0dc753d27cC41a0f443000579d017361",
+      signer
+    );
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,

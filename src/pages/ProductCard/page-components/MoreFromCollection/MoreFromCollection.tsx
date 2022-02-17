@@ -97,7 +97,7 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
                       <CardItem
                         key={item.id}
                         image={item.URI}
-                        id={item.id}
+                        name={item.id.toString()}
                         price={1}
                       />
                     </CardLink>

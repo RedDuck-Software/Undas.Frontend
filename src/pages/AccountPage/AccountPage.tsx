@@ -1,21 +1,21 @@
-import { MdOutlineApps, MdOutlineGridView } from 'react-icons/md';
-import { RiPaintBrushFill } from 'react-icons/ri';
+import { MdOutlineApps, MdOutlineGridView } from "react-icons/md";
+import { RiPaintBrushFill } from "react-icons/ri";
 import {
   BsHeart,
   BsEyeSlash,
   BsClockHistory,
   BsFillTagFill,
-} from 'react-icons/bs';
-import { IoIosArrowDown } from 'react-icons/io';
+} from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 
-import { CardItem } from '../../components';
+import { CardItem } from "../../components";
 
-import { card01, card02, card03, card04 } from './imports';
+import { card01, card02, card03, card04 } from "./imports";
 
-import GreyBackground from '../../images/image-account/account01.png';
-import ProfileImage from '../../images/image-account/profile-image.png';
+import GreyBackground from "../../images/image-account/account01.png";
+import ProfileImage from "../../images/image-account/profile-image.png";
 
-import { Container, Background, Button } from '../../globalStyles';
+import { Container, Background, Button } from "../../globalStyles";
 
 import {
   AccoutBackground,
@@ -38,27 +38,63 @@ import {
   ButtonView2x2,
   ButtonView3x3,
   AccountCardsWrapper,
-} from './AccountPage.styles';
-import { useWeb3React } from '@web3-react/core';
-import Cookies from 'universal-cookie';
+} from "./AccountPage.styles";
+import { useWeb3React } from "@web3-react/core";
+import Cookies from "universal-cookie";
+import { useContext, useEffect, useState } from "react";
+import Context from "../../utils/Context";
+import { operations } from "moralis/types/generated/web3Api";
+import { CardLink } from "../../components/CardList/CardList.styles";
+import { useMoralis } from "react-moralis";
+import { Navigate } from "react-router-dom";
 
 const AccountPage = () => {
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
 
-  cookies.set('account', account, {
-    path: '/',
+  const { connector } = useContext(Context);
+  const { Moralis } = useMoralis();
+
+  const [NFTList, setNFTList] =
+    useState<
+      operations["getNFTs"]["responses"]["200"]["content"]["application/json"]
+    >();
+
+  cookies.set("account", account, {
+    path: "/",
     maxAge: 3600,
-    sameSite: 'lax',
+    sameSite: "lax",
     // secure: true,
   });
 
-  console.log(`your account on account page is ${account}`);
+  const getNFTList = async () => {
+    if (!connector || !account) return;
+    const listOfNFTS = await Moralis.Web3API.account.getNFTs({
+      chain: "goerli",
+      address: account,
+    });
+    return listOfNFTS;
+  };
+
+  const getListData = async () => {
+    const response = await getNFTList();
+    console.log(response);
+    setNFTList(response);
+  };
+
+  useEffect(() => {
+    if (!connector || !account) {
+      return console.log("loading");
+    }
+    getListData();
+  }, [connector, account]);
+
+  if (!account) {
+    return <Navigate to={"/login"} replace={true} />;
+  }
 
   function disconnect() {
-    cookies.set('account', '');
-    cookies.set('active', '');
-    cookies.set('customConnector', '');
+    localStorage.removeItem("connector");
     deactivate();
   }
   return (
@@ -117,14 +153,20 @@ const AccountPage = () => {
               </ButtonsWrapper> */}
             </AccountPageContentHeader>
             <AccountCardsWrapper>
-              <CardItem image={card01} />
-              <CardItem image={card02} />
-              <CardItem image={card03} />
-              <CardItem image={card04} />
-              <CardItem image={card01} />
-              <CardItem image={card02} />
-              <CardItem image={card03} />
-              <CardItem image={card04} />
+              {NFTList?.result?.map((item) => {
+                return (
+                  <CardLink
+                    key={item.token_id}
+                    to={"/productforsale/" + item.token_id}
+                  >
+                    <CardItem
+                      image={item.token_uri}
+                      name={item.token_id}
+                      price={1}
+                    />
+                  </CardLink>
+                );
+              })}
             </AccountCardsWrapper>
           </AccountPageContent>
         </Container>

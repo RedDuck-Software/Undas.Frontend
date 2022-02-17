@@ -100,7 +100,7 @@ const ProductCard = () => {
 
     if (!ProductValue) return;
 
-    const { seller } = ProductValue;
+    const { seller } = ProductValue.tx;
 
     if (
       address === owner &&
