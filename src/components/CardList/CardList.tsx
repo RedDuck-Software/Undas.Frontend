@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Context from "../../utils/Context";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
@@ -34,27 +34,35 @@ import {
   CardsWrapper,
   CardLink,
 } from "./CardList.styles";
+import { UndasGeneralNFT__factory } from "../../typechain";
+import { NFT_ADDRESS } from "../../utils/addressHelpers";
+import { string } from "yup";
+import { ListingStructOutput } from "../../typechain/Marketplace";
 
 interface CardListProps {
   newFilter?: boolean;
+  priceFilter?: { min: number; max: number };
 }
 
 export interface ItemsProps {
   priceInNum: number;
   id: number;
+  name?: string;
+  URI?: string;
 }
 export interface StakingsProps {
   premiumInNum: number;
   id: number;
 }
 
-const CardList: React.FC<CardListProps> = ({ newFilter }) => {
+const CardList: React.FC<CardListProps> = ({ newFilter, priceFilter }) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>();
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
+  const [filteredList, setFilteredList] = useState<ItemsProps[]>();
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,27 +81,30 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     }
 
     const lastIndex = await getListingsLastIndex(connector);
-    if (!lastIndex) return;
+    if (lastIndex || lastIndex === 0) {
+      for (let i = 0; i < lastIndex?.toNumber(); i++) {
+        // const metadata = await NFTContract.tokenMetadata(i);
+        const CardProps = await getListing(i, connector);
+        const isBuyable = await isBuyableFunction(i, connector);
 
-    for (let i = 0; i < lastIndex?.toNumber(); i++) {
-      const CardProps = await getListing(i, connector);
-      const isBuyable = await isBuyableFunction(i, connector);
+        if (!CardProps) {
+          continue;
+        }
 
-      if (!CardProps) {
-        continue;
+        const { price, tokenId } = CardProps.tx;
+        const { name, URI } = CardProps;
+
+        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+        const id = tokenId.toNumber();
+
+        if (isBuyable) {
+          items.push({ priceInNum, id, name, URI });
+          setAmountOfNFTs(amountOfNFTs + 1);
+        }
       }
 
-      const { price, tokenId } = CardProps;
-      const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-      const id = tokenId.toNumber();
-
-      if (isBuyable) {
-        items.push({ priceInNum, id });
-        setAmountOfNFTs(amountOfNFTs + 1);
-      }
-    }
-
-    return items;
+      return items;
+    } else return;
   };
 
   const getStakings = async () => {
@@ -151,6 +162,16 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
     getStakingsData();
   }, [connector]);
 
+  useEffect(() => {
+    setFilteredList(
+      list?.filter(
+        (item) =>
+          item.priceInNum >= priceFilter!.min &&
+          item.priceInNum <= priceFilter!.max
+      )
+    );
+  }, [priceFilter?.min, priceFilter?.max, priceFilter, list]);
+
   return (
     <CardListWrapper>
       {loading ? (
@@ -174,28 +195,20 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                 <AllItemsOption value="NFT to buy">NFT to buy</AllItemsOption>
                 <AllItemsOption value="NFT to rent">NFT to rent</AllItemsOption>
               </AllItemsMenu>
-              <ToggleMarkupContainer>
-                <ButtonView2x2>
-                  <MdOutlineGridView />
-                </ButtonView2x2>
-                <ButtonView3x3>
-                  <MdOutlineApps />
-                </ButtonView3x3>
-              </ToggleMarkupContainer>
             </CardListFilters>
           </CardListHeading>
           {newFilter ? <FilterButtons /> : <></>}
           <CardsWrapper>
             {amountOfNFTs ? (
               showList === "NFT to buy" ? (
-                list?.map((item) => {
+                filteredList?.map((item) => {
                   return (
                     <CardLink key={item.id} to={"/product/" + item.id}>
                       <CardItem
                         key={item.id}
-                        image={card01}
+                        image={item.URI}
                         price={item.priceInNum}
-                        id={item.id}
+                        name={item.name}
                       />
                     </CardLink>
                   );
@@ -208,7 +221,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter }) => {
                         key={item.id}
                         image={card01}
                         price={item.premiumInNum}
-                        id={item.id}
+                        name={item.id.toString()}
                       />
                     </CardLink>
                   );

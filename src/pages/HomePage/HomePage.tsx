@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import { Background } from '../../globalStyles'
+import { Background } from "../../globalStyles";
 
 import {
   InfoSection,
@@ -8,20 +8,20 @@ import {
   TopCollections,
   TopBuyers,
   RentNFT,
-} from './page-components'
+} from "./page-components";
 
 const HomePage = () => {
   return (
     <>
       <Background>
         <InfoSection />
+        <RentNFT />
         <BrowseCategory />
         <TopCollections />
         <TopBuyers />
-        <RentNFT />
       </Background>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

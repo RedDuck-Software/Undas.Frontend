@@ -94,9 +94,11 @@ const ProductPrice = ({ id }: { id: number }) => {
     getProductPrice();
   }, [connector, web3React]);
 
+  console.log(id);
+
   return (
     <>
-      {seller === account || id <= 0 ? (
+      {seller === account || id < 0 ? (
         <></>
       ) : (
         <Price>

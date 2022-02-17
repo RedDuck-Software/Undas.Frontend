@@ -60,7 +60,10 @@ const Create = () => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    const NFTContract = UndasGeneralNFT__factory.connect(
+      "0xB073DeaC0dc753d27cC41a0f443000579d017361",
+      signer
+    );
 
     NFTContract.safeMintGeneral(account, description, name, contentURL);
   };
