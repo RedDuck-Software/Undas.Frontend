@@ -34,6 +34,7 @@ import {
 } from "./Rent.styles";
 import { useWeb3React } from "@web3-react/core";
 import { isReturnStatement } from "@babel/types";
+import getTokenURI from "../../../../utils/getTokenURI";
 
 const Rent = ({ id }: { id: number }) => {
   const { connector } = useContext(Context);
@@ -52,7 +53,6 @@ const Rent = ({ id }: { id: number }) => {
   const [paymentsDue, setPaymentsDue] = useState(0x00);
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
-  const [maker, setMaker] = useState("");
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;

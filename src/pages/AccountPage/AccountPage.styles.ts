@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ReactComponent as Search } from '../../icons/search.svg';
+import { ReactComponent as Search } from "../../icons/search.svg";
 
 export const AccoutBackground = styled.img`
   max-height: 150px;
@@ -21,8 +21,8 @@ export const AccountInformation = styled.div`
   align-items: center;
   gap: 0.5rem;
 
-  margin-top: -3rem;
-  padding-bottom: 3.125rem;
+  margin-top: 1.25rem;
+  padding-bottom: -5rem;
 
   @media (max-width: 749px) {
     padding-bottom: 2.5rem;
@@ -94,7 +94,7 @@ export const AccountMenuItem = styled.li`
     &::after {
       transition: background-color 0.4s ease 0s;
       background-color: #5d3f92;
-      content: '';
+      content: "";
       display: block;
       height: 4px;
       bottom: -48%;

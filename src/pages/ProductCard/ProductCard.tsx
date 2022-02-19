@@ -35,6 +35,7 @@ import { UndasGeneralNFT__factory } from "../../typechain";
 import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
 import { getListing } from "../../utils/getListing";
 import { getNFTListingIds } from "../../utils/getNFTListingIds";
+import getTokenURI from "../../utils/getTokenURI";
 
 const ProductCard = () => {
   const { connector } = useContext(Context);
@@ -43,7 +44,7 @@ const ProductCard = () => {
 
   const [stakingId, setStakingId] = useState(0);
   const [listingId, setListingId] = useState(0);
-
+  const [tokenURI, setTokenURI] = useState<string>();
   const [loading, setLoading] = useState(true);
   const [showPriceHistory] = useState(false);
   const [showStaking, setShowStaking] = useState(false);
@@ -171,8 +172,15 @@ const ProductCard = () => {
     setLoading(false);
   }
 
+  const fetchTokenURI = async () => {
+    if (!connector) return;
+    let uri = await getTokenURI(+pageId!, connector);
+    setTokenURI(uri);
+  };
+
   useEffect(() => {
     if (connector) {
+      fetchTokenURI();
       getStakingId();
       getListingId();
     }
@@ -192,7 +200,7 @@ const ProductCard = () => {
           <ProductContainer>
             <LeftSide>
               <CardImageContainer>
-                <CardImage src={Image} />
+                <CardImage src={tokenURI} />
               </CardImageContainer>
             </LeftSide>
             <RightSide>

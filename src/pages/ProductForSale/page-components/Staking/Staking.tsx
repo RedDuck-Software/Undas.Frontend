@@ -34,11 +34,12 @@ import {
   Marketplace__factory,
 } from "../../../../typechain";
 import intervalIntoTimeStamp from "../../../../utils/intervalIntoTimeStamp";
+import { getNFTStakingIds } from "../../../../utils/getNFTStakingIds";
 
 const Staking = ({ itemId }: { itemId: string }) => {
   const [stakingOpen, setStakingOpen] = useState(false);
-  const [isPuttedForStaking, setIsPuttedForStaking] = useState(false);
-
+  const [isPuttedForStaking, setIsPuttedForStaking] = useState<boolean>();
+  const [stakingId, setStakingId] = useState<number>();
   const { connector } = useContext(Context);
   const [price, setPrice] = useState("280");
   const [deadline, setDeadline] = useState("7");
@@ -80,8 +81,44 @@ const Staking = ({ itemId }: { itemId: string }) => {
       { value: ethers.utils.parseEther("0.1") }
     );
     await tx.wait();
-    setIsPuttedForStaking(!isPuttedForStaking);
   };
+
+  const stopStaking = async () => {
+    if (!connector || !stakingOpen) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider()
+    );
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer
+    );
+
+    const tx = await MarketplaceContract.stopStaking(stakingId!);
+
+    await tx.wait().then((error) => {
+      setIsPuttedForStaking(false);
+      console.log(error);
+    });
+  };
+
+  const getIsPuttedForStaking = async () => {
+    if (!connector) return;
+    const staking = await getNFTStakingIds(NFT_ADDRESS, +itemId, connector);
+    console.log(staking!.valueExists);
+    if (staking!.valueExists) {
+      setStakingId(+staking!.value);
+      setIsPuttedForStaking(true);
+    } else setIsPuttedForStaking(false);
+  };
+
+  useEffect(() => {
+    if (!connector) return;
+
+    getIsPuttedForStaking();
+  });
 
   const toogleStakingOpen = () => {
     setStakingOpen(!stakingOpen);
@@ -137,7 +174,7 @@ const Staking = ({ itemId }: { itemId: string }) => {
             {isPuttedForStaking ? (
               <CongratulationContainer>
                 <span>Congratulations! You have put your NFT for staking.</span>
-                <Button violet onClick={quoteForStaking}>
+                <Button violet onClick={stopStaking}>
                   Cancel
                 </Button>
               </CongratulationContainer>

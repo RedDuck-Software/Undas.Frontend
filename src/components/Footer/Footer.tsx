@@ -46,29 +46,6 @@ const Footer = () => {
             <FooterIcon src={Instagram} />
           </FooterIconsWrapper>
         </TopLeftWrapper>
-        <TopRightWrapper>
-          <LeftSide>
-            <PhoneImage src={Phone}></PhoneImage>
-          </LeftSide>
-          <RightSide>
-            <FooterText>
-              Download the Only1.art app to explore any NFTs
-            </FooterText>
-            <FooterIcon />
-          </RightSide>
-        </TopRightWrapper>
-        <BottomLeftWrapper>
-          <FooterText>Get the latest Only1.art updates</FooterText>
-          <CustomSearch>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="You're e-mail"
-            />
-            <ButtonSubmit>I’m in</ButtonSubmit>
-          </CustomSearch>
-        </BottomLeftWrapper>
         <BottomRightWrapper>
           <TopicColumn>
             <TopicTitle>Explore</TopicTitle>
