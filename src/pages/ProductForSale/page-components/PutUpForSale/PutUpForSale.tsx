@@ -50,8 +50,6 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
   const [isMenuShown, setMenuShown] = useState(false);
   const [isButtonsActive, setIsButtonsActive] = useState("disabled");
   const [isBuyable, setIsBuyable] = useState<boolean | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
-  const [stakingId, setStakingId] = useState<number>();
   const [listingId, setListingId] = useState<number>();
 
   const bid = async () => {
@@ -64,14 +62,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    console.log(connector);
-    console.log(signer);
-    console.log(itemId, "0xB073DeaC0dc753d27cC41a0f443000579d017361", price);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(
-      "0xB073DeaC0dc753d27cC41a0f443000579d017361",
-      signer
-    );
+    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -91,7 +82,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
 
     const tx = await MarketplaceContract.bid(
       NFT_ADDRESS,
-      itemId,
+      +itemId,
       ethers.utils.parseEther(price),
       {
         value: ethers.utils.parseEther("0.1"),
@@ -101,6 +92,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
 
     await tx.wait().then(
       () => {
+        setIsBuyable(true);
         toogleMenu();
         toogleDropdown();
       },
@@ -111,7 +103,7 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
   };
 
   const Cancel = async () => {
-    if (!connector) return;
+    if (!connector || !listingId) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider()
@@ -124,9 +116,10 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
       signer
     );
 
-    const tx = await MarketplaceContract.cancel(itemId);
+    const tx = await MarketplaceContract.cancel(listingId);
 
     await tx.wait().then((error) => {
+      setIsBuyable(false);
       console.log(error);
     });
   };
@@ -158,65 +151,84 @@ const PutUpForSale = ({ itemId }: { itemId: string }) => {
     }
   };
 
+  const setBuyable = async () => {
+    if (!connector) return;
+    const listingId = await getNFTListingIds(NFT_ADDRESS, +itemId, connector);
+    setListingId(+listingId!.value);
+    if (listingId!.valueExists) {
+      const buyable = await isBuyableFunction(+listingId!.value, connector);
+      setIsBuyable(buyable);
+    } else setIsBuyable(false);
+  };
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    setBuyable();
+  }, [connector]);
+
   return (
     <ForSaleWrapper>
-      {/* <ForSaleButton violet onClick={Cancel}>
-        Cancel
-      </ForSaleButton> */}
-      <ForSaleButton violet onClick={toogleDropdown}>
-        Sell
-      </ForSaleButton>
-      {isDropdownOpen ? (
-        <ForSaleDropdown>
-          <DropdownLine>
-            <DropdownPrice>Price</DropdownPrice>
-            <DropdownInput
-              type="number"
-              placeholder={price.toString()}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </DropdownLine>
-          <DropdownLine>
-            <DropdownButton
-              onClick={() => {
-                toogleMenu();
-                // calculateCommission();
-              }}
-            >
-              Sell
-            </DropdownButton>
-          </DropdownLine>
-        </ForSaleDropdown>
+      {isBuyable ? (
+        <ForSaleButton violet onClick={Cancel}>
+          Cancel
+        </ForSaleButton>
       ) : (
-        <></>
-      )}
-      {isMenuShown ? (
-        <ForSaleMenu>
-          <MenuTop>
-            <ItemImage src={Image} />
-            <AuctionDescription>
-              <MenuLine>
-                Price <MenuPrice>{price}</MenuPrice>
-              </MenuLine>
-              {/* <MenuLine>
-                <span>Marketplace commission</span>{' '}
-                <MenuPrice>{commision}</MenuPrice>
-              </MenuLine> */}
-            </AuctionDescription>
-          </MenuTop>
-          <MenuAgreementLine>
-            <MenuInput type="checkbox" onClick={toogleButtons} />I agree to the
-            platform <AgreementLink>agreement</AgreementLink> ....
-          </MenuAgreementLine>
-          <MenuButtonsWrapper>
-            <Button onClick={cancelMenuShow}>Cancel</Button>
-            <Button className={isButtonsActive} onClick={bid} violet>
-              Confirm
-            </Button>
-          </MenuButtonsWrapper>
-        </ForSaleMenu>
-      ) : (
-        <></>
+        <>
+          <ForSaleButton violet onClick={toogleDropdown}>
+            Sell
+          </ForSaleButton>
+          {isDropdownOpen ? (
+            <ForSaleDropdown>
+              <DropdownLine>
+                <DropdownPrice>Price</DropdownPrice>
+                <DropdownInput
+                  type="number"
+                  placeholder={price.toString()}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </DropdownLine>
+              <DropdownLine>
+                <DropdownButton
+                  onClick={() => {
+                    toogleMenu();
+                    // calculateCommission();
+                  }}
+                >
+                  Sell
+                </DropdownButton>
+              </DropdownLine>
+            </ForSaleDropdown>
+          ) : (
+            <></>
+          )}
+          {isMenuShown ? (
+            <ForSaleMenu>
+              <MenuTop>
+                <ItemImage src={Image} />
+                <AuctionDescription>
+                  <MenuLine>
+                    Price <MenuPrice>{price}</MenuPrice>
+                  </MenuLine>
+                </AuctionDescription>
+              </MenuTop>
+              <MenuAgreementLine>
+                <MenuInput type="checkbox" onClick={toogleButtons} />I agree to
+                the platform <AgreementLink>agreement</AgreementLink> ....
+              </MenuAgreementLine>
+              <MenuButtonsWrapper>
+                <Button onClick={cancelMenuShow}>Cancel</Button>
+                <Button className={isButtonsActive} onClick={bid} violet>
+                  Confirm
+                </Button>
+              </MenuButtonsWrapper>
+            </ForSaleMenu>
+          ) : (
+            <></>
+          )}
+        </>
       )}
     </ForSaleWrapper>
   );

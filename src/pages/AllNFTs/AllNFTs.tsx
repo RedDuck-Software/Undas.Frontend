@@ -100,7 +100,7 @@ const AllNFTs = () => {
                     value={selectedPriceFilterMin}
                     onChange={(e) => setSelectedPriceFilterMin(e.target.value)}
                   />
-                  <span>to</span>
+                  <span>-</span>
                   <PriceInput
                     type="text"
                     id="max"
@@ -110,7 +110,6 @@ const AllNFTs = () => {
                     onChange={(e) => setSelectedPriceFilterMax(e.target.value)}
                   />
                 </ButtonsWrapper>
-                <ApplyLink>Apply</ApplyLink>
               </SideBarPriceContent>
             </>
           ) : (

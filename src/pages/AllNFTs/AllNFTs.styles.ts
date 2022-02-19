@@ -149,7 +149,6 @@ export const StatusButton = styled.button`
 `;
 
 export const SideBarPriceTop = styled(SideBarFilter)<SideBarProps>`
-  border-top: none;
   ${({ opened }) => (opened ? `border-bottom: none;` : ``)}
   border-radius: 0;
 

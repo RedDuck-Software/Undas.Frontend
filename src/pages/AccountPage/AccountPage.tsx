@@ -103,8 +103,6 @@ const AccountPage = () => {
       <AccountSec>
         <Container>
           <AccountInformation>
-            <AccountImage src={ProfileImage} />
-            <AccountName>Unnamed</AccountName>
             <AccountAddress
               onClick={() => {
                 navigator.clipboard.writeText(account as string);
@@ -112,31 +110,12 @@ const AccountPage = () => {
             >
               {account}
             </AccountAddress>
-            <AccountJoined>Joined September 2019</AccountJoined>
             <Button onClick={() => disconnect()}>Sign out</Button>
           </AccountInformation>
         </Container>
-        <AccountMenu>
-          <Container>
-            <AccountMenuWrapper>
-              <AccountMenuItem>
-                <MdOutlineApps />
-                Collected 0
-              </AccountMenuItem>
-              <AccountMenuItem>
-                <RiPaintBrushFill />
-                <span>Created</span> 0
-              </AccountMenuItem>
-            </AccountMenuWrapper>
-          </Container>
-        </AccountMenu>
         <Container>
           <AccountPageContent>
             <AccountPageContentHeader>
-              <AccountSearchWrapper>
-                <SearchIcon />
-                <SearchInput type="text" placeholder="Search" />
-              </AccountSearchWrapper>
               {/* <AccountDropdown>
                 Single items <IoIosArrowDown />
               </AccountDropdown>
