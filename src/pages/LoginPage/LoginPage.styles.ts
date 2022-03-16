@@ -48,27 +48,28 @@ export const LoginText = styled.p`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const LoginButton = styled.button`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  height: 5rem;
-  width: 45.5rem;
+  //gap: 0.8rem;
+  padding: 20px 0 20px 20px;
+  height: 10rem;
+  width: 24%;
   background: #ffffff;
-  border: 1px solid rgba(93, 63, 146, 0.5);
-  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
+  border-radius: 20px;
   margin-bottom: 1.25rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #5d3f92;
-    box-shadow: 4px 4px 15px rgba(93, 63, 146, 0.2);
+    background: #FBF5FF;
+    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   }
   &:disabled {
     opacity: 0.65;
@@ -99,5 +100,24 @@ export const ButtonText = styled.span`
 
   @media (max-width: 801px) {
     font-size: 1rem;
+  }
+`;
+
+export const ShowMore = styled.button`
+  width: 100%;
+  padding: 7px 0;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #873DC1;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #f7ecff;
+    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.4);
   }
 `;
