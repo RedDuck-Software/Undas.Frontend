@@ -4,7 +4,7 @@ import Context from "../../utils/Context";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 
 import { Navigate } from "react-router-dom";
-import { Container, Background } from "../../globalStyles";
+import { Container } from "../../globalStyles";
 import {
   LoginSec,
   TextWrapper,
@@ -14,6 +14,8 @@ import {
   ButtonWrapper,
   LoginButton,
   ButtonIcon,
+  ButtonToggle,
+  Circle,
   ButtonText,
   ShowMore
 } from "./LoginPage.styles";
@@ -121,11 +123,10 @@ const LoginPage = () => {
             <TextWrapper>
               <LoginTitle>
                 You need an Ethereum wallet to use Undas
-                {/*<VioletText>OpenSea.</VioletText>*/}
               </LoginTitle>
               <LoginText>
                 Connect with one of our available{" "}
-                <VioletText>wallet info</VioletText> providers or create a new
+                <VioletText>wallet</VioletText> providers or create a new
                 one.{" "}
               </LoginText>
             </TextWrapper>
@@ -134,8 +135,11 @@ const LoginPage = () => {
                 return (
                   idx < length && (
                       <LoginButton onClick={wallet.handleClick} disabled={wallet.disabled}>
-                          <ButtonIcon src={wallet.icon} />
-                          <ButtonText>{wallet.text}</ButtonText>
+                        <ButtonIcon src={wallet.icon} />
+                        <ButtonToggle>
+                          <Circle/>
+                        </ButtonToggle>
+                        <ButtonText>{wallet.text}</ButtonText>
                       </LoginButton>
                   )
                 )

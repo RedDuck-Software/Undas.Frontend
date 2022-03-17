@@ -53,15 +53,38 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
+
+export const ButtonToggle = styled.button `
+  cursor: pointer;
+  align-self: self-end;
+  padding: 10px;
+  border: none;
+  background-color: #DEDEDE;
+  border-radius: 18px 0 0 18px;
+  width: 116px;
+  transition: all 0.2s ease-in-out;
+`
+export const Circle = styled.div `
+  border: 1px solid transparent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+`
+
 export const LoginButton = styled.button`
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   //gap: 0.8rem;
-  padding: 20px 0 20px 20px;
+  padding: 14px 0 14px;
   height: 10rem;
   width: 24%;
-  background: #ffffff;
+  background: #fff;
   border: none;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
+  box-shadow: 0 0 5px rgba(124, 124, 124, 0.25);
   border-radius: 20px;
   margin-bottom: 1.25rem;
   transition: all 0.2s ease-in-out;
@@ -69,7 +92,13 @@ export const LoginButton = styled.button`
 
   &:hover {
     background: #FBF5FF;
-    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+    box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+    ${ButtonToggle} {
+      background-color: #DBD7DE;
+      ${Circle} {
+        background-color: #C6B1D7;
+      }
+    }
   }
   &:disabled {
     opacity: 0.65;
@@ -90,6 +119,8 @@ export const LoginButton = styled.button`
 `;
 
 export const ButtonIcon = styled.img`
+  margin-left: 20px;
+  align-self: self-start;
   @media (max-width: 801px) {
     width: 28px;
   }
@@ -97,7 +128,6 @@ export const ButtonIcon = styled.img`
 
 export const ButtonText = styled.span`
   font-size: 1.2rem;
-
   @media (max-width: 801px) {
     font-size: 1rem;
   }
@@ -118,6 +148,6 @@ export const ShowMore = styled.button`
 
   &:hover {
     background: #f7ecff;
-    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.4);
+    box-shadow: 0 0 5px rgba(135, 61, 193, 0.4);
   }
 `;
