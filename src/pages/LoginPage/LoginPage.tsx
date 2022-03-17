@@ -4,7 +4,7 @@ import Context from "../../utils/Context";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 
 import { Navigate } from "react-router-dom";
-import { Container, Background } from "../../globalStyles";
+import { Container } from "../../globalStyles";
 import {
   LoginSec,
   TextWrapper,
@@ -14,7 +14,10 @@ import {
   ButtonWrapper,
   LoginButton,
   ButtonIcon,
+  ButtonToggle,
+  Circle,
   ButtonText,
+  ShowMore
 } from "./LoginPage.styles";
 
 import { isMobile, isAndroid, osVersion } from "react-device-detect";
@@ -31,6 +34,7 @@ import {
 const LoginPage = () => {
   const value = useContext(Context);
 
+  const [length, setLength] = useState<number>(4)
   const [disabled, setDisabled] = useState(false);
   let web3Current = useWeb3React();
 
@@ -54,91 +58,100 @@ const LoginPage = () => {
     }
   }
 
+  const ethereumWallets = [
+      {
+        icon: MetaMask,
+        text: "MetaMask" + (disabled ? "..." : ""),
+        handleClick: function () {
+          localStorage.setItem("connector", "injected");
+          isMobile ? connect(walletconnect) : connect(injected);
+        },
+        disabled: disabled
+      },
+    {
+      icon: Coinbase,
+      text: isMobile
+          ? "Coinbase (desktop only)"
+          : "Coinbase" + (disabled ? "..." : ""),
+      handleClick: function () {
+        localStorage.setItem("connector", "walletconnect");
+        connect(walletconnect);
+      },
+      disabled: isMobile ? true : disabled
+    },
+    {
+      icon: WalletConnect,
+      text: "WalletConnect" + (disabled ? "..." : ""),
+      handleClick: function () {
+        localStorage.setItem("connector", "walletconnect");
+        connect(walletconnect);
+      },
+      disabled: disabled
+    },
+    {
+      icon: Fortmatic,
+      text: "Fortmatic" + (disabled ? "..." : ""),
+      handleClick: function () {
+        localStorage.setItem("connector", "fortmatic");
+        connect(fortmatic);
+      },
+      disabled: disabled
+    },
+    {
+      icon: Trust,
+      text: "Trust" + (disabled ? "..." : ""),
+      handleClick: function () {
+        isAndroid && osVersion === "11"
+            ?
+                window.open(
+                    "https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app",
+                    "_blank"
+                )
+            :
+              localStorage.setItem("connector", "walletconnect");
+              connect(walletconnect);
+
+      },
+      disabled: disabled
+    },
+  ]
+
   return (
     <>
-      <Background>
         <LoginSec>
           <Container>
             <TextWrapper>
               <LoginTitle>
-                You need an Ethereum wallet to use
-                <VioletText>OpenSea.</VioletText>
+                You need an Ethereum wallet to use Undas
               </LoginTitle>
               <LoginText>
                 Connect with one of our available{" "}
-                <VioletText>wallet info</VioletText> providers or create a new
+                <VioletText>wallet</VioletText> providers or create a new
                 one.{" "}
               </LoginText>
             </TextWrapper>
             <ButtonWrapper>
-              <LoginButton
-                onClick={() => {
-                  localStorage.setItem("connector", "injected");
-                  isMobile ? connect(walletconnect) : connect(injected);
-                }}
-                disabled={disabled}
-              >
-                <ButtonIcon src={MetaMask} />
-                <ButtonText>{"MetaMask" + (disabled ? "..." : "")}</ButtonText>
-              </LoginButton>
-              <LoginButton
-                onClick={() => {
-                  localStorage.setItem("connector", "walletlink");
-                  connect(walletlink);
-                }}
-                disabled={isMobile ? true : disabled}
-              >
-                <ButtonIcon src={Coinbase} />
-                <ButtonText>
-                  {isMobile
-                    ? "Coinbase (desktop only)"
-                    : "Coinbase" + (disabled ? "..." : "")}
-                </ButtonText>
-              </LoginButton>
-              <LoginButton
-                onClick={() => {
-                  localStorage.setItem("connector", "walletconnect");
-                  connect(walletconnect);
-                }}
-                disabled={disabled}
-              >
-                <ButtonIcon src={WalletConnect} />
-                <ButtonText>
-                  {"WalletConnect" + (disabled ? "..." : "")}
-                </ButtonText>
-              </LoginButton>
-              <LoginButton
-                onClick={() => {
-                  localStorage.setItem("connector", "fortmatic");
-                  connect(fortmatic);
-                }}
-                disabled={disabled}
-              >
-                <ButtonIcon src={Fortmatic} />
-                <ButtonText>{"Fortmatic" + (disabled ? "..." : "")}</ButtonText>
-              </LoginButton>
-              <LoginButton
-                onClick={
-                  isAndroid && osVersion === "11"
-                    ? () =>
-                        window.open(
-                          "https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app",
-                          "_blank"
-                        )
-                    : () => {
-                        localStorage.setItem("connector", "walletconnect");
-                        connect(walletconnect);
-                      }
-                }
-                disabled={disabled}
-              >
-                <ButtonIcon src={Trust} />
-                <ButtonText>{"Trust" + (disabled ? "..." : "")}</ButtonText>
-              </LoginButton>
+              {ethereumWallets.map((wallet, idx) => {
+                return (
+                  idx < length && (
+                      <LoginButton onClick={wallet.handleClick} disabled={wallet.disabled}>
+                        <ButtonIcon src={wallet.icon} />
+                        <ButtonToggle>
+                          <Circle/>
+                        </ButtonToggle>
+                        <ButtonText>{wallet.text}</ButtonText>
+                      </LoginButton>
+                  )
+                )
+              })}
             </ButtonWrapper>
+            {length !== ethereumWallets.length && (
+              <ShowMore onClick={() => {
+                setLength(ethereumWallets.length)
+              }}>Show more options</ShowMore>
+            )}
           </Container>
         </LoginSec>
-      </Background>
     </>
   );
 };

@@ -48,27 +48,57 @@ export const LoginText = styled.p`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
+
+
+export const ButtonToggle = styled.button `
+  cursor: pointer;
+  align-self: self-end;
+  padding: 10px;
+  border: none;
+  background-color: #DEDEDE;
+  border-radius: 18px 0 0 18px;
+  width: 116px;
+  transition: all 0.2s ease-in-out;
+`
+export const Circle = styled.div `
+  border: 1px solid transparent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+`
 
 export const LoginButton = styled.button`
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  height: 5rem;
-  width: 45.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(93, 63, 146, 0.5);
-  border-radius: 10px;
+  //gap: 0.8rem;
+  padding: 14px 0 14px;
+  height: 10rem;
+  width: 24%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 0 5px rgba(124, 124, 124, 0.25);
+  border-radius: 20px;
   margin-bottom: 1.25rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #5d3f92;
-    box-shadow: 4px 4px 15px rgba(93, 63, 146, 0.2);
+    background: #FBF5FF;
+    box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+    ${ButtonToggle} {
+      background-color: #DBD7DE;
+      ${Circle} {
+        background-color: #C6B1D7;
+      }
+    }
   }
   &:disabled {
     opacity: 0.65;
@@ -89,6 +119,8 @@ export const LoginButton = styled.button`
 `;
 
 export const ButtonIcon = styled.img`
+  margin-left: 20px;
+  align-self: self-start;
   @media (max-width: 801px) {
     width: 28px;
   }
@@ -96,8 +128,26 @@ export const ButtonIcon = styled.img`
 
 export const ButtonText = styled.span`
   font-size: 1.2rem;
-
   @media (max-width: 801px) {
     font-size: 1rem;
+  }
+`;
+
+export const ShowMore = styled.button`
+  width: 100%;
+  padding: 7px 0;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #873DC1;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #f7ecff;
+    box-shadow: 0 0 5px rgba(135, 61, 193, 0.4);
   }
 `;
