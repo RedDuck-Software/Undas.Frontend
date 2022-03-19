@@ -11,21 +11,24 @@ import {
     ContactImage,
     CollectionCard,
     AuthorWrap,
-    AuthorPicWrap,
+    CollectionPicWrap,
     CollectionText,
     Platform,
-    Wrapper, NFTCards,
-} from './Collection.styles'
+    Wrapper, NFTCards, CollectionBackground,
+} from './Collections.styles'
 //Assets
 import {
     CollectionBanner,
     Email,
     Telegram,
-    Verified
+    Verified,
+    NFT1, NFT2, NFT3,
+    CollectionBG,
+    CollectionPic
 } from "./imports";
 import { Container } from "../../globalStyles";
 
-const Collection:FC = () => {
+const Collections:FC = () => {
     return (
         <>
             <Banner>
@@ -50,12 +53,14 @@ const Collection:FC = () => {
                 </Info>
                 <div>
                     <CollectionCard>
+                        <CollectionBackground src={CollectionBG} alt="collection-bg"/>
                         <AuthorWrap>
-                            <AuthorPicWrap>
-                            </AuthorPicWrap>
-                            {/*Collection name*/}
+                            <CollectionPicWrap>
+                                <img src={CollectionPic} alt="collection-pic"/>
+                            </CollectionPicWrap>
+                            {/*CollectionsPage name*/}
                             <div>
-                                <Wrapper disp="flex" alignItems="center" gap="10px">
+                                <Wrapper disp="flex" alignItems="center" gap="10px" marg="0 20px 0 0">
                                     <CollectionText fs="14px">Borya Borya</CollectionText>
                                     <img src={Verified} alt="verified-ico"/>
                                     <Platform>UND</Platform>
@@ -69,9 +74,15 @@ const Collection:FC = () => {
                             </Wrapper>
                         </AuthorWrap>
                         <Wrapper disp="flex" gap="15px">
-                            <NFTCards></NFTCards>
-                            <NFTCards></NFTCards>
-                            <NFTCards></NFTCards>
+                            <NFTCards>
+                                <img src={NFT1} alt="nft-card"/>
+                            </NFTCards>
+                            <NFTCards>
+                                <img src={NFT2} alt="nft-card"/>
+                            </NFTCards>
+                            <NFTCards>
+                                <img src={NFT3} alt="nft-card"/>
+                            </NFTCards>
                         </Wrapper>
                     </CollectionCard>
                 </div>
@@ -80,4 +91,4 @@ const Collection:FC = () => {
     )
 }
 
-export default Collection
+export default Collections

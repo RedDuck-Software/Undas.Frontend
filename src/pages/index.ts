@@ -1,6 +1,6 @@
 export { default as HomePage } from './HomePage/HomePage';
 export { default as LoginPage } from './LoginPage/LoginPage';
-export { default as Collection } from './Collection/Collection';
+export { default as Collections } from './CollectionsPage/Collections';
 export { default as ProductCard } from './ProductCard/ProductCard';
 export { default as AccountPage } from './AccountPage/AccountPage';
 export { default as AllNFTs } from './AllNFTs/AllNFTs';

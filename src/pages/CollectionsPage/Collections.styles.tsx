@@ -9,7 +9,7 @@ export const Banner = styled.div `
 export const Info = styled.div `
   display: flex;
   justify-content: space-between;
-  margin: 30px 0 30px;
+  margin: 30px 0 10px;
   font-weight: 400;
   align-items: center;
 `
@@ -65,6 +65,9 @@ export const ContactText = styled.div `
 `
 
 export const CollectionCard = styled.div`
+  margin: 20px 0;
+  position: relative;
+  cursor: pointer;
   width: 100%;
   height: 160px;
   padding: 20px;
@@ -75,10 +78,17 @@ export const CollectionCard = styled.div`
   justify-content: space-between;
 `
 
+export const CollectionBackground = styled.img `
+    top: 0;
+    left: 0;
+    position: absolute;
+`
+
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
   width: 46%;
+  min-width: 474px;
   height: 70px;
   margin-top: 45px;
   padding-right: 20px;
@@ -87,13 +97,14 @@ export const AuthorWrap = styled.div`
   border-radius: 20px;
 `
 
-export const AuthorPicWrap = styled.div `
+export const CollectionPicWrap = styled.div `
   width: 70px;
   height: 100%;
   margin-right: 10px;
-  background-color: aquamarine;
-  border-radius: 20px;  
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 `
 
 interface IText {
@@ -143,8 +154,13 @@ export const Platform = styled.strong `
 `
 
 export const NFTCards = styled.div `
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   width: 120px;
   height: 120px;
   border-radius: 20px;
-  background-color: bisque;
 `
