@@ -5,6 +5,8 @@ import SportIcon from '../../icons/sport.png'
 import GirlsIcon from '../../icons/girls.png'
 import FurnitureIcon from '../../icons/furniture.png'
 import ArrowUp from '../../icons/arrow-up.png'
+import {ReactComponent as FavoriteIco} from '../../icons/favorite.svg'
+import {ReactComponent as ProfileIco} from '../../icons/profile-header.svg'
 
 export {
   AllNFTsIcon,
@@ -14,4 +16,6 @@ export {
   GirlsIcon,
   FurnitureIcon,
   ArrowUp,
+  FavoriteIco,
+  ProfileIco
 }

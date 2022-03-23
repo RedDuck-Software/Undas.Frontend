@@ -6,11 +6,12 @@ import { useWeb3React } from "@web3-react/core";
 import { MdOutlineMenu } from "react-icons/md";
 import { RiCloseFill } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
-
+import { ReactComponent as Logo } from '../../icons/logo.svg';
+import { Link } from 'react-router-dom';
 import { Button } from "../../globalStyles";
 
 import {
-  Nav,
+  /*Nav,
   NavbarContainer,
   NavLinkContainer,
   NavLinkDropdownMenu,
@@ -25,15 +26,27 @@ import {
   LeftLinks,
   RightLinks,
   NavIcon,
-  SearchWrapper,
-  SearchIcon,
   Input,
   MenuContainer,
   MenuMobile,
   ProfileIcon,
   MenuItemLinkDisabled,
-  NavLinkActivityDisabled,
+  NavLinkActivityDisabled,*/
+  Header,
+  HeaderWrap,
+  SearchWrapper,
+  SearchIcon,
+  SeoHeading,
+  Input,
+  Navigation,
+  StyledUl,
+  StyledList,
+  StyledLink,
+  LanguageTitle,
+  Favorite
 } from "./Navbar.styles";
+
+import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
 
 import {
   AllNFTsIcon,
@@ -43,6 +56,7 @@ import {
   GirlsIcon,
   FurnitureIcon,
   ArrowUp,
+  FavoriteIco, ProfileIco
 } from "./imports";
 
 const Navbar = () => {
@@ -90,244 +104,47 @@ const Navbar = () => {
   });
 
   return (
-    <>
-      <Nav>
-        <NavbarContainer>
-          <LeftLinks>
-            <NavLink nopadding="Left" to="/">
-              <NavIcon />
-            </NavLink>
-            {showSearch ? (
-              <SearchWrapper>
-                <SearchIcon />
-                <Input
-                  disabled
-                  type="text"
-                  placeholder="Collection, item or user"
-                />
-              </SearchWrapper>
-            ) : (
-              <></>
-            )}
-          </LeftLinks>
-          <RightLinks>
-            <MenuContainer>
-              <NavLinkExplore to="/listing">Listing</NavLinkExplore>
-              <NavLinkExplore to="/staking">Staking</NavLinkExplore>
-              <NavLinkContainer onMouseLeave={toggleHoverExplore}>
-                <NavLinkExplore
-                  to="/"
-                  onMouseEnter={toggleHoverExplore}
-                  className={hoveredExplore ? "hovered-explore" : ""}
-                >
-                  Explore
-                </NavLinkExplore>
-                <NavLinkDropdownMenu>
-                  <MenuItem>
-                    <MenuItemLink to="/assets">
-                      <MenuImage src={AllNFTsIcon} />
-                      All NFTs
-                    </MenuItemLink>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={NewIcon} />
-                      New
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={ArtIcon} />
-                      Art
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={SportIcon} />
-                      Sport
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={GirlsIcon} />
-                      Girls
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={FurnitureIcon} />
-                      Furniture
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                </NavLinkDropdownMenu>
-              </NavLinkContainer>
-              <NavLinkContainer onMouseLeave={toggleHoverActivity}>
-                <NavLinkActivityDisabled
-                // onMouseEnter={toggleHoverActivity}
-                // className={hoveredActivity ? "hovered-activity" : ""}
-                >
-                  Activity
-                </NavLinkActivityDisabled>
-                <NavLinkDropdownMenu>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top collection
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top buyers
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top artists
-                  </MenuItem>
-                </NavLinkDropdownMenu>
-              </NavLinkContainer>
-              <NavLinkContainer>
-                <NavLinkActivityDisabled>Community</NavLinkActivityDisabled>
-              </NavLinkContainer>
-              <NavLinkContainer>
-                <NavLinkActivityDisabled>Stats</NavLinkActivityDisabled>
-              </NavLinkContainer>
-              <NavLink nopadding="Right" to="/login">
-                <ProfileIcon />
-              </NavLink>
-            </MenuContainer>
-
-            <MenuMobileContainer>
-              {showMenu ? (
-                <MdOutlineMenu size={34} onClick={() => setShowMenu(false)} />
-              ) : (
-                <RiCloseFill size={34} onClick={() => setShowMenu(true)} />
-              )}
-
-              {!showMenu ? (
-                <MenuMobile>
-                  <NavLinkContainer>
-                    <NavLink to="/listing">
-                      <MenuMobileTitle>Listing</MenuMobileTitle>
-                    </NavLink>
-                  </NavLinkContainer>
-                  <NavLinkContainer>
-                    <NavLink to="/staking">
-                      <MenuMobileTitle>Staking</MenuMobileTitle>
-                    </NavLink>
-                  </NavLinkContainer>
-                  <NavLinkContainer onClick={toogleShowExplore}>
-                    <MenuMobileTitle>Explore</MenuMobileTitle>
-
-                    {showExplore ? (
-                      <IoIosArrowDown size={20} />
-                    ) : (
-                      <IoIosArrowBack size={20} />
-                    )}
-
-                    {showExplore ? (
-                      <MenuMobile>
-                        <NavLinkContainer>
-                          <NavLink to="/assets" onClick={toggleShowMenu}>
-                            <MenuImage src={AllNFTsIcon} />
-                            All NFTs
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/assets/new" onClick={toggleShowMenu}>
-                            <MenuImage src={NewIcon} />
-                            New
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/art" onClick={toggleShowMenu}>
-                            <MenuImage src={ArtIcon} />
-                            Art
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/sport" onClick={toggleShowMenu}>
-                            <MenuImage src={SportIcon} />
-                            Sport
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/girls" onClick={toggleShowMenu}>
-                            <MenuImage src={GirlsIcon} />
-                            Girls
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink
-                            to="/explore/furniture"
-                            onClick={toggleShowMenu}
-                          >
-                            <MenuImage src={FurnitureIcon} />
-                            Furniture
-                          </NavLink>
-                        </NavLinkContainer>
-                      </MenuMobile>
-                    ) : (
-                      <></>
-                    )}
-                  </NavLinkContainer>
-
-                  <NavLinkContainer onClick={toogleShowActivity}>
-                    <MenuMobileTitle>Activity</MenuMobileTitle>
-
-                    {showActivity ? (
-                      <IoIosArrowDown size={20} />
-                    ) : (
-                      <IoIosArrowBack size={20} />
-                    )}
-
-                    {showActivity ? (
-                      <MenuMobile>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top collection
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top buyers
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top artists
-                          </NavLink>
-                        </NavLinkContainer>
-                      </MenuMobile>
-                    ) : (
-                      <></>
-                    )}
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <MenuMobileTitle>Community</MenuMobileTitle>
-                    <IoIosArrowBack size={20} />
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <MenuMobileTitle>Stats</MenuMobileTitle>
-                    <IoIosArrowBack size={20} />
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <NavLink to="/login" onClick={toggleShowMenu}>
-                      <Button violet>Connect wallet</Button>
-                    </NavLink>
-                  </NavLinkContainer>
-                </MenuMobile>
-              ) : (
-                <></>
-              )}
-            </MenuMobileContainer>
-          </RightLinks>
-        </NavbarContainer>
-      </Nav>
-    </>
+    <Header>
+      <HeaderWrap>
+        <Wrapper disp="flex" alignItems="center" marg="0 30px 0 0">
+          <Link to="/">
+            <Logo />
+          </Link>
+          <SearchWrapper>
+            <SearchIcon />
+            <Input placeholder="Collection, item or user" type="text"/>
+          </SearchWrapper>
+        </Wrapper>
+        <Navigation>
+          <StyledUl>
+            <StyledList>
+              <StyledLink to="/">Explore</StyledLink>
+            </StyledList>
+            <StyledList>
+              <StyledLink to="/">Activity</StyledLink>
+            </StyledList>
+            <StyledList>
+              <StyledLink to="/">Community</StyledLink>
+            </StyledList>
+            <StyledList>
+              <StyledLink to="/">Create</StyledLink>
+            </StyledList>
+          </StyledUl>
+        </Navigation>
+        <Wrapper disp='flex' gap="15px" marg="0 0 0 auto" alignItems="center">
+          <StyledLink to="/">
+            <Favorite />
+          </StyledLink>
+          <StyledLink to="/">
+            <ProfileIco />
+          </StyledLink>
+          <StyledLink to="/">
+            <LanguageTitle>en</LanguageTitle>
+          </StyledLink>
+        </Wrapper>
+      </HeaderWrap>
+      <SeoHeading>Undas</SeoHeading>
+    </Header>
   );
 };
 
