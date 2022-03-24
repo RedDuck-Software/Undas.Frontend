@@ -8,6 +8,17 @@ import {ReactComponent as CelebrityIco} from '../../icons/celebrity.svg'
 import {ReactComponent as RwaNFT} from '../../icons/rwa-nft.svg'
 import {ReactComponent as FavoriteIco} from '../../icons/favorite.svg'
 import {ReactComponent as ProfileIco} from '../../icons/profile-header.svg'
+import {ReactComponent as TopCollectionIco} from '../../icons/top-colleciton.svg'
+import {ReactComponent as StatisticsIco} from '../../icons/statistics.svg'
+import {ReactComponent as AboutIco} from '../../icons/about.svg'
+import {ReactComponent as BlogIco} from '../../icons/blog.svg'
+import {ReactComponent as FAQIco} from '../../icons/faq.svg'
+import {ReactComponent as TwitterIco} from '../../icons/twitter-dropdown.svg'
+import {ReactComponent as TelegramIco} from '../../icons/telegram-dropdown.svg'
+import {ReactComponent as DiscordIco} from '../../icons/discord-dropdown.svg'
+import {ReactComponent as InstagramIco} from '../../icons/instagram-dropdown.svg'
+import {ReactComponent as AddNFTIco} from '../../icons/add-nft.svg'
+import {ReactComponent as AddCollectionIco} from '../../icons/add-colleciton.svg'
 
 export {
   AllNFTsIcon,
@@ -19,5 +30,16 @@ export {
   CelebrityIco,
   RwaNFT,
   FavoriteIco,
-  ProfileIco
+  ProfileIco,
+  TopCollectionIco,
+  StatisticsIco,
+  AboutIco,
+  BlogIco,
+  FAQIco,
+  TwitterIco,
+  TelegramIco,
+  DiscordIco,
+  InstagramIco,
+  AddNFTIco,
+  AddCollectionIco,
 }

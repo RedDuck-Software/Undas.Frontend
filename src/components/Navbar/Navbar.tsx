@@ -61,40 +61,36 @@ import {
   CelebrityIco,
   RwaNFT,
   FavoriteIco,
-  ProfileIco
+  ProfileIco,
+  TopCollectionIco,
+  StatisticsIco,
+  AboutIco,
+  BlogIco,
+  FAQIco,
+  TwitterIco,
+  TelegramIco,
+  DiscordIco,
+  InstagramIco,
+  AddNFTIco,
+  AddCollectionIco,
 } from "./imports";
+import {array} from "yup";
+
+interface IHover {
+  explore: boolean,
+  activity: boolean,
+  community: boolean,
+  create: boolean
+}
 
 const Navbar = () => {
-  const [hoveredExplore, setHoveredExplore] = useState(false);
-  const [hoveredActivity, setHoveredActivity] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
 
-  const [showExplore, setShowExplore] = useState(false);
-  const [showActivity, setShowActivity] = useState(false);
-
-  const [showSearch] = useState(true);
-
-  const toggleShowMenu = () => setShowMenu(!showMenu);
-
-  const toggleHoverExplore = () => {
-    setHoveredActivity(false);
-    setHoveredExplore(!hoveredExplore);
-  };
-
-  const toggleHoverActivity = () => {
-    setHoveredExplore(false);
-    // setHoveredActivity(!hoveredActivity);
-  };
-
-  const toogleShowExplore = () => {
-    setShowActivity(false);
-    setShowExplore(!showExplore);
-  };
-
-  const toogleShowActivity = () => {
-    setShowExplore(false);
-    // setShowActivity(!showActivity);
-  };
+  const [hovered, setHovered] = useState<any>({
+    explore: true,
+    activity: false,
+    community: false,
+    create: false
+  })
 
   const value = useContext(Context);
   let web3Current = useWeb3React();
@@ -123,12 +119,12 @@ const Navbar = () => {
         <Navigation>
           <StyledUl>
             <StyledList
-                onMouseLeave={toggleHoverExplore}
-                onMouseEnter={toggleHoverExplore}
+                onMouseLeave={() => setHovered({explore: false})}
+                onMouseEnter={() => setHovered({explore: true})}
             >
               <StyledLink
                   to="/"
-                  className={hoveredExplore ? "hovered-explore" : ""}
+                  className={hovered.explore! ? "hovered-explore" : ""}
               >Explore</StyledLink>
               <DropdownMenu>
                 <MenuList to="/">
@@ -165,18 +161,65 @@ const Navbar = () => {
                 </MenuList>
               </DropdownMenu>
             </StyledList>
-            <StyledList>
-              <StyledLink to="/">Activity</StyledLink>
+            <StyledList
+                onMouseLeave={() => setHovered({ activity: false })}
+                onMouseEnter={() => setHovered({ activity: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.activity! ? "hovered-activity" : ""}
+              >Activity</StyledLink>
+              <DropdownMenu setWidth="146px">
+                <MenuList to="/">
+                  <TopCollectionIco />
+                  Top Collection
+                </MenuList>
+                <MenuList to="/">
+                  <StatisticsIco />
+                  Statistics
+                </MenuList>
+              </DropdownMenu>
             </StyledList>
-            <StyledList>
-              <StyledLink to="/">Community</StyledLink>
+            <StyledList
+                onMouseLeave={() => setHovered({ community: false })}
+                onMouseEnter={() => setHovered({ community: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.community! ? "hovered-community" : ""}
+              >Community</StyledLink>
+              <DropdownMenu setWidth="150px">
+                <MenuList to="/">
+                  <AboutIco />
+                  About
+                </MenuList>
+                <MenuList to="/">
+                  <BlogIco/>
+                  Blog
+                </MenuList>
+                <MenuList to="/">
+                  <FAQIco/>
+                  FAQ
+                </MenuList>
+              </DropdownMenu>
             </StyledList>
-            <StyledList>
-              <StyledLink to="/">Create</StyledLink>
-              <DropdownMenu>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+            <StyledList
+                onMouseLeave={() => setHovered({ create: false })}
+                onMouseEnter={() => setHovered({ create: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.create! ? "hovered-create" : ""}
+              >Create</StyledLink>
+              <DropdownMenu setWidth="170px">
+                <MenuList to="/">
+                  <AddNFTIco />
+                  Add NTF
+                </MenuList>
+                <MenuList to="/">
+                  <AddCollectionIco />
+                  Add Collection
+                </MenuList>
               </DropdownMenu>
             </StyledList>
           </StyledUl>

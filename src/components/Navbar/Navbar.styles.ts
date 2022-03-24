@@ -97,13 +97,19 @@ export const StyledList = styled.li `
   padding-right: 10px;
   position: relative;
 `
-export const DropdownMenu = styled.ul `
+
+interface IDropdown {
+  setWidth?: string
+}
+
+export const DropdownMenu = styled.ul<IDropdown> `
   position: absolute;
   border-radius: 0 0 10px 10px;
   top: 1.9rem;
   left: -2rem;
   background-color: #fff;
-  width: 133px;
+  overflow: hidden;
+  width: ${props => props.setWidth || '134px'};
   list-style: none;
   transition: all 0.5s ease-in-out;
   opacity: 0;
@@ -122,6 +128,21 @@ export const StyledLink = styled(Link) `
     color: #873DC1;
   }
   &.hovered-explore + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  &.hovered-activity + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  &.hovered-community + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  &.hovered-create + ${DropdownMenu} {
     opacity: 1;
     visibility: visible;
     cursor: pointer;
