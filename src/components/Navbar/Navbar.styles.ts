@@ -99,14 +99,15 @@ export const StyledList = styled.li `
 `
 
 interface IDropdown {
-  setWidth?: string
+  setWidth?: string,
+  left?: string
 }
 
 export const DropdownMenu = styled.ul<IDropdown> `
   position: absolute;
   border-radius: 0 0 10px 10px;
   top: 1.9rem;
-  left: -2rem;
+  left: ${props => props.left || '-2rem'};
   background-color: #fff;
   overflow: hidden;
   width: ${props => props.setWidth || '134px'};

@@ -76,17 +76,12 @@ import {
 } from "./imports";
 import {array} from "yup";
 
-interface IHover {
-  explore: boolean,
-  activity: boolean,
-  community: boolean,
-  create: boolean
-}
+
 
 const Navbar = () => {
 
   const [hovered, setHovered] = useState<any>({
-    explore: true,
+    explore: false,
     activity: false,
     community: false,
     create: false
@@ -188,7 +183,7 @@ const Navbar = () => {
                   to="/"
                   className={hovered.community! ? "hovered-community" : ""}
               >Community</StyledLink>
-              <DropdownMenu setWidth="150px">
+              <DropdownMenu setWidth="150px" left="-1.5rem">
                 <MenuList to="/">
                   <AboutIco />
                   About
@@ -211,7 +206,7 @@ const Navbar = () => {
                   to="/"
                   className={hovered.create! ? "hovered-create" : ""}
               >Create</StyledLink>
-              <DropdownMenu setWidth="170px">
+              <DropdownMenu setWidth="170px" left="-3rem">
                 <MenuList to="/">
                   <AddNFTIco />
                   Add NTF
