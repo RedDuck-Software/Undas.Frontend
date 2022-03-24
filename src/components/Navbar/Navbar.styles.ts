@@ -9,7 +9,7 @@ import { FavoriteIco, ProfileIco } from './imports'
 export const Header = styled.header `
   height: 40px;
   position: fixed;
-  overflow: auto;
+  //overflow: auto;
   width: 100%;
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
@@ -83,6 +83,7 @@ export const Input = styled.input`
 
 export const Navigation = styled.nav `
   width: 38vw;
+  margin-right: 30px;
 `
 export const StyledUl = styled.ul `
   display: flex;
@@ -94,6 +95,7 @@ export const StyledUl = styled.ul `
 
 export const StyledList = styled.li `
   padding-right: 10px;
+  position: relative;
 `
 
 export const StyledLink = styled(Link) `
@@ -106,6 +108,37 @@ export const StyledLink = styled(Link) `
   &:hover {
     color: #873DC1;
   }
+`
+
+export const DropdownMenu = styled.ul `
+  position: absolute;
+  border-radius: 0 0 10px 10px;
+  top: 1.9rem;
+  left: -2rem;
+  background-color: #fff;
+  width: 133px;
+  list-style: none;
+`
+
+export const MenuList = styled(Link) `
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+  text-decoration: none;
+  box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5);
+  &:hover {
+    box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
+  }
+`
+
+export const MenuText = styled.span `
+  font-weight: 400;
+  font-size: 14px;
+  color: #7C7C7C;
 `
 
 export const Favorite = styled(FavoriteIco) `

@@ -1,4 +1,4 @@
-import AllNFTsIcon from '../../icons/all-nfts.png'
+import {ReactComponent as AllNFTsIcon} from '../../icons/all-nfts.svg'
 import NewIcon from '../../icons/star.png'
 import ArtIcon from '../../icons/art.png'
 import SportIcon from '../../icons/sport.png'

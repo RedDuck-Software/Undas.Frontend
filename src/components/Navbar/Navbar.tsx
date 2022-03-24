@@ -43,7 +43,10 @@ import {
   StyledList,
   StyledLink,
   LanguageTitle,
-  Favorite
+  Favorite,
+  DropdownMenu,
+  MenuList,
+  MenuText
 } from "./Navbar.styles";
 
 import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
@@ -118,7 +121,20 @@ const Navbar = () => {
         <Navigation>
           <StyledUl>
             <StyledList>
-              <StyledLink to="/">Explore</StyledLink>
+              <StyledLink
+                  to="/"
+                  onMouseEnter={toggleHoverExplore}
+              >Explore</StyledLink>
+              <DropdownMenu>
+                <MenuList to="/">
+                    <AllNFTsIcon />
+                    <MenuText>All NFTs</MenuText>
+                </MenuList>
+                <MenuList to="/">
+                  <MenuText>2</MenuText>
+                </MenuList>
+                <MenuList to="/"><MenuText>3</MenuText></MenuList>
+              </DropdownMenu>
             </StyledList>
             <StyledList>
               <StyledLink to="/">Activity</StyledLink>
@@ -128,6 +144,11 @@ const Navbar = () => {
             </StyledList>
             <StyledList>
               <StyledLink to="/">Create</StyledLink>
+              <DropdownMenu>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+              </DropdownMenu>
             </StyledList>
           </StyledUl>
         </Navigation>
@@ -135,7 +156,7 @@ const Navbar = () => {
           <StyledLink to="/">
             <Favorite />
           </StyledLink>
-          <StyledLink to="/">
+          <StyledLink to="/login">
             <ProfileIco />
           </StyledLink>
           <StyledLink to="/">
