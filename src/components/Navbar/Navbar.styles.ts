@@ -97,19 +97,6 @@ export const StyledList = styled.li `
   padding-right: 10px;
   position: relative;
 `
-
-export const StyledLink = styled(Link) `
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #7C7C7C;
-  text-decoration: none;
-  transition: all ease-in-out 0.25s;
-  &:hover {
-    color: #873DC1;
-  }
-`
-
 export const DropdownMenu = styled.ul `
   position: absolute;
   border-radius: 0 0 10px 10px;
@@ -118,7 +105,29 @@ export const DropdownMenu = styled.ul `
   background-color: #fff;
   width: 133px;
   list-style: none;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 `
+
+export const StyledLink = styled(Link) `
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #7C7C7C;
+  text-decoration: none;
+  transition: all ease-in 0.25s;
+  padding: 1.2rem 0;
+  &:hover {
+    color: #873DC1;
+  }
+  &.hovered-explore + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+`
+
 
 export const MenuList = styled(Link) `
   display: flex;
@@ -128,10 +137,15 @@ export const MenuList = styled(Link) `
   padding: 10px;
   cursor: pointer;
   transition: all ease-in-out 0.15s;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7C7C7C;
   text-decoration: none;
   box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5);
   &:hover {
     box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
+    font-weight: 500;
+    color: #873DC1;
   }
 `
 
