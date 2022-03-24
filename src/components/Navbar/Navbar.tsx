@@ -56,10 +56,12 @@ import {
   NewIcon,
   ArtIcon,
   SportIcon,
-  GirlsIcon,
-  FurnitureIcon,
-  ArrowUp,
-  FavoriteIco, ProfileIco
+  PhotoIco,
+  MetaversesIcon,
+  CelebrityIco,
+  RwaNFT,
+  FavoriteIco,
+  ProfileIco
 } from "./imports";
 
 const Navbar = () => {
@@ -120,20 +122,50 @@ const Navbar = () => {
         </Wrapper>
         <Navigation>
           <StyledUl>
-            <StyledList>
+            <StyledList
+                onMouseLeave={() => toggleHoverExplore()}
+                onMouseEnter={() => {
+                  console.log('toggled', hoveredExplore)
+                  toggleHoverExplore()
+                }}
+            >
               <StyledLink
                   to="/"
-                  onMouseEnter={toggleHoverExplore}
+                  className={hoveredExplore ? "hovered-explore" : ""}
               >Explore</StyledLink>
               <DropdownMenu>
                 <MenuList to="/">
                     <AllNFTsIcon />
-                    <MenuText>All NFTs</MenuText>
+                    All NFTs
                 </MenuList>
                 <MenuList to="/">
-                  <MenuText>2</MenuText>
+                  <NewIcon />
+                  New
                 </MenuList>
-                <MenuList to="/"><MenuText>3</MenuText></MenuList>
+                <MenuList to="/">
+                  <ArtIcon/>
+                  Artwork
+                </MenuList>
+                <MenuList to="/">
+                  <SportIcon/>
+                  Sport
+                </MenuList>
+                <MenuList to="/">
+                  <PhotoIco/>
+                  Photography
+                </MenuList>
+                <MenuList to="/">
+                  <MetaversesIcon/>
+                  Metaverses
+                </MenuList>
+                <MenuList to="/">
+                  <CelebrityIco/>
+                  Celebrity
+                </MenuList>
+                <MenuList to="/">
+                  <RwaNFT/>
+                  rwa NFT
+                </MenuList>
               </DropdownMenu>
             </StyledList>
             <StyledList>
