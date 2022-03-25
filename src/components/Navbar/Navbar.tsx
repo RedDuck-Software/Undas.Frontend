@@ -73,6 +73,11 @@ import {
   InstagramIco,
   AddNFTIco,
   AddCollectionIco,
+  ProfileMenuIco,
+  MyCollectionIco,
+  WatchlistIco,
+  SettingsIco,
+  LoginMenuIco,
 } from "./imports";
 import {array} from "yup";
 
@@ -84,7 +89,8 @@ const Navbar = () => {
     explore: false,
     activity: false,
     community: false,
-    create: false
+    create: false,
+    profile: false,
   })
 
   const value = useContext(Context);
@@ -219,17 +225,51 @@ const Navbar = () => {
             </StyledList>
           </StyledUl>
         </Navigation>
-        <Wrapper disp='flex' gap="15px" marg="0 0 0 auto" alignItems="center">
-          <StyledLink to="/">
-            <Favorite />
-          </StyledLink>
-          <StyledLink to="/login">
-            <ProfileIco />
-          </StyledLink>
-          <StyledLink to="/">
-            <LanguageTitle>en</LanguageTitle>
-          </StyledLink>
-        </Wrapper>
+        <StyledUl >
+          <StyledList>
+            <StyledLink to="/">
+              <Favorite />
+            </StyledLink>
+          </StyledList>
+          <StyledList
+              onMouseLeave={() => setHovered({ profile: false })}
+              onMouseEnter={() => setHovered({ profile: true })}
+          >
+            <StyledLink
+                to="/login"
+                className={hovered.profile! ? "hovered-profile" : ""}
+            >
+              <ProfileIco />
+            </StyledLink>
+            <DropdownMenu setWidth="170px" left="-3rem" top="2.10rem">
+              <MenuList to="/">
+                <ProfileMenuIco />
+                Profile
+              </MenuList>
+              <MenuList to="/">
+                <MyCollectionIco />
+                My Collections
+              </MenuList>
+              <MenuList to="/">
+                <WatchlistIco />
+                Watchlist
+              </MenuList>
+              <MenuList to="/">
+                <SettingsIco />
+                Settings
+              </MenuList>
+              <MenuList to="/login">
+                <LoginMenuIco />
+                Log in
+              </MenuList>
+              </DropdownMenu>
+          </StyledList>
+          <StyledList>
+            <StyledLink to="/">
+              <LanguageTitle>en</LanguageTitle>
+            </StyledLink>
+          </StyledList>
+        </StyledUl>
       </HeaderWrap>
       <SeoHeading>Undas</SeoHeading>
     </Header>

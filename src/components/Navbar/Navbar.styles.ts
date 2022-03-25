@@ -101,12 +101,13 @@ export const StyledList = styled.li `
 interface IDropdown {
   setWidth?: string,
   left?: string
+  top?: string
 }
 
 export const DropdownMenu = styled.ul<IDropdown> `
   position: absolute;
   border-radius: 0 0 10px 10px;
-  top: 1.9rem;
+  top: ${props => props.top || '1.9rem'};
   left: ${props => props.left || '-2rem'};
   background-color: #fff;
   overflow: hidden;
@@ -144,6 +145,11 @@ export const StyledLink = styled(Link) `
     cursor: pointer;
   }
   &.hovered-create + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  &.hovered-profile + ${DropdownMenu} {
     opacity: 1;
     visibility: visible;
     cursor: pointer;

@@ -19,6 +19,11 @@ import {ReactComponent as DiscordIco} from '../../icons/discord-dropdown.svg'
 import {ReactComponent as InstagramIco} from '../../icons/instagram-dropdown.svg'
 import {ReactComponent as AddNFTIco} from '../../icons/add-nft.svg'
 import {ReactComponent as AddCollectionIco} from '../../icons/add-colleciton.svg'
+import {ReactComponent as ProfileMenuIco} from '../../icons/profile-dropdown.svg'
+import {ReactComponent as MyCollectionIco} from '../../icons/my-collections.svg'
+import {ReactComponent as WatchlistIco} from '../../icons/watchlist.svg'
+import {ReactComponent as SettingsIco} from '../../icons/settings.svg'
+import {ReactComponent as LoginMenuIco} from '../../icons/login-dropdown.svg'
 
 export {
   AllNFTsIcon,
@@ -42,4 +47,9 @@ export {
   InstagramIco,
   AddNFTIco,
   AddCollectionIco,
+  ProfileMenuIco,
+  MyCollectionIco,
+  WatchlistIco,
+  SettingsIco,
+  LoginMenuIco,
 }
