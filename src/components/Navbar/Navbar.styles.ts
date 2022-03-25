@@ -14,16 +14,12 @@ export const Header = styled.header `
   z-index: 999;
 `
 
-export const HeaderWrap = styled.div `
+export const HeaderWrap = styled(Container) `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 99;
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 3rem;
   height: 100%;
+  ${Container}
 `
 export const SeoHeading = styled.h1 `
   text-indent: -3333px;

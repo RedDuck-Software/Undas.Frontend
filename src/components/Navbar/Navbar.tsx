@@ -205,7 +205,7 @@ const Navbar = () => {
             </StyledList>
           </StyledUl>
         </Navigation>
-        <StyledUl justifyContent="space-between" mw="100px">
+        <StyledUl justifyContent="space-between" mw="100px" gap="10px">
           <StyledList>
             <StyledLink to="/">
               <Favorite />
