@@ -3,35 +3,10 @@ import Context from "../../utils/Context";
 
 import { useWeb3React } from "@web3-react/core";
 
-import { MdOutlineMenu } from "react-icons/md";
-import { RiCloseFill } from "react-icons/ri";
-import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
 import { ReactComponent as Logo } from '../../icons/logo.svg';
 import { Link } from 'react-router-dom';
-import { Button } from "../../globalStyles";
 
 import {
-  /*Nav,
-  NavbarContainer,
-  NavLinkContainer,
-  NavLinkDropdownMenu,
-  MenuMobileContainer,
-  MenuMobileTitle,
-  MenuItem,
-  MenuItemLink,
-  MenuImage,
-  NavLink,
-  NavLinkExplore,
-  NavLinkActivity,
-  LeftLinks,
-  RightLinks,
-  NavIcon,
-  Input,
-  MenuContainer,
-  MenuMobile,
-  ProfileIcon,
-  MenuItemLinkDisabled,
-  NavLinkActivityDisabled,*/
   Header,
   HeaderWrap,
   SearchWrapper,
@@ -46,7 +21,7 @@ import {
   Favorite,
   DropdownMenu,
   MenuList,
-  MenuText
+  MenuListSocial,
 } from "./Navbar.styles";
 
 import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
@@ -79,7 +54,6 @@ import {
   SettingsIco,
   LoginMenuIco,
 } from "./imports";
-import {array} from "yup";
 
 
 
@@ -118,7 +92,7 @@ const Navbar = () => {
           </SearchWrapper>
         </Wrapper>
         <Navigation>
-          <StyledUl>
+          <StyledUl gap="10px">
             <StyledList
                 onMouseLeave={() => setHovered({explore: false})}
                 onMouseEnter={() => setHovered({explore: true})}
@@ -202,6 +176,12 @@ const Navbar = () => {
                   <FAQIco/>
                   FAQ
                 </MenuList>
+                <MenuListSocial>
+                  <TwitterIco />
+                  <TelegramIco />
+                  <DiscordIco />
+                  <InstagramIco />
+                </MenuListSocial>
               </DropdownMenu>
             </StyledList>
             <StyledList
@@ -225,7 +205,7 @@ const Navbar = () => {
             </StyledList>
           </StyledUl>
         </Navigation>
-        <StyledUl >
+        <StyledUl justifyContent="space-between" mw="100px">
           <StyledList>
             <StyledLink to="/">
               <Favorite />

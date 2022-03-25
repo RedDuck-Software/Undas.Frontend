@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as LogoIco } from '../../icons/logo.svg';
 import { ReactComponent as Search } from '../../icons/search.svg';
-import { ReactComponent as Profile } from '../../icons/profile.svg';
 import { Link } from 'react-router-dom';
 import { Container } from '../../globalStyles';
 import { FavoriteIco, ProfileIco } from './imports'
@@ -9,7 +7,6 @@ import { FavoriteIco, ProfileIco } from './imports'
 export const Header = styled.header `
   height: 40px;
   position: fixed;
-  //overflow: auto;
   width: 100%;
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
@@ -17,11 +14,16 @@ export const Header = styled.header `
   z-index: 999;
 `
 
-export const HeaderWrap = styled(Container) `
+export const HeaderWrap = styled.div `
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 3rem;
   height: 100%;
-  ${Container}
 `
 export const SeoHeading = styled.h1 `
   text-indent: -3333px;
@@ -30,7 +32,6 @@ export const SeoHeading = styled.h1 `
 export const SearchWrapper = styled.div`
   padding-left: 10px;
   margin-left: 10px;
-  //cursor: not-allowed;
   display: flex;
   align-items: center;
   width: 36vw;
@@ -38,17 +39,6 @@ export const SearchWrapper = styled.div`
   height: 26px;
   background: #EBDFFF;
   border-radius: 5px;
-
-
-  /* @media (max-width: 1119px) {
-     margin-left: 0rem;
-     max-width: 400px;
-   }
- 
-   @media (max-width: 1009px) {
-     width: 100%;
-     max-width: 909px;
-   }*/
 `;
 
 export const SearchIcon = styled(Search)`
@@ -58,43 +48,38 @@ export const SearchIcon = styled(Search)`
 `;
 
 export const Input = styled.input`
-  //cursor: not-allowed;
-
   color: #7c7c7c;
   border: transparent;
-  //font-size: 1.055rem;
   font-size: 14px;
   background: transparent;
   padding-right: 0.5rem;
   outline: none;
   width: 100%;
-
-  /*&:focus::placeholder {
-    color: transparent;
-  }
-
-  @media (max-width: 584px) {
-    &::placeholder {
-      visibility: hidden;
-    }
-  }*/
 `;
 
 
 export const Navigation = styled.nav `
   width: 38vw;
-  margin-right: 30px;
+  max-width: 390px;
+  margin-right: 1.8rem;
 `
-export const StyledUl = styled.ul `
+
+interface IStyledUl {
+  justifyContent?: string,
+  gap?: string,
+  mw?: string
+}
+
+export const StyledUl = styled.ul<IStyledUl> `
   display: flex;
-  justify-content: space-between;
-  //gap: 30px;
+  justify-content: ${props => props.justifyContent || 'space-between'};
+  gap: ${props => props.gap || ''};
   width: 100%;
+  max-width: ${props => props.mw || ''};
   list-style: none;
 `
 
 export const StyledList = styled.li `
-  padding-right: 10px;
   position: relative;
 `
 
@@ -156,7 +141,6 @@ export const StyledLink = styled(Link) `
   }
 `
 
-
 export const MenuList = styled(Link) `
   display: flex;
   align-items: center;
@@ -177,10 +161,32 @@ export const MenuList = styled(Link) `
   }
 `
 
-export const MenuText = styled.span `
+export const MenuListSocial = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
   font-weight: 400;
   font-size: 14px;
   color: #7C7C7C;
+  text-decoration: none;
+  box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
+  &:hover {
+    box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
+    font-weight: 500;
+    color: #873DC1;
+  }
+  svg {
+    path {
+      transition: all ease-in-out 0.15s;
+      &:hover {
+        fill: #873DC1;
+      }
+    }
+  }
 `
 
 export const Favorite = styled(FavoriteIco) `
