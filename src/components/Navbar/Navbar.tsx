@@ -3,79 +3,70 @@ import Context from "../../utils/Context";
 
 import { useWeb3React } from "@web3-react/core";
 
-import { MdOutlineMenu } from "react-icons/md";
-import { RiCloseFill } from "react-icons/ri";
-import { IoIosArrowDown, IoIosArrowBack } from "react-icons/io";
-
-import { Button } from "../../globalStyles";
+import { ReactComponent as Logo } from '../../icons/logo.svg';
+import { Link } from 'react-router-dom';
 
 import {
-  Nav,
-  NavbarContainer,
-  NavLinkContainer,
-  NavLinkDropdownMenu,
-  MenuMobileContainer,
-  MenuMobileTitle,
-  MenuItem,
-  MenuItemLink,
-  MenuImage,
-  NavLink,
-  NavLinkExplore,
-  NavLinkActivity,
-  LeftLinks,
-  RightLinks,
-  NavIcon,
+  Header,
+  HeaderWrap,
   SearchWrapper,
   SearchIcon,
+  SeoHeading,
   Input,
-  MenuContainer,
-  MenuMobile,
-  ProfileIcon,
-  MenuItemLinkDisabled,
-  NavLinkActivityDisabled,
+  Navigation,
+  StyledUl,
+  StyledList,
+  StyledLink,
+  LanguageTitle,
+  Favorite,
+  DropdownMenu,
+  MenuList,
+  MenuListSocial,
+  SocialLink
 } from "./Navbar.styles";
+
+import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
 
 import {
   AllNFTsIcon,
   NewIcon,
   ArtIcon,
   SportIcon,
-  GirlsIcon,
-  FurnitureIcon,
-  ArrowUp,
+  PhotoIco,
+  MetaversesIcon,
+  CelebrityIco,
+  RwaNFT,
+  FavoriteIco,
+  ProfileIco,
+  TopCollectionIco,
+  StatisticsIco,
+  AboutIco,
+  BlogIco,
+  FAQIco,
+  TwitterIco,
+  TelegramIco,
+  DiscordIco,
+  InstagramIco,
+  AddNFTIco,
+  AddCollectionIco,
+  ProfileMenuIco,
+  MyCollectionIco,
+  WatchlistIco,
+  SettingsIco,
+  LoginMenuIco,
 } from "./imports";
 
+
+
 const Navbar = () => {
-  const [hoveredExplore, setHoveredExplore] = useState(false);
-  const [hoveredActivity, setHoveredActivity] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
 
-  const [showExplore, setShowExplore] = useState(false);
-  const [showActivity, setShowActivity] = useState(false);
-
-  const [showSearch] = useState(true);
-
-  const toggleShowMenu = () => setShowMenu(!showMenu);
-
-  const toggleHoverExplore = () => {
-    setHoveredActivity(false);
-    setHoveredExplore(!hoveredExplore);
-  };
-
-  const toggleHoverActivity = () => {
-    setHoveredExplore(false);
-    // setHoveredActivity(!hoveredActivity);
-  };
-
-  const toogleShowExplore = () => {
-    setShowActivity(false);
-    setShowExplore(!showExplore);
-  };
-
-  const toogleShowActivity = () => {
-    setShowExplore(false);
-    // setShowActivity(!showActivity);
-  };
+  const [hovered, setHovered] = useState<any>({
+    explore: false,
+    activity: false,
+    community: false,
+    create: false,
+    profile: false,
+  })
 
   const value = useContext(Context);
   let web3Current = useWeb3React();
@@ -90,244 +81,179 @@ const Navbar = () => {
   });
 
   return (
-    <>
-      <Nav>
-        <NavbarContainer>
-          <LeftLinks>
-            <NavLink nopadding="Left" to="/">
-              <NavIcon />
-            </NavLink>
-            {showSearch ? (
-              <SearchWrapper>
-                <SearchIcon />
-                <Input
-                  disabled
-                  type="text"
-                  placeholder="Collection, item or user"
-                />
-              </SearchWrapper>
-            ) : (
-              <></>
-            )}
-          </LeftLinks>
-          <RightLinks>
-            <MenuContainer>
-              <NavLinkExplore to="/listing">Listing</NavLinkExplore>
-              <NavLinkExplore to="/staking">Staking</NavLinkExplore>
-              <NavLinkContainer onMouseLeave={toggleHoverExplore}>
-                <NavLinkExplore
+    <Header>
+      <HeaderWrap>
+        <Wrapper disp="flex" alignItems="center" marg="0 15px 0 0">
+          <Link to="/">
+            <Logo />
+          </Link>
+          <SearchWrapper>
+            <SearchIcon />
+            <Input placeholder="Collection, item or user" type="text"/>
+          </SearchWrapper>
+        </Wrapper>
+        <Navigation>
+          <StyledUl gap="10px">
+            <StyledList
+                onMouseLeave={() => setHovered({explore: false})}
+                onMouseEnter={() => setHovered({explore: true})}
+            >
+              <StyledLink
                   to="/"
-                  onMouseEnter={toggleHoverExplore}
-                  className={hoveredExplore ? "hovered-explore" : ""}
-                >
-                  Explore
-                </NavLinkExplore>
-                <NavLinkDropdownMenu>
-                  <MenuItem>
-                    <MenuItemLink to="/assets">
-                      <MenuImage src={AllNFTsIcon} />
-                      All NFTs
-                    </MenuItemLink>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={NewIcon} />
-                      New
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={ArtIcon} />
-                      Art
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={SportIcon} />
-                      Sport
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={GirlsIcon} />
-                      Girls
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuItemLinkDisabled>
-                      <MenuImage src={FurnitureIcon} />
-                      Furniture
-                    </MenuItemLinkDisabled>
-                  </MenuItem>
-                </NavLinkDropdownMenu>
-              </NavLinkContainer>
-              <NavLinkContainer onMouseLeave={toggleHoverActivity}>
-                <NavLinkActivityDisabled
-                // onMouseEnter={toggleHoverActivity}
-                // className={hoveredActivity ? "hovered-activity" : ""}
-                >
-                  Activity
-                </NavLinkActivityDisabled>
-                <NavLinkDropdownMenu>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top collection
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top buyers
-                  </MenuItem>
-                  <MenuItem>
-                    <MenuImage src={ArrowUp} />
-                    Top artists
-                  </MenuItem>
-                </NavLinkDropdownMenu>
-              </NavLinkContainer>
-              <NavLinkContainer>
-                <NavLinkActivityDisabled>Community</NavLinkActivityDisabled>
-              </NavLinkContainer>
-              <NavLinkContainer>
-                <NavLinkActivityDisabled>Stats</NavLinkActivityDisabled>
-              </NavLinkContainer>
-              <NavLink nopadding="Right" to="/login">
-                <ProfileIcon />
-              </NavLink>
-            </MenuContainer>
-
-            <MenuMobileContainer>
-              {showMenu ? (
-                <MdOutlineMenu size={34} onClick={() => setShowMenu(false)} />
-              ) : (
-                <RiCloseFill size={34} onClick={() => setShowMenu(true)} />
-              )}
-
-              {!showMenu ? (
-                <MenuMobile>
-                  <NavLinkContainer>
-                    <NavLink to="/listing">
-                      <MenuMobileTitle>Listing</MenuMobileTitle>
-                    </NavLink>
-                  </NavLinkContainer>
-                  <NavLinkContainer>
-                    <NavLink to="/staking">
-                      <MenuMobileTitle>Staking</MenuMobileTitle>
-                    </NavLink>
-                  </NavLinkContainer>
-                  <NavLinkContainer onClick={toogleShowExplore}>
-                    <MenuMobileTitle>Explore</MenuMobileTitle>
-
-                    {showExplore ? (
-                      <IoIosArrowDown size={20} />
-                    ) : (
-                      <IoIosArrowBack size={20} />
-                    )}
-
-                    {showExplore ? (
-                      <MenuMobile>
-                        <NavLinkContainer>
-                          <NavLink to="/assets" onClick={toggleShowMenu}>
-                            <MenuImage src={AllNFTsIcon} />
-                            All NFTs
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/assets/new" onClick={toggleShowMenu}>
-                            <MenuImage src={NewIcon} />
-                            New
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/art" onClick={toggleShowMenu}>
-                            <MenuImage src={ArtIcon} />
-                            Art
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/sport" onClick={toggleShowMenu}>
-                            <MenuImage src={SportIcon} />
-                            Sport
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/explore/girls" onClick={toggleShowMenu}>
-                            <MenuImage src={GirlsIcon} />
-                            Girls
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink
-                            to="/explore/furniture"
-                            onClick={toggleShowMenu}
-                          >
-                            <MenuImage src={FurnitureIcon} />
-                            Furniture
-                          </NavLink>
-                        </NavLinkContainer>
-                      </MenuMobile>
-                    ) : (
-                      <></>
-                    )}
-                  </NavLinkContainer>
-
-                  <NavLinkContainer onClick={toogleShowActivity}>
-                    <MenuMobileTitle>Activity</MenuMobileTitle>
-
-                    {showActivity ? (
-                      <IoIosArrowDown size={20} />
-                    ) : (
-                      <IoIosArrowBack size={20} />
-                    )}
-
-                    {showActivity ? (
-                      <MenuMobile>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top collection
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top buyers
-                          </NavLink>
-                        </NavLinkContainer>
-                        <NavLinkContainer>
-                          <NavLink to="/" onClick={toggleShowMenu}>
-                            <MenuImage src={ArrowUp} />
-                            Top artists
-                          </NavLink>
-                        </NavLinkContainer>
-                      </MenuMobile>
-                    ) : (
-                      <></>
-                    )}
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <MenuMobileTitle>Community</MenuMobileTitle>
-                    <IoIosArrowBack size={20} />
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <MenuMobileTitle>Stats</MenuMobileTitle>
-                    <IoIosArrowBack size={20} />
-                  </NavLinkContainer>
-
-                  <NavLinkContainer>
-                    <NavLink to="/login" onClick={toggleShowMenu}>
-                      <Button violet>Connect wallet</Button>
-                    </NavLink>
-                  </NavLinkContainer>
-                </MenuMobile>
-              ) : (
-                <></>
-              )}
-            </MenuMobileContainer>
-          </RightLinks>
-        </NavbarContainer>
-      </Nav>
-    </>
+                  className={hovered.explore! ? "hovered-explore" : ""}
+              >Explore</StyledLink>
+              <DropdownMenu>
+                <MenuList to="/">
+                    <AllNFTsIcon />
+                    All NFTs
+                </MenuList>
+                <MenuList to="/">
+                  <NewIcon />
+                  New
+                </MenuList>
+                <MenuList to="/">
+                  <ArtIcon/>
+                  Artwork
+                </MenuList>
+                <MenuList to="/">
+                  <SportIcon/>
+                  Sport
+                </MenuList>
+                <MenuList to="/">
+                  <PhotoIco/>
+                  Photography
+                </MenuList>
+                <MenuList to="/">
+                  <MetaversesIcon/>
+                  Metaverses
+                </MenuList>
+                <MenuList to="/">
+                  <CelebrityIco/>
+                  Celebrity
+                </MenuList>
+                <MenuList to="/">
+                  <RwaNFT/>
+                  rwa NFT
+                </MenuList>
+              </DropdownMenu>
+            </StyledList>
+            <StyledList
+                onMouseLeave={() => setHovered({ activity: false })}
+                onMouseEnter={() => setHovered({ activity: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.activity! ? "hovered-activity" : ""}
+              >Activity</StyledLink>
+              <DropdownMenu setWidth="146px">
+                <MenuList to="/">
+                  <TopCollectionIco />
+                  Top Collection
+                </MenuList>
+                <MenuList to="/">
+                  <StatisticsIco />
+                  Statistics
+                </MenuList>
+              </DropdownMenu>
+            </StyledList>
+            <StyledList
+                onMouseLeave={() => setHovered({ community: false })}
+                onMouseEnter={() => setHovered({ community: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.community! ? "hovered-community" : ""}
+              >Community</StyledLink>
+              <DropdownMenu setWidth="150px" left="-1.5rem">
+                <MenuList to="/">
+                  <AboutIco />
+                  About
+                </MenuList>
+                <MenuList to="/">
+                  <BlogIco/>
+                  Blog
+                </MenuList>
+                <MenuList to="/">
+                  <FAQIco/>
+                  FAQ
+                </MenuList>
+                <MenuListSocial>
+                  <SocialLink to="/"><TwitterIco /></SocialLink>
+                  <SocialLink to="/"><TelegramIco /></SocialLink>
+                  <SocialLink to="/"><DiscordIco /></SocialLink>
+                  <SocialLink to="/"><InstagramIco /></SocialLink>
+                </MenuListSocial>
+              </DropdownMenu>
+            </StyledList>
+            <StyledList
+                onMouseLeave={() => setHovered({ create: false })}
+                onMouseEnter={() => setHovered({ create: true })}
+            >
+              <StyledLink
+                  to="/"
+                  className={hovered.create! ? "hovered-create" : ""}
+              >Create</StyledLink>
+              <DropdownMenu setWidth="170px" left="-3rem">
+                <MenuList to="/">
+                  <AddNFTIco />
+                  Add NTF
+                </MenuList>
+                <MenuList to="/">
+                  <AddCollectionIco />
+                  Add Collection
+                </MenuList>
+              </DropdownMenu>
+            </StyledList>
+          </StyledUl>
+        </Navigation>
+        <StyledUl justifyContent="space-between" mw="100px" gap="10px">
+          <StyledList>
+            <StyledLink to="/">
+              <Favorite />
+            </StyledLink>
+          </StyledList>
+          <StyledList
+              onMouseLeave={() => setHovered({ profile: false })}
+              onMouseEnter={() => setHovered({ profile: true })}
+          >
+            <StyledLink
+                to="/login"
+                className={hovered.profile! ? "hovered-profile" : ""}
+            >
+              <ProfileIco />
+            </StyledLink>
+            <DropdownMenu setWidth="170px" left="-3rem" top="2.10rem">
+              <MenuList to="/">
+                <ProfileMenuIco />
+                Profile
+              </MenuList>
+              <MenuList to="/">
+                <MyCollectionIco />
+                My Collections
+              </MenuList>
+              <MenuList to="/">
+                <WatchlistIco />
+                Watchlist
+              </MenuList>
+              <MenuList to="/">
+                <SettingsIco />
+                Settings
+              </MenuList>
+              <MenuList to="/login">
+                <LoginMenuIco />
+                Log in
+              </MenuList>
+              </DropdownMenu>
+          </StyledList>
+          <StyledList>
+            <StyledLink to="/">
+              <LanguageTitle>en</LanguageTitle>
+            </StyledLink>
+          </StyledList>
+        </StyledUl>
+      </HeaderWrap>
+      <SeoHeading>Undas</SeoHeading>
+    </Header>
   );
 };
 

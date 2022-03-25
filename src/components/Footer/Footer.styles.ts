@@ -190,7 +190,7 @@ export const Input = styled.input`
   @media (max-width: 1019px) {
     width: 260px;
     height: 50px;
-    padding-left: 1rem;
+    //padding-left: 1rem;
     font-size: 1rem;
 
     &::placeholder {

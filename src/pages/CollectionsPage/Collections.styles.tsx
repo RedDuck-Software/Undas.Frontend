@@ -135,6 +135,7 @@ interface IWrapper {
 
 
 export const Wrapper = styled.div<IWrapper> `
+  position: relative;
   display: ${props => props.disp || 'inline-block'};
   margin: ${props => props.marg};
   align-items: ${props => props.alignItems};
