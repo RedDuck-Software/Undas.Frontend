@@ -22,6 +22,7 @@ import {
   DropdownMenu,
   MenuList,
   MenuListSocial,
+  SocialLink
 } from "./Navbar.styles";
 
 import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
@@ -177,10 +178,10 @@ const Navbar = () => {
                   FAQ
                 </MenuList>
                 <MenuListSocial>
-                  <TwitterIco />
-                  <TelegramIco />
-                  <DiscordIco />
-                  <InstagramIco />
+                  <SocialLink to="/"><TwitterIco /></SocialLink>
+                  <SocialLink to="/"><TelegramIco /></SocialLink>
+                  <SocialLink to="/"><DiscordIco /></SocialLink>
+                  <SocialLink to="/"><InstagramIco /></SocialLink>
                 </MenuListSocial>
               </DropdownMenu>
             </StyledList>

@@ -57,7 +57,7 @@ export const Input = styled.input`
 export const Navigation = styled.nav `
   width: 38vw;
   max-width: 390px;
-  margin-right: 1.8rem;
+  margin-right: 15px;
 `
 
 interface IStyledUl {
@@ -110,6 +110,7 @@ export const StyledLink = styled(Link) `
   &:hover {
     color: #873DC1;
   }
+  
   &.hovered-explore + ${DropdownMenu} {
     opacity: 1;
     visibility: visible;
@@ -175,14 +176,22 @@ export const MenuListSocial = styled.div `
     font-weight: 500;
     color: #873DC1;
   }
+`
+
+export const SocialLink = styled(Link) `
   svg {
     path {
       transition: all ease-in-out 0.15s;
-      &:hover {
-        fill: #873DC1;
-      }
     }
   }
+  &:hover {
+    svg {
+      path {
+        fill: #873DC1;
+        }
+    }
+  }
+  
 `
 
 export const Favorite = styled(FavoriteIco) `
