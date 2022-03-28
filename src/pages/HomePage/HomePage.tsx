@@ -23,6 +23,7 @@ const HomePage = () => {
         <Info />
         <Container>
             <Recommended />
+            <RentNFT />
         </Container>
      {/* <Background>
         <InfoSection />
