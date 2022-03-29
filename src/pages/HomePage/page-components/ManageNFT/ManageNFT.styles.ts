@@ -4,9 +4,15 @@ export const ManageCardWrap = styled.ul `
   list-style: none;
   display: flex;
   justify-content: space-between;
+  height: 400px;
 `
 
-export const ManageCard = styled.li `
+interface ICard {
+    alignSelf?: string
+}
+
+export const ManageCard = styled.li<ICard> `
+  align-self: ${props => props.alignSelf || 'self-start'};
   display: flex;
   flex-direction: column;
   align-items: center;

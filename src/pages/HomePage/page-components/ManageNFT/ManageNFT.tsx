@@ -42,7 +42,7 @@ const ManageNFT:FC = () => {
                     </DescHolder>
                     <PurpleText>Learn More ...</PurpleText>
                 </ManageCard>
-                <ManageCard>
+                <ManageCard alignSelf="self-end">
                     <AddingNFTIco />
                     <CardTitle>
                         Adding NFT
@@ -75,8 +75,8 @@ const ManageNFT:FC = () => {
                     </DescHolder>
                     <PurpleText>Learn More ...</PurpleText>
                 </ManageCard>
-                <ManageCard>
-                    <AddingNFTIco />
+                <ManageCard alignSelf="self-end">
+                    <StackingIco />
                     <CardTitle>
                         Stacking and Marketplace Token
                     </CardTitle>
