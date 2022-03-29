@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+
+export const RecommendedContainer = styled.div `
+  margin-top: 80px;
+`
+
 export const Title = styled.h2 `
   position: relative;
   font-weight: 500;

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const ManageNFTContainer = styled.div `
+  margin: 120px 0;
+`
+
 export const ManageCardWrap = styled.ul `
   list-style: none;
   display: flex;

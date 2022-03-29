@@ -16,10 +16,15 @@ import {Container} from "../../globalStyles";
 import Recommended from "./page-components/Recomended/Recommended";
 import ManageNFT from "./page-components/ManageNFT/ManageNFT";
 import NewNFT from "./page-components/NewNFT/NewNFT";
+import styled from "styled-components";
+
+const HomeContainer = styled.div `
+  margin-bottom: 150px;
+`
 
 const HomePage = () => {
   return (
-    <div>
+    <HomeContainer>
       <Slider />
        <Promo />
         <Info />
@@ -36,7 +41,7 @@ const HomePage = () => {
         <TopCollections />
         <TopBuyers />
       </Background>*/}
-      </div>
+      </HomeContainer>
   );
 };
 

@@ -7,6 +7,7 @@ import {
     StackingIco,
 } from './imports'
 import {
+    ManageNFTContainer,
     ManageCardWrap,
     ManageCard,
     CardTitle,
@@ -20,7 +21,7 @@ import {BtnNone} from "../NFTCard/NFTCard.styles";
 
 const ManageNFT:FC = () => {
     return (
-        <>
+        <ManageNFTContainer>
             <TitleWrap>
                 <Title>
                     Manage Your NFTs
@@ -91,7 +92,7 @@ const ManageNFT:FC = () => {
                     <PurpleText>Learn More ...</PurpleText>
                 </ManageCard>
             </ManageCardWrap>
-        </>
+        </ManageNFTContainer>
     )
 }
 

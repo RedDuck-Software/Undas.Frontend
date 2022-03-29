@@ -9,6 +9,7 @@ import {
 } from './imports'
 
 import {
+    RecommendedContainer,
     Title,
     ViewAllBtn,
     CategoriesWrap,
@@ -20,7 +21,7 @@ import {
 
 const Recommended:FC = () => {
     return (
-        <>
+        <RecommendedContainer>
             <TitleWrap>
                 <Title>
                     Recommended Categories
@@ -49,7 +50,7 @@ const Recommended:FC = () => {
                     <Image src={ArtworkImg} alt="category-img" />
                 </CategoryWrap>
             </CategoriesWrap>
-        </>
+        </RecommendedContainer>
     )
 }
 

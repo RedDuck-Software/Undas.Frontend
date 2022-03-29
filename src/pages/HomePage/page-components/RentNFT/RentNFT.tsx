@@ -9,11 +9,15 @@ import {Navigation} from "swiper";
 import './NFTHeroSlider.css'
 import {Title, TitleWrap, ViewAllBtn} from "../Recomended/Recommended.styles";
 import NFTCard from "../NFTCard/NFTCard";
+import styled from "styled-components";
 
+const RentNFTContainer = styled.div `
+  margin: 120px 0;
+`
 
 const RentNFT:FC = () => {
   return (
-      <>
+      <RentNFTContainer>
         <TitleWrap>
           <Title>
             Rent NFT
@@ -40,7 +44,7 @@ const RentNFT:FC = () => {
                 <NFTCard/>
             </SwiperSlide>
         </Swiper>
-      </>
+      </RentNFTContainer>
   )
 }
 
