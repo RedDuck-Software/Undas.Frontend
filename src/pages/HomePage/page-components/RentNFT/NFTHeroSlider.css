@@ -1,0 +1,50 @@
+.rent-slider .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #7C7C7C;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: 0;
+    right: auto;
+    z-index: 999;
+}
+
+.rent-slider .swiper-button-prev:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.swiper-button-prev::after {
+    content: '';
+    border-bottom: 1px solid #7C7C7C;;
+    border-left: 1px solid #7C7C7C;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    margin-left: 4px;
+}
+.rent-slider .swiper-button-next {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #7C7C7C;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: auto;
+    right: 0;
+}
+.rent-slider .swiper-button-next:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.rent-slider .swiper-button-next::after {
+    content: '';
+    border-bottom: 1px solid #7C7C7C;
+    border-right: 1px solid #7C7C7C;
+    width: 16px;
+    height: 16px;
+    transform: rotate(-45deg);
+    margin-right: 6px;
+}

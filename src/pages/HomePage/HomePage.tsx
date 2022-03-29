@@ -14,6 +14,7 @@ import Promo from './page-components/Promo/Promo';
 import Info from './page-components/Info/Info'
 import {Container} from "../../globalStyles";
 import Recommended from "./page-components/Recomended/Recommended";
+import ManageNFT from "./page-components/ManageNFT/ManageNFT";
 
 const HomePage = () => {
   return (
@@ -24,6 +25,7 @@ const HomePage = () => {
         <Container>
             <Recommended />
             <RentNFT />
+            <ManageNFT />
         </Container>
      {/* <Background>
         <InfoSection />

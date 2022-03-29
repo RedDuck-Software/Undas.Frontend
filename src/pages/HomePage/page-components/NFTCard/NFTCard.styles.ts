@@ -13,6 +13,7 @@ export const BtnNone = styled.button `
 export const NFTWrap = styled.div `
   width: 350px;
   height: 390px;
+  cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
