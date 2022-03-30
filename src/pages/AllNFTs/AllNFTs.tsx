@@ -24,7 +24,10 @@ import {
 
 
 const AllNFTs:FC = () => {
-    const [active, setActive] = useState<string>('')
+    const [active, setActive] = useState<any>( {
+        price: false,
+        event: false
+    })
     useEffect(() => {
         console.log(active)
     }, [active])
@@ -38,18 +41,18 @@ const AllNFTs:FC = () => {
                         <ViewButton><ListIco /></ViewButton>
                     </ViewOption>
                   </SettingsElement>
-                  <Filter className={active}>
+                  <Filter className={active.price && 'price-active'}>
                       <FilterItem onClick={() => {
-                        if (active.length === 0 && active != 'price-active') {
-                            setActive('price-active')
-                        }
-                        else setActive('')
+                          if (!active.price) {
+                            setActive({price: true})
+                          }
+                          else setActive({price: false})
                       }
                       }>
                           <FilterTitle>Sort by Price</FilterTitle>
-                          <Arrow className={active}/>
+                          <Arrow className={active.price && 'price-active'}/>
                       </FilterItem>
-                      <FilterMenu className={active}>
+                      <FilterMenu className={active.price && 'price-active'}>
                           <MenuItem hover={true}>
                                 <span>Price: Low to High</span>
                           </MenuItem>
@@ -58,18 +61,18 @@ const AllNFTs:FC = () => {
                           </MenuItem>
                       </FilterMenu>
                   </Filter>
-                  <Filter className={active}>
+                  <Filter className={active.event && 'event-active'}>
                       <FilterItem onClick={() => {
-                          if (active.length === 0 && active != 'event-active') {
-                              setActive('event-active')
+                          if (!active.event) {
+                              setActive({event: true})
                           }
-                          else setActive('')
+                          else setActive({event: false})
                       }
                       }>
                           <FilterTitle>Sort by Event</FilterTitle>
-                          <Arrow className={active}/>
+                          <Arrow className={active.event && 'event-active'}/>
                       </FilterItem>
-                      <FilterMenu className={active}>
+                      <FilterMenu className={active.event && 'event-active'}>
                           <MenuItem hover={true}>
                               <span>Newly Created</span>
                           </MenuItem>
