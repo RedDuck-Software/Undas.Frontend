@@ -1,3 +1,135 @@
+import React, {FC, useEffect, useState} from 'react'
+import {Container} from "../../globalStyles";
+
+import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
+
+import {
+    AllNFTContainer,
+    MenuWrap,
+    ResultsTotal,
+    SettingsBlock,
+    SettingsElement,
+    ViewOption,
+    ViewButton,
+    Filter,
+    FilterItem,
+    MenuItem,
+    FilterTitle,
+    Arrow,
+    FilterMenu,
+    GridLayout
+} from "./AllNFTs.styles";
+
+import {
+    GridIco,
+    ListIco
+} from './imports'
+
+
+const AllNFTs:FC = () => {
+    const [active, setActive] = useState<any>( {
+        price: false,
+        event: false
+    })
+    useEffect(() => {
+        console.log(active)
+    }, [active])
+    return (
+      <AllNFTContainer>
+          <MenuWrap>
+              <SettingsBlock>
+                  <SettingsElement>
+                    <ViewOption>
+                        <ViewButton className = 'grid-active'><GridIco /></ViewButton>
+                        <ViewButton><ListIco /></ViewButton>
+                    </ViewOption>
+                  </SettingsElement>
+                  <Filter className={active.price && 'price-active'}>
+                      <FilterItem onClick={() => {
+                          if (!active.price) {
+                            setActive({price: true})
+                          }
+                          else setActive({price: false})
+                      }
+                      }>
+                          <FilterTitle>Sort by Price</FilterTitle>
+                          <Arrow className={active.price && 'price-active'}/>
+                      </FilterItem>
+                      <FilterMenu className={active.price && 'price-active'}>
+                          <MenuItem hover={true}>
+                                <span>Price: Low to High</span>
+                          </MenuItem>
+                          <MenuItem hover={true}>
+                              <span>Price: High to Low</span>
+                          </MenuItem>
+                      </FilterMenu>
+                  </Filter>
+                  <Filter className={active.event && 'event-active'}>
+                      <FilterItem onClick={() => {
+                          if (!active.event) {
+                              setActive({event: true})
+                          }
+                          else setActive({event: false})
+                      }
+                      }>
+                          <FilterTitle>Sort by Event</FilterTitle>
+                          <Arrow className={active.event && 'event-active'}/>
+                      </FilterItem>
+                      <FilterMenu className={active.event && 'event-active'}>
+                          <MenuItem hover={true}>
+                              <span>Newly Created</span>
+                          </MenuItem>
+                          <MenuItem hover={true}>
+                              <span>Recently Sold</span>
+                          </MenuItem>
+                          <MenuItem hover={true}>
+                              <span>Recently Posted</span>
+                          </MenuItem>
+                          <MenuItem hover={true}>
+                              <span>Recently Staking</span>
+                          </MenuItem>
+                      </FilterMenu>
+                  </Filter>
+              </SettingsBlock>
+              <ResultsTotal>
+                  19 364 263 results
+              </ResultsTotal>
+          </MenuWrap>
+          <GridLayout>
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+          </GridLayout>
+      </AllNFTContainer>
+    )
+}
+
+export default AllNFTs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 import { CardList } from "../../components";
 
 import { Background } from "../../globalStyles";
@@ -130,3 +262,4 @@ const AllNFTs = () => {
 };
 
 export default AllNFTs;
+*/

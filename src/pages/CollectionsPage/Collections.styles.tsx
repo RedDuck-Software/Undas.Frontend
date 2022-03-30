@@ -131,6 +131,7 @@ interface IWrapper {
     gap?: string,
     marg?: string
     mw?: string,
+    bg?: string,
 }
 
 
@@ -144,14 +145,19 @@ export const Wrapper = styled.div<IWrapper> `
   margin: ${props => props.marg};
   max-width: ${props => props.mw};
   gap: ${props => props.gap};
+  background-color: ${props => props.bg || ''};
 `
 
-export const Platform = styled.strong `
+interface IPlatform {
+    col?: string
+}
+
+export const Platform = styled.strong<IPlatform> `
   font-family: 'Jost';
   font-weight: 600;
   font-size: 12px;
   line-height: 17px;
-  color: #CCB7F2;
+  color: ${props => props.col || '#CCB7F2'};
 `
 
 export const NFTCards = styled.div `

@@ -1,5 +1,164 @@
-import { Container } from "../../globalStyles";
 import styled from "styled-components";
+import {Container} from "../../globalStyles";
+
+export const AllNFTContainer = styled(Container) `
+  margin-bottom: 200px;//rm after deploy
+  ${Container}
+`
+
+export const MenuWrap = styled.div `
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 64px 0 20px;
+`
+
+
+export const ResultsTotal = styled.span `
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #7C7C7C;
+`
+
+export const SettingsBlock = styled.ul `
+  list-style: none;
+  display: flex;
+  gap: 15px;
+`
+
+export const ViewOption = styled.div `
+  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  height: 36px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+`
+
+
+export const ViewButton = styled.button `
+  cursor: pointer;
+  background: #FFFFFF;
+  width: 36px;
+  height: 36px;
+  border: none;
+  box-sizing: border-box;
+  &.grid-active {
+    background-color: #EDD2FF;
+  }
+`
+
+export const Filter = styled.ul `
+  width: 160px;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+  //overflow: hidden;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+  &.price-active {
+    border-radius: 10px 10px 0 0;
+  }
+  &.event-active {
+    border-radius: 10px 10px 0 0;
+  }
+`
+
+
+export const FilterItem = styled.li `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: all ease-in-out 0.15s;
+`
+
+interface IMenuItem {
+    hover?: boolean
+}
+export const MenuItem = styled(FilterItem)<IMenuItem> `
+  &:hover {
+    ${props => props.hover ?
+            'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
+            : ''}
+  }
+`
+
+export const Arrow = styled.span `
+  margin-top: 4px;
+  border-top: 1px solid #5D3F92;
+  border-left: 1px solid #5D3F92;
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  transition: all ease-in-out 0.15s;
+  &.price-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+  &.event-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+`
+
+export const FilterMenu = styled.ul `
+  position: absolute;
+  z-index: 2;
+  width: 160px;
+  background: #FFFFFF;
+  box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease-in-out 0.15s;
+  &.price-active {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.event-active {
+    visibility: visible;
+    opacity: 1;
+  }
+`
+
+export const FilterTitle = styled.span `
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #5D3F92;
+`
+
+export const SettingsElement = styled.li `
+  
+`
+
+export const GridLayout = styled.div `
+  /*display: grid;
+  grid-template-rows: auto;
+  //grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  //grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  justify-content: space-between;*/
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px 0;
+`
+
+
+
+
+/*
+import { Container } from "../../globalStyles";
 
 import { ReactComponent as Search } from "../../icons/search.svg";
 import CheckMark from "../../icons/check-mark.svg";
@@ -427,3 +586,4 @@ export const CategoriesListItem = styled(CollectionsListItem)`
   ${CollectionsListItem};
   }
 `;
+*/

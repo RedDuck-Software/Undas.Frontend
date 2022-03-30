@@ -103,7 +103,7 @@ const Navbar = () => {
                   className={hovered.explore! ? "hovered-explore" : ""}
               >Explore</StyledLink>
               <DropdownMenu>
-                <MenuList to="/">
+                <MenuList to="/all">
                     <AllNFTsIcon />
                     All NFTs
                 </MenuList>
