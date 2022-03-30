@@ -6,7 +6,7 @@ import { FavoriteIco, ProfileIco } from './imports'
 
 export const Header = styled.header `
   height: 40px;
-  position: fixed;
+  position: sticky;
   width: 100%;
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);

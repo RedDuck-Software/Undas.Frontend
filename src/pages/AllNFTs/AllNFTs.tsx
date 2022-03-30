@@ -1,3 +1,101 @@
+import React, {FC, useState} from 'react'
+import {Container} from "../../globalStyles";
+
+import {
+    AllNFTContainer,
+    MenuWrap,
+    ResultsTotal,
+    SettingsBlock,
+    SettingsElement,
+    ViewOption,
+    ViewButton,
+    Filter,
+    FilterItem,
+    FilterTitle,
+    Arrow,
+    FilterMenu
+} from "./AllNFTs.styles";
+
+import {
+    GridIco,
+    ListIco
+} from './imports'
+
+const AllNFTs:FC = () => {
+
+
+    return (
+      <AllNFTContainer>
+          <MenuWrap>
+              <SettingsBlock>
+                  <SettingsElement>
+                    <ViewOption>
+                        <ViewButton className = 'grid-active'><GridIco /></ViewButton>
+                        <ViewButton><ListIco /></ViewButton>
+                    </ViewOption>
+                  </SettingsElement>
+                  <Filter>
+                      <FilterItem>
+                          <FilterTitle>Sort by Price</FilterTitle>
+                          <Arrow />
+                      </FilterItem>
+                      <FilterMenu>
+                          <FilterItem hover={true}>
+                                <span>Price: Low to High</span>
+                          </FilterItem>
+                          <FilterItem hover={true}>
+                              <span>Price: High to Low</span>
+                          </FilterItem>
+                      </FilterMenu>
+                  </Filter>
+                  <Filter>
+                      <FilterItem>
+                          <FilterTitle>Sort by Event</FilterTitle>
+                          <Arrow/>
+                      </FilterItem>
+                      <FilterMenu>
+                          <FilterItem hover={true}>
+                              <span>Newly Created</span>
+                          </FilterItem>
+                          <FilterItem hover={true}>
+                              <span>Recently Sold</span>
+                          </FilterItem>
+                          <FilterItem hover={true}>
+                              <span>Recently Posted</span>
+                          </FilterItem>
+                          <FilterItem hover={true}>
+                              <span>Recently Staking</span>
+                          </FilterItem>
+                      </FilterMenu>
+                  </Filter>
+              </SettingsBlock>
+              <ResultsTotal>
+                  19 364 263 results
+              </ResultsTotal>
+          </MenuWrap>
+      </AllNFTContainer>
+    )
+}
+
+export default AllNFTs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 import { CardList } from "../../components";
 
 import { Background } from "../../globalStyles";
@@ -130,3 +228,4 @@ const AllNFTs = () => {
 };
 
 export default AllNFTs;
+*/

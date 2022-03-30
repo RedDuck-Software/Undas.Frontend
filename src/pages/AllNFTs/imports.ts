@@ -11,6 +11,11 @@ import SportIcon from "../../icons/sport.png";
 import GirlsIcon from "../../icons/girls.png";
 import FurnitureIcon from "../../icons/furniture.png";
 
+//New Ver
+import {ReactComponent as GridIco} from '../../icons/all-nft/grid.svg'
+import {ReactComponent as ListIco} from '../../icons/all-nft/list.svg'
+
+
 export {
   CollectionIcon,
   EthereumIcon,
@@ -22,4 +27,6 @@ export {
   SportIcon,
   GirlsIcon,
   FurnitureIcon,
+  GridIco,
+  ListIco
 };
