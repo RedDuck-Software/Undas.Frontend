@@ -62,22 +62,31 @@ export const Filter = styled.ul `
   font-size: 14px;
   line-height: 17px;
   color: #7C7C7C;
+  &.price-active {
+    border-radius: 10px 10px 0 0;
+  }
+  &.event-active {
+    border-radius: 10px 10px 0 0;
+  }
 `
 
-interface IFilterItem {
-  hover?: boolean
-}
 
-export const FilterItem = styled.li<IFilterItem> `
+export const FilterItem = styled.li `
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   transition: all ease-in-out 0.15s;
+`
+
+interface IMenuItem {
+    hover?: boolean
+}
+export const MenuItem = styled(FilterItem)<IMenuItem> `
   &:hover {
-    ${props => props.hover ? 
-        'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
-        : ''}
+    ${props => props.hover ?
+            'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
+            : ''}
   }
 `
 
@@ -88,6 +97,15 @@ export const Arrow = styled.span `
   transform: rotate(45deg);
   width: 10px;
   height: 10px;
+  transition: all ease-in-out 0.15s;
+  &.price-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+  &.event-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
 `
 
 export const FilterMenu = styled.ul `
@@ -97,6 +115,17 @@ export const FilterMenu = styled.ul `
   box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
   border-radius: 0 0 10px 10px;
   overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease-in-out 0.15s;
+  &.price-active {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.event-active {
+    visibility: visible;
+    opacity: 1;
+  }
 `
 
 export const FilterTitle = styled.span `

@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {Container} from "../../globalStyles";
 
 import {
@@ -11,6 +11,7 @@ import {
     ViewButton,
     Filter,
     FilterItem,
+    MenuItem,
     FilterTitle,
     Arrow,
     FilterMenu
@@ -21,9 +22,12 @@ import {
     ListIco
 } from './imports'
 
+
 const AllNFTs:FC = () => {
-
-
+    const [active, setActive] = useState<string>('')
+    useEffect(() => {
+        console.log(active)
+    }, [active])
     return (
       <AllNFTContainer>
           <MenuWrap>
@@ -34,38 +38,50 @@ const AllNFTs:FC = () => {
                         <ViewButton><ListIco /></ViewButton>
                     </ViewOption>
                   </SettingsElement>
-                  <Filter>
-                      <FilterItem>
+                  <Filter className={active}>
+                      <FilterItem onClick={() => {
+                        if (active.length === 0 && active != 'price-active') {
+                            setActive('price-active')
+                        }
+                        else setActive('')
+                      }
+                      }>
                           <FilterTitle>Sort by Price</FilterTitle>
-                          <Arrow />
+                          <Arrow className={active}/>
                       </FilterItem>
-                      <FilterMenu>
-                          <FilterItem hover={true}>
+                      <FilterMenu className={active}>
+                          <MenuItem hover={true}>
                                 <span>Price: Low to High</span>
-                          </FilterItem>
-                          <FilterItem hover={true}>
+                          </MenuItem>
+                          <MenuItem hover={true}>
                               <span>Price: High to Low</span>
-                          </FilterItem>
+                          </MenuItem>
                       </FilterMenu>
                   </Filter>
-                  <Filter>
-                      <FilterItem>
+                  <Filter className={active}>
+                      <FilterItem onClick={() => {
+                          if (active.length === 0 && active != 'event-active') {
+                              setActive('event-active')
+                          }
+                          else setActive('')
+                      }
+                      }>
                           <FilterTitle>Sort by Event</FilterTitle>
-                          <Arrow/>
+                          <Arrow className={active}/>
                       </FilterItem>
-                      <FilterMenu>
-                          <FilterItem hover={true}>
+                      <FilterMenu className={active}>
+                          <MenuItem hover={true}>
                               <span>Newly Created</span>
-                          </FilterItem>
-                          <FilterItem hover={true}>
+                          </MenuItem>
+                          <MenuItem hover={true}>
                               <span>Recently Sold</span>
-                          </FilterItem>
-                          <FilterItem hover={true}>
+                          </MenuItem>
+                          <MenuItem hover={true}>
                               <span>Recently Posted</span>
-                          </FilterItem>
-                          <FilterItem hover={true}>
+                          </MenuItem>
+                          <MenuItem hover={true}>
                               <span>Recently Staking</span>
-                          </FilterItem>
+                          </MenuItem>
                       </FilterMenu>
                   </Filter>
               </SettingsBlock>
