@@ -11,7 +11,7 @@ export const MenuWrap = styled.div `
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 64px;
+  margin: 64px 0 20px;
 `
 
 
@@ -110,6 +110,7 @@ export const Arrow = styled.span `
 
 export const FilterMenu = styled.ul `
   position: absolute;
+  z-index: 2;
   width: 160px;
   background: #FFFFFF;
   box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
@@ -139,7 +140,19 @@ export const SettingsElement = styled.li `
   
 `
 
-
+export const GridLayout = styled.div `
+  /*display: grid;
+  grid-template-rows: auto;
+  //grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  //grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  justify-content: space-between;*/
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px 0;
+`
 
 
 

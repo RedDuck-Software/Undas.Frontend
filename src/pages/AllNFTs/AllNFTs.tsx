@@ -16,7 +16,8 @@ import {
     MenuItem,
     FilterTitle,
     Arrow,
-    FilterMenu
+    FilterMenu,
+    GridLayout
 } from "./AllNFTs.styles";
 
 import {
@@ -94,7 +95,18 @@ const AllNFTs:FC = () => {
                   19 364 263 results
               </ResultsTotal>
           </MenuWrap>
-          <NFTGrid />
+          <GridLayout>
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+              <NFTGrid />
+          </GridLayout>
       </AllNFTContainer>
     )
 }
