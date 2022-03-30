@@ -1,6 +1,8 @@
 import React, {FC, useEffect, useState} from 'react'
 import {Container} from "../../globalStyles";
 
+import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
+
 import {
     AllNFTContainer,
     MenuWrap,
@@ -92,6 +94,7 @@ const AllNFTs:FC = () => {
                   19 364 263 results
               </ResultsTotal>
           </MenuWrap>
+          <NFTGrid />
       </AllNFTContainer>
     )
 }
