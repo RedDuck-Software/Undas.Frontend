@@ -7,6 +7,8 @@ export const ElementText = styled.span `
 `
 
 export const HolderElement = styled.li `
+  position: relative;
+  z-index: 1;
   width: 255px;
   padding: 10px 6px;
   cursor: pointer;
@@ -83,5 +85,36 @@ export const AccordionArrow = styled(Arrow) `
   border-top: 1px solid #7C7C7C;
   border-left: 1px solid #7C7C7C;
   transform: rotate(-135deg);
+  &.active-status {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
   ${Arrow}
+`
+
+export const AccordionMenu = styled.ul `
+  list-style: none;
+  width: 100%;
+  transition: all ease-in-out 0.25s;
+  overflow: hidden;
+  max-height: 0;
+  &.active-status {
+    max-height: max-content;
+  }
+`
+
+export const AccordionElement = styled.li `
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 36px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  background-color: #FCF8FF;
+  border-top: 1px solid #DCD9DE;
+  margin-top: -1px;
 `

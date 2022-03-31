@@ -14,12 +14,18 @@ import {
     HolderElement,
     ElementText,
     Arrow,
-    AccordionArrow
+    AccordionArrow,
+    AccordionMenu,
+    AccordionElement
 } from './ASideFilter.styles'
 
 
 const ASideFilter:FC = () => {
     const [active, setActive] = useState(false)
+    const [activeMenu, setActiveMenu] = useState<any>({
+        status: false,
+        price: false,
+    })
     return (
         <ASideWrap className={active && 'active' || ''}>
             <Holder>
@@ -32,16 +38,38 @@ const ASideFilter:FC = () => {
                     <ElementText>Filter</ElementText>
                     <Arrow />
                 </HolderElement>
-                <HolderElement>
+                <HolderElement onClick={() => {
+                    if (!activeMenu.status) {
+                        setActiveMenu({status: true})
+                    }
+                    else setActiveMenu({status: false})
+                    console.log('clicked', activeMenu)
+                }
+                }>
                     <StatusIco />
                     <ElementText>Status</ElementText>
-                    <AccordionArrow />
+                    <AccordionArrow className={activeMenu.status && 'active-status' || ''}/>
                 </HolderElement>
+                <AccordionMenu className={activeMenu.status && 'active-status' || ''}>
+                    <AccordionElement>
+                        <span>New</span>
+                    </AccordionElement>
+                    <AccordionElement>
+                        <span>Staking</span>
+                    </AccordionElement>
+                    <AccordionElement>
+                        <span>Rent</span>
+                    </AccordionElement>
+                    <AccordionElement>
+                        <span>Has Offers</span>
+                    </AccordionElement>
+                </AccordionMenu>
                 <HolderElement>
                     <PriceIco />
                     <ElementText>Price</ElementText>
                     <AccordionArrow />
                 </HolderElement>
+                {/* MVP
                 <HolderElement>
                     <CategoriesIco/>
                     <ElementText>Categories</ElementText>
@@ -56,7 +84,7 @@ const ASideFilter:FC = () => {
                     <ChainsIco />
                     <ElementText>Chains</ElementText>
                     <AccordionArrow />
-                </HolderElement>
+                </HolderElement>*/}
             </Holder>
         </ASideWrap>
     )
