@@ -13,7 +13,8 @@ import {
     Holder,
     HolderElement,
     ElementText,
-    Arrow
+    Arrow,
+    AccordionArrow
 } from './ASideFilter.styles'
 
 
@@ -34,27 +35,27 @@ const ASideFilter:FC = () => {
                 <HolderElement>
                     <StatusIco />
                     <ElementText>Status</ElementText>
-                    <Arrow />
+                    <AccordionArrow />
                 </HolderElement>
                 <HolderElement>
                     <PriceIco />
                     <ElementText>Price</ElementText>
-                    <Arrow />
+                    <AccordionArrow />
                 </HolderElement>
                 <HolderElement>
                     <CategoriesIco/>
                     <ElementText>Categories</ElementText>
-                    <Arrow />
+                    <AccordionArrow />
                 </HolderElement>
                 <HolderElement>
                     <CollectionsIco />
                     <ElementText>Collections</ElementText>
-                    <Arrow />
+                    <AccordionArrow />
                 </HolderElement>
                 <HolderElement>
                     <ChainsIco />
                     <ElementText>Chains</ElementText>
-                    <Arrow />
+                    <AccordionArrow />
                 </HolderElement>
             </Holder>
         </ASideWrap>

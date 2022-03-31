@@ -73,8 +73,15 @@ export const Arrow = styled.span `
   border-top: 1px solid #5D3F92;
   border-left: 1px solid #5D3F92;
   transform: rotate(-45deg);
-  justify-self: end;
   width: 10px;
   height: 10px;
   transition: all ease-in-out 0.15s;
+`
+
+export const AccordionArrow = styled(Arrow) `
+  margin-top: -4px;
+  border-top: 1px solid #7C7C7C;
+  border-left: 1px solid #7C7C7C;
+  transform: rotate(-135deg);
+  ${Arrow}
 `
