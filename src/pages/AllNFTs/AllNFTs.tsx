@@ -24,6 +24,8 @@ import {
     GridIco,
     ListIco
 } from './imports'
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import {Wrapper} from "../CollectionsPage/Collections.styles";
 
 
 const AllNFTs:FC = () => {
@@ -36,77 +38,80 @@ const AllNFTs:FC = () => {
     }, [active])
     return (
       <AllNFTContainer>
-          <MenuWrap>
-              <SettingsBlock>
-                  <SettingsElement>
-                    <ViewOption>
-                        <ViewButton className = 'grid-active'><GridIco /></ViewButton>
-                        <ViewButton><ListIco /></ViewButton>
-                    </ViewOption>
-                  </SettingsElement>
-                  <Filter className={active.price && 'price-active'}>
-                      <FilterItem onClick={() => {
-                          if (!active.price) {
-                            setActive({price: true})
+          <ASideFilter />
+          <Wrapper w="100%" marg="0 0 200px 0">{/*rm marg after deploy*/}
+              <MenuWrap>
+                  <SettingsBlock>
+                      <SettingsElement>
+                        <ViewOption>
+                            <ViewButton className = 'grid-active'><GridIco /></ViewButton>
+                            <ViewButton><ListIco /></ViewButton>
+                        </ViewOption>
+                      </SettingsElement>
+                      <Filter className={active.price && 'price-active'}>
+                          <FilterItem onClick={() => {
+                              if (!active.price) {
+                                setActive({price: true})
+                              }
+                              else setActive({price: false})
                           }
-                          else setActive({price: false})
-                      }
-                      }>
-                          <FilterTitle>Sort by Price</FilterTitle>
-                          <Arrow className={active.price && 'price-active'}/>
-                      </FilterItem>
-                      <FilterMenu className={active.price && 'price-active'}>
-                          <MenuItem hover={true}>
-                                <span>Price: Low to High</span>
-                          </MenuItem>
-                          <MenuItem hover={true}>
-                              <span>Price: High to Low</span>
-                          </MenuItem>
-                      </FilterMenu>
-                  </Filter>
-                  <Filter className={active.event && 'event-active'}>
-                      <FilterItem onClick={() => {
-                          if (!active.event) {
-                              setActive({event: true})
+                          }>
+                              <FilterTitle>Sort by Price</FilterTitle>
+                              <Arrow className={active.price && 'price-active'}/>
+                          </FilterItem>
+                          <FilterMenu className={active.price && 'price-active'}>
+                              <MenuItem hover={true}>
+                                    <span>Price: Low to High</span>
+                              </MenuItem>
+                              <MenuItem hover={true}>
+                                  <span>Price: High to Low</span>
+                              </MenuItem>
+                          </FilterMenu>
+                      </Filter>
+                      <Filter className={active.event && 'event-active'}>
+                          <FilterItem onClick={() => {
+                              if (!active.event) {
+                                  setActive({event: true})
+                              }
+                              else setActive({event: false})
                           }
-                          else setActive({event: false})
-                      }
-                      }>
-                          <FilterTitle>Sort by Event</FilterTitle>
-                          <Arrow className={active.event && 'event-active'}/>
-                      </FilterItem>
-                      <FilterMenu className={active.event && 'event-active'}>
-                          <MenuItem hover={true}>
-                              <span>Newly Created</span>
-                          </MenuItem>
-                          <MenuItem hover={true}>
-                              <span>Recently Sold</span>
-                          </MenuItem>
-                          <MenuItem hover={true}>
-                              <span>Recently Posted</span>
-                          </MenuItem>
-                          <MenuItem hover={true}>
-                              <span>Recently Staking</span>
-                          </MenuItem>
-                      </FilterMenu>
-                  </Filter>
-              </SettingsBlock>
-              <ResultsTotal>
-                  19 364 263 results
-              </ResultsTotal>
-          </MenuWrap>
-          <GridLayout>
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-              <NFTGrid />
-          </GridLayout>
+                          }>
+                              <FilterTitle>Sort by Event</FilterTitle>
+                              <Arrow className={active.event && 'event-active'}/>
+                          </FilterItem>
+                          <FilterMenu className={active.event && 'event-active'}>
+                              <MenuItem hover={true}>
+                                  <span>Newly Created</span>
+                              </MenuItem>
+                              <MenuItem hover={true}>
+                                  <span>Recently Sold</span>
+                              </MenuItem>
+                              <MenuItem hover={true}>
+                                  <span>Recently Posted</span>
+                              </MenuItem>
+                              <MenuItem hover={true}>
+                                  <span>Recently Staking</span>
+                              </MenuItem>
+                          </FilterMenu>
+                      </Filter>
+                  </SettingsBlock>
+                  <ResultsTotal>
+                      19 364 263 results
+                  </ResultsTotal>
+              </MenuWrap>
+              <GridLayout>
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+                  <NFTGrid />
+              </GridLayout>
+          </Wrapper>
       </AllNFTContainer>
     )
 }
