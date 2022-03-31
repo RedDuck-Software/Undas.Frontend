@@ -50,7 +50,6 @@ const ASideFilter:FC = () => {
                         !active && setActive(true)
                     }
                     else setActiveMenu({status: false})
-                    console.log('clicked', activeMenu)
                 }
                 }>
                     <StatusIco />
