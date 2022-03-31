@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useState} from 'react'
 import {
     FilterIco,
     StatusIco,
@@ -11,16 +11,25 @@ import {
 import {
     ASideWrap,
     Holder,
-    HolderElement
+    HolderElement,
+    ElementText,
+    Arrow
 } from './ASideFilter.styles'
 
 
-const ASideFilter = () => {
+const ASideFilter:FC = () => {
+    const [active, setActive] = useState(false)
     return (
-        <ASideWrap>
+        <ASideWrap className={active && 'active' || ''}>
             <Holder>
-                <HolderElement>
-                    <FilterIco />
+                <HolderElement onClick={() => {
+                    !active && setActive(true)
+                    active && setActive(false)
+                }
+                }>
+                    <FilterIco/>
+                    <ElementText>Filter</ElementText>
+                    <Arrow />
                 </HolderElement>
                 <HolderElement>
                     <StatusIco />
