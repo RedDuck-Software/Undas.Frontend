@@ -125,3 +125,46 @@ export const AccordionElement = styled.li `
 
 //Toggle switch
 
+export const SliderRound = styled.span `
+  position: absolute;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  &:before {
+    margin: 3px 0 0 3px;
+    position: absolute;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+ // background-color: #ccc;
+`
+
+export const Switch = styled.label `
+  position: relative;
+  width: 22px;
+  height: 12px;
+  background-color: #7C7C7C;
+  border-radius: 10px;
+`
+
+export const InputSwitch = styled.input `
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + ${SliderRound}::before {
+    -webkit-transform: translateX(4px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
+    background: #873DC1;
+  }
+`

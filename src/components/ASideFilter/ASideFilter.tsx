@@ -16,7 +16,10 @@ import {
     Arrow,
     AccordionArrow,
     AccordionMenu,
-    AccordionElement
+    AccordionElement,
+    Switch,
+    InputSwitch,
+    SliderRound,
 } from './ASideFilter.styles'
 
 
@@ -59,15 +62,31 @@ const ASideFilter:FC = () => {
                 <AccordionMenu mh="146px" className={activeMenu.status && 'active-status' || ''}>
                     <AccordionElement>
                         <span>New</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Staking</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Rent</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Has Offers</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                 </AccordionMenu>
                 <HolderElement>
