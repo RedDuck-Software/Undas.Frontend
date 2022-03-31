@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Container} from "../../globalStyles";
 
 export const AllNFTContainer = styled(Container) `
-  margin-bottom: 200px;//rm after deploy
+  display: flex;
   ${Container}
 `
 
@@ -148,10 +148,14 @@ export const GridLayout = styled.div `
   //grid-template-rows: 1fr 1fr 1fr 1fr;
   width: 100%;
   justify-content: space-between;*/
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 30px 0;
+  gap: 30px 0;*/
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
+  justify-content: space-between;
 `
 
 

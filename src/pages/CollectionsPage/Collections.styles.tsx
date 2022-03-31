@@ -132,11 +132,13 @@ interface IWrapper {
     marg?: string
     mw?: string,
     bg?: string,
+    w?: string,
 }
 
 
 export const Wrapper = styled.div<IWrapper> `
   position: relative;
+  width: ${props => props.w || ''};
   display: ${props => props.disp || 'inline-block'};
   margin: ${props => props.marg};
   align-items: ${props => props.alignItems};
