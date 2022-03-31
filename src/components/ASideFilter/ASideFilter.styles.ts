@@ -92,14 +92,18 @@ export const AccordionArrow = styled(Arrow) `
   ${Arrow}
 `
 
-export const AccordionMenu = styled.ul `
+interface IAccordionMenu {
+    mh?: string
+}
+
+export const AccordionMenu = styled.ul<IAccordionMenu> `
   list-style: none;
   width: 100%;
   transition: all ease-in-out 0.25s;
   overflow: hidden;
   max-height: 0;
   &.active-status {
-    max-height: max-content;
+    max-height: ${props => props.mh || '146px'};
   }
 `
 
@@ -118,3 +122,5 @@ export const AccordionElement = styled.li `
   border-top: 1px solid #DCD9DE;
   margin-top: -1px;
 `
+
+//Toggle switch

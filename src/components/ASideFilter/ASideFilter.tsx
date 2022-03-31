@@ -50,7 +50,7 @@ const ASideFilter:FC = () => {
                     <ElementText>Status</ElementText>
                     <AccordionArrow className={activeMenu.status && 'active-status' || ''}/>
                 </HolderElement>
-                <AccordionMenu className={activeMenu.status && 'active-status' || ''}>
+                <AccordionMenu mh="146px" className={activeMenu.status && 'active-status' || ''}>
                     <AccordionElement>
                         <span>New</span>
                     </AccordionElement>
