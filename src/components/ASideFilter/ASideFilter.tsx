@@ -31,7 +31,13 @@ const ASideFilter:FC = () => {
             <Holder>
                 <HolderElement onClick={() => {
                     !active && setActive(true)
-                    active && setActive(false)
+                    if (active) {
+                        setActiveMenu( {
+                            status: false,
+                            price: false,
+                        })
+                        setActive(false)
+                    }
                 }
                 }>
                     <FilterIco/>
@@ -41,16 +47,16 @@ const ASideFilter:FC = () => {
                 <HolderElement onClick={() => {
                     if (!activeMenu.status) {
                         setActiveMenu({status: true})
+                        !active && setActive(true)
                     }
                     else setActiveMenu({status: false})
-                    console.log('clicked', activeMenu)
                 }
                 }>
                     <StatusIco />
                     <ElementText>Status</ElementText>
                     <AccordionArrow className={activeMenu.status && 'active-status' || ''}/>
                 </HolderElement>
-                <AccordionMenu className={activeMenu.status && 'active-status' || ''}>
+                <AccordionMenu mh="146px" className={activeMenu.status && 'active-status' || ''}>
                     <AccordionElement>
                         <span>New</span>
                     </AccordionElement>

@@ -110,6 +110,7 @@ const AllNFTs:FC = () => {
                   <NFTGrid />
                   <NFTGrid />
                   <NFTGrid />
+                  <NFTGrid />
               </GridLayout>
           </Wrapper>
       </AllNFTContainer>
