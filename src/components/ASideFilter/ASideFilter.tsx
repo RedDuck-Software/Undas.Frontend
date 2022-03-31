@@ -33,18 +33,28 @@ const ASideFilter:FC = () => {
                 </HolderElement>
                 <HolderElement>
                     <StatusIco />
+                    <ElementText>Status</ElementText>
+                    <Arrow />
                 </HolderElement>
                 <HolderElement>
                     <PriceIco />
+                    <ElementText>Price</ElementText>
+                    <Arrow />
                 </HolderElement>
                 <HolderElement>
                     <CategoriesIco/>
+                    <ElementText>Categories</ElementText>
+                    <Arrow />
                 </HolderElement>
                 <HolderElement>
                     <CollectionsIco />
+                    <ElementText>Collections</ElementText>
+                    <Arrow />
                 </HolderElement>
                 <HolderElement>
                     <ChainsIco />
+                    <ElementText>Chains</ElementText>
+                    <Arrow />
                 </HolderElement>
             </Holder>
         </ASideWrap>

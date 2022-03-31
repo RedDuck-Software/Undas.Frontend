@@ -1,5 +1,38 @@
 import styled from "styled-components";
 
+export const ElementText = styled.span `
+  margin-left: 10px;
+  color: #7C7C7C;
+  transition: all ease-in-out 0.15s;
+`
+
+export const HolderElement = styled.li `
+  width: 255px;
+  padding: 10px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all ease-in-out 0.15s;
+  svg {
+    path {
+      transition: all ease-in-out 0.15s; 
+    }
+  }
+  
+  &:hover {
+    ${ElementText} {
+      color: #232428;
+    }
+      svg path {
+        fill: #5D3F92;
+      }
+    
+  }
+  &.active {
+    box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
+  }
+`
+
 export const ASideWrap = styled.div `
   min-width: 30px;
   max-width: 30px;
@@ -16,6 +49,9 @@ export const ASideWrap = styled.div `
   transition: all ease-in-out 0.10s;
   &.active {
     min-width: 255px;
+    ${HolderElement} {
+      box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
+    }
   }
 `
 
@@ -29,28 +65,7 @@ export const Holder = styled.ul `
   overflow: hidden;
 `
 
-export const HolderElement = styled.li `
-  width: 255px;
-  padding: 10px 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  svg {
-    path {
-      transition: all ease-in-out 0.15s; 
-    }
-  }
-  &:hover {
-      svg path {
-        fill: #5D3F92;
-      }  
-    }
-`
 
-export const ElementText = styled.span `
-  margin-left: 10px;
-  color: #7C7C7C;
-`
 
 export const Arrow = styled.span `
   margin-top: 4px;
