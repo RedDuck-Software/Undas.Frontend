@@ -36,6 +36,21 @@ const ASideFilter:FC = () => {
         price: false,
     })
     const [priceMenu, setPriceMenu] = useState<boolean>(false)
+    const [priceCurrency, setPriceCurrency] = useState([
+        {
+            currency: 'usd',
+            text: 'United States Dollar (USD)',
+            ico: <UsdIco/>,
+            selected: false
+        },
+        {
+            currency: 'eth',
+            text: 'Ether (ETH)',
+            ico: <EthIco/>,
+            selected: true
+        }
+    ])
+
     return (
         <ASideWrap className={active && 'active' || ''}>
             <Holder>
@@ -113,10 +128,10 @@ const ASideFilter:FC = () => {
                             className={priceMenu && 'price-menu-active' || ''}
                             onClick={() => {
                                 !priceMenu ? setPriceMenu(true) : setPriceMenu(false)
-                        }}>
+                            }}>
                             <UsdIco />
-                                <span>United States Dollar (USD)</span>
-                                <AccordionArrow className={priceMenu && 'price-menu-active' || ''}/>
+                            <span>United States Dollar (USD)</span>
+                            <AccordionArrow className={priceMenu && 'price-menu-active' || ''}/>
                         </PriceElement>
                         <PriceSelect className={priceMenu && 'price-menu-active' || ''}>
                             <PriceVariations>
