@@ -26,7 +26,8 @@ import {
   ExplorePage,
   RentNFTPage,
   Create,
-  Collections
+  Collections,
+  Faq,
 } from "./pages";
 
 import {
@@ -40,7 +41,6 @@ import {
 import { useWeb3React } from "@web3-react/core";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { connect } from "tls";
-
 
 const App = () => {
   let web3Current = useWeb3React();
@@ -111,6 +111,7 @@ const App = () => {
             element={<ExplorePage pageType="Furniture" />}
           />
           <Route path="/rent-nft" element={<RentNFTPage />} />
+          <Route path="/faq" element={<Faq />} />
         </Routes>
       </Context.Provider>
     </MoralisProvider>
