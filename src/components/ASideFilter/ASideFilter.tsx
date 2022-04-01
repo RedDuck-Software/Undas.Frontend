@@ -6,6 +6,8 @@ import {
     CategoriesIco,
     CollectionsIco,
     ChainsIco,
+    UsdIco,
+    EthIco
 } from './imports'
 
 import {
@@ -16,7 +18,12 @@ import {
     Arrow,
     AccordionArrow,
     AccordionMenu,
-    AccordionElement
+    AccordionElement,
+    Switch,
+    InputSwitch,
+    SliderRound,
+    PriceSelect,
+    PriceElement
 } from './ASideFilter.styles'
 
 
@@ -59,22 +66,53 @@ const ASideFilter:FC = () => {
                 <AccordionMenu mh="146px" className={activeMenu.status && 'active-status' || ''}>
                     <AccordionElement>
                         <span>New</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Staking</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Rent</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                     <AccordionElement>
                         <span>Has Offers</span>
+                        <Switch>
+                            <InputSwitch type="checkbox" />
+                            <SliderRound />
+                        </Switch>
                     </AccordionElement>
                 </AccordionMenu>
-                <HolderElement>
+                <HolderElement onClick={() => {
+                    if (!activeMenu.price) {
+                        setActiveMenu({price: true})
+                        !active && setActive(true)
+                    }
+                    else setActiveMenu({price: false})
+                }}>
                     <PriceIco />
                     <ElementText>Price</ElementText>
                     <AccordionArrow />
                 </HolderElement>
+                <AccordionMenu className={activeMenu.price && 'active-price' || ''}>
+                    <AccordionElement padd="0">
+                        <PriceElement>
+                            <UsdIco />
+                                <span>United States Dollar (USD)</span>
+                            <Arrow />
+                        </PriceElement>
+                    </AccordionElement>
+                </AccordionMenu>
                 {/* MVP
                 <HolderElement>
                     <CategoriesIco/>

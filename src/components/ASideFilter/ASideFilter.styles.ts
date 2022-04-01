@@ -105,15 +105,22 @@ export const AccordionMenu = styled.ul<IAccordionMenu> `
   &.active-status {
     max-height: ${props => props.mh || '146px'};
   }
+  &.active-price {
+    max-height: ${props => props.mh || '146px'};
+  }
 `
 
-export const AccordionElement = styled.li `
+interface IAccElement {
+    padd?: string
+}
+
+export const AccordionElement = styled.li<IAccElement> `
   cursor: pointer;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px 10px 36px;
+  padding: ${props => props.padd || '10px 20px 10px 36px'};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -125,3 +132,63 @@ export const AccordionElement = styled.li `
 
 //Toggle switch
 
+export const SliderRound = styled.span `
+  position: absolute;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  &:before {
+    margin: 3px 0 0 3px;
+    position: absolute;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+ // background-color: #ccc;
+`
+
+export const Switch = styled.label `
+  position: relative;
+  width: 22px;
+  height: 12px;
+  background-color: #7C7C7C;
+  border-radius: 10px;
+`
+
+export const InputSwitch = styled.input `
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + ${SliderRound}::before {
+    -webkit-transform: translateX(4px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
+    background: #873DC1;
+  }
+`
+
+export const PriceSelect = styled.ul `
+  
+`
+
+export const PriceElement = styled.li `
+  padding: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+`
