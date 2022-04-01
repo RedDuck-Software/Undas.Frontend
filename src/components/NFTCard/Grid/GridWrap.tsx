@@ -5,12 +5,6 @@ import {
 import NFTGrid from "./NFTGrid";
 
 
-let arr = [
-    {},
-    {},
-    {},
-    {},
-]
 
 const GridWrap = () => {
     return (
