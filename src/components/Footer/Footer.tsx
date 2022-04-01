@@ -20,7 +20,6 @@ import {
   TopicTitle,
   TopicText,
   Year,
-  TopicFirst,
 } from "./Footer.styles";
 
 import {
@@ -29,6 +28,7 @@ import {
   YouTube,
   Telegram,
   Instagram,
+  AppStore,
   Phone,
 } from "./imports";
 
@@ -36,20 +36,26 @@ const Footer = () => {
   return (
     <FooterSec>
       <FooterContainer>
-        <TopLeftWrapper>
-          <FooterText>Join Only1.art community</FooterText>
-          <FooterIconsWrapper>
-            <FooterIcon src={Twitter} />
-            <FooterIcon src={LinkedIn} />
-            <FooterIcon src={YouTube} />
-            <FooterIcon src={Telegram} />
-            <FooterIcon src={Instagram} />
-          </FooterIconsWrapper>
-        </TopLeftWrapper>
-        <BottomRightWrapper>
+        <TopLeftWrapper></TopLeftWrapper>
+        <TopRightWrapper>
+          <LeftSide></LeftSide>
+          <RightSide>
+            <FooterText>Get the latest Only1.art updates</FooterText>
+            <CustomSearch>
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="You're e-mail"
+              />
+              <ButtonSubmit>I’m in</ButtonSubmit>
+            </CustomSearch>
+          </RightSide>
+        </TopRightWrapper>
+        <BottomLeftWrapper>
           <TopicColumn>
             <TopicTitle>Explore</TopicTitle>
-            <TopicFirst>All NFTs</TopicFirst>
+            <TopicText>All NFTs</TopicText>
             <TopicText>New</TopicText>
             <TopicText>Art</TopicText>
             <TopicText>Sport</TopicText>
@@ -68,6 +74,15 @@ const Footer = () => {
             <TopicText>Blog</TopicText>
             <TopicText>Social media</TopicText>
           </TopicColumn>
+        </BottomLeftWrapper>
+        <BottomRightWrapper>
+          <FooterIconsWrapper>
+            <FooterIcon src={Twitter} />
+            <FooterIcon src={LinkedIn} />
+            <FooterIcon src={YouTube} />
+            <FooterIcon src={Telegram} />
+            <FooterIcon src={Instagram} />
+          </FooterIconsWrapper>
         </BottomRightWrapper>
       </FooterContainer>
       <Year>2022</Year>

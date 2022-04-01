@@ -12,9 +12,6 @@ import { CardItem } from "../../components";
 
 import { card01, card02, card03, card04 } from "./imports";
 
-import GreyBackground from "../../images/image-account/account01.png";
-import ProfileImage from "../../images/image-account/profile-image.png";
-
 import { Container, Background, Button } from "../../globalStyles";
 
 import {
@@ -55,17 +52,22 @@ const AccountPage = () => {
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
 
-  const [NFTList, setNFTList] =
-    useState<
-      operations["getNFTs"]["responses"]["200"]["content"]["application/json"]
-    >();
-
-  cookies.set("account", account, {
-    path: "/",
-    maxAge: 3600,
-    sameSite: "lax",
-    // secure: true,
-  });
+  const [NFTList, setNFTList] = useState<
+    {
+      token_address: string;
+      token_id: string;
+      contract_type: string;
+      owner_of: string;
+      block_number: string;
+      block_number_minted: string;
+      token_uri?: string | undefined;
+      metadata?: string | undefined;
+      synced_at?: string | undefined;
+      amount?: string | undefined;
+      name: string;
+      symbol: string;
+    }[]
+  >();
 
   const getNFTList = async () => {
     if (!connector || !account) return;
@@ -78,8 +80,15 @@ const AccountPage = () => {
 
   const getListData = async () => {
     const response = await getNFTList();
-    console.log(response);
-    setNFTList(response);
+    if (!response?.result) return;
+
+    //deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
+    response.result = response.result.filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.token_id === value.token_id)
+    );
+    console.log(response.result);
+    setNFTList(response.result);
   };
 
   useEffect(() => {
@@ -97,9 +106,10 @@ const AccountPage = () => {
     localStorage.removeItem("connector");
     deactivate();
   }
+
   return (
     <Background>
-      <AccoutBackground src={GreyBackground} />
+      <AccoutBackground />
       <AccountSec>
         <Container>
           <AccountInformation>
@@ -132,7 +142,7 @@ const AccountPage = () => {
               </ButtonsWrapper> */}
             </AccountPageContentHeader>
             <AccountCardsWrapper>
-              {NFTList?.result?.map((item) => {
+              {NFTList?.map((item) => {
                 return (
                   <CardLink
                     key={item.token_id}
