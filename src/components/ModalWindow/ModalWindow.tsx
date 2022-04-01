@@ -1,5 +1,4 @@
 import { IoMdClose } from 'react-icons/io';
-import Animista, { AnimistaTypes } from 'react-animista';
 
 import { ModalWindowWrapper, ModalWindowText } from './ModalWindow.styles';
 
