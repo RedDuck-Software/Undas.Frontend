@@ -6,6 +6,8 @@ import {
     CategoriesIco,
     CollectionsIco,
     ChainsIco,
+    UsdIco,
+    EthIco
 } from './imports'
 
 import {
@@ -20,6 +22,8 @@ import {
     Switch,
     InputSwitch,
     SliderRound,
+    PriceSelect,
+    PriceElement
 } from './ASideFilter.styles'
 
 
@@ -89,11 +93,26 @@ const ASideFilter:FC = () => {
                         </Switch>
                     </AccordionElement>
                 </AccordionMenu>
-                <HolderElement>
+                <HolderElement onClick={() => {
+                    if (!activeMenu.price) {
+                        setActiveMenu({price: true})
+                        !active && setActive(true)
+                    }
+                    else setActiveMenu({price: false})
+                }}>
                     <PriceIco />
                     <ElementText>Price</ElementText>
                     <AccordionArrow />
                 </HolderElement>
+                <AccordionMenu className={activeMenu.price && 'active-price' || ''}>
+                    <AccordionElement padd="0">
+                        <PriceElement>
+                            <UsdIco />
+                                <span>United States Dollar (USD)</span>
+                            <Arrow />
+                        </PriceElement>
+                    </AccordionElement>
+                </AccordionMenu>
                 {/* MVP
                 <HolderElement>
                     <CategoriesIco/>

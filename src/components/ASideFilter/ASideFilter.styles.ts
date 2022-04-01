@@ -105,15 +105,22 @@ export const AccordionMenu = styled.ul<IAccordionMenu> `
   &.active-status {
     max-height: ${props => props.mh || '146px'};
   }
+  &.active-price {
+    max-height: ${props => props.mh || '146px'};
+  }
 `
 
-export const AccordionElement = styled.li `
+interface IAccElement {
+    padd?: string
+}
+
+export const AccordionElement = styled.li<IAccElement> `
   cursor: pointer;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px 10px 36px;
+  padding: ${props => props.padd || '10px 20px 10px 36px'};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -167,4 +174,21 @@ export const InputSwitch = styled.input `
     transform: translateX(10px);
     background: #873DC1;
   }
+`
+
+export const PriceSelect = styled.ul `
+  
+`
+
+export const PriceElement = styled.li `
+  padding: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
 `
