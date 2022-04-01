@@ -9,7 +9,7 @@ import {
   Marketplace__factory,
 } from "../../typechain";
 
-import { ModalWindow } from "../../components";
+// import { ModalWindow } from "../../components";
 import { Background } from "../../globalStyles";
 
 import {
@@ -85,7 +85,7 @@ const Listing = () => {
 
   return (
     <Background>
-      {showModalWindow ? <ModalWindow /> : <></>}
+      {showModalWindow ? "ModalWindow" : <></>}
       <ListingSec>
         <ListingContainer>
           <LeftSide>

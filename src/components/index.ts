@@ -6,5 +6,5 @@ export { default as CardList } from "./CardList/CardList";
 export { default as LargeCardItem } from "./LargeCardItem/LargeCardItem";
 export { default as LargeCardList } from "./LargeCardList/LargeCardList";
 export { default as Paggination } from "./Paggination/Paggination";
-export { default as ModalWindow } from "./ModalWindow/ModalWindow";
+// export { default as ModalWindow } from "./ModalWindow/ModalWindow";
 export { default as FilterButtons } from "./FilterButtons/FilterButtons";
