@@ -1,18 +1,168 @@
-import React, {FC} from 'react'
-import {
-    GridLayout
-} from '../../../pages/AllNFTs/AllNFTs.styles'
+import { ethers } from "ethers";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
+import Context from "../../../utils/Context";
+import { getListing } from "../../../utils/getListing";
+import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
+import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
+import { isBuyableFunction } from "../../../utils/isBuyable";
 import NFTGrid from "./NFTGrid";
+import { getStaking } from "../../../utils/getStaking";
+import { canRentNFTFunction } from "../../../utils/canRentNFT";
+import ClipLoader from "react-spinners/ClipLoader";
 
-
-
-const GridWrap = () => {
-    return (
-        <GridLayout>
-            <NFTGrid/>
-        </GridLayout>
-    )
+interface CardListProps {
+  newFilter?: boolean;
+  priceFilter?: { min: number; max: number };
 }
 
+export interface ItemsProps {
+  priceInNum: number;
+  id: number;
+  name?: string;
+  URI?: string;
+}
+export interface StakingsProps {
+  premiumInNum: number;
+  id: number;
+}
 
-export default GridWrap
+const GridWrap = () => {
+  const { connector } = useContext(Context);
+  const items: ItemsProps[] = [];
+  const stakings: StakingsProps[] = [];
+
+  const [list, setList] = useState<ItemsProps[]>();
+  const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
+  const [filteredList, setFilteredList] = useState<ItemsProps[]>();
+  const [loading, setLoading] = useState(true);
+  const [amountOfNFTs, setAmountOfNFTs] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [showList, setShowList] = useState("NFT to buy");
+  const [commonList, setCommonList] =
+    useState<(ItemsProps | StakingsProps)[]>();
+
+  const getListings = async () => {
+    setAmountOfNFTs(0);
+    if (!connector) {
+      return;
+    }
+
+    const lastIndex = await getListingsLastIndex(connector);
+    if (lastIndex || lastIndex === 0) {
+      for (let i = 0; i < lastIndex?.toNumber(); i++) {
+        // const metadata = await NFTContract.tokenMetadata(i);
+        const CardProps = await getListing(i, connector);
+        const isBuyable = await isBuyableFunction(i, connector);
+
+        if (!CardProps) {
+          continue;
+        }
+
+        const { price, tokenId } = CardProps.tx;
+        const { name, URI } = CardProps;
+
+        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+        const id = tokenId.toNumber();
+
+        if (isBuyable) {
+          items.push({ priceInNum, id, name, URI });
+          setAmountOfNFTs(amountOfNFTs + 1);
+        }
+      }
+
+      return items;
+    } else return;
+  };
+
+  const getStakings = async () => {
+    setAmountOfNFTs(0);
+    if (!connector) {
+      return;
+    }
+
+    const lastIndex = await getStakingsLastIndex(connector);
+    if (!lastIndex) return;
+
+    for (let i = 0; i < lastIndex?.toNumber(); i++) {
+      const CardProps = await getStaking(i, connector);
+
+      let canRentNFT;
+      if (CardProps?.tokenId._hex !== "0x00") {
+        canRentNFT = await canRentNFTFunction(i, connector);
+      }
+
+      if (!CardProps) {
+        continue;
+      }
+
+      const { premium, tokenId } = CardProps;
+      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
+      const id = tokenId.toNumber();
+
+      if (canRentNFT) {
+        stakings.push({ premiumInNum, id });
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
+    }
+
+    return stakings;
+  };
+
+  async function getListingsData() {
+    const response = await getListings();
+    setList(response);
+  }
+
+  async function getStakingsData() {
+    const response = await getStakings();
+    setStakingsList(response);
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    setLoading(false);
+
+    getListingsData();
+    getStakingsData();
+  }, [connector]);
+
+  useEffect(() => {
+    if (!list && !stakingsList) {
+      return;
+    } else if (list && !stakingsList) {
+      setCommonList(list);
+    } else if (!list && stakingsList) {
+      setCommonList(stakingsList);
+    } else {
+      let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
+      common = common.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.id === value.id)
+      );
+      setCommonList(common);
+    }
+  }, []);
+
+  return loading ? (
+    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+  ) : (
+    <>
+      <GridLayout>
+        {amountOfNFTs ? (
+          commonList?.map((item) => {
+            return <NFTGrid key={item.id} tokenId={item.id} />;
+          })
+        ) : (
+          <span>There are no NFTs on the marketplace</span>
+        )}
+      </GridLayout>
+    </>
+  );
+};
+
+export default GridWrap;
