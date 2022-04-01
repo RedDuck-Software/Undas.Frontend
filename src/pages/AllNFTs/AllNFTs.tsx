@@ -26,6 +26,7 @@ import {
 } from './imports'
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import {Wrapper} from "../CollectionsPage/Collections.styles";
+import GridWrap from "../../components/NFTCard/Grid/GridWrap";
 
 
 const AllNFTs:FC = () => {
@@ -99,19 +100,7 @@ const AllNFTs:FC = () => {
                       19 364 263 results
                   </ResultsTotal>
               </MenuWrap>
-              <GridLayout>
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-                  <NFTGrid />
-              </GridLayout>
+             <GridWrap />
           </Wrapper>
       </AllNFTContainer>
     )
