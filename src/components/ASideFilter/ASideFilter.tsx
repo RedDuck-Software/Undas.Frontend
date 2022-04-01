@@ -23,7 +23,9 @@ import {
     InputSwitch,
     SliderRound,
     PriceSelect,
-    PriceElement
+    PriceElement,
+    ApplyBtn,
+    PriceVariations
 } from './ASideFilter.styles'
 
 
@@ -33,6 +35,22 @@ const ASideFilter:FC = () => {
         status: false,
         price: false,
     })
+    const [priceMenu, setPriceMenu] = useState<boolean>(false)
+    const [priceCurrency, setPriceCurrency] = useState([
+        {
+            currency: 'usd',
+            text: 'United States Dollar (USD)',
+            ico: <UsdIco/>,
+            selected: false
+        },
+        {
+            currency: 'eth',
+            text: 'Ether (ETH)',
+            ico: <EthIco/>,
+            selected: true
+        }
+    ])
+
     return (
         <ASideWrap className={active && 'active' || ''}>
             <Holder>
@@ -102,15 +120,30 @@ const ASideFilter:FC = () => {
                 }}>
                     <PriceIco />
                     <ElementText>Price</ElementText>
-                    <AccordionArrow />
+                    <AccordionArrow className={activeMenu.price && 'active-price' || ''}/>
                 </HolderElement>
-                <AccordionMenu className={activeMenu.price && 'active-price' || ''}>
-                    <AccordionElement padd="0">
-                        <PriceElement>
+                <AccordionMenu mh="178px" className={activeMenu.price && 'active-price' || ''}>
+                    <AccordionElement padd="15px 15px 20px 15px" direction="column">
+                        <PriceElement
+                            className={priceMenu && 'price-menu-active' || ''}
+                            onClick={() => {
+                                !priceMenu ? setPriceMenu(true) : setPriceMenu(false)
+                            }}>
                             <UsdIco />
-                                <span>United States Dollar (USD)</span>
-                            <Arrow />
+                            <span>United States Dollar (USD)</span>
+                            <AccordionArrow className={priceMenu && 'price-menu-active' || ''}/>
                         </PriceElement>
+                        <PriceSelect className={priceMenu && 'price-menu-active' || ''}>
+                            <PriceVariations>
+                                <UsdIco />
+                                <span>United States Dollar (USD)</span>
+                            </PriceVariations>
+                            <PriceVariations>
+                                <EthIco />
+                                <span>Ether (ETH)</span>
+                            </PriceVariations>
+                        </PriceSelect>
+                        <ApplyBtn>Apply</ApplyBtn>
                     </AccordionElement>
                 </AccordionMenu>
                 {/* MVP

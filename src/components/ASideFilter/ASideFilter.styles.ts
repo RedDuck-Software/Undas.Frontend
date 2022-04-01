@@ -89,6 +89,14 @@ export const AccordionArrow = styled(Arrow) `
     margin-top: 4px;
     transform: rotate(45deg);
   }
+  &.active-price {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
+  &.price-menu-active {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
   ${Arrow}
 `
 
@@ -111,13 +119,16 @@ export const AccordionMenu = styled.ul<IAccordionMenu> `
 `
 
 interface IAccElement {
-    padd?: string
+    padd?: string,
+    direction?: string
 }
 
 export const AccordionElement = styled.li<IAccElement> `
+  position: relative;
   cursor: pointer;
   width: 100%;
   display: flex;
+  flex-direction: ${props => props.direction || ''};
   justify-content: space-between;
   align-items: center;
   padding: ${props => props.padd || '10px 20px 10px 36px'};
@@ -177,8 +188,20 @@ export const InputSwitch = styled.input `
 `
 
 export const PriceSelect = styled.ul `
-  
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 35px;
+  transition: all ease-in-out 0.15s;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  &.price-menu-active {
+    opacity: 1;
+    visibility: visible;
+  }
 `
+
 
 export const PriceElement = styled.li `
   padding: 10px;
@@ -188,7 +211,35 @@ export const PriceElement = styled.li `
   color: #232428;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
   background-color: #FFFFFF;
   border-radius: 10px;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  transition: all ease-in-out 0.15s;
+  &.price-menu-active {
+    border-radius: 10px 10px 0 0;
+  }
+`
+export const PriceVariations = styled(PriceElement) `
+  transition: all ease-in-out 0.15s;
+  border-radius: 0;
+  justify-content: flex-start;
+  padding: 10px 31px 10px 10px;
+  &:hover {
+    box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);
+  }
+`
+
+export const ApplyBtn = styled.button `
+  margin-top: 70px;
+  padding: 10px 40px;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  background: transparent;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #873DC1;
+  cursor: pointer;
 `
