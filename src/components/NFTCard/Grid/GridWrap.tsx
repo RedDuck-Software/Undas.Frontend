@@ -146,7 +146,7 @@ const GridWrap = () => {
       );
       setCommonList(common);
     }
-  }, []);
+  }, [list, stakingsList]);
 
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
