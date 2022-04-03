@@ -146,6 +146,7 @@ const GridWrap = () => {
       );
       setCommonList(common);
     }
+    console.log('List', list)
   }, [list, stakingsList]);
 
   return loading ? (
@@ -154,8 +155,8 @@ const GridWrap = () => {
     <>
       <GridLayout>
         {amountOfNFTs ? (
-          commonList?.map((item) => {
-            return <NFTGrid key={item.id} tokenId={item.id} />;
+          list?.map((item) => {
+            return <NFTGrid key={item.id} tokenId={item.id} name={item.name} price={item.priceInNum} URI={item.URI}/>;
           })
         ) : (
           <span>There are no NFTs on the marketplace</span>
