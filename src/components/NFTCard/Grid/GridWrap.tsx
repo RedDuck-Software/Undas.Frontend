@@ -10,21 +10,29 @@ import NFTGrid from "./NFTGrid";
 import { getStaking } from "../../../utils/getStaking";
 import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import ClipLoader from "react-spinners/ClipLoader";
+import { number, string } from "yup";
 
 interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
 }
 
-export interface ItemsProps {
-  priceInNum: number;
+interface CommonProps {
   id: number;
-  name?: string;
-  URI?: string;
+  name: string;
+  URI: string;
 }
-export interface StakingsProps {
+
+export interface ItemsProps extends CommonProps {
+  priceInNum: number;
+}
+export interface StakingsProps extends CommonProps {
   premiumInNum: number;
-  id: number;
+}
+
+interface CommonListProps extends CommonProps {
+  priceInNum?: number;
+  premiumInNum?: number;
 }
 
 const GridWrap = () => {
@@ -40,8 +48,7 @@ const GridWrap = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
   const [showList, setShowList] = useState("NFT to buy");
-  const [commonList, setCommonList] =
-    useState<(ItemsProps | StakingsProps)[]>();
+  const [commonList, setCommonList] = useState<CommonListProps[]>();
 
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -89,7 +96,7 @@ const GridWrap = () => {
       const CardProps = await getStaking(i, connector);
 
       let canRentNFT;
-      if (CardProps?.tokenId._hex !== "0x00") {
+      if (CardProps?.tx.tokenId._hex !== "0x00") {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
 
@@ -97,12 +104,13 @@ const GridWrap = () => {
         continue;
       }
 
-      const { premium, tokenId } = CardProps;
+      const { premium, tokenId } = CardProps.tx;
+      const { name, URI } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
       const id = tokenId.toNumber();
 
       if (canRentNFT) {
-        stakings.push({ premiumInNum, id });
+        stakings.push({ premiumInNum, id, name, URI });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -144,9 +152,10 @@ const GridWrap = () => {
         (value, index, self) =>
           index === self.findIndex((t) => t.id === value.id)
       );
+
       setCommonList(common);
     }
-    console.log('List', list)
+    console.log("List", list);
   }, [list, stakingsList]);
 
   return loading ? (
@@ -154,9 +163,18 @@ const GridWrap = () => {
   ) : (
     <>
       <GridLayout>
-        {amountOfNFTs ? (
-          list?.map((item) => {
-            return <NFTGrid key={item.id} tokenId={item.id} name={item.name} price={item.priceInNum} URI={item.URI}/>;
+        {commonList ? (
+          commonList?.map((item) => {
+            return (
+              <NFTGrid
+                key={item.id}
+                tokenId={item.id}
+                name={item.name}
+                URI={item.URI}
+                price={item?.priceInNum}
+                premium={item?.premiumInNum}
+              />
+            );
           })
         ) : (
           <span>There are no NFTs on the marketplace</span>

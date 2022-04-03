@@ -74,7 +74,7 @@ const ProductCard = () => {
 
     if (!ProductValue) return;
 
-    const { maker } = ProductValue;
+    const { maker } = ProductValue.tx;
 
     if (
       address === owner &&
@@ -129,7 +129,7 @@ const ProductCard = () => {
 
     if (!ProductValue) return;
 
-    const { maker } = ProductValue;
+    const { maker } = ProductValue.tx;
 
     if (
       address !== owner &&

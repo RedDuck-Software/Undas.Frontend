@@ -5,7 +5,7 @@ import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
 
 export const getListing = async (
-  itemId: number,
+  listingId: number,
   connector: AbstractConnector
 ) => {
   if (!connector) return;
@@ -23,10 +23,10 @@ export const getListing = async (
     signer
   );
 
-  const tx = await MarketplaceContract.getListing(itemId);
+  const tx = await MarketplaceContract.getListing(listingId);
 
-  const name = await NFTContract.name();
-  const URI = await NFTContract.tokenURI(itemId);
+  const name: string = await NFTContract.name();
+  const URI: string = await NFTContract.tokenURI(tx.tokenId);
 
   return { tx, name, URI };
 };

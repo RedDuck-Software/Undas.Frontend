@@ -120,7 +120,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter, priceFilter }) => {
       const CardProps = await getStaking(i, connector);
 
       let canRentNFT;
-      if (CardProps?.tokenId._hex !== "0x00") {
+      if (CardProps?.tx.tokenId._hex !== "0x00") {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
 
@@ -128,7 +128,7 @@ const CardList: React.FC<CardListProps> = ({ newFilter, priceFilter }) => {
         continue;
       }
 
-      const { premium, tokenId } = CardProps;
+      const { premium, tokenId } = CardProps.tx;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
       const id = tokenId.toNumber();
 
