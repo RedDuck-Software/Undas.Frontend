@@ -180,7 +180,7 @@ const Rent = ({ id }: { id: number }) => {
     if (!productValue) {
       return;
     }
-    const { deadline, startRentalUTC } = productValue;
+    const { deadline, startRentalUTC } = productValue.tx;
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const startRentalUTCInNum = Number(
       ethers.utils.formatUnits(startRentalUTC, 0)
@@ -211,7 +211,7 @@ const Rent = ({ id }: { id: number }) => {
     }
 
     const { collateral, premium, deadline, paymentsAmount, startRentalUTC } =
-      ProductValue;
+      ProductValue.tx;
 
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const deadlineInSecs = deadlineInNum;

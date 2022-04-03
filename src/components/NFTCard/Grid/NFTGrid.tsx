@@ -26,29 +26,29 @@ import { ReactComponent as LockIco } from "../../../icons/lock.svg";
 import { ReactComponent as PreviewIco } from "../../../icons/preview.svg";
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import NFTExample from "../../../images/NFTExample.png";
-import {BigNumber} from "ethers";
-import {ListingStructOutput} from "../../../typechain/Marketplace";
+import { BigNumber } from "ethers";
+import { ListingStructOutput } from "../../../typechain/Marketplace";
 
 interface INFTGrid {
-  tokenId: number,
-  URI: string,
-  name: string,
-  price: number
+  tokenId: number;
+  URI: string;
+  name: string;
+  price?: number;
+  premium?: number;
 }
 
-const NFTGrid: FC<any> = ({tokenId, URI, name, price}) => {
-  //const [name, id, priceInNum, URI, ] = item
+const NFTGrid = (props: INFTGrid) => {
   return (
     <NFTWrap>
       <Info disp="flex" alignItems="center" gap="10px">
-        <Name>{name}</Name>
+        <Name>{props.name}</Name>
         <img src={Verified} alt="verified-ico" />
         <Platform col="#873DC1">UND</Platform>
         <LockIco />
         <Favorite />
       </Info>
       <ImageWrap>
-        <Image src={URI} alt="nft-image" />
+        <Image src={props.URI} alt="nft-image" />
         <Preview>
           <PreviewIco />
           <span>Preview</span>
@@ -56,7 +56,7 @@ const NFTGrid: FC<any> = ({tokenId, URI, name, price}) => {
       </ImageWrap>
       <BuyingBlock>
         <LeftBlock>
-          <TagName>Returne {tokenId}</TagName>
+          <TagName>Returne {props.tokenId}</TagName>
           <BuyBtn>Buy now</BuyBtn>
         </LeftBlock>
         <PriceList>
@@ -64,28 +64,28 @@ const NFTGrid: FC<any> = ({tokenId, URI, name, price}) => {
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{price}</PriceInEth>
+              <PriceInEth>{props.price ?? "-"}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Rent</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3,00008</PriceInEth>
+              <PriceInEth>{props.premium ?? "-"}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Top Offer</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3,0008</PriceInEth>
+              <PriceInEth>TOP_OFFER</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Last Sales</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3</PriceInEth>
+              <PriceInEth>LAST_SALES</PriceInEth>
             </Wrapper>
           </PriceItem>
         </PriceList>
