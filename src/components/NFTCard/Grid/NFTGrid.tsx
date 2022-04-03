@@ -26,19 +26,29 @@ import { ReactComponent as LockIco } from "../../../icons/lock.svg";
 import { ReactComponent as PreviewIco } from "../../../icons/preview.svg";
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import NFTExample from "../../../images/NFTExample.png";
+import {BigNumber} from "ethers";
+import {ListingStructOutput} from "../../../typechain/Marketplace";
 
-const NFTGrid: FC<{ tokenId: number }> = ({ tokenId }) => {
+interface INFTGrid {
+  tokenId: number,
+  URI: string,
+  name: string,
+  price: number
+}
+
+const NFTGrid: FC<any> = ({tokenId, URI, name, price}) => {
+  //const [name, id, priceInNum, URI, ] = item
   return (
     <NFTWrap>
       <Info disp="flex" alignItems="center" gap="10px">
-        <Name>Returne by ...</Name>
+        <Name>{name}</Name>
         <img src={Verified} alt="verified-ico" />
         <Platform col="#873DC1">UND</Platform>
         <LockIco />
         <Favorite />
       </Info>
       <ImageWrap>
-        <Image src={NFTExample} alt="nft-image" />
+        <Image src={URI} alt="nft-image" />
         <Preview>
           <PreviewIco />
           <span>Preview</span>
@@ -54,7 +64,7 @@ const NFTGrid: FC<{ tokenId: number }> = ({ tokenId }) => {
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3,000082</PriceInEth>
+              <PriceInEth>{price}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
