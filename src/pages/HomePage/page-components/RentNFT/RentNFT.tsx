@@ -1,51 +1,95 @@
-import React, {FC} from 'react'
+import React, { FC, useContext, useEffect, useState } from "react";
 /*import {
   PromoSlide,
   SlideText
 } from './Promo.styles'*/
 
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation} from "swiper";
-import './NFTHeroSlider.css'
-import {Title, TitleWrap, ViewAllBtn} from "../Recomended/Recommended.styles";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "./NFTHeroSlider.css";
+import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import NFTCard from "../NFTCard/NFTCard";
 import styled from "styled-components";
+import Context from "../../../../utils/Context";
+import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
+import getTokenURI from "../../../../utils/getTokenURI";
+import { getStaking } from "../../../../utils/getStaking";
+import { canRentNFTFunction } from "../../../../utils/canRentNFT";
 
-const RentNFTContainer = styled.div `
+const RentNFTContainer = styled.div`
   margin: 120px 0;
-`
+`;
 
-const RentNFT:FC = () => {
+const RentNFT: FC = () => {
+  const { connector } = useContext(Context);
+  const items: { URI: string; name: string; id: number }[] = [];
+  const [list, setList] =
+    useState<{ URI: string; name: string; id: number }[]>();
+
+  const getItems = async () => {
+    if (!connector) {
+      return;
+    }
+
+    const lastIndex = await getStakingsLastIndex(connector);
+    if (!lastIndex) return;
+
+    for (let i = 0; i < +lastIndex; i++) {
+      let URI = await getTokenURI(i, connector);
+      const stakingdata = await getStaking(i, connector);
+      if (!stakingdata || !URI) {
+        continue;
+      }
+
+      const { tokenId } = stakingdata.tx;
+      const { name } = stakingdata;
+      let canRentNFT;
+      if (stakingdata.tx.tokenId._hex !== "0x00") {
+        canRentNFT = await canRentNFTFunction(i, connector);
+      }
+      if (canRentNFT) {
+        items.push({ URI, name, id: +tokenId });
+      }
+    }
+    return items;
+  };
+  async function getItemsData() {
+    const response = await getItems();
+    setList(response);
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return;
+    }
+    getItemsData();
+  }, [connector]);
+
   return (
-      <RentNFTContainer>
-        <TitleWrap>
-          <Title>
-            Rent NFT
-          </Title>
-            <ViewAllBtn>View all</ViewAllBtn>
-        </TitleWrap>
-        <Swiper
-            className="rent-slider"
-            slidesPerView={3}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-            modules={[Navigation]}
-            loop={true}
-            navigation={true}
-            spaceBetween={66}
-        >
-          <SwiperSlide>
-              <NFTCard/>
-          </SwiperSlide>
-            <SwiperSlide>
-                <NFTCard/>
+    <RentNFTContainer>
+      <TitleWrap>
+        <Title>Rent NFT</Title>
+        <ViewAllBtn>View all</ViewAllBtn>
+      </TitleWrap>
+      <Swiper
+        className="rent-slider"
+        slidesPerView={3}
+        modules={[Navigation]}
+        loop={false}
+        navigation={true}
+        spaceBetween={66}
+      >
+        {list?.map((item) => {
+          console.log(list);
+          return (
+            <SwiperSlide key={item.id}>
+              <NFTCard uri={item.URI} name={item.name} />
             </SwiperSlide>
-            <SwiperSlide>
-                <NFTCard/>
-            </SwiperSlide>
-        </Swiper>
-      </RentNFTContainer>
-  )
-}
+          );
+        })}
+      </Swiper>
+    </RentNFTContainer>
+  );
+};
 
-export default RentNFT
+export default RentNFT;
