@@ -6,23 +6,36 @@ import {Wrapper} from "../CategoriesPage/Categories.styles";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 //Assets
 import {
-    CollectionBanner
+    CollectionBanner,
+    PurpleEthIco
 } from './imports'
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+
+import {
+    Info,
+    InfoElement
+} from './CollectionPage.styles'
 const CollectionPage: FC = () => {
     return (
         <>
-            <Wrapper>
+            <div>
                 <Banner>
                     <img src={CollectionBanner} alt="CollectionBanner"/>
                 </Banner>
                 <AllNFTContainer>
                     <ASideFilter />
-                    <CollectionCard />
                     <Wrapper>
+                        <CollectionCard />
+                        <Info>
+                            <InfoElement>
+                                <span>
+                                    Items
+                                </span>
+                            </InfoElement>
+                        </Info>
                     </Wrapper>
                 </AllNFTContainer>
-            </Wrapper>
+            </div>
         </>
     )
 }
