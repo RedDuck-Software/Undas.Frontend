@@ -7,7 +7,7 @@ import {
     CollectionText, NFTCards,
     Platform,
     Wrapper
-} from "../Collections.styles";
+} from "../Categories.styles";
 import {CollectionBG, CollectionPic, NFT1, NFT2, NFT3, Verified} from "../imports";
 
 
@@ -19,7 +19,7 @@ const Collection:FC = () => {
                 <CollectionPicWrap>
                     <img src={CollectionPic} alt="collection-pic"/>
                 </CollectionPicWrap>
-                {/*CollectionsPage name*/}
+                {/*CategoriesPage name*/}
                 <div>
                     <Wrapper disp="flex" alignItems="center" gap="10px" marg="0 20px 0 0">
                         <CollectionText fs="14px">Borya Borya</CollectionText>

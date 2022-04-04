@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Banner = styled.div `
   width: 100%;
-  height: 180px;
+  height: auto;
+  overflow: hidden;
   //background-color: hotpink;
 `
 
@@ -128,6 +129,7 @@ interface IWrapper {
     alignItems?: string,
     justifyContent?: string,
     justifySelf?: string,
+    flexDirection?: string,
     gap?: string,
     marg?: string
     mw?: string,
@@ -144,6 +146,7 @@ export const Wrapper = styled.div<IWrapper> `
   align-items: ${props => props.alignItems};
   justify-content: ${props => props.justifyContent};
   justify-self: ${props => props.justifySelf};
+  flex-direction: ${props => props.flexDirection || ''};
   margin: ${props => props.marg};
   max-width: ${props => props.mw};
   gap: ${props => props.gap};

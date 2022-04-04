@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Wrapper} from "../../../pages/CollectionsPage/Collections.styles";
+import {Wrapper} from "../../../pages/CategoriesPage/Categories.styles";
 import {ReactComponent as FavoriteIco} from "../../../icons/nftcard-favorite.svg";
 
 export const NFTWrap = styled.div `

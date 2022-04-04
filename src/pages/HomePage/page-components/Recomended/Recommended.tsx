@@ -18,6 +18,7 @@ import {
     Name,
     Image
 } from "./Recommended.styles";
+import {Link} from "react-router-dom";
 
 const Recommended:FC = () => {
     return (
@@ -42,8 +43,10 @@ const Recommended:FC = () => {
                     <Image src={CelebrityImg} alt="category-img" />
                 </CategoryWrap>
                 <CategoryWrap gridArea="1 / 5 / 2 / 7">
-                    <Name>rwaNFT</Name>
-                    <Image src={RwaImg} alt="category-img" />
+                    <Link to="/categories">
+                        <Name>rwaNFT</Name>
+                        <Image src={RwaImg} alt="category-img" />
+                    </Link>
                 </CategoryWrap>
                 <CategoryWrap gridArea="2 / 5 / 4 / 7" >
                     <Name>Artwork</Name>
