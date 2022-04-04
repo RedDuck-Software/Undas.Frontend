@@ -7,13 +7,17 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 //Assets
 import {
     CollectionBanner,
-    PurpleEthIco
+    PurpleEthIco,
+    AddToFavIco,
 } from './imports'
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 
 import {
     Info,
-    InfoElement
+    InfoElement,
+    Amount,
+    MakeComplaint,
+    AddToFav,
 } from './CollectionPage.styles'
 const CollectionPage: FC = () => {
     return (
@@ -24,15 +28,47 @@ const CollectionPage: FC = () => {
                 </Banner>
                 <AllNFTContainer>
                     <ASideFilter />
-                    <Wrapper>
+                    <Wrapper disp="flex" gap="15px">
                         <CollectionCard />
-                        <Info>
-                            <InfoElement>
-                                <span>
-                                    Items
-                                </span>
-                            </InfoElement>
-                        </Info>
+                        <Wrapper disp="flex" flexWrap="wrap" justifyContent="space-between">
+                            <Info>
+                                <InfoElement>
+                                    <span>
+                                        Items
+                                    </span>
+                                    <Amount>14000</Amount>
+                                </InfoElement>
+                                <InfoElement>
+                                    <span>
+                                        Owners
+                                    </span>
+                                    <Amount>6400</Amount>
+                                </InfoElement>
+                                <InfoElement>
+                                    <span>
+                                        Floor Price
+                                    </span>
+                                    <Wrapper disp="flex" gap="5px">
+                                        <PurpleEthIco />
+                                        <Amount>3,2</Amount>
+                                    </Wrapper>
+                                </InfoElement>
+                                <InfoElement>
+                                    <span>
+                                        Total Vol
+                                    </span>
+                                    <Wrapper disp="flex" gap="5px">
+                                        <PurpleEthIco />
+                                        <Amount>13,402,000</Amount>
+                                    </Wrapper>
+                                </InfoElement>
+                            </Info>
+                            <MakeComplaint>Make a Complaint</MakeComplaint>
+                            <AddToFav>
+                                <AddToFavIco />
+                                Add to Favorites
+                            </AddToFav>
+                        </Wrapper>
                     </Wrapper>
                 </AllNFTContainer>
             </div>
