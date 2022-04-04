@@ -1,17 +1,53 @@
 import styled from "styled-components";
 import {Container} from "../../globalStyles";
+import {ReactComponent as Search} from '../../pages/CollectionPage/assets/search.svg'
+
 
 export const AllNFTContainer = styled(Container) `
   display: flex;
   ${Container}
 `
 
-export const MenuWrap = styled.div `
+interface IMenuWrap {
+    marg?: string,
+    justifyContent?: string
+}
+
+export const MenuWrap = styled.div<IMenuWrap> `
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props => props.justifyContent || ''};
   align-items: center;
-  margin: 64px 0 20px;
+  margin: ${props => props.marg || '64px 0 20px'};
+`
+
+export const MenuSearchWrap = styled.div `
+  margin-left: 30px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 410px;
+  width: 100%;
+  height: 36px;
+  background-color: #fff;
+  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  border: none;
+`
+
+export const SearchIco = styled(Search) `
+  margin-right: 10px;
+`
+
+export const Input = styled.input `
+  font-weight: 400;
+  font-size: 12px;
+  color: #7C7C7C;
+  border: transparent;
+  background: transparent;
+  padding-right: 0.5rem;
+  outline: none;
+  width: 100%;
 `
 
 
