@@ -30,7 +30,7 @@ const CollectionPage: FC = () => {
                     <ASideFilter />
                     <Wrapper disp="flex" gap="15px">
                         <CollectionCard />
-                        <Wrapper disp="flex" flexWrap="wrap" justifyContent="space-between">
+                        <Wrapper disp="flex" justifyContent="space-between" flexWrap="wrap">
                             <Info>
                                 <InfoElement>
                                     <span>

@@ -26,13 +26,13 @@ export const Description = styled.span `
 `
 
 export const SocialWrap = styled.div `
+  margin-left: 50px;
   max-width: 192px;
   background: rgba(255, 255, 255, 0.4);
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
   padding: 10px 15px;
   display: flex;
-  margin-left: auto;
   gap: 15px;
   svg {
     cursor: pointer;

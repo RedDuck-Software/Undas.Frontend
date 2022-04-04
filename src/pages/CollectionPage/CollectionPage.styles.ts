@@ -33,14 +33,12 @@ export const MakeComplaint = styled.button `
   border-radius: 10px;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
   color: #873DC1;
   padding: 8px 18px;
   border: none;
+  margin-top: 44px;
   max-height: 36px;
   cursor: pointer;
-  margin-top: 44px;
-  align-self: end;
 `
 
 export const AddToFav = styled.button `
@@ -58,4 +56,5 @@ export const AddToFav = styled.button `
   gap: 18px;
   max-height: 36px;
   cursor: pointer;
+  align-self: end;
 `
