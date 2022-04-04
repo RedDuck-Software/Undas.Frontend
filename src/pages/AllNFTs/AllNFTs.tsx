@@ -22,7 +22,7 @@ import {
 
 import { GridIco, ListIco } from "./imports";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
-import { Wrapper } from "../CollectionsPage/Collections.styles";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 import GridWrap from "../../components/NFTCard/Grid/GridWrap";
 
 const AllNFTs: FC = () => {

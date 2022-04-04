@@ -25,7 +25,7 @@ import {
   SocialLink
 } from "./Navbar.styles";
 
-import {Wrapper} from "../../pages/CollectionsPage/Collections.styles";
+import {Wrapper} from "../../pages/CategoriesPage/Categories.styles";
 
 import {
   AllNFTsIcon,

@@ -26,8 +26,9 @@ import {
   ExplorePage,
   RentNFTPage,
   Create,
-  Collections,
+  Categories,
   Faq,
+  CollectionPage,
 } from "./pages";
 
 import {
@@ -93,7 +94,8 @@ const App = () => {
           <Route path="/create" element={<Create />} />
           <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
           <Route path="/productforsale/:id" element={<ProductForSale />} />
-          <Route path="/collection" element={<Collections />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/collection" element={<CollectionPage />} />
           <Route
             path="/explore/sport"
             element={<ExplorePage pageType="Sport" />}

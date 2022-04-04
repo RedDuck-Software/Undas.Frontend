@@ -20,8 +20,8 @@ import {
   CollectionText,
   Platform,
   Wrapper,
-} from "../../../pages/CollectionsPage/Collections.styles";
-import { Verified } from "../../../pages/CollectionsPage/imports";
+} from "../../../pages/CategoriesPage/Categories.styles";
+import { Verified } from "../../../pages/CategoriesPage/imports";
 import { ReactComponent as LockIco } from "../../../icons/lock.svg";
 import { ReactComponent as PreviewIco } from "../../../icons/preview.svg";
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";

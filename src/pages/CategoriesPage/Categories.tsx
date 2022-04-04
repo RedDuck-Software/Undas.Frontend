@@ -15,7 +15,7 @@ import {
     CollectionText,
     Platform,
     Wrapper, NFTCards, CollectionBackground,
-} from './Collections.styles'
+} from './Categories.styles'
 //Assets
 import {
     CollectionBanner,
@@ -29,7 +29,7 @@ import {
 import { Container } from "../../globalStyles";
 import Collection from "./page-components/Collection";
 
-const Collections:FC = () => {
+const Categories:FC = () => {
     return (
         <>
             <Banner>
@@ -39,7 +39,7 @@ const Collections:FC = () => {
                 <Info>
                     <div>
                         <Title>Real World Asset NFT</Title>
-                        <Subtitle>Collections</Subtitle>
+                        <Subtitle>Categories</Subtitle>
                     </div>
                     <InfoCard>
                         <InfoText>
@@ -63,4 +63,4 @@ const Collections:FC = () => {
     )
 }
 
-export default Collections
+export default Categories

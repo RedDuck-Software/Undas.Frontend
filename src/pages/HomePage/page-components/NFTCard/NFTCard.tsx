@@ -9,8 +9,8 @@ import {
     BtnNone,
     CollectionImageWrap
 } from "./NFTCard.styles";
-import {CollectionText, Platform, Wrapper} from "../../../CollectionsPage/Collections.styles";
-import {Verified} from "../../../CollectionsPage/imports";
+import {CollectionText, Platform, Wrapper} from "../../../CategoriesPage/Categories.styles";
+import {Verified} from "../../../CategoriesPage/imports";
 import {ReactComponent as FavoriteIco} from '../../../../icons/NFT-favorite.svg'
 
 const NFTCard = () => {
