@@ -6,6 +6,7 @@ import {ReactComponent as TelegramIco} from "./assets/card-telegram.svg";
 import {ReactComponent as DiscordIco} from "./assets/card-discord.svg";
 import {ReactComponent as InstagramIco} from "./assets/card-instagram.svg";
 import {ReactComponent as PurpleEthIco} from './assets/purple-eth.svg'
+import {ReactComponent as AddToFavIco} from './assets/add-to-fav.svg'
 
 
 export {
@@ -16,5 +17,6 @@ export {
     DiscordIco,
     InstagramIco,
     SiteIco,
-    PurpleEthIco
+    PurpleEthIco,
+    AddToFavIco
 }

@@ -41,7 +41,7 @@ const AllNFTs: FC = () => {
       <ASideFilter />
       <Wrapper w="100%" marg="0 0 200px 0">
         {/*rm marg after deploy*/}
-        <MenuWrap>
+        <MenuWrap justifyContent="space-between">
           <SettingsBlock>
             <SettingsElement>
               <ViewOption>

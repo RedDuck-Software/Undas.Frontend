@@ -35,6 +35,7 @@ export const SearchWrapper = styled.div`
   height: 26px;
   background: #EBDFFF;
   border-radius: 5px;
+  
 `;
 
 export const SearchIcon = styled(Search)`

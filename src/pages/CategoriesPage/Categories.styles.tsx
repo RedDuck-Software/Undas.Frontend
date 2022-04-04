@@ -130,6 +130,7 @@ interface IWrapper {
     justifyContent?: string,
     justifySelf?: string,
     flexDirection?: string,
+    flexWrap?: string,
     gap?: string,
     marg?: string
     mw?: string,
@@ -150,6 +151,7 @@ export const Wrapper = styled.div<IWrapper> `
   margin: ${props => props.marg};
   max-width: ${props => props.mw};
   gap: ${props => props.gap};
+  flex-wrap: ${props => props.flexWrap || ''};
   background-color: ${props => props.bg || ''};
 `
 
