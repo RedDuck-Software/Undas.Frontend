@@ -35,7 +35,7 @@ interface CommonListProps extends CommonProps {
   premiumInNum?: number;
 }
 
-const GridWrap = () => {
+const GridWrap: FC<{ getResults?: any }> = ({getResults}) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
@@ -165,6 +165,7 @@ const GridWrap = () => {
       <GridLayout>
         {commonList ? (
           commonList?.map((item) => {
+            getResults(commonList.length)
             return (
               <NFTGrid
                 key={item.id}

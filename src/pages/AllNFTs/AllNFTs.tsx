@@ -26,6 +26,9 @@ import { Wrapper } from "../CollectionsPage/Collections.styles";
 import GridWrap from "../../components/NFTCard/Grid/GridWrap";
 
 const AllNFTs: FC = () => {
+
+  const [results, setResults] = useState<any>()
+
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
@@ -97,9 +100,9 @@ const AllNFTs: FC = () => {
               </FilterMenu>
             </Filter>
           </SettingsBlock>
-          <ResultsTotal>AMOUNT_OF results</ResultsTotal>
+          <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <GridWrap />
+        <GridWrap getResults={(amount: any) => setResults(amount)}/>
       </Wrapper>
     </AllNFTContainer>
   );
