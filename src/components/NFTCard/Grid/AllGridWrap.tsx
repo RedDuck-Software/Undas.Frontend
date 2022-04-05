@@ -35,7 +35,12 @@ interface CommonListProps extends CommonProps {
   premiumInNum?: number;
 }
 
-const AllGridWrap: FC<{ getResults?: any }> = ({getResults}) => {
+interface IAllGridWrap {
+  getResults?: any,
+  priceFilter?: string
+}
+
+const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
@@ -139,6 +144,35 @@ const AllGridWrap: FC<{ getResults?: any }> = ({getResults}) => {
     getStakingsData();
   }, [connector]);
 
+  const priceSort = async (sortType: string) => {
+    if (!sortType) return
+    let sortedArr
+    if (sortType === 'low-to-high') {
+      sortedArr = await list?.sort((a, b) => {
+        if (a.priceInNum! > b.priceInNum!) {
+          return 1
+        }
+        if (a.priceInNum! < b.priceInNum!) {
+          return -1
+        }
+        return 0
+      })
+      return sortedArr
+    }
+    if (sortType === 'high-to-low') {
+      sortedArr = await list?.sort((a, b) => {
+        if (a.priceInNum! < b.priceInNum!) {
+          return 1
+        }
+        if (a.priceInNum! > b.priceInNum!) {
+          return -1
+        }
+        return 0
+      })
+      return sortedArr
+    }
+  }
+
   useEffect(() => {
     if (!list && !stakingsList) {
       return;
@@ -147,15 +181,18 @@ const AllGridWrap: FC<{ getResults?: any }> = ({getResults}) => {
     } else if (!list && stakingsList) {
       setCommonList(stakingsList);
     } else {
+      priceSort('high-to-low')
+          .then(sortedArr => setList(sortedArr))
+          .catch(e => console.log(e))
       let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
       common = common.filter(
         (value, index, self) =>
           index === self.findIndex((t) => t.id === value.id)
       );
-
       setCommonList(common);
+      console.log('sorted: ',commonList)
     }
-    console.log("List", list);
+    //console.log("List", list);
   }, [list, stakingsList]);
 
   return loading ? (

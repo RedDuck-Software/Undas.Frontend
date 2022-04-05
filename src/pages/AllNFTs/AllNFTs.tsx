@@ -28,14 +28,14 @@ import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 const AllNFTs: FC = () => {
 
   const [results, setResults] = useState<any>()
-
+  const [priceFilter, setPriceFilter] = useState<string>('')
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
   useEffect(() => {
-    console.log(active);
-  }, [active]);
+    console.log(priceFilter);
+  }, [active, priceFilter]);
   return (
     <AllNFTContainer>
       <ASideFilter />
@@ -65,10 +65,14 @@ const AllNFTs: FC = () => {
                 <Arrow className={active.price && "price-active"} />
               </FilterItem>
               <FilterMenu className={active.price && "price-active"}>
-                <MenuItem hover={true}>
+                <MenuItem hover={true} onClick={() => {
+                  setPriceFilter('low-to-high')
+                }}>
                   <span>Price: Low to High</span>
                 </MenuItem>
-                <MenuItem hover={true}>
+                <MenuItem hover={true} onClick={() => {
+                  setPriceFilter('high-to-low')
+                }}>
                   <span>Price: High to Low</span>
                 </MenuItem>
               </FilterMenu>
@@ -102,7 +106,7 @@ const AllNFTs: FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <AllGridWrap getResults={(amount: any) => setResults(amount)}/>
+        <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
       </Wrapper>
     </AllNFTContainer>
   );
