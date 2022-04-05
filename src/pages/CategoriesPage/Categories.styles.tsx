@@ -136,6 +136,7 @@ interface IWrapper {
     mw?: string,
     bg?: string,
     w?: string,
+    curs?: string
 }
 
 
@@ -153,6 +154,7 @@ export const Wrapper = styled.div<IWrapper> `
   gap: ${props => props.gap};
   flex-wrap: ${props => props.flexWrap || ''};
   background-color: ${props => props.bg || ''};
+  cursor: ${props => props.curs || ''};
 `
 
 interface IPlatform {
