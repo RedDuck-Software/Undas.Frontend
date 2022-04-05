@@ -36,7 +36,7 @@ import {
     AddToFav,
 } from './CollectionPage.styles'
 import {GridIco, ListIco} from "../AllNFTs/imports";
-import GridWrap from "../../components/NFTCard/Grid/GridWrap";
+import CollectionGridWrap from "./page-components/CollectionGridWrap";
 const CollectionPage: FC = () => {
     const [results, setResults] = useState<any>()
 
@@ -159,6 +159,7 @@ const CollectionPage: FC = () => {
                                 <Input />
                             </MenuSearchWrap>
                         </MenuWrap>
+                        <CollectionGridWrap />
                     </div>
                 </AllNFTContainer>
             </div>

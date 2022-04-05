@@ -23,7 +23,7 @@ import {
 import { GridIco, ListIco } from "./imports";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import GridWrap from "../../components/NFTCard/Grid/GridWrap";
+import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 
 const AllNFTs: FC = () => {
 
@@ -102,7 +102,7 @@ const AllNFTs: FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <GridWrap getResults={(amount: any) => setResults(amount)}/>
+        <AllGridWrap getResults={(amount: any) => setResults(amount)}/>
       </Wrapper>
     </AllNFTContainer>
   );
