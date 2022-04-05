@@ -33,8 +33,8 @@ export const ImageWrap = styled.div `
 `
 export const Image = styled.img `
   width: 100%;
-  height: auto;
-  
+  object-fit: cover;
+  height: 100%;
 `
 
 export const Preview = styled.div `
