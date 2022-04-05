@@ -145,7 +145,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
   }, [connector]);
 
   const priceSort = async () => {
-    if (!priceFilter) return
+    if (!priceFilter) return list 
     let sortedArr
     if (priceFilter === 'low-to-high') {
       sortedArr = await list?.sort((a, b) => {
