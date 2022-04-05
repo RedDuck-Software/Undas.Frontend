@@ -57,9 +57,13 @@ export const ASideWrap = styled.div `
   }
 `
 
-export const Holder = styled.ul `
+
+interface IHolder {
+    marginTop?: string
+}
+export const Holder = styled.ul<IHolder> `
   width: 100%;
-  margin-top: 60px;
+  margin-top: ${props => props.marginTop || '60px'};
   list-style: none;
   background: #FFFFFF;
   box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);

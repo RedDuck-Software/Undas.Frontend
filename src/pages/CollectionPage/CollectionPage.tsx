@@ -51,7 +51,7 @@ const CollectionPage: FC = () => {
                     <img src={CollectionBanner} alt="CollectionBanner"/>
                 </Banner>
                 <AllNFTContainer>
-                    <ASideFilter />
+                    <ASideFilter marginTop="208px"/>
                     <div>
                     <Wrapper disp="flex" gap="15px">
                         <CollectionCard />

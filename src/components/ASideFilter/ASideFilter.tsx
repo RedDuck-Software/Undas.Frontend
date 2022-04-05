@@ -29,7 +29,7 @@ import {
 } from './ASideFilter.styles'
 
 
-const ASideFilter:FC = () => {
+const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
     const [active, setActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState<any>({
         status: false,
@@ -53,7 +53,7 @@ const ASideFilter:FC = () => {
 
     return (
         <ASideWrap className={active && 'active' || ''}>
-            <Holder>
+            <Holder marginTop={marginTop}>
                 <HolderElement onClick={() => {
                     !active && setActive(true)
                     if (active) {
