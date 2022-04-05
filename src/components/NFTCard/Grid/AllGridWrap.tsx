@@ -144,10 +144,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
     getStakingsData();
   }, [connector]);
 
-  const priceSort = async (sortType: string) => {
-    if (!sortType) return
+  const priceSort = async () => {
+    if (!priceFilter) return
     let sortedArr
-    if (sortType === 'low-to-high') {
+    if (priceFilter === 'low-to-high') {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! > b.priceInNum!) {
           return 1
@@ -159,7 +159,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
       })
       return sortedArr
     }
-    if (sortType === 'high-to-low') {
+    if (priceFilter === 'high-to-low') {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! < b.priceInNum!) {
           return 1
@@ -181,7 +181,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
     } else if (!list && stakingsList) {
       setCommonList(stakingsList);
     } else {
-      priceSort('high-to-low')
+      priceSort()
           .then(sortedArr => setList(sortedArr))
           .catch(e => console.log(e))
       let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
@@ -190,10 +190,11 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
           index === self.findIndex((t) => t.id === value.id)
       );
       setCommonList(common);
-      console.log('sorted: ',commonList)
+      console.log('list: ',list)
+      console.log('common: ',commonList)
     }
     //console.log("List", list);
-  }, [list, stakingsList]);
+  }, [list, stakingsList, priceFilter]);
 
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
