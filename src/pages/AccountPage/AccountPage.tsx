@@ -51,6 +51,7 @@ import { Navigate } from "react-router-dom";
 const AccountPage = () => {
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
+  console.log(account)
 
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
@@ -81,6 +82,9 @@ const AccountPage = () => {
     return listOfNFTS;
   };
 
+  const getAccountData = async () => {
+
+  }
   const getListData = async () => {
     const response = await getNFTList();
     if (!response?.result) return;
@@ -117,7 +121,7 @@ const AccountPage = () => {
             <img src={AccountBanner} alt="account-banner"/>
           </Banner>
             <AccountContainer>
-            <AccountCard />
+            <AccountCard account={account}/>
                 <ASideFilter marginTop="140px"/>
                 <Wrapper w="100%">
                         <TabsMenu>
