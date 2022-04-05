@@ -111,27 +111,27 @@ const Navbar = () => {
                   <NewIcon />
                   New
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <ArtIcon/>
                   Artwork
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <SportIcon/>
                   Sport
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <PhotoIco/>
                   Photography
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <MetaversesIcon/>
                   Metaverses
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <CelebrityIco/>
                   Celebrity
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/category">
                   <RwaNFT/>
                   rwa NFT
                 </MenuList>
