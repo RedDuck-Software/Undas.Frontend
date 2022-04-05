@@ -35,7 +35,7 @@ interface CommonListProps extends CommonProps {
   premiumInNum?: number;
 }
 
-const GridWrap: FC<{ getResults?: any }> = ({getResults}) => {
+const AllGridWrap: FC<{ getResults?: any }> = ({getResults}) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
@@ -185,4 +185,4 @@ const GridWrap: FC<{ getResults?: any }> = ({getResults}) => {
   );
 };
 
-export default GridWrap;
+export default AllGridWrap;
