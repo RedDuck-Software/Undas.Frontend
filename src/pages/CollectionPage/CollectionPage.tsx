@@ -51,11 +51,15 @@ const CollectionPage: FC = () => {
                     <img src={CollectionBanner} alt="CollectionBanner"/>
                 </Banner>
                 <AllNFTContainer>
+                    <CollectionCard />
                     <ASideFilter marginTop="208px"/>
-                    <div>
-                    <Wrapper disp="flex" gap="15px">
-                        <CollectionCard />
-                        <Wrapper disp="flex" justifyContent="space-between" flexWrap="wrap">
+                    <Wrapper w="100%">
+                    <Wrapper w="100%" disp="flex" justifyContent="flex-end">
+                        <Wrapper disp="flex"
+                                 justifyContent="space-between"
+                                 flexWrap="wrap"
+                                 mw="740px"
+                                >
                             <Info>
                                 <InfoElement>
                                     <span>
@@ -160,7 +164,7 @@ const CollectionPage: FC = () => {
                             </MenuSearchWrap>
                         </MenuWrap>
                         <CollectionGridWrap />
-                    </div>
+                    </Wrapper>
                 </AllNFTContainer>
             </div>
         </>

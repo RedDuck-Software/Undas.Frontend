@@ -111,27 +111,27 @@ const Navbar = () => {
                   <NewIcon />
                   New
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <ArtIcon/>
                   Artwork
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <SportIcon/>
                   Sport
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <PhotoIco/>
                   Photography
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <MetaversesIcon/>
                   Metaverses
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <CelebrityIco/>
                   Celebrity
                 </MenuList>
-                <MenuList to="/category">
+                <MenuList to="/categories">
                   <RwaNFT/>
                   rwa NFT
                 </MenuList>
@@ -223,7 +223,7 @@ const Navbar = () => {
               <ProfileIco />
             </StyledLink>
             <DropdownMenu setWidth="170px" left="-3rem" top="2.10rem">
-              <MenuList to="/">
+              <MenuList to="/account">
                 <ProfileMenuIco />
                 Profile
               </MenuList>

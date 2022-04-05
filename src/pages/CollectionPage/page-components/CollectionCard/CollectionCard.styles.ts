@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const CardWrap = styled.div `
+  position: absolute;
+  z-index: 1;
   padding: 20px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.5);
@@ -16,9 +18,11 @@ export const CardWrap = styled.div `
 
 
 export const ImageWrap = styled.div `
-  width: 100px;
+  min-width: 100px;
   height: 100px;
-  display: inline-block;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
 `
 
 export const Description = styled.span `
