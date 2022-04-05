@@ -7,6 +7,12 @@ import {ReactComponent as Verified} from '../../images/image-collection/verified
 import {ReactComponent as Copy} from './assets/copy-ico.svg'
 import {ReactComponent as SingOut} from './assets/sign-out.svg'
 import {ReactComponent as Settings} from './assets/settings.svg'
+import {ReactComponent as CreatedIco} from './assets/created-ico.svg'
+import {ReactComponent as OffersIco} from './assets/offers-ico.svg'
+import {ReactComponent as FavouriteIco} from './assets/favourite-ico.svg'
+import {ReactComponent as RewardIco} from './assets/reward-ico.svg'
+import {ReactComponent as ReferralIco} from './assets/referral-ico.svg'
+
 export { card01,
     card02,
     card03,
@@ -15,5 +21,10 @@ export { card01,
     Verified,
     Copy,
     SingOut,
-    Settings
+    Settings,
+    CreatedIco,
+    OffersIco,
+    FavouriteIco,
+    RewardIco,
+    ReferralIco,
 }

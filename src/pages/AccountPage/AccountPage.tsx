@@ -13,6 +13,7 @@ import { CardItem } from "../../components";
 
 //Page Components
 import AccountCard from "./page-components/AccountCard/AccountCard";
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
 
 //Media
 import {
@@ -20,14 +21,22 @@ import {
     card02,
     card03,
     card04,
-    AccountBanner
+    AccountBanner,
+    CreatedIco,
+    OffersIco,
+    FavouriteIco,
+    RewardIco,
+    ReferralIco,
 } from "./imports";
 //Styles
 import { Container, Background, Button } from "../../globalStyles";
 import {Banner} from "../CategoriesPage/Categories.styles";
 import {Wrapper} from "../CategoriesPage/Categories.styles";
 import {
-    AccountContainer
+    AccountContainer,
+    TabsMenu,
+    Tab,
+    SmallNumber
 } from "./AccountPage.styles";
 
 
@@ -36,10 +45,8 @@ import { useWeb3React } from "@web3-react/core";
 import Cookies from "universal-cookie";
 import Context from "../../utils/Context";
 import { operations } from "moralis/types/generated/web3Api";
-import { CardLink } from "../../components/CardList/CardList.styles";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
-import ASideFilter from "../../components/ASideFilter/ASideFilter";
 
 const AccountPage = () => {
   const cookies = new Cookies();
@@ -112,8 +119,32 @@ const AccountPage = () => {
             <AccountContainer>
                 <ASideFilter marginTop="208px"/>
                 <div>
-                    <Wrapper disp="flex" gap="15px">
+                    <Wrapper disp="flex" gap="30px">
                         <AccountCard />
+                        <TabsMenu>
+                            <Tab>
+                                <CreatedIco/>
+                                <span>Created</span>
+                                <SmallNumber>2</SmallNumber>
+                            </Tab>
+                            <Tab>
+                                <OffersIco/>
+                                <span>Offers</span>
+                                <SmallNumber>6</SmallNumber>
+                            </Tab>
+                            <Tab>
+                                <FavouriteIco/>
+                                <span>Favourite</span>
+                            </Tab>
+                            <Tab>
+                                <RewardIco/>
+                                <span>Reward</span>
+                            </Tab>
+                            <Tab>
+                                <ReferralIco/>
+                                <span>Referral</span>
+                            </Tab>
+                        </TabsMenu>
                     </Wrapper>
                 </div>
             </AccountContainer>
