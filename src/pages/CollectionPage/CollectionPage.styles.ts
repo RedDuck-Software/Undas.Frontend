@@ -42,6 +42,7 @@ export const MakeComplaint = styled.button `
 `
 
 export const AddToFav = styled.button `
+  margin-top: 52px;
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;

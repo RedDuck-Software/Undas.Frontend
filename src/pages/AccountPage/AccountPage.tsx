@@ -112,15 +112,14 @@ const AccountPage = () => {
 
   return (
     <>
-        <div>
+        <Wrapper>
           <Banner>
             <img src={AccountBanner} alt="account-banner"/>
           </Banner>
             <AccountContainer>
-                <ASideFilter marginTop="208px"/>
-                <div>
-                    <Wrapper disp="flex" gap="30px">
-                        <AccountCard />
+            <AccountCard />
+                <ASideFilter marginTop="140px"/>
+                <Wrapper w="100%">
                         <TabsMenu>
                             <Tab>
                                 <CreatedIco/>
@@ -145,10 +144,9 @@ const AccountPage = () => {
                                 <span>Referral</span>
                             </Tab>
                         </TabsMenu>
-                    </Wrapper>
-                </div>
+                </Wrapper>
             </AccountContainer>
-        </div>
+        </Wrapper>
     </>
   );
 };

@@ -18,7 +18,7 @@ export const SettingsIco = styled(Settings)`
 `
 
 export const AccountWrap = styled(CardWrap) `
-  max-width: 350px;
+  width: 350px;
   ${CardWrap}
 `
 

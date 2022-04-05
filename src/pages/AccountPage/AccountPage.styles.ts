@@ -14,13 +14,16 @@ export const TabsMenu = styled.ul `
   gap: 15px;
   flex-wrap: wrap;
   list-style: none;
+  margin-left: auto;
+  max-width: 765px;
+  //margin-left: 335px;
 `
 
 export const Tab = styled.li `
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 20vw;
+  width: 17vw;
   max-height: 36px;
   background: #FFFFFF;
   box-shadow: 0 0 5px rgba(124, 124, 124, 0.25);
@@ -29,6 +32,7 @@ export const Tab = styled.li `
   font-size: 18px;
   line-height: 22px;
   padding: 10px 20px;
+  cursor: pointer;
   color: #232428;
 `
 
