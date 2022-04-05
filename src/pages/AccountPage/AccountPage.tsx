@@ -121,7 +121,7 @@ const AccountPage = () => {
             <img src={AccountBanner} alt="account-banner"/>
           </Banner>
             <AccountContainer>
-            <AccountCard account={account}/>
+            <AccountCard account={account} disconnect={disconnect}/>
                 <ASideFilter marginTop="140px"/>
                 <Wrapper w="100%">
                         <TabsMenu>

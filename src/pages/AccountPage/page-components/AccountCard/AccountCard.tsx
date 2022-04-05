@@ -17,10 +17,11 @@ import {Wrapper} from "../../../CategoriesPage/Categories.styles";
 import ProfilePic from '../../assets/profile-pic.png'
 
 interface IAccountCard {
-    account?: string
+    account?: string,
+    disconnect?: any
 }
 
-const AccountCard:FC<IAccountCard> = ({account}) => {
+const AccountCard:FC<IAccountCard> = ({account, disconnect}) => {
     const accountSplit = account?.split('')
     const slicedAccount = accountSplit?.splice(6, 32, '...')
     return (
@@ -41,7 +42,9 @@ const AccountCard:FC<IAccountCard> = ({account}) => {
                 <VerifiedIco />
             </Wrapper>
             <Wrapper disp="flex" justifyContent="space-between" marg="5px 0 0 0" alignItems="center">
-                <Wrapper disp="flex" gap="5px" curs="pointer">
+                <Wrapper disp="flex" gap="5px" curs="pointer" onClick={() => {
+                    disconnect()
+                }}>
                     <SingOutIco />
                     <GrayText>Sing Out</GrayText>
                 </Wrapper>
