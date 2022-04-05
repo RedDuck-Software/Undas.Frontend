@@ -32,7 +32,9 @@ export const ImageWrap = styled.div `
   height: 215px;
 `
 export const Image = styled.img `
-
+  width: 100%;
+  height: auto;
+  
 `
 
 export const Preview = styled.div `
