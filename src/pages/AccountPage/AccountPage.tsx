@@ -67,13 +67,14 @@ import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
 import {GridIco, ListIco} from "../AllNFTs/imports";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
+import OffersMenu from "./page-components/MainMenu/OffersMenu";
 
 const AccountPage = () => {
     const [active, setActive] = useState<any>({
         price: false,
         event: false,
     });
-    const [tab, setTab] = useState('')
+    const [tab, setTab] = useState('offer')
     console.log(tab)
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
@@ -156,7 +157,7 @@ const AccountPage = () => {
                                     <span>Created</span>
                                     <SmallNumber>2</SmallNumber>
                                 </Tab>
-                                <Tab>
+                                <Tab onClick={() => setTab('offers')}>
                                     <OffersIco/>
                                     <span>Offers</span>
                                     <SmallNumber>6</SmallNumber>
@@ -177,6 +178,7 @@ const AccountPage = () => {
                     </Wrapper>
                     {tab === '' && <MainMenu />}
                     {tab === 'favourite' && <FavouriteMenu />}
+                    {tab === 'offers' && <OffersMenu />}
                 </Wrapper>
             </AccountContainer>
         </Wrapper>
