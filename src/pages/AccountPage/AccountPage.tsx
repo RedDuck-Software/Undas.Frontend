@@ -38,7 +38,23 @@ import {
     Tab,
     SmallNumber
 } from "./AccountPage.styles";
-
+import {
+    Arrow,
+    Filter,
+    FilterItem,
+    FilterMenu,
+    FilterTitle,
+    GridLayout,
+    Input,
+    MenuItem,
+    MenuSearchWrap,
+    MenuWrap,
+    SearchIco,
+    SettingsBlock,
+    SettingsElement,
+    ViewButton,
+    ViewOption
+} from "../AllNFTs/AllNFTs.styles";
 
 
 import { useWeb3React } from "@web3-react/core";
@@ -47,11 +63,21 @@ import Context from "../../utils/Context";
 import { operations } from "moralis/types/generated/web3Api";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
+import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
+import {GridIco, ListIco} from "../AllNFTs/imports";
+import MainMenu from "./page-components/MainMenu/MainMenu";
+import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 
 const AccountPage = () => {
+    const [active, setActive] = useState<any>({
+        price: false,
+        event: false,
+    });
+    const [tab, setTab] = useState('favourite')
+    console.log(tab)
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
-  console.log(account)
+
 
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
@@ -94,7 +120,6 @@ const AccountPage = () => {
       (value, index, self) =>
         index === self.findIndex((t) => t.token_id === value.token_id)
     );
-    console.log(response.result);
     setNFTList(response.result);
   };
 
@@ -124,30 +149,34 @@ const AccountPage = () => {
             <AccountCard account={account} disconnect={disconnect}/>
                 <ASideFilter marginTop="140px"/>
                 <Wrapper w="100%">
-                        <TabsMenu>
-                            <Tab to="/account">
-                                <CreatedIco/>
-                                <span>Created</span>
-                                <SmallNumber>2</SmallNumber>
-                            </Tab>
-                            <Tab to="/account">
-                                <OffersIco/>
-                                <span>Offers</span>
-                                <SmallNumber>6</SmallNumber>
-                            </Tab>
-                            <Tab to="/account">
-                                <FavouriteIco/>
-                                <span>Favourite</span>
-                            </Tab>
-                            <Tab to="/account">
-                                <RewardIco/>
-                                <span>Reward</span>
-                            </Tab>
-                            <Tab to="/account">
-                                <ReferralIco/>
-                                <span>Referral</span>
-                            </Tab>
-                        </TabsMenu>
+                    <Wrapper w="100%" marg="15px 0 0 0">
+                            <TabsMenu>
+                                <Tab>
+                                    <CreatedIco/>
+                                    <span>Created</span>
+                                    <SmallNumber>2</SmallNumber>
+                                </Tab>
+                                <Tab>
+                                    <OffersIco/>
+                                    <span>Offers</span>
+                                    <SmallNumber>6</SmallNumber>
+                                </Tab>
+                                <Tab onClick={() => setTab('favourite')}>
+                                    <FavouriteIco/>
+                                    <span>Favourite</span>
+                                </Tab>
+                                <Tab>
+                                    <RewardIco/>
+                                    <span>Reward</span>
+                                </Tab>
+                                <Tab>
+                                    <ReferralIco/>
+                                    <span>Referral</span>
+                                </Tab>
+                            </TabsMenu>
+                    </Wrapper>
+                    {tab === '' && <MainMenu />}
+                    {tab === 'favourite' && <FavouriteMenu />}
                 </Wrapper>
             </AccountContainer>
         </Wrapper>

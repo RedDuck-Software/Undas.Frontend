@@ -20,7 +20,7 @@ export const TabsMenu = styled.ul `
   //margin-left: 335px;
 `
 
-export const Tab = styled(Link) `
+export const Tab = styled.li `
   text-decoration: none;
   display: flex;
   align-items: center;

@@ -21,12 +21,17 @@ export const MenuWrap = styled.div<IMenuWrap> `
   margin: ${props => props.marg || '64px 0 20px'};
 `
 
-export const MenuSearchWrap = styled.div `
-  margin-left: 30px;
+interface IMenuSearch {
+    mw?: string,
+    marginLeft?: string
+}
+
+export const MenuSearchWrap = styled.div<IMenuSearch> `
+  margin-left: ${props => props.marginLeft || '30px'};
   padding-left: 20px;
   display: flex;
   align-items: center;
-  max-width: 410px;
+  max-width: ${props => props.mw || '410px'};
   width: 100%;
   height: 36px;
   background-color: #fff;
