@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 
 export const RecommendedContainer = styled.div `
@@ -76,8 +77,9 @@ export const Image = styled.img `
   z-index: -1;
 `
 
-export const CategoryWrap = styled.li<ICategory> `
+export const CategoryWrap = styled(Link)<ICategory> `
   cursor: pointer;
+  text-decoration: none;
   display: flex;
   overflow: hidden;
   position: relative;

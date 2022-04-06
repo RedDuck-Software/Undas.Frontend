@@ -125,25 +125,25 @@ const AccountPage = () => {
                 <ASideFilter marginTop="140px"/>
                 <Wrapper w="100%">
                         <TabsMenu>
-                            <Tab>
+                            <Tab to="/account">
                                 <CreatedIco/>
                                 <span>Created</span>
                                 <SmallNumber>2</SmallNumber>
                             </Tab>
-                            <Tab>
+                            <Tab to="/account">
                                 <OffersIco/>
                                 <span>Offers</span>
                                 <SmallNumber>6</SmallNumber>
                             </Tab>
-                            <Tab>
+                            <Tab to="/account">
                                 <FavouriteIco/>
                                 <span>Favourite</span>
                             </Tab>
-                            <Tab>
+                            <Tab to="/account">
                                 <RewardIco/>
                                 <span>Reward</span>
                             </Tab>
-                            <Tab>
+                            <Tab to="/account">
                                 <ReferralIco/>
                                 <span>Referral</span>
                             </Tab>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { ReactComponent as Search } from "../../icons/search.svg";
 import {Container} from "../../globalStyles";
+import {Link} from "react-router-dom";
 
 
 export const AccountContainer = styled(Container) `
@@ -19,7 +20,8 @@ export const TabsMenu = styled.ul `
   //margin-left: 335px;
 `
 
-export const Tab = styled.li `
+export const Tab = styled(Link) `
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 10px;
