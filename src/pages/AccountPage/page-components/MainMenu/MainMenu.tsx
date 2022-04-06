@@ -80,11 +80,11 @@ const MainMenu:FC = () => {
                     </FilterMenu>
                 </Filter>
             </SettingsBlock>
-            <MenuSearchWrap>
+            <MenuSearchWrap mw="530px" marginLeft="0">
                 <SearchIco />
                 <Input />
             </MenuSearchWrap>
-            <ResultsTotal>4</ResultsTotal>
+            <ResultsTotal>2</ResultsTotal>
         </MenuWrap>
     )
 }

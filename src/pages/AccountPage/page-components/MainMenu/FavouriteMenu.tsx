@@ -41,7 +41,7 @@ const FavouriteMenu: FC = () => {
                 <SearchIco />
                 <Input />
             </MenuSearchWrap>
-            <ResultsTotal>2</ResultsTotal>
+            <ResultsTotal>4</ResultsTotal>
         </MenuWrap>
     )
 }

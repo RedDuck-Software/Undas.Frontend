@@ -151,7 +151,7 @@ const AccountPage = () => {
                 <Wrapper w="100%">
                     <Wrapper w="100%" marg="15px 0 0 0">
                             <TabsMenu>
-                                <Tab>
+                                <Tab onClick={() => setTab('')}>
                                     <CreatedIco/>
                                     <span>Created</span>
                                     <SmallNumber>2</SmallNumber>
