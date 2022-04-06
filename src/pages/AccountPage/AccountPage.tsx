@@ -73,7 +73,7 @@ const AccountPage = () => {
         price: false,
         event: false,
     });
-    const [tab, setTab] = useState('favourite')
+    const [tab, setTab] = useState('')
     console.log(tab)
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
@@ -147,7 +147,7 @@ const AccountPage = () => {
           </Banner>
             <AccountContainer>
             <AccountCard account={account} disconnect={disconnect}/>
-                <ASideFilter marginTop="140px"/>
+                {tab !== 'favourite' && <ASideFilter marginTop="140px"/>}
                 <Wrapper w="100%">
                     <Wrapper w="100%" marg="15px 0 0 0">
                             <TabsMenu>
