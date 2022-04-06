@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {ViewButton, ViewOption} from "../../../AllNFTs/AllNFTs.styles";
 
 export const FavouriteSelect = styled.div `
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -22,6 +23,26 @@ export const FavouriteButton = styled.button `
   text-align: center;
   color: #5D3F92;
   &.favourite-active {
+    background-color: #EDD2FF;
+  }
+`
+
+export const OfferMenuWrap = styled.div `
+  margin-top: 40px;
+  display: flex;
+`
+
+export const OfferFilterWrap = styled(ViewOption) `
+    
+`
+
+export const FilterButton = styled(FavouriteButton) `
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  &.offers-active {
     background-color: #EDD2FF;
   }
 `

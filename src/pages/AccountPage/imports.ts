@@ -12,6 +12,8 @@ import {ReactComponent as OffersIco} from './assets/offers-ico.svg'
 import {ReactComponent as FavouriteIco} from './assets/favourite-ico.svg'
 import {ReactComponent as RewardIco} from './assets/reward-ico.svg'
 import {ReactComponent as ReferralIco} from './assets/referral-ico.svg'
+import {ReactComponent as OffResaivedIco} from './assets/offers-resaived.svg'
+import {ReactComponent as OffMadeIco} from './assets/offers-made.svg'
 
 export { card01,
     card02,
@@ -27,4 +29,6 @@ export { card01,
     FavouriteIco,
     RewardIco,
     ReferralIco,
+    OffResaivedIco,
+    OffMadeIco,
 }
