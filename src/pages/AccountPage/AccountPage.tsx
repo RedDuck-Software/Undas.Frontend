@@ -73,7 +73,7 @@ const AccountPage = () => {
     price: false,
     event: false,
   });
-  const [tab, setTab] = useState("offer");
+  const [tab, setTab] = useState("");
   console.log(tab);
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
