@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useRef, useState} from 'react'
 import {
     FilterIco,
     StatusIco,
@@ -69,6 +69,8 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
         }))
     }
 
+    const newRef: any = useRef()
+    console.log(newRef)
     return (
         <ASideWrap className={active && 'active' || ''}>
             <Holder marginTop={marginTop}>
@@ -100,10 +102,12 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
                     <AccordionArrow className={activeMenu.status && 'active-status' || ''}/>
                 </HolderElement>
                 <AccordionMenu mh="146px" className={activeMenu.status && 'active-status' || ''}>
-                    <AccordionElement>
+                    <AccordionElement onClick={() => {
+                        newRef.current.checked = !newRef.current.checked
+                    }}>
                         <span>New</span>
                         <Switch>
-                            <InputSwitch type="checkbox" />
+                            <InputSwitch type="checkbox" ref={newRef}/>
                             <SliderRound />
                         </Switch>
                     </AccordionElement>
