@@ -192,6 +192,7 @@ export const InputSwitch = styled.input `
 `
 
 export const PriceSelect = styled.ul `
+  width: 218px;
   position: absolute;
   opacity: 0;
   visibility: hidden;
@@ -208,6 +209,7 @@ export const PriceSelect = styled.ul `
 
 
 export const PriceElement = styled.li `
+  width: 218px;
   padding: 10px;
   font-weight: 400;
   font-size: 12px;

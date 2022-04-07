@@ -38,18 +38,36 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
     const [priceMenu, setPriceMenu] = useState<boolean>(false)
     const [priceCurrency, setPriceCurrency] = useState([
         {
+            currency: 'eth',
+            text: 'Ether (ETH)',
+            ico: <EthIco/>,
+            selected: true
+        },
+        {
             currency: 'usd',
             text: 'United States Dollar (USD)',
             ico: <UsdIco/>,
             selected: false
         },
-        {
-            currency: 'eth',
-            text: 'Ether (ETH)',
-            ico: <EthIco/>,
-            selected: true
-        }
     ])
+    const variations = priceCurrency.filter(element => {
+        if (!element.selected) {
+            return true
+        }
+    })
+
+    const currencySelector = (currencyItem: any) => {
+        console.log(currencyItem)
+        setPriceCurrency(prev => prev.map(item => {
+            if (currencyItem.currency !== item.currency) {
+                item.selected = false
+            }
+            if (currencyItem.currency === item.currency) {
+                item.selected = true
+            }
+            return {...item}
+        }))
+    }
 
     return (
         <ASideWrap className={active && 'active' || ''}>
@@ -124,24 +142,32 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
                 </HolderElement>
                 <AccordionMenu mh="178px" className={activeMenu.price && 'active-price' || ''}>
                     <AccordionElement padd="15px 15px 20px 15px" direction="column">
-                        <PriceElement
+                        {priceCurrency.map(item => {
+                            if (item.selected) return (
+                                <PriceElement
+                                    className={priceMenu && 'price-menu-active' || ''}
+                                    onClick={() => {
+                                        !priceMenu ? setPriceMenu(true) : setPriceMenu(false)
+                                    }}>
+                                    {item.ico}
+                                    <span>{item.text}</span>
+                                    <AccordionArrow className={priceMenu && 'price-menu-active' || ''}/>
+                                </PriceElement>
+                            )
+                        })}
+                        <PriceSelect
                             className={priceMenu && 'price-menu-active' || ''}
-                            onClick={() => {
-                                !priceMenu ? setPriceMenu(true) : setPriceMenu(false)
-                            }}>
-                            <UsdIco />
-                            <span>United States Dollar (USD)</span>
-                            <AccordionArrow className={priceMenu && 'price-menu-active' || ''}/>
-                        </PriceElement>
-                        <PriceSelect className={priceMenu && 'price-menu-active' || ''}>
-                            <PriceVariations>
-                                <UsdIco />
-                                <span>United States Dollar (USD)</span>
-                            </PriceVariations>
-                            <PriceVariations>
-                                <EthIco />
-                                <span>Ether (ETH)</span>
-                            </PriceVariations>
+                        >
+                            {variations.map(item => {
+                                return (
+                                        <PriceVariations onClick={() => {
+                                            currencySelector(item)
+                                        }}>
+                                            {item.ico}
+                                            <span>{item.text}</span>
+                                        </PriceVariations>
+                                )
+                            })}
                         </PriceSelect>
                         <ApplyBtn>Apply</ApplyBtn>
                     </AccordionElement>
