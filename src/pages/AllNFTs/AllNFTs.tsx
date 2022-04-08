@@ -36,6 +36,7 @@ const AllNFTs: FC = () => {
   useEffect(() => {
     console.log(priceFilter);
   }, [active, priceFilter]);
+
   return (
     <AllNFTContainer>
       <ASideFilter />

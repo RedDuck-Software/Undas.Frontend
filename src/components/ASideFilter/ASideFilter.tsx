@@ -27,9 +27,12 @@ import {
     ApplyBtn,
     PriceVariations
 } from './ASideFilter.styles'
+import {filterAction, toggleStacking} from "../../store/reducers/filterReducer";
+import {useDispatch} from "react-redux";
 
 
 const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
+    const dispatch = useDispatch()
     const [active, setActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState<any>({
         status: false,
@@ -70,7 +73,7 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
     }
 
     const newRef: any = useRef()
-    console.log(newRef)
+    const stakingRef: any = useRef()
     return (
         <ASideWrap className={active && 'active' || ''}>
             <Holder marginTop={marginTop}>
@@ -111,10 +114,13 @@ const ASideFilter:FC<{marginTop?: string}> = ({marginTop}) => {
                             <SliderRound />
                         </Switch>
                     </AccordionElement>
-                    <AccordionElement>
+                    <AccordionElement onClick={() => {
+                        stakingRef.current.checked = !stakingRef.current.checked
+                        dispatch(filterAction(stakingRef.current.checked))
+                    }}>
                         <span>Staking</span>
                         <Switch>
-                            <InputSwitch type="checkbox" />
+                            <InputSwitch type="checkbox" ref={stakingRef}/>
                             <SliderRound />
                         </Switch>
                     </AccordionElement>

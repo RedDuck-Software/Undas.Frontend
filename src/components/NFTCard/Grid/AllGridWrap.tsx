@@ -12,6 +12,10 @@ import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import ClipLoader from "react-spinners/ClipLoader";
 import { number, string } from "yup";
 
+//Redux
+import {useSelector} from "react-redux";
+import {useFilter} from "../../../store";
+
 interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
@@ -44,6 +48,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
+
+  const stackingFilter = useSelector(useFilter)
+
+  console.log(stackingFilter)
 
   const [list, setList] = useState<ItemsProps[]>();
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>();

@@ -6,13 +6,16 @@ import {
 } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import {filterReducer} from "./reducers/filterReducer";
 
 const persistConfig = {
   key: 'persist-key',
   storage,
 };
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  filter: filterReducer
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -23,6 +26,10 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+export const useFilter = (state: RootState) => {
+  return state.filter
+}
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
