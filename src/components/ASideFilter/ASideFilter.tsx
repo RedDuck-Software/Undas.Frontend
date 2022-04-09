@@ -27,7 +27,7 @@ import {
     ApplyBtn,
     PriceVariations
 } from './ASideFilter.styles'
-import {filterAction, toggleStacking} from "../../store/reducers/filterReducer";
+import {filterAction} from "../../store/reducers/filterReducer";
 import {useDispatch} from "react-redux";
 
 
