@@ -28,6 +28,7 @@ import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import NFTExample from "../../../images/NFTExample.png";
 import { BigNumber } from "ethers";
 import { ListingStructOutput } from "../../../typechain/Marketplace";
+import {useNavigate} from "react-router-dom";
 
 interface INFTGrid {
   tokenId: number;
@@ -38,8 +39,13 @@ interface INFTGrid {
 }
 
 const NFTGrid = (props: INFTGrid) => {
+
+  const navigate = useNavigate()
+
   return (
-    <NFTWrap>
+    <NFTWrap onClick={() => {
+      navigate(`/nft/buy/${props.tokenId}`)
+    }}>
       <Info disp="flex" alignItems="center" gap="10px">
         <Name>{props.name}</Name>
         <img src={Verified} alt="verified-ico" />

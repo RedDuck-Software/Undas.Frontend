@@ -96,7 +96,7 @@ const App = () => {
           <Route path="/productforsale/:id" element={<ProductForSale />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/collection" element={<CollectionPage />} />
-          <Route path="/nft" element={<NFTPage />} />
+          <Route path="/nft/buy/:id" element={<NFTPage />} />
           <Route
             path="/explore/sport"
             element={<ExplorePage pageType="Sport" />}
