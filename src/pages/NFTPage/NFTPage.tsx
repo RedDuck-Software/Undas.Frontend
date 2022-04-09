@@ -45,10 +45,14 @@ import Accordion from "./page-components/Accordion/Accordion";
 import Offers from "./page-components/Accordion/accordrion-components/Offers";
 import Description from "./page-components/Accordion/accordrion-components/Description";
 import Details from "./page-components/Accordion/accordrion-components/Details";
-
+//Modules
+import {useParams} from "react-router-dom";
 
 
 const NFTPage: FC = () => {
+    const params = useParams()
+    const tokenId = params.id
+
     return (
         <NFTPageWrap>
             <NavigationWrap>
