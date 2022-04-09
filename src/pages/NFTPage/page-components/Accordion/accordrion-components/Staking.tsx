@@ -1,9 +1,9 @@
 import React, {FC} from 'react'
 
-const StakingAccordion: FC = () => {
+const Staking: FC = () => {
     return (
         <></>
     )
 }
 
-export default StakingAccordion
+export default Staking

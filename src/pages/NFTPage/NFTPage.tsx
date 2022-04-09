@@ -12,7 +12,7 @@ import {
     ThreeCircleIco,
     OpenInIco,
     EthIco,
-    RentIco, OffersIco
+    RentIco, OffersIco, DetailsIco
 } from './imports'
 
 //Styles
@@ -40,11 +40,12 @@ import {
 } from './NFTPage.styles'
 
 import {Wrapper} from "../CategoriesPage/Categories.styles";
+//Accordion components
 import Accordion from "./page-components/Accordion/Accordion";
 import Offers from "./page-components/Accordion/accordrion-components/Offers";
 import Description from "./page-components/Accordion/accordrion-components/Description";
+import Details from "./page-components/Accordion/accordrion-components/Details";
 
-//import {Image} from '../../components/NFTCard/Grid/NFTGrid.styles'
 
 
 const NFTPage: FC = () => {
@@ -147,11 +148,15 @@ const NFTPage: FC = () => {
                     </SaleBlock>
                 </Wrapper>
             </MainInfoWrap>
+            {/*Accordions*/}
             <Accordion name="Offers" ico={<OffersIco />}>
                 <Offers />
             </Accordion>
             <Accordion name="Description">
                 <Description />
+            </Accordion>
+            <Accordion name="Details" ico={<DetailsIco />}>
+                <Details />
             </Accordion>
         </NFTPageWrap>
     )

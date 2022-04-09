@@ -62,11 +62,11 @@ export const OffersText = styled.span<{color?: string}> `
 `
 
 export const DescriptionWrap = styled.li `
+  padding: 20px 30px;
   display: flex;
   flex-direction: column;
   box-shadow: inset 0px 0px 1px #7C7C7C;
   background-color: #FBF5FF;
-  padding: 30px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -91,4 +91,25 @@ export const MoreBtn = styled.button `
   background: #FFFFFF;
   border: 1px solid #873DC1;
   border-radius: 10px;
+`
+
+export const DetailsWrap = styled.ul `
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  background-color: #FBF5FF;
+  padding: 15px 30px;
+`
+
+export const DetailsElement = styled.li `
+  padding: 5px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+`
+
+export const ColoredText = styled.span<{color?: string}> `
+  color: ${props => props.color || ''};
 `
