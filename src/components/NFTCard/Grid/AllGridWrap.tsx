@@ -12,6 +12,10 @@ import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import ClipLoader from "react-spinners/ClipLoader";
 import { number, string } from "yup";
 
+//Redux
+import {useSelector} from "react-redux";
+import {useFilter} from "../../../store";
+
 interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
@@ -44,6 +48,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
+
+  const stackingFilter = useSelector(useFilter)
+
+  //console.log(stackingFilter)
 
   const [list, setList] = useState<ItemsProps[]>();
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
@@ -181,25 +189,29 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
     } else if (!list && stakingsList) {
       setCommonList(stakingsList);
     } else {
-      priceSort()
-          .then(sortedArr => {
-            console.log('sortedArr: ', sortedArr)
-            setList(sortedArr)
-          })
-          .catch(e => console.log(e))
-      console.log(list)
-      let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
-      common = common.filter(
-        (value, index, self) =>
-          index === self.findIndex((t) => t.id === value.id)
-      );
-      setCommonList(common);
-      console.log('list: ',list)
-      console.log('common: ',commonList)
+      if (stackingFilter.stacking) {
+        setCommonList(stakingsList)
+      } else {
+        priceSort()
+            .then(sortedArr => {
+              console.log('sortedArr: ', sortedArr)
+              setList(sortedArr)
+            })
+            .catch(e => console.log(e))
+        console.log(list)
+        let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
+        common = common.filter(
+          (value, index, self) =>
+            index === self.findIndex((t) => t.id === value.id)
+        );
+        setCommonList(common);
+        console.log('list: ',list)
+        console.log('common: ',commonList)
 
-    }
+      }
+      }
     //console.log("List", list);
-  }, [list, stakingsList, priceFilter]);
+  }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
 
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
