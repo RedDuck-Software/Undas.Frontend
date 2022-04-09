@@ -11,6 +11,8 @@ import {
     FlaggedIco,
     ThreeCircleIco,
     OpenInIco,
+    EthIco,
+    RentIco
 } from './imports'
 
 //Styles
@@ -22,18 +24,26 @@ import {
     NavElement,
     MainInfoWrap,
     ImageWrap,
+    Image,
     Info,
     InfoElement,
     PurpleText,
     SaleBlock,
-    TopBar
+    TopBar,
+    BuyBar,
+    PriceText,
+    ButtonWrap,
+    InfoButton,
+    PriceInUSD,
+    RentElement,
+    RentalPeriod
 } from './NFTPage.styles'
 
+import {Wrapper} from "../CategoriesPage/Categories.styles";
+
+//import {Image} from '../../components/NFTCard/Grid/NFTGrid.styles'
 
 
-import {
-    Image
-} from '../../components/NFTCard/Grid/NFTGrid.styles'
 const NFTPage: FC = () => {
     return (
         <NFTPageWrap>
@@ -58,7 +68,7 @@ const NFTPage: FC = () => {
                 <ImageWrap>
                     <Image src={NFTImage} alt="nft-image"/>
                 </ImageWrap>
-                <div>
+                <Wrapper disp="flex" flexDirection="column" justifyContent="space-between">
                     <Info>
                         <InfoElement>
                             <span>Owned by <PurpleText>Hype-eth</PurpleText></span>
@@ -81,8 +91,58 @@ const NFTPage: FC = () => {
                             <CartIco />
                             Sale
                         </TopBar>
+                        <BuyBar>
+                            <span>Current price</span>
+                            <Wrapper disp="flex" alignItems="center" marg="10px 0 20px 0">
+                                <EthIco/>
+                                <PriceText>2,5</PriceText>
+                                <PriceInUSD>($18 465,32)</PriceInUSD>
+                            </Wrapper>
+                            <ButtonWrap>
+                                <InfoButton bg="#873DC1">
+                                    Buy now
+                                </InfoButton>
+                                <InfoButton fc="#873DC1">
+                                    Make offer
+                                </InfoButton>
+                            </ButtonWrap>
+                        </BuyBar>
                     </SaleBlock>
-                </div>
+                    <SaleBlock>
+                        <TopBar>
+                            <RentIco />
+                            Rent
+                        </TopBar>
+                        <RentElement>
+                            <span>Deposit</span>
+                            <Wrapper disp="flex" alignItems="center">
+                                <EthIco/>
+                                <PriceText>2,5</PriceText>
+                                <PriceInUSD>($18 465,32)</PriceInUSD>
+                            </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                            <span>Price for 1 Day Rental</span>
+                            <Wrapper disp="flex" alignItems="center">
+                                <EthIco/>
+                                <PriceText>0,005</PriceText>
+                                <PriceInUSD>($36,93)</PriceInUSD>
+                            </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                            <span>Period</span>
+                            <RentalPeriod placeholder="7 for 90 days"/>
+                        </RentElement>
+                        <RentElement h="76px">
+                                <InfoButton bg="#873DC1" flex="1 1 0">
+                                    Rent
+                                </InfoButton>
+                                <InfoButton fc="#873DC1">
+                                    Make offer
+                                </InfoButton>
+                        </RentElement>
+                    </SaleBlock>
+                </Wrapper>
             </MainInfoWrap>
         </NFTPageWrap>
     )
