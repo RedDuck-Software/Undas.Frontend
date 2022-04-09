@@ -85,9 +85,11 @@ export const SaleBlock = styled.ul `
   overflow: hidden;
 `
 
-export const TopBar = styled.li `
+export const TopBar = styled.li <{justifyContent?: string, cursor?: string}>`
   display: flex;
   align-items: center;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  justify-content: ${props => props.justifyContent || ''};
   gap: 10px;
   width: 100%;
   background-color: #fff;
@@ -96,6 +98,7 @@ export const TopBar = styled.li `
   font-size: 14px;
   line-height: 17px;
   color: #5D3F92;
+  cursor: ${props => props.cursor || ''}
 `
 export const BuyBar = styled.li `
   padding: 20px 28px;

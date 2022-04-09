@@ -40,6 +40,7 @@ import {
 } from './NFTPage.styles'
 
 import {Wrapper} from "../CategoriesPage/Categories.styles";
+import Accordion from "./page-components/Accordion/Accordion";
 
 //import {Image} from '../../components/NFTCard/Grid/NFTGrid.styles'
 
@@ -144,6 +145,7 @@ const NFTPage: FC = () => {
                     </SaleBlock>
                 </Wrapper>
             </MainInfoWrap>
+            <Accordion />
         </NFTPageWrap>
     )
 }

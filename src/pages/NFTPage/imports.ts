@@ -10,7 +10,15 @@ import {ReactComponent as ThreeCircleIco} from './assets/three-circle-ico.svg'
 import {ReactComponent as OpenInIco} from './assets/open-in-ico.svg'
 import {ReactComponent as EthIco} from '../../icons/eth-logo-nft.svg'
 import {ReactComponent as RentIco} from './assets/rent-ico.svg'
-
+import {ReactComponent as OffersIco} from './assets/offer-ico.svg'
+import {ReactComponent as HandShakeIco} from './assets/hand-shake-ico.svg'
+import {ReactComponent as StakingIco} from './assets/staking-ico.svg'
+import {ReactComponent as ItemActivityIco} from './assets/item-activity-ico.svg'
+import {ReactComponent as AboutIco} from './assets/about-ico.svg'
+import {ReactComponent as DetailsIco} from './assets/details-ico.svg'
+import {ReactComponent as PropertiesIco} from './assets/properties-ico.svg'
+import {ReactComponent as StatsIco} from './assets/stats-ico.svg'
+import {ReactComponent as LevelsIco} from './assets/levels-ico.svg'
 
 export {
     NFTImage,
@@ -25,4 +33,13 @@ export {
     OpenInIco,
     EthIco,
     RentIco,
+    OffersIco,
+    HandShakeIco,
+    StakingIco,
+    ItemActivityIco,
+    AboutIco,
+    DetailsIco,
+    PropertiesIco,
+    StatsIco,
+    LevelsIco,
 }
