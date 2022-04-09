@@ -98,7 +98,7 @@ export const TopBar = styled.li <{justifyContent?: string, cursor?: string}>`
   font-size: 14px;
   line-height: 17px;
   color: #5D3F92;
-  cursor: ${props => props.cursor || ''}
+  cursor: ${props => props.cursor || ''};
 `
 export const BuyBar = styled.li `
   padding: 20px 28px;

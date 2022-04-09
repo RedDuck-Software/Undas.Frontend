@@ -16,7 +16,7 @@ import {
 
 const OffersAccordion: FC = () => {
     return (
-        <OffersWrap>
+        <OffersWrap >
             <OffersHeadTr>
                 <OffersTd padd="10px 0" textAlign="end">Price</OffersTd>
                 <OffersTd padd="10px 0" textAlign="end">Expiration</OffersTd>

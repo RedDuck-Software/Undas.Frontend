@@ -25,10 +25,11 @@ const Accordion: FC = () => {
     const [open, setOpen] = useState('')
 
     return (
-        <AccordionWrap>
+        <AccordionWrap className={open}>
             <TopBar
                 justifyContent="space-between"
                 cursor="pointer"
+                className={open && 'active'}
                 onClick={() => {
                     open === '' ? setOpen('active') : setOpen('')
                 }}
