@@ -12,3 +12,4 @@ export { default as RentNFTPage } from "./RentNFTPage/RentNFTPage";
 export { default as Create } from "./Create/Create";
 export { default as CollectionPage } from './CollectionPage/CollectionPage'
 export { default as Faq } from "./Faq/Faq";
+export {default as NFTPage} from './NFTPage/NFTPage'

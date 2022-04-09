@@ -28,7 +28,7 @@ import {
   Create,
   Categories,
   Faq,
-  CollectionPage,
+  CollectionPage, NFTPage,
 } from "./pages";
 
 import {
@@ -96,6 +96,7 @@ const App = () => {
           <Route path="/productforsale/:id" element={<ProductForSale />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/nft" element={<NFTPage />} />
           <Route
             path="/explore/sport"
             element={<ExplorePage pageType="Sport" />}
