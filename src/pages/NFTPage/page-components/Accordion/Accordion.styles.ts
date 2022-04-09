@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {Arrow} from "../../../AllNFTs/AllNFTs.styles";
 
-export const AccordionWrap = styled.ul `
+export const AccordionWrap = styled.ul<{flex?: string}> `
   margin-top: 20px;
   width: 100%;
   background: #FFFFFF;
@@ -10,6 +10,7 @@ export const AccordionWrap = styled.ul `
   overflow: hidden;
   transition: all ease-in-out 0.15s;
   max-height: 49px;
+  flex: ${props => props.flex || ''};
   &.active {
     max-height: 254px;
   }

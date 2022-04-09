@@ -21,15 +21,16 @@ import {Wrapper} from "../../../CategoriesPage/Categories.styles";
 interface IAccordion {
     children: ReactNode,
     name: string,
-    ico?: any
+    ico?: any,
+    flex?: string
 }
 
-const Accordion: FC<IAccordion> = ({children, name, ico}) => {
+const Accordion: FC<IAccordion> = ({children, name, ico, flex}) => {
 
     const [open, setOpen] = useState('')
 
     return (
-        <AccordionWrap className={open}>
+        <AccordionWrap className={open} flex={flex}>
             <TopBar
                 justifyContent="space-between"
                 cursor="pointer"

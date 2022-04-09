@@ -149,15 +149,17 @@ const NFTPage: FC = () => {
                 </Wrapper>
             </MainInfoWrap>
             {/*Accordions*/}
-            <Accordion name="Offers" ico={<OffersIco />}>
-                <Offers />
-            </Accordion>
-            <Accordion name="Description">
-                <Description />
-            </Accordion>
-            <Accordion name="Details" ico={<DetailsIco />}>
-                <Details />
-            </Accordion>
+            <Wrapper disp="flex" flexWrap="wrap" gap="10px">
+                <Accordion name="Offers" ico={<OffersIco />}>
+                    <Offers />
+                </Accordion>
+                <Accordion name="Description" flex="1 0 40%">
+                    <Description />
+                </Accordion>
+                <Accordion name="Details" ico={<DetailsIco />} flex="1 1 40%">
+                    <Details />
+                </Accordion>
+            </Wrapper>
         </NFTPageWrap>
     )
 }

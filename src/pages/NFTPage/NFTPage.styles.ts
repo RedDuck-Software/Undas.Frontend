@@ -6,6 +6,7 @@ export const NFTPageWrap = styled(Container) `
   background-color: #E2D1FF;
   position: relative;
   overflow: hidden;
+  padding-bottom: 120px;
   ${Container}
 `
 
