@@ -182,3 +182,8 @@ export const RentalPeriod = styled.input `
   color: #7C7C7C;
   border: none;
 `
+
+export const SmallAccordionWrap = styled.div `
+  display: flex;
+  
+`

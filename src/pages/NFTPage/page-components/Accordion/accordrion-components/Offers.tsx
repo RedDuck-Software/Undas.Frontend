@@ -7,14 +7,14 @@ import {
     OffersTdText,
     OffersHeadTr,
     OffersText
-} from "./Accordion.styles";
-import {CartIco, EthIco, HandShakeIco} from "../../imports";
+} from "../Accordion.styles";
+import {CartIco, EthIco, HandShakeIco} from "../../../imports";
 
 import {
     PriceText
-} from '../../NFTPage.styles'
+} from '../../../NFTPage.styles'
 
-const OffersAccordion: FC = () => {
+const Offers: FC = () => {
     return (
         <OffersWrap >
             <OffersHeadTr>
@@ -82,4 +82,4 @@ const OffersAccordion: FC = () => {
     )
 }
 
-export default OffersAccordion
+export default Offers

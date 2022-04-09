@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, ReactNode, useState} from 'react'
 
 //Assets
 import {
@@ -17,10 +17,14 @@ import {
 
 import {Wrapper} from "../../../CategoriesPage/Categories.styles";
 
-//Components
-import OffersAccordion from "./OffersAccordion";
 
-const Accordion: FC = () => {
+interface IAccordion {
+    children: ReactNode,
+    name: string,
+    ico?: any
+}
+
+const Accordion: FC<IAccordion> = ({children, name, ico}) => {
 
     const [open, setOpen] = useState('')
 
@@ -35,12 +39,12 @@ const Accordion: FC = () => {
                 }}
             >
                 <Wrapper disp="flex" gap="5px">
-                    <OffersIco />
-                    Offers
+                    {ico}
+                    {name}
                 </Wrapper>
                 <AccordionArrow className={open && 'active'}/>
             </TopBar>
-            <OffersAccordion />
+            {children}
         </AccordionWrap>
     )
 }
