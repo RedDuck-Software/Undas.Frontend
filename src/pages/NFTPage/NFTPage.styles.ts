@@ -2,8 +2,11 @@ import styled from "styled-components";
 import {Container} from "../../globalStyles";
 
 
-export const NFTPageWrap = styled(Container) `
+export const Background = styled.div `
   background-color: #E2D1FF;
+`
+
+export const NFTPageWrap = styled(Container) `
   position: relative;
   overflow: hidden;
   padding-bottom: 120px;

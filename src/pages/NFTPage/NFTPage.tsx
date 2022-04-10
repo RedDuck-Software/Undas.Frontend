@@ -42,6 +42,7 @@ import {
 } from "./NFTPage.styles";
 
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+
 //Accordion components
 import Accordion from "./page-components/Accordion/Accordion";
 import Offers from "./page-components/Accordion/accordrion-components/Offers";
@@ -326,5 +327,4 @@ const NFTPage: FC = () => {
     </NFTPageWrap>
   );
 };
-
 export default NFTPage;
