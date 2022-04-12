@@ -14,7 +14,7 @@ import {
   EthIco,
   RentIco,
   OffersIco,
-  DetailsIco, AboutIco, PropertiesIco,
+  DetailsIco, AboutIco, PropertiesIco, StatsIco, LevelsIco,
 } from "./imports";
 
 //Styles
@@ -64,6 +64,8 @@ import { css } from "@emotion/react";
 import Buy from "./page-components/Buy";
 import About from "./page-components/Accordion/accordrion-components/About";
 import Properties from "./page-components/Accordion/accordrion-components/Properties";
+import Stats from "./page-components/Accordion/accordrion-components/Stats";
+import Levels from "./page-components/Accordion/accordrion-components/Levels";
 
 const NFTPage: FC = () => {
   const override = css`
@@ -328,6 +330,12 @@ const NFTPage: FC = () => {
             </Accordion>
             <Accordion name="Properties" ico={<PropertiesIco />} flex="1 1 40%">
               <Properties />
+            </Accordion>
+            <Accordion name="Stats" ico={<StatsIco />}>
+              <Stats />
+            </Accordion>
+            <Accordion name="Levels" ico={<LevelsIco />}>
+              <Levels />
             </Accordion>
           </Wrapper>
         </>

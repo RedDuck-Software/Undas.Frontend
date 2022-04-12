@@ -194,3 +194,31 @@ export const PropertiesElement = styled.li `
   border-radius: 10px;
   padding: 10px 20px;
 `
+
+export const CompleteWrap = styled.div `
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  &:before {
+    margin-left: -20px;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    background-color: #E2D1FF;
+    z-index: 1;
+  }
+  span {
+    z-index: 2;
+  }
+`
