@@ -1,124 +1,126 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useLocation,
+    useNavigate,
 } from "react-router-dom";
 
-import { ConnectorState } from "./types/ConnectorState";
-import { AbstractConnector } from "@web3-react/abstract-connector";
-import { MoralisProvider } from "react-moralis";
+import {ConnectorState} from "./types/ConnectorState";
+import {AbstractConnector} from "@web3-react/abstract-connector";
+import {MoralisProvider} from "react-moralis";
 
 import Context from "./utils/Context";
 
-import { Navbar, Footer, ScrollToTop } from "./components";
+import {Navbar, Footer, ScrollToTop} from "./components";
 import {
-  HomePage,
-  LoginPage,
-  ProductCard,
-  AccountPage,
-  AllNFTs,
-  NewNFTs,
-  Listing,
-  StakingPage,
-  ExplorePage,
-  RentNFTPage,
-  Create,
-  Categories,
-  Faq,
-  CollectionPage, NFTPage,
+    HomePage,
+    LoginPage,
+    ProductCard,
+    AccountPage,
+    AllNFTs,
+    NewNFTs,
+    Listing,
+    StakingPage,
+    ExplorePage,
+    RentNFTPage,
+    Create,
+    Categories,
+    Faq,
+    CollectionPage, NFTPage,
 } from "./pages";
 
 import {
-  injected,
-  walletconnect,
-  fortmatic,
-  walletlink,
-  resetWalletConnect,
+    injected,
+    walletconnect,
+    fortmatic,
+    walletlink,
+    resetWalletConnect,
 } from "./components/Wallets/Connectors";
 
-import { useWeb3React } from "@web3-react/core";
+import {useWeb3React} from "@web3-react/core";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
-import { connect } from "tls";
+import {connect} from "tls";
+import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 
 const App = () => {
-  let web3Current = useWeb3React();
-  let connectorName = localStorage.getItem("connector");
+    let web3Current = useWeb3React();
+    let connectorName = localStorage.getItem("connector");
 
-  useEffect(() => {
-    switch (connectorName) {
-      case "injected":
-        web3Current.activate(injected);
-        break;
-      case "walletconnect":
-        walletconnect.walletConnectProvider = undefined;
-        web3Current.activate(walletconnect);
-        break;
-      case "fortmatic":
-        web3Current.activate(fortmatic);
-        break;
-      case "walletlink":
-        web3Current.activate(walletlink);
-        break;
-    }
-  }, [connectorName]);
+    useEffect(() => {
+        switch (connectorName) {
+            case "injected":
+                web3Current.activate(injected);
+                break;
+            case "walletconnect":
+                walletconnect.walletConnectProvider = undefined;
+                web3Current.activate(walletconnect);
+                break;
+            case "fortmatic":
+                web3Current.activate(fortmatic);
+                break;
+            case "walletlink":
+                web3Current.activate(walletlink);
+                break;
+        }
+    }, [connectorName]);
 
-  const [connector, setConnector] = useState<AbstractConnector | null>(null);
+    const [connector, setConnector] = useState<AbstractConnector | null>(null);
 
-  const setConnectorFun = (connector: AbstractConnector) =>
-    setConnector(connector);
+    const setConnectorFun = (connector: AbstractConnector) =>
+        setConnector(connector);
 
-  const value: ConnectorState = {
-    connector,
-    setConnectorFun,
-  };
+    const value: ConnectorState = {
+        connector,
+        setConnectorFun,
+    };
 
-  return (
-    <MoralisProvider
-      appId="sI5GMwaWT1UAGdl9IPaWyFfAV0mHm3Hzb2r1NANe"
-      serverUrl="https://zem8ktewfkdf.usemoralis.com:2053/server"
-    >
-      <Context.Provider value={value}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/product/:id" element={<ProductCard />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/all" element={<AllNFTs />} />
-          <Route path="/assets/new" element={<NewNFTs />} />
-          <Route path="/listing" element={<Listing />} />
-          <Route path="/staking" element={<StakingPage />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
-          <Route path="/productforsale/:id" element={<ProductForSale />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/collection" element={<CollectionPage />} />
-          <Route path="/nft/buy/:id" element={<NFTPage />} />
-          <Route
-            path="/explore/sport"
-            element={<ExplorePage pageType="Sport" />}
-          />
-          <Route
-            path="/explore/girls"
-            element={<ExplorePage pageType="Girls" />}
-          />
-          <Route
-            path="/explore/sport"
-            element={<ExplorePage pageType="Sport" />}
-          />
-          <Route
-            path="/explore/furniture"
-            element={<ExplorePage pageType="Furniture" />}
-          />
-          <Route path="/rent-nft" element={<RentNFTPage />} />
-          <Route path="/faq" element={<Faq />} />
-        </Routes>
-      </Context.Provider>
-    </MoralisProvider>
-  );
+    return (
+        <MoralisProvider
+            appId="sI5GMwaWT1UAGdl9IPaWyFfAV0mHm3Hzb2r1NANe"
+            serverUrl="https://zem8ktewfkdf.usemoralis.com:2053/server"
+        >
+            <Context.Provider value={value}>
+                <Navbar/>
+                <Routes>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="/login" element={<LoginPage/>}/>
+                    <Route path="/product/:id" element={<ProductCard/>}/>
+                    <Route path="/account" element={<AccountPage/>}/>
+                    <Route path="/all" element={<AllNFTs/>}/>
+                    <Route path="/assets/new" element={<NewNFTs/>}/>
+                    <Route path="/listing" element={<Listing/>}/>
+                    <Route path="/staking" element={<StakingPage/>}/>
+                    <Route path="/create" element={<Create/>}/>
+                    <Route path="/explore/art" element={<ExplorePage pageType="Art"/>}/>
+                    <Route path="/productforsale/:id" element={<ProductForSale/>}/>
+                    <Route path="/categories" element={<Categories/>}/>
+                    <Route path="/collection" element={<CollectionPage/>}/>
+                    <Route path="/nft/buy/:id" element={<NFTPage/>}/>
+                    <Route path="/nft/sell/:id" element={<NFTPageSell />} />
+                    <Route
+                    path="/explore/sport"
+                    element={<ExplorePage pageType="Sport"/>}
+                    />
+                    <Route
+                    path="/explore/girls"
+                    element={<ExplorePage pageType="Girls"/>}
+                    />
+                    <Route
+                    path="/explore/sport"
+                    element={<ExplorePage pageType="Sport"/>}
+                    />
+                    <Route
+                    path="/explore/furniture"
+                    element={<ExplorePage pageType="Furniture"/>}
+                    />
+                    <Route path="/rent-nft" element={<RentNFTPage/>} />
+                    <Route path="/faq" element={<Faq />} />
+                </Routes>
+            </Context.Provider>
+        </MoralisProvider>
+    );
 };
 
 export default App;

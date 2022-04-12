@@ -1,78 +1,72 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-//Assets
-import {
-    NFTImage,
-    LikeIco,
-    CartIco,
-    ViewsIco,
-    FavouriteIco,
-    UnlockIco,
-    RefreshIco,
-    FlaggedIco,
-    ThreeCircleIco,
-    OpenInIco,
-    EthIco,
-    RentIco,
-    OffersIco,
-    DetailsIco,
-    AboutIco,
-    PropertiesIco,
-    StatsIco,
-    LevelsIco,
-} from "./imports";
-
-//Styles
+import { css } from "@emotion/react";
+import { useParams } from "react-router-dom";
+import Context from "../../../utils/Context";
+import { ethers } from "ethers";
+import { UndasGeneralNFT__factory } from "../../../typechain";
+import { NFT_ADDRESS } from "../../../utils/addressHelpers";
+import { getStaking } from "../../../utils/getStaking";
+import { getListing } from "../../../utils/getListing";
+import { getNFTStakingIds } from "../../../utils/getNFTStakingIds";
+import { getNFTListingIds } from "../../../utils/getNFTListingIds";
+import getTokenURI from "../../../utils/getTokenURI";
 import {
     Background,
-    NFTPageWrap,
-    NavigationWrap,
-    Name,
-    NavMenu,
-    NavElement,
-    MainInfoWrap,
-    ImageWrap,
+    SellerNavigation,
+    SellerWrapper,
+    RentSellBtn,
+    EditBtn,
     Image,
+    ImageWrap,
     Info,
+    InfoButton,
     InfoElement,
+    MainInfoWrap,
+    Name,
+    NavElement,
+    NavigationWrap,
+    NavMenu,
+    NFTPageWrap,
+    PriceInUSD,
+    PriceText,
     PurpleText,
+    RentalPeriod,
+    RentElement,
     SaleBlock,
     TopBar,
-    BuyBar,
-    PriceText,
-    ButtonWrap,
-    InfoButton,
-    PriceInUSD,
-    RentElement,
-    RentalPeriod,
-} from "./NFTPage.styles";
-
-import { Wrapper } from "../CategoriesPage/Categories.styles";
-
-//Accordion components
-import Accordion from "./page-components/Accordion/Accordion";
-import Offers from "./page-components/Accordion/accordrion-components/Offers";
-import Description from "./page-components/Accordion/accordrion-components/Description";
-import Details from "./page-components/Accordion/accordrion-components/Details";
-//Modules
-import { useParams } from "react-router-dom";
-import Context from "../../utils/Context";
-import { ethers } from "ethers";
-import { UndasGeneralNFT__factory } from "../../typechain";
-import { NFT_ADDRESS } from "../../utils/addressHelpers";
-import { getStaking } from "../../utils/getStaking";
-import { getListing } from "../../utils/getListing";
-import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
-import getTokenURI from "../../utils/getTokenURI";
-import { getNFTListingIds } from "../../utils/getNFTListingIds";
+} from "../NFTPage.styles";
 import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/react";
-import Buy from "./page-components/Buy";
-import About from "./page-components/Accordion/accordrion-components/About";
-import Properties from "./page-components/Accordion/accordrion-components/Properties";
-import Stats from "./page-components/Accordion/accordrion-components/Stats";
-import Levels from "./page-components/Accordion/accordrion-components/Levels";
+import {
+    AboutIco,
+    CartIco,
+    DetailsIco,
+    EthIco,
+    FavouriteIco,
+    FlaggedIco,
+    LevelsIco,
+    NFTImage,
+    OffersIco,
+    OpenInIco,
+    PropertiesIco,
+    RefreshIco,
+    RentIco,
+    StatsIco,
+    ThreeCircleIco,
+    UnlockIco,
+    ViewsIco,
+} from "../imports";
+import { Wrapper } from "../../CategoriesPage/Categories.styles";
+import Buy from "../page-components/Buy";
+import Accordion from "../page-components/Accordion/Accordion";
+import Offers from "../page-components/Accordion/accordrion-components/Offers";
+import Description from "../page-components/Accordion/accordrion-components/Description";
+import Details from "../page-components/Accordion/accordrion-components/Details";
+import About from "../page-components/Accordion/accordrion-components/About";
+import Properties from "../page-components/Accordion/accordrion-components/Properties";
+import Stats from "../page-components/Accordion/accordrion-components/Stats";
+import Levels from "../page-components/Accordion/accordrion-components/Levels";
 
-const NFTPage: FC = () => {
+const NFTPageSell: FC = () => {
     const override = css`
         display: block;
         margin: auto;
@@ -233,6 +227,12 @@ const NFTPage: FC = () => {
 
     return (
         <Background>
+            <SellerNavigation>
+                <SellerWrapper>
+                    <EditBtn>Edit</EditBtn>
+                    <RentSellBtn>Rent-Sell</RentSellBtn>
+                </SellerWrapper>
+            </SellerNavigation>
             <NFTPageWrap>
                 {loading ? (
                     <ClipLoader
@@ -397,4 +397,5 @@ const NFTPage: FC = () => {
         </Background>
     );
 };
-export default NFTPage;
+
+export default NFTPageSell;

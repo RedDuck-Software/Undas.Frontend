@@ -92,6 +92,7 @@
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "babel-loader": "8.1.0",
+    "prettier": "2.6.2",
     "webpack": "4.44.2"
   }
 }
