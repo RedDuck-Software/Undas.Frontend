@@ -5,10 +5,10 @@ import {DetailsWrap} from "../Accordion.styles";
 
 //Components
 import CompleteBar from "./CompleteBar";
-const Levels: FC = () => {
+const Levels: FC<{complete?: number}> = ({complete}) => {
     return (
         <DetailsWrap padd="30px 30px">
-            <CompleteBar/>
+            <CompleteBar complete={complete}/>
         </DetailsWrap>
     )
 }

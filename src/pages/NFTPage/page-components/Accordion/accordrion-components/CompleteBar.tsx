@@ -6,14 +6,14 @@ import {
     ColoredText
 } from "../Accordion.styles";
 
-const CompleteBar: FC = () => {
+const CompleteBar: FC<{complete?: number}> = ({complete}) => {
     return (
-        <CompleteWrap>
+        <CompleteWrap complete={complete ? complete : 0}>
             <span>
                 Speed
             </span>
             <ColoredText>
-                3 of 5
+                {complete ? complete : 0} of 5
             </ColoredText>
         </CompleteWrap>
     )

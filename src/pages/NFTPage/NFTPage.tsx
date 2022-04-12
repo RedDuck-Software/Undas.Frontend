@@ -332,10 +332,10 @@ const NFTPage: FC = () => {
               <Properties />
             </Accordion>
             <Accordion name="Stats" ico={<StatsIco />}>
-              <Stats />
+              <Stats complete={3}/>
             </Accordion>
             <Accordion name="Levels" ico={<LevelsIco />}>
-              <Levels />
+              <Levels complete={4}/>
             </Accordion>
           </Wrapper>
         </>
