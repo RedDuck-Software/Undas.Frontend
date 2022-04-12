@@ -19,6 +19,10 @@ import {ReactComponent as DetailsIco} from './assets/details-ico.svg'
 import {ReactComponent as PropertiesIco} from './assets/properties-ico.svg'
 import {ReactComponent as StatsIco} from './assets/stats-ico.svg'
 import {ReactComponent as LevelsIco} from './assets/levels-ico.svg'
+import {ReactComponent as TwitterIco} from '../../icons/twitter-dropdown.svg';
+import {ReactComponent as TelegramIco} from '../../icons/telegram-dropdown.svg';
+import {ReactComponent as DiscordIco} from '../../icons/discord-dropdown.svg';
+import {ReactComponent as InstagramIco} from '../../icons/instagram-dropdown.svg';
 
 export {
     NFTImage,
@@ -42,4 +46,8 @@ export {
     PropertiesIco,
     StatsIco,
     LevelsIco,
+    TwitterIco,
+    TelegramIco,
+    DiscordIco,
+    InstagramIco,
 }
