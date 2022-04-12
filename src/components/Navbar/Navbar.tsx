@@ -252,7 +252,6 @@ const Navbar = () => {
           </StyledList>
         </StyledUl>
       </HeaderWrap>
-      <SeoHeading>Undas</SeoHeading>
     </Header>
   );
 };

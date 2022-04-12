@@ -13,6 +13,9 @@ import getTokenURI from "../../../utils/getTokenURI";
 import {
     Background,
     SellerNavigation,
+    SellerWrapper,
+    RentSellBtn,
+    EditBtn,
     Image,
     ImageWrap,
     Info,
@@ -224,6 +227,12 @@ const NFTPageSell: FC = () => {
 
     return (
         <Background>
+            <SellerNavigation>
+                <SellerWrapper>
+                    <EditBtn>Edit</EditBtn>
+                    <RentSellBtn>Rent-Sell</RentSellBtn>
+                </SellerWrapper>
+            </SellerNavigation>
             <NFTPageWrap>
                 {loading ? (
                     <ClipLoader

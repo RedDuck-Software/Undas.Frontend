@@ -5,11 +5,49 @@ import {Container} from "../../globalStyles";
 export const Background = styled.div `
   background-color: #E2D1FF;
 `
-
+//Seller Menu
 export const SellerNavigation = styled.div `
-  
+  width: 100%;
+  height: 50px;
+  box-shadow: inset 0px 0px 2px #7C7C7C;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+`
+export const SellerWrapper = styled(Container) `
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
 `
 
+export const SellerButton = styled.button `
+  width: 160px;
+  padding: 10px 0;
+  border-radius: 10px;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+`
+
+export const RentSellBtn = styled(SellerButton) `
+  cursor: pointer;
+  color: #FFFFFF;
+  border: 1px solid #873DC1;
+  background: #873DC1;
+`
+export const EditBtn = styled(SellerButton) `
+  cursor: pointer;
+  border: 1px solid #873DC1;
+  color: #873DC1;
+  background-color: #fff;
+`
+
+
+//Buy page
 export const NFTPageWrap = styled(Container) `
   position: relative;
   overflow: hidden;
