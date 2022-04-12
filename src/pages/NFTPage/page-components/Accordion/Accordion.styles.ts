@@ -122,8 +122,10 @@ export const DetailsElement = styled.li `
   font-size: 14px;
 `
 
-export const ColoredText = styled.span<{color?: string}> `
+export const ColoredText = styled.span<{color?: string, fs?: string, fw?: string}> `
   color: ${props => props.color || ''};
+  font-size: ${props => props.fs || ''};
+  font-weight: ${props => props.fw || ''};
 `
 
 //About
@@ -168,4 +170,27 @@ export const SocialElement = styled(Link) `
       }
     }
   }
+`
+
+export const PropertiesWrap = styled(DetailsWrap) `
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  ${DetailsWrap}
+`
+
+//Properties
+export const PropertiesElement = styled.li `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  background: #FFFFFF;
+  box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  padding: 10px 20px;
 `
