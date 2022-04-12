@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Arrow} from "../../../AllNFTs/AllNFTs.styles";
+import {Link} from "react-router-dom";
 
 export const AccordionWrap = styled.ul<{flex?: string}> `
   margin-top: 20px;
@@ -23,6 +24,8 @@ export const AccordionArrow = styled(Arrow) `
   }
   ${Arrow}
 `
+
+//Offers
 export const OffersWrap = styled.table `
   width: 100%;
   border-collapse: collapse;
@@ -62,6 +65,8 @@ export const OffersText = styled.span<{color?: string}> `
   color: ${props => props.color || '#7C7C7C'};
 `
 
+
+//Description
 export const DescriptionWrap = styled.li `
   padding: 20px 30px;
   display: flex;
@@ -94,10 +99,16 @@ export const MoreBtn = styled.button `
   border-radius: 10px;
 `
 
-export const DetailsWrap = styled.ul `
+//Details
+export const DetailsWrap = styled.ul<{padd?: string}> `
   box-shadow: inset 0px 0px 1px #7C7C7C;
   background-color: #FBF5FF;
-  padding: 15px 30px;
+  padding: ${props => props.padd || '15px 30px'};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
 `
 
 export const DetailsElement = styled.li `
@@ -111,6 +122,110 @@ export const DetailsElement = styled.li `
   font-size: 14px;
 `
 
-export const ColoredText = styled.span<{color?: string}> `
+export const ColoredText = styled.span<{color?: string, fs?: string, fw?: string}> `
   color: ${props => props.color || ''};
+  font-size: ${props => props.fs || ''};
+  font-weight: ${props => props.fw || ''};
+`
+
+//About
+
+export const ImageWrap = styled.div `
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 5px 5px rgba(124, 124, 124, 0.25));
+`
+
+export const AboutImage = styled.img `
+  
+`
+
+export const AboutSocial = styled.ul `
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+  backdrop-filter: blur(50px);
+  border-radius: 10px;
+  max-width: 150px;
+  overflow: hidden;
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+`
+
+export const SocialElement = styled(Link) `
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  svg {
+    path {
+      transition: all ease-in-out 0.15s;
+    }
+  }
+  &:hover {
+    svg {
+      path {
+        fill: #873DC1;
+      }
+    }
+  }
+`
+
+export const PropertiesWrap = styled(DetailsWrap) `
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  ${DetailsWrap}
+`
+
+//Properties
+export const PropertiesElement = styled.li `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  background: #FFFFFF;
+  box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  padding: 10px 20px;
+`
+
+export const CompleteWrap = styled.div<{complete?: number}> `
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  &:before {
+    margin-left: -20px;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: ${props =>
+            props.complete === 0 && '' ||
+            props.complete === 1 && '20%' ||
+            props.complete === 2 && '40%' ||
+            props.complete === 3 && '60%' ||
+            props.complete === 4 && '80%' ||
+            props.complete === 5 && '100%'
+    };
+    background-color: #E2D1FF;
+    z-index: 1;
+  }
+  span {
+    z-index: 2;
+  }
 `
