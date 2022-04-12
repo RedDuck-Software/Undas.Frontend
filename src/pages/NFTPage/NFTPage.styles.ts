@@ -6,6 +6,10 @@ export const Background = styled.div `
   background-color: #E2D1FF;
 `
 
+export const SellerNavigation = styled.div `
+  
+`
+
 export const NFTPageWrap = styled(Container) `
   position: relative;
   overflow: hidden;
