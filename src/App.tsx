@@ -43,6 +43,7 @@ import {useWeb3React} from "@web3-react/core";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import {connect} from "tls";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
+import Modal from "./components/Modal/Modal";
 
 const App = () => {
     let web3Current = useWeb3React();
@@ -82,6 +83,7 @@ const App = () => {
             serverUrl="https://zem8ktewfkdf.usemoralis.com:2053/server"
         >
             <Context.Provider value={value}>
+                <Modal />
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>

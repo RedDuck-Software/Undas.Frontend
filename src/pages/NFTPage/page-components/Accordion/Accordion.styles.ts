@@ -122,10 +122,11 @@ export const DetailsElement = styled.li `
   font-size: 14px;
 `
 
-export const ColoredText = styled.span<{color?: string, fs?: string, fw?: string}> `
+export const ColoredText = styled.span<{color?: string, fs?: string, fw?: string, cursor?: string}> `
   color: ${props => props.color || ''};
   font-size: ${props => props.fs || ''};
   font-weight: ${props => props.fw || ''};
+  cursor: ${props => props.cursor || ''};
 `
 
 //About
