@@ -20,12 +20,19 @@ import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Ac
 import { NFTImg, UNDIco } from "../imports";
 import { EthIco } from "../../ASideFilter/imports";
 
+//Redux
+import {useDispatch, useSelector} from "react-redux";
+import {closeModal} from "../../../store/reducers/modalAction";
+
 const BuyNFT: FC = () => {
+    const dispatch = useDispatch()
     return (
         <WindowWrap>
             <Title>
                 <span>Complete checkout</span>
-                <Close />
+                <Close onClick={() => {
+                    dispatch(closeModal())
+                }}/>
             </Title>
             <CheckoutWrap>
                 <Wrapper

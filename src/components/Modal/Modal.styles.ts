@@ -11,5 +11,11 @@ export const ModalWrap = styled.div `
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 999;
   background: rgba(35, 36, 40, 0.5);
-  
+  transition: all ease-in-out 0.15s;
+  opacity: 0;
+  visibility: hidden;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
 `
