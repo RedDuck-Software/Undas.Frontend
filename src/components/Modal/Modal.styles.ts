@@ -14,6 +14,7 @@ export const ModalWrap = styled.div `
   transition: all ease-in-out 0.15s;
   opacity: 0;
   visibility: hidden;
+  display: flex;
   &.active {
     opacity: 1;
     visibility: visible;
