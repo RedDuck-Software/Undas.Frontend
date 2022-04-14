@@ -77,7 +77,7 @@ const BuyNFT: FC = () => {
                     <PaymentElement>
                         <Wrapper disp="flex" flexDirection="column">
                             <span>Marketplace fee 3%</span>
-                            <Wrapper disp="flex" alignItems="center" gap="15px">
+                            <Wrapper disp="flex" alignItems="center" gap="15px" marg="10px 0 0 0">
                                 <input type="checkbox" name="PayInUnd" />
                                 <label>
                                     Pay in <UNDIco /> with a 50% discount

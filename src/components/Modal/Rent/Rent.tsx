@@ -22,7 +22,7 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../../../store/reducers/modalAction";
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
-import {EthIcoLight, NFTImg, UNDIco} from "../imports";
+import {EthIcoLight, InfoIco, NFTImg, UNDIco} from "../imports";
 import { EthIco } from "../../ASideFilter/imports";
 
 const Rent: FC = () => {
@@ -48,7 +48,7 @@ const Rent: FC = () => {
                         Item
                     </ColoredText>
                     <ColoredText color="#232428" fw="500" fs="18px">
-                        Rent NFt
+                        Rent NFT
                     </ColoredText>
                 </Wrapper>
                 <Wrapper
@@ -89,10 +89,70 @@ const Rent: FC = () => {
                     </Wrapper>
                 </NFTWrap>
                 <PaymentInfo>
+                    <PaymentElement padd="10px 0">
+                        <Wrapper disp="flex" alignItems="center" gap="15px">
+                            <span>Deposit</span>
+                            <InfoIco />
+                        </Wrapper>
+                        <Wrapper>
+                            <Wrapper
+                                disp="flex"
+                                alignItems="center"
+                                gap="6px"
+                                justifyContent="flex-end"
+                            >
+                                <EthIco />
+                                <ColoredText color="#5D3F92" fs="12px">40</ColoredText>
+                            </Wrapper>
+                            <ColoredText fs="12px" fw="400" color="#7C7C7C">
+                                $123 278,00
+                            </ColoredText>
+                        </Wrapper>
+                    </PaymentElement>
+                    <PaymentElement padd="10px 0">
+                        <Wrapper disp="flex" alignItems="center" gap="15px">
+                            <span>Rental price for <ColoredText color="#873DC1">7</ColoredText> days</span>
+                            <InfoIco />
+                        </Wrapper>
+                        <Wrapper>
+                            <Wrapper
+                                disp="flex"
+                                alignItems="center"
+                                gap="6px"
+                                justifyContent="flex-end"
+                            >
+                                <EthIco />
+                                <ColoredText color="#5D3F92" fs="12px">0,035</ColoredText>
+                            </Wrapper>
+                            <ColoredText fs="12px" fw="400" color="#7C7C7C">
+                                $258,25
+                            </ColoredText>
+                        </Wrapper>
+                    </PaymentElement>
+                    <PaymentElement padd="10px 0">
+                        <Wrapper disp="flex" alignItems="center" gap="15px">
+                            <span>Marketplace commission</span>
+                            <InfoIco />
+                        </Wrapper>
+                        <Wrapper>
+                            <Wrapper
+                                disp="flex"
+                                alignItems="center"
+                                gap="6px"
+                                justifyContent="flex-end"
+                            >
+                                <EthIco />
+                                <ColoredText color="#5D3F92" fs="12px">0,035</ColoredText>
+                            </Wrapper>
+                            <ColoredText fs="12px" fw="400" color="#7C7C7C">
+                                $258,25
+                            </ColoredText>
+                        </Wrapper>
+                    </PaymentElement>
                     <PaymentElement>
                         <Wrapper disp="flex" flexDirection="column">
                             <span>Marketplace fee 3%</span>
-                            <Wrapper disp="flex" alignItems="center" gap="15px">
+                            <Wrapper disp="flex" alignItems="center" gap="15px" marg="10px 0 0 0">
                                 <input type="checkbox" name="PayInUnd" />
                                 <label>
                                     Pay in <UNDIco /> with a 50% discount

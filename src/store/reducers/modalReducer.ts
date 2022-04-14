@@ -1,8 +1,8 @@
 import {CLOSE_MODAL, OPEN_BUY_MODAL, OPEN_MODAL, SET_COMPONENT_BUY} from "../saga/types";
 
 const initialState = {
-    open: true,
-    currentComponent: 'rent',
+    open: false,
+    currentComponent: '',
 }
 
 export const modalReducer = (state = initialState, action: any) => {

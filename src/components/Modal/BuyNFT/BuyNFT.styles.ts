@@ -6,7 +6,7 @@ export const WindowWrap = styled.div `
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
-  margin: 10% auto 0 auto;
+  width: 560px;
 `
 
 export const Title = styled.div `
@@ -52,12 +52,15 @@ export const PaymentInfo = styled.ul `
   list-style: none;
   border-top: 1px solid #DEDEDE;
   border-bottom: 1px solid #DEDEDE;
+  overflow: hidden;
 `
 
-export const PaymentElement = styled.li `
+export const PaymentElement = styled.li <{padd?: string}>`
+  border-top: 1px solid #DEDEDE;
+  margin-top: -1px;
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: ${props => props.padd || '15px 0'};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
