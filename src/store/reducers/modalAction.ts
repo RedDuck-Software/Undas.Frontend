@@ -8,10 +8,10 @@ export function closeModal() {
     return { type: CLOSE_MODAL }
 }
 
-export function setComponent(component: any) {
+export function setComponent(component: any, tokenId?: number) {
     switch (component) {
         case 'buy':
-            return { type: SET_COMPONENT_BUY }
+            return { type: SET_COMPONENT_BUY, tokenId: tokenId }
         default:
             return component
     }
