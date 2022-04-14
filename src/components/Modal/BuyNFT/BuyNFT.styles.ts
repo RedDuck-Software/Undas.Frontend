@@ -107,3 +107,24 @@ export const ConfirmBtn = styled.button `
   border: none;
   cursor: pointer;
 `
+
+//Rent
+
+export const InputWrap = styled.div `
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  input {
+    padding: 10px 20px;
+    background: #FFFFFF;
+    box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+    border-radius: 10px;
+    border: none;
+    max-width: 132px;
+  }
+`

@@ -7,12 +7,14 @@ import { ModalWrap } from "./Modal.styles";
 import BuyNFT from "./BuyNFT/BuyNFT";
 import {useSelector} from "react-redux";
 import {useModal} from "../../store";
+import Rent from "./Rent/Rent";
 
 const Modal: FC = () => {
     const modal = useSelector(useModal)
     return (
         <ModalWrap className={modal.open && 'active' || ''}>
             {modal.currentComponent === 'buy' && <BuyNFT />}
+            {modal.currentComponent === 'rent' && <Rent />}
         </ModalWrap>
     );
 };
