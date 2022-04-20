@@ -70,7 +70,7 @@ const NFTGrid = (props: INFTGrid) => {
                     <BuyBtn
                         onClick={(e) => {
                             e.stopPropagation()
-                            dispatch(setComponent('buy'));
+                            dispatch(setComponent('buy', props.tokenId));
                         }}
                     >
                         Buy now
