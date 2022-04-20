@@ -3,6 +3,7 @@ import {CLOSE_MODAL, OPEN_BUY_MODAL, OPEN_MODAL, SET_COMPONENT_BUY} from "../sag
 const initialState = {
     open: false,
     currentComponent: '',
+    tokenId: null
 }
 
 export const modalReducer = (state = initialState, action: any) => {
@@ -22,6 +23,7 @@ export const modalReducer = (state = initialState, action: any) => {
                 ...state,
                 open: true,
                 currentComponent: 'buy',
+                tokenId: action.tokenId,
             }
         default:
             return state

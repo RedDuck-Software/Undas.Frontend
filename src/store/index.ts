@@ -46,6 +46,10 @@ export const useFilter = (state: RootState) => {
 export const useModal = (state: RootState) => {
     return state.modal
 }
+
+export const useToken = (state: RootState) => {
+    return state.modal.tokenId
+}
 /*
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,

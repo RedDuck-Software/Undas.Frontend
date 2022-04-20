@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useContext } from "react";
 
 //Styles
 import {
@@ -13,7 +13,7 @@ import {
     Info,
     TotalBlock,
     PrivacyPolicyBlock,
-    ConfirmBtn
+    ConfirmBtn,
 } from "./BuyNFT.styles";
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
@@ -21,18 +21,38 @@ import { NFTImg, UNDIco } from "../imports";
 import { EthIco } from "../../ASideFilter/imports";
 
 //Redux
-import {useDispatch, useSelector} from "react-redux";
-import {closeModal} from "../../../store/reducers/modalAction";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../../store/reducers/modalAction";
+import { useToken } from "../../../store";
+import Context from "../../../utils/Context";
+import {ethers} from "ethers";
 
 const BuyNFT: FC = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const tokenId = useSelector(useToken);
+    console.log(tokenId);
+
+    const { connector } = useContext(Context);
+
+    const getShowBuy = async () => {
+        if (!connector) return;
+
+        const provider = new ethers.providers.Web3Provider(
+            await connector.getProvider()
+        )
+        const signer = provider.getSigner(0)
+
+    };
+
     return (
         <WindowWrap>
             <Title>
                 <span>Complete checkout</span>
-                <Close onClick={() => {
-                    dispatch(closeModal())
-                }}/>
+                <Close
+                    onClick={() => {
+                        dispatch(closeModal());
+                    }}
+                />
             </Title>
             <CheckoutWrap>
                 <Wrapper
@@ -77,7 +97,12 @@ const BuyNFT: FC = () => {
                     <PaymentElement>
                         <Wrapper disp="flex" flexDirection="column">
                             <span>Marketplace fee 3%</span>
-                            <Wrapper disp="flex" alignItems="center" gap="15px" marg="10px 0 0 0">
+                            <Wrapper
+                                disp="flex"
+                                alignItems="center"
+                                gap="15px"
+                                marg="10px 0 0 0"
+                            >
                                 <input type="checkbox" name="PayInUnd" />
                                 <label>
                                     Pay in <UNDIco /> with a 50% discount
@@ -87,7 +112,9 @@ const BuyNFT: FC = () => {
                         </Wrapper>
                         <Wrapper disp="flex" alignItems="center" gap="5px">
                             <UNDIco />
-                            <ColoredText fs="16px" color="#5D3F92">2</ColoredText>
+                            <ColoredText fs="16px" color="#5D3F92">
+                                2
+                            </ColoredText>
                         </Wrapper>
                     </PaymentElement>
                 </PaymentInfo>
@@ -101,7 +128,9 @@ const BuyNFT: FC = () => {
                             justifyContent="flex-end"
                         >
                             <EthIco />
-                            <ColoredText fs="18px" fw="500" color="#5D3F92">40 + <UNDIco /> 2</ColoredText>
+                            <ColoredText fs="18px" fw="500" color="#5D3F92">
+                                40 + <UNDIco /> 2
+                            </ColoredText>
                         </Wrapper>
                         <ColoredText fs="12px" fw="400" color="#7C7C7C">
                             $123 278,00
@@ -111,12 +140,13 @@ const BuyNFT: FC = () => {
                 <PrivacyPolicyBlock>
                     <input type="checkbox" name="PayInUnd" />
                     <label>
-                        I agree to the platform <ColoredText cursor="pointer" color="#893AC2">agreement ....</ColoredText>
+                        I agree to the platform{" "}
+                        <ColoredText cursor="pointer" color="#893AC2">
+                            agreement ....
+                        </ColoredText>
                     </label>
                 </PrivacyPolicyBlock>
-                <ConfirmBtn>
-                    Confirm
-                </ConfirmBtn>
+                <ConfirmBtn>Confirm</ConfirmBtn>
             </CheckoutWrap>
         </WindowWrap>
     );
