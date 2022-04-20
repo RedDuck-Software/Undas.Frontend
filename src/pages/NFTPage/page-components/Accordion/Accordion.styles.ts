@@ -15,6 +15,7 @@ export const AccordionWrap = styled.ul<{flex?: string}> `
   flex: ${props => props.flex || ''};
   &.active {
     max-height: 254px;
+    overflow-y: scroll;
   }
 `
 
