@@ -41,7 +41,6 @@ export const OffersTr = styled.tr `
   box-shadow: inset 0 0 1px #7C7C7C;
 `
 
-
 interface IOffersTd {
     padd?: string,
     textAlign?: string
@@ -53,11 +52,16 @@ export const OffersTd = styled.td<IOffersTd> `
   font-weight: 400;
   font-size: 14px;
   color: #7C7C7C;
+  @media (max-width: 576px) {
+    padding: 10px;
+  }
 `
 
 export const OffersTdText = styled.td `
   padding: 10px 30px;
-  width: 80px;
+  @media (max-width: 576px) {
+    padding: 10px;
+  }
 `
 
 export const OffersText = styled.span<{color?: string}> `
@@ -65,6 +69,9 @@ export const OffersText = styled.span<{color?: string}> `
   font-size: 12px;
   color: ${props => props.color || '#7C7C7C'};
   vertical-align: middle;
+  @media (max-width: 576px) {
+    font-size: 10px;
+  }
 `
 
 export const EtherIcon = styled(EthIco)`
