@@ -18,7 +18,7 @@ import {
     AboutIco,
     PropertiesIco,
     StatsIco,
-    LevelsIco,
+    LevelsIco, ItemActivityIco,
 } from "./imports";
 
 //Styles
@@ -71,6 +71,7 @@ import About from "./page-components/Accordion/accordrion-components/About";
 import Properties from "./page-components/Accordion/accordrion-components/Properties";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Levels from "./page-components/Accordion/accordrion-components/Levels";
+import ItemActivity from "./page-components/Accordion/accordrion-components/ItemActivity";
 
 const NFTPage: FC = () => {
     const override = css`
@@ -344,6 +345,9 @@ const NFTPage: FC = () => {
                         <Wrapper disp="flex" flexWrap="wrap" gap="10px">
                             <Accordion name="Offers" ico={<OffersIco />}>
                                 <Offers />
+                            </Accordion>
+                            <Accordion name="Item Activity" ico={<ItemActivityIco />}>
+                                <ItemActivity />
                             </Accordion>
                             <Accordion name="Description" flex="1 0 40%">
                                 <Description />
