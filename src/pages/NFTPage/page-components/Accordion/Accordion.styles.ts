@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {Arrow} from "../../../AllNFTs/AllNFTs.styles";
 import {Link} from "react-router-dom";
+import { EthIco } from "../../imports";
 
 export const AccordionWrap = styled.ul<{flex?: string}> `
   margin-top: 20px;
@@ -63,8 +64,12 @@ export const OffersText = styled.span<{color?: string}> `
   font-weight: 400;
   font-size: 12px;
   color: ${props => props.color || '#7C7C7C'};
+  vertical-align: middle;
 `
 
+export const EtherIcon = styled(EthIco)`
+  vertical-align: middle;
+`
 
 //Description
 export const DescriptionWrap = styled.li `

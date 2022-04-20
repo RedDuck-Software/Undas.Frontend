@@ -164,6 +164,7 @@ export const PriceText = styled.span `
   font-weight: 400;
   font-size: 18px;
   color: #232428;
+  vertical-align: middle;
 `
 
 export const PriceInUSD = styled.span `
