@@ -18,7 +18,9 @@ import {
     AboutIco,
     PropertiesIco,
     StatsIco,
-    LevelsIco, ItemActivityIco,
+    LevelsIco, 
+    ItemActivityIco,
+    StakingIco,
 } from "./imports";
 
 //Styles
@@ -53,6 +55,7 @@ import Accordion from "./page-components/Accordion/Accordion";
 import Offers from "./page-components/Accordion/accordrion-components/Offers";
 import Description from "./page-components/Accordion/accordrion-components/Description";
 import Details from "./page-components/Accordion/accordrion-components/Details";
+import Staking from "./page-components/Accordion/accordrion-components/Staking";
 //Modules
 import { useParams } from "react-router-dom";
 import Context from "../../utils/Context";
@@ -345,6 +348,9 @@ const NFTPage: FC = () => {
                         <Wrapper disp="flex" flexWrap="wrap" gap="10px">
                             <Accordion name="Offers" ico={<OffersIco />}>
                                 <Offers />
+                            </Accordion>
+                            <Accordion name="Staking" ico={<StakingIco />} und="UND">
+                                <Staking />
                             </Accordion>
                             <Accordion name="Item Activity" ico={<ItemActivityIco />}>
                                 <ItemActivity />

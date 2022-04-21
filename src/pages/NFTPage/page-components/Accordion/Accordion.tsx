@@ -4,11 +4,11 @@ import React, { FC, ReactNode, useState } from "react";
 import { OffersIco } from "../../imports";
 
 //Styles
-import { AccordionWrap, AccordionArrow } from "./Accordion.styles";
+import { AccordionWrap, AccordionArrow, StyledUnd } from "./Accordion.styles";
 
 import { TopBar } from "../../NFTPage.styles";
 
-import { Wrapper } from "../../../CategoriesPage/Categories.styles";
+import { Wrapper } from "../../../CategoriesPage/Categories.styles"; 
 
 interface IAccordion {
     children: ReactNode;
@@ -35,7 +35,7 @@ const Accordion: FC<IAccordion> = ({ children, name, und, ico, flex }) => {
                     {ico}
                     {name}
                     {und ? (
-                      <span>{und}</span>
+                      <StyledUnd>{und}</StyledUnd>
                     ): null}
                 </Wrapper>
                 <AccordionArrow className={open && "active"} />
