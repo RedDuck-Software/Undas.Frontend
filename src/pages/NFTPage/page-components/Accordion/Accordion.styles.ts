@@ -14,7 +14,7 @@ export const AccordionWrap = styled.ul<{flex?: string}> `
   max-height: 49px;
   flex: ${props => props.flex || ''};
   &.active {
-    max-height: 254px;
+    max-height: 255px;
     overflow-y: scroll;
   }
 `
@@ -57,14 +57,12 @@ export const OffersTd = styled.td<IOffersTd> `
     padding: 10px;
   }
 `
-
 export const OffersTdText = styled.td `
   padding: 10px 30px;
   @media (max-width: 576px) {
     padding: 10px;
   }
 `
-
 export const OffersText = styled.span<{color?: string}> `
   font-weight: 400;
   font-size: 12px;
@@ -74,11 +72,71 @@ export const OffersText = styled.span<{color?: string}> `
     font-size: 10px;
   }
 `
-
 export const EtherIcon = styled(EthIco)`
   vertical-align: middle;
 `
+// Staking
+export const StakingWrap = styled.div`
+`
 
+export const StakingWrapMobile = styled.table `
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  display: none;
+  @media (max-width: 576px){
+    display: block;
+  }
+`
+export const StakingHeadTdMobile = styled.td `
+  flex: 0 0 50%;
+  padding: 10px 30px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #7C7C7C;
+  box-shadow: inset 0 0 1px #7C7C7C;
+  vertical-align: middle;
+`
+export const StakingTrMobile = styled.tr `
+  display: flex;
+`
+export const StakingTdMobile = styled.td `
+  flex: 0 0 50%;
+  padding: 10px 30px;
+  background: #FBF5FF;
+  box-shadow: inset 0 0 1px #7C7C7C;
+  font-weight: 400;
+  font-size: 12px;
+  color: #7C7C7C;
+  vertical-align: middle;
+  @media (max-width: 400px) {
+    &.center-right{
+    padding-top: 17px;
+  }
+  }
+  
+`
+export const StakingWrapDesktop = styled.table `
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  @media (max-width: 576px){
+    display: none;
+  }
+`
+export const StakingHeadTr = styled.tr `
+  
+`
+export const StakingTr = styled.tr `
+  background: #FBF5FF;
+  box-shadow: inset 0 0 1px #7C7C7C;
+`
+export const StakingTd = styled.td `
+  padding: 15px 30px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7C7C7C;
+`
 //Description
 export const DescriptionWrap = styled.li `
   padding: 20px 30px;
