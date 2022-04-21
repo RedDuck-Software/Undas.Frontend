@@ -349,7 +349,7 @@ const NFTPage: FC = () => {
                             <Accordion name="Offers" ico={<OffersIco />}>
                                 <Offers />
                             </Accordion>
-                            <Accordion name="Staking" ico={<StakingIco />}>
+                            <Accordion name="Staking" ico={<StakingIco />} und="UND">
                                 <Staking />
                             </Accordion>
                             <Accordion name="Item Activity" ico={<ItemActivityIco />}>
