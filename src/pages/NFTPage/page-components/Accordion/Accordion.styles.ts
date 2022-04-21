@@ -137,6 +137,14 @@ export const StakingTd = styled.td `
   font-size: 14px;
   color: #7C7C7C;
 `
+export const StyledUnd = styled.span `
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  color: #873DC1;
+`
 //Description
 export const DescriptionWrap = styled.li `
   padding: 20px 30px;
