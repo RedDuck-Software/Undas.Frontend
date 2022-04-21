@@ -14,7 +14,7 @@ export const AccordionWrap = styled.ul<{flex?: string}> `
   max-height: 49px;
   flex: ${props => props.flex || ''};
   &.active {
-    max-height: 255px;
+    max-height: 310px;
     overflow-y: auto;
   }
 `
@@ -94,17 +94,16 @@ export const StakingHeadTdMobile = styled.td `
   font-weight: 400;
   font-size: 12px;
   color: #7C7C7C;
-  box-shadow: inset 0 0 1px #7C7C7C;
   vertical-align: middle;
 `
 export const StakingTrMobile = styled.tr `
   display: flex;
+  border-bottom: 1px solid rgba(124, 124, 124, 0.2);
 `
 export const StakingTdMobile = styled.td `
   flex: 0 0 50%;
   padding: 10px 30px;
   background: #FBF5FF;
-  box-shadow: inset 0 0 1px #7C7C7C;
   font-weight: 400;
   font-size: 12px;
   color: #7C7C7C;
@@ -144,6 +143,122 @@ export const StyledUnd = styled.span `
   font-size: 12px;
   line-height: 17px;
   color: #873DC1;
+`
+//ItemActivity
+export const ActivityWrap = styled.li`
+`
+export const ActivityTableWrap = styled.table`
+width: 100%;
+border-collapse: collapse;
+@media (max-width: 640px){
+  display: none;
+}
+`
+export const ActivityTopRow = styled.div`
+display: flex;
+justify-content: space-around;
+align-items: center;
+width: 100%;
+padding: 20px 110px;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+background: #FBF5FF;
+@media (max-width: 768px){
+  padding: 20px;
+}
+@media (max-width: 640px){
+  padding: 10px;
+  flex-wrap: wrap;
+}
+`
+export const ActivityText = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  color: #232428;
+  vertical-align: middle;
+  @media (max-width: 640px){
+    flex: 0 0 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #7c7c7c;
+  }
+`
+export const ActivityButton = styled.button`
+  background: #EDD2FF;
+  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  padding: 10px;
+  color: #232428;
+  border: none;
+  outline: none;
+  width: 25%;
+  margin-left: 1em;
+  cursor: pointer;
+  transition: all .3s linear;
+    &:hover,
+    &:active{
+      background: #FFFFFF;
+    }
+  @media (max-width: 640px){
+    width: 30%;
+    &.left-btn{
+      margin-left: 0;
+    }
+  }
+`
+export const ActivityHeadTr = styled.tr`
+`
+export const ActivityTr = styled.tr`
+  background: #FBF5FF;
+  box-shadow: inset 0 0 1px #7C7C7C;
+  padding: 0 30px;
+`
+export const ActivityTd = styled.td`
+  padding: 15px 30px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7C7C7C;
+  @media (max-width: 790px){
+    padding: 15px;
+}
+`
+export const ActivityColorText = styled.span<{color?: string}>`
+  color: ${props => props.color || '#7C7C7C'};
+`
+export const ActivityTableWrapMobile = styled.table`
+display: none;
+@media (max-width: 640px){
+  display: block;
+}
+`
+export const ActivityHeadTrMobile = styled.tr`
+  display: flex;
+  background-color: #F2F2F2;
+`
+export const ActivityTrMobile = styled.tr`
+  display: flex;
+  border-bottom: 1px solid rgba(124, 124, 124, 0.2);
+`
+export const ActivityTdMobile = styled.td`
+  flex: 0 0 50%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+  padding: 10px 15px;
+  &.text-right{
+    text-align: right;
+    background-color: #FBF5FF;
+  }
+  &.table-head{
+    padding: 5px 15px;
+    color: #232428;
+    font-size: 10px;
+    line-height: 12px;
+    background-color: #F2F2F2;
+  }
+
 `
 //Description
 export const DescriptionWrap = styled.li `
