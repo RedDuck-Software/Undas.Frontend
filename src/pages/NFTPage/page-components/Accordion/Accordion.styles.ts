@@ -287,6 +287,7 @@ export const DescriptionWrap = styled.li `
   color: #232428;
   @media (max-width: 576px){
    flex: 0 0 100%;
+   padding: 15px;
   }
 `
 
@@ -295,8 +296,21 @@ export const Title = styled.span<{color?: string}> `
   line-height: 22px;
   color: ${props => props.color || '#7C7C7C'};
   margin-bottom: 5px;
+  @media (max-width: 576px){
+    font-size: 14px;
+  }
 `
-
+export const WrapperDescript = styled.div`
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin: 15px 0 0 0;
+  justify-content: space-between;
+  @media (max-width: 576px){
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+`
 export const MoreBtn = styled.button `
   cursor: pointer;
   padding: 10px 50px;
@@ -307,6 +321,14 @@ export const MoreBtn = styled.button `
   background: #FFFFFF;
   border: 1px solid #873DC1;
   border-radius: 10px;
+  transition: all .4s;
+  &:hover{
+    background: #873DC1;
+    color: #FFFFFF;
+  }
+  @media (max-width: 576px){
+    flex: 0 0 100%;
+  }
 `
 
 //Details
@@ -464,4 +486,7 @@ export const CompleteWrap = styled.div<{complete?: number}> `
 `
 export const AccordionText = styled.span`
   line-height: 20px;
+  @media (max-width: 576px){
+    font-size: 12px;
+  }
 `
