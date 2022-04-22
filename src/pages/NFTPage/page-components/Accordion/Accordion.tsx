@@ -16,13 +16,14 @@ interface IAccordion {
     und?: string;
     ico?: any;
     flex?: string;
+    classLabel?: string;
 }
 
-const Accordion: FC<IAccordion> = ({ children, name, und, ico, flex }) => {
+const Accordion: FC<IAccordion> = ({ children, name, und, ico, flex, classLabel }) => {
     const [open, setOpen] = useState("");
 
     return (
-        <AccordionWrap className={open} flex={flex}>
+        <AccordionWrap className={`${open} ${classLabel}`}>
             <TopBar
                 justifyContent="space-between"
                 cursor="pointer"
