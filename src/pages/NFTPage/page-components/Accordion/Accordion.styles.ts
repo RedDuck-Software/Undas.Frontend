@@ -391,6 +391,13 @@ export const PropertiesWrap = styled(DetailsWrap) `
   flex-direction: column;
   gap: 10px;
   height: calc(100% - 49px);
+  
+  @media (max-width: 576px){
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+  }
   ${DetailsWrap}
 `
 export const PropertiesElement = styled.li `
@@ -406,8 +413,20 @@ export const PropertiesElement = styled.li `
   box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
   padding: 10px 20px;
+  @media (max-width: 576px){
+   flex-wrap: wrap;
+   text-align: center;
+   flex: 0 0 31%;
+  }
+  @media (max-width: 520px){
+    flex: 0 0 45%;
+  }
 `
-
+export const PropertiesElementItem = styled.span`
+  @media (max-width: 576px){
+   flex: 0 0 100%;
+  }
+`
 export const CompleteWrap = styled.div<{complete?: number}> `
   font-style: normal;
   font-weight: 500;
@@ -422,6 +441,7 @@ export const CompleteWrap = styled.div<{complete?: number}> `
   background-color: #FFF;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 10px;
   &:before {
     margin-left: -20px;
     content: '';
