@@ -3,7 +3,7 @@ import {Arrow} from "../../../AllNFTs/AllNFTs.styles";
 import {Link} from "react-router-dom";
 import { EthIco } from "../../imports";
 
-export const AccordionWrap = styled.ul<{flex?: string}> `
+export const AccordionWrap = styled.ul`
   margin-top: 20px;
   width: 100%;
   background: #FFFFFF;
@@ -12,10 +12,17 @@ export const AccordionWrap = styled.ul<{flex?: string}> `
   overflow: hidden;
   transition: all ease-in-out 0.15s;
   max-height: 49px;
-  flex: ${props => props.flex || ''};
   &.active {
     max-height: 310px;
     overflow-y: auto;
+  }
+  &.half-width{
+    flex: 1 1 40%;
+  }
+  @media (max-width: 992px){
+    &.half-width{
+      flex: 0 0 100%;
+    }
   }
 `
 
@@ -278,6 +285,9 @@ export const DescriptionWrap = styled.li `
   font-size: 14px;
   line-height: 17px;
   color: #232428;
+  @media (max-width: 576px){
+   flex: 0 0 100%;
+  }
 `
 
 export const Title = styled.span<{color?: string}> `
@@ -309,6 +319,7 @@ export const DetailsWrap = styled.ul<{padd?: string}> `
   font-size: 14px;
   line-height: 17px;
   color: #232428;
+  height: calc(100% - 49px);
 `
 
 export const DetailsElement = styled.li `
@@ -339,7 +350,7 @@ export const ImageWrap = styled.div `
 `
 
 export const AboutImage = styled.img `
-  
+  width: 100%;
 `
 
 export const AboutSocial = styled.ul `
@@ -352,6 +363,7 @@ export const AboutSocial = styled.ul `
   display: flex;
   gap: 15px;
   padding: 10px;
+  margin-top: 30px;
 `
 
 export const SocialElement = styled(Link) `
@@ -373,14 +385,14 @@ export const SocialElement = styled(Link) `
   }
 `
 
+//Properties
 export const PropertiesWrap = styled(DetailsWrap) `
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: calc(100% - 49px);
   ${DetailsWrap}
 `
-
-//Properties
 export const PropertiesElement = styled.li `
   display: flex;
   align-items: center;
@@ -429,4 +441,7 @@ export const CompleteWrap = styled.div<{complete?: number}> `
   span {
     z-index: 2;
   }
+`
+export const AccordionText = styled.span`
+  line-height: 20px;
 `

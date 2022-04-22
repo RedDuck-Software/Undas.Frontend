@@ -8,7 +8,8 @@ import {Wrapper} from "../../../../CategoriesPage/Categories.styles";
 import {
     ImageWrap,
     AboutSocial,
-    SocialElement
+    SocialElement,
+    AccordionText
 } from "../Accordion.styles";
 
 //Assets
@@ -27,12 +28,12 @@ const About: FC = () => {
                 <ImageWrap>
                     <img src={NFTImage} alt="about-image"/>
                 </ImageWrap>
-                <span>
+                <AccordionText>
                     A brand for the metaverse. Built by the community.
                     View the collection at azuki.com/gallery.
                    Azuki starts with a collection of 10,000 avatars
                     that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized fu...
-                </span>
+                </AccordionText>
             </Wrapper>
             <AboutSocial>
                 <SocialElement to="/">

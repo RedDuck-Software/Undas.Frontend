@@ -94,6 +94,9 @@ export const MainInfoWrap = styled.div `
   justify-content: space-between;
   gap: 30px;
   width: 100%;
+  @media (max-width: 992px){
+   flex-wrap: wrap;
+  }
 `
 
 export const ImageWrap = styled.div `
@@ -101,10 +104,17 @@ export const ImageWrap = styled.div `
   border-radius: 10px;
   width: 540px;
   height: 515px;
+  @media (max-width: 992px){
+   flex: 0 0 100%;
+   height: auto;
+  }
 `
 
 export const Image = styled.img `
   object-fit: cover;
+  @media (max-width: 992px){
+  width: 100%;
+  }
 `
 
 export const Info = styled.ul `
