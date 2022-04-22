@@ -10,10 +10,10 @@ import {
   ActivityTd,
   ActivityColorText,
   EtherIcon,
-  ActivityHeadTrMobile,
-  ActivityTableWrapMobile,
-  ActivityTdMobile,
-  ActivityTrMobile
+  // ActivityHeadTrMobile,
+  // ActivityTableWrapMobile,
+  // ActivityTdMobile,
+  // ActivityTrMobile
 
 } from "../Accordion.styles";
 import {
@@ -106,7 +106,7 @@ const ItemActivity = () => {
       </ActivityTr>
       </ActivityTableWrap>
 
-      <ActivityTableWrapMobile>
+      {/* <ActivityTableWrapMobile>
       <ActivityHeadTrMobile>
         <ActivityTdMobile className='table-head'>Event</ActivityTdMobile>
         <ActivityTdMobile className='table-head text-right'>Sale</ActivityTdMobile>
@@ -135,7 +135,7 @@ const ItemActivity = () => {
         <ActivityTdMobile>Date</ActivityTdMobile>
         <ActivityTdMobile className='text-right'>5 months ago</ActivityTdMobile>
       </ActivityTrMobile>
-      </ActivityTableWrapMobile>
+      </ActivityTableWrapMobile> */}
     </ActivityWrap>
   )
 }
