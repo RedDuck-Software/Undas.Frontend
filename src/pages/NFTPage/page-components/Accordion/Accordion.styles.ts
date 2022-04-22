@@ -150,8 +150,14 @@ export const ActivityWrap = styled.li`
 export const ActivityTableWrap = styled.table`
 width: 100%;
 border-collapse: collapse;
+
 @media (max-width: 640px){
-  display: none;
+  /* display: none; */
+  display: block;
+  max-width: fit-content;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 `
 export const ActivityTopRow = styled.div`
@@ -224,42 +230,42 @@ export const ActivityTd = styled.td`
 export const ActivityColorText = styled.span<{color?: string}>`
   color: ${props => props.color || '#7C7C7C'};
 `
-export const ActivityTableWrapMobile = styled.table`
-display: none;
-@media (max-width: 640px){
-  display: block;
-}
-`
-export const ActivityHeadTrMobile = styled.tr`
-  display: flex;
-  background-color: #F2F2F2;
-`
-export const ActivityTrMobile = styled.tr`
-  display: flex;
-  border-bottom: 1px solid rgba(124, 124, 124, 0.2);
-`
-export const ActivityTdMobile = styled.td`
-  flex: 0 0 50%;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #7C7C7C;
-  padding: 10px 15px;
-  &.text-right{
-    text-align: right;
-    background-color: #FBF5FF;
-  }
-  &.table-head{
-    padding: 5px 15px;
-    color: #232428;
-    font-size: 10px;
-    line-height: 12px;
-    background-color: #F2F2F2;
-  }
+// export const ActivityTableWrapMobile = styled.table`
+// display: none;
+// @media (max-width: 640px){
+//   display: block;
+// }
+// `
+// export const ActivityHeadTrMobile = styled.tr`
+//   display: flex;
+//   background-color: #F2F2F2;
+// `
+// export const ActivityTrMobile = styled.tr`
+//   display: flex;
+//   border-bottom: 1px solid rgba(124, 124, 124, 0.2);
+// `
+// export const ActivityTdMobile = styled.td`
+//   flex: 0 0 50%;
+//   font-family: 'Montserrat';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 17px;
+//   color: #7C7C7C;
+//   padding: 10px 15px;
+//   &.text-right{
+//     text-align: right;
+//     background-color: #FBF5FF;
+//   }
+//   &.table-head{
+//     padding: 5px 15px;
+//     color: #232428;
+//     font-size: 10px;
+//     line-height: 12px;
+//     background-color: #F2F2F2;
+//   }
+// `
 
-`
 //Description
 export const DescriptionWrap = styled.li `
   padding: 20px 30px;
