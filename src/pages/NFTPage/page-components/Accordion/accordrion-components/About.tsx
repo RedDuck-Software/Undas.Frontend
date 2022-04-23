@@ -9,7 +9,9 @@ import {
     ImageWrap,
     AboutSocial,
     SocialElement,
-    AccordionText
+    AccordionText,
+    WrapperAbout,
+    AboutWrap
 } from "../Accordion.styles";
 
 //Assets
@@ -23,8 +25,8 @@ import {
 
 const About: FC = () => {
     return (
-        <DetailsWrap>
-            <Wrapper disp="flex" gap="14px" marg="0 0 10px 0">
+        <AboutWrap>
+            <WrapperAbout>
                 <ImageWrap>
                     <img src={NFTImage} alt="about-image"/>
                 </ImageWrap>
@@ -34,7 +36,7 @@ const About: FC = () => {
                    Azuki starts with a collection of 10,000 avatars
                     that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized fu...
                 </AccordionText>
-            </Wrapper>
+            </WrapperAbout>
             <AboutSocial>
                 <SocialElement to="/">
                     <TwitterIco />
@@ -49,7 +51,7 @@ const About: FC = () => {
                     <InstagramIco />
                 </SocialElement>
             </AboutSocial>
-        </DetailsWrap>
+        </AboutWrap>
     )
 }
 

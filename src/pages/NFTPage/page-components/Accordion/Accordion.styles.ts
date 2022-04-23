@@ -287,6 +287,7 @@ export const DescriptionWrap = styled.li `
   color: #232428;
   @media (max-width: 576px){
    flex: 0 0 100%;
+   padding: 15px;
   }
 `
 
@@ -295,8 +296,21 @@ export const Title = styled.span<{color?: string}> `
   line-height: 22px;
   color: ${props => props.color || '#7C7C7C'};
   margin-bottom: 5px;
+  @media (max-width: 576px){
+    font-size: 14px;
+  }
 `
-
+export const WrapperDescript = styled.div`
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin: 15px 0 0 0;
+  justify-content: space-between;
+  @media (max-width: 576px){
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+`
 export const MoreBtn = styled.button `
   cursor: pointer;
   padding: 10px 50px;
@@ -307,6 +321,14 @@ export const MoreBtn = styled.button `
   background: #FFFFFF;
   border: 1px solid #873DC1;
   border-radius: 10px;
+  transition: all .4s;
+  &:hover{
+    background: #873DC1;
+    color: #FFFFFF;
+  }
+  @media (max-width: 576px){
+    flex: 0 0 100%;
+  }
 `
 
 //Details
@@ -320,6 +342,9 @@ export const DetailsWrap = styled.ul<{padd?: string}> `
   line-height: 17px;
   color: #232428;
   height: calc(100% - 49px);
+  @media (max-width: 576px){
+    padding: 15px;
+  }
 `
 
 export const DetailsElement = styled.li `
@@ -341,14 +366,42 @@ export const ColoredText = styled.span<{color?: string, fs?: string, fw?: string
 `
 
 //About
-
+export const AboutWrap = styled.ul<{padd?: string}> `
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  background-color: #FBF5FF;
+  padding: ${props => props.padd || '15px 30px'};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  height: calc(100% - 49px);
+  @media (max-width: 576px){
+    padding: 0;
+  }
+`
 export const ImageWrap = styled.div `
-  width: 40px;
+  width: 50px;
   height: 40px;
   border-radius: 10px;
   filter: drop-shadow(0px 5px 5px rgba(124, 124, 124, 0.25));
+  @media (max-width: 576px){
+    float: left;
+    display: block;
+    margin: 0 10px 5px 0;
+  }
 `
-
+export const WrapperAbout = styled.div `
+  display: flex;
+  gap: 14px; 
+  margin: 0 0 10px 0;
+  @media (max-width: 576px){
+    display: block;
+    padding: 15px 15px 0 15px;
+    max-height: 195px;
+    overflow-y: auto;
+  }
+`
 export const AboutImage = styled.img `
   width: 100%;
 `
@@ -364,6 +417,13 @@ export const AboutSocial = styled.ul `
   gap: 15px;
   padding: 10px;
   margin-top: 30px;
+  @media (max-width: 576px){
+    margin: 0 auto;
+    margin-top: 15px;
+    max-width: 100%;
+    justify-content: center;
+    border-radius: 0;
+  }
 `
 
 export const SocialElement = styled(Link) `
@@ -391,6 +451,13 @@ export const PropertiesWrap = styled(DetailsWrap) `
   flex-direction: column;
   gap: 10px;
   height: calc(100% - 49px);
+  
+  @media (max-width: 576px){
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+  }
   ${DetailsWrap}
 `
 export const PropertiesElement = styled.li `
@@ -406,8 +473,20 @@ export const PropertiesElement = styled.li `
   box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
   padding: 10px 20px;
+  @media (max-width: 576px){
+   flex-wrap: wrap;
+   text-align: center;
+   flex: 0 0 31%;
+  }
+  @media (max-width: 520px){
+    flex: 0 0 45%;
+  }
 `
-
+export const PropertiesElementItem = styled.span`
+  @media (max-width: 576px){
+   flex: 0 0 100%;
+  }
+`
 export const CompleteWrap = styled.div<{complete?: number}> `
   font-style: normal;
   font-weight: 500;
@@ -422,6 +501,7 @@ export const CompleteWrap = styled.div<{complete?: number}> `
   background-color: #FFF;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 10px;
   &:before {
     margin-left: -20px;
     content: '';
@@ -444,4 +524,7 @@ export const CompleteWrap = styled.div<{complete?: number}> `
 `
 export const AccordionText = styled.span`
   line-height: 20px;
+  @media (max-width: 576px){
+    font-size: 12px;
+  }
 `
