@@ -73,7 +73,7 @@ const AccountPage = () => {
     price: false,
     event: false,
   });
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("offers");
   console.log(tab);
   const cookies = new Cookies();
   let { account, deactivate } = useWeb3React();
@@ -175,17 +175,7 @@ const AccountPage = () => {
             {tab === "" && <MainMenu />}
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
-            <GridLayout>
-              {NFTList?.map((item) => {
-                return (
-                  <NFTGrid
-                    tokenId={+item.token_id}
-                    URI={item.token_uri!}
-                    name={item.name}
-                  />
-                );
-              })}
-            </GridLayout>
+
           </Wrapper>
         </AccountContainer>
       </Wrapper>
