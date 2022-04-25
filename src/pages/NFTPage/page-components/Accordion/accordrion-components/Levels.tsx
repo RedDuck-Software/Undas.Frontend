@@ -9,6 +9,8 @@ const Levels: FC<{complete?: number}> = ({complete}) => {
     return (
         <DetailsWrap padd="30px 30px">
             <CompleteBar complete={complete}/>
+            <CompleteBar complete={complete}/>
+            <CompleteBar complete={complete}/>
         </DetailsWrap>
     )
 }

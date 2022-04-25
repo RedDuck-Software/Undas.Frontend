@@ -6,7 +6,8 @@ import {
     OffersTd,
     OffersTdText,
     OffersHeadTr,
-    OffersText
+    OffersText,
+    EtherIcon
 } from "../Accordion.styles";
 import {CartIco, EthIco, HandShakeIco} from "../../../imports";
 
@@ -18,14 +19,15 @@ const Offers: FC = () => {
     return (
         <OffersWrap >
             <OffersHeadTr>
-                <OffersTd padd="10px 0" textAlign="end">Price</OffersTd>
-                <OffersTd padd="10px 0" textAlign="end">Expiration</OffersTd>
-                <OffersTd padd="10px 0" textAlign="end">From</OffersTd>
+                <OffersTd></OffersTd>
+                <OffersTd>Price</OffersTd>
+                <OffersTd>Expiration</OffersTd>
+                <OffersTd>From</OffersTd>
             </OffersHeadTr>
             <OffersTr>
                 <OffersTdText><HandShakeIco /></OffersTdText>
                 <OffersTdText>
-                    <EthIco />
+                    <EtherIcon />
                     <PriceText>1,2</PriceText>
                     <OffersText>WETH</OffersText>
                 </OffersTdText>
@@ -39,7 +41,7 @@ const Offers: FC = () => {
             <OffersTr>
                 <OffersTdText><CartIco /></OffersTdText>
                 <OffersTdText>
-                    <EthIco />
+                    <EtherIcon />
                     <PriceText>1,2</PriceText>
                     <OffersText>WETH</OffersText>
                 </OffersTdText>
@@ -53,7 +55,7 @@ const Offers: FC = () => {
             <OffersTr>
                 <OffersTdText><HandShakeIco /></OffersTdText>
                 <OffersTdText>
-                    <EthIco />
+                    <EtherIcon />
                     <PriceText>1,2</PriceText>
                     <OffersText>WETH</OffersText>
                 </OffersTdText>
@@ -67,7 +69,7 @@ const Offers: FC = () => {
             <OffersTr>
                 <OffersTdText><HandShakeIco /></OffersTdText>
                 <OffersTdText>
-                    <EthIco />
+                    <EtherIcon />
                     <PriceText>1,2</PriceText>
                     <OffersText>WETH</OffersText>
                 </OffersTdText>

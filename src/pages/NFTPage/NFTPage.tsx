@@ -18,7 +18,9 @@ import {
     AboutIco,
     PropertiesIco,
     StatsIco,
-    LevelsIco,
+    LevelsIco, 
+    ItemActivityIco,
+    StakingIco,
 } from "./imports";
 
 //Styles
@@ -53,6 +55,8 @@ import Accordion from "./page-components/Accordion/Accordion";
 import Offers from "./page-components/Accordion/accordrion-components/Offers";
 import Description from "./page-components/Accordion/accordrion-components/Description";
 import Details from "./page-components/Accordion/accordrion-components/Details";
+import Staking from "./page-components/Accordion/accordrion-components/Staking";
+import ItemActivity from "./page-components/Accordion/accordrion-components/ItemActivity";
 //Modules
 import { useParams } from "react-router-dom";
 import Context from "../../utils/Context";
@@ -71,6 +75,7 @@ import About from "./page-components/Accordion/accordrion-components/About";
 import Properties from "./page-components/Accordion/accordrion-components/Properties";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Levels from "./page-components/Accordion/accordrion-components/Levels";
+
 
 const NFTPage: FC = () => {
     const override = css`
@@ -345,51 +350,57 @@ const NFTPage: FC = () => {
                             <Accordion name="Offers" ico={<OffersIco />}>
                                 <Offers />
                             </Accordion>
-                            <Accordion name="Description" flex="1 0 40%">
+                            <Accordion name="Staking" ico={<StakingIco />} und="UND">
+                                <Staking />
+                            </Accordion>
+                            <Accordion name="Item Activity" ico={<ItemActivityIco />}>
+                                <ItemActivity />
+                            </Accordion>
+                            <Accordion name="Description" classLabel="half-width">
                                 <Description />
                             </Accordion>
                             <Accordion
                                 name="Details"
                                 ico={<DetailsIco />}
-                                flex="1 1 40%"
+                                classLabel="half-width"
                             >
                                 <Details />
                             </Accordion>
                             <Accordion
                                 name="About"
                                 ico={<AboutIco />}
-                                flex="1 1 40%"
+                                classLabel="half-width"
                             >
                                 <About />
                             </Accordion>
                             <Accordion
                                 name="Properties"
                                 ico={<PropertiesIco />}
-                                flex="1 1 40%"
+                                classLabel="half-width"
                             >
                                 <Properties />
                             </Accordion>
-                            <Wrapper
+                            {/* <Wrapper
                                 disp="flex"
                                 flexDirection="column"
                                 w="50%"
                                 marg="0 0 0 auto"
-                            >
+                            > */}
                                 <Accordion
                                     name="Stats"
                                     ico={<StatsIco />}
-                                    flex="1 1 40%"
+                                    classLabel="half-width"
                                 >
                                     <Stats complete={3} />
                                 </Accordion>
                                 <Accordion
                                     name="Levels"
                                     ico={<LevelsIco />}
-                                    flex="1 1 40%"
+                                    classLabel="half-width"
                                 >
                                     <Levels complete={4} />
                                 </Accordion>
-                            </Wrapper>
+                            {/* </Wrapper> */}
                         </Wrapper>
                     </>
                 )}

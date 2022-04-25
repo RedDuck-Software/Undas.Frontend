@@ -4,44 +4,57 @@ import React, {FC} from "react";
 import {
     PropertiesWrap,
     PropertiesElement,
-    ColoredText
+    ColoredText,
+    PropertiesElementItem
 } from "../Accordion.styles";
 
 const Properties: FC = () => {
     return (
         <PropertiesWrap padd=" 30px 30px">
             <PropertiesElement>
-                <ColoredText color="#873DC1" fw="400" fs="10px">
-                    BACKGROUND
-                </ColoredText>
-                <span>
+                <PropertiesElementItem>
+                    <ColoredText color="#873DC1" fw="400" fs="10px">
+                        BACKGROUND
+                    </ColoredText>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
                     Green Purple
-                </span>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
                 <ColoredText color="#7C7C7C" fw="400" fs="12px">
                     9% have this trait
                 </ColoredText>
+                </PropertiesElementItem>
             </PropertiesElement>
             <PropertiesElement>
-                <ColoredText color="#873DC1" fw="400" fs="10px">
-                    BACKGROUND
-                </ColoredText>
-                <span>
+                <PropertiesElementItem>
+                    <ColoredText color="#873DC1" fw="400" fs="10px">
+                        BACKGROUND
+                    </ColoredText>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
                     Green Purple
-                </span>
-                <ColoredText color="#7C7C7C" fw="400" fs="12px">
-                    9% have this trait
-                </ColoredText>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
+                    <ColoredText color="#7C7C7C" fw="400" fs="12px">
+                        9% have this trait
+                    </ColoredText>
+                </PropertiesElementItem>
             </PropertiesElement>
             <PropertiesElement>
-                <ColoredText color="#873DC1" fw="400" fs="10px">
-                    BACKGROUND
-                </ColoredText>
-                <span>
+                <PropertiesElementItem>
+                    <ColoredText color="#873DC1" fw="400" fs="10px">
+                        BACKGROUND
+                    </ColoredText>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
                     Green Purple
-                </span>
-                <ColoredText color="#7C7C7C" fw="400" fs="12px">
-                    9% have this trait
-                </ColoredText>
+                </PropertiesElementItem>
+                <PropertiesElementItem>
+                    <ColoredText color="#7C7C7C" fw="400" fs="12px">
+                        9% have this trait
+                    </ColoredText>
+                </PropertiesElementItem>
             </PropertiesElement>
         </PropertiesWrap>
     )

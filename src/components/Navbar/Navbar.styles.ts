@@ -11,7 +11,7 @@ export const Header = styled.header `
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
   backdrop-filter: blur(50px);
-  z-index: 999;
+  z-index: 99;
 `
 
 export const HeaderWrap = styled(Container) `
