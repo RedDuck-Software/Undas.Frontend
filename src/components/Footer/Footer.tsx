@@ -1,25 +1,24 @@
 import React from "react";
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 
 import {
   FooterSec,
   FooterContainer,
   FooterText,
-  TopLeftWrapper,
-  BottomLeftWrapper,
-  TopRightWrapper,
-  BottomRightWrapper,
+  LeftSideWrapper,
+  RightSideWrapper,
   FooterIconsWrapper,
   FooterIcon,
   CustomSearch,
   Input,
   ButtonSubmit,
-  PhoneImage,
-  LeftSide,
-  RightSide,
+  BottomWrapper,
+  RightSideTop,
   TopicColumn,
   TopicTitle,
   TopicText,
   Year,
+  FooterIconLink,
 } from "./Footer.styles";
 
 import {
@@ -36,11 +35,41 @@ const Footer = () => {
   return (
     <FooterSec>
       <FooterContainer>
-        <TopLeftWrapper></TopLeftWrapper>
-        <TopRightWrapper>
-          <LeftSide></LeftSide>
-          <RightSide>
-            <FooterText>Get the latest Only1.art updates</FooterText>
+        <LeftSideWrapper>
+          <TopicColumn>
+            <TopicTitle>Explore</TopicTitle>
+            <TopicText href="all">All NFTs</TopicText>
+            <TopicText href="assets/new">New</TopicText>
+            <TopicText href="explore/art">Artwork</TopicText>
+            <TopicText href="#">Sport</TopicText>
+            <TopicText href="#">Photography</TopicText>
+            <TopicText href="#">Metaverses</TopicText>
+            <TopicText href="#">Celebrity</TopicText>
+            <TopicText href="#">rwaNFT</TopicText>
+          </TopicColumn>
+          <TopicColumn>
+            <TopicTitle>Activity</TopicTitle>
+            <TopicText href="collection">Top collection</TopicText>
+            <TopicText href="#">Last Sales</TopicText>
+            <TopicText href="#">Listings</TopicText>
+            <TopicText href="#">Offers</TopicText>
+          </TopicColumn>
+          <TopicColumn>
+            <TopicTitle>Comunity</TopicTitle>
+            <TopicText href="#">About</TopicText>
+            <TopicText href="#">Blog</TopicText>
+            <TopicText href="#">Social media</TopicText>
+            <TopicText href="#">FAQ</TopicText>
+          </TopicColumn>          
+          <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          </DropdownButton>
+        </LeftSideWrapper>
+        <RightSideWrapper>
+          <RightSideTop>
+            <FooterText>Get the latest Undas updates</FooterText>
             <CustomSearch>
               <Input
                 type="email"
@@ -50,42 +79,29 @@ const Footer = () => {
               />
               <ButtonSubmit>I’m in</ButtonSubmit>
             </CustomSearch>
-          </RightSide>
-        </TopRightWrapper>
-        <BottomLeftWrapper>
-          <TopicColumn>
-            <TopicTitle>Explore</TopicTitle>
-            <TopicText>All NFTs</TopicText>
-            <TopicText>New</TopicText>
-            <TopicText>Art</TopicText>
-            <TopicText>Sport</TopicText>
-            <TopicText>Girls</TopicText>
-            <TopicText>Furniture</TopicText>
-          </TopicColumn>
-          <TopicColumn>
-            <TopicTitle>Activity</TopicTitle>
-            <TopicText>Top collection</TopicText>
-            <TopicText>Top buyers</TopicText>
-            <TopicText>Top artists</TopicText>
-          </TopicColumn>
-          <TopicColumn>
-            <TopicTitle>Comunity</TopicTitle>
-            <TopicText>About</TopicText>
-            <TopicText>Blog</TopicText>
-            <TopicText>Social media</TopicText>
-          </TopicColumn>
-        </BottomLeftWrapper>
-        <BottomRightWrapper>
+          </RightSideTop>
           <FooterIconsWrapper>
-            <FooterIcon src={Twitter} />
-            <FooterIcon src={LinkedIn} />
-            <FooterIcon src={YouTube} />
-            <FooterIcon src={Telegram} />
-            <FooterIcon src={Instagram} />
+            <FooterIconLink href="#">
+              <FooterIcon src={Twitter} />
+            </FooterIconLink>
+            <FooterIconLink href="#">
+              <FooterIcon src={LinkedIn} />
+            </FooterIconLink>
+            <FooterIconLink href="#">
+              <FooterIcon src={YouTube} />
+            </FooterIconLink>
+            <FooterIconLink href="#">
+              <FooterIcon src={Telegram} />
+            </FooterIconLink>
+            <FooterIconLink href="#">
+              <FooterIcon src={Instagram} />
+            </FooterIconLink>
           </FooterIconsWrapper>
-        </BottomRightWrapper>
+        </RightSideWrapper>
       </FooterContainer>
-      <Year>2022</Year>
+      <BottomWrapper>
+          <Year>© 2022</Year>
+        </BottomWrapper>
     </FooterSec>
   );
 };
