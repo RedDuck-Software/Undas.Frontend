@@ -19,6 +19,7 @@ import {
   TopicText,
   Year,
   FooterIconLink,
+  MobileMenuInner,
 } from "./Footer.styles";
 
 import {
@@ -60,13 +61,34 @@ const Footer = () => {
             <TopicText href="#">Blog</TopicText>
             <TopicText href="#">Social media</TopicText>
             <TopicText href="#">FAQ</TopicText>
-          </TopicColumn>          
-          <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </DropdownButton>
+          </TopicColumn> 
         </LeftSideWrapper>
+          <MobileMenuInner>         
+            <DropdownButton id="dropdown-button" title="Explore">
+              <Dropdown.Item href="all" className="dropdown-item">All NFTs</Dropdown.Item>
+              <Dropdown.Item href="assets/new">New</Dropdown.Item>
+              <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
+              <Dropdown.Item href="#">Sport</Dropdown.Item>
+              <Dropdown.Item href="#">Photography</Dropdown.Item>
+              <Dropdown.Item href="#">Metaverses</Dropdown.Item>
+              <Dropdown.Item href="#">Celebrity</Dropdown.Item>
+              <Dropdown.Item href="#">rwaNFT</Dropdown.Item>
+            </DropdownButton>
+            <DropdownButton id="dropdown-button" title="Activity">
+              <Dropdown.Item href="collection">Top collection</Dropdown.Item>
+              <Dropdown.Item href="#">Last Sales</Dropdown.Item>
+              <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
+              <Dropdown.Item href="#">Listings</Dropdown.Item>
+              <Dropdown.Item href="#">Offers</Dropdown.Item>
+            </DropdownButton>
+            <DropdownButton id="dropdown-button" title="Comunity">
+              <Dropdown.Item href="#">About</Dropdown.Item>
+              <Dropdown.Item href="#">Blog</Dropdown.Item>
+              <Dropdown.Item href="#">Social media</Dropdown.Item>
+              <Dropdown.Item href="#">FAQ</Dropdown.Item>
+            </DropdownButton>
+          </MobileMenuInner>
+        
         <RightSideWrapper>
           <RightSideTop>
             <FooterText>Get the latest Undas updates</FooterText>
