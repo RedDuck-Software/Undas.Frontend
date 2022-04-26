@@ -41,12 +41,18 @@ export const OffersWrap = styled.table `
 `
 
 export const OffersHeadTr = styled.tr `
+  &.offers-menu-head{
+    background-color: #FBF5FF;
+}
 `
 
 export const OffersTr = styled.tr `
   padding: 0 30px;
   background: #FBF5FF;
   box-shadow: inset 0 0 1px #7C7C7C;
+  &.offers-menu-row{
+    background-color: #FFFFFF;
+  }
 `
 
 interface IOffersTd {
@@ -60,6 +66,10 @@ export const OffersTd = styled.td<IOffersTd> `
   font-weight: 400;
   font-size: 14px;
   color: #7C7C7C;
+  &.first-column{
+    padding: 15px 0 15px 20px;
+    width: 3%;
+  }
   @media (max-width: 576px) {
     padding: 10px;
   }
