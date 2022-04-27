@@ -83,6 +83,7 @@ export const TopicText = styled.a`
 
   &:hover {
     opacity: 0.6;
+    color: #232428;
   }
 
   @media (max-width: 1169px) {
@@ -197,7 +198,7 @@ export const Input = styled.input`
 export const ButtonSubmit = styled.button`
   position: absolute;
   right: 5%;
-  top: 1.8rem;
+  top: 2rem;
   width: 90px;
   height: 36px;
   background: #893ac2;

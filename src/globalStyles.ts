@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Montserrat'
   }
+  ol, ul{
+    padding: 0;
+    margin: 0;
+  }
 
 `;
 
