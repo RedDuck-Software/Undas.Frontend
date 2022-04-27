@@ -42,7 +42,7 @@ const Footer = () => {
             <TopicText href="all">All NFTs</TopicText>
             <TopicText href="assets/new">New</TopicText>
             <TopicText href="explore/art">Artwork</TopicText>
-            <TopicText href="#">Sport</TopicText>
+            <TopicText href="explore/sport">Sport</TopicText>
             <TopicText href="#">Photography</TopicText>
             <TopicText href="#">Metaverses</TopicText>
             <TopicText href="#">Celebrity</TopicText>
@@ -60,7 +60,7 @@ const Footer = () => {
             <TopicText href="#">About</TopicText>
             <TopicText href="#">Blog</TopicText>
             <TopicText href="#">Social media</TopicText>
-            <TopicText href="#">FAQ</TopicText>
+            <TopicText href="faq">FAQ</TopicText>
           </TopicColumn> 
         </LeftSideWrapper>
           <MobileMenuInner>         
