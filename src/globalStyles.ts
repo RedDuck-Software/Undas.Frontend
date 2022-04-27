@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import background from "./images/background-image.png";
 import backgroundRotated from "./images/background-image-rotated.png";
 import LRBackground from "./images/LRBackground.png";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface GlobalStylesProps {
   violet?: boolean;
@@ -15,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat'
+  }
+  ol, ul{
+    padding: 0;
+    margin: 0;
   }
 
 `;
