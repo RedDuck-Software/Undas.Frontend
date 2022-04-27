@@ -82,8 +82,7 @@ export const Button = styled.button<GlobalStylesProps>`
 export const Background = styled.div`
   width: 100%;
   background: url(${LRBackground});
-  background-position: right 90rem top 12rem, left 20rem top 58rem,
-    right 60rem top 112rem;
+  background-position: left 0 top 8rem;
   background-repeat: no-repeat;
 
   @media (max-width: 1099px) {
