@@ -133,5 +133,26 @@ export const ComingSoonImage = styled.img`
     left: 0;
   }
 `;
+export const PageTitle = styled.h1`
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+  margin: 40px 0 20px;
+`
+export const ArticleText = styled.p`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #232428;
+`
+export const ArticleHead = styled.h2`
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #232428;
+`
+
+
 
 export default GlobalStyle;

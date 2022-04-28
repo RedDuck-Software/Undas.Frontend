@@ -1,16 +1,6 @@
 import styled from "styled-components";
 import { Tabs, Tab, TabContainer, TabContent, TabPane, Nav } from 'react-bootstrap';
 
-
-export const FaqTitle = styled.h1 `
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 44px;
-  color: #232428;
-  margin: 40px 0 20px;
-`
 export const FaqTabsWrapper = styled.div`
   min-height: 550px;
 `

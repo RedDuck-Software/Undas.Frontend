@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Background, Container } from "../../globalStyles";
+import { Background, Container, PageTitle } from "../../globalStyles";
 
-import { FaqTitle, FaqTabsWrapper, TabText, ContentTitle, ContentText, TabButton } from "./Faq.styles";
+import { FaqTabsWrapper, TabText, ContentTitle, ContentText, TabButton } from "./Faq.styles";
 
 import { Tabs, Tab, TabContainer, TabContent, TabPane, Row, Col, Nav } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ export default function Faq() {
     <Background>
       <Container>
         
-          <FaqTitle>FAQ</FaqTitle>
+          <PageTitle>FAQ</PageTitle>
           <FaqTabsWrapper>
             <Tab.Container id="left-tabs" defaultActiveKey="first">
               <Row>
