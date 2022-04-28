@@ -28,7 +28,9 @@ import {
     Create,
     Categories,
     Faq,
-    CollectionPage, NFTPage,
+    CollectionPage, 
+    NFTPage,
+    AboutUs,
 } from "./pages";
 
 import {
@@ -119,6 +121,7 @@ const App = () => {
                     />
                     <Route path="/rent-nft" element={<RentNFTPage/>} />
                     <Route path="/faq" element={<Faq />} />
+                    <Route path="/about-us" element={<AboutUs />} />
                 </Routes>
             </Context.Provider>
         </MoralisProvider>
