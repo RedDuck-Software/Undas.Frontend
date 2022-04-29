@@ -35,7 +35,7 @@
 
 .swiper {
   width: 100%;
-  height: 300px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -45,64 +45,65 @@
   background-position: center;
 }
 
-.mySwiper2 {
+.AboutSwiper2 {
   height: 340px;
   width: 100%;
 }
 
-.mySwiper {
-  height: 100px;
+.AboutSwiper {
+  height: 140px;
   box-sizing: border-box;
   padding: 20px 0;
 }
 
-.mySwiper .swiper-slide {
+.AboutSwiper .swiper-slide {
   height: 100%;
   opacity: 0.6;
   border-radius: 20px;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+.AboutSwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
 
-.swiper-slide img {
+.AboutSwiper .swiper-slide img,
+.AboutSwiper2 .swiper-slide img{
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
 }
-.swiper-button-prev{
+.AboutSwiper2 .swiper-button-prev{
     left: 0;
     border-radius: 20px 0 0 20px;
 }
-.swiper-button-next{
+.AboutSwiper2 .swiper-button-next{
     right: 0;
     border-radius: 0 20px 20px 0;
 }
-.swiper-button-prev,
-.swiper-button-next{
+.AboutSwiper2 .swiper-button-prev,
+.AboutSwiper2 .swiper-button-next{
     box-sizing: border-box;
     width: 20%;
     height: 100%;
     top: 22px;
 }
-.swiper-button-prev:hover,
-.swiper-button-next:hover{
+.AboutSwiper2 .swiper-button-prev:hover,
+.AboutSwiper2 .swiper-button-next:hover{
     background: rgba(255, 255, 255, .3);
     
 }
-.swiper-button-prev::after {
+.AboutSwiper2 .swiper-button-prev::after {
     border-bottom: 2px solid #ffffff;
     border-left: 2px solid #ffffff;
 }
-.swiper-button-next::after {
+.AboutSwiper2 .swiper-button-next::after {
     border-bottom: 2px solid #ffffff;
     border-right: 2px solid #ffffff;
 }
-.swiper-button-prev::after,
-.swiper-button-next::after{
+.AboutSwiper2 .swiper-button-prev::after,
+.AboutSwiper2 .swiper-button-next::after{
     width: 20px;
     height: 20px;
 }

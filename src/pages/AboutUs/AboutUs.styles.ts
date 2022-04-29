@@ -11,7 +11,7 @@ display: flex;
 gap: 30px;
 `
 export const AboutGallery = styled.div `
-  width: 50%;
+  width: 45%;
 `
 export const AboutContentText = styled.div `
    width: 50%;

@@ -20,7 +20,7 @@ import {
 
 } from "./AboutUs.styles";
 
-import Slider from "./Slider/Slider";
+import AboutSlider from "./Slider/Slider";
 
 const AboutUs = () => {
     return (
@@ -31,7 +31,7 @@ const AboutUs = () => {
                     <AboutContent>
                         <AboutTopContent>
                             <AboutGallery>
-                                <Slider />
+                                <AboutSlider />
                             </AboutGallery>
                             <AboutContentText>
                                 <ArticleHead>Our Story</ArticleHead>
