@@ -3,8 +3,8 @@ import React from "react";
 import { Background, 
     Container, 
     PageTitle,
-    ArticleHead,
-    ArticleText,
+    SubTitle
+
 } from "../../globalStyles";
 
 import {
@@ -15,12 +15,20 @@ import {
     AboutContentText,
     AboutBottomContent,
     AboutContentImage,
-    OurTeam,
-    Roadmap
-
+    OurTeamWrap,
+    OurTeamTitle,
+    OurTeamContent,
+    Roadmap,
+    ArticleText,
+    LinkButton,
+    Link,
 } from "./AboutUs.styles";
 
+import { ArticleImg } from "./imports";
+
 import AboutSlider from "./Slider/Slider";
+
+import TeammateCards from "./TeammateCard/TeammateCard"
 
 const AboutUs = () => {
     return (
@@ -34,26 +42,42 @@ const AboutUs = () => {
                                 <AboutSlider />
                             </AboutGallery>
                             <AboutContentText>
-                                <ArticleHead>Our Story</ArticleHead>
+                                <SubTitle>Our Story</SubTitle>
                                 <ArticleText>
-                                    In 2017 the world witnessed the birth of CryptoKitties. For the first time, the world experienced a decentralized application built on blockchains but targetted towards a mainstream audience.
+                                    <p>In 2017 the world witnessed the birth of CryptoKitties. For the first time, the world experienced a decentralized application built on blockchains but targetted towards a mainstream audience.</p>
 
-                                    While CryptoKitties felt like a toy to many, it represented a dramatic shift in how we interact with items in the digital world. While previous digital items lived on company servers, blockchain-native items lived on shared, public blockchains owned by no single party. They could be viewed anywhere, exchanged openly, and truly owned in a way that was never before possible in the digital world.
+                                    <p>While CryptoKitties felt like a toy to many, it represented a dramatic shift in how we interact with items in the digital world. While previous digital items lived on company servers, blockchain-native items lived on shared, public blockchains owned by no single party. They could be viewed anywhere, exchanged openly, and truly owned in a way that was never before possible in the digital world.</p>
 
-                                    Today, we’re proud to remain the largest general marketplace for user-owned digital items, supporting multiple blockchains, with the broadest set of categories and the best prices for new emerging digital item classes.and the best prices for new emerging digital item 
+                                    <p>Today, we’re proud to remain the largest general marketplace for user-owned digital items, supporting multiple blockchains, with the broadest set of categories and the best prices for new emerging digital item classes.and the best prices for new emerging digital item </p>
                                 </ArticleText>
                             </AboutContentText>
                         </AboutTopContent>
                         <AboutBottomContent>
                             <AboutContentText>
-                                
+                                <SubTitle>Building an open digital economy</SubTitle>
+                                <ArticleText className="bottom-text">
+                                <p>At <span>UNDAS</span>, we're excited about a brand new type of digital good called a non-fungible token, or NFT. NFTs have exciting new properties: they’re unique, provably scarce, tradeable, and usable across multiple applications. Just like physical goods, you can do whatever you want with them! You could throw them in the trash, gift them to a friend across the world, or go sell them on an open marketplace. But unlike physical goods, they're armed with all the programmability of digital goods.</p>
+
+                                <p>A core part of our vision is that open protocols like Ethereum and interoperable standards like <span>ERC-721</span> and <span>ERC-1155</span> will enable vibrant new economies. We're building tools that allow consumers to trade their items freely, creators to launch new digital works, and developers to build rich, integrated marketplaces for their digital items.</p>
+
+                                <p>We’re proud to be the first and largest marketplace for NFTs. 
+                                A core part of our vision is that open protocols like Ethereum and interoperable standards like <span>ERC-721</span> and <span>ERC-1155</span> will enable vibrant new economies. We're building tools that allow consumers to trade their items freely, creators to launch new digital works, and developers to build rich, integrated marketplaces for their digital items.</p>
+
+                                </ArticleText>
                             </AboutContentText>
-                            <AboutContentImage />
+                            <AboutContentImage src={ArticleImg} alt="article-illustration" />
                         </AboutBottomContent>
                     </AboutContent>
-                    <OurTeam>
-                        
-                    </OurTeam>
+                    <OurTeamWrap>
+                        <OurTeamTitle>
+                            <SubTitle>Our Team</SubTitle>
+                            <Link href="#" target="_blank">White Paper</Link>
+                            <LinkButton>Download</LinkButton>
+                        </OurTeamTitle>
+                        <OurTeamContent>
+                        <TeammateCards  />
+                        </OurTeamContent>
+                    </OurTeamWrap>
                     <Roadmap>
 
                     </Roadmap>
