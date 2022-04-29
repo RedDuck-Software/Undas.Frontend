@@ -6,9 +6,9 @@ export const NFTWrap = styled.div `
   cursor: pointer;
   max-width: 255px;
   height: 340px;
-  filter: drop-shadow(0px 3px 5px rgba(124, 124, 124, 0.25));
   border-radius: 10px;
   overflow: hidden;
+  filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5));
 `
 
 export const Info = styled(Wrapper) `
@@ -71,6 +71,7 @@ export const LeftBlock = styled.div `
   display: flex;
   flex-direction: column;
   width: 48%;
+  text-align: center;
 `
 export const BuyBtn = styled.button `
   font-style: normal;
@@ -86,7 +87,7 @@ export const BuyBtn = styled.button `
 `
 
 export const TagName = styled.span `
-  padding: 14px 0 14px 14px;
+  padding: 14px 0px 14px 0px;
 `
 
 export const PriceList = styled.ul `

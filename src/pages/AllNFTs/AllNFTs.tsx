@@ -1,7 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import { Container } from "../../globalStyles";
+import girlNFT from '../../images/image-AllNFTPage/girlNFT.png'
+import eye from '../../images/image-AllNFTPage/eye.svg'
 
 import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
+
+import { Col, Row } from 'react-bootstrap';
 
 import {
   AllNFTContainer,
@@ -16,8 +20,18 @@ import {
   MenuItem,
   FilterTitle,
   Arrow,
+  ColImg,
   FilterMenu,
+  NFTLineStyle,
+  ImgNFT,
+  LineTop,
+  ColTextTop,
+  RowLine,
   GridLayout,
+  ImagePreview,
+  ImageEye,
+  TextPreview,
+  TextNameNFT,
 } from "./AllNFTs.styles";
 
 import { GridIco, ListIco } from "./imports";
@@ -108,6 +122,21 @@ const AllNFTs: FC = () => {
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
         <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
+        <RowLine> 
+          <ColImg>
+          <ImgNFT src={girlNFT}></ImgNFT>
+          <ImagePreview>
+                <ImageEye src={eye} alt="nft-image" />
+                <TextPreview>Preview</TextPreview>
+            </ImagePreview>
+          </ColImg>
+          <ColTextTop>
+          <TextNameNFT>
+          Returne by Borya Borya
+          </TextNameNFT>
+          </ColTextTop>
+        </RowLine>
+
       </Wrapper>
     </AllNFTContainer>
   );

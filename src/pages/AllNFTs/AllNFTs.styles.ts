@@ -1,11 +1,31 @@
 import styled from "styled-components";
 import {Container} from "../../globalStyles";
 import {ReactComponent as Search} from '../../pages/CollectionPage/assets/search.svg'
+import { Col, Row } from 'react-bootstrap';
 
 
 export const AllNFTContainer = styled(Container) `
   display: flex;
   ${Container}
+`
+export const RowLine = styled(Row)`
+background: linear-gradient(0deg, #E2D1FF, #E2D1FF), #FFFFFF;
+border-radius: 10px;
+height: 200px;
+filter: drop-shadow(0px 3px 5px rgba(124, 124, 124, 0.25));
+margin-top: 20px;
+`
+export const ColImg = styled(Col)`
+padding-left: 0px;
+height: 200px;
+width: 15% !important;
+display: contents;
+`
+export const ColTextTop = styled(Col)`
+width: 85% !important;
+height: 40px;
+background: #FFFFFF;
+border-radius: 0px 10px 0px 0px;
 `
 
 interface IMenuWrap {
@@ -198,8 +218,60 @@ export const GridLayout = styled.div `
   grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
   justify-content: space-between;
 `
+export const NFTLineStyle = styled.div `
+background: linear-gradient(0deg, #E2D1FF, #E2D1FF), #FFFFFF;
+border-radius: 10px;
+width: 100%;
+height: 200px;
+`
 
+export const ImgNFT = styled.img `
+width: 180px;
+height: 200px;
+position: relative;
+`
+export const LineTop = styled.div `
+width: 100%;
+height: 40px;
+position: relative;
+background: #FFFFFF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 0px 10px 0px 0px;
+`
+export const ImagePreview = styled.div `
+height: 36px;
+position:absolute;
+background: rgba(35, 36, 40, 0.5);
+border-radius: 0px 0px 0px 10px;
+width: 180px;
+bottom: 0;
+justify-content: center;
+align-items: center;
+display: flex;
+`
+export const ImageEye = styled.img `
+height: 20px;
+margin-right: 10px;
+`
+export const TextPreview = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #FFFFFF;
+`
 
+export const TextNameNFT = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #232428;
+padding-top: 10px;
+padding-right: 20px;
+`
 
 
 /*
