@@ -140,19 +140,10 @@ export const PageTitle = styled.h1`
   color: #232428;
   margin: 40px 0 20px;
 `
-export const ArticleText = styled.p`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #232428;
-`
-export const ArticleHead = styled.h2`
+export const SubTitle = styled.h2`
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
   color: #232428;
-`
-
-
-
+`;
 export default GlobalStyle;
