@@ -31,12 +31,14 @@ export const ImageWrap = styled.div `
   position: relative;
   height: 215px;
 `
+export const TextSpan = styled.span `
+  line-height: 10px;
+`
 export const Image = styled.img `
   width: 100%;
   object-fit: cover;
   height: 100%;
 `
-
 export const Preview = styled.div `
   cursor: pointer;
   position: absolute;
