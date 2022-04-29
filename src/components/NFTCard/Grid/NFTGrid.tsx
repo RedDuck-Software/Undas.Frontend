@@ -15,6 +15,7 @@ import {
     PriceList,
     PriceItem,
     PriceInEth,
+    TextSpan,
 } from "./NFTGrid.styles";
 import {
     CollectionText,
@@ -92,14 +93,14 @@ const NFTGrid = (props: INFTGrid) => {
                         </Wrapper>
                     </PriceItem>
                     <PriceItem>
-                        <span>Top Offer</span>
+                        <TextSpan>Top Offer</TextSpan>
                         <Wrapper disp="flex" gap="6px">
                             <EthLogo />
                             <PriceInEth>TOP_OFFER</PriceInEth>
                         </Wrapper>
                     </PriceItem>
                     <PriceItem>
-                        <span>Last Sales</span>
+                        <TextSpan>Last Sales</TextSpan>
                         <Wrapper disp="flex" gap="6px">
                             <EthLogo />
                             <PriceInEth>LAST_SALES</PriceInEth>
