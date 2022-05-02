@@ -4,7 +4,9 @@ import { CardImg1, CardImg2, LinkedInIco, TwitterIco } from "./imports"
 
 import {
     CardWrap,
-    TeamCard
+    TeamCard,
+    TeamCardTitle,
+    TeamCardLink
 } from "./TeammateCard.styles";
 
 import { Card, Row, Col, CardGroup, Button} from 'react-bootstrap';
@@ -19,14 +21,14 @@ const TeammateCards = () => {
                 <TeamCard>
                     <Card.Img variant="top" src={CardImg1} />
                     <Card.Body>
-                    <Card.Title>Name</Card.Title>
-                    <Card.Title>Surname</Card.Title>
+                    <TeamCardTitle>Name</TeamCardTitle>
+                    <TeamCardTitle>Surname</TeamCardTitle>
     {/* If you will want some Description
                     <Card.Text>
 
                     </Card.Text> */}
-                    <Button variant="link"><img src={LinkedInIco} alt="icon" /></Button>
-                    <Button variant="link"><img src={TwitterIco} alt="icon" /></Button>
+                    <TeamCardLink href="#"><img src={LinkedInIco} alt="icon" /></TeamCardLink>
+                    <TeamCardLink href="#"><img src={TwitterIco} alt="icon" /></TeamCardLink>
                     </Card.Body>
                 </TeamCard>
                 </Col>
@@ -34,10 +36,10 @@ const TeammateCards = () => {
                 <TeamCard>
                     <Card.Img variant="top" src={CardImg2} />
                     <Card.Body>
-                    <Card.Title>Name</Card.Title>
-                    <Card.Title>Surname</Card.Title>
-                    <Button variant="link"><img src={LinkedInIco} alt="icon" /></Button>
-                    <Button variant="link"><img src={TwitterIco} alt="icon" /></Button>
+                    <TeamCardTitle>Name</TeamCardTitle>
+                    <TeamCardTitle>Surname</TeamCardTitle>
+                    <TeamCardLink href="#"><img src={LinkedInIco} alt="icon" /></TeamCardLink>
+                    <TeamCardLink href="#"><img src={TwitterIco} alt="icon" /></TeamCardLink>
                     </Card.Body>
                 </TeamCard>
                 </Col>

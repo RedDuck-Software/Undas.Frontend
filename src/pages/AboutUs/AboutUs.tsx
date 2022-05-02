@@ -20,15 +20,18 @@ import {
     OurTeamContent,
     Roadmap,
     ArticleText,
-    LinkButton,
     Link,
+    RoadMapContent,
+    AchievementСontainer,
+    ContainerHead,
+    ContainerContent,
+    AchievementСontainerWrap
 } from "./AboutUs.styles";
 
+import Road from "./Roadmap/Road"
 import { ArticleImg } from "./imports";
-
 import AboutSlider from "./Slider/Slider";
-
-import TeammateCards from "./TeammateCard/TeammateCard"
+import TeammateCards from "./TeammateCard/TeammateCard";
 
 const AboutUs = () => {
     return (
@@ -72,14 +75,88 @@ const AboutUs = () => {
                         <OurTeamTitle>
                             <SubTitle>Our Team</SubTitle>
                             <Link href="#" target="_blank">White Paper</Link>
-                            <LinkButton>Download</LinkButton>
                         </OurTeamTitle>
                         <OurTeamContent>
-                        <TeammateCards  />
+                            <TeammateCards  />
                         </OurTeamContent>
                     </OurTeamWrap>
                     <Roadmap>
-
+                        <SubTitle className="align-center">Roadmap</SubTitle>
+                        <RoadMapContent>
+                            <Road />
+                            <AchievementСontainerWrap>
+                                <AchievementСontainer className="left-side first-container">
+                                    <ContainerHead>
+                                        <p>UNDAS v2.0 update</p>
+                                        <span>04 2022</span>
+                                    </ContainerHead>
+                                    <ContainerContent className="left-side">
+                                        <ul className="container-list">
+                                            <li className="checked">added new filters</li>
+                                            <li>set up wallet</li>
+                                            <li>create collection</li>
+                                            <li className="checked">night theme</li>
+                                        </ul>
+                                    </ContainerContent>
+                                </AchievementСontainer>
+                                <AchievementСontainer className="right-side second-container">
+                                    <ContainerHead>
+                                        <p>UNDAS v2.0 update</p>
+                                        <span>04 2022</span>
+                                    </ContainerHead>
+                                    <ContainerContent className="right-side">
+                                        <ul className="container-list">
+                                            <li className="checked">added new filters</li>
+                                            <li>set up wallet</li>
+                                            <li>create collection</li>
+                                            <li className="checked">night theme</li>
+                                        </ul>
+                                    </ContainerContent>
+                                </AchievementСontainer>
+                                <AchievementСontainer className="left-side third-container">
+                                    <ContainerHead>
+                                        <p>UNDAS v2.0 update</p>
+                                        <span>04 2022</span>
+                                    </ContainerHead>
+                                    <ContainerContent className="left-side">
+                                        <ul className="container-list">
+                                            <li className="checked">added new filters</li>
+                                            <li>set up wallet</li>
+                                            <li>create collection</li>
+                                            <li className="checked">night theme</li>
+                                        </ul>
+                                    </ContainerContent>
+                                </AchievementСontainer>
+                                <AchievementСontainer className="right-side fourth-container">
+                                    <ContainerHead>
+                                        <p>UNDAS v2.0 update</p>
+                                        <span>04 2022</span>
+                                    </ContainerHead>
+                                    <ContainerContent className="right-side">
+                                        <ul className="container-list">
+                                            <li className="checked">added new filters</li>
+                                            <li>set up wallet</li>
+                                            <li>create collection</li>
+                                            <li className="checked">night theme</li>
+                                        </ul>
+                                    </ContainerContent>
+                                </AchievementСontainer>
+                                <AchievementСontainer className="left-side fifth-container">
+                                    <ContainerHead>
+                                        <p>UNDAS v2.0 update</p>
+                                        <span>04 2022</span>
+                                    </ContainerHead>
+                                    <ContainerContent className="left-side">
+                                        <ul className="container-list">
+                                            <li className="checked">added new filters</li>
+                                            <li>set up wallet</li>
+                                            <li>create collection</li>
+                                            <li className="checked">night theme</li>
+                                        </ul>
+                                    </ContainerContent>
+                                </AchievementСontainer>
+                            </AchievementСontainerWrap>
+                        </RoadMapContent>
                     </Roadmap>
                 </Container>
             </Background>
