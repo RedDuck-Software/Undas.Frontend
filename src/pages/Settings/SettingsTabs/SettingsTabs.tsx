@@ -2,11 +2,9 @@ import React from "react";
 
 import { Tabs, Tab } from 'react-bootstrap';
 
-import {
-    SettingsTabWrap,
-} from "./SettingsTabs.styles";
-
+import { SettingsTabWrap } from "./SettingsTabs.styles";
 import "./settings-tabs.css"
+import ProfileSettings from "./Profile/ProfileSettings"
 
 const SettingsTabs = () => {
     return (
@@ -15,7 +13,7 @@ const SettingsTabs = () => {
             
                     <Tabs defaultActiveKey="profile" id="settings-tab" className="mb-3">
                         <Tab eventKey="profile" title={<span><i className="profile-icon tab-icon"/>Profile</span>}>
-                            
+                            <ProfileSettings />
                         </Tab>
                         <Tab eventKey="notifications" title={<span><i className="notifications-icon tab-icon"/>Notifications</span>}>
                             
