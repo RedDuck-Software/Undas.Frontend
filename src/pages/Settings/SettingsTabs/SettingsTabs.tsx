@@ -4,34 +4,34 @@ import { Tabs, Tab } from 'react-bootstrap';
 
 import {
     SettingsTabWrap,
-    SettingsTab
 } from "./SettingsTabs.styles";
 
-import { ProfileIcon } from "./imports";
-
+import "./settings-tabs.css"
 
 const SettingsTabs = () => {
     return (
-        <SettingsTabWrap>
-           
-                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                    <SettingsTab eventKey="profile" title={<span><i className="profile-icon"/>Profile</span>}>
-                        
-                    </SettingsTab>
-                    <Tab eventKey="notifications" title="Notifications">
-                        
-                    </Tab>
-                    <Tab eventKey="offers" title="Offers" >
-                        
-                    </Tab>
-                    <Tab eventKey="account-support" title="Account Support" >
-                        
-                    </Tab>
-                    <Tab eventKey="earnings" title="Earnings" >
-                        
-                    </Tab>
-                </Tabs>
-        </SettingsTabWrap>
+        
+            <SettingsTabWrap className="settings-tab-wrap">
+            
+                    <Tabs defaultActiveKey="profile" id="settings-tab" className="mb-3">
+                        <Tab eventKey="profile" title={<span><i className="profile-icon tab-icon"/>Profile</span>}>
+                            
+                        </Tab>
+                        <Tab eventKey="notifications" title={<span><i className="notifications-icon tab-icon"/>Notifications</span>}>
+                            
+                        </Tab>
+                        <Tab eventKey="offers" title={<span><i className="offers-icon tab-icon"/>Offers</span>}>
+                            
+                        </Tab>
+                        <Tab eventKey="account-support" title={<span><i className="support-icon tab-icon"/>Account Support</span>}>
+                            
+                        </Tab>
+                        <Tab eventKey="earnings" title={<span><i className="earnings-icon tab-icon"/>Earnings</span>}>
+                            
+                        </Tab>
+                    </Tabs>
+            </SettingsTabWrap>
+            
     )
 }
 

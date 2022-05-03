@@ -1,0 +1,49 @@
+.tab-icon{
+    width: 20px;
+    height: 16px;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+.profile-icon{
+    background: url(../../../icons/set-profile.svg) no-repeat center / contain;
+}
+.notifications-icon{
+    background:  url(../../../icons/set-notifications.svg) no-repeat center / contain;
+}
+.offers-icon{
+    background: url(../../../icons/set-offers.svg) no-repeat center / contain;
+}
+.support-icon{
+    background: url(../../../icons/set-support.svg) no-repeat center / contain;
+}
+.earnings-icon{
+    background: url(../../../icons/set-earnings.svg) no-repeat center / contain;
+}
+
+#settings-tab .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color: #873DC1;
+    border: 1px solid transparent;
+    border-bottom: 4px solid rgba(135, 61, 193, 0.5);
+}
+#settings-tab .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
+    color: #7C7C7C;
+}
+.settings-tab-wrap{
+    background: #FBF5FF;
+    box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.5);
+    border-radius: 0px 0px 10px 10px;
+}
+.settings-tab-wrap li:first-child .nav-link.active,
+.settings-tab-wrap ul{
+    border-radius: 0 0 0 10px;
+}
+.settings-tab-wrap .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border: 1px solid transparent;
+    outline: none;
+    color: #873DC1;
+}
+.settings-tab-wrap .nav-tabs .nav-link:focus, .nav-tabs .nav-link.active:hover{
+    border-bottom: 4px solid rgba(135, 61, 193, 0.5);
+}
