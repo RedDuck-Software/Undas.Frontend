@@ -21,10 +21,18 @@ import {
     RequiredField,
     CheckboxBlock,
     CheckboxInput,
-    CheckboxLabel
+    CheckboxLabel,
+    BottomBlock,
+    InputGroup,
+    AdressInput,
+    CopyButton,
+    FormButton
+
 } from "./ProfileSettings.styles";
 
 import { BannerIcon } from "./imports";
+
+import "./profile.css"
 
 const ProfileSettings = () => {
     return (
@@ -53,10 +61,10 @@ const ProfileSettings = () => {
                 <LinksWrap>
                     <BlockTitle>Links</BlockTitle>
                     <InputList>
-                        <InputItem placeholder="Your Twitter Handle"></InputItem>
-                        <InputItem placeholder="Your Discord Handle"></InputItem>
-                        <InputItem placeholder="Your Instagram Handle"></InputItem>
-                        <InputItem placeholder="Yoursite.io"></InputItem>
+                        <InputItem placeholder="Your Twitter Handle" className="twitter" />
+                        <InputItem placeholder="Your Discord Handle" className="discord" />
+                        <InputItem placeholder="Your Instagram Handle" className="instagram" />
+                        <InputItem placeholder="Yoursite.io" className="yoursite" />
                     </InputList>
                 </LinksWrap>
                 <InformationWrap>
@@ -68,15 +76,15 @@ const ProfileSettings = () => {
                 <BlockDescript><span className="require-asterisk">*</span>Required fields</BlockDescript>
                 <RequiredField>
                     <BlockTitle>Username<span className="require-asterisk">*</span></BlockTitle>
-                    <InputItem placeholder="Enter username"></InputItem>
+                    <InputItem placeholder="Enter username" />
                 </RequiredField>
                 <RequiredField>
                     <BlockTitle>E-mail<span className="require-asterisk">*</span></BlockTitle>
-                    <InputItem placeholder="Enter email" type="email"></InputItem>
+                    <InputItem placeholder="Enter email" type="email" />
                 </RequiredField>
                 <RequiredField>
                     <BlockTitle>Telegram<span className="require-asterisk">*</span></BlockTitle>
-                    <InputItem placeholder="Enter telegram"></InputItem>
+                    <InputItem placeholder="Enter telegram" />
                 </RequiredField>
             </RequiredFieldsWrap>
             <CheckboxBlock>
@@ -85,6 +93,17 @@ const ProfileSettings = () => {
                 <CheckboxInput type="checkbox" id="purchases" className="custom-checkbox"/>
                 <CheckboxLabel htmlFor="purchases">I agree to get notifications of purchases and sales</CheckboxLabel>
             </CheckboxBlock>
+            <BottomBlock>
+                <BlockTitle>Wallet Address</BlockTitle>
+                <InputGroup>
+                    <AdressInput className="parent">
+                    <InputItem placeholder="0x5d46cb693bd0d1585d1de9823cb6b488281cc99c" className="adress-input"/>
+                    <CopyButton className="copy-btn"/>
+                    </AdressInput>
+                    <FormButton>Save</FormButton>
+                    <FormButton>Back</FormButton>
+                </InputGroup>
+            </BottomBlock>
         </ProfileWrap>
     )
 }

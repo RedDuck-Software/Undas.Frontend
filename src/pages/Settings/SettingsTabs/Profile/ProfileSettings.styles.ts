@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { TwitterIco, SiteIco, DiscordIco, InstagramIco } from "./imports";
 
-export const ProfileWrap = styled.div `
+export const ProfileWrap = styled.form `
     padding: 30px 0 120px;
 `;
 export const BannerWrap = styled.div `
@@ -92,13 +92,12 @@ export const InputItem = styled.input`
     margin-bottom: 10px;
     border-radius: 10px;
     padding: 10px 20px;
-    background: #fff url(./twitter.svg);
     color: #232428;
     position: relative;
     width: 100%;
+    font-size: 14px;
     &::placeholder{
         color: #7C7C7C;
-        font-size: 14px;
     }
     &:focus{
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
@@ -116,9 +115,9 @@ export const InformationTextArea = styled.textarea`
     width: 100%;
     min-height: 80px;
     padding: 10px;
+    font-size: 14px;
     &::placeholder{
         color: #7C7C7C;
-        font-size: 14px;
     }
     &:focus{
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
@@ -143,6 +142,7 @@ export const CheckboxBlock = styled.form`
 `;
 export const CheckboxInput = styled.input`
     margin-right: 5px;
+    
     &.custom-checkbox{
         position: absolute;
         z-index: -1;
@@ -167,7 +167,7 @@ export const CheckboxInput = styled.input`
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50%;
-    
+    background-color: #ffffff;
     }
     &.custom-checkbox:checked+label::before{
         background-color: #ffffff;
@@ -186,12 +186,63 @@ export const CheckboxInput = styled.input`
     
     &.custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-        background-color: #ffffff;
     }
 `;
 export const CheckboxLabel = styled.label`
     width: 100%;
     &:hover{
         text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+    }
+`;
+export const BottomBlock = styled.div`
+    margin-top: 20px;
+`;
+export const InputGroup = styled.form`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+export const AdressInput = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-radius: 10px;
+    margin-right: 20px;
+    &:focus-within{
+        box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    }
+    & .adress-input{
+        border-right: none;
+        border-radius: 10px 0 0 10px;
+        margin-bottom: 0;
+        width: 380px;
+        padding-right: 0;
+        text-overflow: ellipsis;
+        &:focus{
+            box-shadow: none;
+        }
+    }
+`;
+export const CopyButton = styled.button`
+  width: 70px;
+  border-left: none;
+  border-top: 1px solid rgba(124, 124, 124, 0.5);
+  border-bottom: 1px solid rgba(124, 124, 124, 0.5);
+  border-right: 1px solid rgba(124, 124, 124, 0.5);
+  border-radius: 0 10px 10px 0;
+  background-color: #fff;
+  outline: none;
+`;
+export const FormButton = styled.button`
+    background: #FFFFFF;
+    border: 1px solid #873DC1;
+    border-radius: 10px;
+    color: #873DC1;
+    padding: 7px 37px;
+    margin-left: 25px;
+    &:hover{
+        color: #FFFFFF;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
+        border: 1px solid transparent;
     }
 `;

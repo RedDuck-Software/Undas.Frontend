@@ -1,0 +1,19 @@
+input.twitter{
+    background: #fff url(../../../../icons/twitter-dropdown.svg) no-repeat 20px center;
+    padding-left: 55px;
+}
+input.discord{
+    background: #fff url(../../../../icons/discord-dropdown.svg) no-repeat 20px center;
+    padding-left: 55px;
+}
+input.instagram{
+    background: #fff url(../../../../icons/instagram-dropdown.svg) no-repeat 20px center;
+    padding-left: 55px;
+}
+input.yoursite{
+    background: #fff url(../../../../icons/yoursite.svg) no-repeat 20px center;
+    padding-left: 55px;
+}
+.copy-btn{
+    background: url(../../../../icons/copy.svg) no-repeat center;
+}
