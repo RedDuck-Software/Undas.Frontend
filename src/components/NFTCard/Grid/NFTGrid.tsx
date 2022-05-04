@@ -67,7 +67,7 @@ const NFTGrid = (props: INFTGrid) => {
             </ImageWrap>
             <BuyingBlock>
                 <LeftBlock>
-                    <TagName>Returne {props.tokenId}</TagName>
+                    <TagName>Returne #{props.tokenId}</TagName>
                     <BuyBtn
                         onClick={(e) => {
                             e.stopPropagation()
@@ -96,14 +96,14 @@ const NFTGrid = (props: INFTGrid) => {
                         <TextSpan>Top Offer</TextSpan>
                         <Wrapper disp="flex" gap="6px">
                             <EthLogo />
-                            <PriceInEth>TOP_OFFER</PriceInEth>
+                            <PriceInEth>3,00008</PriceInEth>
                         </Wrapper>
                     </PriceItem>
                     <PriceItem>
                         <TextSpan>Last Sales</TextSpan>
                         <Wrapper disp="flex" gap="6px">
                             <EthLogo />
-                            <PriceInEth>LAST_SALES</PriceInEth>
+                            <PriceInEth>3</PriceInEth>
                         </Wrapper>
                     </PriceItem>
                 </PriceList>

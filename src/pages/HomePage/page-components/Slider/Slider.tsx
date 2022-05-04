@@ -11,9 +11,23 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './HeroSlides.css'
+import collectionImg from '../../images/image-home/collectionImg.svg'
+
 import {SliderBG} from "./imports";
 import {
-    SliderImage
+    SliderImage,
+    UndasDiv,
+    TextGet,
+    TextUndas,
+    TextStacking,
+    UndasDivForBotton,
+    ExploreButton,
+    CreateButton,
+    CollectionDiv,
+    ImgNFTSmall,
+    IMGdiv,
+    CollectionTitle,
+    SeeCollection,
 } from "./Slider.styles";
 
 const Slider = () => {
@@ -29,13 +43,54 @@ const Slider = () => {
             navigation={true}
             pagination={true}
         >
+
+
             <SwiperSlide>
+            <UndasDiv>
+                <TextGet>Get passive income from your NFT with </TextGet> <TextUndas>UNDAS</TextUndas><br></br>
+                <TextStacking>Stacking, Renting, Creating, Trading and Exchanging NFT</TextStacking>
+            </UndasDiv>
+            <UndasDivForBotton>
+                <ExploreButton>Explore</ExploreButton> 
+                <CreateButton>Create</CreateButton> 
+            </UndasDivForBotton>
+            <CollectionDiv>
+            <IMGdiv></IMGdiv>
+            <CollectionTitle>Collection Title</CollectionTitle>
+            <SeeCollection>See collection...</SeeCollection>
+            </CollectionDiv>
                 <SliderImage src={SliderBG} alt="slider-image"/>
             </SwiperSlide>
             <SwiperSlide>
+            <UndasDiv>
+                <TextGet>Get passive income from your NFT with </TextGet> <TextUndas>UNDAS</TextUndas><br></br>
+                <TextStacking>Stacking, Renting, Creating, Trading and Exchanging NFT</TextStacking>
+            </UndasDiv>
+            <UndasDivForBotton>
+                <ExploreButton>Explore</ExploreButton> 
+                <CreateButton>Create</CreateButton> 
+            </UndasDivForBotton>
+            <CollectionDiv>
+            <IMGdiv></IMGdiv>
+            <CollectionTitle>Collection Title</CollectionTitle>
+            <SeeCollection>See collection...</SeeCollection>
+            </CollectionDiv>
                 <SliderImage src={SliderBG} alt="slider-image"/>
             </SwiperSlide>
             <SwiperSlide>
+            <UndasDiv>
+                <TextGet>Get passive income from your NFT with </TextGet> <TextUndas>UNDAS</TextUndas><br></br>
+                <TextStacking>Stacking, Renting, Creating, Trading and Exchanging NFT</TextStacking>
+            </UndasDiv>
+            <UndasDivForBotton>
+                <ExploreButton>Explore</ExploreButton> 
+                <CreateButton>Create</CreateButton> 
+            </UndasDivForBotton>
+            <CollectionDiv>
+            <IMGdiv></IMGdiv>
+            <CollectionTitle>Collection Title</CollectionTitle>
+            <SeeCollection>See collection...</SeeCollection>
+            </CollectionDiv>
                 <SliderImage src={SliderBG} alt="slider-image"/>
             </SwiperSlide>
         </Swiper>
