@@ -5,7 +5,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 import { SettingsTabWrap } from "./SettingsTabs.styles";
 import "./settings-tabs.css"
 import ProfileSettings from "./Profile/ProfileSettings"
-
+import Notifications from "./Notifications/Notifications"
 const SettingsTabs = () => {
     return (
         
@@ -16,7 +16,7 @@ const SettingsTabs = () => {
                             <ProfileSettings />
                         </Tab>
                         <Tab eventKey="notifications" title={<span><i className="notifications-icon tab-icon"/>Notifications</span>}>
-                            
+                            <Notifications />
                         </Tab>
                         <Tab eventKey="offers" title={<span><i className="offers-icon tab-icon"/>Offers</span>}>
                             
