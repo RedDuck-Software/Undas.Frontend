@@ -194,11 +194,11 @@ const Navbar = () => {
                   className={hovered.create! ? "hovered-create" : ""}
               >Create</StyledLink>
               <DropdownMenu setWidth="170px" left="-3rem">
-                <MenuList to="/">
+                <MenuList to="/create-nft">
                   <AddNFTIco />
                   Add NTF
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/create-collection">
                   <AddCollectionIco />
                   Add Collection
                 </MenuList>
