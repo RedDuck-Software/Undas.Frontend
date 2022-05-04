@@ -240,6 +240,7 @@ export const FormButton = styled.button`
     color: #873DC1;
     padding: 7px 37px;
     margin-left: 25px;
+    transition: all .3s;
     &:hover{
         color: #FFFFFF;
         background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
