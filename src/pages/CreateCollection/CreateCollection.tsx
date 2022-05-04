@@ -15,7 +15,7 @@ import {
   CreateFormGroup,
   CreateLabel,
   CreateInput,
-} from "./Create.styles";
+} from "./CreateCollection.styles";
 import { ethers } from "ethers";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
@@ -27,7 +27,7 @@ type CreateSubmitForm = {
   description: string;
 };
 
-const Create = () => {
+const CreateCollection = () => {
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   let { account } = web3ReactState;
@@ -72,7 +72,7 @@ const Create = () => {
     <Background>
       <CreateSec>
         <CreateContainer>
-          <CreateTitle>Create New Item</CreateTitle>
+          <CreateTitle>Create Collection</CreateTitle>
           <CreateForm>
             <CreateFormGroup>
               <CreateLabel htmlFor="content-url">Content URL</CreateLabel>
@@ -117,4 +117,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateCollection;

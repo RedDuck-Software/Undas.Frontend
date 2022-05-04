@@ -25,7 +25,8 @@ import {
     StakingPage,
     ExplorePage,
     RentNFTPage,
-    Create,
+    CreateNFT,
+    CreateCollection,
     Categories,
     Faq,
     CollectionPage, 
@@ -97,7 +98,8 @@ const App = () => {
                     <Route path="/assets/new" element={<NewNFTs/>}/>
                     <Route path="/listing" element={<Listing/>}/>
                     <Route path="/staking" element={<StakingPage/>}/>
-                    <Route path="/create" element={<Create/>}/>
+                    <Route path="/create-nft" element={<CreateNFT/>}/>
+                    <Route path="/create-collection" element={<CreateCollection/>}/>
                     <Route path="/explore/art" element={<ExplorePage pageType="Art"/>}/>
                     <Route path="/productforsale/:id" element={<ProductForSale/>}/>
                     <Route path="/categories" element={<Categories/>}/>
