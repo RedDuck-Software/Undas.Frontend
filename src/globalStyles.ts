@@ -87,7 +87,7 @@ export const Background = styled.div`
   url(${RBackground}),
   url(${LRBackground2});
   background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: left 0 top 8rem, right 0 top 88rem, left 0 bottom 1rem;
+  background-position: left 0 top 150px, right 0 top 1450px, left 0 top 2150px;
   
 
   @media (max-width: 1099px) {
