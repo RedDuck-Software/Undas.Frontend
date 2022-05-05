@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { Background, Button } from "../../globalStyles";
+import { Background } from "../../globalStyles";
 
-import {
+import { 
   CreateSec,
   CreateContainer,
   CreateTitle,
@@ -18,18 +18,28 @@ import {
   BlockDescript,
   AddImgButton,
   CreateTextArea,
-  CreateSelect
+  CreateSelect,
+  ModalTitle,
+  ModalButton,
+  ModalBlockDescript,
+  ModalBlock,
+  SwitcherBlock,
+  SwitcherTitle,
+  FormButton
 } from "./CreateNFT.styles";
 import { ethers } from "ethers";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
 import { useWeb3React } from "@web3-react/core";
-import { ImgIcon } from "./imports"; 
+import { ImgIcon, PropertiesIco, LevelsIco, StatsIco, UnlockableContentIco, ExplicitContentIco } from "./imports"; 
+import Switcher from "./page-components/Switcher/Switcher";
 
 type CreateSubmitForm = {
   externalLink: string;
   name: string;
   description: string;
+  supply: string;
+  freezeMetadata: string;
 };
 
 const CreateNFT = () => {
@@ -40,6 +50,8 @@ const CreateNFT = () => {
   const [externalLink, setExternalLink] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [supply, setSupply] = useState("");
+  const [freezeMetadata, setFreezeMetadata] = useState("");
 
   const validationSchema = Yup.object().shape({
     contentURL: Yup.string().required("External Link is required"),
@@ -92,7 +104,7 @@ const CreateNFT = () => {
               <CreateLabel htmlFor="name">Name<span className="require-asterisk">*</span></CreateLabel>
               <CreateInput
                 type="text"
-                id="text"
+                id="name"
                 placeholder="Item name"
                 maxLength={25}
                 required
@@ -106,7 +118,7 @@ const CreateNFT = () => {
               <BlockDescript>UNDAS will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details</BlockDescript>
               <CreateInput
                 type="text"
-                id="text"
+                id="external-link"
                 placeholder="https://yoursite.io/item/123"
                 {...register("externalLink")}
                 value={externalLink}
@@ -118,25 +130,95 @@ const CreateNFT = () => {
               <BlockDescript>The description will be included on the item's detail page underneath its image. Markdown syntax is supported</BlockDescript>
               <CreateTextArea
                 placeholder="Provide a detailed description of your item"
-                id="text"
+                id="description"
                 maxLength={500}
                 {...register("description")}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateSelect aria-label="">
+            <CreateFormGroup className="collection">
+              <CreateLabel htmlFor="collection" className="collection-label">Collection</CreateLabel>
+              <CreateSelect aria-label="" id="collection">
                 <option>Select collection</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </CreateSelect>
+              <BlockDescript>This is the collection where your item will appear</BlockDescript>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <ModalTitle> 
+                <PropertiesIco /> Properties
+              </ModalTitle>
+              <ModalBlock>
+                <ModalBlockDescript>Textual traits that show up as rectangles</ModalBlockDescript>
+                <ModalButton>+</ModalButton>
+              </ModalBlock>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <ModalTitle> 
+                <LevelsIco /> Levels
+              </ModalTitle>
+              <ModalBlock>
+                <ModalBlockDescript>Numerical traits that show as a progress bar</ModalBlockDescript>
+                <ModalButton>+</ModalButton>
+              </ModalBlock>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <ModalTitle> 
+                <StatsIco /> Stats
+              </ModalTitle>
+              <ModalBlock>
+                <ModalBlockDescript>Numerical traits that just show as numbers</ModalBlockDescript>
+                <ModalButton>+</ModalButton>
+              </ModalBlock>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <SwitcherBlock>
+                <SwitcherTitle> 
+                  <UnlockableContentIco /> Unlockable Content
+                </SwitcherTitle>
+                <Switcher/>
+              </SwitcherBlock>
+                <BlockDescript>Include unlockable content that can only be revealed by the owner of the item</BlockDescript>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <SwitcherBlock>
+                <SwitcherTitle> 
+                  <ExplicitContentIco /> Explicit & Sensitive Content
+                </SwitcherTitle>
+                <Switcher/>
+              </SwitcherBlock>
+                <BlockDescript>Set this item as explicit and sensitive content</BlockDescript>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="supply">Supply</CreateLabel>
+              <BlockDescript>The number of items that can be minted. No gas cost to you! </BlockDescript>
+              <CreateInput
+                type="text"
+                id="supply"
+                placeholder="1"
+                {...register("supply")}
+                value={supply}
+                onChange={(e) => setSupply(e.target.value)}
+              />
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="freeze-metadata">Freeze metadata</CreateLabel>
+              <BlockDescript>Freezing your metadata will allow you to permanently lock and store all of this item's content in decentralized file storage</BlockDescript>
+              <CreateInput
+                type="text"
+                id="freeze-metadata"
+                placeholder="To freeze your metadata, you must create your item first"
+                {...register("freezeMetadata")}
+                value={freezeMetadata}
+                onChange={(e) => setFreezeMetadata(e.target.value)}
+              />
             </CreateFormGroup>
           </CreateForm>
-          <Button violet onClick={bid}>
-            Mint
-          </Button>
+          <FormButton>Create</FormButton>
+          <FormButton>Back</FormButton>
         </CreateContainer>
       </CreateSec>
     </Background>

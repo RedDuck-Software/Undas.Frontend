@@ -3,9 +3,9 @@ import React from "react";
 import { Tabs, Tab } from 'react-bootstrap';
 
 import { SettingsTabWrap } from "./SettingsTabs.styles";
-import "./settings-tabs.css"
-import ProfileSettings from "./Profile/ProfileSettings"
-import Notifications from "./Notifications/Notifications"
+import "./settings-tabs.css";
+import ProfileSettings from "./Profile/ProfileSettings";
+import Notifications from "./Notifications/Notifications";
 const SettingsTabs = () => {
     return (
         
