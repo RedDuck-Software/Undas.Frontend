@@ -62,7 +62,7 @@ export const AddImgButton = styled.button `
     margin-bottom: 30px;
     transition: all .3s;
     &:hover{
-        background-color: rgba(124, 124, 124, 0.25);
+        background: linear-gradient(0deg, rgba(124, 124, 124, 0.25), rgba(124, 124, 124, 0.25)), #FFFFFF;
         cursor: pointer;
     }
 `;
