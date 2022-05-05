@@ -243,7 +243,7 @@ export const FormButton = styled.button`
     transition: all .3s;
     &:hover{
         color: #FFFFFF;
-        background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
+        background: #873DC1;
         border: 1px solid transparent;
     }
 `;
