@@ -1,0 +1,15 @@
+.modal-wrap .modal-dialog{
+    min-width: 655px;
+    margin: 7.5rem auto;
+  }
+.modal-wrap .modal-content{
+    width: 655px;
+    border-radius: 10px;
+  }
+.modal-wrap .modal-header{
+    border-bottom: none;
+  }
+.modal-wrap .modal-footer{
+    border-top: none;
+    justify-content: flex-start;
+}
