@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {Container} from "../../globalStyles";
 import {ReactComponent as Search} from '../../pages/CollectionPage/assets/search.svg'
-import "./settings-tabs.css"
 
 export const AllNFTContainer = styled(Container) `
   display: flex;

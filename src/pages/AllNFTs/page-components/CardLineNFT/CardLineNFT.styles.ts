@@ -103,6 +103,12 @@ border-left-color: #E2D1FF;
 border-left-style: solid;
 border-left-width: 1px;
 `
+
+
+
+
+
+
 export const RowDown = styled.div `
 height: 36px;
 position: absolute;
@@ -112,6 +118,11 @@ padding-right: 10px;
 bottom: 0;
 border-radius: 0px 0px 10px 0px;
 `
+
+
+
+
+
 export const RowCenter = styled.div `
 height: 160px;
 margin-top: -160px;

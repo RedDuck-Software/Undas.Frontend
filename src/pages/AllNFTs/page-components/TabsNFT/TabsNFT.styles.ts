@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import time from '../../../../images/image-AllNFTPage/time.svg'
-import "./settings-tabs.css"
+import "./tabs-nft.css"
+
+import {  
+  ethereum, } from './imports';
 
 export const InputTypeYourBid = styled.input `
 position: absolute;
@@ -116,4 +119,92 @@ left: 48px;
   position: absolute;
   left: -30px;
 }
+`
+export const RowDown = styled.div `
+height: 36px;
+position: absolute;
+background-color: #ffffff;
+width: 101.16%;
+padding-right: 10px;
+bottom: 0;
+border-radius: 0px 0px 10px 0px;
+`
+export const DivDeposit = styled.div `
+height: 36px;
+width: 25%;
+position: absolute;
+background-color: #ffffff;
+border-left-color: #E2D1FF;
+border-left-style: solid;
+border-left-width: 1px;
+`
+export const DepositText = styled.span `
+position: absolute;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #232428;
+margin-left: 15px;
+margin-top: 11px;
+`
+export const EthereumText = styled.div `
+position: absolute;
+right: 10px;
+top: 11px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #232428;
+
+&:before {
+  content: url(${ethereum});
+  position: absolute;
+  left: -15px;
+}
+`
+export const DivPrice = styled.div `
+height: 36px;
+width: 25%;
+position: absolute;
+background-color: #ffffff;
+border-left-color: #E2D1FF;
+border-left-style: solid;
+border-left-width: 1px;
+left: 25%;
+`
+export const DivPeriod = styled.div `
+height: 36px;
+width: 25%;
+position: absolute;
+background-color: #ffffff;
+border-left-color: #E2D1FF;
+border-left-style: solid;
+border-left-width: 1px;
+left: 50%;
+`
+export const PeriodText = styled.div `
+position: absolute;
+right: 10px;
+top: 11px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #232428;
+`
+export const DivLastSales = styled.div `
+height: 36px;
+width: 25%;
+position: absolute;
+background-color: #ffffff;
+border-left-color: #E2D1FF;
+border-left-style: solid;
+border-left-width: 1px;
+left: 75%;
+border-radius: 0px 0px 10px 0px;
 `

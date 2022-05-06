@@ -53,7 +53,7 @@ const CardLineNFT = () => {
         </RowLine>
         <RowCenter>
         <TabsNFT />
-          <RowDown>
+         {/* <RowDown>
             <DivDeposit>
               <DepositText>Deposit</DepositText>
               <EthereumText>3,000082</EthereumText>
@@ -70,7 +70,7 @@ const CardLineNFT = () => {
               <DepositText>Last Sales</DepositText>
               <EthereumText>3</EthereumText>
             </DivLastSales>
-          </RowDown>
+    </RowDown>*/}
         </RowCenter>
       </div>
     )
