@@ -1,164 +1,10 @@
 import styled from "styled-components";
 import {Container} from "../../globalStyles";
 import {ReactComponent as Search} from '../../pages/CollectionPage/assets/search.svg'
-import { Col, Row } from 'react-bootstrap';
-import ethereum from '../../images/image-AllNFTPage/ethereum.svg'
-import heart from '../../images/image-AllNFTPage/heart.svg'
-
 
 export const AllNFTContainer = styled(Container) `
   display: flex;
   ${Container}
-`
-export const RowLine = styled(Row)`
-background: linear-gradient(0deg, #E2D1FF, #E2D1FF), #FFFFFF;
-border-radius: 10px;
-height: 200px;
-filter: drop-shadow(0px 3px 5px rgba(124, 124, 124, 0.25));
-margin-top: 20px;
-`
-export const ColImg = styled(Col)`
-padding-left: 0px;
-height: 200px;
-width: 15% !important;
-display: contents;
-`
-export const ColTextTop = styled(Col)`
-width: 85% !important;
-height: 40px;
-background: #FFFFFF;
-border-radius: 0px 10px 0px 0px;
-position: relative;
-`
-
-interface IMenuWrap {
-    marg?: string,
-    justifyContent?: string
-}
-
-export const MenuWrap = styled.div<IMenuWrap> `
-  width: 100%;
-  display: flex;
-  justify-content: ${props => props.justifyContent || ''};
-  align-items: center;
-  margin: ${props => props.marg || '64px 0 20px'};
-`
-
-interface IMenuSearch {
-    mw?: string,
-    marginLeft?: string
-}
-
-export const MenuSearchWrap = styled.div<IMenuSearch> `
-  margin-left: ${props => props.marginLeft || '30px'};
-  padding-left: 20px;
-  display: flex;
-  align-items: center;
-  max-width: ${props => props.mw || '410px'};
-  width: 100%;
-  height: 36px;
-  background-color: #fff;
-  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
-  border-radius: 10px;
-  border: none;
-`
-export const SearchIco = styled(Search) `
-  margin-right: 10px;
-`
-export const Input = styled.input `
-  font-weight: 400;
-  font-size: 12px;
-  color: #7C7C7C;
-  border: transparent;
-  background: transparent;
-  padding-right: 0.5rem;
-  outline: none;
-  width: 100%;
-`
-export const ResultsTotal = styled.span `
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #7C7C7C;
-`
-export const SettingsBlock = styled.ul `
-  list-style: none;
-  display: flex;
-  gap: 15px;
-`
-export const ViewOption = styled.div `
-  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
-  border-radius: 10px;
-  height: 36px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-`
-export const ViewButton = styled.button `
-  cursor: pointer;
-  background: #FFFFFF;
-  width: 36px;
-  height: 36px;
-  border: none;
-  box-sizing: border-box;
-  &.grid-active {
-    background-color: #EDD2FF;
-  }
-`
-export const Filter = styled.ul `
-  width: 160px;
-  position: relative;
-  cursor: pointer;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
-  //overflow: hidden;
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #7C7C7C;
-  &.price-active {
-    border-radius: 10px 10px 0 0;
-  }
-  &.event-active {
-    border-radius: 10px 10px 0 0;
-  }
-`
-export const FilterItem = styled.li `
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  transition: all ease-in-out 0.15s;
-`
-
-interface IMenuItem {
-    hover?: boolean
-}
-
-export const MenuItem = styled(FilterItem)<IMenuItem> `
-  &:hover {
-    ${props => props.hover ?
-            'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
-            : ''}
-  }
-`
-export const Arrow = styled.span `
-  margin-top: 4px;
-  border-top: 1px solid #5D3F92;
-  border-left: 1px solid #5D3F92;
-  transform: rotate(45deg);
-  width: 10px;
-  height: 10px;
-  transition: all ease-in-out 0.15s;
-  &.price-active {
-    margin-top: -4px;
-    transform: rotate(-135deg);
-  }
-  &.event-active {
-    margin-top: -4px;
-    transform: rotate(-135deg);
-  }
 `
 export const FilterMenu = styled.ul `
   position: absolute;
@@ -180,14 +26,109 @@ export const FilterMenu = styled.ul `
     opacity: 1;
   }
 `
+export const Arrow = styled.span `
+  margin-top: 4px;
+  border-top: 1px solid #5D3F92;
+  border-left: 1px solid #5D3F92;
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  transition: all ease-in-out 0.15s;
+  &.price-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+  &.event-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+`
 export const FilterTitle = styled.span `
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #5D3F92;
 `
+export const FilterItem = styled.li `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: all ease-in-out 0.15s;
+`
+interface IMenuItem {
+  hover?: boolean
+}
+export const MenuItem = styled(FilterItem)<IMenuItem> `
+&:hover {
+  ${props => props.hover ?
+          'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
+          : ''}
+}
+`
+export const Filter = styled.ul `
+  width: 160px;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+  //overflow: hidden;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+  &.price-active {
+    border-radius: 10px 10px 0 0;
+  }
+  &.event-active {
+    border-radius: 10px 10px 0 0;
+  }
+`
+export const ViewButton = styled.button `
+  cursor: pointer;
+  background: #FFFFFF;
+  width: 36px;
+  height: 36px;
+  border: none;
+  box-sizing: border-box;
+  &.grid-active {
+    background-color: #EDD2FF;
+  }
+`
+export const ViewOption = styled.div `
+  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  height: 36px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+`
 export const SettingsElement = styled.li `
   
+`
+export const SettingsBlock = styled.ul `
+  list-style: none;
+  display: flex;
+  gap: 15px;
+`
+export const ResultsTotal = styled.span `
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #7C7C7C;
+`
+interface IMenuWrap {
+  marg?: string,
+  justifyContent?: string
+}
+
+export const MenuWrap = styled.div<IMenuWrap> `
+width: 100%;
+display: flex;
+justify-content: ${props => props.justifyContent || ''};
+align-items: center;
+margin: ${props => props.marg || '64px 0 20px'};
 `
 export const GridLayout = styled.div `
   /*display: grid;
@@ -205,6 +146,65 @@ export const GridLayout = styled.div `
   grid-gap: 15px;
   grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
   justify-content: space-between;
+`
+
+interface IMenuSearch {
+  mw?: string,
+  marginLeft?: string
+}
+
+export const MenuSearchWrap = styled.div<IMenuSearch> `
+margin-left: ${props => props.marginLeft || '30px'};
+padding-left: 20px;
+display: flex;
+align-items: center;
+max-width: ${props => props.mw || '410px'};
+width: 100%;
+height: 36px;
+background-color: #fff;
+box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+border-radius: 10px;
+border: none;
+`
+export const SearchIco = styled(Search) `
+  margin-right: 10px;
+`
+export const Input = styled.input `
+  font-weight: 400;
+  font-size: 12px;
+  color: #7C7C7C;
+  border: transparent;
+  background: transparent;
+  padding-right: 0.5rem;
+  outline: none;
+  width: 100%;
+`
+
+
+/*
+export const TabShop = styled(Tab)`
+background-image: url(${block});
+background-color: red;
+`
+export const RowLine = styled(Row)`
+background: linear-gradient(0deg, #E2D1FF, #E2D1FF), #FFFFFF;
+border-radius: 10px;
+height: 200px;
+filter: drop-shadow(0px 3px 5px rgba(124, 124, 124, 0.25));
+margin-top: 20px;
+`
+export const ColImg = styled(Col)`
+padding-left: 0px;
+height: 200px;
+width: 15% !important;
+display: contents;
+`
+export const ColTextTop = styled(Col)`
+width: 85% !important;
+height: 40px;
+background: #FFFFFF;
+border-radius: 0px 10px 0px 0px;
+position: relative;
 `
 export const NFTLineStyle = styled.div `
 background: linear-gradient(0deg, #E2D1FF, #E2D1FF), #FFFFFF;
@@ -394,7 +394,22 @@ font-size: 14px;
 line-height: 17px;
 color: #873DC1;
 `
-
+export const ButtonTypeYourBid = styled.button `
+position: absolute;
+background: #FFFFFF;
+border: 1px solid #873DC1;
+border-radius: 10px;
+width: 120px;
+height: 36px;
+bottom: 50px;
+left: 250px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #873DC1;
+`
 export const RowDown = styled.div `
 height: 36px;
 position: absolute;
@@ -481,7 +496,34 @@ border-left-color: #E2D1FF;
 border-left-style: solid;
 border-left-width: 1px;
 left: 75%;
+border-radius: 0px 0px 10px 0px;
 `
+export const SpanSale = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #7C7C7C;
+position: absolute;
+top: 40px;
+left: 48px;
+
+&:before {
+  content: url(${time});
+  position: absolute;
+  left: -30px;
+}
+`*/
+
+
+
+
+
+
+
+
+
 /*
 import { Container } from "../../globalStyles";
 
