@@ -20,12 +20,12 @@ import {
   CreateTextArea,
   CreateSelect,
   ModalTitle,
-  ModalButton,
   ModalBlockDescript,
   ModalBlock,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton
+  FormButton,
+  ButtonsBlock
 } from "./CreateNFT.styles";
 import { ethers } from "ethers";
 import { UndasGeneralNFT__factory } from "../../typechain";
@@ -33,6 +33,11 @@ import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
 import { useWeb3React } from "@web3-react/core";
 import { ImgIcon, PropertiesIco, LevelsIco, StatsIco, UnlockableContentIco, ExplicitContentIco } from "./imports"; 
 import Switcher from "./page-components/Switcher/Switcher";
+import PropertiesModal from "./page-components/SettingsModal/PropertiesModal";
+import LevelsModal from "./page-components/SettingsModal/LevelsModal";
+import StatsModal from "./page-components/SettingsModal/StatsModal";
+
+
 
 type CreateSubmitForm = {
   externalLink: string;
@@ -153,7 +158,7 @@ const CreateNFT = () => {
               </ModalTitle>
               <ModalBlock>
                 <ModalBlockDescript>Textual traits that show up as rectangles</ModalBlockDescript>
-                <ModalButton>+</ModalButton>
+                <PropertiesModal/>
               </ModalBlock>
             </CreateFormGroup>
             <CreateFormGroup>
@@ -162,7 +167,7 @@ const CreateNFT = () => {
               </ModalTitle>
               <ModalBlock>
                 <ModalBlockDescript>Numerical traits that show as a progress bar</ModalBlockDescript>
-                <ModalButton>+</ModalButton>
+                <LevelsModal />
               </ModalBlock>
             </CreateFormGroup>
             <CreateFormGroup>
@@ -171,7 +176,7 @@ const CreateNFT = () => {
               </ModalTitle>
               <ModalBlock>
                 <ModalBlockDescript>Numerical traits that just show as numbers</ModalBlockDescript>
-                <ModalButton>+</ModalButton>
+                <StatsModal />
               </ModalBlock>
             </CreateFormGroup>
             <CreateFormGroup>
@@ -217,8 +222,11 @@ const CreateNFT = () => {
               />
             </CreateFormGroup>
           </CreateForm>
-          <FormButton>Create</FormButton>
-          <FormButton>Back</FormButton>
+          <ButtonsBlock>
+            <FormButton>Create</FormButton>
+            <FormButton>Back</FormButton>
+          </ButtonsBlock>
+
         </CreateContainer>
       </CreateSec>
     </Background>

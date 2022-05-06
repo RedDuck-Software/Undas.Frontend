@@ -122,23 +122,7 @@ export const ModalTitle = styled(CreateLabel)`
     margin: 0 10px 5px 0;
   }
 `;
-export const ModalButton = styled.button`
-  width: 36px;
-  height: 36px;
-  background: #FFFFFF;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  color: #5D3F92;
-  font-size: 40px;
-  line-height: 36px;
-  transition: all .3s;
-  &:hover{
-    background: #FBF5FF;
-  box-shadow: 0px 0px 10px rgba(135, 61, 193, 0.5);
-  }
-`;
+
 export const ModalBlock = styled.div`
   max-width: 400px;
   display: flex;
@@ -162,11 +146,14 @@ export const FormButton = styled.button`
     border-radius: 10px;
     color: #873DC1;
     padding: 7px 37px;
-    margin: 40px 25px 0 0;
+    margin-right: 20px;
     transition: all .3s;
     &:hover{
         color: #FFFFFF;
         background: #873DC1;
         border: 1px solid transparent;
     }
+`;
+export const ButtonsBlock = styled.div`
+margin-top: 40px;
 `;
