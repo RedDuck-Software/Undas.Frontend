@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Container } from '../../globalStyles';
+import { BlockDescript, CreateInput } from '../CreateNFT/CreateNFT.styles';
 
 export const AddImgBlock = styled.div`
 display: flex;
@@ -55,10 +55,19 @@ export const InputItem = styled.input`
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
     }
 `;
-export const CreateForm = styled.form``;
+export const CategoryGroup = styled.div`
+  & .category-label{
+    display: block;
+  }
+`;
 
-export const CreateFormGroup = styled.div``;
+export const CategoryDescript = styled(BlockDescript)`
+  display: inline-block;
+  margin-left: 20px;
+`;
 
-export const CreateLabel = styled.label``;
+export const EarningsInput = styled(CreateInput)`
+  max-width: 255px;
+`;
 
-export const CreateInput = styled.input``;
+export const nput = styled.input``;

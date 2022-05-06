@@ -45,7 +45,10 @@ import {
  AddBannerButton,
  AddBannerBlock,
  InputList,
- InputItem
+ InputItem,
+ CategoryGroup,
+ CategoryDescript,
+ EarningsInput
 } from "./CreateCollection.styles";
 
 import { ethers } from "ethers";
@@ -57,6 +60,7 @@ type CreateSubmitForm = {
   contentURL: string;
   name: string;
   information: string;
+  creatorEarnings: string;
 };
 
 const CreateCollection = () => {
@@ -67,11 +71,13 @@ const CreateCollection = () => {
   const [contentURL, setContentURL] = useState("");
   const [name, setName] = useState("");
   const [information, setInformation] = useState("");
+  const [creatorEarnings, setCreatorEarnings] = useState("");
 
   const validationSchema = Yup.object().shape({
     contentURL: Yup.string().required("URL is required"),
     name: Yup.string().required("Name is required"),
     information: Yup.string().required("Information is required"),
+    creatorEarnings: Yup.string().required("Creator Earnings is required"),
   });
 
   const {
@@ -171,16 +177,19 @@ const CreateCollection = () => {
               />
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel htmlFor="category">Category</CreateLabel>
-              <CreateSelect aria-label="" id="category">
-                <option>Add Category</option>
-                <option value="1">
-                <ArtIcon/>
-                  Artwork
-                </option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CreateSelect>
+              <CategoryGroup>
+                <CreateLabel htmlFor="category" className="category-label">Category</CreateLabel>
+                <CreateSelect aria-label="" id="category">
+                  <option>Add Category</option>
+                  <option value="1">
+                  <ArtIcon/>
+                    Artwork
+                  </option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </CreateSelect>
+                <CategoryDescript>You can select a maximum of one category</CategoryDescript>
+              </CategoryGroup>
             </CreateFormGroup>
             <CreateFormGroup>
                     <CreateLabel>Links</CreateLabel>
@@ -190,6 +199,27 @@ const CreateCollection = () => {
                         <InputItem placeholder="Your Instagram Handle" className="instagram" />
                         <InputItem placeholder="Yoursite.io" className="yoursite" />
                     </InputList>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="earnings">Creator Earnings</CreateLabel>
+              <BlockDescript>Collect a fee when a user re-sells an item you originally created. This is deducted from the final sale price and paid monthly to a payout address of your choosing</BlockDescript>
+              <EarningsInput
+                type="text"
+                id="earnings"
+                placeholder="Percentage fee: e.g. 1.5"
+                {...register("creatorEarnings")}
+                value={creatorEarnings}
+                onChange={(e) => setCreatorEarnings(e.target.value)}
+              />
+            </CreateFormGroup>
+            <CreateFormGroup>
+                <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
+                <BlockDescript>Select the blockchain where you'd like new items from this collection to be added by default</BlockDescript>
+                <CreateSelect aria-label="" id="blockchain">
+                  <option>Ethereum</option>
+                  <option>Two</option>
+                  <option>Three</option>
+                </CreateSelect>
             </CreateFormGroup>
             <CreateFormGroup>
               <SwitcherBlock>
