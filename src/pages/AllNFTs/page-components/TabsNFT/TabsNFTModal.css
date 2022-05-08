@@ -1,0 +1,24 @@
+.modal-make-offer {
+  width: none;
+  margin: 7.5rem auto;
+    max-width: none;
+}
+
+.modal-dialog {
+  max-width: 655px;
+}
+
+.modal-content {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal-header {
+height: 70px;
+background: #FBF5FF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 20px 20px 0px 0px;
+}
+
+.btn-close {
+  padding-right: 27px !important;
+}
