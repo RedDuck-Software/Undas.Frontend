@@ -2,6 +2,8 @@ import styled, { createGlobalStyle } from "styled-components";
 import background from "./images/background-image.png";
 import backgroundRotated from "./images/background-image-rotated.png";
 import LRBackground from "./images/LRBackground.png";
+import RBackground from "./images/RBackground.png";
+import LRBackground2 from "./images/LRBackground.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface GlobalStylesProps {
@@ -81,9 +83,12 @@ export const Button = styled.button<GlobalStylesProps>`
 
 export const Background = styled.div`
   width: 100%;
-  background: url(${LRBackground});
-  background-position: left 0 top 8rem;
-  background-repeat: no-repeat;
+  background: url(${LRBackground}),
+  url(${RBackground}),
+  url(${LRBackground2});
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: left 0 top 150px, right 0 top 1450px, left 0 top 2150px;
+  
 
   @media (max-width: 1099px) {
     background-position: right 40rem top 12rem, left 40rem top 58rem,
@@ -140,19 +145,13 @@ export const PageTitle = styled.h1`
   color: #232428;
   margin: 40px 0 20px;
 `
-export const ArticleText = styled.p`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #232428;
-`
-export const ArticleHead = styled.h2`
+export const SubTitle = styled.h2`
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
   color: #232428;
-`
-
-
-
+  &.align-center{
+    text-align: center;
+  }
+`;
 export default GlobalStyle;

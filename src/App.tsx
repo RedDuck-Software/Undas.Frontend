@@ -25,12 +25,14 @@ import {
     StakingPage,
     ExplorePage,
     RentNFTPage,
-    Create,
+    CreateNFT,
+    CreateCollection,
     Categories,
     Faq,
     CollectionPage, 
     NFTPage,
     AboutUs,
+    Settings
 } from "./pages";
 
 import {
@@ -96,7 +98,8 @@ const App = () => {
                     <Route path="/assets/new" element={<NewNFTs/>}/>
                     <Route path="/listing" element={<Listing/>}/>
                     <Route path="/staking" element={<StakingPage/>}/>
-                    <Route path="/create" element={<Create/>}/>
+                    <Route path="/create-nft" element={<CreateNFT/>}/>
+                    <Route path="/create-collection" element={<CreateCollection/>}/>
                     <Route path="/explore/art" element={<ExplorePage pageType="Art"/>}/>
                     <Route path="/productforsale/:id" element={<ProductForSale/>}/>
                     <Route path="/categories" element={<Categories/>}/>
@@ -122,6 +125,7 @@ const App = () => {
                     <Route path="/rent-nft" element={<RentNFTPage/>} />
                     <Route path="/faq" element={<Faq />} />
                     <Route path="/about-us" element={<AboutUs />} />
+                    <Route path="/settings" element={<Settings />} />
                 </Routes>
             </Context.Provider>
         </MoralisProvider>

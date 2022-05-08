@@ -165,7 +165,7 @@ const Navbar = () => {
                   className={hovered.community! ? "hovered-community" : ""}
               >Community</StyledLink>
               <DropdownMenu setWidth="150px" left="-1.5rem">
-                <MenuList to="/">
+                <MenuList to="/about-us">
                   <AboutIco />
                   About
                 </MenuList>
@@ -173,7 +173,7 @@ const Navbar = () => {
                   <BlogIco/>
                   Blog
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/faq">
                   <FAQIco/>
                   FAQ
                 </MenuList>
@@ -194,11 +194,11 @@ const Navbar = () => {
                   className={hovered.create! ? "hovered-create" : ""}
               >Create</StyledLink>
               <DropdownMenu setWidth="170px" left="-3rem">
-                <MenuList to="/">
+                <MenuList to="/create-nft">
                   <AddNFTIco />
                   Add NTF
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/create-collection">
                   <AddCollectionIco />
                   Add Collection
                 </MenuList>
@@ -235,7 +235,7 @@ const Navbar = () => {
                 <WatchlistIco />
                 Watchlist
               </MenuList>
-              <MenuList to="/">
+              <MenuList to="/settings">
                 <SettingsIco />
                 Settings
               </MenuList>

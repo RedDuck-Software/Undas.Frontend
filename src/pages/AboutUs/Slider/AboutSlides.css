@@ -60,3 +60,6 @@
     width: 20px;
     height: 20px;
 }
+.AboutSwiper .swiper-slide:hover{
+  cursor: pointer;
+}
