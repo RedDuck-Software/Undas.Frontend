@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import time from '../../../../images/image-AllNFTPage/time.svg'
+
 import "./tabs-nft.css"
 
 import {  
   ethereum,
-  und, } from './imports';
+  und,
+  time,
+  hourglass,
+} from './imports';
 
 export const InputTypeYourBid = styled.input `
 position: absolute;
@@ -223,7 +226,6 @@ text-align: center;
 color: #232428;
 width: 100%;
 `
-
 export const ItemText = styled.span `
 font-family: 'Montserrat';
 font-style: normal;
@@ -232,7 +234,6 @@ font-size: 18px;
 line-height: 22px;
 color: #232428;
 `
-
 export const NameNFT = styled.span `
 font-family: 'Montserrat';
 font-style: normal;
@@ -256,7 +257,6 @@ margin-top:10px;
 width: 80px;
 height: 80px;
 border-radius: 10px;
-
 `
 export const NFTImgCol = styled.img `
 width: 100px;
@@ -328,8 +328,6 @@ z-index: 1;
   filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
 }
 `
-
-
 export const AllNftUser = styled.div `
 font-family: 'Montserrat';
 font-style: normal;
@@ -379,10 +377,7 @@ color: #7C7C7C;
 position: absolute;
 left: 38px;
 top: 7px;
-
-
 `
-
 export const ButtonClear = styled.button `
 position: absolute;
 width: 56px;
@@ -439,7 +434,6 @@ border-radius: 10px;
 margin-top: 5px;
 margin-left: 5px;
 `
-
 export const CollectionNftText = styled.span `
 position: absolute;
 font-family: 'Montserrat';
@@ -528,7 +522,6 @@ margin-top: 10px;
 export const BtnRight = styled.img `
 width:36px;
 height:36px;
-
 `
 export const BtnLeft = styled.img `
 width:36px;
@@ -542,7 +535,6 @@ height: 3px;
 background: rgba(124, 124, 124, 0.5);
 margin-left: 60px;
 margin-top: -17px;
-
 `
 export const OfferDiv = styled.div `
 width: 595px;
@@ -553,7 +545,6 @@ margin-right: auto;
 border-top: 1px solid #e6e6e6;
 `
 export const PriceText = styled.span `
-
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 500;
@@ -569,9 +560,8 @@ background: #FFFFFF;
 border-radius: 10px 10px 10px 10px;
 border: 1px solid #e6e6e6;
 width: 100%;
-
+margin-top: 20px;
 `
-
 export const EthText = styled.div `
 font-family: 'Montserrat';
 font-style: normal;
@@ -580,11 +570,181 @@ font-size: 14px;
 line-height: 17px;
 color: #232428;
 position: absolute;
-top: 9px;
+top: 8px;
 
 &:before {
   content: url(${ethereum});
   padding-right: 10px;
 
+}
+`
+export const AmmountInput = styled.input `
+width: 60%;
+height: 36px;
+background: #FFFFFF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border: 1px solid #e6e6e6;
+margin-top: -1px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #7C7C7C;
+padding-left: 20px;
+
+&:focus {
+  outline: none !important;
+  border:3px solid #e6e6e6;;
+  box-shadow:none;
+}
+`
+export const SumUSD = styled.div `
+width: 15%;
+height: 36px;
+background: #FFFFFF;
+border-radius: 0px 0px 0px 0px;
+border: none;
+display: contents;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #7C7C7C;
+`
+export const USDText = styled.span `
+padding-left: 30px;
+
+&:before {
+  content: '$';
+  padding-right: 10px;
+}
+`
+export const DayText = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #7C7C7C;
+position: absolute;
+left: 20px;
+top: 8px;
+`
+export const PmAmText = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+text-align: right;
+color: #7C7C7C;
+padding-left: 220px;
+`
+export const TimeText = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #7C7C7C;
+position: relative;
+padding-left: 45px;
+
+&:before {
+  content: url(${hourglass});
+  left: 20px;
+  position: absolute;
+  top: 0px;
+}
+`
+export const CheckboxInput = styled.input`
+    margin-right: 5px;
+    
+    &.custom-checkbox{
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    &.custom-checkbox+label {
+      margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    position: relative;
+    }
+    &.custom-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #5D3F92;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    background-color: #ffffff;
+    }
+    &.custom-checkbox:checked+label::before{
+        background-color: #ffffff;
+    }
+    &.custom-checkbox:checked+label::after {
+        content: '';
+        width: 6px;
+        height: 8px;
+        border-bottom: 1px solid #5D3F92;
+        border-right: 1px solid #5D3F92;
+        transform: skew(-10deg) rotate(45deg);
+        position: absolute;
+        top: 6px;
+        left: 5px; 
+    }
+    
+    &.custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
+        box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    }
+`
+export const CheckboxLabel = styled.label`
+    width: 100%;
+    &:hover{
+        text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+    }
+`
+export const LinkAgreement = styled.a`
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+text-align: center;
+color: #893AC2;
+text-decoration: none;
+padding-left: 4px;
+
+&:hover{
+  color: #893AC2;
+  text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+}
+`
+export const BtnMakeOffer = styled.button`
+width: 160px;
+height: 36px;
+background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
+border-radius: 10px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+text-align: center;
+color: #FFFFFF;
+
+&:hover{
+  color: #893AC2;
+  text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
 }
 `
