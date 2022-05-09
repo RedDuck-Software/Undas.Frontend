@@ -8,17 +8,7 @@ export const NotificationWrap = styled.div `
 export const NotificationPageTitle = styled(PageTitle)`
   margin: 60px 0 10px;
 `;
-export const DescriptionText = styled.p `
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #7C7C7C;
-    margin-bottom: 0;
-    &.form-descript{
-        padding-left: 3.5rem;
-        margin-top: 5px;
-    }
-`;
+
 export const ItemsForm = styled(Form) `
     margin-top: 60px;
 `;

@@ -6,6 +6,7 @@ import { SettingsTabWrap } from "./SettingsTabs.styles";
 import "./settings-tabs.css";
 import ProfileSettings from "./Profile/ProfileSettings";
 import Notifications from "./Notifications/Notifications";
+import Offers from "./Offers/Offers";
 const SettingsTabs = () => {
     return (
         
@@ -19,7 +20,7 @@ const SettingsTabs = () => {
                             <Notifications />
                         </Tab>
                         <Tab eventKey="offers" title={<span><i className="offers-icon tab-icon"/>Offers</span>}>
-                            
+                            <Offers />
                         </Tab>
                         <Tab eventKey="account-support" title={<span><i className="support-icon tab-icon"/>Account Support</span>}>
                             
