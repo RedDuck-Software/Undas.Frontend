@@ -2,7 +2,7 @@ import React, { FC, useState, useContext } from "react";
 import { Modal, Button, } from "react-bootstrap";
 
 import {
-    SettingsModalWrap,
+    CreateModalWrap,
     ModalButton,
     TitleModal,
     Descriprtion,
@@ -11,7 +11,7 @@ import {
     ModalInput,
     InputButton,
     ModalLabelStraight,
-} from "./SettingsModal.styles";
+} from "./CreateModal.styles";
 
 import {FormButton} from "../../CreateNFT.styles";
 import "./styles.css";
@@ -23,7 +23,7 @@ const LevelsModal = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <SettingsModalWrap>
+        <CreateModalWrap>
             <ModalButton onClick={handleShow}>
             +
             </ModalButton>
@@ -33,16 +33,35 @@ const LevelsModal = () => {
                 <TitleModal>Add Levels</TitleModal>
             </Modal.Header>
             <Modal.Body>
-                <Descriprtion>Properties show up underneath your item, are clickable, and can be filtered in your collection's sidebar</Descriprtion>
+                <Descriprtion>Levels show up underneath your item, are clickable, and can be filtered in your collection's sidebar</Descriprtion>
                 <ModalInputGroup>
-                    <ModalLabel htmlFor="type">Type</ModalLabel>
-                    <ModalInput type="text"
-                    id="type"
-                    placeholder="Character"/>
-                    <ModalLabelStraight htmlFor="name">Name</ModalLabelStraight>
+                    <ModalLabel htmlFor="name">Name</ModalLabel>
                     <ModalInput type="text"
                     id="name"
-                    placeholder="Male"/>
+                    placeholder="strength"/>
+                    <ModalLabelStraight htmlFor="value">Value</ModalLabelStraight>
+                    <ModalInput type="number"
+                    id="value"
+                    placeholder="3"/>
+                    <ModalLabelStraight htmlFor="of">Of</ModalLabelStraight>
+                    <ModalInput type="number"
+                    id="of"
+                    placeholder="5"/>
+                    <InputButton></InputButton>
+                </ModalInputGroup>
+                <ModalInputGroup>
+                    <ModalLabel htmlFor="name">Name</ModalLabel>
+                    <ModalInput type="text"
+                    id="name"
+                    placeholder="strength"/>
+                    <ModalLabelStraight htmlFor="value">Value</ModalLabelStraight>
+                    <ModalInput type="number"
+                    id="value"
+                    placeholder="3"/>
+                    <ModalLabelStraight htmlFor="of">Of</ModalLabelStraight>
+                    <ModalInput type="number"
+                    id="of"
+                    placeholder="5"/>
                     <InputButton></InputButton>
                 </ModalInputGroup>
             </Modal.Body>
@@ -55,7 +74,7 @@ const LevelsModal = () => {
                 </FormButton>
             </Modal.Footer>
             </Modal>
-        </SettingsModalWrap>
+        </CreateModalWrap>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { FC, useState, useContext } from "react";
 import { Modal, Button, } from "react-bootstrap";
 import {
-    SettingsModalWrap,
+    CreateModalWrap,
     ModalButton,
     TitleModal,
     Descriprtion,
@@ -10,7 +10,7 @@ import {
     ModalInput,
     InputButton,
     ModalLabelStraight,
-} from "./SettingsModal.styles";
+} from "./CreateModal.styles";
 
 import {FormButton} from "../../CreateNFT.styles";
 import "./styles.css";
@@ -21,7 +21,7 @@ const PropertiesModal = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <SettingsModalWrap>
+        <CreateModalWrap>
             <ModalButton onClick={handleShow}>
             +
             </ModalButton>
@@ -53,7 +53,7 @@ const PropertiesModal = () => {
                 </FormButton>
             </Modal.Footer>
             </Modal>
-        </SettingsModalWrap>
+        </CreateModalWrap>
     )
 }
 
