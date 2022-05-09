@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SettingsModalWrap = styled.div `
+export const CreateModalWrap = styled.div `
 `;
 
 export const ModalButton = styled.button`
@@ -32,7 +32,12 @@ export const Descriprtion = styled.p `
   line-height: 15px;
   color: #7C7C7C;
 `;
-export const ModalInputGroup = styled.div``;
+export const ModalInputGroup = styled.div`
+  margin-bottom: 10px;
+  &:last-child{
+    margin-bottom: 0;
+  }
+`;
 
 export const ModalLabel = styled.label`
   border: 1px solid rgba(124, 124, 124, 0.5);
@@ -57,7 +62,11 @@ export const ModalInput = styled.input`
     }
     &:focus{
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-    }`;
+    }
+    &[type=number]{
+      width: 12%;
+    }
+`;
 export const InputButton = styled.button`
   padding: 23px 20px 14px 40px;
   border: 1px solid rgba(124, 124, 124, 0.5);
