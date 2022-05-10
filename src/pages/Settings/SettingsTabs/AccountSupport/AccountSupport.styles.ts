@@ -30,3 +30,27 @@ export const AccordionItem = styled(Accordion.Item) `
         text-decoration: none;
     }
 `;
+export const MessageBlock = styled.div `
+    width: 40%;
+    padding: 15px 20px;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid rgba(135, 61, 193, 0.25);
+    border-radius: 10px;
+    margin-top: 20px;
+`;
+
+export const Image = styled.img`
+    display: block;
+    padding-right: 20px;
+`;
+export const MessageText = styled.p `
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #232428;
+
+`;
