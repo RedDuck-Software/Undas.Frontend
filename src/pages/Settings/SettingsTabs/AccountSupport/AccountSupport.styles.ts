@@ -73,7 +73,6 @@ export const AccountSupportCheckboxInput = styled(CheckboxInput)`
     }
 `;
 export const AccountSupportCheckboxLabel = styled(CheckboxLabel)`
-    margin-left: 20px;
 `;
 export const AccountSupportButton = styled(FormButton)`
     color: #FF2A36;
