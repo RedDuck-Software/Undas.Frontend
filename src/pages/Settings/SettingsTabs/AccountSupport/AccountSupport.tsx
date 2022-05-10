@@ -8,9 +8,14 @@ import {
     AccordionItem,
     MessageBlock, 
     Image,
-    MessageText
+    MessageText,
+    AccountSupportSelect,
+    AccountSupportCheckboxInput,
+    AccountSupportCheckboxLabel,
+    AccountSupportButton
 } from "./AccountSupport.styles";
 import { DollarIco } from "./imports";
+import { CheckboxBlock } from "../Profile/ProfileSettings.styles";
 
 
 
@@ -37,6 +42,16 @@ const AccountSupport = () => {
                         <Accordion.Header>Help with a compromised account</Accordion.Header>
                         <Accordion.Body>
                             <DescriptionText>If you believe your account has been compromised, let us know and we can lock your account. This will disable items in your wallet from being bought, sold, or transferred using UNDAS <a href="" className="accordion-text-link">Learn more...</a> here</DescriptionText>
+                            <AccountSupportSelect>
+                                <option>I have unknown transactions on my account</option>
+                                <option>I have everything but believe my account is compromisede</option>
+                                <option>Other</option>
+                            </AccountSupportSelect>
+                            <CheckboxBlock>
+                                <AccountSupportCheckboxInput type="checkbox" id="notary" className="custom-checkbox"/>
+                                <AccountSupportCheckboxLabel htmlFor="notary">I understand I must provide a sworn statement certified by a <a href="#" className="accordion-text-link"> notary public</a> to unlock my account</AccountSupportCheckboxLabel>
+                            </CheckboxBlock>
+                            <AccountSupportButton>Lock account</AccountSupportButton>
                         </Accordion.Body>
                     </AccordionItem>
                     <AccordionItem eventKey="3">

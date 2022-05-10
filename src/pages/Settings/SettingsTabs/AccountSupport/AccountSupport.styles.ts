@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Accordion from 'react-bootstrap/Accordion';
+import { CheckboxInput, CheckboxLabel, FormButton } from "../Profile/ProfileSettings.styles";
 
 export const AccountSupportWrap = styled.div ``;
 
@@ -53,4 +54,35 @@ export const MessageText = styled.p `
     line-height: 17px;
     color: #232428;
 
+`;
+export const AccountSupportSelect = styled.select`
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px 0;
+`;
+export const AccountSupportCheckboxInput = styled(CheckboxInput)`
+    &.custom-checkbox+label {
+        display: inline;
+    }
+    &.custom-checkbox:checked+label::after {
+        top: 2px;
+    }
+`;
+export const AccountSupportCheckboxLabel = styled(CheckboxLabel)`
+    margin-left: 20px;
+`;
+export const AccountSupportButton = styled(FormButton)`
+    color: #FF2A36;
+    border: 1px solid #FF2A36;
+    margin: 20px 0;
+    &:hover{
+        color: #FF2A36;
+        background-color: #fff;
+        box-shadow: 0 0 5px;
+        text-shadow: 0 0 1px;
+    }
 `;
