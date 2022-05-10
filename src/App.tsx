@@ -32,7 +32,8 @@ import {
     CollectionPage, 
     NFTPage,
     AboutUs,
-    Settings
+    Settings,
+    Activity,
 } from "./pages";
 
 import {
@@ -48,6 +49,7 @@ import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import {connect} from "tls";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import Modal from "./components/Modal/Modal";
+import ActivityPage from "./pages/Activity/ActivityPage";
 
 const App = () => {
     let web3Current = useWeb3React();
@@ -106,6 +108,7 @@ const App = () => {
                     <Route path="/collection" element={<CollectionPage/>}/>
                     <Route path="/nft/buy/:id" element={<NFTPage/>}/>
                     <Route path="/nft/sell/:id" element={<NFTPageSell />} />
+                    <Route path="/activity" element={<ActivityPage />} />
                     <Route
                     path="/explore/sport"
                     element={<ExplorePage pageType="Sport"/>}
