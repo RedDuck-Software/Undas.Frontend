@@ -192,6 +192,7 @@ export const CheckboxLabel = styled.label`
     width: 100%;
     &:hover{
         text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+        cursor: pointer;
     }
 `;
 export const BottomBlock = styled.div`
