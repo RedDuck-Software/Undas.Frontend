@@ -16,3 +16,4 @@ export { default as Faq } from "./Faq/Faq";
 export { default as NFTPage } from "./NFTPage/NFTPage";
 export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Settings } from "./Settings/Settings";
+export { default as Activity } from "./Activity/ActivityPage";

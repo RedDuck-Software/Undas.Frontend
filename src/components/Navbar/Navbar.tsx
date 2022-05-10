@@ -150,7 +150,7 @@ const Navbar = () => {
                   <TopCollectionIco />
                   Top Collection
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/activity">
                   <StatisticsIco />
                   Statistics
                 </MenuList>
