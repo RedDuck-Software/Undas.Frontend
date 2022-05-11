@@ -8,7 +8,12 @@ export const NFTWrap = styled.div `
   height: 340px;
   border-radius: 10px;
   overflow: hidden;
-  filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5));
+  border: 1px solid rgba(124,124,124,0.25);
+  transition: all .3s;
+  &:hover{
+    box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
+  }
+  /* filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5)); */
 `
 
 export const Info = styled(Wrapper) `
