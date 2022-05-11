@@ -1,3 +1,8 @@
+.my-tabs {
+    top: -35.2px;
+    position: absolute;
+    right: 70px;
+}
 .tab-figure {
     width: 20px;
     height: 16px;
@@ -13,7 +18,7 @@
     height: 24px;
 }
 
-.nav-tabs .nav-link {
+.my-tabs .nav-link {
 width: 60px;
 height: 36px;
 background: #FFFFFF;
@@ -36,19 +41,13 @@ border-radius: 10px 10px 0px 0px;
     background-position: bottom 0px right 3px;
 }
 
-.nav-tabs .nav-link.active {
-    color: #E2D1FF !important;
+.my-tabs .nav-link.active {
+    color: #E2D1FF;
     background-color: #E2D1FF;
-    border-color: #E2D1FF !important;
+    border-color: #E2D1FF;
 }
 
-.my-tabs {
-    top: -35px;
-    position: absolute;
-    right: 70px;
-}
-
-.nav-link:hover {
+.my-tabs .nav-link:hover {
     border: 1px solid transparent;
     outline: none;
     color: #873DC1;
