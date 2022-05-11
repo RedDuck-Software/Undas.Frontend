@@ -20,7 +20,8 @@ import {
   CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton
+  FormButton,
+  ButtonsBlock
 } from "../CreateNFT/CreateNFT.styles";
 
 import { ImgIcon, 
@@ -231,8 +232,10 @@ const CreateCollection = () => {
                 <BlockDescript>Set this item as explicit and sensitive content</BlockDescript>
             </CreateFormGroup>
           </CreateForm>
-          <FormButton>Create</FormButton>
-          <FormButton>Back</FormButton>
+          <ButtonsBlock>
+            <FormButton>Create</FormButton>
+            <FormButton>Back</FormButton>
+          </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
     </Background>

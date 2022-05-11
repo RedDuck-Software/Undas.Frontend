@@ -3,12 +3,13 @@ import Form from 'react-bootstrap/Form';
 
 import {
     NotificationWrap,
-    DescriptionText,
     NotificationPageTitle,
     FormItemWrapper,
     ItemsForm,
     Button
 } from "./Notifications.styles";
+
+import {DescriptionText} from "../SettingsTabs.styles";
 
 const Notifications = () => {
     return (
