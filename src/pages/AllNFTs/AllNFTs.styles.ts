@@ -202,7 +202,7 @@ export const GridLayout = styled.div `
   flex-wrap: wrap;
   gap: 30px 0;*/
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 30px 15px;
   grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
   justify-content: space-between;
 `
