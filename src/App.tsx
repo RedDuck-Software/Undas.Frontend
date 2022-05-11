@@ -34,6 +34,7 @@ import {
     AboutUs,
     Settings,
     Activity,
+    TopCollectionPage,
 } from "./pages";
 
 import {
@@ -109,6 +110,7 @@ const App = () => {
                     <Route path="/nft/buy/:id" element={<NFTPage/>}/>
                     <Route path="/nft/sell/:id" element={<NFTPageSell />} />
                     <Route path="/activity" element={<ActivityPage />} />
+                    <Route path="/topcollection" element={<TopCollectionPage />} />
                     <Route
                     path="/explore/sport"
                     element={<ExplorePage pageType="Sport"/>}

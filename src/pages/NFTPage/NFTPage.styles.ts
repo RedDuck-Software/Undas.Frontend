@@ -169,7 +169,7 @@ export const BuyBar = styled.li `
 `
 
 export const PriceText = styled.span `
-  margin: 0 0px 0 6px;
+  margin: 0px;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

@@ -146,7 +146,7 @@ const Navbar = () => {
                   className={hovered.activity! ? "hovered-activity" : ""}
               >Activity</StyledLink>
               <DropdownMenu setWidth="146px">
-                <MenuList to="/">
+                <MenuList to="/topcollection">
                   <TopCollectionIco />
                   Top Collection
                 </MenuList>
