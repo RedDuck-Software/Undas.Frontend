@@ -17,7 +17,7 @@ export const FavouriteButton = styled.button `
   height: 36px;
   border: none;
   //box-sizing: border-box;
-  padding: 8px 20px;
+  padding: 4px 20px;
   font-weight: 400;
   font-size: 18px;
   text-align: center;
