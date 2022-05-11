@@ -72,7 +72,7 @@ const OffersMenu:FC = () => {
                     <OffersTd>Item</OffersTd>
                     <OffersTd>Price</OffersTd>
                     <OffersTd>Expiration</OffersTd>
-                    <OffersTd>Fromа</OffersTd>
+                    <OffersTd>From</OffersTd>
                     <OffersTd></OffersTd>
                     <OffersTd></OffersTd>
                     <OffersTd></OffersTd>

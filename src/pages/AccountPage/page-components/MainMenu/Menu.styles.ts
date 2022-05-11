@@ -128,7 +128,7 @@ export const OffersTooltip = styled.div`
 export const AcceptBTN = styled.button`
 background: #873DC1;
 border-radius: 10px;
-width: 80px;
+width: 100px;
 height: 36px;
 font-family: 'Montserrat';
 font-style: normal;
@@ -138,6 +138,12 @@ line-height: 17px;
 text-align: center;
 color: #FFFFFF;
 border-color: #873DC1;
+
+&:hover{
+  color: #873DC1;
+  background: #FFFFFF;
+  border: 1px solid #873DC1;
+  }
 `
 export const MakeOfferBTN = styled.button`
 width: 100px;
@@ -153,9 +159,14 @@ font-size: 14px;
 line-height: 17px;
 text-align: center;
 color: #873DC1;
+
+&:hover{
+  border: 1px solid #873DC1;
+  box-shadow: 0px 0px 10px #873DC1;
+  }
 `
 export const DenyBTN = styled.button`
-width: 80px;
+width: 100px;
 height: 36px;
 box-sizing: border-box;
 background: #FFFFFF;
@@ -168,6 +179,11 @@ font-size: 14px;
 line-height: 17px;
 text-align: center;
 color: #FF2A36;
+
+&:hover{
+  border: 1px solid #FF2A36;
+  box-shadow: 0px 0px 10px #FF2A36;
+  }
 `
 export const WethText = styled.span `
   font-weight: 400;
@@ -186,7 +202,7 @@ font-weight: 400;
 font-size: 16px;
 line-height: 20px;
 color: #232428;
-display: inline-block;;
+display: inline-block;
 
   @media (max-width: 576px) {
     font-size: 14px;
