@@ -1,3 +1,4 @@
+import EthBlack from './assets/eth-black.svg'
 import NFTImage from './assets/nft-image.png'
 import {ReactComponent as LikeIco} from './assets/like-ico.svg'
 import {ReactComponent as CartIco} from './assets/cart-ico.svg'
@@ -50,4 +51,5 @@ export {
     TelegramIco,
     DiscordIco,
     InstagramIco,
+    EthBlack,
 }
