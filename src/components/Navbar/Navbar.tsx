@@ -227,7 +227,7 @@ const Navbar = () => {
                 <ProfileMenuIco />
                 Profile
               </MenuList>
-              <MenuList to="/">
+              <MenuList to="/collection">
                 <MyCollectionIco />
                 My Collections
               </MenuList>
