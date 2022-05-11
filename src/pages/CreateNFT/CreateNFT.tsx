@@ -25,7 +25,8 @@ import {
   SwitcherBlock,
   SwitcherTitle,
   FormButton,
-  ButtonsBlock
+  ButtonsBlock,
+  WithPropertiesBlock
 } from "./CreateNFT.styles";
 import { ethers } from "ethers";
 import { UndasGeneralNFT__factory } from "../../typechain";
@@ -36,7 +37,9 @@ import Switcher from "./page-components/Switcher/Switcher";
 import PropertiesModal from "./page-components/SettingsModal/PropertiesModal";
 import LevelsModal from "./page-components/SettingsModal/LevelsModal";
 import StatsModal from "./page-components/SettingsModal/StatsModal";
-
+import Properties from "./page-components/Properties";
+import Levels from "./page-components/Levels";
+import Stats from "./page-components/Stats";
 
 
 type CreateSubmitForm = {
@@ -160,6 +163,9 @@ const CreateNFT = () => {
                 <ModalBlockDescript>Textual traits that show up as rectangles</ModalBlockDescript>
                 <PropertiesModal/>
               </ModalBlock>
+              <WithPropertiesBlock>
+                <Properties />
+              </WithPropertiesBlock>
             </CreateFormGroup>
             <CreateFormGroup>
               <ModalTitle> 
@@ -169,6 +175,9 @@ const CreateNFT = () => {
                 <ModalBlockDescript>Numerical traits that show as a progress bar</ModalBlockDescript>
                 <LevelsModal />
               </ModalBlock>
+              <WithPropertiesBlock>
+                <Levels />
+              </WithPropertiesBlock>
             </CreateFormGroup>
             <CreateFormGroup>
               <ModalTitle> 
@@ -178,6 +187,9 @@ const CreateNFT = () => {
                 <ModalBlockDescript>Numerical traits that just show as numbers</ModalBlockDescript>
                 <StatsModal />
               </ModalBlock>
+              <WithPropertiesBlock>
+                <Stats />
+              </WithPropertiesBlock>
             </CreateFormGroup>
             <CreateFormGroup>
               <SwitcherBlock>

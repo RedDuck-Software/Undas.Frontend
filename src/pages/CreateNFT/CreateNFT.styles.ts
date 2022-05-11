@@ -157,3 +157,8 @@ export const FormButton = styled.button`
 export const ButtonsBlock = styled.div`
 margin-top: 40px;
 `;
+
+/* Add Properties=Levels=Stats */
+export const WithPropertiesBlock = styled.div`
+  max-width: 475px;
+`;
