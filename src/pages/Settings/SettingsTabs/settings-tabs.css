@@ -22,12 +22,13 @@
     background: url(../../../icons/set-earnings.svg) no-repeat center / contain;
 }
 
-#settings-tab .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+#settings-tab .nav-tabs .nav-item.show .nav-link, 
+#settings-tab .nav-tabs .nav-link.active{
     color: #873DC1;
     border: 1px solid transparent;
     border-bottom: 4px solid rgba(135, 61, 193, 0.5);
 }
-#settings-tab .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
+.settings-tab-wrap .nav-tabs .nav-item.show .nav-link, .settings-tab-wrap .nav-tabs .nav-link{
     color: #7C7C7C;
 }
 .settings-tab-wrap>ul{
@@ -38,11 +39,11 @@
 .settings-tab-wrap li:first-child .nav-link.active{
     border-radius: 0 0 0 10px;
 }
-.settings-tab-wrap .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+.settings-tab-wrap .nav-tabs .nav-link:focus, .settings-tab .nav-tabs .nav-link:hover {
     border: 1px solid transparent;
     outline: none;
     color: #873DC1;
 }
-.settings-tab-wrap .nav-tabs .nav-link:focus, .nav-tabs .nav-link.active:hover{
+.settings-tab-wrap .nav-tabs .nav-link:focus, .settings-tab .nav-tabs .nav-link.active:hover{
     border-bottom: 4px solid rgba(135, 61, 193, 0.5);
 }

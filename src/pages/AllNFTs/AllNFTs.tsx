@@ -8,6 +8,7 @@ import sold from '../../images/image-AllNFTPage/sold.svg'
 import shop from '../../images/image-AllNFTPage/shop.svg'
 import handshake from '../../images/image-AllNFTPage/handshake.svg'
 import heart from '../../images/image-AllNFTPage/heart.svg'
+import CardLineNFT from "./page-components/CardLineNFT/CardLineNFT";
 
 import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
 
@@ -66,6 +67,7 @@ import { GridIco, ListIco } from "./imports";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import TabsNFT from "../AllNFTs/page-components/TabsNFT/TabsNFT";
 
 const AllNFTs: FC = () => {
 
@@ -150,55 +152,9 @@ const AllNFTs: FC = () => {
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
         <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
+       
         <div>
-          <RowLine> 
-            <ColImg>
-              <ImgNFT src={girlNFT}></ImgNFT>
-              <ImagePreview>
-                  <ImageEye src={eye} alt="eye-image" />
-                  <TextPreview>Preview</TextPreview>
-              </ImagePreview>
-            </ColImg>
-            <ColTextTop>
-              <TextNameNFT>Returne by Borya Borya</TextNameNFT>
-              <ImageChecked src={checked} alt="checked-image" />
-              <TextUND>UND</TextUND>
-              <ImageBlock src={block} alt="block-image" />
-              <FigureSold>
-                <ImageSold src={sold} alt="sold-image" />
-              </FigureSold>
-              <FigureShop>
-                <ImageShop src={shop} alt="shop-image" />
-              </FigureShop>
-              <FigureHandshake>
-                <ImageHandshake src={handshake} alt="handshake-image" />
-              </FigureHandshake>
-              <ImageHeart src={heart} alt="heart-image" />
-            </ColTextTop>
-          </RowLine>
-          <RowCenter>
-            <ReturneText>Returne #204</ReturneText>
-            <ButtonRent>Rent</ButtonRent>
-            <ButtonOffer>Make offer</ButtonOffer>
-            <RowDown>
-              <DivDeposit>
-                <DepositText>Deposit</DepositText>
-                <EthereumText>3,000082</EthereumText>
-              </DivDeposit>
-              <DivPrice>
-                <DepositText>Price a Day</DepositText>
-                <EthereumText>3,000082</EthereumText>
-              </DivPrice>
-              <DivPeriod>
-                <DepositText>Period</DepositText>
-                <PeriodText>7 d- 30 d</PeriodText>
-              </DivPeriod>
-              <DivLastSales>
-                <DepositText>Last Sales</DepositText>
-                <EthereumText>3</EthereumText>
-              </DivLastSales>
-            </RowDown>
-          </RowCenter>
+        <CardLineNFT/>
         </div>
       </Wrapper>
     </AllNFTContainer>

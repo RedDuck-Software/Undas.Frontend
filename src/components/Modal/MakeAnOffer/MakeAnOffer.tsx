@@ -19,7 +19,7 @@ import {
     TextPay,
     CheckboxBlock,
     ColoredTextAgreement,
-} from "./BuyNFT.styles";
+} from "./MakeAnOffer.styles";
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
 import { NFTImg, UNDIco } from "../imports";
@@ -32,7 +32,7 @@ import { useToken } from "../../../store";
 import Context from "../../../utils/Context";
 import {ethers} from "ethers";
 
-const BuyNFT: FC = () => {
+const MakeAnOffer: FC = () => {
     const dispatch = useDispatch();
     const tokenId = useSelector(useToken);
     console.log(tokenId);
@@ -52,7 +52,7 @@ const BuyNFT: FC = () => {
     return (
         <WindowWrap>
             <Title>
-                <span>Complete checkout</span>
+                <span>Complete checkout rtgrgr</span>
                 <Close
                     onClick={() => {
                         dispatch(closeModal());
@@ -157,4 +157,4 @@ const BuyNFT: FC = () => {
     );
 };
 
-export default BuyNFT;
+export default MakeAnOffer;

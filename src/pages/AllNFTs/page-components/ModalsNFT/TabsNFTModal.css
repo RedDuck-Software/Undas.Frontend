@@ -1,0 +1,132 @@
+.modal-make-offer {
+  width: none;
+  margin: 7.5rem auto;
+  max-width: none;
+}
+
+.modal-dialog {
+  max-width: 655px;
+}
+
+.modal-content {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal-header {
+height: 70px;
+background: #FBF5FF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 20px 20px 0px 0px;
+}
+
+.btn-close {
+  padding-right: 27px !important;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  background-color: #FBF5FF;
+  border-color: #e6e6e6;
+  height: 36px;
+  margin-top: -3px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: url(../../../../images/image-AllNFTPage/bottom.svg);
+  margin-left: 6em;
+  border-top: none;
+}
+
+.dropdown {
+  width: 25%;
+  display: inline-block;
+}
+
+.btn-dropdown {
+  color: #FBF5FF;
+}
+
+.btn-secondary:hover {
+  color: #873DC1;
+  background-color: #873DC1;
+  border: 1px solid #e6e6e6;
+  box-shadow: none;
+}
+
+.btn-secondary:focus {
+  color: #873DC1;
+  background-color: #873DC1;
+  border: 1px solid #e6e6e6;
+  box-shadow: none;
+}
+
+.dropdown-day {
+  width: 40%;
+}
+
+.dropdown-toggle-day {
+  width: 100%;
+  background-color: #FBF5FF;
+  border-color: #e6e6e6;
+  height: 36px;
+  margin-top: -1px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.dropdown-toggle-day::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: url(../../../../images/image-AllNFTPage/bottom.svg);
+  margin-left: 11em;
+  border-top: none;
+}
+
+.btn-make-offer {
+width: 160px !important;
+height: 36px !important;
+background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
+border-radius: 10px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+text-align: center;
+color: #FFFFFF;
+border: none;
+margin-right: 30px;
+}
+
+.btn-make-offer:hover {
+  color: #873DC1;
+}
+
+.btn-convert {
+width: 160px !important;
+height: 36px !important;
+background: #FFFFFF;
+border: 1px solid #873DC1;
+border-radius: 10px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+text-align: center;
+color: #873DC1;
+}
+
+.btn-convert:hover {
+  color: #FFFFFF;
+  background: #873DC1;
+}
+
+.modal-footer {
+  align-items: center;
+  justify-content: center;
+}
