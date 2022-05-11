@@ -10,14 +10,26 @@ import {
     OffersTooltip,
     OffersTooltipWrap,
     OffersTdText,
-    
+    AcceptBTN,
+    MakeOfferBTN,
+    DenyBTN,
+    WethText,
+    PriceTextETH,
+    SelectedFilters,
+    Filter,
+    FilterImg,
+    FilterName,
+    FilterClose,
+    ClearAll,
 } from "./Menu.styles";
 
 import {
     OffResaivedIco,
     OffMadeIco,
     ItemImg,
-    ItemVerifyIco
+    ItemVerifyIco,
+    filter,
+    close,
 } from '../../imports'
 import {
     OffersTr,
@@ -46,13 +58,24 @@ const OffersMenu:FC = () => {
                     <OffMadeIco />
                 </FilterButton>
             </OfferFilterWrap>
+            <SelectedFilters>
+                <Filter>
+                <FilterImg src={filter} alt="filter-image"/>
+                <FilterName>Borya Fo...</FilterName>
+                <FilterClose src={close} alt="close"/>
+                </Filter>
+               <ClearAll>Clear All</ClearAll> 
+            </SelectedFilters>
             <OffersWrapTable >
                 <OffersHeadTr className='offers-menu-head'>
                     <OffersTd className='first-column'></OffersTd>
                     <OffersTd>Item</OffersTd>
                     <OffersTd>Price</OffersTd>
                     <OffersTd>Expiration</OffersTd>
-                    <OffersTd>From</OffersTd>
+                    <OffersTd>Fromа</OffersTd>
+                    <OffersTd></OffersTd>
+                    <OffersTd></OffersTd>
+                    <OffersTd></OffersTd>
                 </OffersHeadTr>
                 <OffersTr className='offers-menu-row'>
                     <OffersTdText className='first-column'>
@@ -69,15 +92,23 @@ const OffersMenu:FC = () => {
                         <ItemVerifyIco />
                     </OffersTdText>
                     <OffersTdText>
-                        <EtherIcon />
-                        <PriceText>1,2</PriceText>
-                        <OffersText>WETH</OffersText>
+                        <PriceTextETH>1,2</PriceTextETH>
+                        <WethText>WETH</WethText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText>In 20 hours</OffersText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText color="#5D3F92">65BA4F</OffersText>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <AcceptBTN>Accept</AcceptBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <MakeOfferBTN>Make offer</MakeOfferBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <DenyBTN>Deny</DenyBTN>
                     </OffersTdText>
                 </OffersTr>
                 <OffersTr className='offers-menu-row'>
@@ -94,15 +125,23 @@ const OffersMenu:FC = () => {
                         <ItemName>Name</ItemName>
                     </OffersTdText>
                     <OffersTdText>
-                        <EtherIcon />
-                        <PriceText>1,2</PriceText>
-                        <OffersText>WETH</OffersText>
+                        <PriceTextETH>1,2</PriceTextETH>
+                        <WethText>WETH</WethText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText>In 20 hours</OffersText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText color="#5D3F92">65BA4F</OffersText>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <AcceptBTN>Accept</AcceptBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <MakeOfferBTN>Make offer</MakeOfferBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <DenyBTN>Deny</DenyBTN>
                     </OffersTdText>
                 </OffersTr>
                 <OffersTr className='offers-menu-row'>
@@ -119,15 +158,23 @@ const OffersMenu:FC = () => {
                         <ItemName>Name</ItemName>
                     </OffersTdText>
                     <OffersTdText>
-                        <EtherIcon />
-                        <PriceText>1,2</PriceText>
-                        <OffersText>WETH</OffersText>
+                        <PriceTextETH>1,2</PriceTextETH>
+                        <WethText>WETH</WethText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText>In 20 hours</OffersText>
                     </OffersTdText>
                     <OffersTdText>
                         <OffersText color="#5D3F92">65BA4F</OffersText>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <AcceptBTN>Accept</AcceptBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <MakeOfferBTN>Make offer</MakeOfferBTN>
+                    </OffersTdText>
+                    <OffersTdText>
+                        <DenyBTN>Deny</DenyBTN>
                     </OffersTdText>
                 </OffersTr>
             </OffersWrapTable>
