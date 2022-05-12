@@ -16,6 +16,7 @@ import {ReactComponent as ReferralIco} from './assets/referral-ico.svg'
 import {ReactComponent as OffResaivedIco} from './assets/offers-resaived.svg'
 import {ReactComponent as OffMadeIco} from './assets/offers-made.svg'
 import {ReactComponent as ItemVerifyIco} from './assets/verify-ico.svg'
+import {ReactComponent as AchievementsIco} from './assets/achievements-ico.svg'
 
 export { card01,
     card02,
@@ -35,4 +36,5 @@ export { card01,
     OffMadeIco,
     ItemImg,
     ItemVerifyIco,
+    AchievementsIco
 }

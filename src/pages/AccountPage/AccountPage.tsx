@@ -27,6 +27,7 @@ import {
   FavouriteIco,
   RewardIco,
   ReferralIco,
+  AchievementsIco
 } from "./imports";
 //Styles
 import { Container, Background, Button } from "../../globalStyles";
@@ -171,6 +172,10 @@ const AccountPage = () => {
                 <Tab>
                   <ReferralIco />
                   <span>Referral</span>
+                </Tab>
+                <Tab>
+                  <AchievementsIco />
+                  <span>Achievements</span>
                 </Tab>
               </TabsMenu>
             </Wrapper>
