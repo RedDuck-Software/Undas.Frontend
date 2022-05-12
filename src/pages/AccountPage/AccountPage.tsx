@@ -147,7 +147,7 @@ const AccountPage = () => {
         </Banner>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "favourite" && <ASideFilter marginTop="140px" />}
+          {(tab !== "favourite" && tab !== "reward") && <ASideFilter marginTop="140px" />}
           <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
