@@ -37,6 +37,7 @@ import {
   TabsMenu,
   Tab,
   SmallNumber,
+  AccountWrapper
 } from "./AccountPage.styles";
 import {
   Arrow,
@@ -67,6 +68,7 @@ import { GridIco, ListIco } from "../AllNFTs/imports";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
+import RewardMenu from "./page-components/MainMenu/RewardMenu"
 
 const AccountPage = () => {
   const [active, setActive] = useState<any>({
@@ -138,7 +140,7 @@ const AccountPage = () => {
 
   return (
     <>
-      <Wrapper>
+      <AccountWrapper>
         <Banner>
           <img src={AccountBanner} alt="account-banner" />
         </Banner>
@@ -162,7 +164,7 @@ const AccountPage = () => {
                   <FavouriteIco />
                   <span>Favourite</span>
                 </Tab>
-                <Tab>
+                <Tab onClick={() => setTab("reward")}>
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
@@ -175,10 +177,11 @@ const AccountPage = () => {
             {tab === "" && <MainMenu />}
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
+            {tab === "reward" && <RewardMenu />}
 
           </Wrapper>
         </AccountContainer>
-      </Wrapper>
+      </AccountWrapper>
     </>
   );
 };

@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { ReactComponent as Search } from "../../icons/search.svg";
 import {Container} from "../../globalStyles";
 import {Link} from "react-router-dom";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
+export const AccountWrapper = styled(Wrapper) `
+  width: 100%;
+  ${Wrapper}
+`
 
 export const AccountContainer = styled(Container) `
   display: flex;
