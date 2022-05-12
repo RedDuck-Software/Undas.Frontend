@@ -18,8 +18,6 @@ import Context from "../../../../utils/Context";
 import {useMoralis} from "react-moralis";
 import {Navigate} from "react-router-dom";
 import {useWeb3React} from "@web3-react/core";
-import CardLineNFT from "../../../AllNFTs/page-components/CardLineNFT/CardLineNFT";
-import OffersMenu from '../TableFavouriteMenu/OffersMenu';
 
 const FavouriteMenu: FC = () => {
     const [active, setActive] = useState<any>({
@@ -179,11 +177,6 @@ const FavouriteMenu: FC = () => {
                {NFTList?.map((item) => {
                })}
         </GridLayout>
-        <CardLineNFT/>
-        <CardLineNFT/>
-        <CardLineNFT/>
-        <OffersMenu/>
-        
 
     </FavouriteWrap>
     )
