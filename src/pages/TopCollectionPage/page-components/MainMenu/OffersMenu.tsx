@@ -17,24 +17,14 @@ import {
     PercentTextTop,
     PercentTextButtom,
     OffersTr,
-    SelectedFilters,
-    Filter,
-    FilterImg,
-    FilterName,
-    FilterClose,
-    ClearAll,
-    OfferFilterWrap,
-    FilterButton,
-    TextButton,
 } from "./Menu.styles";
 
 import {
     ItemImg,
-    ItemVerifyIco,
-    filter,
-    close,
+    ItemVerifyIco
 } from '../../imports'
 import {
+
     OffersTd,
     OffersHeadTr,
     OffersText,
@@ -48,23 +38,9 @@ import {
 const OffersMenu:FC = () => {
     return (
         <OfferMenuWrap>
-                <OfferFilterWrap>
-                <FilterButton className="offers-active">
-                   <TextButton>All</TextButton> 
-                </FilterButton>
-                <FilterButton>
-                <TextButton>Verified</TextButton> 
-                </FilterButton>
-            </OfferFilterWrap>
-            <SelectedFilters>
-                <Filter>
-                <FilterImg src={filter} alt="filter-image"/>
-                <FilterName>Borya Fo...</FilterName>
-                <FilterClose src={close} alt="close"/>
-                </Filter>
-               <ClearAll>Clear All</ClearAll> 
-            </SelectedFilters>
+     
             <OffersWrapTable >
+            
                 <OffersTr className='offers-menu-row'>
                     <OffersTdText className='first-column'>
                         <ActionText>1</ActionText>
@@ -139,7 +115,7 @@ const OffersMenu:FC = () => {
                     <OffersTdText>
                         <PriceTextW> 
                         <USDPrise>24h Vol</USDPrise>
-                            <PercentTextButtom>100,73%</PercentTextButtom>
+                            <PercentTextButtom>100,00%</PercentTextButtom>
                         </PriceTextW>
                     </OffersTdText>
                 </OffersTr>
