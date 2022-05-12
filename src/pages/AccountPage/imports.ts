@@ -19,6 +19,22 @@ import {ReactComponent as ReferralIco} from './assets/referral-ico.svg'
 import {ReactComponent as OffResaivedIco} from './assets/offers-resaived.svg'
 import {ReactComponent as OffMadeIco} from './assets/offers-made.svg'
 import {ReactComponent as ItemVerifyIco} from './assets/verify-ico.svg'
+import {ReactComponent as AchievementsIco} from './assets/achievements-ico.svg'
+import {ReactComponent as HoldingIco} from './assets/holding-ico.svg'
+import {ReactComponent as StakingIco} from './assets/staking-ico.svg'
+import {ReactComponent as TradingIco} from './assets/trading-ico.svg'
+import {ReactComponent as InformIco} from './assets/inform.svg'
+import {ReactComponent as UndIco} from './assets/und-ico.svg'
+import {ReactComponent as EthIco} from './assets/eth-ico.svg'
+import {ReactComponent as UsdIco} from './assets/usd-ico.svg'
+import {ReactComponent as WethIco} from './assets/weth-ico.svg'
+import {ReactComponent as MaticIco} from './assets/matic-ico.svg'
+import {ReactComponent as BnbIco} from './assets/bnb-ico.svg'
+import {ReactComponent as SolanaIco} from './assets/solana-ico.svg'
+import {ReactComponent as FtmIco} from './assets/ftm-ico.svg'
+import {ReactComponent as AvaxIco} from './assets/avax-ico.svg'
+
+
 
 export { card01,
     card02,
@@ -38,6 +54,20 @@ export { card01,
     OffMadeIco,
     ItemImg,
     ItemVerifyIco,
+    AchievementsIco,
+    HoldingIco,
+    StakingIco,
+    TradingIco,
+    InformIco,
+    UndIco,
+    EthIco,
+    UsdIco,
+    WethIco,
+    MaticIco,
+    BnbIco,
+    SolanaIco,
+    FtmIco,
+    AvaxIco,
     EthBlack,
     filter,
     close,

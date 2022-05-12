@@ -5,6 +5,9 @@ export const Banner = styled.div `
   height: auto;
   overflow: hidden;
   //background-color: hotpink;
+  & img{
+    width: 100%;
+  }
 `
 
 export const Info = styled.div `

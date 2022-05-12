@@ -27,6 +27,7 @@ import {
   FavouriteIco,
   RewardIco,
   ReferralIco,
+  AchievementsIco
 } from "./imports";
 //Styles
 import { Container, Background, Button } from "../../globalStyles";
@@ -37,6 +38,7 @@ import {
   TabsMenu,
   Tab,
   SmallNumber,
+  AccountWrapper
 } from "./AccountPage.styles";
 import {
   Arrow,
@@ -67,6 +69,7 @@ import { GridIco, ListIco } from "../AllNFTs/imports";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
+import RewardMenu from "./page-components/MainMenu/RewardMenu"
 
 const AccountPage = () => {
   const [active, setActive] = useState<any>({
@@ -138,13 +141,13 @@ const AccountPage = () => {
 
   return (
     <>
-      <Wrapper>
+      <AccountWrapper>
         <Banner>
           <img src={AccountBanner} alt="account-banner" />
         </Banner>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "favourite" && <ASideFilter marginTop="140px" />}
+          {(tab !== "favourite" && tab !== "reward") && <ASideFilter marginTop="140px" />}
           <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
@@ -162,7 +165,7 @@ const AccountPage = () => {
                   <FavouriteIco />
                   <span>Favourite</span>
                 </Tab>
-                <Tab>
+                <Tab onClick={() => setTab("reward")}>
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
@@ -170,15 +173,20 @@ const AccountPage = () => {
                   <ReferralIco />
                   <span>Referral</span>
                 </Tab>
+                <Tab>
+                  <AchievementsIco />
+                  <span>Achievements</span>
+                </Tab>
               </TabsMenu>
             </Wrapper>
             {tab === "" && <MainMenu />}
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
+            {tab === "reward" && <RewardMenu />}
 
           </Wrapper>
         </AccountContainer>
-      </Wrapper>
+      </AccountWrapper>
     </>
   );
 };
