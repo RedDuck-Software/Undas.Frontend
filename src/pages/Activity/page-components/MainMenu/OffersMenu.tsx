@@ -14,11 +14,19 @@ import {
     QuantityText,
     TimeText,
     PriceTextW,
+    SelectedFilters,
+    Filter,
+    FilterImg,
+    FilterName,
+    FilterClose,
+    ClearAll,
 } from "./Menu.styles";
 
 import {
     ItemImg,
-    ItemVerifyIco
+    ItemVerifyIco,
+    close,
+    filter,
 } from '../../imports'
 import {
     OffersTr,
@@ -35,7 +43,14 @@ import {
 const OffersMenu:FC = () => {
     return (
         <OfferMenuWrap>
-     
+          <SelectedFilters>
+                <Filter>
+                <FilterImg src={filter} alt="filter-image"/>
+                <FilterName>Borya Fo...</FilterName>
+                <FilterClose src={close} alt="close"/>
+                </Filter>
+               <ClearAll>Clear All</ClearAll> 
+            </SelectedFilters>
             <OffersWrapTable >
                 <OffersHeadTr className='offers-menu-head'>
                     <OffersTd className='first-column'></OffersTd>

@@ -7,6 +7,8 @@ import AccountBanner from './assets/account-banner.png'
 import EthBlack from './assets/eth-black.svg'
 import filter from './assets/filter-photo.svg'
 import close from './assets/close.svg'
+import top from './assets/top.svg'
+import buttom from './assets/buttom.svg'
 import {ReactComponent as Verified} from '../../images/image-collection/verified.svg'
 import {ReactComponent as Copy} from './assets/copy-ico.svg'
 import {ReactComponent as SingOut} from './assets/sign-out.svg'
@@ -41,4 +43,6 @@ export { card01,
     EthBlack,
     filter,
     close,
+    top,
+    buttom,
 }
