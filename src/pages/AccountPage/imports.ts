@@ -4,6 +4,9 @@ import card03 from '../../images/image-cards/card03.png'
 import card04 from '../../images/image-cards/card04.png'
 import ItemImg from '../../images/item-icon.png'
 import AccountBanner from './assets/account-banner.png'
+import EthBlack from './assets/eth-black.svg'
+import filter from './assets/filter-photo.svg'
+import close from './assets/close.svg'
 import {ReactComponent as Verified} from '../../images/image-collection/verified.svg'
 import {ReactComponent as Copy} from './assets/copy-ico.svg'
 import {ReactComponent as SingOut} from './assets/sign-out.svg'
@@ -64,5 +67,8 @@ export { card01,
     BnbIco,
     SolanaIco,
     FtmIco,
-    AvaxIco
+    AvaxIco,
+    EthBlack,
+    filter,
+    close,
 }
