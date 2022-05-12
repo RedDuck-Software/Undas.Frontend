@@ -10,7 +10,6 @@ import ArtIcon from "../../icons/art.png";
 import SportIcon from "../../icons/sport.png";
 import GirlsIcon from "../../icons/girls.png";
 import FurnitureIcon from "../../icons/furniture.png";
-import card01 from '../../images/image-cards/card01.png'
 
 //New Ver
 import {ReactComponent as GridIco} from '../../icons/all-nft/grid.svg'
