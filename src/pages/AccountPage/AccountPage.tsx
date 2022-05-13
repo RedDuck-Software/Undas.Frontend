@@ -69,7 +69,11 @@ import { GridIco, ListIco } from "../AllNFTs/imports";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
-import RewardMenu from "./page-components/MainMenu/RewardMenu"
+import RewardMenu from "./page-components/MainMenu/RewardMenu";
+import Referral from "./page-components/Referral/Referral";
+import Achievements from "./page-components/Achievements/Achievements";
+
+
 
 const AccountPage = () => {
   const [active, setActive] = useState<any>({
@@ -147,7 +151,7 @@ const AccountPage = () => {
         </Banner>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {(tab !== "favourite" && tab !== "reward") && <ASideFilter marginTop="140px" />}
+          {(tab !== "favourite" && tab !== "reward" && tab !== "referral" && tab !== "achievements") && <ASideFilter marginTop="140px" />}
           <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
@@ -169,11 +173,11 @@ const AccountPage = () => {
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
-                <Tab>
+                <Tab onClick={() => setTab("referral")}>
                   <ReferralIco />
                   <span>Referral</span>
                 </Tab>
-                <Tab>
+                <Tab onClick={() => setTab("achievements")}> 
                   <AchievementsIco />
                   <span>Achievements</span>
                 </Tab>
@@ -183,6 +187,8 @@ const AccountPage = () => {
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
+            {tab === "referral" && <Referral />}
+            {tab === "achievements" && <Achievements />}
 
           </Wrapper>
         </AccountContainer>
