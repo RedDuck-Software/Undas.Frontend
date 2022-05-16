@@ -190,7 +190,7 @@ const Navbar = () => {
                 onMouseEnter={() => setHovered({ create: true })}
             >
               <StyledLink
-                  to="/"
+                  to="/create-nft"
                   className={hovered.create! ? "hovered-create" : ""}
               >Create</StyledLink>
               <DropdownMenu setWidth="170px" left="-3rem">
