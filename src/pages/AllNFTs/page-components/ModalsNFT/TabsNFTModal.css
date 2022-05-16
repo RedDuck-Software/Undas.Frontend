@@ -24,26 +24,15 @@ border-radius: 20px 20px 0px 0px;
 }
 
 .dropdown-toggle {
-  width: 100%;
-  background-color: #FBF5FF;
-  border-color: #e6e6e6;
-  height: 36px;
-  margin-top: -3px;
-  border-radius: 10px 0px 0px 10px;
+
 }
 
 .dropdown-toggle::after {
-  display: inline-block;
-  margin-left: 0.255em;
-  vertical-align: 0.255em;
-  content: url(../../../../images/image-AllNFTPage/bottom.svg);
-  margin-left: 6em;
-  border-top: none;
+ 
 }
 
 .dropdown {
-  width: 25%;
-  display: inline-block;
+
 }
 
 .btn-dropdown {
