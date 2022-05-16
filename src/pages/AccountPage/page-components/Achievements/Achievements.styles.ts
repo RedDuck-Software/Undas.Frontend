@@ -178,3 +178,71 @@ line-height: 26px;
 color: #873DC1;
 margin-left: 6px;
 `
+export const TradingRewards = styled.div `
+width: 100%;
+height: 225px;
+background: rgba(255, 255, 255, 0.7);
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 10px 10px 10px 10px;
+margin-top: 40px;
+`
+export const TradingRewardsTitle = styled.div `
+padding-top: 14px;
+padding-left: 30px;
+text-align: left;
+height: 50px;
+background: #FBF5FF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 10px 10px 0px 0px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+color: #5D3F92;
+`
+export const RewardImgTrading = styled.img `
+height: 30px;
+wedth: 30px;
+margin-right: 35px;
+`
+export const TextRewards = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #7C7C7C;
+margin-top: 5px;
+display: inline-block;
+`
+export const TextRewardsFirst = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #7C7C7C;
+margin-top: 24px;
+display: inline-block;
+`
+export const Rewards = styled.div `
+margin-left: 285px;
+`
+export const TradingRewardsSecond = styled.div `
+width: 100%;
+height: 225px;
+background: rgba(255, 255, 255, 0.7);
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 10px 10px 10px 10px;
+margin-top: 20px;
+`
+export const TradingRewardsLast = styled.div `
+width: 100%;
+height: 225px;
+background: rgba(255, 255, 255, 0.7);
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 10px 10px 10px 10px;
+margin-top: 20px;
+margin-bottom: 120px;
+`

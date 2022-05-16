@@ -20,6 +20,14 @@ import {
     DiamondImg,
     DiamondText,
     UndasText,
+    TradingRewards,
+    TradingRewardsTitle,
+    RewardImgTrading,
+    TextRewards,
+    TextRewardsFirst,
+    Rewards,
+    TradingRewardsSecond,
+    TradingRewardsLast,
 } from "./Achievements.styles";
 
 import {
@@ -45,6 +53,7 @@ import {
     goldPeopleReward,
     backImg,
     diamond,
+
 } from "../../imports"
 
 const Achievements = () => {
@@ -94,6 +103,51 @@ const Achievements = () => {
                 <DiamondText>Special diamond award from the platform for contribution to the development of</DiamondText>
                 <UndasText>UNDAS</UndasText>
             </Diamond>
+            <TradingRewards>
+                <TradingRewardsTitle>Trading Rewards (Trade Turnover)</TradingRewardsTitle>
+                <Rewards>  
+                    <RewardImgTrading src={dollarReward} alt="dollar-reward-image"/> <TextRewardsFirst>1 Grade: Trade turnover of 1 ETH or more</TextRewardsFirst><br></br>
+                    <RewardImgTrading src={bronzeDollarReward} alt="dollar-reward-image"/> <TextRewards>2 Grade: Trade turnover of 10 ETH or more</TextRewards><br></br>
+                    <RewardImgTrading src={silverDollarReward} alt="dollar-reward-image"/> <TextRewards>3 Grade: Trade turnover of 100 ETH or more</TextRewards><br></br>
+                    <RewardImgTrading src={goldDollarReward} alt="dollar-reward-image"/> <TextRewards>4 Grade: Trade turnover of 10 000 ETH or more</TextRewards><br></br>
+                </Rewards>
+            </TradingRewards>
+            <TradingRewardsSecond>
+                <TradingRewardsTitle>NFT Staking Rewards (NFT Staking on The Platform)</TradingRewardsTitle>
+                <Rewards>  
+                    <RewardImgTrading src={moneyReward} alt="dollar-reward-image"/> <TextRewardsFirst>1 Grade: Simultaneous Stacking 5 NFT</TextRewardsFirst><br></br>
+                    <RewardImgTrading src={bronzeMoneyReward} alt="dollar-reward-image"/> <TextRewards>2 Grade: Simultaneous Stacking 50 NFT</TextRewards><br></br>
+                    <RewardImgTrading src={silverMoneyReward} alt="dollar-reward-image"/> <TextRewards>3 Grade: Simultaneous Stacking 100 NFT</TextRewards><br></br>
+                    <RewardImgTrading src={goldMoneyReward} alt="dollar-reward-image"/> <TextRewards>4 Grade: Simultaneous Stacking 250 NFT</TextRewards><br></br>
+                </Rewards>
+            </TradingRewardsSecond>
+            <TradingRewardsSecond>
+                <TradingRewardsTitle>Rental Rewards (Only Counts on Commissions)</TradingRewardsTitle>
+                <Rewards>  
+                    <RewardImgTrading src={ethReward} alt="dollar-reward-image"/> <TextRewardsFirst>1 Grade: Rent 1 NFT</TextRewardsFirst><br></br>
+                    <RewardImgTrading src={bronzeEthReward} alt="dollar-reward-image"/> <TextRewards>2 Grade: Rent 25 NFT</TextRewards><br></br>
+                    <RewardImgTrading src={silverEthReward} alt="dollar-reward-image"/> <TextRewards>3 Grade: Rent 100 NFT</TextRewards><br></br>
+                    <RewardImgTrading src={goldEthReward} alt="dollar-reward-image"/> <TextRewards>4 Grade: Rent 500 NFT</TextRewards><br></br>
+                </Rewards>
+            </TradingRewardsSecond>
+            <TradingRewardsSecond>
+                <TradingRewardsTitle>Token Cold Rewards (Holding The Platform Token)</TradingRewardsTitle>
+                <Rewards>  
+                    <RewardImgTrading src={caseReward} alt="dollar-reward-image"/> <TextRewardsFirst>1 Grade: A hold of at least 1 000 UND for 30 days</TextRewardsFirst><br></br>
+                    <RewardImgTrading src={bronzeCaseReward} alt="dollar-reward-image"/> <TextRewards>2 Grade: A hold of at least 1 500 UND for 60 days</TextRewards><br></br>
+                    <RewardImgTrading src={silverCaseReward} alt="dollar-reward-image"/> <TextRewards>3 Grade: A hold of at least 3 000 UND for 90 days</TextRewards><br></br>
+                    <RewardImgTrading src={goldCaseReward} alt="dollar-reward-image"/> <TextRewards>4 Grade: A hold of at least 10 000 UND for 180 days</TextRewards><br></br>
+                </Rewards>
+            </TradingRewardsSecond>
+            <TradingRewardsLast>
+                <TradingRewardsTitle>Rewards for Referred User (Dissemination of Referral Links)</TradingRewardsTitle>
+                <Rewards>  
+                    <RewardImgTrading src={peopleReward} alt="dollar-reward-image"/> <TextRewardsFirst>1 Grade: Bringing 1 user to the site</TextRewardsFirst><br></br>
+                    <RewardImgTrading src={bronzePeopleReward} alt="dollar-reward-image"/> <TextRewards>2 Grade: Bringing 5 user to the site</TextRewards><br></br>
+                    <RewardImgTrading src={silverPeopleReward} alt="dollar-reward-image"/> <TextRewards>3 Grade: Bringing 25 user to the site</TextRewards><br></br>
+                    <RewardImgTrading src={goldPeopleReward} alt="dollar-reward-image"/> <TextRewards>4 Grade: Bringing 50 user to the site</TextRewards><br></br>
+                </Rewards>
+            </TradingRewardsLast>
         </AchievementsWrap>
     )
 }
