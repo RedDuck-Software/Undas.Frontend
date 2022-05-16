@@ -34,7 +34,7 @@ export const MakeComplaint = styled.button `
   font-weight: 400;
   font-size: 18px;
   color: #873DC1;
-  padding: 8px 18px;
+  padding: 6px 18px;
   border: none;
   margin-top: 44px;
   max-height: 36px;

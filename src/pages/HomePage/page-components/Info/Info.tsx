@@ -21,25 +21,25 @@ const Info:FC = () => {
                 <InfoList>
                     <MoneyIco />
                     <InfoText>
-                        earn passive income via NFT Stacking
+                        Earn passive income via NFT Stacking
                     </InfoText>
                 </InfoList>
                 <InfoList>
                     <HandIco />
                     <InfoText>
-                        rent or have your NFT rented
+                        Rent or have your NFT rented
                     </InfoText>
                 </InfoList>
                 <InfoList>
                     <NFTIco />
                     <InfoText>
-                        recieve bonuses from NFT tranding
+                        Recieve bonuses from NFT tranding
                     </InfoText>
                 </InfoList>
                 <InfoList>
                     <SaleIco />
                     <InfoText>
-                        save 50 % on commission
+                        Save 50 % on commission
                     </InfoText>
                 </InfoList>
             </InfoWrap>
