@@ -58,7 +58,7 @@ const Footer = () => {
           <TopicColumn>
             <TopicTitle>Comunity</TopicTitle>
             <TopicText href="about-us">About</TopicText>
-            <TopicText href="#">Blog</TopicText>
+            <TopicText href="blog">Blog</TopicText>
             <TopicText href="#">Social media</TopicText>
             <TopicText href="faq">FAQ</TopicText>
           </TopicColumn> 

@@ -107,7 +107,7 @@ const Navbar = () => {
                     <AllNFTsIcon />
                     All NFTs
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/categories">
                   <NewIcon />
                   New
                 </MenuList>
@@ -123,10 +123,10 @@ const Navbar = () => {
                   <PhotoIco/>
                   Photography
                 </MenuList>
-                <MenuList to="/categories">
+                {/* <MenuList to="/categories">
                   <MetaversesIcon/>
                   Metaverses
-                </MenuList>
+                </MenuList> */}
                 <MenuList to="/categories">
                   <CelebrityIco/>
                   Celebrity
@@ -142,7 +142,7 @@ const Navbar = () => {
                 onMouseEnter={() => setHovered({ activity: true })}
             >
               <StyledLink
-                  to="/"
+                  to="/topcollection"
                   className={hovered.activity! ? "hovered-activity" : ""}
               >Activity</StyledLink>
               <DropdownMenu setWidth="146px">
@@ -169,7 +169,7 @@ const Navbar = () => {
                   <AboutIco />
                   About
                 </MenuList>
-                <MenuList to="/">
+                <MenuList to="/blog">
                   <BlogIco/>
                   Blog
                 </MenuList>

@@ -35,6 +35,7 @@ import {
     Settings,
     Activity,
     TopCollectionPage,
+    Blog
 } from "./pages";
 
 import {
@@ -131,6 +132,7 @@ const App = () => {
                     <Route path="/faq" element={<Faq />} />
                     <Route path="/about-us" element={<AboutUs />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/blog" element={<Blog />} />
                 </Routes>
             </Context.Provider>
         </MoralisProvider>
