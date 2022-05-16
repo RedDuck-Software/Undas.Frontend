@@ -134,7 +134,6 @@ export const ContentTableTd = styled.td `
 `;
 export const PaginationWrap = styled.div `
     width: 100%;
-    
     margin: 40px auto;
     text-align: center;
 `;
@@ -143,10 +142,12 @@ export const ReferralPagination = styled(Pagination)`
     & .page-link{
         border: 1px solid transparent;
         color: #873DC1;
+        border-radius: 10px;
     }
     & .page-item.active .page-link{
         background-color: #873DC1;
         border-color: #873DC1;
+        border-radius: 10px;
     }
     & .page-link:hover{
         background-color: #FBF5FF;
