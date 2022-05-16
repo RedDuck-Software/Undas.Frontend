@@ -18,7 +18,7 @@ export const FavouriteSelect = styled.div `
 export const FavouriteButton = styled.button `
   cursor: pointer;
   background: #FFFFFF;
-  height: 36px;
+  height: 40px;
   border: none;
   padding: 8px 20px;
   font-weight: 400;

@@ -41,6 +41,10 @@ export const Tab = styled.li `
   padding: 10px 20px;
   cursor: pointer;
   color: #232428;
+  &.active{
+    background: #FBF5FF;
+    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
+  }
 `
 
 export const SmallNumber = styled.span `
