@@ -61,6 +61,8 @@ import {
   DivPeriod,
   PeriodText,
   DivLastSales,
+  TabsMenu,
+  Tab
 } from "./AllNFTs.styles";
 
 import { GridIco, ListIco } from "./imports";
@@ -68,6 +70,7 @@ import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import TabsNFT from "../AllNFTs/page-components/TabsNFT/TabsNFT";
+
 
 const AllNFTs: FC = () => {
 
@@ -81,6 +84,9 @@ const AllNFTs: FC = () => {
     console.log(priceFilter);
   }, [active, priceFilter]);
 
+  const [tab, setTab] = useState("grid");
+  console.log(tab);
+
   return (
     <AllNFTContainer>
       <ASideFilter />
@@ -88,8 +94,9 @@ const AllNFTs: FC = () => {
         {/*rm marg after deploy*/}
         <MenuWrap justifyContent="space-between">
           <SettingsBlock>
-            <SettingsElement>
+            {/* <SettingsElement>
               <ViewOption>
+
                 <ViewButton className="grid-active">
                   <GridIco />
                 </ViewButton>
@@ -97,7 +104,7 @@ const AllNFTs: FC = () => {
                   <ListIco />
                 </ViewButton>
               </ViewOption>
-            </SettingsElement>
+            </SettingsElement> */}
             <Filter className={active.price && "price-active"}>
               <FilterItem
                 onClick={() => {
@@ -151,11 +158,21 @@ const AllNFTs: FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
-       
-        <div>
-        <CardLineNFT/>
-        </div>
+        <TabsMenu>
+                <Tab onClick={() => setTab("grid")}>
+                  <ViewButton className="grid-active">
+                    <GridIco />
+                  </ViewButton>
+                </Tab>
+                <Tab onClick={() => setTab("list")}>
+                  <ViewButton>
+                    <ListIco />
+                  </ViewButton>
+                </Tab>
+        </TabsMenu>
+        {tab === "grid" && <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>}
+        {tab === "list" && <CardLineNFT />}
+        
       </Wrapper>
     </AllNFTContainer>
   );
