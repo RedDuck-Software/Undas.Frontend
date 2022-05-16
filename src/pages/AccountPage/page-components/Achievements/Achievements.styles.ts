@@ -144,10 +144,16 @@ text-align: center;
 color: #232428;
 padding-top: 14px;
 `
+export const BackImgSecond = styled.img `
+position: absolute;
+margin-top: 1400px;
+margin-left: -180px;
+z-index: -1;
+`
 export const BackImg = styled.img `
 position: absolute;
 margin-top: 300px;
-margin-left: -120px;
+margin-left: -180px;
 `
 export const Diamond = styled.div `
 margin-top: 40px;
