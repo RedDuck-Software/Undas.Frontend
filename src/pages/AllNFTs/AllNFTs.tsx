@@ -1,18 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Container } from "../../globalStyles";
-import girlNFT from '../../images/image-AllNFTPage/girlNFT.png'
-import eye from '../../images/image-AllNFTPage/eye.svg'
-import checked from '../../images/image-AllNFTPage/checked.svg'
-import block from '../../images/image-AllNFTPage/block.svg'
-import sold from '../../images/image-AllNFTPage/sold.svg'
-import shop from '../../images/image-AllNFTPage/shop.svg'
-import handshake from '../../images/image-AllNFTPage/handshake.svg'
-import heart from '../../images/image-AllNFTPage/heart.svg'
 import CardLineNFT from "./page-components/CardLineNFT/CardLineNFT";
-
-import NFTGrid from "../../components/NFTCard/Grid/NFTGrid";
-
-import { Button, Col, Row } from 'react-bootstrap';
 
 import {
   AllNFTContainer,
@@ -27,40 +14,8 @@ import {
   MenuItem,
   FilterTitle,
   Arrow,
-  ColImg,
   FilterMenu,
-  NFTLineStyle,
-  ImgNFT,
-  LineTop,
-  ColTextTop,
-  RowLine,
   GridLayout,
-  ImagePreview,
-  ImageEye,
-  TextPreview,
-  TextNameNFT,
-  TextUND,
-  ImageChecked,
-  ImageBlock,
-  FigureSold,
-  ImageSold,
-  FigureShop,
-  ImageShop,
-  FigureHandshake,
-  ImageHandshake,
-  ImageHeart,
-  ReturneText,
-  RowCenter,
-  ButtonRent,
-  ButtonOffer,
-  RowDown,
-  DivDeposit,
-  DepositText,
-  EthereumText,
-  DivPrice,
-  DivPeriod,
-  PeriodText,
-  DivLastSales,
   TabsMenu,
   Tab
 } from "./AllNFTs.styles";
