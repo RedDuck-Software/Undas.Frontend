@@ -28,7 +28,7 @@ const Collection:FC = () => {
                     </Wrapper>
                     <CollectionText>by Borya Borya</CollectionText>
                 </div>
-                <Wrapper disp="flex" mw="206px" marg="0 0 0 auto">
+                <Wrapper disp="flex" mw="320px" marg="0 0 0 auto">
                     <CollectionText lh="15px" padd="5px 0">
                         If you believe in the future of DeFi, then you believein the future of rekt.news. Each auction winner will also be sent ...
                     </CollectionText>

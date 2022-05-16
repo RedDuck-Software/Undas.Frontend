@@ -20,6 +20,7 @@ import {
 import {Wrapper} from "../CategoriesPage/Categories.styles";
 //Components
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
+import CardLineNFT from "../AllNFTs/page-components/CardLineNFT/CardLineNFT";
 //Assets
 import {
     CollectionBanner,
@@ -164,6 +165,9 @@ const CollectionPage: FC = () => {
                             </MenuSearchWrap>
                         </MenuWrap>
                         <CollectionGridWrap />
+                        <CardLineNFT/>
+                        <CardLineNFT/>
+                        <CardLineNFT/>
                     </Wrapper>
                 </AllNFTContainer>
             </div>
