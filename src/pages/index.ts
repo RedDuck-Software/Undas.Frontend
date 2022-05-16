@@ -18,3 +18,4 @@ export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Settings } from "./Settings/Settings";
 export { default as Activity } from "./Activity/ActivityPage";
 export { default as TopCollectionPage } from "./TopCollectionPage/TopCollectionPage";
+export { default as Blog } from "./Blog/Blog";

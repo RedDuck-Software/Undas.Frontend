@@ -16,6 +16,7 @@ export const MenuWrap = styled.div<IMenuWrap> `
   display: flex;
   justify-content: ${props => props.justifyContent || ''};
   align-items: center;
+  padding-left: 100px;
   margin: ${props => props.marg || '64px 0 20px'};
 `
 
@@ -180,6 +181,15 @@ export const GridLayout = styled.div `
   grid-gap: 30px 15px;
   grid-template-columns: repeat(auto-fit,minmax(255px,1fr));
   justify-content: space-between;
+`
+export const TabsMenu = styled.ul`
+  display: flex;
+  margin-top: -57px;
+  margin-bottom: 70px;
+  border-radius: 10px;
+`
+export const Tab = styled.li`
+  border-radius: 10px;
 `
 /*
 import { Container } from "../../globalStyles";

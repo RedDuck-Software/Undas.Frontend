@@ -160,7 +160,7 @@ const AccountPage = () => {
                   <span>Created</span>
                   <SmallNumber>2</SmallNumber>
                 </Tab>
-                <Tab onClick={() => setTab("offers")}>
+                <Tab onClick={() => setTab("offers")} className="active">
                   <OffersIco />
                   <span>Offers</span>
                   <SmallNumber>6</SmallNumber>

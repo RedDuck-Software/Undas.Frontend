@@ -42,24 +42,20 @@ const Footer = () => {
             <TopicText href="all">All NFTs</TopicText>
             <TopicText href="assets/new">New</TopicText>
             <TopicText href="explore/art">Artwork</TopicText>
-            <TopicText href="explore/sport">Sport</TopicText>
-            <TopicText href="#">Photography</TopicText>
-            <TopicText href="#">Metaverses</TopicText>
-            <TopicText href="#">Celebrity</TopicText>
-            <TopicText href="#">rwaNFT</TopicText>
+            <TopicText href="categories">Sport</TopicText>
+            <TopicText href="categories">Photography</TopicText>
+            <TopicText href="categories">Celebrity</TopicText>
+            <TopicText href="categories">rwaNFT</TopicText>
           </TopicColumn>
           <TopicColumn>
             <TopicTitle>Activity</TopicTitle>
-            <TopicText href="collection">Top collection</TopicText>
-            <TopicText href="#">Last Sales</TopicText>
-            <TopicText href="#">Listings</TopicText>
-            <TopicText href="#">Offers</TopicText>
+            <TopicText href="topcollection">Top collection</TopicText>
+            <TopicText href="activity">Statistics</TopicText>
           </TopicColumn>
           <TopicColumn>
             <TopicTitle>Comunity</TopicTitle>
             <TopicText href="about-us">About</TopicText>
-            <TopicText href="#">Blog</TopicText>
-            <TopicText href="#">Social media</TopicText>
+            <TopicText href="blog">Blog</TopicText>
             <TopicText href="faq">FAQ</TopicText>
           </TopicColumn> 
         </LeftSideWrapper>
@@ -68,24 +64,19 @@ const Footer = () => {
               <Dropdown.Item href="all" className="dropdown-item">All NFTs</Dropdown.Item>
               <Dropdown.Item href="assets/new">New</Dropdown.Item>
               <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
-              <Dropdown.Item href="#">Sport</Dropdown.Item>
-              <Dropdown.Item href="#">Photography</Dropdown.Item>
-              <Dropdown.Item href="#">Metaverses</Dropdown.Item>
-              <Dropdown.Item href="#">Celebrity</Dropdown.Item>
-              <Dropdown.Item href="#">rwaNFT</Dropdown.Item>
+              <Dropdown.Item href="categories">Sport</Dropdown.Item>
+              <Dropdown.Item href="categories">Photography</Dropdown.Item>
+              <Dropdown.Item href="categories">Celebrity</Dropdown.Item>
+              <Dropdown.Item href="categories">rwaNFT</Dropdown.Item>
             </DropdownButton>
             <DropdownButton id="dropdown-button" title="Activity">
-              <Dropdown.Item href="collection">Top collection</Dropdown.Item>
-              <Dropdown.Item href="#">Last Sales</Dropdown.Item>
-              <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
-              <Dropdown.Item href="#">Listings</Dropdown.Item>
-              <Dropdown.Item href="#">Offers</Dropdown.Item>
+              <Dropdown.Item href="topcollection">Top collection</Dropdown.Item>
+              <Dropdown.Item href="activity">Statistics</Dropdown.Item>
             </DropdownButton>
             <DropdownButton id="dropdown-button" title="Comunity">
-              <Dropdown.Item href="#">About</Dropdown.Item>
-              <Dropdown.Item href="#">Blog</Dropdown.Item>
-              <Dropdown.Item href="#">Social media</Dropdown.Item>
-              <Dropdown.Item href="#">FAQ</Dropdown.Item>
+              <Dropdown.Item href="about-us">About</Dropdown.Item>
+              <Dropdown.Item href="blog">Blog</Dropdown.Item>
+              <Dropdown.Item href="faq">FAQ</Dropdown.Item>
             </DropdownButton>
           </MobileMenuInner>
         
