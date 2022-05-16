@@ -1,110 +1,58 @@
-import React, { useEffect, useState, useContext } from "react";
-import Context from "../../utils/Context";
-
-import { useWeb3React } from "@web3-react/core";
-
-import { ReactComponent as Logo } from '../../icons/logo.svg';
-import { Link } from 'react-router-dom';
+import React from "react";
 
 import {
-  Header,
-  HeaderWrap,
-  SearchWrapper,
-  SearchIcon,
-  SeoHeading,
-  Input,
-  Navigation,
-  NavigationMenu,
-  StyledUl,
-  IconsUl,
-  StyledList,
-  StyledLink,
-  LanguageTitle,
-  Favorite,
-  DropdownMenu,
-  MenuList,
-  MenuListSocial,
-  SocialLink
-} from "./Navbar.styles";
-
-import {Wrapper} from "../../pages/CategoriesPage/Categories.styles";
-
+    Navigation,
+    NavigationMenu
+} from "./NavBarMobile.styles";
 import {
-  AllNFTsIcon,
-  NewIcon,
-  ArtIcon,
-  SportIcon,
-  PhotoIco,
-  MetaversesIcon,
-  CelebrityIco,
-  RwaNFT,
-  FavoriteIco,
-  ProfileIco,
-  TopCollectionIco,
-  StatisticsIco,
-  AboutIco,
-  BlogIco,
-  FAQIco,
-  TwitterIco,
-  TelegramIco,
-  DiscordIco,
-  InstagramIco,
-  AddNFTIco,
-  AddCollectionIco,
-  ProfileMenuIco,
-  MyCollectionIco,
-  WatchlistIco,
-  SettingsIco,
-  LoginMenuIco,
-} from "./imports";
-import Burger from "./Burger"
+    StyledUl,
+    IconsUl,
+    StyledList,
+    StyledLink,
+    LanguageTitle,
+    Favorite,
+    DropdownMenu,
+    MenuList,
+    MenuListSocial,
+    SocialLink
+  } from "./Navbar.styles";
 
+  import {
+    AllNFTsIcon,
+    NewIcon,
+    ArtIcon,
+    SportIcon,
+    PhotoIco,
+    CelebrityIco,
+    RwaNFT,
+    FavoriteIco,
+    ProfileIco,
+    TopCollectionIco,
+    StatisticsIco,
+    AboutIco,
+    BlogIco,
+    FAQIco,
+    TwitterIco,
+    TelegramIco,
+    DiscordIco,
+    InstagramIco,
+    AddNFTIco,
+    AddCollectionIco,
+    ProfileMenuIco,
+    MyCollectionIco,
+    WatchlistIco,
+    SettingsIco,
+    LoginMenuIco,
+  } from "./imports";
 
-const Navbar = () => {
-
-  const [hovered, setHovered] = useState<any>({
-    explore: false,
-    activity: false,
-    community: false,
-    create: false,
-    profile: false,
-  })
-
-  const value = useContext(Context);
-  let web3Current = useWeb3React();
-
-  useEffect(() => {
-    if (web3Current.account) {
-      let { connector } = web3Current;
-      if (connector) {
-        value.setConnectorFun(connector);
-      }
-    }
-  });
-
-  return (
-    <Header>
-      <HeaderWrap>
-        <Wrapper disp="flex" alignItems="center" marg="0 15px 0 0">
-          <Link to="/">
-            <Logo />
-          </Link>
-          <SearchWrapper>
-            <SearchIcon />
-            <Input placeholder="Collection, item or user" type="text"/>
-          </SearchWrapper>
-        </Wrapper>
-        <Burger />
-        <Navigation>
+const NavBarMobile = ({ open }) => {
+    return (
+        <Navigation open={open}>
           <NavigationMenu>
             <StyledUl gap="10px">
-              <StyledList
-                  onMouseLeave={() => setHovered({explore: false})}
-                  onMouseEnter={() => setHovered({explore: true})}
-              >
+              <StyledList>
                 <StyledLink
                     to="/"
-                    className={hovered.explore! ? "hovered-explore" : ""}
                 >Explore</StyledLink>
                 <DropdownMenu>
                   <MenuList to="/all">
@@ -127,10 +75,6 @@ const Navbar = () => {
                     <PhotoIco/>
                     Photography
                   </MenuList>
-                  {/* <MenuList to="/categories">
-                    <MetaversesIcon/>
-                    Metaverses
-                  </MenuList> */}
                   <MenuList to="/categories">
                     <CelebrityIco/>
                     Celebrity
@@ -141,13 +85,10 @@ const Navbar = () => {
                   </MenuList>
                 </DropdownMenu>
               </StyledList>
-              <StyledList
-                  onMouseLeave={() => setHovered({ activity: false })}
-                  onMouseEnter={() => setHovered({ activity: true })}
-              >
+              <StyledList>
                 <StyledLink
                     to="/topcollection"
-                    className={hovered.activity! ? "hovered-activity" : ""}
+                    
                 >Activity</StyledLink>
                 <DropdownMenu setWidth="146px">
                   <MenuList to="/topcollection">
@@ -160,13 +101,10 @@ const Navbar = () => {
                   </MenuList>
                 </DropdownMenu>
               </StyledList>
-              <StyledList
-                  onMouseLeave={() => setHovered({ community: false })}
-                  onMouseEnter={() => setHovered({ community: true })}
-              >
+              <StyledList>
                 <StyledLink
                     to="/"
-                    className={hovered.community! ? "hovered-community" : ""}
+                   
                 >Community</StyledLink>
                 <DropdownMenu setWidth="150px" left="-1.5rem">
                   <MenuList to="/about-us">
@@ -189,13 +127,10 @@ const Navbar = () => {
                   </MenuListSocial>
                 </DropdownMenu>
               </StyledList>
-              <StyledList
-                  onMouseLeave={() => setHovered({ create: false })}
-                  onMouseEnter={() => setHovered({ create: true })}
-              >
+              <StyledList>
                 <StyledLink
                     to="/create-nft"
-                    className={hovered.create! ? "hovered-create" : ""}
+                    
                 >Create</StyledLink>
                 <DropdownMenu setWidth="170px" left="-3rem">
                   <MenuList to="/create-nft">
@@ -216,13 +151,9 @@ const Navbar = () => {
                 <Favorite />
               </StyledLink>
             </StyledList>
-            <StyledList
-                onMouseLeave={() => setHovered({ profile: false })}
-                onMouseEnter={() => setHovered({ profile: true })}
-            >
+            <StyledList>
               <StyledLink
                   to="/login"
-                  className={hovered.profile! ? "hovered-profile" : ""}
               >
                 <ProfileIco />
               </StyledLink>
@@ -256,9 +187,8 @@ const Navbar = () => {
             </StyledList>
           </IconsUl>
         </Navigation>
-      </HeaderWrap>
-    </Header>
-  );
-};
+    )
+}
 
-export default Navbar;
+export default NavBarMobile
+

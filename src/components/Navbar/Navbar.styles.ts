@@ -10,8 +10,11 @@ export const Header = styled.header `
   width: 100%;
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
-  backdrop-filter: blur(50px);
+  /* backdrop-filter: blur(50px); */
   z-index: 1000;
+  @media (max-width: 1024px){
+    overflow: hidden;
+  }
 `
 
 export const HeaderWrap = styled(Container) `
@@ -54,13 +57,17 @@ export const Input = styled.input`
   width: 100%;
 `;
 
-
-export const Navigation = styled.nav `
+export const Navigation = styled.div `
+  display: flex;
+  @media (max-width: 1024px){
+    display: none;
+  }
+`;
+export const NavigationMenu = styled.nav `
   width: 38vw;
   max-width: 390px;
   margin-right: 15px;
-`
-
+`;
 interface IStyledUl {
   justifyContent?: string,
   gap?: string,
@@ -74,8 +81,19 @@ export const StyledUl = styled.ul<IStyledUl> `
   width: 100%;
   max-width: ${props => props.mw || ''};
   list-style: none;
+  @media (max-width: 1024px){
+    flex-direction: column;
+    
+  }
 `
-
+export const IconsUl = styled.ul<IStyledUl> `
+  display: flex;
+  justify-content: ${props => props.justifyContent || 'space-between'};
+  gap: ${props => props.gap || ''};
+  width: 100%;
+  max-width: ${props => props.mw || ''};
+  list-style: none;
+`;
 export const StyledList = styled.li `
   position: relative;
 `

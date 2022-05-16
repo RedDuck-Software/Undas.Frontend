@@ -32,7 +32,7 @@ const Recommended:FC = () => {
             </TitleWrap>
             <CategoriesWrap>
                 <CategoryWrap to="/categories" gridArea="1 / 1 / 4 / 3">
-                    <Name>Metaverses</Name>
+                    <Name>New</Name>
                     <Image src={MetaversesImg} alt="category-img" />
                 </CategoryWrap>
                 <CategoryWrap to="/categories" gridArea="1 / 3 / 3 / 5">
