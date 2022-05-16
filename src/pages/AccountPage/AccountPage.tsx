@@ -189,7 +189,6 @@ const AccountPage = () => {
             {tab === "reward" && <RewardMenu />}
             {tab === "referral" && <Referral />}
             {tab === "achievements" && <Achievements />}
-
           </Wrapper>
         </AccountContainer>
       </AccountWrapper>

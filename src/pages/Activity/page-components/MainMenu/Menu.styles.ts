@@ -151,3 +151,56 @@ export const PriceTextW = styled.div `
 width:100%;
 text-align: right;
 `
+export const SelectedFilters = styled.div `
+width: 100%;
+margin-top: 20px;
+`
+export const Filter = styled.div `
+width: 180px;
+height: 36px;
+background: #FBF5FF;
+box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
+border-radius: 10px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #232428;
+display: inline-block;
+`
+export const FilterImg = styled.img `
+width: 30px;
+height: 30px;
+border-radius: 5px;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+margin-top: 3px;
+margin-left: 10px;
+`
+export const FilterName = styled.span `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #232428;
+vertical-align: middle;
+margin-left: 5px;
+`
+export const FilterClose = styled.img `
+width: 10px;
+height: 10px;
+margin-left: 40px;
+margin-top: 3px;
+`
+export const ClearAll = styled.button `
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #5D3F92;
+border: none;
+background: transparent;
+margin-left: 15px;
+` 

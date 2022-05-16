@@ -29,6 +29,8 @@ import goldMoneyReward from './assets/gold-money.svg'
 import goldPeopleReward from './assets/gold-people.svg'
 import backImg from './assets/back-img.svg'
 import diamond from './assets/diamond.svg'
+import top from './assets/top.svg'
+import buttom from './assets/buttom.svg'
 import {ReactComponent as Verified} from '../../images/image-collection/verified.svg'
 import {ReactComponent as Copy} from './assets/copy-ico.svg'
 import {ReactComponent as SingOut} from './assets/sign-out.svg'
@@ -115,4 +117,6 @@ export { card01,
     goldPeopleReward,
     backImg,
     diamond,
+    top,
+    buttom,
 }
