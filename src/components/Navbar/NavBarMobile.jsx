@@ -26,6 +26,8 @@ import {
   PhotoIco,
   CelebrityIco,
   RwaNFT,
+  TopCollectionIco,
+  StatisticsIco,
   AboutIco,
   BlogIco,
   FAQIco,
@@ -73,8 +75,8 @@ const NavBarMobile = ({ open }) => {
           <MobileStyledList>
           <IconInner><MobileFavoriteIco /></IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Favorite">
-              <HeaderDropdownItem href="#">Something</HeaderDropdownItem>
-              <HeaderDropdownItem href="#">Something</HeaderDropdownItem>
+              <HeaderDropdownItem href="#"><AllNFTsIcon />Something</HeaderDropdownItem>
+              <HeaderDropdownItem href="#"><AllNFTsIcon />Something</HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
@@ -139,8 +141,8 @@ const NavBarMobile = ({ open }) => {
           <MobileStyledList>
           <IconInner><ActivityIco /></IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Activity">
-              <HeaderDropdownItem href="topcollection">Top collection</HeaderDropdownItem>
-              <HeaderDropdownItem href="activity">Statistics</HeaderDropdownItem>
+              <HeaderDropdownItem href="topcollection"><TopCollectionIco />Top collection</HeaderDropdownItem>
+              <HeaderDropdownItem href="activity"><StatisticsIco />Statistics</HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
