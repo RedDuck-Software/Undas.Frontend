@@ -1,194 +1,199 @@
 import React from "react";
 
+
 import {
-    Navigation,
-    NavigationMenu
+  Navigation,
+  NavigationMenu,
+  Blur,
+  MobileUl,
+  MobileStyledLink,
+  MobileStyledList,
+  HeaderDropdownButton,
+  HeaderDropdownItem,
+  IconInner,
+  MobileMenuListSocial
 } from "./NavBarMobile.styles";
 import {
-    StyledUl,
-    IconsUl,
-    StyledList,
-    StyledLink,
-    LanguageTitle,
-    Favorite,
-    DropdownMenu,
-    MenuList,
-    MenuListSocial,
-    SocialLink
-  } from "./Navbar.styles";
+  LanguageTitle,
+  SocialLink,
+} from "./Navbar.styles";
 
-  import {
-    AllNFTsIcon,
-    NewIcon,
-    ArtIcon,
-    SportIcon,
-    PhotoIco,
-    CelebrityIco,
-    RwaNFT,
-    FavoriteIco,
-    ProfileIco,
-    TopCollectionIco,
-    StatisticsIco,
-    AboutIco,
-    BlogIco,
-    FAQIco,
-    TwitterIco,
-    TelegramIco,
-    DiscordIco,
-    InstagramIco,
-    AddNFTIco,
-    AddCollectionIco,
-    ProfileMenuIco,
-    MyCollectionIco,
-    WatchlistIco,
-    SettingsIco,
-    LoginMenuIco,
-  } from "./imports";
+import {
+  AllNFTsIcon,
+  NewIcon,
+  ArtIcon,
+  SportIcon,
+  PhotoIco,
+  CelebrityIco,
+  RwaNFT,
+  AboutIco,
+  BlogIco,
+  FAQIco,
+  TwitterIco,
+  TelegramIco,
+  DiscordIco,
+  InstagramIco,
+  AddNFTIco,
+  AddCollectionIco,
+  ProfileMenuIco,
+  MyCollectionIco,
+  WatchlistIco,
+  SettingsIco,
+  LoginMenuIco,
+  ExploreIco,
+  ActivityIco,
+  CommunityIco,
+  CreateIco,
+  MobileFavoriteIco,
+  MobileAccountIco
+} from "./imports";
 
 const NavBarMobile = ({ open }) => {
-    return (
-        <Navigation open={open}>
-          <NavigationMenu>
-            <StyledUl gap="10px">
-              <StyledList>
-                <StyledLink
-                    to="/"
-                >Explore</StyledLink>
-                <DropdownMenu>
-                  <MenuList to="/all">
-                      <AllNFTsIcon />
-                      All NFTs
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <NewIcon />
-                    New
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <ArtIcon/>
-                    Artwork
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <SportIcon/>
-                    Sport
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <PhotoIco/>
-                    Photography
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <CelebrityIco/>
-                    Celebrity
-                  </MenuList>
-                  <MenuList to="/categories">
-                    <RwaNFT/>
-                    rwa NFT
-                  </MenuList>
-                </DropdownMenu>
-              </StyledList>
-              <StyledList>
-                <StyledLink
-                    to="/topcollection"
-                    
-                >Activity</StyledLink>
-                <DropdownMenu setWidth="146px">
-                  <MenuList to="/topcollection">
-                    <TopCollectionIco />
-                    Top Collection
-                  </MenuList>
-                  <MenuList to="/activity">
-                    <StatisticsIco />
-                    Statistics
-                  </MenuList>
-                </DropdownMenu>
-              </StyledList>
-              <StyledList>
-                <StyledLink
-                    to="/"
-                   
-                >Community</StyledLink>
-                <DropdownMenu setWidth="150px" left="-1.5rem">
-                  <MenuList to="/about-us">
-                    <AboutIco />
-                    About
-                  </MenuList>
-                  <MenuList to="/blog">
-                    <BlogIco/>
-                    Blog
-                  </MenuList>
-                  <MenuList to="/faq">
-                    <FAQIco/>
-                    FAQ
-                  </MenuList>
-                  <MenuListSocial>
-                    <SocialLink to="/"><TwitterIco /></SocialLink>
-                    <SocialLink to="/"><TelegramIco /></SocialLink>
-                    <SocialLink to="/"><DiscordIco /></SocialLink>
-                    <SocialLink to="/"><InstagramIco /></SocialLink>
-                  </MenuListSocial>
-                </DropdownMenu>
-              </StyledList>
-              <StyledList>
-                <StyledLink
-                    to="/create-nft"
-                    
-                >Create</StyledLink>
-                <DropdownMenu setWidth="170px" left="-3rem">
-                  <MenuList to="/create-nft">
-                    <AddNFTIco />
-                    Add NTF
-                  </MenuList>
-                  <MenuList to="/create-collection">
-                    <AddCollectionIco />
-                    Add Collection
-                  </MenuList>
-                </DropdownMenu>
-              </StyledList>
-            </StyledUl>
-          </NavigationMenu>
-          <IconsUl justifyContent="space-between" mw="100px" gap="10px" className="icons">
-            <StyledList>
-              <StyledLink to="/">
-                <Favorite />
-              </StyledLink>
-            </StyledList>
-            <StyledList>
-              <StyledLink
-                  to="/login"
-              >
-                <ProfileIco />
-              </StyledLink>
-              <DropdownMenu setWidth="170px" left="-3rem" top="2.10rem">
-                <MenuList to="/account">
-                  <ProfileMenuIco />
-                  Profile
-                </MenuList>
-                <MenuList to="/collection">
-                  <MyCollectionIco />
-                  My Collections
-                </MenuList>
-                <MenuList to="/">
-                  <WatchlistIco />
-                  Watchlist
-                </MenuList>
-                <MenuList to="/settings">
-                  <SettingsIco />
-                  Settings
-                </MenuList>
-                <MenuList to="/login">
-                  <LoginMenuIco />
-                  Log in
-                </MenuList>
-                </DropdownMenu>
-            </StyledList>
-            <StyledList>
-              <StyledLink to="/">
-                <LanguageTitle>en</LanguageTitle>
-              </StyledLink>
-            </StyledList>
-          </IconsUl>
-        </Navigation>
-    )
-}
+  return (
+    <Navigation open={open}>
+      <Blur open={open} />
+      <NavigationMenu>
+        <MobileUl
+          justifyContent="space-between"
+          mw="100px"
+          gap="10px"
+          className="icons"
+        >
+          <MobileStyledList className="language">
+            <MobileStyledLink to="/">
+              <LanguageTitle>en</LanguageTitle>
+            </MobileStyledLink>
+            <MobileStyledLink to="/">
+              <LanguageTitle>RU</LanguageTitle>
+            </MobileStyledLink>
+            <MobileStyledLink to="/">
+              <LanguageTitle>中国人</LanguageTitle>
+            </MobileStyledLink>
+          </MobileStyledList>
+          <MobileStyledList>
+          <IconInner><MobileFavoriteIco /></IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Favorite">
+              <HeaderDropdownItem href="#">Something</HeaderDropdownItem>
+              <HeaderDropdownItem href="#">Something</HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
+          <MobileStyledList>
+          <IconInner><MobileAccountIco /> </IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Account">
+              <HeaderDropdownItem href="account">
+                <ProfileMenuIco />
+                Profile
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="collection">
+                <MyCollectionIco />
+                Collections
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="#">
+                <WatchlistIco />
+                Watchlist
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="settings">
+                <SettingsIco />
+                Settings
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="login">
+                <LoginMenuIco />
+                Log in
+              </HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
 
-export default NavBarMobile
+          <MobileStyledList>
+          <IconInner><ExploreIco /></IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Explore">
+              <HeaderDropdownItem href="all" className="dropdown-item">
+                <AllNFTsIcon />
+                All NFTs
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="assets/new">
+                <NewIcon />
+                New
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="explore/art">
+                <ArtIcon />
+                Artwork
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories">
+                <SportIcon />
+                Sport
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories">
+                <PhotoIco />
+                Photography
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories">
+                <CelebrityIco />
+                Celebrity
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories">
+                <RwaNFT />
+                rwaNFT
+              </HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
+          <MobileStyledList>
+          <IconInner><ActivityIco /></IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Activity">
+              <HeaderDropdownItem href="topcollection">Top collection</HeaderDropdownItem>
+              <HeaderDropdownItem href="activity">Statistics</HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
+          <MobileStyledList>
+          <IconInner><CommunityIco /></IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Community">
+              <HeaderDropdownItem href="about-us">
+                <AboutIco />
+                About
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="blog">
+                <BlogIco />
+                Blog
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="faq">
+                <FAQIco />
+                FAQ
+              </HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
 
+          <MobileStyledList>
+          <IconInner><CreateIco /></IconInner>
+            <HeaderDropdownButton id="header-dropdown-button" title="Create">
+              <HeaderDropdownItem href="create-nft">
+                <AddNFTIco />
+                Add NTF
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="create-collection">
+                <AddCollectionIco />
+                Add Collection
+              </HeaderDropdownItem>
+            </HeaderDropdownButton>
+          </MobileStyledList>
+          <MobileStyledList>
+          <MobileMenuListSocial>
+            <SocialLink to="/">
+              <TwitterIco />
+            </SocialLink>
+            <SocialLink to="/">
+              <TelegramIco />
+            </SocialLink>
+            <SocialLink to="/">
+              <DiscordIco />
+            </SocialLink>
+            <SocialLink to="/">
+              <InstagramIco />
+            </SocialLink>
+          </MobileMenuListSocial>
+          </MobileStyledList>
+        </MobileUl>
+      </NavigationMenu>
+    </Navigation>
+  );
+};
+
+export default NavBarMobile;

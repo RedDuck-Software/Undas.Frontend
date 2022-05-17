@@ -24,6 +24,15 @@ import {ReactComponent as MyCollectionIco} from '../../icons/my-collections.svg'
 import {ReactComponent as WatchlistIco} from '../../icons/watchlist.svg'
 import {ReactComponent as SettingsIco} from '../../icons/settings.svg'
 import {ReactComponent as LoginMenuIco} from '../../icons/login-dropdown.svg'
+import {ReactComponent as ExploreIco} from '../../icons/explore-dropdown.svg'
+import {ReactComponent as ActivityIco} from '../../icons/activity-dropdown.svg'
+import {ReactComponent as CommunityIco} from '../../icons/community-dropdown.svg'
+import {ReactComponent as CreateIco} from '../../icons/create-dropdown.svg'
+import {ReactComponent as MobileFavoriteIco} from '../../icons/favorite-dropdown.svg'
+import {ReactComponent as MobileAccountIco} from '../../icons/account-dropdown.svg'
+
+
+
 
 export {
   AllNFTsIcon,
@@ -52,4 +61,10 @@ export {
   WatchlistIco,
   SettingsIco,
   LoginMenuIco,
+  ExploreIco,
+  ActivityIco,
+  CommunityIco,
+  CreateIco,
+  MobileFavoriteIco,
+  MobileAccountIco
 }
