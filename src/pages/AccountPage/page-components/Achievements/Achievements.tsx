@@ -28,6 +28,7 @@ import {
     Rewards,
     TradingRewardsSecond,
     TradingRewardsLast,
+    BackImgSecond,
 } from "./Achievements.styles";
 
 import {
@@ -60,6 +61,7 @@ const Achievements = () => {
     return (
         <AchievementsWrap>
              <BackImg src={backImg} alt="back-image"/>
+             <BackImgSecond src={backImg} alt="back-image"/>
             <AchievementsText>Achievements</AchievementsText>
             <InfoText>Each reward gives 1% to the total user rate when distributing tokens for staking and trading volume </InfoText>
             <PurpleRewards>

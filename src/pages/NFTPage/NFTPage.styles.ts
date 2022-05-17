@@ -82,7 +82,7 @@ export const NavElement = styled.li `
   cursor: pointer;
   display: inline-block;
   text-align: center;
-  padding: 10px;
+  padding: 6px;
   width: 36px;
   height: 36px;
   box-shadow: 0px 0px 1px #7C7C7C;

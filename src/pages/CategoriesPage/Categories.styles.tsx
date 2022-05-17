@@ -91,7 +91,7 @@ export const CollectionBackground = styled.img `
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
-  width: 46%;
+  width: 56%;
   min-width: 474px;
   height: 70px;
   margin-top: 45px;
@@ -121,7 +121,7 @@ interface IText {
 export const CollectionText = styled.span<IText> `
   max-width: ${props => props.mw || ''};
   font-weight: 400;
-  font-size: ${props => props.fs || '12px'};
+  font-size: ${props => props.fs || '14px'};
   line-height: ${props => props.lh || '17px'};
   padding: ${props => props.padd};
   color: #FFF;

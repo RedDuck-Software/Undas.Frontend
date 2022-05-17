@@ -122,7 +122,7 @@ const LoginPage = () => {
           <Container>
             <TextWrapper>
               <LoginTitle>
-                You need an Ethereum wallet to use Undas
+                You need an Ethereum wallet to use UNDAS
               </LoginTitle>
               <LoginText>
                 Connect with one of our available{" "}
