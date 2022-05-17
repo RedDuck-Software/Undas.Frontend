@@ -7,6 +7,8 @@ import { FavoriteIco, ProfileIco } from './imports'
 export const Header = styled.header `
   height: 40px;
   position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #fff;
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
@@ -22,6 +24,10 @@ export const HeaderWrap = styled(Container) `
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  @media (max-width: 576px){
+    padding-left: 10px;
+    padding-right: 3em;
+  }
   ${Container}
 `
 export const SeoHeading = styled.h1 `
@@ -38,7 +44,10 @@ export const SearchWrapper = styled.div`
   height: 26px;
   background: #EBDFFF;
   border-radius: 5px;
-  
+  @media (max-width: 1024px){
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const SearchIcon = styled(Search)`
@@ -83,7 +92,6 @@ export const StyledUl = styled.ul<IStyledUl> `
   list-style: none;
   @media (max-width: 1024px){
     flex-direction: column;
-    
   }
 `
 export const IconsUl = styled.ul<IStyledUl> `

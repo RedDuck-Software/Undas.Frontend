@@ -85,7 +85,7 @@ const Navbar = () => {
   return (
     <Header>
       <HeaderWrap>
-        <Wrapper disp="flex" alignItems="center" marg="0 15px 0 0">
+        <Wrapper disp="flex" alignItems="center" marg="0 15px 0 0" w="100%">
           <Link to="/">
             <Logo />
           </Link>
