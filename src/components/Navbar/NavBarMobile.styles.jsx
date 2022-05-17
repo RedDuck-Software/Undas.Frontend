@@ -73,6 +73,9 @@ export const NavigationMenu = styled.div`
   align-self: flex-end;
   padding-top: 50px;
   text-align: center;
+  @media (max-width: 768px){
+    width: 50%;
+  }
   @media (max-width: 576px){
     width: 100%;
   }
