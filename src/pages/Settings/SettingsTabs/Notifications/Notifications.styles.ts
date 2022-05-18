@@ -3,10 +3,25 @@ import { PageTitle } from "../../../../globalStyles";
 import Form from 'react-bootstrap/Form';
 
 export const NotificationWrap = styled.div `
-    min-height: 855px;
+    padding-bottom: 180px;
+    @media (max-width: 992px) {
+        padding-bottom: 80px;
+    }
+    @media (max-width: 576px) {
+        padding-bottom: 40px;
+    }
 `;
 export const NotificationPageTitle = styled(PageTitle)`
   margin: 60px 0 10px;
+  @media (max-width: 992px){
+    font-size: 32px;
+  }
+  @media (max-width: 768px){
+    font-size: 24px;
+  }
+  @media (max-width: 576px){
+    font-size: 20px;
+  }
 `;
 
 export const ItemsForm = styled(Form) `
@@ -51,4 +66,11 @@ export const Button = styled.button `
         background: #873DC1;
         border: 1px solid transparent;
     }
+    @media (max-width: 992px){
+        width: 100%;
+        color: #FFFFFF;
+        background: #873DC1;
+        border: 1px solid transparent;
+    }
+
 `;
