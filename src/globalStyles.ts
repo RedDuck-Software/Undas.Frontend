@@ -145,6 +145,19 @@ export const PageTitle = styled.h1`
   line-height: 44px;
   color: #232428;
   margin: 40px 0 20px;
+  @media (max-width: 992px){
+    font-size: 32px;
+    line-height: 36px;
+  }
+  @media (max-width: 768px){
+    font-size: 24px;
+    line-height: 28px;
+    margin: 30px 0 10px;
+  }
+  @media (max-width: 576px){
+    font-size: 20px;
+    line-height: 24px;
+  }
 `
 export const SubTitle = styled.h2`
   font-weight: 500;

@@ -111,4 +111,8 @@ export const DescriptionText = styled.p `
         padding-left: 3.5rem;
         margin-top: 5px;
     }
+    @media (max-width: 576px) {
+        font-size: 12px;
+        line-height: 14px;
+    }
 `;
