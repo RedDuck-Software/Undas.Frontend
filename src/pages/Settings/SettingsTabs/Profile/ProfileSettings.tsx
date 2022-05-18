@@ -26,6 +26,7 @@ import {
     InputGroup,
     AdressInput,
     CopyButton,
+    FormButtonsWrap,
     FormButton
 
 } from "./ProfileSettings.styles";
@@ -100,8 +101,10 @@ const ProfileSettings = () => {
                     <InputItem placeholder="0x5d46cb693bd0d1585d1de9823cb6b488281cc99c" className="adress-input"/>
                     <CopyButton className="copy-btn"/>
                     </AdressInput>
-                    <FormButton>Save</FormButton>
-                    <FormButton>Back</FormButton>
+                    <FormButtonsWrap>
+                        <FormButton className="left-btn">Save</FormButton>
+                        <FormButton>Back</FormButton>
+                    </FormButtonsWrap>
                 </InputGroup>
             </BottomBlock>
         </ProfileWrap>

@@ -2,6 +2,12 @@ import styled from "styled-components";
 
 export const EarningsWrap = styled.div `
   padding-bottom: 80px;
+  @media (max-width: 768px) {
+    padding-bottom: 40px;
+  }
+  @media (max-width: 576px) {
+    padding-bottom: 20px;
+  }
 `;
 
 export const EarningsContentWrap = styled.div `
@@ -10,6 +16,10 @@ export const EarningsContentWrap = styled.div `
   box-shadow: inset 0px 0px 1px #7C7C7C;
   border-radius: 5px;
   margin: 40px auto;
+  @media (max-width: 576px) {
+    margin: 10px auto;
+    padding: 20px 30px;
+  }
 `;
 
 export const EarningsContentText = styled.p`
