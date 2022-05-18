@@ -46,6 +46,9 @@ export const DesktopTab = styled(Tab)``;
 
 export const MobileSettingsTabWrap = styled.div`
         display: none;
+        .nav-tabs>li{
+            width: 20%;
+        }
         .nav-tabs .nav-item.show .nav-link,
         .nav-tabs .nav-link{
             color: #7C7C7C;
