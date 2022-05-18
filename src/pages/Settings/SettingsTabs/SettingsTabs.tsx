@@ -2,7 +2,7 @@ import React from "react";
 
 import { Tabs, Tab } from 'react-bootstrap';
 
-import { SettingsTabWrap } from "./SettingsTabs.styles";
+import { SettingsTabWrap, DesktopTabs, DesktopTab, MobileTabs, MobileTab, MobileSettingsTabWrap } from "./SettingsTabs.styles";
 import "./settings-tabs.css";
 import ProfileSettings from "./Profile/ProfileSettings";
 import Notifications from "./Notifications/Notifications";
@@ -12,27 +12,47 @@ import Earnings from "./Earnings/Earnings";
 
 const SettingsTabs = () => {
     return (
-        
+        <>
             <SettingsTabWrap className="settings-tab-wrap">
             
-                    <Tabs defaultActiveKey="profile" id="settings-tab" className="mb-3">
-                        <Tab eventKey="profile" title={<span><i className="profile-icon tab-icon"/>Profile</span>}>
+                    <DesktopTabs defaultActiveKey="profile" id="settings-tab" className="mb-3">
+                        <DesktopTab eventKey="profile" title={<span><i className="profile-icon tab-icon"/>Profile</span>}>
                             <ProfileSettings />
-                        </Tab>
-                        <Tab eventKey="notifications" title={<span><i className="notifications-icon tab-icon"/>Notifications</span>}>
+                        </DesktopTab>
+                        <DesktopTab eventKey="notifications" title={<span><i className="notifications-icon tab-icon"/>Notifications</span>}>
                             <Notifications />
-                        </Tab>
-                        <Tab eventKey="offers" title={<span><i className="offers-icon tab-icon"/>Offers</span>}>
+                        </DesktopTab>
+                        <DesktopTab eventKey="offers" title={<span><i className="offers-icon tab-icon"/>Offers</span>}>
                             <Offers />
-                        </Tab>
-                        <Tab eventKey="account-support" title={<span><i className="support-icon tab-icon"/>Account Support</span>}>
+                        </DesktopTab>
+                        <DesktopTab eventKey="account-support" title={<span><i className="support-icon tab-icon"/>Account Support</span>}>
                             <AccountSupport />
-                        </Tab>
-                        <Tab eventKey="earnings" title={<span><i className="earnings-icon tab-icon"/>Earnings</span>}>
+                        </DesktopTab>
+                        <DesktopTab eventKey="earnings" title={<span><i className="earnings-icon tab-icon"/>Earnings</span>}>
                             <Earnings />
-                        </Tab>
-                    </Tabs>
-            </SettingsTabWrap>
+                        </DesktopTab>
+                    </DesktopTabs>
+                    </SettingsTabWrap>
+                    <MobileSettingsTabWrap>
+                        <MobileTabs defaultActiveKey="profile" id="mobile-settings-tab">
+                            <MobileTab eventKey="profile" title={<span><i className="profile-icon tab-icon mobile-tab-icon"/></span>}>
+                                <ProfileSettings />
+                            </MobileTab>
+                            <MobileTab eventKey="notifications" title={<span><i className="notifications-icon tab-icon mobile-tab-icon"/></span>}>
+                                <Notifications />
+                            </MobileTab>
+                            <MobileTab eventKey="offers" title={<span><i className="offers-icon tab-icon mobile-tab-icon"/></span>}>
+                                <Offers />
+                            </MobileTab>
+                            <MobileTab eventKey="account-support" title={<span><i className="support-icon tab-icon mobile-tab-icon"/></span>}>
+                                <AccountSupport />
+                            </MobileTab>
+                            <MobileTab eventKey="earnings" title={<span><i className="earnings-icon tab-icon mobile-tab-icon"/></span>}>
+                                <Earnings />
+                            </MobileTab>
+                        </MobileTabs>
+                    </MobileSettingsTabWrap>
+                    </>  
             
     )
 }
