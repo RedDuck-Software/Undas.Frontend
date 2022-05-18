@@ -4,8 +4,18 @@ import { TwitterIco, SiteIco, DiscordIco, InstagramIco } from "./imports";
 
 export const ProfileWrap = styled.form `
     padding: 30px 0 120px;
+    @media (max-width: 1200px) {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    @media (max-width: 992px) {
+        padding-bottom: 60px;
+    }
 `;
 export const BannerWrap = styled.div `
+    @media (max-width: 992px) {
+        order: 2;
+    }
 `;
 export const BannerTitleWrap = styled.div `
     display: flex;
@@ -51,10 +61,21 @@ export const MiddleBlockWrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    @media (max-width: 1200px) {
+        flex-wrap: wrap;
+    }
+    @media (max-width: 992px) {
+        order: 3;
+    }
+    
 `;
 export const ProfileImageWrap = styled.div`
     flex: 0 0 32%;
     margin-right: 30px;
+    @media (max-width: 992px) {
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+    }
 `;
 export const ProfileImageInner = styled.div`
     display: flex;
@@ -80,8 +101,11 @@ export const DescriptInner = styled.div`
     }
 `;
 export const LinksWrap = styled.div`
-    flex: 0 0 31%;
+    flex: 0 0 32%;
     margin-right: 30px;
+    @media (max-width: 992px) {
+        flex: 0 0 100%;
+    }
 `;
 export const InputList = styled.ul`
 `;
@@ -106,6 +130,13 @@ export const InputItem = styled.input`
 export const InformationWrap = styled.div`
     flex: 0 0 32%;
     margin-right: 30px;
+    @media (max-width: 1200px) {
+        margin-left: auto;
+    }
+    @media (max-width: 992px) {
+        flex: 0 0 100%;
+        margin: 10px 0;
+    }
 `;
 export const InformationTextArea = styled.textarea`
     background: #FFFFFF;
@@ -133,12 +164,23 @@ export const RequiredFieldsWrap = styled.div`
     & .require-asterisk{
         color: #CC252F;
     }
+    @media (max-width: 1200px) {
+        margin-top: -220px;
+    }
+    @media (max-width: 992px) {
+        margin-top: 0;
+        max-width: 100%;
+        order: 1;
+    }
 `;
 export const RequiredField = styled.div`
     margin-bottom: 20px;
 `;
 export const CheckboxBlock = styled.form`
     max-width: 500px;
+    @media (max-width: 992px) {
+        order: 4;
+    }
 `;
 export const CheckboxInput = styled.input`
     margin-right: 5px;
@@ -197,11 +239,17 @@ export const CheckboxLabel = styled.label`
 `;
 export const BottomBlock = styled.div`
     margin-top: 20px;
+    @media (max-width: 992px) {
+        order: 5;
+    }
 `;
 export const InputGroup = styled.form`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    @media (max-width: 992px) {
+        flex-wrap: wrap;
+    }
 `;
 export const AdressInput = styled.div`
     display: flex;
@@ -223,6 +271,13 @@ export const AdressInput = styled.div`
             box-shadow: none;
         }
     }
+    @media (max-width: 992px) {
+        flex: 0 0 100%;
+        margin-bottom: 40px;
+        & .adress-input{
+            width: 100%;
+        }
+    }
 `;
 export const CopyButton = styled.button`
   width: 70px;
@@ -234,6 +289,17 @@ export const CopyButton = styled.button`
   background-color: #fff;
   outline: none;
 `;
+export const FormButtonsWrap = styled.div`
+    @media (max-width: 992px) {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    @media (max-width: 576px) {
+        flex-wrap: wrap;
+    }
+`;
+
 export const FormButton = styled.button`
     background: #FFFFFF;
     border: 1px solid #873DC1;
@@ -246,5 +312,21 @@ export const FormButton = styled.button`
         color: #FFFFFF;
         background: #873DC1;
         border: 1px solid transparent;
+    }
+    @media (max-width: 992px) {
+        flex: 0 0 45%;
+        &.left-btn{
+            border: 1px solid transparent;
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
+            color: #fff;
+            margin-left: 0;
+        }
+    }
+    @media (max-width: 576px) {
+        flex: 0 0 100%;
+        margin: 0;
+        &.left-btn{
+            margin-bottom: 15px;
+        }
     }
 `;
