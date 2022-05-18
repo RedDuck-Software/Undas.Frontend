@@ -6,6 +6,14 @@ export const AccountSupportWrap = styled.div ``;
 
 export const AccordionWrap = styled.div `
     margin: 40px auto;
+    @media (max-width: 768px) {
+        & .accordion-header .accordion-button{
+            font-size: 16px;
+        }
+        .accordion-body {
+        padding: 0 1.25rem 1rem;
+        }
+    }
 `;
 export const AccordionItem = styled(Accordion.Item) `
     background-color: #FBF5FF;
@@ -41,6 +49,9 @@ export const MessageBlock = styled.div `
     border: 1px solid rgba(135, 61, 193, 0.25);
     border-radius: 10px;
     margin-top: 20px;
+    @media (max-width: 992px) {
+        width: 100%;
+    }
 `;
 
 export const Image = styled.img`
@@ -63,6 +74,12 @@ export const AccountSupportSelect = styled.select`
     border-radius: 10px;
     padding: 10px 20px;
     margin: 20px 0;
+     option{
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 export const AccountSupportCheckboxInput = styled(CheckboxInput)`
     &.custom-checkbox+label {
@@ -83,5 +100,8 @@ export const AccountSupportButton = styled(FormButton)`
         background-color: #fff;
         box-shadow: 0 0 5px;
         text-shadow: 0 0 1px;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
     }
 `;
