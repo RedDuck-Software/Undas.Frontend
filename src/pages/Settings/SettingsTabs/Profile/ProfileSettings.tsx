@@ -1,5 +1,6 @@
 import React from "react";
 
+import {FormButtonsWrap, FormButton} from "../../../../globalStyles"
 import {
     ProfileWrap,
     BannerWrap,
@@ -26,9 +27,6 @@ import {
     InputGroup,
     AdressInput,
     CopyButton,
-    FormButtonsWrap,
-    FormButton
-
 } from "./ProfileSettings.styles";
 
 import { BannerIcon } from "./imports";

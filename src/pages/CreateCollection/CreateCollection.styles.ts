@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import { BlockDescript, CreateInput } from '../CreateNFT/CreateNFT.styles';
 
 export const AddImgBlock = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+  @media (max-width: 576px) {
+    &.featured{
+      flex-direction: column-reverse;
+    }
+  }
+  
 `;
 export const AddImgButton = styled.button`
     width: 80px;
@@ -27,6 +33,9 @@ export const AddImgButton = styled.button`
 export const AddFeaturedButton = styled(AddImgButton)`
     width: 350px;
     height: 100px;
+    @media (max-width: 576px) {
+      width: 100%;
+    }
 `;
 
 export const AddBannerButton = styled(AddFeaturedButton)`
@@ -59,15 +68,22 @@ export const CategoryGroup = styled.div`
   & .category-label{
     display: block;
   }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const CategoryDescript = styled(BlockDescript)`
   display: inline-block;
   margin-left: 20px;
+  @media (max-width: 768px) {
+    margin-left: 0;
+    order: 2;
+  }
 `;
 
 export const EarningsInput = styled(CreateInput)`
   max-width: 255px;
 `;
 
-export const nput = styled.input``;

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { Background, Button } from "../../globalStyles";
+import { Background, FormButton, FormButtonsWrap } from "../../globalStyles";
 
 import { 
   CreateSec,
@@ -20,8 +20,8 @@ import {
   CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton,
-  ButtonsBlock
+  ButtonsBlock,
+  CreateFormButton
 } from "../CreateNFT/CreateNFT.styles";
 
 import { ImgIcon, 
@@ -113,7 +113,7 @@ const CreateCollection = () => {
         <CreateContainer>
           <CreateTitle>Create Collection</CreateTitle>
           <CreateForm>
-            <BlockDescript><span className="require-asterisk">*</span>Required fields</BlockDescript>
+            <BlockDescript className="required-fields"><span className="require-asterisk">*</span>Required fields</BlockDescript>
             <CreateFormGroup>
               <CreateLabel>Logo image<span className="require-asterisk">*</span></CreateLabel>
               <AddImgBlock>
@@ -125,7 +125,7 @@ const CreateCollection = () => {
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel>Featured image</CreateLabel>
-              <AddImgBlock>
+              <AddImgBlock className="featured">
                 <AddFeaturedButton>
                   <img src={ImgIcon} alt="image-icon"/>
                 </AddFeaturedButton>
@@ -233,8 +233,10 @@ const CreateCollection = () => {
             </CreateFormGroup>
           </CreateForm>
           <ButtonsBlock>
-            <FormButton>Create</FormButton>
-            <FormButton>Back</FormButton>
+            <FormButtonsWrap>
+              <CreateFormButton className="left-btn">Create</CreateFormButton>
+              <CreateFormButton>Back</CreateFormButton>
+            </FormButtonsWrap>
           </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
