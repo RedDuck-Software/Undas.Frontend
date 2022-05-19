@@ -59,6 +59,11 @@ export const CreateLabel = styled.label`
       order: 1;
     }
   }
+  @media (max-width: 576px) {
+      font-size: 16px;
+      line-height: 19px;
+      margin: 10px 0 5px;
+    }
 `;
 export const AddImgButton = styled.button `
     width: 350px;
@@ -77,6 +82,10 @@ export const AddImgButton = styled.button `
         background: linear-gradient(0deg, rgba(124, 124, 124, 0.25), rgba(124, 124, 124, 0.25)), #FFFFFF;
         cursor: pointer;
     }
+    @media (max-width: 576px) {
+      width: 100%;
+      height: 150px;
+    }
 `;
 export const CreateInput = styled.input`
     border: 1px solid rgba(124, 124, 124, 0.5);
@@ -94,6 +103,10 @@ export const CreateInput = styled.input`
     &:focus{
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
     }
+    @media (max-width: 576px) {
+      font-size: 12px;
+      line-height: 14px;
+    }
 `;
 export const CreateTextArea = styled.textarea`
     background: #FFFFFF;
@@ -109,6 +122,10 @@ export const CreateTextArea = styled.textarea`
     }
     &:focus{
         box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    }
+    @media (max-width: 576px) {
+      font-size: 12px;
+      line-height: 14px;
     }
 `;
 export const CreateSelect = styled.select`
@@ -129,7 +146,8 @@ export const CreateSelect = styled.select`
         margin-right: 20px;
       }
       @media (max-width: 768px) {
-          &#category{
+          &#category,
+          &#collection{
           margin-right: 0;
           order: 3;
           max-width: 100%;

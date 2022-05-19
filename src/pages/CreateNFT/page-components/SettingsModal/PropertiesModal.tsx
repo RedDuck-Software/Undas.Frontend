@@ -10,9 +10,9 @@ import {
     ModalInput,
     InputButton,
     ModalLabelStraight,
+    CreateModalFormButton
 } from "./CreateModal.styles";
 
-import {CreateFormButton} from "../../CreateNFT.styles";
 import "./styles.css";
 
 const PropertiesModal = () => {
@@ -45,12 +45,12 @@ const PropertiesModal = () => {
                 </ModalInputGroup>
             </Modal.Body>
             <Modal.Footer>
-                <CreateFormButton onClick={handleClose}>
+                <CreateModalFormButton onClick={handleClose}>
                 Add  More
-                </CreateFormButton>
-                <CreateFormButton onClick={handleClose}>
+                </CreateModalFormButton>
+                <CreateModalFormButton onClick={handleClose} className="colored-btn">
                 Save 
-                </CreateFormButton>
+                </CreateModalFormButton>
             </Modal.Footer>
             </Modal>
         </CreateModalWrap>

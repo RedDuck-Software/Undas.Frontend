@@ -98,9 +98,8 @@ const CreateNFT = () => {
       <CreateSec>
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
-          
           <CreateForm>
-            <BlockDescript><span className="require-asterisk">*</span>Required fields</BlockDescript>
+            <BlockDescript className="required-fields"><span className="require-asterisk">*</span>Required fields</BlockDescript>
             <CreateFormGroup>
               <CreateLabel>Image, Video, Audio, or 3D Model<span className="require-asterisk">*</span></CreateLabel>
               <BlockDescript>File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF <br/>Max size: 100MB</BlockDescript>
