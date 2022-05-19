@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Graph from "../../../../icons/graph.svg";
+import Graph from '../../../../icons/graph.svg';
 
 interface PriceHistory {
   closed?: boolean;
@@ -16,7 +16,7 @@ export const PriceHistoryTop = styled.div<PriceHistory>`
   border: 1px solid #5d3f92;
   word-spacing: 4px;
   padding: 3%;
-  border-radius: ${({ closed }) => (closed ? `10px` : "10px 10px 0px 0px")};
+  border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 2rem;
 
   display: flex;
@@ -28,7 +28,7 @@ export const PriceHistoryTop = styled.div<PriceHistory>`
   }
 
   &:before {
-    content: url("${Graph}");
+    content: url('${Graph}');
     position: relative;
     top: 2px;
     padding-right: 1rem;
@@ -113,7 +113,7 @@ export const PriceHistoryGraphContainer = styled.span`
   padding-bottom: 0.5rem;
 
   &:after {
-    content: "";
+    content: '';
     display: block;
     border-top: solid 1px #7c7c7c;
     width: 28rem;

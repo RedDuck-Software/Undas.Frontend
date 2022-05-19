@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import React, { useState } from 'react';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 import {
   PlaceBidWrapper,
@@ -9,14 +9,14 @@ import {
   DropdownPrice,
   DropdownInput,
   DropdownButton,
-} from './PlaceBid.styles'
+} from './PlaceBid.styles';
 
-const PlaceBid = () => {
-  const [isDropdownOpen, setDropdown] = useState(false)
+const PlaceBid: React.FC = () => {
+  const [isDropdownOpen, setDropdown] = useState(false);
 
   const toogleDropdown = () => {
-    setDropdown(!isDropdownOpen)
-  }
+    setDropdown(!isDropdownOpen);
+  };
 
   return (
     <PlaceBidWrapper>
@@ -44,7 +44,7 @@ const PlaceBid = () => {
         <></>
       )}
     </PlaceBidWrapper>
-  )
-}
+  );
+};
 
-export default PlaceBid
+export default PlaceBid;

@@ -1,36 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useWeb3React } from '@web3-react/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { useMoralis } from 'react-moralis';
 
-//Page Components
-//import AccountCard from "./page-components/AccountCard/AccountCard";
-import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import { AccountContainer, StatisticsText } from './ActivityPage.styles';
+import OffersMenu from './page-components/MainMenu/OffersMenu';
 
-//Styles
-import { Wrapper } from "../CategoriesPage/Categories.styles";
-import {
-  AccountContainer,
-  StatisticsText,
-} from "./ActivityPage.styles";
+import ASideFilter from '../../components/ASideFilter/ASideFilter';
+import Context from '../../utils/Context';
+import { Wrapper } from '../CategoriesPage/Categories.styles';
 
-import { useWeb3React } from "@web3-react/core";
-import Cookies from "universal-cookie";
-import Context from "../../utils/Context";
-import { useMoralis } from "react-moralis";
-import OffersMenu from "./page-components/MainMenu/OffersMenu";
-
-const ActivityPage = () => {
-  const [active, setActive] = useState<any>({
-    price: false,
-    event: false,
-  });
-  const [tab, setTab] = useState("offers");
-  console.log(tab);
-  const cookies = new Cookies();
-  let { account, deactivate } = useWeb3React();
+const ActivityPage: React.FC = () => {
+  const { account } = useWeb3React();
 
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
 
-  const [NFTList, setNFTList] = useState<
+  const [, setNFTList] = useState<
     {
       token_address: string;
       token_id: string;
@@ -50,32 +35,29 @@ const ActivityPage = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: "goerli",
+      chain: 'goerli',
       address: account,
     });
     return listOfNFTS;
   };
-
-  const getAccountData = async () => {};
   const getListData = async () => {
     const response = await getNFTList();
     if (!response?.result) return;
 
-    //deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
+    // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log("loading");
+      return console.log('loading');
     }
     getListData();
   }, [connector, account]);
-
 
   return (
     <>
@@ -85,7 +67,7 @@ const ActivityPage = () => {
           <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <StatisticsText>Statistics</StatisticsText>
-            <OffersMenu />
+              <OffersMenu />
             </Wrapper>
           </Wrapper>
         </AccountContainer>

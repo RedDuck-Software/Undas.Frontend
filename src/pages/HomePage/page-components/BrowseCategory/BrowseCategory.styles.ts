@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import violetLine from '../../../../icons/violet-line.svg';
 
 export const BrowseSec = styled.div`

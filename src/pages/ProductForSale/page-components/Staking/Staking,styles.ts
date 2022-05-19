@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface Staking {
-  closed?: boolean
+  closed?: boolean;
 }
 
-export const StakingContainer = styled.div``
+export const StakingContainer = styled.div``;
 
 export const StakingTop = styled.div<Staking>`
   background: #ffffff;
@@ -14,7 +14,7 @@ export const StakingTop = styled.div<Staking>`
   padding: 3%;
   border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
-  cursor pointer;
+  cursor: pointer;
 
   display: flex;
 
@@ -23,18 +23,18 @@ export const StakingTop = styled.div<Staking>`
     top: 4px;
     margin-left: auto;
   }
-`
+`;
 
 export const StakingContent = styled.div`
   border: 1px solid #5d3f92;
   border-radius: 0px 0px 10px 10px;
   border-top: none;
-`
+`;
 
 export const StakingTable = styled.table`
   border-collapse: collapse;
   width: 100%;
-`
+`;
 
 export const StakingTableHead = styled.thead`
   background: #ffffff;
@@ -43,7 +43,7 @@ export const StakingTableHead = styled.thead`
     text-align: left;
     color: #7c7c7c;
   }
-`
+`;
 
 export const TableRow = styled.tr`
   border-top: 1px solid #5d3f92;
@@ -55,7 +55,7 @@ export const TableRow = styled.tr`
     background: rgba(251, 245, 255, 0.7);
     border-radius: 0 0 10px 10px;
   }
-`
+`;
 
 export const TableHeadTitle = styled.th`
   padding: 3%;
@@ -64,7 +64,7 @@ export const TableHeadTitle = styled.th`
   &:nth-child(2) {
     text-align: right;
   }
-`
+`;
 
 export const TableInput = styled.input`
   width: 67px;
@@ -85,9 +85,9 @@ export const TableInput = styled.input`
   &:focus::placeholder {
     color: transparent;
   }
-`
+`;
 
-export const StakingTableBody = styled.tbody``
+export const StakingTableBody = styled.tbody``;
 
 export const TableColumn = styled.td`
   color: #7c7c7c;
@@ -101,7 +101,7 @@ export const TableColumn = styled.td`
   &:nth-child(2) {
     text-align: right;
   }
-`
+`;
 
 export const TableSelectMenu = styled.select`
   outline: none;
@@ -113,13 +113,13 @@ export const TableSelectMenu = styled.select`
 
   color: #fff;
   padding: 0 0.5rem;
-`
+`;
 
 export const TableMenuOption = styled.option`
   &:hover {
     background-color: yellow;
   }
-`
+`;
 
 export const ButtonRow = styled.div`
   display: flex;
@@ -128,7 +128,7 @@ export const ButtonRow = styled.div`
   border-top: 1px solid #5d3f92;
   background: rgba(251, 245, 255, 0.7);
   border-radius: 0 0 10px 10px;
-`
+`;
 
 export const CongratulationContainer = styled.div`
   display: flex;
@@ -148,4 +148,4 @@ export const CongratulationContainer = styled.div`
       font-size: 0.8rem;
     }
   }
-`
+`;

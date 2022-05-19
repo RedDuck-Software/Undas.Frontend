@@ -1,22 +1,14 @@
-import React, {FC} from 'react';
+import React from 'react';
 
-//Styles
-import {
-    CompleteWrap,
-    ColoredText
-} from "./Proprties.styles";
+import { CompleteWrap, ColoredText } from './Proprties.styles';
 
-const CompleteBar: FC<{complete?: number}> = ({complete}) => {
-    return (
-        <CompleteWrap complete={complete ? complete : 1}>
-            <span>
-                Speed
-            </span>
-            <ColoredText>
-                {complete ? complete : 1} of 5
-            </ColoredText>
-        </CompleteWrap>
-    )
-}
+const CompleteBar: React.FC<{ complete?: number }> = ({ complete }) => {
+  return (
+    <CompleteWrap complete={complete ? complete : 1}>
+      <span>Speed</span>
+      <ColoredText>{complete ? complete : 1} of 5</ColoredText>
+    </CompleteWrap>
+  );
+};
 
-export default CompleteBar
+export default CompleteBar;

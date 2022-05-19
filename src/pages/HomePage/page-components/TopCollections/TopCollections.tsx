@@ -1,6 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
 
-import { Container, ComingSoonImage } from '../../../../globalStyles';
 import {
   CollectionsSec,
   CollectionsTitle,
@@ -15,10 +15,11 @@ import {
   TextWrapper,
 } from './TopCollections.styles';
 
+import { Container, ComingSoonImage } from '../../../../globalStyles';
 import man from '../../../../icons/man.png';
 import comingSoon from '../../../../images/coming-soon.png';
 
-const TopCollections = () => {
+const TopCollections: React.FC = () => {
   const [showCollections] = useState(false);
 
   return (

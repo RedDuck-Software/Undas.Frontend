@@ -1,12 +1,4 @@
-import TabsNFT from "../TabsNFT/TabsNFT";
-
-import {  
-  girlNFT,
-  eye,
-  checked,
-  block,
-  heart, } from './imports';
-
+import React from 'react';
 
 import {
   ColImg,
@@ -22,40 +14,35 @@ import {
   ImageBlock,
   ImageHeart,
   RowCenter,
-  RowDown,
-  DivDeposit,
-  DepositText,
-  EthereumText,
-  DivPrice,
-  DivPeriod,
-  PeriodText,
-  DivLastSales,
-} from './CardLineNFT.styles'
+} from './CardLineNFT.styles';
+import { girlNFT, eye, checked, block, heart } from './imports';
 
-const CardLineNFT = () => {
-    return (
-        <div>
-        <RowLine> 
-          <ColImg>
-            <ImgNFT src={girlNFT}></ImgNFT>
-            <ImagePreview>
-                <ImageEye src={eye} alt="eye-image" />
-                <TextPreview>Preview</TextPreview>
-            </ImagePreview>
-          </ColImg>
-          <ColTextTop>
-            <TextNameNFT>Returne by Borya Borya</TextNameNFT>
-            <ImageChecked src={checked} alt="checked-image" />
-            <TextUND>UND</TextUND>
-            <ImageBlock src={block} alt="block-image" />            
-            <ImageHeart src={heart} alt="heart-image" />
-          </ColTextTop>
-        </RowLine>
-        <RowCenter>
+import TabsNFT from '../TabsNFT/TabsNFT';
+
+const CardLineNFT: React.FC = () => {
+  return (
+    <>
+      <RowLine>
+        <ColImg>
+          <ImgNFT src={girlNFT}></ImgNFT>
+          <ImagePreview>
+            <ImageEye src={eye} alt="eye-image" />
+            <TextPreview>Preview</TextPreview>
+          </ImagePreview>
+        </ColImg>
+        <ColTextTop>
+          <TextNameNFT>Returne by Borya Borya</TextNameNFT>
+          <ImageChecked src={checked} alt="checked-image" />
+          <TextUND>UND</TextUND>
+          <ImageBlock src={block} alt="block-image" />
+          <ImageHeart src={heart} alt="heart-image" />
+        </ColTextTop>
+      </RowLine>
+      <RowCenter>
         <TabsNFT />
-        </RowCenter>
-      </div>
-    )
-}
+      </RowCenter>
+    </>
+  );
+};
 
 export default CardLineNFT;

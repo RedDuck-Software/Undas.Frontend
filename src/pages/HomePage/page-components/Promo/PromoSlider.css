@@ -7,10 +7,6 @@
     right: auto;
 }
 
-
-.swiper-button-prev:hover {
-}
-
 .swiper-button-prev::after {
     content: '';
     border-bottom: 1px solid #FFF;;
@@ -23,8 +19,6 @@
 .swiper-button-next {
     left: auto;
     right: 132px;
-}
-.swiper-button-next:hover {
 }
 
 .swiper-button-next::after {

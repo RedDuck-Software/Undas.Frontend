@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import React, { useState } from 'react';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
-import { CardItem } from '../../../../components'
-
-import { card01, card02, card03 } from './imports'
-
-import { Button } from '../../../../globalStyles'
-
+import { card01, card02, card03 } from './imports';
 import {
   MoreFromCollectionContainer,
   MoreFromCollectionTop,
   MoreFromCollectionContent,
   CardsContainer,
   ButtonContainer,
-} from './MoreFromCollection.styles'
+} from './MoreFromCollection.styles';
 
-const MoreFromCollection = () => {
-  const [Collection, setCollection] = useState(true)
+import { CardItem } from '../../../../components';
+import { Button } from '../../../../globalStyles';
+
+const MoreFromCollection: React.FC = () => {
+  const [Collection, setCollection] = useState(true);
 
   const toogleCollection = () => {
-    setCollection(!Collection)
-  }
+    setCollection(!Collection);
+  };
 
   return (
     <MoreFromCollectionContainer>
@@ -50,7 +48,7 @@ const MoreFromCollection = () => {
         </>
       )}
     </MoreFromCollectionContainer>
-  )
-}
+  );
+};
 
-export default MoreFromCollection
+export default MoreFromCollection;

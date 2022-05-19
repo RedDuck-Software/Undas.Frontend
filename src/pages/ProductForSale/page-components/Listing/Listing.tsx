@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import React, { useState } from 'react';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
 import {
   ListingContainer,
@@ -13,14 +13,14 @@ import {
   TableColumn,
   PriceNumber,
   BuyButton,
-} from './Listing.styled'
+} from './Listing.styled';
 
-const Listing = () => {
-  const [Listing, setListing] = useState(false)
+const Listing: React.FC = () => {
+  const [Listing, setListing] = useState(false);
 
   const toogleListing = () => {
-    setListing(!Listing)
-  }
+    setListing(!Listing);
+  };
 
   return (
     <ListingContainer>
@@ -73,7 +73,7 @@ const Listing = () => {
         </>
       )}
     </ListingContainer>
-  )
-}
+  );
+};
 
-export default Listing
+export default Listing;

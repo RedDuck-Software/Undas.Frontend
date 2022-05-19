@@ -7,8 +7,8 @@ type PaginationType = {
   totalItems: number;
 };
 
-const Pagination = ({ itemPerPage, totalItems }: PaginationType) => {
-  const itemNumbers = [];
+const Pagination: React.FC<PaginationType> = ({ itemPerPage, totalItems }) => {
+  const itemNumbers: number[] = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemPerPage); i++) {
     itemNumbers.push(i);

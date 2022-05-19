@@ -14,7 +14,7 @@ export const StakingTop = styled.div<StakingProps>`
   padding: 3%;
   border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
-  cursor pointer;
+  cursor: pointer;
 
   display: flex;
 

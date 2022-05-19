@@ -1,15 +1,8 @@
-import { useState, useContext } from 'react';
-import Context from '../../../../utils/Context';
-
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-
-import { quoteForStaking } from '../../../../utils/quoteForStaking';
-
+import React, { useState, useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-
-import { Button } from '../../../../globalStyles';
+import * as Yup from 'yup';
 
 import {
   StakingContainer,
@@ -18,17 +11,13 @@ import {
   StakingFormGroup,
   StakingLabel,
   StakingInput,
-  // StakingContent,
-  // StakingTable,
-  // StakingTableHead,
-  // TableRow,
-  // TableHeadTitle,
-  // TableInput,
-  // StakingTableBody,
-  // TableColumn,
   ButtonRow,
   CongratulationContainer,
 } from './Staking,styles';
+
+import { Button } from '../../../../globalStyles';
+import Context from '../../../../utils/Context';
+import { quoteForStaking } from '../../../../utils/quoteForStaking';
 
 type FormData = {
   price: number;
@@ -36,12 +25,11 @@ type FormData = {
   term: number;
 };
 
-const Staking = ({ id }: { id: string }) => {
+const Staking: React.FC<{ id: string }> = ({ id }) => {
   const { connector } = useContext(Context);
 
   const [stakingOpen, setStakingOpen] = useState(false);
   const [isPuttedForStaking, setIsPuttedForStaking] = useState(false);
-  // const [showWarning, setShowWarning] = useState(false);
 
   const validationSchema = Yup.object().shape({
     price: Yup.number().required('Price is required'),
@@ -51,11 +39,7 @@ const Staking = ({ id }: { id: string }) => {
       .min(7, 'Term cannot be smaller tnan 7 days'),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
+  const { register, handleSubmit } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -73,7 +57,7 @@ const Staking = ({ id }: { id: string }) => {
       price.toString(),
       premium.toString(),
       term.toString(),
-      connector
+      connector,
     ).then(() => {
       console.log('Great success!');
       setIsPuttedForStaking(true);

@@ -1,8 +1,10 @@
-import PutUpForSale from '../PutUpForSale/PutUpForSale';
+import React from 'react';
 
 import { SaleSectionContainer, ButtonsContainer } from './SaleSection.styles';
 
-const SaleSection = ({ itemId }: { itemId: string }) => {
+import PutUpForSale from '../PutUpForSale/PutUpForSale';
+
+const SaleSection: React.FC<{ itemId: string }> = ({ itemId }) => {
   return (
     <>
       <SaleSectionContainer>

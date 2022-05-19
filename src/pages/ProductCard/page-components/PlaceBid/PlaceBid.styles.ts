@@ -1,11 +1,11 @@
-import styled from 'styled-components'
-import { Button } from '../../../../globalStyles'
+import styled from 'styled-components';
 
-import Rhombus from '../../../../icons/rhombus.svg'
+import { Button } from '../../../../globalStyles';
+import Rhombus from '../../../../icons/rhombus.svg';
 
 export const PlaceBidWrapper = styled.div`
   position: relative;
-`
+`;
 
 export const PlaceBidButton = styled(Button)`
   height: 100%;
@@ -21,7 +21,7 @@ export const PlaceBidButton = styled(Button)`
   }
 
   ${Button}
-`
+`;
 
 export const PlaceBidDropdown = styled.div`
   background: #ffffff;
@@ -38,7 +38,7 @@ export const PlaceBidDropdown = styled.div`
   flex-direction: column;
 
   z-index: 99;
-`
+`;
 
 export const DropdownLine = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ export const DropdownLine = styled.div`
 
   margin-bottom: 0.5rem;
   gap: 1rem;
-`
+`;
 
 export const DropdownPrice = styled.span`
   &:after {
@@ -54,7 +54,7 @@ export const DropdownPrice = styled.span`
     position: relative;
     top: 2px;
   }
-`
+`;
 
 export const DropdownInput = styled.input`
   max-width: 60px;
@@ -79,7 +79,7 @@ export const DropdownInput = styled.input`
   &:focus::placeholder {
     color: transparent;
   }
-`
+`;
 
 export const DropdownButton = styled(Button)`
   width: 100%;
@@ -102,4 +102,4 @@ export const DropdownButton = styled(Button)`
       : ''}
 
   ${Button}
-`
+`;

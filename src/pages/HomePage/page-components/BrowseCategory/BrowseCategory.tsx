@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, ComingSoonImage } from '../../../../globalStyles';
 import {
   BrowseSec,
   BrowseTitle,
@@ -11,11 +10,12 @@ import {
   BlackLayer,
   CategoryText,
 } from './BrowseCategory.styles';
-
 import { category01, category02, category03 } from './imports';
+
+import { Container, ComingSoonImage } from '../../../../globalStyles';
 import comingSoon from '../../../../images/coming-soon.png';
 
-const BrowseCategory = () => {
+const BrowseCategory: React.FC = () => {
   const [showCategory] = useState(false);
 
   return (

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { Container } from '../../globalStyles';
-
 import Graph from '../../icons/graph.svg';
 
 export const ProductCardSec = styled.div`
@@ -73,7 +72,7 @@ export const PriceHistoryClosed = styled.div`
   padding: 1rem 2rem 1rem 1.8rem;
   border-radius: 10px;
   margin-top: 2rem;
-  cursor pointer;
+  cursor: pointer;
 
   display: flex;
 

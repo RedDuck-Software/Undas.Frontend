@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from 'react';
 
 import {
   Navigation,
@@ -11,12 +10,9 @@ import {
   HeaderDropdownButton,
   HeaderDropdownItem,
   IconInner,
-  MobileMenuListSocial
-} from "./NavBarMobile.styles";
-import {
-  LanguageTitle,
-  SocialLink,
-} from "./Navbar.styles";
+  MobileMenuListSocial,
+} from './NavBarMobile.styles';
+import { LanguageTitle, SocialLink } from './Navbar.styles';
 
 import {
   AllNFTsIcon,
@@ -47,8 +43,8 @@ import {
   CommunityIco,
   CreateIco,
   MobileFavoriteIco,
-  MobileAccountIco
-} from "./imports";
+  MobileAccountIco,
+} from './imports';
 
 const NavBarMobile = ({ open }) => {
   return (
@@ -73,14 +69,24 @@ const NavBarMobile = ({ open }) => {
             </MobileStyledLink>
           </MobileStyledList>
           <MobileStyledList>
-          <IconInner><MobileFavoriteIco /></IconInner>
+            <IconInner>
+              <MobileFavoriteIco />
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Favorite">
-              <HeaderDropdownItem href="#"><AllNFTsIcon />Something</HeaderDropdownItem>
-              <HeaderDropdownItem href="#"><AllNFTsIcon />Something</HeaderDropdownItem>
+              <HeaderDropdownItem href="#">
+                <AllNFTsIcon />
+                Something
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="#">
+                <AllNFTsIcon />
+                Something
+              </HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
-          <IconInner><MobileAccountIco /> </IconInner>
+            <IconInner>
+              <MobileAccountIco />{' '}
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Account">
               <HeaderDropdownItem href="account">
                 <ProfileMenuIco />
@@ -106,7 +112,9 @@ const NavBarMobile = ({ open }) => {
           </MobileStyledList>
 
           <MobileStyledList>
-          <IconInner><ExploreIco /></IconInner>
+            <IconInner>
+              <ExploreIco />
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Explore">
               <HeaderDropdownItem href="all" className="dropdown-item">
                 <AllNFTsIcon />
@@ -139,14 +147,24 @@ const NavBarMobile = ({ open }) => {
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
-          <IconInner><ActivityIco /></IconInner>
+            <IconInner>
+              <ActivityIco />
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Activity">
-              <HeaderDropdownItem href="topcollection"><TopCollectionIco />Top collection</HeaderDropdownItem>
-              <HeaderDropdownItem href="activity"><StatisticsIco />Statistics</HeaderDropdownItem>
+              <HeaderDropdownItem href="topcollection">
+                <TopCollectionIco />
+                Top collection
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="activity">
+                <StatisticsIco />
+                Statistics
+              </HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
-          <IconInner><CommunityIco /></IconInner>
+            <IconInner>
+              <CommunityIco />
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Community">
               <HeaderDropdownItem href="about-us">
                 <AboutIco />
@@ -164,7 +182,9 @@ const NavBarMobile = ({ open }) => {
           </MobileStyledList>
 
           <MobileStyledList>
-          <IconInner><CreateIco /></IconInner>
+            <IconInner>
+              <CreateIco />
+            </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Create">
               <HeaderDropdownItem href="create-nft">
                 <AddNFTIco />
@@ -177,20 +197,20 @@ const NavBarMobile = ({ open }) => {
             </HeaderDropdownButton>
           </MobileStyledList>
           <MobileStyledList>
-          <MobileMenuListSocial>
-            <SocialLink to="/">
-              <TwitterIco />
-            </SocialLink>
-            <SocialLink to="/">
-              <TelegramIco />
-            </SocialLink>
-            <SocialLink to="/">
-              <DiscordIco />
-            </SocialLink>
-            <SocialLink to="/">
-              <InstagramIco />
-            </SocialLink>
-          </MobileMenuListSocial>
+            <MobileMenuListSocial>
+              <SocialLink to="/">
+                <TwitterIco />
+              </SocialLink>
+              <SocialLink to="/">
+                <TelegramIco />
+              </SocialLink>
+              <SocialLink to="/">
+                <DiscordIco />
+              </SocialLink>
+              <SocialLink to="/">
+                <InstagramIco />
+              </SocialLink>
+            </MobileMenuListSocial>
           </MobileStyledList>
         </MobileUl>
       </NavigationMenu>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import violetLine from '../../../../icons/violet-line.svg';
+
 import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
+import violetLine from '../../../../icons/violet-line.svg';
 
 interface TopCollectionsProps {
   big?: boolean;
@@ -201,7 +202,7 @@ export const Number = styled.span<TopCollectionsProps>`
   color: ${({ color }) =>
     (color === 'red' && '#8C0008;') ||
     (color === 'green' && '#008C38;') ||
-    '#747474;'}
+    '#747474;'};
   font-size: ${({ big }) => (big ? `1.2rem` : '0.8rem')};
 
   &:after {
@@ -217,7 +218,7 @@ export const Number = styled.span<TopCollectionsProps>`
 `;
 
 export const Picture = styled.img`
-  border-radius 50%;
+  border-radius: 50%;
 
   @media (max-width: 574px) {
     width: 40px;

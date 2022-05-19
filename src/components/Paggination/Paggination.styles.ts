@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const PagginationList = styled.ul`
   display: flex;
@@ -8,7 +8,7 @@ export const PagginationList = styled.ul`
   padding: 0;
   list-style-type: none;
   width: 100%;
-`
+`;
 
 export const ListItem = styled.li`
   font-size: 1rem;
@@ -60,4 +60,4 @@ export const ListItem = styled.li`
       margin: auto 0.4rem;
     }
   }
-`
+`;

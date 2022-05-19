@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Button } from '../../../../globalStyles';
 import OLetter from '../../../../icons/o-letter.svg';
 

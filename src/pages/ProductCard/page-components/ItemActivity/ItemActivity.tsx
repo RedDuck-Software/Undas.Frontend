@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { AiOutlineClose } from "react-icons/ai";
+import React, { useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
 import {
   ItemActivityContainer,
@@ -18,14 +18,14 @@ import {
   ItemActivityTableBody,
   TableColumn,
   PriceNumber,
-} from "./ItemActivity.styles";
+} from './ItemActivity.styles';
 
-const ItemActivity = () => {
-  const [ItemActivity, setItemActivity] = useState(false);
+const ItemActivity: React.FC = () => {
+  const [ItemActivity, ] = useState(false);
 
-  const toogleItemActivity = () => {
+  /* const toogleItemActivity = () => {
     setItemActivity(!ItemActivity);
-  };
+  }; */
 
   return (
     <ItemActivityContainer>

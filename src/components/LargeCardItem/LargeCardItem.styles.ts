@@ -1,13 +1,13 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import CheckMark from '../../icons/check-mark.svg'
+import CheckMark from '../../icons/check-mark.svg';
 
 export const CardImage = styled.img`
   width: 100%;
   max-height: 24rem;
   object-fit: cover;
   border-radius: 10px;
-`
+`;
 
 export const CardContainer = styled.div`
   width: 32%;
@@ -32,7 +32,7 @@ export const CardContainer = styled.div`
     max-width: 90vw;
     margin-bottom: 2rem;
   }
-`
+`;
 
 export const CardContent = styled.div`
   background: rgba(0, 0, 0, 0.9);
@@ -72,7 +72,7 @@ export const CardContent = styled.div`
   @media (max-width: 513px) {
     padding: 2rem 1rem;
   }
-`
+`;
 
 export const CardImageIcon = styled.img`
   position: absolute;
@@ -99,7 +99,7 @@ export const CardImageIcon = styled.img`
   @media (max-width: 469px) {
     left: 44%;
   }
-`
+`;
 
 export const CardCollectionName = styled.h4`
   font-weight: 400;
@@ -112,12 +112,12 @@ export const CardCollectionName = styled.h4`
     left: 10px;
     top: -2px;
   }
-`
+`;
 
 export const CardCollectionCreator = styled.span`
   color: #ffffff;
   font-size: 0.875rem;
-`
+`;
 
 export const CardDescription = styled.p`
   font-size: 0.8rem;
@@ -143,8 +143,8 @@ export const CardDescription = styled.p`
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
   }
-`
+`;
 
 export const PurpleText = styled.span`
   color: #edd2ff;
-`
+`;

@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { ImageProps } from '../../types/ImageProps'
+import React from 'react';
 
 import {
   CardContainer,
@@ -11,7 +9,9 @@ import {
   CardCollectionCreator,
   CardDescription,
   PurpleText,
-} from './LargeCardItem.styles'
+} from './LargeCardItem.styles';
+
+import { ImageProps } from '../../types/ImageProps';
 
 const LargeCardItem: React.FC<ImageProps> = ({ image }) => {
   return (
@@ -31,7 +31,7 @@ const LargeCardItem: React.FC<ImageProps> = ({ image }) => {
         </CardDescription>
       </CardContent>
     </CardContainer>
-  )
-}
+  );
+};
 
-export default LargeCardItem
+export default LargeCardItem;

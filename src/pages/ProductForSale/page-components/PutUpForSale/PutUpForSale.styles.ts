@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Button } from '../../../../globalStyles';
 
+import { Button } from '../../../../globalStyles';
 import Rhombus from '../../../../icons/rhombus.svg';
 
 export const ForSaleWrapper = styled.div`

@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, Button } from '../../../../globalStyles';
+import {
+  gallery01,
+  gallery02,
+  gallery03,
+  gallery04,
+  gallery05,
+  gallery06,
+} from './imports';
 import {
   InfoSec,
   InfoRow,
@@ -14,16 +21,9 @@ import {
   Image,
 } from './InfoSection.styles';
 
-import {
-  gallery01,
-  gallery02,
-  gallery03,
-  gallery04,
-  gallery05,
-  gallery06,
-} from './imports';
+import { Container, Button } from '../../../../globalStyles';
 
-const InfoSection = () => {
+const InfoSection: React.FC = () => {
   return (
     <InfoSec>
       <Container>

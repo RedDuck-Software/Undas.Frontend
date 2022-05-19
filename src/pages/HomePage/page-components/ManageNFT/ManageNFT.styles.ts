@@ -1,44 +1,45 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ManageNFTContainer = styled.div `
+export const ManageNFTContainer = styled.div`
   margin: 120px 0;
-`
+`;
 
-export const ManageCardWrap = styled.ul `
+export const ManageCardWrap = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-between;
   height: 400px;
-`
+`;
 
 interface ICard {
-    alignSelf?: string
+  alignSelf?: string;
 }
 
-export const ManageCard = styled.li<ICard> `
-  align-self: ${props => props.alignSelf || 'self-start'};
+export const ManageCard = styled.li<ICard>`
+  align-self: ${(props) => props.alignSelf || 'self-start'};
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px 20px;
-  background: #FFFFFF;
-  box-shadow: 3px 3px 10px rgba(124, 124, 124, 0.25), inset 0px 0px 10px rgba(124, 124, 124, 0.25);
+  background: #ffffff;
+  box-shadow: 3px 3px 10px rgba(124, 124, 124, 0.25),
+    inset 0px 0px 10px rgba(124, 124, 124, 0.25);
   border-radius: 20px;
   width: 255px;
   height: 300px;
-`
+`;
 
-export const CardTitle = styled.span `
+export const CardTitle = styled.span`
   margin: 30px 0 20px 0;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   //line-height: 26px;
-  color: #5D3F92;
-`
+  color: #5d3f92;
+`;
 
-export const DescHolder = styled.ul `
+export const DescHolder = styled.ul`
   width: 100%;
   text-align: left;
   list-style: none;
@@ -46,9 +47,9 @@ export const DescHolder = styled.ul `
   display: flex;
   flex-direction: column;
   gap: 10px;
-`
+`;
 
-export const DescList = styled.li `
+export const DescList = styled.li`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -61,24 +62,24 @@ export const DescList = styled.li `
     transform: translateY(-2px);
     width: 5px;
     height: 5px;
-    border: 1px solid #873DC1;
+    border: 1px solid #873dc1;
     border-radius: 50%;
   }
-`
+`;
 
-export const StyledSpan = styled.span `
+export const StyledSpan = styled.span`
   text-align: right;
-`
+`;
 
 interface IPurpleText {
-    fs?: string
+  fs?: string;
 }
 
-export const PurpleText = styled.span<IPurpleText> `
+export const PurpleText = styled.span<IPurpleText>`
   width: 100%;
   cursor: pointer;
   font-weight: 400;
-  font-size: ${props => props.fs || '12px'};
+  font-size: ${(props) => props.fs || '12px'};
   text-align: right;
-  color: #873DC1;
-`
+  color: #873dc1;
+`;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const SliderImage = styled.img `
+export const SliderImage = styled.img`
   width: 100%;
   height: 100%;
-`
+`;

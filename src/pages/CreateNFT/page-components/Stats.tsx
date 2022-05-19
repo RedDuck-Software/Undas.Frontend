@@ -1,16 +1,14 @@
-import React, {FC} from 'react';
+import React from 'react';
 
-//Styles
-import {LevelsWrap} from "./Proprties.styles";
+import CompleteBar from './CompleteBar';
+import { LevelsWrap } from './Proprties.styles';
 
-//Components
-import CompleteBar from "./CompleteBar";
-const Stats: FC<{complete?: number}> = ({complete}) => {
-    return (
-        <LevelsWrap>
-            <CompleteBar complete={complete}/>
-        </LevelsWrap>
-    )
-}
+const Stats: React.FC<{ complete?: number }> = ({ complete }) => {
+  return (
+    <LevelsWrap>
+      <CompleteBar complete={complete} />
+    </LevelsWrap>
+  );
+};
 
-export default Stats
+export default Stats;

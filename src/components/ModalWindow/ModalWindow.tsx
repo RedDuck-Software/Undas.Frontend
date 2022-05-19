@@ -1,16 +1,19 @@
-import { IoMdClose } from "react-icons/io";
+import React from 'react';
+
+// import { IoMdClose } from 'react-icons/io';
 
 // import { ModalWindowWrapper, ModalWindowText } from './ModalWindow.styles';
 
-// const ModalWindow = () => {
-//   return (
-//     <ModalWindowWrapper>
-//       <IoMdClose size={20} />
-//       <ModalWindowText>
-//         Congratulations! Your NFT have been putted on the marketplace
-//       </ModalWindowText>
-//     </ModalWindowWrapper>
-//   );
-// };
+const ModalWindow: React.FC = () => {
+  return (
+    //     <ModalWindowWrapper>
+    //       <IoMdClose size={20} />
+    //       <ModalWindowText>
+    //         Congratulations! Your NFT have been putted on the marketplace
+    //       </ModalWindowText>
+    //     </ModalWindowWrapper>
+    <></>
+  );
+};
 
-// export default ModalWindow;
+export default ModalWindow;

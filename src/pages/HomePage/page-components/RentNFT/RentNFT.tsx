@@ -1,26 +1,22 @@
-import React, { FC, useContext, useEffect, useState } from "react";
-/*import {
-  PromoSlide,
-  SlideText
-} from './Promo.styles'*/
+import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-import "./NFTHeroSlider.css";
-import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-import NFTCard from "../NFTCard/NFTCard";
-import styled from "styled-components";
-import Context from "../../../../utils/Context";
-import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
-import getTokenURI from "../../../../utils/getTokenURI";
-import { getStaking } from "../../../../utils/getStaking";
-import { canRentNFTFunction } from "../../../../utils/canRentNFT";
+import './NFTHeroSlider.css';
+import { canRentNFTFunction } from '../../../../utils/canRentNFT';
+import Context from '../../../../utils/Context';
+import { getStaking } from '../../../../utils/getStaking';
+import { getStakingsLastIndex } from '../../../../utils/getStakingsLastIndex';
+import getTokenURI from '../../../../utils/getTokenURI';
+import NFTCard from '../NFTCard/NFTCard';
+import { Title, TitleWrap, ViewAllBtn } from '../Recomended/Recommended.styles';
 
 const RentNFTContainer = styled.div`
   margin: 120px 0;
 `;
 
-const RentNFT: FC = () => {
+const RentNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const items: { URI: string; name: string; id: number }[] = [];
   const [list, setList] =
@@ -35,7 +31,7 @@ const RentNFT: FC = () => {
     if (!lastIndex) return;
 
     for (let i = 0; i < +lastIndex; i++) {
-      let URI = await getTokenURI(i, connector);
+      const URI = await getTokenURI(i, connector);
       const stakingdata = await getStaking(i, connector);
       if (!stakingdata || !URI) {
         continue;
@@ -44,7 +40,7 @@ const RentNFT: FC = () => {
       const { tokenId } = stakingdata.tx;
       const { name } = stakingdata;
       let canRentNFT;
-      if (stakingdata.tx.tokenId._hex !== "0x00") {
+      if (stakingdata.tx.tokenId._hex !== '0x00') {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
       if (canRentNFT) {

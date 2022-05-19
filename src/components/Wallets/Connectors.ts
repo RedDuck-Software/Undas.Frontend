@@ -1,9 +1,8 @@
-import { AbstractConnector } from "@web3-react/abstract-connector";
-
-import { InjectedConnector } from "@web3-react/injected-connector";
-import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
-import { FortmaticConnector } from "@web3-react/fortmatic-connector";
-import { WalletLinkConnector } from "@web3-react/walletlink-connector";
+import { AbstractConnector } from '@web3-react/abstract-connector';
+import { FortmaticConnector } from '@web3-react/fortmatic-connector';
+import { InjectedConnector } from '@web3-react/injected-connector';
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
+import { WalletLinkConnector } from '@web3-react/walletlink-connector';
 
 export const injected = new InjectedConnector({
   //metamask
@@ -29,6 +28,6 @@ export const fortmatic = new FortmaticConnector({
 export const walletlink = new WalletLinkConnector({
   //coinbase
   url: process.env.REACT_APP_ALCHEMY as string,
-  appName: "OnlyOne",
+  appName: 'OnlyOne',
   supportedChainIds: [1], //ATTENTION! CoinBase Wallet doesn't work on testnet so this is a mainnet
 });

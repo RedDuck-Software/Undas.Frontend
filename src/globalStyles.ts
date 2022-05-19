@@ -1,9 +1,8 @@
-import styled, { createGlobalStyle } from "styled-components";
-import background from "./images/background-image.png";
-import backgroundRotated from "./images/background-image-rotated.png";
-import LRBackground from "./images/LRBackground.png";
-import RBackground from "./images/RBackground.png";
-import LRBackground2 from "./images/LRBackground.png";
+import styled, { createGlobalStyle } from 'styled-components';
+
+import LRBackground from './images/LRBackground.png';
+import LRBackground2 from './images/LRBackground.png';
+import RBackground from './images/RBackground.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface GlobalStylesProps {
@@ -41,55 +40,52 @@ export const Container = styled.div`
 
 export const Button = styled.button<GlobalStylesProps>`
   border-radius: 0.5rem;
-  background: ${({ violet }) => (violet ? "#893AC2" : "#fff")};
+  background: ${({ violet }) => (violet ? '#893AC2' : '#fff')};
   white-space: nowrap;
   font-size: 1.05rem;
-  padding: ${({ big }) => (big ? "0.8rem 10rem" : "0.8rem 4.6rem")};
-  color: ${({ violet }) => (violet ? "#fff" : "#000000")};
+  padding: ${({ big }) => (big ? '0.8rem 10rem' : '0.8rem 4.6rem')};
+  color: ${({ violet }) => (violet ? '#fff' : '#000000')};
   outline: none;
-  border: ${({ violet }) => (violet ? "none" : "1px solid #893AC2")};
+  border: ${({ violet }) => (violet ? 'none' : '1px solid #893AC2')};
   box-shadow: ${({ violet }) =>
     violet
-      ? "inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
-      : "inset 0px 4px 4px rgba(93, 63, 146, 0.31)"};
+      ? 'inset 0px 4px 4px rgba(0, 0, 0, 0.25)'
+      : 'inset 0px 4px 4px rgba(93, 63, 146, 0.31)'};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: ${({ violet }) => (violet ? "#6a358f" : "#f5f5f5")};
+    background: ${({ violet }) => (violet ? '#6a358f' : '#f5f5f5')};
   }
 
   @media (max-width: 1169px) {
     grid-gap: 0.8rem;
-    padding: ${({ big }) => (big ? "0.8rem 6rem" : "0.8rem 4rem")};
+    padding: ${({ big }) => (big ? '0.8rem 6rem' : '0.8rem 4rem')};
   }
 
   @media (max-width: 1009px) {
-    padding: ${({ big }) => (big ? "0.8rem 4rem" : "0.8rem 3.6rem")};
+    padding: ${({ big }) => (big ? '0.8rem 4rem' : '0.8rem 3.6rem')};
   }
 
   @media (max-width: 801px) {
-    padding: ${({ big }) => (big ? "0.8rem 3.6rem" : "0.8rem 3rem")};
+    padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '0.8rem 3rem')};
   }
 
   @media (max-width: 661px) {
-    padding: ${({ big }) => (big ? "0.6rem 2.4rem" : "0.6rem 2rem")};
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '0.6rem 2rem')};
   }
 
   @media (max-width: 539px) {
     font-size: 0.85rem;
-    padding: ${({ big }) => (big ? "0.6rem 2.4rem" : "2% 8%")};
+    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 8%')};
   }
 `;
 
 export const Background = styled.div`
   width: 100%;
-  background: url(${LRBackground}),
-  url(${RBackground}),
-  url(${LRBackground2});
+  background: url(${LRBackground}), url(${RBackground}), url(${LRBackground2});
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: left 0 top 150px, right 0 top 1450px, left 0 top 2150px;
-  
 
   @media (max-width: 1099px) {
     background-position: right 40rem top 12rem, left 40rem top 58rem,
@@ -145,26 +141,26 @@ export const PageTitle = styled.h1`
   line-height: 44px;
   color: #232428;
   margin: 40px 0 20px;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     font-size: 32px;
     line-height: 36px;
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     font-size: 24px;
     line-height: 28px;
     margin: 30px 0 10px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     font-size: 20px;
     line-height: 24px;
   }
-`
+`;
 export const SubTitle = styled.h2`
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
   color: #232428;
-  &.align-center{
+  &.align-center {
     text-align: center;
   }
 `;

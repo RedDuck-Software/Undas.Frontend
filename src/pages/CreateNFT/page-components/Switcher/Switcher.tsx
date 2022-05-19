@@ -1,19 +1,16 @@
-import React from "react";
-import {Form} from "react-bootstrap"
-import {SwitcherWrap} from "./Switcher.styles";
+import React from 'react';
+import { Form } from 'react-bootstrap';
 
-const Switcher = () => {
-    return (
-        <SwitcherWrap>
-            <Form>
-                <Form.Switch 
-                    type="switch"
-                    id="switch"
-                    label=""
-                />
-            </Form>
-        </SwitcherWrap>
-    )
-}
+import { SwitcherWrap } from './Switcher.styles';
 
-export default Switcher
+const Switcher: React.FC = () => {
+  return (
+    <SwitcherWrap>
+      <Form>
+        <Form.Switch type="switch" id="switch" label="" />
+      </Form>
+    </SwitcherWrap>
+  );
+};
+
+export default Switcher;

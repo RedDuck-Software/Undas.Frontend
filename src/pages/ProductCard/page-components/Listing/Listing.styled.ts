@@ -1,12 +1,12 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import Rhombus from '../../../../icons/rhombus.svg'
+import Rhombus from '../../../../icons/rhombus.svg';
 
 interface ListingProps {
-  closed?: boolean
+  closed?: boolean;
 }
 
-export const ListingContainer = styled.div``
+export const ListingContainer = styled.div``;
 
 export const ListingsTop = styled.div<ListingProps>`
   background: #ffffff;
@@ -16,7 +16,7 @@ export const ListingsTop = styled.div<ListingProps>`
   padding: 3%;
   border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
-  cursor pointer;
+  cursor: pointer;
 
   display: flex;
 
@@ -25,20 +25,20 @@ export const ListingsTop = styled.div<ListingProps>`
     top: 4px;
     margin-left: auto;
   }
-`
+`;
 
 export const ListingContent = styled.div`
   border: 1px solid #5d3f92;
   border-radius: 0px 0px 10px 10px;
   border-top: none;
-`
+`;
 
 export const ListingTable = styled.table`
   background-color: #fff;
   border-collapse: collapse;
   width: 100%;
   border-radius: 0px 0px 10px 10px;
-`
+`;
 
 export const ListingTableHead = styled.thead`
   background: #ffffff;
@@ -47,18 +47,18 @@ export const ListingTableHead = styled.thead`
     text-align: left;
     color: #7c7c7c;
   }
-`
+`;
 
 export const TableRow = styled.tr`
   border-top: 1px solid #5d3f92;
-`
+`;
 
 export const TableHeadTitle = styled.th`
   padding: 3%;
   font-weight: 400;
-`
+`;
 
-export const ListingTableBody = styled.tbody``
+export const ListingTableBody = styled.tbody``;
 
 export const TableColumn = styled.td`
   font-size: 0.85rem;
@@ -88,7 +88,7 @@ export const TableColumn = styled.td`
   @media (max-width: 539px) {
     font-size: 0.75rem;
   }
-`
+`;
 
 export const PriceNumber = styled.span`
   font-size: 1.15rem;
@@ -108,7 +108,7 @@ export const PriceNumber = styled.span`
       padding-right: 2%;
     }
   }
-`
+`;
 
 export const BuyButton = styled.button`
   padding: 6% 12%;
@@ -125,4 +125,4 @@ export const BuyButton = styled.button`
   &:hover {
     background: #f5f5f5;
   }
-`
+`;

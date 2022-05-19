@@ -1,14 +1,15 @@
-import React, { FC, useContext, useEffect, useState } from "react";
-import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-import NFTCard from "../NFTCard/NFTCard";
-import Context from "../../../../utils/Context";
-import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
-import { getListing } from "../../../../utils/getListing";
-import { isBuyableFunction } from "../../../../utils/isBuyable";
+import React, { useContext, useEffect, useState } from 'react';
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-const NewNFT: FC = () => {
+import Context from '../../../../utils/Context';
+import { getListing } from '../../../../utils/getListing';
+import { getListingsLastIndex } from '../../../../utils/getListingsLastIndex';
+import { isBuyableFunction } from '../../../../utils/isBuyable';
+import NFTCard from '../NFTCard/NFTCard';
+import { Title, TitleWrap, ViewAllBtn } from '../Recomended/Recommended.styles';
+
+const NewNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const items: { id: number; name: string; URI: string }[] = [];
   const [list, setList] =

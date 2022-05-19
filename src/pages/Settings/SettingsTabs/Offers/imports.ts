@@ -1,3 +1,3 @@
-import  InformIco from '../../../../icons//inform.svg';
+import InformIco from '../../../../icons//inform.svg';
 
-export {InformIco}
+export { InformIco };

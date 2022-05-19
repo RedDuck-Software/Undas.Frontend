@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const CardWrap = styled.div `
+export const CardWrap = styled.div`
   position: absolute;
   z-index: 1;
   padding: 20px;
@@ -13,23 +13,21 @@ export const CardWrap = styled.div `
   color: #232428;
   max-width: 445px;
   margin-top: -70px;
-`
+`;
 
-
-
-export const ImageWrap = styled.div `
+export const ImageWrap = styled.div`
   min-width: 100px;
   height: 100px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-`
+`;
 
-export const Description = styled.span `
+export const Description = styled.span`
   max-width: 218px;
-`
+`;
 
-export const SocialWrap = styled.div `
+export const SocialWrap = styled.div`
   margin-left: 50px;
   max-width: 192px;
   background: rgba(255, 255, 255, 0.4);
@@ -41,21 +39,21 @@ export const SocialWrap = styled.div `
   svg {
     cursor: pointer;
   }
-`
+`;
 
-export const CollectionName = styled.h2 `
+export const CollectionName = styled.h2`
   font-size: 36px;
   font-weight: 400;
-`
+`;
 
-export const Creator = styled.h4 `
+export const Creator = styled.h4`
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
   display: inline-block;
   color: #232428;
-`
+`;
 
-export const PurpleText = styled(Creator) `
-  color: #873DC1;
-`
+export const PurpleText = styled(Creator)`
+  color: #873dc1;
+`;

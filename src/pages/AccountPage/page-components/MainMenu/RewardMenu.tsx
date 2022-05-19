@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from 'react';
 
 import {
   RewardMenuWrap,
@@ -20,14 +20,9 @@ import {
   BlockContentTotal,
   CentralBlockHead,
   RightBlockHead,
-  RightBlockButton
-} from "./Menu.styles";
-import {
-  ContentTable,
-  ContentTr,
-  ContentTd,
-  Icon,
-} from "../RewardTable/RewardTable.styles";
+  RightBlockButton,
+} from './Menu.styles';
+
 import {
   HoldingIco,
   StakingIco,
@@ -42,10 +37,16 @@ import {
   SolanaIco,
   FtmIco,
   AvaxIco,
-} from "../../imports";
-import RewardTable from "../RewardTable/RewardTable";
+} from '../../imports';
+import RewardTable from '../RewardTable/RewardTable';
+import {
+  ContentTable,
+  ContentTr,
+  ContentTd,
+  Icon,
+} from '../RewardTable/RewardTable.styles';
 
-const RewardMenu: FC = () => {
+const RewardMenu: React.FC = () => {
   return (
     <RewardMenuWrap>
       <Title>Rewards</Title>
@@ -156,7 +157,7 @@ const RewardMenu: FC = () => {
             <RewardTable />
           </CentralBlock>
           <RightBlock>
-            <RightBlockHead>Unclaimed reward's</RightBlockHead>
+            <RightBlockHead>Unclaimed reward&#39;s</RightBlockHead>
             <RewardTable />
             <RightBlockButton>Claim</RightBlockButton>
           </RightBlock>
@@ -269,7 +270,7 @@ const RewardMenu: FC = () => {
             <RewardTable />
           </CentralBlock>
           <RightBlock>
-            <RightBlockHead>Unclaimed reward's</RightBlockHead>
+            <RightBlockHead>Unclaimed reward&#39;s</RightBlockHead>
             <RewardTable />
             <RightBlockButton>Claim</RightBlockButton>
           </RightBlock>
@@ -382,7 +383,7 @@ const RewardMenu: FC = () => {
             <RewardTable />
           </CentralBlock>
           <RightBlock>
-            <RightBlockHead>Unclaimed reward's</RightBlockHead>
+            <RightBlockHead>Unclaimed reward&#39;s</RightBlockHead>
             <RewardTable />
             <RightBlockButton>Claim</RightBlockButton>
           </RightBlock>
