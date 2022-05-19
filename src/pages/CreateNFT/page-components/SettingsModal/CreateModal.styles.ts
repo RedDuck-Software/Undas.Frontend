@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CreateFormButton } from '../../CreateNFT.styles';
 
 export const CreateModalWrap = styled.div``;
 
@@ -95,4 +96,23 @@ export const InputButton = styled.button`
 export const ModalLabelStraight = styled(ModalLabel)`
   border-radius: 0;
   border-left: 0;
+`;
+
+export const CreateModalFormButton = styled(CreateFormButton)`
+  &.colored-btn {
+    margin-right: 0;
+  }
+  @media (max-width: 992px) {
+    &.colored-btn {
+      color: #ffffff;
+      background: #873dc1;
+      border: 1px solid transparent;
+    }
+  }
+  @media (max-width: 576px) {
+    margin: 0;
+    &.colored-btn {
+      margin-top: 20px;
+    }
+  }
 `;

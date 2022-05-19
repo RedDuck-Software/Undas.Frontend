@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
-import { Container } from '../../globalStyles';
+import { Container, PageTitle } from '../../globalStyles';
 
 export const CreateSec = styled.div`
-  padding: 60px 0;
-
-  @media (max-width: 1024px) {
-    padding: 3rem 0;
+  padding: 30px 0 60px;
+  @media (max-width: 992px) {
+    padding: 20px 0;
+  }
+  @media (max-width: 576px) {
+    padding: 0;
   }
 `;
 
 export const CreateContainer = styled(Container)`
   padding-bottom: 60px;
 `;
-export const CreateTitle = styled.h1``;
+export const CreateTitle = styled(PageTitle)`
+  margin-bottom: 20px;
+`;
 
 export const CreateForm = styled.form`
   & .require-asterisk {
@@ -28,6 +32,9 @@ export const BlockDescript = styled.p`
   line-height: 15px;
   color: #7c7c7c;
   margin-bottom: 10px;
+  &.required-fields {
+    margin-bottom: -10px;
+  }
 `;
 
 export const CreateFormGroup = styled.div`
@@ -46,6 +53,16 @@ export const CreateLabel = styled.label`
   margin: 20px 0 10px;
   &.collection-label {
     flex: 0 0 100%;
+  }
+  @media (max-width: 768px) {
+    &.category-label {
+      order: 1;
+    }
+  }
+  @media (max-width: 576px) {
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px 0 5px;
   }
 `;
 export const AddImgButton = styled.button`
@@ -159,6 +176,12 @@ export const FormButton = styled.button`
     border: 1px solid transparent;
   }
 `;
+
+export const CreateFormButton = styled(FormButton)`
+  margin-left: 0;
+  margin-right: 20px;
+`;
+
 export const ButtonsBlock = styled.div`
   margin-top: 40px;
 `;

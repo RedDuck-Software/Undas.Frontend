@@ -105,7 +105,7 @@ const CreateCollection: React.FC = () => {
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel>Featured image</CreateLabel>
-              <AddImgBlock>
+              <AddImgBlock className="featured">
                 <AddFeaturedButton>
                   <img src={ImgIcon} alt="image-icon" />
                 </AddFeaturedButton>
@@ -251,8 +251,10 @@ const CreateCollection: React.FC = () => {
             </CreateFormGroup>
           </CreateForm>
           <ButtonsBlock>
-            <FormButton>Create</FormButton>
-            <FormButton>Back</FormButton>
+            <FormButtonsWrap>
+              <CreateFormButton className="left-btn">Create</CreateFormButton>
+              <CreateFormButton>Back</CreateFormButton>
+            </FormButtonsWrap>
           </ButtonsBlock>
         </CreateContainer>
       </CreateSec>

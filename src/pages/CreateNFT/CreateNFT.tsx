@@ -20,9 +20,9 @@ import {
   ModalBlock,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton,
   ButtonsBlock,
   WithPropertiesBlock,
+  CreateFormButton,
 } from './CreateNFT.styles';
 import {
   ImgIcon,
@@ -41,6 +41,7 @@ import Stats from './page-components/Stats';
 import Switcher from './page-components/Switcher/Switcher';
 
 import { Background } from '../../globalStyles';
+import { FormButtonsWrap } from '../Settings/SettingsTabs/Profile/ProfileSettings.styles';
 
 type CreateSubmitForm = {
   externalLink: string;
@@ -258,7 +259,8 @@ const CreateNFT: React.FC = () => {
               </CreateLabel>
               <BlockDescript>
                 Freezing your metadata will allow you to permanently lock and
-                store all of this item&#39;s content in decentralized file storage
+                store all of this item&#39;s content in decentralized file
+                storage
               </BlockDescript>
               <CreateInput
                 type="text"
@@ -271,8 +273,10 @@ const CreateNFT: React.FC = () => {
             </CreateFormGroup>
           </CreateForm>
           <ButtonsBlock>
-            <FormButton>Create</FormButton>
-            <FormButton>Back</FormButton>
+            <FormButtonsWrap>
+              <CreateFormButton className="left-btn">Create</CreateFormButton>
+              <CreateFormButton>Back</CreateFormButton>
+            </FormButtonsWrap>
           </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
