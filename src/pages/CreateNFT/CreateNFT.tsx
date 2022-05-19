@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { Background } from "../../globalStyles";
+import { Background, FormButtonsWrap } from "../../globalStyles";
 
 import { 
   CreateSec,
@@ -24,8 +24,8 @@ import {
   ModalBlock,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton,
   ButtonsBlock,
+  CreateFormButton,
   WithPropertiesBlock
 } from "./CreateNFT.styles";
 import { ethers } from "ethers";
@@ -235,8 +235,10 @@ const CreateNFT = () => {
             </CreateFormGroup>
           </CreateForm>
           <ButtonsBlock>
-            <FormButton>Create</FormButton>
-            <FormButton>Back</FormButton>
+            <FormButtonsWrap>
+              <CreateFormButton className="left-btn">Create</CreateFormButton>
+              <CreateFormButton>Back</CreateFormButton>
+            </FormButtonsWrap>
           </ButtonsBlock>
 
         </CreateContainer>

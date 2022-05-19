@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Accordion from 'react-bootstrap/Accordion';
-import { CheckboxInput, CheckboxLabel, FormButton } from "../Profile/ProfileSettings.styles";
+import { CheckboxInput, CheckboxLabel } from "../Profile/ProfileSettings.styles";
+import { FormButton } from "../../../../globalStyles"
 
 export const AccountSupportWrap = styled.div ``;
 

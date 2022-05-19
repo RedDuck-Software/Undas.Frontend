@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
-import { Container, Button } from '../../globalStyles';
+import { Container, PageTitle, FormButton } from '../../globalStyles';
 
 export const CreateSec = styled.div`
-  padding: 60px 0;
-
-  @media (max-width: 1024px) {
-    padding: 3rem 0;
+  padding: 30px 0 60px;
+  @media (max-width: 992px) {
+    padding: 20px 0;
+  }
+  @media (max-width: 576px) {
+    padding: 0;
   }
 `;
 
 export const CreateContainer = styled(Container)`
 padding-bottom: 60px;
 `;
-export const CreateTitle = styled.h1``;
+export const CreateTitle = styled(PageTitle)`
+  margin-bottom: 20px;
+`;
 
 export const CreateForm = styled.form`
       & .require-asterisk{
@@ -28,6 +32,9 @@ export const BlockDescript = styled.p `
     line-height: 15px;
     color: #7C7C7C;
     margin-bottom: 10px;
+    &.required-fields{
+      margin-bottom: -10px;
+    }
 `;
 
 export const CreateFormGroup = styled.div`
@@ -46,6 +53,11 @@ export const CreateLabel = styled.label`
   margin: 20px 0 10px;
   &.collection-label{
     flex: 0 0 100%;
+  }
+  @media (max-width: 768px) {
+    &.category-label{
+      order: 1;
+    }
   }
 `;
 export const AddImgButton = styled.button `
@@ -116,6 +128,13 @@ export const CreateSelect = styled.select`
       &#collection{
         margin-right: 20px;
       }
+      @media (max-width: 768px) {
+          &#category{
+          margin-right: 0;
+          order: 3;
+          max-width: 100%;
+        }
+      }
 `;
 export const ModalTitle = styled(CreateLabel)`
   & svg{
@@ -140,19 +159,9 @@ export const SwitcherBlock = styled(ModalBlock)`
 export const SwitcherTitle = styled(ModalTitle)`
   margin: 0;
 `;
-export const FormButton = styled.button`
-    background: #FFFFFF;
-    border: 1px solid #873DC1;
-    border-radius: 10px;
-    color: #873DC1;
-    padding: 7px 37px;
+export const CreateFormButton = styled(FormButton)`
+    margin-left: 0;
     margin-right: 20px;
-    transition: all .3s;
-    &:hover{
-        color: #FFFFFF;
-        background: #873DC1;
-        border: 1px solid transparent;
-    }
 `;
 export const ButtonsBlock = styled.div`
 margin-top: 40px;

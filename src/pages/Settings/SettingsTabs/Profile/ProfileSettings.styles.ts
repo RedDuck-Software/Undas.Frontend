@@ -289,44 +289,4 @@ export const CopyButton = styled.button`
   background-color: #fff;
   outline: none;
 `;
-export const FormButtonsWrap = styled.div`
-    @media (max-width: 992px) {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    @media (max-width: 576px) {
-        flex-wrap: wrap;
-    }
-`;
 
-export const FormButton = styled.button`
-    background: #FFFFFF;
-    border: 1px solid #873DC1;
-    border-radius: 10px;
-    color: #873DC1;
-    padding: 7px 37px;
-    margin-left: 25px;
-    transition: all .3s;
-    &:hover{
-        color: #FFFFFF;
-        background: #873DC1;
-        border: 1px solid transparent;
-    }
-    @media (max-width: 992px) {
-        flex: 0 0 45%;
-        &.left-btn{
-            border: 1px solid transparent;
-            background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
-            color: #fff;
-            margin-left: 0;
-        }
-    }
-    @media (max-width: 576px) {
-        flex: 0 0 100%;
-        margin: 0;
-        &.left-btn{
-            margin-bottom: 15px;
-        }
-    }
-`;

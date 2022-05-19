@@ -1,5 +1,5 @@
 import React, { FC, useState, useContext } from "react";
-import { Modal, Button, } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 import {
     CreateModalWrap,
@@ -13,7 +13,7 @@ import {
     ModalLabelStraight,
 } from "./CreateModal.styles";
 
-import {FormButton} from "../../CreateNFT.styles";
+import {CreateFormButton} from "../../CreateNFT.styles";
 import "./styles.css";
 
 
@@ -51,12 +51,12 @@ const StatsModal = () => {
                 </ModalInputGroup>
             </Modal.Body>
             <Modal.Footer>
-                <FormButton onClick={handleClose}>
+                <CreateFormButton onClick={handleClose}>
                 Add  More
-                </FormButton>
-                <FormButton onClick={handleClose}>
+                </CreateFormButton>
+                <CreateFormButton onClick={handleClose}>
                 Save 
-                </FormButton>
+                </CreateFormButton>
             </Modal.Footer>
             </Modal>
         </CreateModalWrap>
