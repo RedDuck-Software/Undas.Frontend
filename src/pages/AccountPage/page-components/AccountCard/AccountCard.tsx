@@ -21,7 +21,7 @@ interface IAccountCard {
 
 const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
   const accountSplit = account?.split('');
-  // const slicedAccount = accountSplit?.splice(6, 32, '...');
+  accountSplit?.splice(6, 32, '...');
   return (
     <AccountWrap>
       <Wrapper disp="flex" gap="10px">
