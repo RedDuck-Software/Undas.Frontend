@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import { PriceText } from '../../../NFTPage.styles';
 import {
   ActivityWrap,
   ActivityTableWrap,
@@ -10,100 +12,93 @@ import {
   ActivityTd,
   ActivityColorText,
   EtherIcon,
-  // ActivityHeadTrMobile,
-  // ActivityTableWrapMobile,
-  // ActivityTdMobile,
-  // ActivityTrMobile
+} from '../Accordion.styles';
 
-} from "../Accordion.styles";
-import {
-  PriceText
-} from '../../../NFTPage.styles'
-const ItemActivity = () => {
+const ItemActivity: React.FC = () => {
   return (
     <ActivityWrap>
       <ActivityTopRow>
         <ActivityText>Filter</ActivityText>
-        <ActivityButton className='left-btn'>Salers</ActivityButton>
+        <ActivityButton className="left-btn">Salers</ActivityButton>
         <ActivityButton>Transfers</ActivityButton>
         <ActivityButton>Listings</ActivityButton>
       </ActivityTopRow>
       <ActivityTableWrap>
-      <ActivityHeadTr>
-        <ActivityTd>Event</ActivityTd>
-        <ActivityTd>Price</ActivityTd>
-        <ActivityTd>From</ActivityTd>
-        <ActivityTd>To</ActivityTd>
-        <ActivityTd>Date</ActivityTd>
-      </ActivityHeadTr>
-      <ActivityTr>
-        <ActivityTd>
-          <ActivityText>Sale</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <EtherIcon />
-          <PriceText>2,5</PriceText>
-          <ActivityText>ETH</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>5 months ago</ActivityTd>
-      </ActivityTr>
-      <ActivityTr>
-        <ActivityTd>
-        <ActivityText>Transfer</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <EtherIcon />
-          <PriceText>2</PriceText>
-          <ActivityText>ETH</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-        <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>5 months ago</ActivityTd>
-      </ActivityTr>
-      <ActivityTr>
-        <ActivityTd>
-          <ActivityText>Minted</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <EtherIcon />
-          <PriceText>0,5</PriceText>
-          <ActivityText>ETH</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">NullAddress</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>6 months ago</ActivityTd>
-      </ActivityTr>
-      <ActivityTr>
-        <ActivityTd>
-          <ActivityText>Transfer</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <EtherIcon />
-          <PriceText>1,25</PriceText>
-          <ActivityText>ETH</ActivityText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>
-          <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-        </ActivityTd>
-        <ActivityTd>8 months ago</ActivityTd>
-      </ActivityTr>
+        <ActivityHeadTr>
+          <ActivityTd>Event</ActivityTd>
+          <ActivityTd>Price</ActivityTd>
+          <ActivityTd>From</ActivityTd>
+          <ActivityTd>To</ActivityTd>
+          <ActivityTd>Date</ActivityTd>
+        </ActivityHeadTr>
+        <ActivityTr>
+          <ActivityTd>
+            <ActivityText>Sale</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <EtherIcon />
+            <PriceText>2,5</PriceText>
+            <ActivityText>ETH</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>5 months ago</ActivityTd>
+        </ActivityTr>
+        <ActivityTr>
+          <ActivityTd>
+            <ActivityText>Transfer</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <EtherIcon />
+            <PriceText>2</PriceText>
+            <ActivityText>ETH</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>5 months ago</ActivityTd>
+        </ActivityTr>
+        <ActivityTr>
+          <ActivityTd>
+            <ActivityText>Minted</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <EtherIcon />
+            <PriceText>0,5</PriceText>
+            <ActivityText>ETH</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">NullAddress</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>6 months ago</ActivityTd>
+        </ActivityTr>
+        <ActivityTr>
+          <ActivityTd>
+            <ActivityText>Transfer</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <EtherIcon />
+            <PriceText>1,25</PriceText>
+            <ActivityText>ETH</ActivityText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>
+            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
+          </ActivityTd>
+          <ActivityTd>8 months ago</ActivityTd>
+        </ActivityTr>
       </ActivityTableWrap>
 
       {/* <ActivityTableWrapMobile>
@@ -137,7 +132,7 @@ const ItemActivity = () => {
       </ActivityTrMobile>
       </ActivityTableWrapMobile> */}
     </ActivityWrap>
-  )
-}
+  );
+};
 
-export default ItemActivity
+export default ItemActivity;

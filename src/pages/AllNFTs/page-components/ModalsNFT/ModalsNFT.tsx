@@ -1,19 +1,9 @@
+import React from 'react';
 import { useState } from 'react';
-import { Modal, } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
-import { useDispatch } from "react-redux";
-
-
-import "./TabsNFTModal.css";
-import {  
-  NFTModal,
-  collection, 
-  imageNft,
-  btnLeft,
-  btnRight,
-  
-} from './imports';
-
+import './TabsNFTModal.css';
+import { NFTModal, collection, imageNft, btnLeft, btnRight } from './imports';
 import {
   ButtonOffer,
   FormButton,
@@ -59,27 +49,25 @@ import {
   CheckboxLabel,
   LinkAgreement,
   ModalNftDiv,
-} from "./ModalsNFT.styles";
+} from './ModalsNFT.styles';
 
-const ModalsNFT = () => {
-  const [showCategory] = useState(false);
-  const dispatch = useDispatch();
+const ModalsNFT: React.FC = () => {
   const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  return ( 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
     <ModalNftDiv>
-    <ButtonOffer onClick={handleShow}
-    >Make offer</ButtonOffer>
-    <Modal className="modal-make-offer" show={show} onHide={handleClose}>
+      <ButtonOffer onClick={handleShow}>Make offer</ButtonOffer>
+      <Modal className="modal-make-offer" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <MakeOfferText>Make an Offer</MakeOfferText>
         </Modal.Header>
         <Modal.Body>
           <ItemText>Item</ItemText>
           <NumberText>Number of NFTs Selected</NumberText> 5 <br></br>
-          <NameNFT>Name NFT</NameNFT><br></br>
+          <NameNFT>Name NFT</NameNFT>
+          <br></br>
           <NFTImg src={NFTModal} alt="NFT-image" /> <br></br>
           <NFTImgCol src={collection} alt="NFT-image" />
           <NFTImgCol1 src={collection} alt="NFT-image" />
@@ -113,13 +101,29 @@ const ModalsNFT = () => {
             <PriceText>Price</PriceText>
             <BlockBtnAmmount>
               <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button
+                  className="btn btn-secondary dropdown-toggle btn-dropdown"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <EthText>ETH</EthText>
                 </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">-</a>
-                  <a className="dropdown-item" href="#">-</a>
-                  <a className="dropdown-item" href="#">-</a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <a className="dropdown-item" href="#">
+                    -
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    -
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    -
+                  </a>
                 </div>
               </div>
               <AmmountInput placeholder="Ammount"></AmmountInput>
@@ -130,15 +134,35 @@ const ModalsNFT = () => {
             <PriceText>Offer Exriration</PriceText>
             <BlockBtnAmmount>
               <div className="dropdown-day dropdown ">
-                <button className="dropdown-toggle-day btn btn-secondary dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button
+                  className="dropdown-toggle-day btn btn-secondary dropdown-toggle btn-dropdown"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <DayText>3 day</DayText>
                 </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">1 days</a>
-                  <a className="dropdown-item" href="#">3 days</a>
-                  <a className="dropdown-item" href="#">7 days</a>
-                  <a className="dropdown-item" href="#">1 month</a>
-                  <a className="dropdown-item" href="#">Custom date</a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <a className="dropdown-item" href="#">
+                    1 days
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    3 days
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    7 days
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    1 month
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    Custom date
+                  </a>
                 </div>
               </div>
               <SumUSD>
@@ -146,20 +170,27 @@ const ModalsNFT = () => {
                 <PmAmText>PM</PmAmText>
               </SumUSD>
             </BlockBtnAmmount>
-            <CheckboxInput type="checkbox" id="poject" className="custom-checkbox" />
-            <CheckboxLabel htmlFor="poject">I agree to the platform <LinkAgreement> agreement ...</LinkAgreement></CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="poject"
+              className="custom-checkbox"
+            />
+            <CheckboxLabel htmlFor="poject">
+              I agree to the platform{' '}
+              <LinkAgreement> agreement ...</LinkAgreement>
+            </CheckboxLabel>
           </OfferDiv>
         </Modal.Body>
         <Modal.Footer>
-          <FormButton className='btn-make-offer' onClick={handleClose}>
+          <FormButton className="btn-make-offer" onClick={handleClose}>
             Make Offer
           </FormButton>
-          <FormButton className='btn-convert' onClick={handleClose}>
+          <FormButton className="btn-convert" onClick={handleClose}>
             Convert ETH
           </FormButton>
         </Modal.Footer>
       </Modal>
-      </ModalNftDiv>
+    </ModalNftDiv>
   );
 };
 

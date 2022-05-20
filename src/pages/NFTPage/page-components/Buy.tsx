@@ -1,41 +1,42 @@
+import { useWeb3React } from '@web3-react/core';
+import { ethers } from 'ethers';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { Marketplace__factory } from '../../../typechain';
+import { MARKETPLACE_ADDRESS } from '../../../utils/addressHelpers';
+import Context from '../../../utils/Context';
+import { Wrapper } from '../../CategoriesPage/Categories.styles';
+import { EthIco } from '../imports';
 import {
   BuyBar,
   PriceText,
   PriceInUSD,
   ButtonWrap,
   InfoButton,
-} from "../NFTPage.styles";
-import { Wrapper } from "../../CategoriesPage/Categories.styles";
-import { EthIco } from "../imports";
-import { FC, useContext, useEffect, useState } from "react";
-import Context from "../../../utils/Context";
-import { useWeb3React } from "@web3-react/core";
-import { ethers } from "ethers";
-import { Marketplace__factory } from "../../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
+} from '../NFTPage.styles';
 
-const Buy: FC<{ id: number }> = ({ id }) => {
+const Buy: React.FC<{ id: number }> = ({ id }) => {
   const { connector } = useContext(Context);
 
-  let web3React = useWeb3React();
-  let account = web3React.account;
+  const web3React = useWeb3React();
+  const account = web3React.account;
 
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
-  const [seller, setSeller] = useState("");
+  const [seller, setSeller] = useState('');
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.getListing(itemId);
@@ -47,14 +48,14 @@ const Buy: FC<{ id: number }> = ({ id }) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.buyToken(itemId, {
@@ -66,7 +67,7 @@ const Buy: FC<{ id: number }> = ({ id }) => {
 
   async function getEthPrice() {
     const API_URL =
-      "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
+      'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD';
     const response = await fetch(API_URL);
     const responseInJson = await response.json();
     return responseInJson;
@@ -92,7 +93,7 @@ const Buy: FC<{ id: number }> = ({ id }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
 
     getProductPrice();

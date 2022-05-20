@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Container, PageTitle, FormButton } from '../../globalStyles';
+import { Container, PageTitle } from '../../globalStyles';
 
 export const CreateSec = styled.div`
   padding: 30px 0 60px;
@@ -13,32 +13,32 @@ export const CreateSec = styled.div`
 `;
 
 export const CreateContainer = styled(Container)`
-padding-bottom: 60px;
+  padding-bottom: 60px;
 `;
 export const CreateTitle = styled(PageTitle)`
   margin-bottom: 20px;
 `;
 
 export const CreateForm = styled.form`
-      & .require-asterisk{
-        color: #CC252F;
-        margin-right: 5px;
-        margin-left: 5px;
-    }
+  & .require-asterisk {
+    color: #cc252f;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 `;
-export const BlockDescript = styled.p `
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: #7C7C7C;
-    margin-bottom: 10px;
-    &.required-fields{
-      margin-bottom: -10px;
-    }
+export const BlockDescript = styled.p`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #7c7c7c;
+  margin-bottom: 10px;
+  &.required-fields {
+    margin-bottom: -10px;
+  }
 `;
 
 export const CreateFormGroup = styled.div`
-  &.collection{
+  &.collection {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -51,111 +51,96 @@ export const CreateLabel = styled.label`
   line-height: 22px;
   color: #232428;
   margin: 20px 0 10px;
-  &.collection-label{
+  &.collection-label {
     flex: 0 0 100%;
   }
   @media (max-width: 768px) {
-    &.category-label{
+    &.category-label {
       order: 1;
     }
   }
   @media (max-width: 576px) {
-      font-size: 16px;
-      line-height: 19px;
-      margin: 10px 0 5px;
-    }
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px 0 5px;
+  }
 `;
-export const AddImgButton = styled.button `
-    width: 350px;
-    height: 250px;
-    border: 1px dashed #7C7C7C;
-    box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.25);
-    border-radius: 10px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-    margin-bottom: 30px;
-    transition: all .3s;
-    &:hover{
-        background: linear-gradient(0deg, rgba(124, 124, 124, 0.25), rgba(124, 124, 124, 0.25)), #FFFFFF;
-        cursor: pointer;
-    }
-    @media (max-width: 576px) {
-      width: 100%;
-      height: 150px;
-    }
+export const AddImgButton = styled.button`
+  width: 350px;
+  height: 250px;
+  border: 1px dashed #7c7c7c;
+  box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: all 0.3s;
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(124, 124, 124, 0.25),
+        rgba(124, 124, 124, 0.25)
+      ),
+      #ffffff;
+    cursor: pointer;
+  }
 `;
 export const CreateInput = styled.input`
-    border: 1px solid rgba(124, 124, 124, 0.5);
-    outline: none;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: #232428;
-    width: 100%;
-    font-size: 14px;
-    line-height: 17px;
-    &::placeholder{
-        color: #7C7C7C;
-    }
-    &:focus{
-        box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-    }
-    @media (max-width: 576px) {
-      font-size: 12px;
-      line-height: 14px;
-    }
+  border: 1px solid rgba(124, 124, 124, 0.5);
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: #232428;
+  width: 100%;
+  font-size: 14px;
+  line-height: 17px;
+  &::placeholder {
+    color: #7c7c7c;
+  }
+  &:focus {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
 `;
 export const CreateTextArea = styled.textarea`
-    background: #FFFFFF;
-    border: 1px solid rgba(124, 124, 124, 0.5);
-    outline: none;
-    border-radius: 10px;
-    width: 100%;
-    min-height: 80px;
-    padding: 10px;
-    font-size: 14px;
-    &::placeholder{
-        color: #7C7C7C;
-    }
-    &:focus{
-        box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-    }
-    @media (max-width: 576px) {
-      font-size: 12px;
-      line-height: 14px;
-    }
+  background: #ffffff;
+  border: 1px solid rgba(124, 124, 124, 0.5);
+  outline: none;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  font-size: 14px;
+  &::placeholder {
+    color: #7c7c7c;
+  }
+  &:focus {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
 `;
 export const CreateSelect = styled.select`
-      border: 1px solid rgba(124, 124, 124, 0.5);
-      outline: none;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      padding: 10px 20px;
-      color: #7C7C7C;
-      width: 100%;
-      font-size: 14px;
-      line-height: 17px;
-      max-width: 350px;
-      &:focus{
-          box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-      }
-      &#collection{
-        margin-right: 20px;
-      }
-      @media (max-width: 768px) {
-          &#category,
-          &#collection{
-          margin-right: 0;
-          order: 3;
-          max-width: 100%;
-        }
-      }
+  border: 1px solid rgba(124, 124, 124, 0.5);
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: #7c7c7c;
+  width: 100%;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 350px;
+  &:focus {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
+  &#collection {
+    margin-right: 20px;
+  }
 `;
 export const ModalTitle = styled(CreateLabel)`
-  & svg{
+  & svg {
     margin: 0 10px 5px 0;
   }
 `;
@@ -177,12 +162,28 @@ export const SwitcherBlock = styled(ModalBlock)`
 export const SwitcherTitle = styled(ModalTitle)`
   margin: 0;
 `;
-export const CreateFormButton = styled(FormButton)`
-    margin-left: 0;
-    margin-right: 20px;
+export const FormButton = styled.button`
+  background: #ffffff;
+  border: 1px solid #873dc1;
+  border-radius: 10px;
+  color: #873dc1;
+  padding: 7px 37px;
+  margin-right: 20px;
+  transition: all 0.3s;
+  &:hover {
+    color: #ffffff;
+    background: #873dc1;
+    border: 1px solid transparent;
+  }
 `;
+
+export const CreateFormButton = styled(FormButton)`
+  margin-left: 0;
+  margin-right: 20px;
+`;
+
 export const ButtonsBlock = styled.div`
-margin-top: 40px;
+  margin-top: 40px;
 `;
 
 /* Add Properties=Levels=Stats */

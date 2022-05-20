@@ -53,25 +53,24 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
-
-export const ButtonToggle = styled.button `
+export const ButtonToggle = styled.button`
   cursor: pointer;
   align-self: self-end;
   padding: 10px;
   border: none;
-  background-color: #DEDEDE;
+  background-color: #dedede;
   border-radius: 18px 0 0 18px;
   width: 116px;
   transition: all 0.2s ease-in-out;
-`
-export const Circle = styled.div `
+`;
+export const Circle = styled.div`
   border: 1px solid transparent;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   background-color: #fff;
   transition: all 0.2s ease-in-out;
-`
+`;
 
 export const LoginButton = styled.button`
   display: flex;
@@ -91,12 +90,12 @@ export const LoginButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #FBF5FF;
+    background: #fbf5ff;
     box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
     ${ButtonToggle} {
-      background-color: #DBD7DE;
+      background-color: #dbd7de;
       ${Circle} {
-        background-color: #C6B1D7;
+        background-color: #c6b1d7;
       }
     }
   }
@@ -136,14 +135,14 @@ export const ButtonText = styled.span`
 export const ShowMore = styled.button`
   width: 100%;
   padding: 7px 0;
-  border: 1px solid #873DC1;
+  border: 1px solid #873dc1;
   border-radius: 10px;
   background: none;
   cursor: pointer;
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
-  color: #873DC1;
+  color: #873dc1;
   transition: all 0.3s ease-in-out;
 
   &:hover {

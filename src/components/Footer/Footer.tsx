@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 
 import {
@@ -20,17 +20,8 @@ import {
   Year,
   FooterIconLink,
   MobileMenuInner,
-} from "./Footer.styles";
-
-import {
-  Twitter,
-  LinkedIn,
-  YouTube,
-  Telegram,
-  Instagram,
-  AppStore,
-  Phone,
-} from "./imports";
+} from './Footer.styles';
+import { Twitter, LinkedIn, YouTube, Telegram, Instagram } from './imports';
 
 const Footer = () => {
   return (
@@ -57,29 +48,31 @@ const Footer = () => {
             <TopicText href="about-us">About</TopicText>
             <TopicText href="blog">Blog</TopicText>
             <TopicText href="faq">FAQ</TopicText>
-          </TopicColumn> 
+          </TopicColumn>
         </LeftSideWrapper>
-          <MobileMenuInner>         
-            <DropdownButton id="dropdown-button" title="Explore">
-              <Dropdown.Item href="all" className="dropdown-item">All NFTs</Dropdown.Item>
-              <Dropdown.Item href="assets/new">New</Dropdown.Item>
-              <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
-              <Dropdown.Item href="categories">Sport</Dropdown.Item>
-              <Dropdown.Item href="categories">Photography</Dropdown.Item>
-              <Dropdown.Item href="categories">Celebrity</Dropdown.Item>
-              <Dropdown.Item href="categories">rwaNFT</Dropdown.Item>
-            </DropdownButton>
-            <DropdownButton id="dropdown-button" title="Activity">
-              <Dropdown.Item href="topcollection">Top collection</Dropdown.Item>
-              <Dropdown.Item href="activity">Statistics</Dropdown.Item>
-            </DropdownButton>
-            <DropdownButton id="dropdown-button" title="Comunity">
-              <Dropdown.Item href="about-us">About</Dropdown.Item>
-              <Dropdown.Item href="blog">Blog</Dropdown.Item>
-              <Dropdown.Item href="faq">FAQ</Dropdown.Item>
-            </DropdownButton>
-          </MobileMenuInner>
-        
+        <MobileMenuInner>
+          <DropdownButton id="dropdown-button" title="Explore">
+            <Dropdown.Item href="all" className="dropdown-item">
+              All NFTs
+            </Dropdown.Item>
+            <Dropdown.Item href="assets/new">New</Dropdown.Item>
+            <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
+            <Dropdown.Item href="categories">Sport</Dropdown.Item>
+            <Dropdown.Item href="categories">Photography</Dropdown.Item>
+            <Dropdown.Item href="categories">Celebrity</Dropdown.Item>
+            <Dropdown.Item href="categories">rwaNFT</Dropdown.Item>
+          </DropdownButton>
+          <DropdownButton id="dropdown-button" title="Activity">
+            <Dropdown.Item href="topcollection">Top collection</Dropdown.Item>
+            <Dropdown.Item href="activity">Statistics</Dropdown.Item>
+          </DropdownButton>
+          <DropdownButton id="dropdown-button" title="Comunity">
+            <Dropdown.Item href="about-us">About</Dropdown.Item>
+            <Dropdown.Item href="blog">Blog</Dropdown.Item>
+            <Dropdown.Item href="faq">FAQ</Dropdown.Item>
+          </DropdownButton>
+        </MobileMenuInner>
+
         <RightSideWrapper>
           <RightSideTop>
             <FooterText>Get the latest Undas updates</FooterText>
@@ -113,8 +106,8 @@ const Footer = () => {
         </RightSideWrapper>
       </FooterContainer>
       <BottomWrapper>
-          <Year>© 2022</Year>
-        </BottomWrapper>
+        <Year>© 2022</Year>
+      </BottomWrapper>
     </FooterSec>
   );
 };

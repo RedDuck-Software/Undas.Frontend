@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import violetLine from "../../../../icons/violet-line.svg";
+import styled from 'styled-components';
+
+import violetLine from '../../../../icons/violet-line.svg';
 
 export const RentNFTSec = styled.div`
   padding: 4rem 0 8rem;
@@ -16,7 +17,7 @@ export const RentNFTTitle = styled.h2`
   margin-left: 0.5rem;
 
   &:before {
-    content: url("${violetLine}");
+    content: url('${violetLine}');
     position: relative;
     right: 8px;
     top: 3px;
@@ -88,7 +89,7 @@ export const BlackLayer = styled.div`
     position: absolute;
     bottom: -1px;
     left: 0;
-    content: "";
+    content: '';
     background: black;
     opacity: 0.5;
     width: 100%;

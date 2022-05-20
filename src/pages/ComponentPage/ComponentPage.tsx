@@ -1,15 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import {
-    Wrap
-} from "./ComponentPage.styles";
+import { Wrap } from './ComponentPage.styles';
 
-const ComponentPage = () => {
-    return (
-        <Wrap>
+const ComponentPage: React.FC = () => {
+  return <Wrap></Wrap>;
+};
 
-        </Wrap>
-    )
-}
-
-export default ComponentPage
+export default ComponentPage;

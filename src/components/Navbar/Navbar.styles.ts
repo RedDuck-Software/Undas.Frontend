@@ -1,10 +1,12 @@
-import styled from 'styled-components';
-import { ReactComponent as Search } from '../../icons/search.svg';
 import { Link } from 'react-router-dom';
-import { Container } from '../../globalStyles';
-import { FavoriteIco, ProfileIco } from './imports'
+import styled from 'styled-components';
 
-export const Header = styled.header `
+import { FavoriteIco } from './imports';
+
+import { Container } from '../../globalStyles';
+import { ReactComponent as Search } from '../../icons/search.svg';
+
+export const Header = styled.header`
   height: 40px;
   position: sticky;
   top: 0;
@@ -14,25 +16,25 @@ export const Header = styled.header `
   box-shadow: inset 0px -1px 1px rgba(124, 124, 124, 0.2);
   /* backdrop-filter: blur(50px); */
   z-index: 1000;
-  @media (max-width: 1024px){
+  @media (max-width: 1024px) {
     overflow: hidden;
   }
-`
+`;
 
-export const HeaderWrap = styled(Container) `
+export const HeaderWrap = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     padding-left: 10px;
     padding-right: 3em;
   }
   ${Container}
-`
-export const SeoHeading = styled.h1 `
+`;
+export const SeoHeading = styled.h1`
   text-indent: -3333px;
-`
+`;
 
 export const SearchWrapper = styled.div`
   padding-left: 10px;
@@ -42,9 +44,9 @@ export const SearchWrapper = styled.div`
   width: 36vw;
   max-width: 525px;
   height: 26px;
-  background: #EBDFFF;
+  background: #ebdfff;
   border-radius: 5px;
-  @media (max-width: 1024px){
+  @media (max-width: 1024px) {
     width: 100%;
     max-width: 100%;
   }
@@ -66,78 +68,78 @@ export const Input = styled.input`
   width: 100%;
 `;
 
-export const Navigation = styled.div `
+export const Navigation = styled.div`
   display: flex;
-  @media (max-width: 1024px){
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
-export const NavigationMenu = styled.nav `
+export const NavigationMenu = styled.nav`
   width: 38vw;
   max-width: 390px;
   margin-right: 15px;
 `;
 interface IStyledUl {
-  justifyContent?: string,
-  gap?: string,
-  mw?: string
+  justifyContent?: string;
+  gap?: string;
+  mw?: string;
 }
 
-export const StyledUl = styled.ul<IStyledUl> `
+export const StyledUl = styled.ul<IStyledUl>`
   display: flex;
-  justify-content: ${props => props.justifyContent || 'space-between'};
-  gap: ${props => props.gap || ''};
+  justify-content: ${(props) => props.justifyContent || 'space-between'};
+  gap: ${(props) => props.gap || ''};
   width: 100%;
-  max-width: ${props => props.mw || ''};
+  max-width: ${(props) => props.mw || ''};
   list-style: none;
-  @media (max-width: 1024px){
+  @media (max-width: 1024px) {
     flex-direction: column;
   }
-`
-export const IconsUl = styled.ul<IStyledUl> `
+`;
+export const IconsUl = styled.ul<IStyledUl>`
   display: flex;
-  justify-content: ${props => props.justifyContent || 'space-between'};
-  gap: ${props => props.gap || ''};
+  justify-content: ${(props) => props.justifyContent || 'space-between'};
+  gap: ${(props) => props.gap || ''};
   width: 100%;
-  max-width: ${props => props.mw || ''};
+  max-width: ${(props) => props.mw || ''};
   list-style: none;
 `;
-export const StyledList = styled.li `
+export const StyledList = styled.li`
   position: relative;
-`
+`;
 
 interface IDropdown {
-  setWidth?: string,
-  left?: string
-  top?: string
+  setWidth?: string;
+  left?: string;
+  top?: string;
 }
 
-export const DropdownMenu = styled.ul<IDropdown> `
+export const DropdownMenu = styled.ul<IDropdown>`
   position: absolute;
   border-radius: 0 0 10px 10px;
-  top: ${props => props.top || '1.9rem'};
-  left: ${props => props.left || '-2rem'};
+  top: ${(props) => props.top || '1.9rem'};
+  left: ${(props) => props.left || '-2rem'};
   background-color: #fff;
   overflow: hidden;
-  width: ${props => props.setWidth || '134px'};
+  width: ${(props) => props.setWidth || '134px'};
   list-style: none;
   transition: all 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
-`
+`;
 
-export const StyledLink = styled(Link) `
+export const StyledLink = styled(Link)`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   text-decoration: none;
   transition: all ease-in 0.25s;
   padding: 1.2rem 0;
   &:hover {
-    color: #873DC1;
+    color: #873dc1;
   }
-  
+
   &.hovered-explore + ${DropdownMenu} {
     opacity: 1;
     visibility: visible;
@@ -163,9 +165,9 @@ export const StyledLink = styled(Link) `
     visibility: visible;
     cursor: pointer;
   }
-`
+`;
 
-export const MenuList = styled(Link) `
+export const MenuList = styled(Link)`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -175,17 +177,17 @@ export const MenuList = styled(Link) `
   transition: all ease-in-out 0.15s;
   font-weight: 400;
   font-size: 14px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   text-decoration: none;
   box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5);
   &:hover {
     box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
     font-weight: 500;
-    color: #873DC1;
+    color: #873dc1;
   }
-`
+`;
 
-export const MenuListSocial = styled.div `
+export const MenuListSocial = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -195,17 +197,17 @@ export const MenuListSocial = styled.div `
   transition: all ease-in-out 0.15s;
   font-weight: 400;
   font-size: 14px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   text-decoration: none;
   box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
   &:hover {
     box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
     font-weight: 500;
-    color: #873DC1;
+    color: #873dc1;
   }
-`
+`;
 
-export const SocialLink = styled(Link) `
+export const SocialLink = styled(Link)`
   svg {
     path {
       transition: all ease-in-out 0.15s;
@@ -214,29 +216,28 @@ export const SocialLink = styled(Link) `
   &:hover {
     svg {
       path {
-        fill: #873DC1;
-        }
+        fill: #873dc1;
+      }
     }
   }
-  
-`
+`;
 
-export const Favorite = styled(FavoriteIco) `
+export const Favorite = styled(FavoriteIco)`
   fill: none;
   &:hover {
     fill: aqua;
   }
-`
+`;
 
-export const LanguageTitle = styled.span `
+export const LanguageTitle = styled.span`
   font-family: 'Jost';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 26px;
   text-transform: uppercase;
-  color: #7C7C7C;
-`
+  color: #7c7c7c;
+`;
 
 /*
 interface NavbarStylesProps {

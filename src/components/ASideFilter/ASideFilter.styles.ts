@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ElementText = styled.span `
+export const ElementText = styled.span`
   margin-left: 10px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   transition: all ease-in-out 0.15s;
-`
+`;
 
-export const HolderElement = styled.li `
+export const HolderElement = styled.li`
   position: relative;
   z-index: 1;
   width: 255px;
@@ -17,25 +17,24 @@ export const HolderElement = styled.li `
   transition: all ease-in-out 0.15s;
   svg {
     path {
-      transition: all ease-in-out 0.15s; 
+      transition: all ease-in-out 0.15s;
     }
   }
-  
+
   &:hover {
     ${ElementText} {
       color: #232428;
     }
-      svg path {
-        fill: #5D3F92;
-      }
-    
+    svg path {
+      fill: #5d3f92;
+    }
   }
   &.active {
     box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
   }
-`
+`;
 
-export const ASideWrap = styled.div `
+export const ASideWrap = styled.div`
   min-width: 30px;
   max-width: 30px;
   //max-width: 255px;
@@ -48,46 +47,43 @@ export const ASideWrap = styled.div `
   margin-right: 15px;
   overflow: hidden;
   position: relative;
-  transition: all ease-in-out 0.10s;
+  transition: all ease-in-out 0.1s;
   &.active {
     min-width: 255px;
     ${HolderElement} {
       box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
     }
   }
-`
-
+`;
 
 interface IHolder {
-    marginTop?: string
+  marginTop?: string;
 }
-export const Holder = styled.ul<IHolder> `
+export const Holder = styled.ul<IHolder>`
   width: 100%;
-  margin-top: ${props => props.marginTop || '60px'};
+  margin-top: ${(props) => props.marginTop || '60px'};
   list-style: none;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
   border-radius: 0px 10px 10px 0px;
   overflow: hidden;
-`
+`;
 
-
-
-export const Arrow = styled.span `
+export const Arrow = styled.span`
   margin-top: 4px;
   margin-left: auto;
-  border-top: 1px solid #5D3F92;
-  border-left: 1px solid #5D3F92;
+  border-top: 1px solid #5d3f92;
+  border-left: 1px solid #5d3f92;
   transform: rotate(-45deg);
   width: 10px;
   height: 10px;
   transition: all ease-in-out 0.15s;
-`
+`;
 
-export const AccordionArrow = styled(Arrow) `
+export const AccordionArrow = styled(Arrow)`
   margin-top: -4px;
-  border-top: 1px solid #7C7C7C;
-  border-left: 1px solid #7C7C7C;
+  border-top: 1px solid #7c7c7c;
+  border-left: 1px solid #7c7c7c;
   transform: rotate(-135deg);
   &.active-status {
     margin-top: 4px;
@@ -102,56 +98,56 @@ export const AccordionArrow = styled(Arrow) `
     transform: rotate(45deg);
   }
   ${Arrow}
-`
+`;
 
 interface IAccordionMenu {
-    mh?: string
+  mh?: string;
 }
 
-export const AccordionMenu = styled.ul<IAccordionMenu> `
+export const AccordionMenu = styled.ul<IAccordionMenu>`
   list-style: none;
   width: 100%;
   transition: all ease-in-out 0.25s;
   overflow: hidden;
   max-height: 0;
   &.active-status {
-    max-height: ${props => props.mh || '146px'};
+    max-height: ${(props) => props.mh || '146px'};
   }
   &.active-price {
-    max-height: ${props => props.mh || '146px'};
+    max-height: ${(props) => props.mh || '146px'};
   }
-`
+`;
 
 interface IAccElement {
-    padd?: string,
-    direction?: string
+  padd?: string;
+  direction?: string;
 }
 
-export const AccordionElement = styled.li<IAccElement> `
+export const AccordionElement = styled.li<IAccElement>`
   position: relative;
   cursor: pointer;
   width: 100%;
   display: flex;
-  flex-direction: ${props => props.direction || ''};
+  flex-direction: ${(props) => props.direction || ''};
   justify-content: space-between;
   align-items: center;
-  padding: ${props => props.padd || '10px 20px 10px 36px'};
+  padding: ${(props) => props.padd || '10px 20px 10px 36px'};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #232428;
-  background-color: #FCF8FF;
-  border-top: 1px solid #DCD9DE;
+  background-color: #fcf8ff;
+  border-top: 1px solid #dcd9de;
   margin-top: -1px;
-`
+`;
 
 //Toggle switch
 
-export const SliderRound = styled.span `
+export const SliderRound = styled.span`
   position: absolute;
   cursor: pointer;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   top: 0;
   left: 0;
   right: 0;
@@ -164,21 +160,21 @@ export const SliderRound = styled.span `
     height: 6px;
     background-color: #fff;
     border-radius: 50%;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
   }
- // background-color: #ccc;
-`
+  // background-color: #ccc;
+`;
 
-export const Switch = styled.label `
+export const Switch = styled.label`
   position: relative;
   width: 22px;
   height: 12px;
-  background-color: #7C7C7C;
+  background-color: #7c7c7c;
   border-radius: 10px;
-`
+`;
 
-export const InputSwitch = styled.input `
+export const InputSwitch = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
@@ -187,11 +183,11 @@ export const InputSwitch = styled.input `
     -webkit-transform: translateX(4px);
     -ms-transform: translateX(10px);
     transform: translateX(10px);
-    background: #873DC1;
+    background: #873dc1;
   }
-`
+`;
 
-export const PriceSelect = styled.ul `
+export const PriceSelect = styled.ul`
   width: 218px;
   position: absolute;
   opacity: 0;
@@ -200,15 +196,14 @@ export const PriceSelect = styled.ul `
   transition: all ease-in-out 0.15s;
   border-radius: 0 0 10px 10px;
   overflow: hidden;
-  box-shadow: inset 0px 0px 1px #7C7C7C;
+  box-shadow: inset 0px 0px 1px #7c7c7c;
   &.price-menu-active {
     opacity: 1;
     visibility: visible;
   }
-`
+`;
 
-
-export const PriceElement = styled.li `
+export const PriceElement = styled.li`
   width: 218px;
   padding: 10px;
   font-weight: 400;
@@ -219,33 +214,34 @@ export const PriceElement = styled.li `
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 1px #7C7C7C;
+  box-shadow: inset 0px 0px 1px #7c7c7c;
   transition: all ease-in-out 0.15s;
   &.price-menu-active {
     border-radius: 10px 10px 0 0;
   }
-`
-export const PriceVariations = styled(PriceElement) `
+`;
+export const PriceVariations = styled(PriceElement)`
   transition: all ease-in-out 0.15s;
   border-radius: 0;
   justify-content: flex-start;
   padding: 10px 31px 10px 10px;
   &:hover {
-    box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);
+    box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5),
+      inset 0px -3px 4px rgba(124, 124, 124, 0.25);
   }
-`
+`;
 
-export const ApplyBtn = styled.button `
+export const ApplyBtn = styled.button`
   margin-top: 70px;
   padding: 10px 40px;
-  border: 1px solid #873DC1;
+  border: 1px solid #873dc1;
   border-radius: 10px;
   background: transparent;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #873DC1;
+  color: #873dc1;
   cursor: pointer;
-`
+`;

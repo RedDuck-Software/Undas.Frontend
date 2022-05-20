@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface MoreFromCollectionProps {
-  closed?: boolean
+  closed?: boolean;
 }
 
 export const MoreFromCollectionContainer = styled.div`
@@ -15,7 +15,7 @@ export const MoreFromCollectionContainer = styled.div`
   @media (max-width: 631px) {
     width: 100%;
   }
-`
+`;
 
 export const MoreFromCollectionTop = styled.div<MoreFromCollectionProps>`
   background: #ffffff;
@@ -41,14 +41,14 @@ export const MoreFromCollectionTop = styled.div<MoreFromCollectionProps>`
   @media (max-width: 531px) {
     font-size: 0.75rem;
   }
-`
+`;
 
 export const MoreFromCollectionContent = styled.div`
   background: rgba(251, 245, 255, 0.7);
   border: 1px solid #5d3f92;
   border-radius: 0px 0px 10px 10px;
   border-top: none;
-`
+`;
 
 export const CardsContainer = styled.div`
   display: flex;
@@ -83,7 +83,7 @@ export const CardsContainer = styled.div`
       }
     }
   }
-`
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -93,4 +93,4 @@ export const ButtonContainer = styled.div`
   @media (max-width: 1024px) {
     padding: 10% 0 18%;
   }
-`
+`;

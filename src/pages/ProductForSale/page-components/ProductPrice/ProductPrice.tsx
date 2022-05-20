@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { Button } from '../../../../globalStyles'
+import React from 'react';
 
 import {
   ProductPriceContainer,
@@ -8,9 +6,11 @@ import {
   CurrentPrice,
   PriceContainer,
   ButtonsContainer,
-} from './ProductPrice.styles'
+} from './ProductPrice.styles';
 
-const ProductPrice = () => {
+import { Button } from '../../../../globalStyles';
+
+const ProductPrice: React.FC = () => {
   return (
     <>
       <ProductPriceContainer>
@@ -27,7 +27,7 @@ const ProductPrice = () => {
         </CurrentPrice>
       </ProductPriceContainer>
     </>
-  )
-}
+  );
+};
 
-export default ProductPrice
+export default ProductPrice;

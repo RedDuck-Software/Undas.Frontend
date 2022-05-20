@@ -1,19 +1,15 @@
-import { MdCenterFocusStrong } from "react-icons/md";
-import styled from "styled-components";
+import styled from 'styled-components';
 
+export const LineWrap = styled.div``;
 
-export const LineWrap = styled.div`
-    
-`
-
-export const Line = styled.div `
+export const Line = styled.div`
   width: 5px;
   height: 65px;
-  background: #E5E5E5;
+  background: #e5e5e5;
   position: relative;
   margin: 0 auto;
-  &.done{
-      background-color: #CCB7F2;
+  &.done {
+    background-color: #ccb7f2;
   }
 `;
 
@@ -21,16 +17,16 @@ export const Circle = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #5D3F92;
+  background: #5d3f92;
   position: absolute;
   bottom: 0;
   left: calc(50% - 5px);
-  border: 2px solid #E2D1FF;
-  &.done{
+  border: 2px solid #e2d1ff;
+  &.done {
     width: 14px;
     height: 14px;
-      background-color: #7C7C7C;
-      border: 3px solid #E5E5E5;
-      left: calc(50% - 7px);
+    background-color: #7c7c7c;
+    border: 3px solid #e5e5e5;
+    left: calc(50% - 7px);
   }
 `;

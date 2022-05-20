@@ -1,8 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Carousel from 'react-elastic-carousel';
 
-import { Container, Button, ComingSoonImage } from '../../../../globalStyles';
 import {
   BuyersSec,
   BuyersTitle,
@@ -16,21 +14,23 @@ import {
   UserInformation,
   ButtonWrapper,
 } from './TopBuyers.styles';
+
 import '../CarouselStyling.css';
-
-import image from '../../../../images/buyers-image.png';
+import { Container, Button, ComingSoonImage } from '../../../../globalStyles';
 import profile from '../../../../icons/buyers-profile.png';
+import image from '../../../../images/buyers-image.png';
 import comingSoon from '../../../../images/coming-soon.png';
-
-const CarouselSettings = {
-  disableArrowsOnEnd: true,
-  itemsToShow: 3,
-};
+import Carousel from 'react-elastic-carousel';
 
 const breakPoints = [
   { width: 460, itemsToShow: 1 },
   { width: 462, itemsToShow: 3 },
 ];
+
+const CarouselSettings = {
+  disableArrowsOnEnd: true,
+  itemsToShow: 3,
+};
 
 const TopBuyers = () => {
   const [showBuyers] = useState(false);

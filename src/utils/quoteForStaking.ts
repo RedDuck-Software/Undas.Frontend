@@ -1,22 +1,22 @@
-import { ethers } from "ethers";
-import { AbstractConnector } from "@web3-react/abstract-connector";
+import { AbstractConnector } from '@web3-react/abstract-connector';
+import { ethers } from 'ethers';
 
-import intervalIntoTimeStamp from "./intervalIntoTimeStamp";
+import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from './addressHelpers';
+import intervalIntoTimeStamp from './intervalIntoTimeStamp';
 
-import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
-import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
+import { Marketplace__factory, UndasGeneralNFT__factory } from '../typechain';
 
 export const quoteForStaking = async (
   tokenId: string,
   price: string,
   premium: string,
   term: string,
-  connector: AbstractConnector
+  connector: AbstractConnector,
 ) => {
   if (!connector) return;
 
   const provider = new ethers.providers.Web3Provider(
-    await connector.getProvider()
+    await connector.getProvider(),
   );
   const signer = provider.getSigner(0);
   const SIGNER_ADDRESS = await signer.getAddress();
@@ -25,12 +25,12 @@ export const quoteForStaking = async (
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
-    signer
+    signer,
   );
 
   const isApprovedForAll = await NFTContract.isApprovedForAll(
     SIGNER_ADDRESS,
-    MARKETPLACE_ADDRESS
+    MARKETPLACE_ADDRESS,
   );
 
   if (!isApprovedForAll) {
@@ -39,14 +39,14 @@ export const quoteForStaking = async (
     ).wait();
   }
 
-  console.log("Item data" + NFT_ADDRESS, tokenId, price, premium, term);
+  console.log('Item data' + NFT_ADDRESS, tokenId, price, premium, term);
   const tx = await MarketplaceContract.quoteForStaking(
     NFT_ADDRESS,
     tokenId,
     ethers.utils.parseEther(price.toString()),
     ethers.utils.parseEther(premium.toString()),
     intervalIntoTimeStamp(term),
-    { value: ethers.utils.parseEther("0.1") }
+    { value: ethers.utils.parseEther('0.1') },
   );
 
   await tx.wait();

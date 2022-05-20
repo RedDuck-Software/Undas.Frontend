@@ -1,18 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useWeb3React } from '@web3-react/core';
+import { id } from 'ethers/lib/utils';
+import React, { useContext, useEffect, useState } from 'react';
+import { useMoralis } from 'react-moralis';
+import { useParams } from 'react-router-dom';
 
-import {
-  SaleSection,
-  PriceHistory,
-  Rent,
-  Staking,
-  ItemActivity,
-  MoreFromCollection,
-} from "./page-components";
-
-import { getId } from "../../utils/getId";
-
-import { Background } from "../../globalStyles";
-
+import { SaleSection, Staking } from './page-components';
 import {
   LeftSide,
   CardImageContainer,
@@ -20,28 +12,23 @@ import {
   BookmarkButton,
   ProductForSaleSec,
   ProductContainer,
-  ProductContainerCenter,
   RightSide,
   ItemInformation,
-  ProductSubtitle,
   ProductTitle,
-} from "./ProductForSale.styles";
-import Image from "../../images/card-item.png";
-import { useContext, useEffect, useState } from "react";
-import Context from "../../utils/Context";
-import { useMoralis } from "react-moralis";
-import { operations } from "moralis/types/generated/web3Api";
-import { useWeb3React } from "@web3-react/core";
-import { id } from "ethers/lib/utils";
+} from './ProductForSale.styles';
 
-const ProductForSale = () => {
-  let { id: pageId } = useParams();
+import { Background } from '../../globalStyles';
+import Image from '../../images/card-item.png';
+import Context from '../../utils/Context';
+
+const ProductForSale: React.FC = () => {
+  const { id: pageId } = useParams();
 
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
-  let { account } = useWeb3React();
+  const { account } = useWeb3React();
 
-  const [NFT, setNFT] = useState<{
+  const [, setNFT] = useState<{
     token_address: string;
     token_id: string;
     contract_type: string;
@@ -59,7 +46,7 @@ const ProductForSale = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: "goerli",
+      chain: 'goerli',
       address: account,
     });
     return listOfNFTS;
@@ -69,13 +56,13 @@ const ProductForSale = () => {
     const response = await getNFTList();
     if (!response?.result) return;
     console.log(response);
-    let nft = response?.result[+id];
+    const nft = response?.result[+id];
     setNFT(nft);
   };
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log("loading");
+      return console.log('loading');
     }
     getListData();
   }, [connector, account]);

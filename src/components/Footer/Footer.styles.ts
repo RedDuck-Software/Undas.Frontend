@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { Container } from "../../globalStyles";
-import {FooterBg} from "./imports";
+import styled from 'styled-components';
+
+import { FooterBg } from './imports';
+
+import { Container } from '../../globalStyles';
 
 export const FooterSec = styled.footer`
   background-color: rgba(135, 61, 193, 0.5);
@@ -41,7 +43,6 @@ export const LeftSideWrapper = styled.div`
 export const TopicColumn = styled.div`
   display: flex;
   flex-direction: column;
-
 `;
 
 export const TopicTitle = styled.h2`
@@ -78,7 +79,7 @@ export const TopicText = styled.a`
   font-size: 1.2rem;
   padding: 0.3rem 0;
   color: #232428;
-  transition: all .3s;
+  transition: all 0.3s;
   text-decoration: none;
 
   &:hover {
@@ -123,7 +124,7 @@ export const FooterText = styled.span`
     word-spacing: normal;
   }
   @media (max-width: 576px) {
-     text-align: center;
+    text-align: center;
   }
 `;
 
@@ -149,7 +150,6 @@ export const RightSideTop = styled.div`
 `;
 
 export const CustomSearch = styled.div`
- 
   position: relative;
 
   @media (max-width: 992px) {
@@ -167,7 +167,7 @@ export const Input = styled.input`
   margin-top: 1rem;
   font-size: 1.25rem;
   padding: 20px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   width: 100%;
 
   &::placeholder {
@@ -182,7 +182,7 @@ export const Input = styled.input`
       font-size: 1rem;
     }
   }
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     margin-top: 0;
     padding: 10px;
   }
@@ -224,10 +224,9 @@ export const ButtonSubmit = styled.button`
   }
 
   @media (max-width: 869px) {
-     font-size: 0.75rem;
+    font-size: 0.75rem;
   }
 `;
-
 
 export const FooterIconsWrapper = styled.div`
   margin-top: 1.625rem;
@@ -235,12 +234,11 @@ export const FooterIconsWrapper = styled.div`
   align-items: center;
   gap: 1.2rem;
   @media (max-width: 576px) {
-     align-self: center;
+    align-self: center;
   }
 `;
 
-export const FooterIconLink = styled.a`
-`
+export const FooterIconLink = styled.a``;
 
 export const FooterIcon = styled.img`
   cursor: pointer;
@@ -263,7 +261,7 @@ export const BottomWrapper = styled.div`
   padding: 30px 0;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 40px 40px 0 0;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     padding: 10px 0;
   }
 `;
@@ -275,13 +273,13 @@ export const Year = styled.div`
 
 export const MobileMenuInner = styled.div`
   display: none;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     display: block;
     flex: 0 0 100%;
     order: 2;
     margin-top: 40px;
 
-    #dropdown-button{
+    #dropdown-button {
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -291,11 +289,11 @@ export const MobileMenuInner = styled.div`
       outline: none;
       border-bottom: 1px solid #232428;
       border-radius: 0;
-      &:focus{
+      &:focus {
         outline: none;
         box-shadow: none;
       }
-      ::after{
+      ::after {
         width: 10px;
         height: 10px;
         border-bottom: 1px solid #232428;
@@ -305,13 +303,13 @@ export const MobileMenuInner = styled.div`
       }
     }
     #dropdown-button + .dropdown-menu.show {
-        position: static !important;
-        transform: translate3d(0px, 0, 0px) !important;
-        background: transparent;
-        border: none;
-      }
+      position: static !important;
+      transform: translate3d(0px, 0, 0px) !important;
+      background: transparent;
+      border: none;
+    }
   }
   @media (max-width: 576px) {
-     margin-top: 20px;
+    margin-top: 20px;
   }
 `;

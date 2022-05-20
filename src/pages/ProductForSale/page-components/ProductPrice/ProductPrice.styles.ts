@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import Clock from '../../../../icons/clock.svg'
-import Rhombus from '../../../../icons/rhombus.svg'
+import Clock from '../../../../icons/clock.svg';
+import Rhombus from '../../../../icons/rhombus.svg';
 
 export const ProductPriceContainer = styled.div`
   min-width: 540px;
@@ -12,7 +12,7 @@ export const ProductPriceContainer = styled.div`
     min-width: 0;
     width: 100%;
   }
-`
+`;
 
 export const SaleEnds = styled.div`
   background: #ffffff;
@@ -31,7 +31,7 @@ export const SaleEnds = styled.div`
   @media (max-width: 1163px) {
     padding: 3% 6%;
   }
-`
+`;
 
 export const CurrentPrice = styled.div`
   padding: 1rem 2rem;
@@ -48,7 +48,7 @@ export const CurrentPrice = styled.div`
   @media (max-width: 531px) {
     font-size: 1rem;
   }
-`
+`;
 
 export const PriceContainer = styled.div`
   display: flex;
@@ -82,7 +82,7 @@ export const PriceContainer = styled.div`
       font-size: 0.75rem;
     }
   }
-`
+`;
 
 export const ButtonsContainer = styled.div`
   margin-top: 1rem;
@@ -132,4 +132,4 @@ export const ButtonsContainer = styled.div`
       }
     }
   }
-`
+`;

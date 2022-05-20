@@ -1,13 +1,14 @@
+import React from 'react';
+
 import {
   CardItemContainer,
   CardItemImage,
   TransparentLayer,
   InfoContainer,
-  CardTitle,
   CardNumber,
   CardPrice,
   CardETH,
-} from "./CardItem.styles";
+} from './CardItem.styles';
 
 interface CardItemProps {
   image?: string;

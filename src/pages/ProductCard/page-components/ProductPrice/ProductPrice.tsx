@@ -1,37 +1,36 @@
-import { useState, useEffect, useContext } from "react";
-import Context from "../../../../utils/Context";
+import { useWeb3React } from '@web3-react/core';
+import { ethers } from 'ethers';
+import React, { useState, useEffect, useContext } from 'react';
 
-import { ethers } from "ethers";
-import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
-import { Marketplace__factory } from "../../../../typechain";
+import { Price, PriceContainer, ButtonsContainer } from './ProductPrice.styles';
 
-import { Button } from "../../../../globalStyles";
+import { Button } from '../../../../globalStyles';
+import { Marketplace__factory } from '../../../../typechain';
+import { MARKETPLACE_ADDRESS } from '../../../../utils/addressHelpers';
+import Context from '../../../../utils/Context';
 
-import { Price, PriceContainer, ButtonsContainer } from "./ProductPrice.styles";
-import { useWeb3React } from "@web3-react/core";
-
-const ProductPrice = ({ id }: { id: number }) => {
+const ProductPrice: React.FC<{ id: number }> = ({ id }) => {
   const { connector } = useContext(Context);
 
-  let web3React = useWeb3React();
-  let account = web3React.account;
+  const web3React = useWeb3React();
+  const account = web3React.account;
 
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
-  const [seller, setSeller] = useState("");
+  const [seller, setSeller] = useState('');
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.getListing(itemId);
@@ -43,14 +42,14 @@ const ProductPrice = ({ id }: { id: number }) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.buyToken(itemId, {
@@ -62,7 +61,7 @@ const ProductPrice = ({ id }: { id: number }) => {
 
   async function getEthPrice() {
     const API_URL =
-      "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
+      'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD';
     const response = await fetch(API_URL);
     const responseInJson = await response.json();
     return responseInJson;
@@ -88,7 +87,7 @@ const ProductPrice = ({ id }: { id: number }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
 
     getProductPrice();

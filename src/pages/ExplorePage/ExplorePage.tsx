@@ -1,8 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-import BackgroundImg from '../../images/image-explore/explore-background.png'
-
-import { Background } from '../../globalStyles'
 import {
   ExploreContainer,
   ExploreHeading,
@@ -12,12 +9,14 @@ import {
   ExploreTitle,
   ExploreSubtitle,
   ExplorePagginationContainer,
-} from './ExplorePage.styles'
+} from './ExplorePage.styles';
 
-import { LargeCardList, Paggination } from '../../components'
+import { LargeCardList, Paggination } from '../../components';
+import { Background } from '../../globalStyles';
+import BackgroundImg from '../../images/image-explore/explore-background.png';
 
 interface ExplorePageProps {
-  pageType: string
+  pageType: string;
 }
 
 const ExplorePage: React.FC<ExplorePageProps> = ({ pageType }) => {
@@ -43,7 +42,7 @@ const ExplorePage: React.FC<ExplorePageProps> = ({ pageType }) => {
         <Paggination />
       </ExplorePagginationContainer>
     </Background>
-  )
-}
+  );
+};
 
-export default ExplorePage
+export default ExplorePage;

@@ -1,21 +1,17 @@
-import React from "react";
-import { Container, Background } from "../../globalStyles";
+import React from 'react';
 
-import {
-    BlogWrap
-} from "./Blog.styles";
+import { BlogWrap } from './Blog.styles';
 
-const Blog = () => {
-    return (
-        <Background>
-            <Container>
-                <BlogWrap>
+import { Container, Background } from '../../globalStyles';
 
-                </BlogWrap>
-            </Container>
-        </Background>
-        
-    )
-}
+const Blog: React.FC = () => {
+  return (
+    <Background>
+      <Container>
+        <BlogWrap></BlogWrap>
+      </Container>
+    </Background>
+  );
+};
 
-export default Blog
+export default Blog;

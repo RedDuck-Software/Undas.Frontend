@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const FilterButtonsContainer = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const FilterButtonsContainer = styled.div`
   gap: 1.5rem;
 
   padding-top: 1.5rem;
-`
+`;
 
 export const FilterButton = styled.button`
   display: flex;
@@ -29,9 +29,9 @@ export const FilterButton = styled.button`
 
     margin-left: 1rem;
   }
-`
+`;
 
 export const FilterClear = styled.span`
   color: #5d3f92;
   cursor: pointer;
-`
+`;

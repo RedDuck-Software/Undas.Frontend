@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface MoreFromCollection {
   closed?: boolean;
@@ -22,7 +22,7 @@ export const MoreFromCollectionTop = styled.div<MoreFromCollection>`
   border: 1px solid #5d3f92;
   word-spacing: 4px;
   padding: 1rem 2rem 1rem 4.5rem;
-  border-radius: ${({ closed }) => (closed ? `10px` : "10px 10px 0px 0px")};
+  border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
   cursor: pointer;
 

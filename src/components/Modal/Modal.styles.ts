@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ModalWrap = styled.div `
+export const ModalWrap = styled.div`
   //display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +8,10 @@ export const ModalWrap = styled.div `
   height: 100%;
   position: fixed;
   overflow-y: scroll;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 999;
   background: rgba(35, 36, 40, 0.5);
   transition: all ease-in-out 0.15s;
@@ -19,4 +22,4 @@ export const ModalWrap = styled.div `
     opacity: 1;
     visibility: visible;
   }
-`
+`;

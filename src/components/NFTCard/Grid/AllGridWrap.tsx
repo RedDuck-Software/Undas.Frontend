@@ -1,25 +1,24 @@
-import { ethers } from "ethers";
-import React, { FC, useContext, useEffect, useState } from "react";
-import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
-import Context from "../../../utils/Context";
-import { getListing } from "../../../utils/getListing";
-import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
-import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
-import { isBuyableFunction } from "../../../utils/isBuyable";
-import NFTGrid from "./NFTGrid";
-import { getStaking } from "../../../utils/getStaking";
-import { canRentNFTFunction } from "../../../utils/canRentNFT";
-import ClipLoader from "react-spinners/ClipLoader";
-import { number, string } from "yup";
+import { ethers } from 'ethers';
+import React, { FC, useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-//Redux
-import {useSelector} from "react-redux";
-import {useFilter} from "../../../store";
+import NFTGrid from './NFTGrid';
 
-interface CardListProps {
+import { GridLayout } from '../../../pages/AllNFTs/AllNFTs.styles';
+import { useFilter } from '../../../store';
+import { canRentNFTFunction } from '../../../utils/canRentNFT';
+import Context from '../../../utils/Context';
+import { getListing } from '../../../utils/getListing';
+import { getListingsLastIndex } from '../../../utils/getListingsLastIndex';
+import { getStaking } from '../../../utils/getStaking';
+import { getStakingsLastIndex } from '../../../utils/getStakingsLastIndex';
+import { isBuyableFunction } from '../../../utils/isBuyable';
+
+/* interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
-}
+} */
 
 interface CommonProps {
   id: number;
@@ -40,27 +39,25 @@ interface CommonListProps extends CommonProps {
 }
 
 interface IAllGridWrap {
-  getResults?: any,
-  priceFilter?: string
+  getResults?: any;
+  priceFilter?: string;
 }
 
-const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
+const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
 
-  const stackingFilter = useSelector(useFilter)
-
-  //console.log(stackingFilter)
+  const stackingFilter = useSelector(useFilter);
 
   const [list, setList] = useState<ItemsProps[]>();
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
-  const [filteredList, setFilteredList] = useState<ItemsProps[]>();
+  // const [filteredList, setFilteredList] = useState<ItemsProps[]>();
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(9);
-  const [showList, setShowList] = useState("NFT to buy");
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(9);
+  // const [showList, setShowList] = useState('NFT to buy');
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
   const getListings = async () => {
@@ -109,7 +106,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
       const CardProps = await getStaking(i, connector);
 
       let canRentNFT;
-      if (CardProps?.tx.tokenId._hex !== "0x00") {
+      if (CardProps?.tx.tokenId._hex !== '0x00') {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
 
@@ -143,7 +140,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log("loading");
+      return console.log('loading');
     }
 
     setLoading(false);
@@ -153,33 +150,33 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
   }, [connector]);
 
   const priceSort = async () => {
-    if (!priceFilter) return list 
-    let sortedArr
+    if (!priceFilter) return list;
+    let sortedArr;
     if (priceFilter === 'low-to-high') {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! > b.priceInNum!) {
-          return 1
+          return 1;
         }
         if (a.priceInNum! < b.priceInNum!) {
-          return -1
+          return -1;
         }
-        return 0
-      })
-      return sortedArr
+        return 0;
+      });
+      return sortedArr;
     }
     if (priceFilter === 'high-to-low') {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! < b.priceInNum!) {
-          return 1
+          return 1;
         }
         if (a.priceInNum! > b.priceInNum!) {
-          return -1
+          return -1;
         }
-        return 0
-      })
-      return sortedArr
+        return 0;
+      });
+      return sortedArr;
     }
-  }
+  };
 
   useEffect(() => {
     if (!list && !stakingsList) {
@@ -190,37 +187,39 @@ const AllGridWrap: FC<IAllGridWrap> = ({getResults, priceFilter}) => {
       setCommonList(stakingsList);
     } else {
       if (stackingFilter.stacking) {
-        setCommonList(stakingsList)
+        setCommonList(stakingsList);
       } else {
         priceSort()
-            .then(sortedArr => {
-              console.log('sortedArr: ', sortedArr)
-              setList(sortedArr)
-            })
-            .catch(e => console.log(e))
-        console.log(list)
-        let common: (ItemsProps | StakingsProps)[] = [...list!, ...stakingsList!];
+          .then((sortedArr) => {
+            console.log('sortedArr: ', sortedArr);
+            setList(sortedArr);
+          })
+          .catch((e) => console.log(e));
+        console.log(list);
+        let common: (ItemsProps | StakingsProps)[] = [
+          ...list!,
+          ...stakingsList!,
+        ];
         common = common.filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.id === value.id)
+            index === self.findIndex((t) => t.id === value.id),
         );
         setCommonList(common);
-        console.log('list: ',list)
-        console.log('common: ',commonList)
-
+        console.log('list: ', list);
+        console.log('common: ', commonList);
       }
-      }
+    }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
 
   return loading ? (
-    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+    <ClipLoader color={'#BD10E0'} loading={loading} size={150} />
   ) : (
     <>
       <GridLayout>
         {commonList ? (
           commonList?.map((item) => {
-            getResults(commonList.length)
+            getResults(commonList.length);
             return (
               <NFTGrid
                 key={item.id}

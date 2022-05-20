@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { Container } from '../../globalStyles'
+import { Container } from '../../globalStyles';
 
 interface RentNFTPageProps {
-  mirrored?: boolean
+  mirrored?: boolean;
 }
 
 export const RentNFTHeaderContainer = styled(Container)`
@@ -15,20 +15,20 @@ export const RentNFTHeaderContainer = styled(Container)`
   }
 
   ${Container}
-`
+`;
 
 export const RentNFTContentContainer = styled(Container)`
   max-width: 1000px;
 
   ${Container}
-`
+`;
 
 export const RentNFTHeading = styled.div`
   max-height: 155px;
   background: #f2f2f2;
-`
+`;
 
-export const RentNFTBackground = styled.img``
+export const RentNFTBackground = styled.img``;
 
 export const RentNFTContent = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ export const RentNFTContent = styled.div`
   align-items: center;
   flex-direction: column;
   background: #f2f2f2;
-`
+`;
 
 export const RentNFTTitle = styled.h2`
   padding: 3.75rem 0;
@@ -52,7 +52,7 @@ export const RentNFTTitle = styled.h2`
   @media (max-width: 619px) {
     padding: 3rem 0 0;
   }
-`
+`;
 
 export const BlockWrapper = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ export const BlockWrapper = styled.div`
   @media (max-width: 619px) {
     flex-direction: column;
   }
-`
+`;
 
 export const ImageWrapper = styled.div`
   display: flex;
@@ -80,7 +80,7 @@ export const ImageWrapper = styled.div`
       align-self: flex-start;
     }
   }
-`
+`;
 
 export const BlackLayer = styled.div`
   &::after {
@@ -95,7 +95,7 @@ export const BlackLayer = styled.div`
     position: absolute;
     z-index: 1;
     border-radius: 0px 0px 10px 10px;
-`
+`;
 
 export const TextOnImage = styled.span`
   font-size: 1.45rem;
@@ -107,7 +107,7 @@ export const TextOnImage = styled.span`
   @media (max-width: 641px) {
     font-size: 1rem;
   }
-`
+`;
 
 export const TextWrapper = styled.div`
   text-align: center;
@@ -138,12 +138,12 @@ export const TextWrapper = styled.div`
   @media (max-width: 519px) {
     font-size: 0.8rem;
   }
-`
+`;
 
 export const BlockTitle = styled.span`
   display: block;
   color: #5d3f92;
-`
+`;
 
 export const RentNFTImage = styled.img`
   width: 285px;
@@ -160,7 +160,7 @@ export const RentNFTImage = styled.img`
     width: 135px;
     height: 96px;
   }
-`
+`;
 
 export const RentNFTSubtitle = styled.h3`
   font-weight: 400;
@@ -177,7 +177,7 @@ export const RentNFTSubtitle = styled.h3`
     justify-content: center;
     padding: 1rem 0 2rem;
   }
-`
+`;
 
 export const DoubleCurveContainer = styled.div`
   display: flex;
@@ -191,7 +191,7 @@ export const DoubleCurveContainer = styled.div`
       justify-content: flex-start;
     }
   }
-`
+`;
 
 export const DoubleCurve = styled.img<RentNFTPageProps>`
   width: 60%;
@@ -206,7 +206,7 @@ export const DoubleCurve = styled.img<RentNFTPageProps>`
   @media (max-width: 619px) {
     display: none;
   }
-`
+`;
 
 export const DoubleCurveMobile = styled.img<RentNFTPageProps>`
   ${({ mirrored }) =>
@@ -222,7 +222,7 @@ export const DoubleCurveMobile = styled.img<RentNFTPageProps>`
   @media (max-width: 469px) {
     margin: -70% 10% -30%;
   }
-`
+`;
 
 export const ButtonsContainer = styled.div`
   padding: 3.75rem 0 12rem;
@@ -241,4 +241,4 @@ export const ButtonsContainer = styled.div`
       width: 80%;
     }
   }
-`
+`;

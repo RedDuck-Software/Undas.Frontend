@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 import { Container } from '../../globalStyles';
-
 import Like from '../../icons/like.svg';
-import View from '../../icons/view.svg';
-import LikeGrey from '../../icons/like-grey.svg';
-import Graph from '../../icons/graph.svg';
 
 interface ProductForSaleProps {
   mobile?: boolean;

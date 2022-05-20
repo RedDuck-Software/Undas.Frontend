@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import violetLine from '../../../../icons/violet-line.svg';
+
 import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
+import violetLine from '../../../../icons/violet-line.svg';
 
 export const BuyersSec = styled.div`
   padding: 4rem 0;

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { PagginationList, ListItem } from './Paggination.styles'
+import { PagginationList, ListItem } from './Paggination.styles';
 
 const Paggination = () => {
   return (
@@ -15,7 +15,7 @@ const Paggination = () => {
       <ListItem>...</ListItem>
       <ListItem className="active">843</ListItem>
     </PagginationList>
-  )
-}
+  );
+};
 
-export default Paggination
+export default Paggination;

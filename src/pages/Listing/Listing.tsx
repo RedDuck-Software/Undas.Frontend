@@ -1,16 +1,6 @@
-import { useState, useContext } from "react";
-import Context from "../../utils/Context";
-import { ethers } from "ethers";
-
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-
-import {
-  UndasGeneralNFT__factory,
-  Marketplace__factory,
-} from "../../typechain";
-
-// import { ModalWindow } from "../../components";
-import { Background } from "../../globalStyles";
+import { ethers } from 'ethers';
+import React from 'react';
+import { useState, useContext } from 'react';
 
 import {
   ListingSec,
@@ -25,22 +15,30 @@ import {
   ListingLabel,
   ListingInput,
   ListingButton,
-} from "./Listing.styles";
-import Image from "../../images/card-item.png";
+} from './Listing.styles';
 
-const Listing = () => {
+import { Background } from '../../globalStyles';
+import Image from '../../images/card-item.png';
+import {
+  UndasGeneralNFT__factory,
+  Marketplace__factory,
+} from '../../typechain';
+import { MARKETPLACE_ADDRESS } from '../../utils/addressHelpers';
+import Context from '../../utils/Context';
+
+const Listing: React.FC = () => {
   const { connector } = useContext(Context);
 
-  const [tokenId, setTokenId] = useState("");
-  const [NFTAddress, setNFTAddress] = useState("");
-  const [price, setPrice] = useState("");
+  const [tokenId, setTokenId] = useState('');
+  const [NFTAddress, setNFTAddress] = useState('');
+  const [price, setPrice] = useState('');
   const [showModalWindow, setShowModalWindow] = useState(false);
 
   const bid = async () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -51,18 +49,18 @@ const Listing = () => {
     console.log(tokenId, NFTAddress, price);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0xB073DeaC0dc753d27cC41a0f443000579d017361",
-      signer
+      '0xB073DeaC0dc753d27cC41a0f443000579d017361',
+      signer,
     );
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS
+      MARKETPLACE_ADDRESS,
     );
 
     if (!isApprovedForAll) {
@@ -75,7 +73,7 @@ const Listing = () => {
       NFTAddress,
       tokenId,
       ethers.utils.parseEther(price),
-      { value: ethers.utils.parseEther("0.1") }
+      { value: ethers.utils.parseEther('0.1') },
     );
 
     await tx.wait().then(() => {
@@ -85,7 +83,7 @@ const Listing = () => {
 
   return (
     <Background>
-      {showModalWindow ? "ModalWindow" : <></>}
+      {showModalWindow ? 'ModalWindow' : <></>}
       <ListingSec>
         <ListingContainer>
           <LeftSide>

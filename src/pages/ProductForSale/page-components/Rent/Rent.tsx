@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import { Button } from '../../../../globalStyles';
 
 import {
   RentContainer,
@@ -15,9 +14,11 @@ import {
   ButtonRow,
 } from './Rent.styles';
 
-const QuoteRent = () => {
+import { Button } from '../../../../globalStyles';
+
+const QuoteRent: React.FC = () => {
   const [rentOpen, setRentOpen] = useState(true);
-  const [isRented, setIsRented] = useState(false);
+  const [isRented] = useState(false);
   const [canRent] = useState(true);
 
   const toogleRentOpen = () => {

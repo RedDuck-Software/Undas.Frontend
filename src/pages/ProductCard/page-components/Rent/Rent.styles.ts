@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface Rent {
-  grey?: boolean
-  closed?: boolean
+  grey?: boolean;
+  closed?: boolean;
 }
 
-export const RentContainer = styled.div``
+export const RentContainer = styled.div``;
 
 export const RentTop = styled.div<Rent>`
   ${({ grey }) => (grey ? `background: #F4F4F4;` : 'background: #ffffff;')};
@@ -15,7 +15,7 @@ export const RentTop = styled.div<Rent>`
   padding: 3%;
   border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
   margin-top: 1.4rem;
-  cursor pointer;
+  cursor: pointer;
 
   display: flex;
 
@@ -24,19 +24,19 @@ export const RentTop = styled.div<Rent>`
     top: 4px;
     margin-left: auto;
   }
-`
+`;
 
 export const RentContent = styled.div<Rent>`
   border: 1px solid #5d3f92;
   border-radius: 0px 0px 10px 10px;
   ${({ grey }) =>
     grey ? `padding: 1rem 6rem; background: #F4F4F4;` : 'border-top: none;'}
-`
+`;
 
 export const RentTable = styled.table`
   border-collapse: collapse;
   width: 100%;
-`
+`;
 
 export const RentTableHead = styled.thead`
   background: #ffffff;
@@ -45,20 +45,20 @@ export const RentTableHead = styled.thead`
     text-align: left;
     color: #7c7c7c;
   }
-`
+`;
 
 export const TableRow = styled.tr`
   border-top: 1px solid #5d3f92;
-`
+`;
 
 export const TableHeadTitle = styled.th`
   padding: 3%;
   font-weight: 400;
-`
+`;
 
 export const RentTableBody = styled.tbody`
   width: 100%;
-`
+`;
 
 export const TableColumn = styled.td`
   color: #7c7c7c;
@@ -72,7 +72,7 @@ export const TableColumn = styled.td`
   &:nth-child(2) {
     width: 20%;
   }
-`
+`;
 
 export const ButtonRow = styled.div`
   display: flex;
@@ -92,4 +92,4 @@ export const ButtonRow = styled.div`
       min-width: 30%;
     }
   }
-`
+`;

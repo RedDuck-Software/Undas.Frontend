@@ -1,3 +1,3 @@
-import {ReactComponent as ProfileIcon} from '../../../icons/set-profile.svg';
+import { ReactComponent as ProfileIcon } from '../../../icons/set-profile.svg';
 
- export {ProfileIcon}
+export { ProfileIcon };
