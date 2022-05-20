@@ -17,7 +17,7 @@ import {
 } from './CreateCollection.styles';
 import { ImgIcon, ExplicitContentIco, ArtIcon } from './imports';
 
-import { Background } from '../../globalStyles';
+import { Background, FormButtonsWrap } from '../../globalStyles';
 import {
   CreateSec,
   CreateContainer,
@@ -31,8 +31,8 @@ import {
   CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton,
   ButtonsBlock,
+  CreateFormButton,
 } from '../CreateNFT/CreateNFT.styles';
 import Switcher from '../CreateNFT/page-components/Switcher/Switcher';
 
