@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Container, PageTitle } from '../../globalStyles';
+import { Container, PageTitle, FormButton } from '../../globalStyles';
 
 export const CreateSec = styled.div`
   padding: 30px 0 60px;
@@ -161,20 +161,6 @@ export const SwitcherBlock = styled(ModalBlock)`
 `;
 export const SwitcherTitle = styled(ModalTitle)`
   margin: 0;
-`;
-export const FormButton = styled.button`
-  background: #ffffff;
-  border: 1px solid #873dc1;
-  border-radius: 10px;
-  color: #873dc1;
-  padding: 7px 37px;
-  margin-right: 20px;
-  transition: all 0.3s;
-  &:hover {
-    color: #ffffff;
-    background: #873dc1;
-    border: 1px solid transparent;
-  }
 `;
 
 export const CreateFormButton = styled(FormButton)`
