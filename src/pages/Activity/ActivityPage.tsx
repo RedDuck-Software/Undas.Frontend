@@ -1,13 +1,13 @@
-import { useWeb3React } from '@web3-react/core';
-import React, { useContext, useEffect, useState } from 'react';
-import { useMoralis } from 'react-moralis';
+import { useWeb3React } from "@web3-react/core";
+import React, { useContext, useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
 
-import { AccountContainer, StatisticsText } from './ActivityPage.styles';
-import OffersMenu from './page-components/MainMenu/OffersMenu';
+import { AccountContainer, StatisticsText } from "./ActivityPage.styles";
+import OffersMenu from "./page-components/MainMenu/OffersMenu";
 
-import ASideFilter from '../../components/ASideFilter/ASideFilter';
-import Context from '../../utils/Context';
-import { Wrapper } from '../CategoriesPage/Categories.styles';
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import Context from "../../utils/Context";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const ActivityPage: React.FC = () => {
   const { account } = useWeb3React();
@@ -35,7 +35,7 @@ const ActivityPage: React.FC = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: 'goerli',
+      chain: "goerli",
       address: account,
     });
     return listOfNFTS;
@@ -47,14 +47,14 @@ const ActivityPage: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
+        index === self.findIndex((t) => t.token_id === value.token_id)
     );
     setNFTList(response.result);
   };
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log('loading');
+      return console.log("loading");
     }
     getListData();
   }, [connector, account]);

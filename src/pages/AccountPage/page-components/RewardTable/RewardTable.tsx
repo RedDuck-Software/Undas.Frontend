@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Wrap,
@@ -7,7 +7,7 @@ import {
   ContentTd,
   Name,
   Icon,
-} from './RewardTable.styles';
+} from "./RewardTable.styles";
 
 import {
   UndIco,
@@ -19,7 +19,7 @@ import {
   SolanaIco,
   FtmIco,
   AvaxIco,
-} from '../../imports';
+} from "../../imports";
 const RewardTable: React.FC = () => {
   return (
     <Wrap>

@@ -1,11 +1,11 @@
-import React from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import React from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 import {
   FilterButtonsContainer,
   FilterButton,
   FilterClear,
-} from './FilterButtons.styles';
+} from "./FilterButtons.styles";
 
 const FilterButtons = () => {
   return (

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ViewOption } from '../../../AllNFTs/AllNFTs.styles';
-import { top, buttom } from '../../imports';
+import { ViewOption } from "../../../AllNFTs/AllNFTs.styles";
+import { top, buttom } from "../../imports";
 
 export const FavouriteSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -48,7 +48,7 @@ export const ItemIcon = styled.div`
   }
 `;
 export const ItemName = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -63,7 +63,7 @@ export const ItemName = styled.span`
 export const CollectionName = styled.span`
   margin-right: 5px;
   margin-left: -80px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
@@ -77,7 +77,7 @@ export const UNDText = styled.span`
   margin-right: 5px;
   margin-left: -49px;
   margin-top: 30px;
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -118,7 +118,7 @@ export const OffersTdText = styled.td`
   }
 `;
 export const ActionText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -128,7 +128,7 @@ export const ActionText = styled.div`
 export const USDPrise = styled.div`
   width: 100%;
   text-align: left;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -150,7 +150,7 @@ export const PriceTextW = styled.div`
   float: left;
 `;
 export const PercentTextTop = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -158,12 +158,12 @@ export const PercentTextTop = styled.span`
   color: #008c38;
 
   &:after {
-    content: url('${top}');
+    content: url("${top}");
     margin-left: 10px;
   }
 `;
 export const PercentTextButtom = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -171,7 +171,7 @@ export const PercentTextButtom = styled.span`
   color: #cc252f;
 
   &:after {
-    content: url('${buttom}');
+    content: url("${buttom}");
     margin-left: 10px;
   }
 `;
@@ -211,7 +211,7 @@ export const Filter = styled.div`
   background: #fbf5ff;
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -228,7 +228,7 @@ export const FilterImg = styled.img`
   margin-left: 10px;
 `;
 export const FilterName = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -244,7 +244,7 @@ export const FilterClose = styled.img`
   margin-top: 3px;
 `;
 export const ClearAll = styled.button`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

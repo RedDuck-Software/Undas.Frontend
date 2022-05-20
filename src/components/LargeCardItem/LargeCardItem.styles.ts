@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import CheckMark from '../../icons/check-mark.svg';
+import CheckMark from "../../icons/check-mark.svg";
 
 export const CardImage = styled.img`
   width: 100%;
@@ -107,7 +107,7 @@ export const CardCollectionName = styled.h4`
   padding-bottom: 0.25rem;
 
   &:after {
-    content: url('${CheckMark}');
+    content: url("${CheckMark}");
     position: relative;
     left: 10px;
     top: -2px;

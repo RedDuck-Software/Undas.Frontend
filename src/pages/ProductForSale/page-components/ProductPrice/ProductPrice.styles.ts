@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Clock from '../../../../icons/clock.svg';
-import Rhombus from '../../../../icons/rhombus.svg';
+import Clock from "../../../../icons/clock.svg";
+import Rhombus from "../../../../icons/rhombus.svg";
 
 export const ProductPriceContainer = styled.div`
   min-width: 540px;
@@ -22,7 +22,7 @@ export const SaleEnds = styled.div`
   border-radius: 10px 10px 0px 0px;
 
   &:before {
-    content: url('${Clock}');
+    content: url("${Clock}");
     position: relative;
     top: 2px;
     padding-right: 1rem;
@@ -67,7 +67,7 @@ export const PriceContainer = styled.div`
   }
 
   &:before {
-    content: url('${Rhombus}');
+    content: url("${Rhombus}");
     position: relative;
     top: 2px;
     margin-right: 5px;

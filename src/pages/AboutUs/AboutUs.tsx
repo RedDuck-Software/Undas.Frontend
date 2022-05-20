@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AboutWrap,
@@ -19,13 +19,13 @@ import {
   ContainerHead,
   ContainerContent,
   AchievementСontainerWrap,
-} from './AboutUs.styles';
-import { ArticleImg } from './imports';
-import Road from './Roadmap/Road';
-import AboutSlider from './Slider/Slider';
-import TeammateCards from './TeammateCard/TeammateCard';
+} from "./AboutUs.styles";
+import { ArticleImg } from "./imports";
+import Road from "./Roadmap/Road";
+import AboutSlider from "./Slider/Slider";
+import TeammateCards from "./TeammateCard/TeammateCard";
 
-import { Background, Container, PageTitle, SubTitle } from '../../globalStyles';
+import { Background, Container, PageTitle, SubTitle } from "../../globalStyles";
 
 const AboutUs = () => {
   return (
@@ -63,7 +63,7 @@ const AboutUs = () => {
                     for user-owned digital items, supporting multiple
                     blockchains, with the broadest set of categories and the
                     best prices for new emerging digital item classes.and the
-                    best prices for new emerging digital item{' '}
+                    best prices for new emerging digital item{" "}
                   </p>
                 </ArticleText>
               </AboutContentText>
@@ -73,20 +73,20 @@ const AboutUs = () => {
                 <SubTitle>Building an open digital economy</SubTitle>
                 <ArticleText className="bottom-text">
                   <p>
-                    At <span>UNDAS</span>, we&#39;re excited about a brand new type
-                    of digital good called a non-fungible token, or NFT. NFTs
-                    have exciting new properties: they&#39;re unique, provably
-                    scarce, tradeable, and usable across multiple applications.
-                    Just like physical goods, you can do whatever you want with
-                    them! You could throw them in the trash, gift them to a
-                    friend across the world, or go sell them on an open
-                    marketplace. But unlike physical goods, they&#39;re armed with
-                    all the programmability of digital goods.
+                    At <span>UNDAS</span>, we&#39;re excited about a brand new
+                    type of digital good called a non-fungible token, or NFT.
+                    NFTs have exciting new properties: they&#39;re unique,
+                    provably scarce, tradeable, and usable across multiple
+                    applications. Just like physical goods, you can do whatever
+                    you want with them! You could throw them in the trash, gift
+                    them to a friend across the world, or go sell them on an
+                    open marketplace. But unlike physical goods, they&#39;re
+                    armed with all the programmability of digital goods.
                   </p>
 
                   <p>
                     A core part of our vision is that open protocols like
-                    Ethereum and interoperable standards like{' '}
+                    Ethereum and interoperable standards like{" "}
                     <span>ERC-721</span> and <span>ERC-1155</span> will enable
                     vibrant new economies. We&#39;re building tools that allow
                     consumers to trade their items freely, creators to launch
@@ -97,7 +97,7 @@ const AboutUs = () => {
                   <p>
                     We’re proud to be the first and largest marketplace for
                     NFTs. A core part of our vision is that open protocols like
-                    Ethereum and interoperable standards like{' '}
+                    Ethereum and interoperable standards like{" "}
                     <span>ERC-721</span> and <span>ERC-1155</span> will enable
                     vibrant new economies. We&#39;re building tools that allow
                     consumers to trade their items freely, creators to launch

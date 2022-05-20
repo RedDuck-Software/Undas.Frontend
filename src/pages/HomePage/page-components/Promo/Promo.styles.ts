@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PromoSlide = styled.div`
   background-color: #5d3f92;

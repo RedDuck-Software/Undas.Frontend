@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { CreateFormButton } from '../../CreateNFT.styles';
+import styled from "styled-components";
+
+import { CreateFormButton } from "../../CreateNFT.styles";
 
 export const CreateModalWrap = styled.div``;
 
@@ -63,7 +64,7 @@ export const ModalInput = styled.input`
   &:focus {
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
-  &[type='number'] {
+  &[type="number"] {
     width: 12%;
   }
 `;
@@ -78,7 +79,7 @@ export const InputButton = styled.button`
   position: relative;
   &::before,
   &::after {
-    content: '';
+    content: "";
     width: 16px;
     height: 2px;
     background: #7c7c7c;

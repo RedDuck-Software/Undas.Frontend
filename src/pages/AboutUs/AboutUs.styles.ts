@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { DownloadIco } from './imports';
+import { DownloadIco } from "./imports";
 
 export const AboutWrap = styled.div``;
 export const AboutContent = styled.div``;
@@ -56,7 +56,7 @@ export const Link = styled.a`
   padding-right: 36px;
   position: relative;
   &::after {
-    content: '';
+    content: "";
     width: 16px;
     height: 20px;
     background-image: url(${DownloadIco});
@@ -130,7 +130,7 @@ export const ContainerHead = styled.div`
   }
   & span {
     color: #5d3f92;
-    font-family: 'Jost';
+    font-family: "Jost";
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -143,7 +143,7 @@ export const ContainerContent = styled.div`
   padding: 15px 20px;
   position: relative;
   &.left-side::after {
-    content: '';
+    content: "";
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
@@ -154,7 +154,7 @@ export const ContainerContent = styled.div`
     top: 20%;
   }
   &.right-side::before {
-    content: '';
+    content: "";
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
@@ -178,7 +178,7 @@ export const ContainerContent = styled.div`
       line-height: 17px;
     }
     & li::before {
-      content: '';
+      content: "";
       width: 3px;
       height: 3px;
       border-radius: 50%;
@@ -188,7 +188,7 @@ export const ContainerContent = styled.div`
       left: 0;
     }
     & .checked::after {
-      content: '';
+      content: "";
       width: 8px;
       height: 12px;
       border-bottom: 2px solid #5d3f92;

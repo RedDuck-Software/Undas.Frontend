@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   ColImg,
@@ -14,10 +14,10 @@ import {
   ImageBlock,
   ImageHeart,
   RowCenter,
-} from './CardLineNFT.styles';
-import { girlNFT, eye, checked, block, heart } from './imports';
+} from "./CardLineNFT.styles";
+import { girlNFT, eye, checked, block, heart } from "./imports";
 
-import TabsNFT from '../TabsNFT/TabsNFT';
+import TabsNFT from "../TabsNFT/TabsNFT";
 
 const CardLineNFT: React.FC = () => {
   return (

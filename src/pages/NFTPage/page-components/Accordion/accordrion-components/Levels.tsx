@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import CompleteBar from './CompleteBar';
+import CompleteBar from "./CompleteBar";
 
-import { DetailsWrap } from '../Accordion.styles';
+import { DetailsWrap } from "../Accordion.styles";
 
 const Levels: React.FC<{ complete?: number }> = ({ complete }) => {
   return (

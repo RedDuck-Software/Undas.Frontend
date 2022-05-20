@@ -1,9 +1,9 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from "react";
 
-import { AccordionWrap, AccordionArrow, StyledUnd } from './Accordion.styles';
+import { AccordionWrap, AccordionArrow, StyledUnd } from "./Accordion.styles";
 
-import { Wrapper } from '../../../CategoriesPage/Categories.styles';
-import { TopBar } from '../../NFTPage.styles';
+import { Wrapper } from "../../../CategoriesPage/Categories.styles";
+import { TopBar } from "../../NFTPage.styles";
 
 interface IAccordion {
   children: ReactNode;
@@ -21,16 +21,16 @@ const Accordion: React.FC<IAccordion> = ({
   ico,
   classLabel,
 }) => {
-  const [open, setOpen] = useState('');
+  const [open, setOpen] = useState("");
 
   return (
     <AccordionWrap className={`${open} ${classLabel}`}>
       <TopBar
         justifyContent="space-between"
         cursor="pointer"
-        className={open && 'active'}
+        className={open && "active"}
         onClick={() => {
-          open === '' ? setOpen('active') : setOpen('');
+          open === "" ? setOpen("active") : setOpen("");
         }}
       >
         <Wrapper disp="flex" gap="5px">
@@ -38,7 +38,7 @@ const Accordion: React.FC<IAccordion> = ({
           {name}
           {und ? <StyledUnd>{und}</StyledUnd> : null}
         </Wrapper>
-        <AccordionArrow className={open && 'active'} />
+        <AccordionArrow className={open && "active"} />
       </TopBar>
       {children}
     </AccordionWrap>

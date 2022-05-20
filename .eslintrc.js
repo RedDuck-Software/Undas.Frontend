@@ -13,6 +13,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
     'import/order': [
       'error',
       {
@@ -43,4 +44,5 @@ module.exports = {
       version: 'detect',
     },
   },
+  hasSuggestions: true,
 };

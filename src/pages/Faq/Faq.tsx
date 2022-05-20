@@ -1,5 +1,5 @@
-import React from 'react';
-import { Tab, Row, Col, Nav } from 'react-bootstrap';
+import React from "react";
+import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 import {
   FaqTabsWrapper,
@@ -7,9 +7,9 @@ import {
   ContentTitle,
   ContentText,
   TabButton,
-} from './Faq.styles';
+} from "./Faq.styles";
 
-import { Background, Container, PageTitle } from '../../globalStyles';
+import { Background, Container, PageTitle } from "../../globalStyles";
 
 const Faq: React.FC = () => {
   return (

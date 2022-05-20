@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CartIco, HandShakeIco } from '../../../imports';
+import { CartIco, HandShakeIco } from "../../../imports";
 import {
   OffersWrap,
   OffersTr,
@@ -13,7 +13,7 @@ import {
   AcceptBTN,
   MakeOfferBTN,
   DenyBTN,
-} from '../Accordion.styles';
+} from "../Accordion.styles";
 
 const Offers: React.FC = () => {
   return (

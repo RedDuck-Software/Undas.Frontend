@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AchievementsWrap = styled.div``;
 export const AchievementsText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -21,7 +21,7 @@ export const InfoText = styled.div`
   box-shadow: 0px 4px 10px rgba(135, 61, 193, 0.25);
   background: FBF5FF;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -47,7 +47,7 @@ export const PurpleRewardsTitle = styled.div`
   box-shadow: inset 0px 0px 1px #7c7c7c;
   border-radius: 10px 10px 0px 0px;
   height: 50px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -59,7 +59,7 @@ export const PurpleRewardsTitle = styled.div`
 export const RewardsDiv = styled.div`
   height: 100px;
   width: 320px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -85,7 +85,7 @@ export const BronzeRewardsTitle = styled.div`
   box-shadow: inset 0px 0px 1px #cd7f32;
   border-radius: 10px 10px 0px 0px;
   height: 50px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -110,7 +110,7 @@ export const SilverRewardsTitle = styled.div`
   box-shadow: inset 0px 0px 1px #c0c0c0;
   border-radius: 10px 10px 0px 0px;
   height: 50px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -132,7 +132,7 @@ export const GoldRewardsTitle = styled.div`
   box-shadow: inset 0px 0px 1px #ffd700;
   border-radius: 10px 10px 0px 0px;
   height: 50px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -164,7 +164,7 @@ export const DiamondImg = styled.img`
   margin-top: 10px;
 `;
 export const DiamondText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -173,7 +173,7 @@ export const DiamondText = styled.span`
   margin-left: 30px;
 `;
 export const UndasText = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -197,7 +197,7 @@ export const TradingRewardsTitle = styled.div`
   background: #fbf5ff;
   box-shadow: inset 0px 0px 1px #7c7c7c;
   border-radius: 10px 10px 0px 0px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -210,7 +210,7 @@ export const RewardImgTrading = styled.img`
   margin-right: 35px;
 `;
 export const TextRewards = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -220,7 +220,7 @@ export const TextRewards = styled.span`
   display: inline-block;
 `;
 export const TextRewardsFirst = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

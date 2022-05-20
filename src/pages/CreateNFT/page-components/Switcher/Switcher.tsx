@@ -1,7 +1,7 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React from "react";
+import { Form } from "react-bootstrap";
 
-import { SwitcherWrap } from './Switcher.styles';
+import { SwitcherWrap } from "./Switcher.styles";
 
 const Switcher: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { WalletIco, AddingNFTIco, StackingIco } from './imports';
+import { WalletIco, AddingNFTIco, StackingIco } from "./imports";
 import {
   ManageNFTContainer,
   ManageCardWrap,
@@ -10,9 +10,9 @@ import {
   DescList,
   PurpleText,
   StyledSpan,
-} from './ManageNFT.styles';
+} from "./ManageNFT.styles";
 
-import { Title, TitleWrap } from '../Recomended/Recommended.styles';
+import { Title, TitleWrap } from "../Recomended/Recommended.styles";
 
 const ManageNFT: React.FC = () => {
   return (

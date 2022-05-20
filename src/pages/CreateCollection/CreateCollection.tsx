@@ -1,7 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 
 import {
   AddImgBlock,
@@ -14,10 +14,10 @@ import {
   CategoryGroup,
   CategoryDescript,
   EarningsInput,
-} from './CreateCollection.styles';
-import { ImgIcon, ExplicitContentIco, ArtIcon } from './imports';
+} from "./CreateCollection.styles";
+import { ImgIcon, ExplicitContentIco, ArtIcon } from "./imports";
 
-import { Background, FormButtonsWrap } from '../../globalStyles';
+import { Background, FormButtonsWrap } from "../../globalStyles";
 import {
   CreateSec,
   CreateContainer,
@@ -33,9 +33,8 @@ import {
   SwitcherTitle,
   ButtonsBlock,
   CreateFormButton,
-} from '../CreateNFT/CreateNFT.styles';
-import Switcher from '../CreateNFT/page-components/Switcher/Switcher';
-
+} from "../CreateNFT/CreateNFT.styles";
+import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 
 type CreateSubmitForm = {
   contentURL: string;
@@ -47,16 +46,16 @@ type CreateSubmitForm = {
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
 
-  const [contentURL, setContentURL] = useState('');
-  const [name, setName] = useState('');
-  const [information, setInformation] = useState('');
-  const [creatorEarnings, setCreatorEarnings] = useState('');
+  const [contentURL, setContentURL] = useState("");
+  const [name, setName] = useState("");
+  const [information, setInformation] = useState("");
+  const [creatorEarnings, setCreatorEarnings] = useState("");
 
   const validationSchema = Yup.object().shape({
-    contentURL: Yup.string().required('URL is required'),
-    name: Yup.string().required('Name is required'),
-    information: Yup.string().required('Information is required'),
-    creatorEarnings: Yup.string().required('Creator Earnings is required'),
+    contentURL: Yup.string().required("URL is required"),
+    name: Yup.string().required("Name is required"),
+    information: Yup.string().required("Information is required"),
+    creatorEarnings: Yup.string().required("Creator Earnings is required"),
   });
 
   const { register } = useForm<CreateSubmitForm>({
@@ -112,7 +111,7 @@ const CreateCollection: React.FC = () => {
                 </AddFeaturedButton>
                 <BlockDescript>
                   This image will be used for featuring your collection on the
-                  homepage, category pages or other promotional areas of UNDAS{' '}
+                  homepage, category pages or other promotional areas of UNDAS{" "}
                   <br /> Recommended 600px X 400pxx
                 </BlockDescript>
               </AddImgBlock>
@@ -141,7 +140,7 @@ const CreateCollection: React.FC = () => {
                 placeholder="Example: Pride Lands"
                 maxLength={25}
                 required
-                {...register('name')}
+                {...register("name")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -156,7 +155,7 @@ const CreateCollection: React.FC = () => {
                 type="text"
                 id="url"
                 placeholder="https://UNDAS.io/collection/pride-lands"
-                {...register('contentURL')}
+                {...register("contentURL")}
                 value={contentURL}
                 onChange={(e) => setContentURL(e.target.value)}
               />
@@ -169,7 +168,7 @@ const CreateCollection: React.FC = () => {
               <CreateTextArea
                 id="information"
                 maxLength={500}
-                {...register('information')}
+                {...register("information")}
                 value={information}
                 onChange={(e) => setInformation(e.target.value)}
               />
@@ -222,7 +221,7 @@ const CreateCollection: React.FC = () => {
                 type="text"
                 id="earnings"
                 placeholder="Percentage fee: e.g. 1.5"
-                {...register('creatorEarnings')}
+                {...register("creatorEarnings")}
                 value={creatorEarnings}
                 onChange={(e) => setCreatorEarnings(e.target.value)}
               />

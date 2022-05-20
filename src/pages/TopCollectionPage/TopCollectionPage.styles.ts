@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AccountContainer = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const AccountContainer = styled.div`
 `;
 
 export const StatisticsText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;

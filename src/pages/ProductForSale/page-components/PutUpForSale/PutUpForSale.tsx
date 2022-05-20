@@ -1,5 +1,5 @@
-import { ethers } from 'ethers';
-import React, { useState, useEffect, useContext } from 'react';
+import { ethers } from "ethers";
+import React, { useState, useEffect, useContext } from "react";
 
 import {
   ForSaleWrapper,
@@ -19,38 +19,38 @@ import {
   MenuInput,
   AgreementLink,
   MenuButtonsWrapper,
-} from './PutUpForSale.styles';
+} from "./PutUpForSale.styles";
 
-import { Button } from '../../../../globalStyles';
-import Image from '../../../../images/card-item.png';
+import { Button } from "../../../../globalStyles";
+import Image from "../../../../images/card-item.png";
 import {
   UndasGeneralNFT__factory,
   Marketplace__factory,
-} from '../../../../typechain';
+} from "../../../../typechain";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import Context from '../../../../utils/Context';
-import { getNFTListingIds } from '../../../../utils/getNFTListingIds';
-import { isBuyableFunction } from '../../../../utils/isBuyable';
+} from "../../../../utils/addressHelpers";
+import Context from "../../../../utils/Context";
+import { getNFTListingIds } from "../../../../utils/getNFTListingIds";
+import { isBuyableFunction } from "../../../../utils/isBuyable";
 
 const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
   const { connector } = useContext(Context);
 
-  const [price, setPrice] = useState('35');
+  const [price, setPrice] = useState("35");
 
   const [isDropdownOpen, setDropdown] = useState(false);
   const [isMenuShown, setMenuShown] = useState(false);
-  const [isButtonsActive, setIsButtonsActive] = useState('disabled');
+  const [isButtonsActive, setIsButtonsActive] = useState("disabled");
   const [isBuyable, setIsBuyable] = useState<boolean | undefined>(undefined);
   const [listingId, setListingId] = useState<number>();
 
   const bid = async () => {
-    if (!connector || isButtonsActive === 'disabled') return;
+    if (!connector || isButtonsActive === "disabled") return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -60,12 +60,12 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -79,9 +79,9 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
       +itemId,
       ethers.utils.parseEther(price),
       {
-        value: ethers.utils.parseEther('0.1'),
+        value: ethers.utils.parseEther("0.1"),
         gasLimit: 300000,
-      },
+      }
     );
 
     await tx.wait().then(
@@ -92,7 +92,7 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
       },
       (error) => {
         console.log(error);
-      },
+      }
     );
   };
 
@@ -100,14 +100,14 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || !listingId) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const tx = await MarketplaceContract.cancel(listingId);
@@ -123,13 +123,13 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
   };
 
   const toogleMenu = () => {
-    if (!isMenuShown && isButtonsActive === 'disabled') {
+    if (!isMenuShown && isButtonsActive === "disabled") {
       setMenuShown(!isMenuShown);
-    } else if (isButtonsActive === 'disabled') {
+    } else if (isButtonsActive === "disabled") {
       return;
     } else {
       setMenuShown(!isMenuShown);
-      setIsButtonsActive('disabled');
+      setIsButtonsActive("disabled");
     }
   };
 
@@ -138,10 +138,10 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
   };
 
   const toogleButtons = () => {
-    if (isButtonsActive === 'disabled') {
-      setIsButtonsActive('active');
+    if (isButtonsActive === "disabled") {
+      setIsButtonsActive("active");
     } else {
-      setIsButtonsActive('disabled');
+      setIsButtonsActive("disabled");
     }
   };
 
@@ -157,7 +157,7 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     setBuyable();

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PagginationList = styled.ul`
   display: flex;
@@ -17,7 +17,7 @@ export const ListItem = styled.li`
   margin: 0 1rem;
 
   &::after {
-    content: ',';
+    content: ",";
   }
 
   &:nth-child(2) {
@@ -39,7 +39,7 @@ export const ListItem = styled.li`
     bottom: 0.5rem;
 
     &::after {
-      content: '';
+      content: "";
     }
   }
 

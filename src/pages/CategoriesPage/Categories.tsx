@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Banner,
@@ -10,11 +10,11 @@ import {
   Contact,
   ContactText,
   ContactImage,
-} from './Categories.styles';
-import { CollectionBanner, Email, Telegram } from './imports';
-import Collection from './page-components/Collection';
+} from "./Categories.styles";
+import { CollectionBanner, Email, Telegram } from "./imports";
+import Collection from "./page-components/Collection";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 const Categories: React.FC = () => {
   return (

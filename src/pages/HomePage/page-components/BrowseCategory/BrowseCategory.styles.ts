@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import violetLine from '../../../../icons/violet-line.svg';
+import violetLine from "../../../../icons/violet-line.svg";
 
 export const BrowseSec = styled.div`
   padding: 4rem 0;
@@ -17,7 +17,7 @@ export const BrowseTitle = styled.h2`
   margin-left: 0.5rem;
 
   &:before {
-    content: url('${violetLine}');
+    content: url("${violetLine}");
     position: relative;
     right: 8px;
     top: 3px;
@@ -102,7 +102,7 @@ export const BlackLayer = styled.div`
     position: absolute;
     bottom: 0.05rem;
     left: 0;
-    content: '';
+    content: "";
     background: black;
     opacity: 0.5;
     width: 100%;

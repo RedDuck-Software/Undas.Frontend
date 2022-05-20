@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   RentNFTHeaderContainer,
@@ -19,14 +19,14 @@ import {
   DoubleCurve,
   DoubleCurveMobile,
   ButtonsContainer,
-} from './RentNFTPage.styled';
+} from "./RentNFTPage.styled";
 
-import { Button } from '../../globalStyles';
-import doubleCurve from '../../icons/double_curve.svg';
-import doubleCurveMobile from '../../icons/double_curve_mobile.svg';
-import image01 from '../../images/image-cards/card05.png';
-import BackgroundImg from '../../images/image-rent/bg-01.png';
-import image02 from '../../images/image-rent/earn-money.png';
+import { Button } from "../../globalStyles";
+import doubleCurve from "../../icons/double_curve.svg";
+import doubleCurveMobile from "../../icons/double_curve_mobile.svg";
+import image01 from "../../images/image-cards/card05.png";
+import BackgroundImg from "../../images/image-rent/bg-01.png";
+import image02 from "../../images/image-rent/earn-money.png";
 
 const RentNFTPage: React.FC = () => {
   return (

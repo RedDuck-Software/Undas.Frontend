@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import './NFTHeroSlider.css';
-import { canRentNFTFunction } from '../../../../utils/canRentNFT';
-import Context from '../../../../utils/Context';
-import { getStaking } from '../../../../utils/getStaking';
-import { getStakingsLastIndex } from '../../../../utils/getStakingsLastIndex';
-import getTokenURI from '../../../../utils/getTokenURI';
-import NFTCard from '../NFTCard/NFTCard';
-import { Title, TitleWrap, ViewAllBtn } from '../Recomended/Recommended.styles';
+import "./NFTHeroSlider.css";
+import { canRentNFTFunction } from "../../../../utils/canRentNFT";
+import Context from "../../../../utils/Context";
+import { getStaking } from "../../../../utils/getStaking";
+import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
+import getTokenURI from "../../../../utils/getTokenURI";
+import NFTCard from "../NFTCard/NFTCard";
+import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 
 const RentNFTContainer = styled.div`
   margin: 120px 0;
@@ -40,7 +40,7 @@ const RentNFT: React.FC = () => {
       const { tokenId } = stakingdata.tx;
       const { name } = stakingdata;
       let canRentNFT;
-      if (stakingdata.tx.tokenId._hex !== '0x00') {
+      if (stakingdata.tx.tokenId._hex !== "0x00") {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
       if (canRentNFT) {

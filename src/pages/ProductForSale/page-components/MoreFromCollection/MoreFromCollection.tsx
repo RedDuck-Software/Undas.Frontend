@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import React, { useState } from "react";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { card01, card02, card03 } from './imports';
+import { card01, card02, card03 } from "./imports";
 import {
   MoreFromCollectionContainer,
   MoreFromCollectionTop,
   MoreFromCollectionContent,
   CardsContainer,
   ButtonContainer,
-} from './MoreFromCollection.styles';
+} from "./MoreFromCollection.styles";
 
-import { CardItem } from '../../../../components';
-import { Button } from '../../../../globalStyles';
+import { CardItem } from "../../../../components";
+import { Button } from "../../../../globalStyles";
 
 const MoreFromCollection: React.FC = () => {
   const [Collection, setCollection] = useState(true);

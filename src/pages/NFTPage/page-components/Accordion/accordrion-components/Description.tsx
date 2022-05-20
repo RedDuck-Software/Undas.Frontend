@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   DescriptionWrap,
@@ -6,7 +6,7 @@ import {
   MoreBtn,
   AccordionText,
   WrapperDescript,
-} from '../Accordion.styles';
+} from "../Accordion.styles";
 
 const Description: React.FC = () => {
   return (

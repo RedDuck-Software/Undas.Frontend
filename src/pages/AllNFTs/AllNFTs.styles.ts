@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
-import { ReactComponent as Search } from '../../pages/CollectionPage/assets/search.svg';
+import { Container } from "../../globalStyles";
+import { ReactComponent as Search } from "../../pages/CollectionPage/assets/search.svg";
 
 export const AllNFTContainer = styled(Container)`
   display: flex;
@@ -15,9 +15,9 @@ interface IMenuWrap {
 export const MenuWrap = styled.div<IMenuWrap>`
   width: 100%;
   display: flex;
-  justify-content: ${(props) => props.justifyContent || ''};
+  justify-content: ${(props) => props.justifyContent || ""};
   align-items: center;
-  margin: ${(props) => props.marg || '64px 0 20px'};
+  margin: ${(props) => props.marg || "64px 0 20px"};
 `;
 
 interface IMenuSearch {
@@ -26,11 +26,11 @@ interface IMenuSearch {
 }
 
 export const MenuSearchWrap = styled.div<IMenuSearch>`
-  margin-left: ${(props) => props.marginLeft || '30px'};
+  margin-left: ${(props) => props.marginLeft || "30px"};
   padding-left: 20px;
   display: flex;
   align-items: center;
-  max-width: ${(props) => props.mw || '410px'};
+  max-width: ${(props) => props.mw || "410px"};
   width: 100%;
   height: 36px;
   background-color: #fff;
@@ -116,8 +116,8 @@ export const MenuItem = styled(FilterItem)<IMenuItem>`
   &:hover {
     ${(props) =>
       props.hover
-        ? 'box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);'
-        : ''}
+        ? "box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);"
+        : ""}
   }
 `;
 export const Arrow = styled.span`

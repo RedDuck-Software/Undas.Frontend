@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { FooterBg } from './imports';
+import { FooterBg } from "./imports";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 export const FooterSec = styled.footer`
   background-color: rgba(135, 61, 193, 0.5);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CompleteWrap, ColoredText } from './Proprties.styles';
+import { CompleteWrap, ColoredText } from "./Proprties.styles";
 
 const CompleteBar: React.FC<{ complete?: number }> = ({ complete }) => {
   return (

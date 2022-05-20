@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 import {
   NewNFTsContainer,
   NewNFTsPagginationContainer,
-} from './NewNFTs.styles';
+} from "./NewNFTs.styles";
 
-import { CardList, Paggination } from '../../components';
-import { Background } from '../../globalStyles';
+import { CardList, Paggination } from "../../components";
+import { Background } from "../../globalStyles";
 
 const NewNFTs: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
-import violetLine from '../../../../icons/violet-line.svg';
+import violetArrowDown from "../../../../icons/violet-arrow-down.svg";
+import violetLine from "../../../../icons/violet-line.svg";
 
 export const BuyersSec = styled.div`
   padding: 4rem 0;
@@ -18,7 +18,7 @@ export const BuyersTitle = styled.h2`
   margin-left: 0.5rem;
 
   &:before {
-    content: url('${violetLine}');
+    content: url("${violetLine}");
     position: relative;
     right: 8px;
     top: 3px;
@@ -62,7 +62,7 @@ export const BuyersTitleViolet = styled.span`
   color: #5d3f92;
 
   &:after {
-    content: '';
+    content: "";
     display: inline-block;
     height: 22px;
     width: 27px;

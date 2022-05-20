@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 export const Background = styled.div`
   background-color: #e2d1ff;
@@ -143,7 +143,7 @@ export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
   display: flex;
   align-items: center;
   box-shadow: inset 0px 0px 1px #7c7c7c;
-  justify-content: ${(props) => props.justifyContent || ''};
+  justify-content: ${(props) => props.justifyContent || ""};
   gap: 10px;
   width: 100%;
   background-color: #fff;
@@ -152,7 +152,7 @@ export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
   font-size: 14px;
   line-height: 17px;
   color: #5d3f92;
-  cursor: ${(props) => props.cursor || ''};
+  cursor: ${(props) => props.cursor || ""};
 `;
 export const BuyBar = styled.li`
   padding: 20px 28px;
@@ -207,16 +207,16 @@ export const InfoButton = styled.button<IButton>`
   border-radius: 10px;
   padding: 10px 80px;
   font-size: 14px;
-  background-color: ${(props) => props.bg || '#fff'};
-  color: ${(props) => props.fc || '#fff'};
-  flex: ${(props) => props.flex || ''};
+  background-color: ${(props) => props.bg || "#fff"};
+  color: ${(props) => props.fc || "#fff"};
+  flex: ${(props) => props.flex || ""};
 `;
 
 // Rent Bar
 
 export const RentElement = styled.li<{ h?: string }>`
   gap: 30px;
-  height: ${(props) => props.h || '50px'};
+  height: ${(props) => props.h || "50px"};
   padding: 0 30px;
   background: #fbf5ff;
   box-shadow: inset 0px 0px 1px #7c7c7c;

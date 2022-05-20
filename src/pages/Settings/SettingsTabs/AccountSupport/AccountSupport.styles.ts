@@ -1,11 +1,11 @@
-import Accordion from 'react-bootstrap/Accordion';
-import styled from 'styled-components';
+import Accordion from "react-bootstrap/Accordion";
+import styled from "styled-components";
 
 import {
   CheckboxInput,
   CheckboxLabel,
   FormButton,
-} from '../Profile/ProfileSettings.styles';
+} from "../Profile/ProfileSettings.styles";
 
 export const AccountSupportWrap = styled.div``;
 
@@ -37,7 +37,7 @@ export const AccordionItem = styled(Accordion.Item)`
     box-shadow: none;
   }
   & .accordion-button:not(.collapsed)::after {
-    background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23212529%27%3e%3cpath fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e');
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23212529%27%3e%3cpath fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e");
   }
   & .accordion-text-link {
     color: #873dc1;

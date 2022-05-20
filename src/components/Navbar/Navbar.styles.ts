@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import { FavoriteIco } from './imports';
+import { FavoriteIco } from "./imports";
 
-import { Container } from '../../globalStyles';
-import { ReactComponent as Search } from '../../icons/search.svg';
+import { Container } from "../../globalStyles";
+import { ReactComponent as Search } from "../../icons/search.svg";
 
 export const Header = styled.header`
   height: 40px;
@@ -87,10 +87,10 @@ interface IStyledUl {
 
 export const StyledUl = styled.ul<IStyledUl>`
   display: flex;
-  justify-content: ${(props) => props.justifyContent || 'space-between'};
-  gap: ${(props) => props.gap || ''};
+  justify-content: ${(props) => props.justifyContent || "space-between"};
+  gap: ${(props) => props.gap || ""};
   width: 100%;
-  max-width: ${(props) => props.mw || ''};
+  max-width: ${(props) => props.mw || ""};
   list-style: none;
   @media (max-width: 1024px) {
     flex-direction: column;
@@ -98,10 +98,10 @@ export const StyledUl = styled.ul<IStyledUl>`
 `;
 export const IconsUl = styled.ul<IStyledUl>`
   display: flex;
-  justify-content: ${(props) => props.justifyContent || 'space-between'};
-  gap: ${(props) => props.gap || ''};
+  justify-content: ${(props) => props.justifyContent || "space-between"};
+  gap: ${(props) => props.gap || ""};
   width: 100%;
-  max-width: ${(props) => props.mw || ''};
+  max-width: ${(props) => props.mw || ""};
   list-style: none;
 `;
 export const StyledList = styled.li`
@@ -117,11 +117,11 @@ interface IDropdown {
 export const DropdownMenu = styled.ul<IDropdown>`
   position: absolute;
   border-radius: 0 0 10px 10px;
-  top: ${(props) => props.top || '1.9rem'};
-  left: ${(props) => props.left || '-2rem'};
+  top: ${(props) => props.top || "1.9rem"};
+  left: ${(props) => props.left || "-2rem"};
   background-color: #fff;
   overflow: hidden;
-  width: ${(props) => props.setWidth || '134px'};
+  width: ${(props) => props.setWidth || "134px"};
   list-style: none;
   transition: all 0.5s ease-in-out;
   opacity: 0;
@@ -230,7 +230,7 @@ export const Favorite = styled(FavoriteIco)`
 `;
 
 export const LanguageTitle = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AccountWrap,
@@ -8,11 +8,11 @@ import {
   CopyIco,
   SingOutIco,
   SettingsIco,
-} from './AccountCard.styles';
+} from "./AccountCard.styles";
 
-import { Wrapper } from '../../../CategoriesPage/Categories.styles';
-import { ImageWrap } from '../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles';
-import ProfilePic from '../../assets/profile-pic.png';
+import { Wrapper } from "../../../CategoriesPage/Categories.styles";
+import { ImageWrap } from "../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles";
+import ProfilePic from "../../assets/profile-pic.png";
 
 interface IAccountCard {
   account?: string;
@@ -20,8 +20,8 @@ interface IAccountCard {
 }
 
 const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
-  const accountSplit = account?.split('');
-  accountSplit?.splice(6, 32, '...');
+  const accountSplit = account?.split("");
+  accountSplit?.splice(6, 32, "...");
   return (
     <AccountWrap>
       <Wrapper disp="flex" gap="10px">
@@ -31,7 +31,7 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
         <Wrapper disp="flex" flexDirection="column" gap="10px">
           <Name>Unnamed</Name>
           <Wrapper disp="flex" gap="10px">
-            <span>{accountSplit?.join('')}</span>
+            <span>{accountSplit?.join("")}</span>
             <CopyIco />
           </Wrapper>
           <span>&#34;Return&#34; is a meditation o...</span>

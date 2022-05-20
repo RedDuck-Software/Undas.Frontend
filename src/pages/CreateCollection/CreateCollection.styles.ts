@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { BlockDescript, CreateInput } from '../CreateNFT/CreateNFT.styles';
+import { BlockDescript, CreateInput } from "../CreateNFT/CreateNFT.styles";
 
 export const AddImgBlock = styled.div`
   display: flex;

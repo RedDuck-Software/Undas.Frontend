@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProfileWrap = styled.form`
   padding: 30px 0 120px;
@@ -209,7 +209,7 @@ export const CheckboxInput = styled.input`
     position: relative;
   }
   &.custom-checkbox + label::before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -227,7 +227,7 @@ export const CheckboxInput = styled.input`
     background-color: #ffffff;
   }
   &.custom-checkbox:checked + label::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 8px;
     border-bottom: 1px solid #5d3f92;

@@ -1,8 +1,8 @@
-import { useWeb3React } from '@web3-react/core';
-import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useWeb3React } from "@web3-react/core";
+import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
-import Burger from './Burger';
+import Burger from "./Burger";
 import {
   AllNFTsIcon,
   NewIcon,
@@ -28,7 +28,7 @@ import {
   WatchlistIco,
   SettingsIco,
   LoginMenuIco,
-} from './imports';
+} from "./imports";
 import {
   Header,
   HeaderWrap,
@@ -47,11 +47,11 @@ import {
   MenuList,
   MenuListSocial,
   SocialLink,
-} from './Navbar.styles';
+} from "./Navbar.styles";
 
-import { ReactComponent as Logo } from '../../icons/logo.svg';
-import { Wrapper } from '../../pages/CategoriesPage/Categories.styles';
-import Context from '../../utils/Context';
+import { ReactComponent as Logo } from "../../icons/logo.svg";
+import { Wrapper } from "../../pages/CategoriesPage/Categories.styles";
+import Context from "../../utils/Context";
 
 const Navbar = () => {
   const [hovered, setHovered] = useState<any>({
@@ -96,7 +96,7 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/"
-                  className={hovered.explore! ? 'hovered-explore' : ''}
+                  className={hovered.explore! ? "hovered-explore" : ""}
                 >
                   Explore
                 </StyledLink>
@@ -141,7 +141,7 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/topcollection"
-                  className={hovered.activity! ? 'hovered-activity' : ''}
+                  className={hovered.activity! ? "hovered-activity" : ""}
                 >
                   Activity
                 </StyledLink>
@@ -162,7 +162,7 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/"
-                  className={hovered.community! ? 'hovered-community' : ''}
+                  className={hovered.community! ? "hovered-community" : ""}
                 >
                   Community
                 </StyledLink>
@@ -201,7 +201,7 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/create-nft"
-                  className={hovered.create! ? 'hovered-create' : ''}
+                  className={hovered.create! ? "hovered-create" : ""}
                 >
                   Create
                 </StyledLink>
@@ -235,7 +235,7 @@ const Navbar = () => {
             >
               <StyledLink
                 to="/login"
-                className={hovered.profile! ? 'hovered-profile' : ''}
+                className={hovered.profile! ? "hovered-profile" : ""}
               >
                 <ProfileIco />
               </StyledLink>

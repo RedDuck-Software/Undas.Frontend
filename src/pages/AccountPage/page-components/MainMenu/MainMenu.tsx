@@ -1,10 +1,10 @@
-import { useWeb3React } from '@web3-react/core';
-import React, { useContext, useEffect, useState } from 'react';
-import { useMoralis } from 'react-moralis';
-import { Navigate } from 'react-router-dom';
+import { useWeb3React } from "@web3-react/core";
+import React, { useContext, useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
+import { Navigate } from "react-router-dom";
 
-import NFTGrid from '../../../../components/NFTCard/Grid/NFTGrid';
-import Context from '../../../../utils/Context';
+import NFTGrid from "../../../../components/NFTCard/Grid/NFTGrid";
+import Context from "../../../../utils/Context";
 import {
   Arrow,
   Filter,
@@ -22,8 +22,8 @@ import {
   ViewOption,
   ResultsTotal,
   GridLayout,
-} from '../../../AllNFTs/AllNFTs.styles';
-import { GridIco, ListIco } from '../../../AllNFTs/imports';
+} from "../../../AllNFTs/AllNFTs.styles";
+import { GridIco, ListIco } from "../../../AllNFTs/imports";
 
 const MainMenu: React.FC = () => {
   const [active, setActive] = useState<any>({
@@ -54,7 +54,7 @@ const MainMenu: React.FC = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: 'goerli',
+      chain: "goerli",
       address: account,
     });
     return listOfNFTS;
@@ -67,20 +67,20 @@ const MainMenu: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
+        index === self.findIndex((t) => t.token_id === value.token_id)
     );
     setNFTList(response.result);
   };
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log('loading');
+      return console.log("loading");
     }
     getListData();
   }, [connector, account]);
 
   if (!account) {
-    return <Navigate to={'/login'} replace={true} />;
+    return <Navigate to={"/login"} replace={true} />;
   }
 
   return (
@@ -97,7 +97,7 @@ const MainMenu: React.FC = () => {
               </ViewButton>
             </ViewOption>
           </SettingsElement>
-          <Filter className={active.price && 'price-active'}>
+          <Filter className={active.price && "price-active"}>
             <FilterItem
               onClick={() => {
                 if (!active.price) {
@@ -106,9 +106,9 @@ const MainMenu: React.FC = () => {
               }}
             >
               <FilterTitle>Sort by Price</FilterTitle>
-              <Arrow className={active.price && 'price-active'} />
+              <Arrow className={active.price && "price-active"} />
             </FilterItem>
-            <FilterMenu className={active.price && 'price-active'}>
+            <FilterMenu className={active.price && "price-active"}>
               <MenuItem hover={true}>
                 <span>Price: Low to High</span>
               </MenuItem>
@@ -117,7 +117,7 @@ const MainMenu: React.FC = () => {
               </MenuItem>
             </FilterMenu>
           </Filter>
-          <Filter className={active.event && 'event-active'}>
+          <Filter className={active.event && "event-active"}>
             <FilterItem
               onClick={() => {
                 if (!active.event) {
@@ -126,9 +126,9 @@ const MainMenu: React.FC = () => {
               }}
             >
               <FilterTitle>Sort by Event</FilterTitle>
-              <Arrow className={active.event && 'event-active'} />
+              <Arrow className={active.event && "event-active"} />
             </FilterItem>
-            <FilterMenu className={active.event && 'event-active'}>
+            <FilterMenu className={active.event && "event-active"}>
               <MenuItem hover={true}>
                 <span>Newly Created</span>
               </MenuItem>
@@ -151,7 +151,7 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>2</ResultsTotal>
       </MenuWrap>
       <GridLayout>
-        <NFTGrid tokenId={2} URI={'assdf'} name={'item.name'} />
+        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name"} />
         {/* {NFTList?.map((item) => {
           return (
                         <NFTGrid

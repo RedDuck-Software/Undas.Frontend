@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ElementText = styled.span`
   margin-left: 10px;
@@ -61,7 +61,7 @@ interface IHolder {
 }
 export const Holder = styled.ul<IHolder>`
   width: 100%;
-  margin-top: ${(props) => props.marginTop || '60px'};
+  margin-top: ${(props) => props.marginTop || "60px"};
   list-style: none;
   background: #ffffff;
   box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
@@ -111,10 +111,10 @@ export const AccordionMenu = styled.ul<IAccordionMenu>`
   overflow: hidden;
   max-height: 0;
   &.active-status {
-    max-height: ${(props) => props.mh || '146px'};
+    max-height: ${(props) => props.mh || "146px"};
   }
   &.active-price {
-    max-height: ${(props) => props.mh || '146px'};
+    max-height: ${(props) => props.mh || "146px"};
   }
 `;
 
@@ -128,10 +128,10 @@ export const AccordionElement = styled.li<IAccElement>`
   cursor: pointer;
   width: 100%;
   display: flex;
-  flex-direction: ${(props) => props.direction || ''};
+  flex-direction: ${(props) => props.direction || ""};
   justify-content: space-between;
   align-items: center;
-  padding: ${(props) => props.padd || '10px 20px 10px 36px'};
+  padding: ${(props) => props.padd || "10px 20px 10px 36px"};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -155,7 +155,7 @@ export const SliderRound = styled.span`
   &:before {
     margin: 3px 0 0 3px;
     position: absolute;
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     background-color: #fff;

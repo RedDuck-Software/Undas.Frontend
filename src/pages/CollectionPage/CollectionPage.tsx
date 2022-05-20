@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
   Info,
@@ -6,12 +6,12 @@ import {
   Amount,
   MakeComplaint,
   AddToFav,
-} from './CollectionPage.styles';
-import { CollectionBanner, PurpleEthIco, AddToFavIco } from './imports';
-import CollectionCard from './page-components/CollectionCard/CollectionCard';
-import CollectionGridWrap from './page-components/CollectionGridWrap';
+} from "./CollectionPage.styles";
+import { CollectionBanner, PurpleEthIco, AddToFavIco } from "./imports";
+import CollectionCard from "./page-components/CollectionCard/CollectionCard";
+import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
-import ASideFilter from '../../components/ASideFilter/ASideFilter';
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import {
   AllNFTContainer,
   Arrow,
@@ -28,11 +28,11 @@ import {
   SettingsElement,
   ViewButton,
   ViewOption,
-} from '../AllNFTs/AllNFTs.styles';
-import { GridIco, ListIco } from '../AllNFTs/imports';
-import CardLineNFT from '../AllNFTs/page-components/CardLineNFT/CardLineNFT';
-import { Banner } from '../CategoriesPage/Categories.styles';
-import { Wrapper } from '../CategoriesPage/Categories.styles';
+} from "../AllNFTs/AllNFTs.styles";
+import { GridIco, ListIco } from "../AllNFTs/imports";
+import CardLineNFT from "../AllNFTs/page-components/CardLineNFT/CardLineNFT";
+import { Banner } from "../CategoriesPage/Categories.styles";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 //Components
 
@@ -103,7 +103,7 @@ const CollectionPage: React.FC = () => {
                     </ViewButton>
                   </ViewOption>
                 </SettingsElement>
-                <Filter className={active.price && 'price-active'}>
+                <Filter className={active.price && "price-active"}>
                   <FilterItem
                     onClick={() => {
                       if (!active.price) {
@@ -112,9 +112,9 @@ const CollectionPage: React.FC = () => {
                     }}
                   >
                     <FilterTitle>Sort by Price</FilterTitle>
-                    <Arrow className={active.price && 'price-active'} />
+                    <Arrow className={active.price && "price-active"} />
                   </FilterItem>
-                  <FilterMenu className={active.price && 'price-active'}>
+                  <FilterMenu className={active.price && "price-active"}>
                     <MenuItem hover={true}>
                       <span>Price: Low to High</span>
                     </MenuItem>
@@ -123,7 +123,7 @@ const CollectionPage: React.FC = () => {
                     </MenuItem>
                   </FilterMenu>
                 </Filter>
-                <Filter className={active.event && 'event-active'}>
+                <Filter className={active.event && "event-active"}>
                   <FilterItem
                     onClick={() => {
                       if (!active.event) {
@@ -132,9 +132,9 @@ const CollectionPage: React.FC = () => {
                     }}
                   >
                     <FilterTitle>Sort by Event</FilterTitle>
-                    <Arrow className={active.event && 'event-active'} />
+                    <Arrow className={active.event && "event-active"} />
                   </FilterItem>
-                  <FilterMenu className={active.event && 'event-active'}>
+                  <FilterMenu className={active.event && "event-active"}>
                     <MenuItem hover={true}>
                       <span>Newly Created</span>
                     </MenuItem>

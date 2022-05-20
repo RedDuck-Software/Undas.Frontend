@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ViewOption } from '../../../AllNFTs/AllNFTs.styles';
-import BgImgRotate from '../../assets/bg-img-rotate.png';
-import BgImg from '../../assets/bg-img.png';
-import { EthBlack } from '../../imports';
+import { ViewOption } from "../../../AllNFTs/AllNFTs.styles";
+import BgImgRotate from "../../assets/bg-img-rotate.png";
+import BgImg from "../../assets/bg-img.png";
+import { EthBlack } from "../../imports";
 
 export const FavouriteSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -61,7 +61,7 @@ export const ItemIcon = styled.div`
   }
 `;
 export const ItemName = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -103,7 +103,7 @@ export const OffersTooltipWrap = styled.div`
   transition: all 0.5s ease-out;
 `;
 export const OffersTooltip = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -114,7 +114,7 @@ export const OffersTooltip = styled.div`
   padding: 5px 15px;
   position: relative;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -7px;
     right: 65%;
@@ -130,7 +130,7 @@ export const AcceptBTN = styled.button`
   border-radius: 10px;
   width: 100px;
   height: 36px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -152,7 +152,7 @@ export const MakeOfferBTN = styled.button`
   background: #ffffff;
   border: 1px solid #873dc1;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -172,7 +172,7 @@ export const DenyBTN = styled.button`
   background: #ffffff;
   border: 1px solid #ff2a36;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -196,7 +196,7 @@ export const WethText = styled.span`
   }
 `;
 export const PriceTextETH = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -222,7 +222,7 @@ export const Filter = styled.div`
   background: #fbf5ff;
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -239,7 +239,7 @@ export const FilterImg = styled.img`
   margin-left: 10px;
 `;
 export const FilterName = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -255,7 +255,7 @@ export const FilterClose = styled.img`
   margin-top: 3px;
 `;
 export const ClearAll = styled.button`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

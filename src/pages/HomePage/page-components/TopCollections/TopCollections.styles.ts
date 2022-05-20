@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import violetArrowDown from '../../../../icons/violet-arrow-down.svg';
-import violetLine from '../../../../icons/violet-line.svg';
+import violetArrowDown from "../../../../icons/violet-arrow-down.svg";
+import violetLine from "../../../../icons/violet-line.svg";
 
 interface TopCollectionsProps {
   big?: boolean;
@@ -22,7 +22,7 @@ export const CollectionsTitle = styled.h2`
   margin-left: 0.5rem;
 
   &:before {
-    content: url('${violetLine}');
+    content: url("${violetLine}");
     position: relative;
     right: 8px;
     top: 3px;
@@ -66,7 +66,7 @@ export const CollectionsTitleViolet = styled.span`
   color: #5d3f92;
 
   &:after {
-    content: '';
+    content: "";
     display: inline-block;
     height: 22px;
     width: 27px;
@@ -200,20 +200,20 @@ export const Name = styled.span`
 
 export const Number = styled.span<TopCollectionsProps>`
   color: ${({ color }) =>
-    (color === 'red' && '#8C0008;') ||
-    (color === 'green' && '#008C38;') ||
-    '#747474;'};
-  font-size: ${({ big }) => (big ? `1.2rem` : '0.8rem')};
+    (color === "red" && "#8C0008;") ||
+    (color === "green" && "#008C38;") ||
+    "#747474;"};
+  font-size: ${({ big }) => (big ? `1.2rem` : "0.8rem")};
 
   &:after {
-    content: ${({ rhombus }) => (rhombus ? `url('${rhombus}')` : 'none')};
+    content: ${({ rhombus }) => (rhombus ? `url('${rhombus}')` : "none")};
     position: relative;
     left: 4px;
     top: 8px;
   }
 
   @media only screen and (max-width: 640px) {
-    font-size: ${(props) => (props.big ? `1rem` : '0.8rem')};
+    font-size: ${(props) => (props.big ? `1rem` : "0.8rem")};
   }
 `;
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Tab, Tabs } from 'react-bootstrap';
-import './tabs-nft.css';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import "./tabs-nft.css";
+import { useDispatch } from "react-redux";
 
 import {
   InputTypeYourBid,
@@ -19,10 +19,10 @@ import {
   DivPeriod,
   PeriodText,
   DivLastSales,
-} from './TabsNFT.styles';
+} from "./TabsNFT.styles";
 
-import { setComponent } from '../../../../store/reducers/modalAction';
-import ModalsNFT from '../ModalsNFT/ModalsNFT';
+import { setComponent } from "../../../../store/reducers/modalAction";
+import ModalsNFT from "../ModalsNFT/ModalsNFT";
 
 const TabsNFT: React.FC = () => {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const TabsNFT: React.FC = () => {
         <ButtonRent
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(setComponent('buy', 1));
+            dispatch(setComponent("buy", 1));
           }}
         >
           Buy now

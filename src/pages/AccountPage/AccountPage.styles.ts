@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
-import { Wrapper } from '../CategoriesPage/Categories.styles';
+import { Container } from "../../globalStyles";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 export const AccountWrapper = styled(Wrapper)`
   width: 100%;

@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import React, { useState, useContext, useEffect } from "react";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import {
   MoreFromCollectionContainer,
@@ -7,15 +7,15 @@ import {
   MoreFromCollectionContent,
   CardsContainer,
   ButtonContainer,
-} from './MoreFromCollection.styles';
+} from "./MoreFromCollection.styles";
 
-import { CardItem } from '../../../../components';
-import { CardLink } from '../../../../components/CardList/CardList.styles';
-import { Button } from '../../../../globalStyles';
-import Context from '../../../../utils/Context';
-import { getListingsLastIndex } from '../../../../utils/getListingsLastIndex';
-import { getStakingsLastIndex } from '../../../../utils/getStakingsLastIndex';
-import getTokenURI from '../../../../utils/getTokenURI';
+import { CardItem } from "../../../../components";
+import { CardLink } from "../../../../components/CardList/CardList.styles";
+import { Button } from "../../../../globalStyles";
+import Context from "../../../../utils/Context";
+import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
+import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
+import getTokenURI from "../../../../utils/getTokenURI";
 
 export interface ItemsProps {
   priceInNum: number;
@@ -48,7 +48,7 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
     if (!listingsLastIndex || !stakingsLastIndex) return;
     const lastIndex = Math.max(
       listingsLastIndex?.toNumber(),
-      stakingsLastIndex?.toNumber(),
+      stakingsLastIndex?.toNumber()
     );
 
     for (let i = 0; i < lastIndex; i++) {
@@ -67,7 +67,7 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
     getItemsData();
   }, [connector]);
@@ -89,7 +89,7 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
               <CardsContainer>
                 {list?.slice(0, itemsToShow).map((item) => {
                   return (
-                    <CardLink key={item.id} to={'/product/' + item.id}>
+                    <CardLink key={item.id} to={"/product/" + item.id}>
                       <CardItem
                         key={item.id}
                         image={item.URI}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const BtnNone = styled.button`
   background: none;
@@ -41,7 +41,7 @@ export const NFTAbout = styled.div`
 `;
 
 export const Name = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-weight: 600;
   font-size: 18px;
   line-height: 26px;

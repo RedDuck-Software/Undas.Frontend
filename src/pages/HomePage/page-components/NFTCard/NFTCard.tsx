@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   NFTWrap,
@@ -7,16 +7,16 @@ import {
   Name,
   BtnNone,
   CollectionImageWrap,
-} from './NFTCard.styles';
+} from "./NFTCard.styles";
 
-import { ReactComponent as FavoriteIco } from '../../../../icons/NFT-favorite.svg';
-import CollectionPrev from '../../../../images/image-home/colleciton-small.png';
+import { ReactComponent as FavoriteIco } from "../../../../icons/NFT-favorite.svg";
+import CollectionPrev from "../../../../images/image-home/colleciton-small.png";
 import {
   CollectionText,
   Platform,
   Wrapper,
-} from '../../../CategoriesPage/Categories.styles';
-import { Verified } from '../../../CategoriesPage/imports';
+} from "../../../CategoriesPage/Categories.styles";
+import { Verified } from "../../../CategoriesPage/imports";
 
 const NFTCard: React.FC<{ uri: string; name: string }> = ({ uri, name }) => {
   return (

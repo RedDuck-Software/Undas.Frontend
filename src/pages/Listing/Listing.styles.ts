@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container, Button } from '../../globalStyles';
+import { Container, Button } from "../../globalStyles";
 
 interface ListingProps {
   mobile?: boolean;

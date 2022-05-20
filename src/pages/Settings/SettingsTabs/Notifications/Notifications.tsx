@@ -1,5 +1,5 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
+import React from "react";
+import Form from "react-bootstrap/Form";
 
 import {
   NotificationWrap,
@@ -7,9 +7,9 @@ import {
   FormItemWrapper,
   ItemsForm,
   Button,
-} from './Notifications.styles';
+} from "./Notifications.styles";
 
-import { DescriptionText } from '../SettingsTabs.styles';
+import { DescriptionText } from "../SettingsTabs.styles";
 
 const Notifications: React.FC = () => {
   return (

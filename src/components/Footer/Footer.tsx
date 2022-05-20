@@ -1,5 +1,5 @@
-import React from 'react';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import React from "react";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 
 import {
   FooterSec,
@@ -20,8 +20,8 @@ import {
   Year,
   FooterIconLink,
   MobileMenuInner,
-} from './Footer.styles';
-import { Twitter, LinkedIn, YouTube, Telegram, Instagram } from './imports';
+} from "./Footer.styles";
+import { Twitter, LinkedIn, YouTube, Telegram, Instagram } from "./imports";
 
 const Footer = () => {
   return (

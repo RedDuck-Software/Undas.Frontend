@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { BlogWrap } from './Blog.styles';
+import { BlogWrap } from "./Blog.styles";
 
-import { Container, Background } from '../../globalStyles';
+import { Container, Background } from "../../globalStyles";
 
 const Blog: React.FC = () => {
   return (

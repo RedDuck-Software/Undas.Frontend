@@ -1,7 +1,7 @@
-import { useWeb3React } from '@web3-react/core';
-import React, { useContext, useEffect, useState } from 'react';
-import { useMoralis } from 'react-moralis';
-import { Navigate } from 'react-router-dom';
+import { useWeb3React } from "@web3-react/core";
+import React, { useContext, useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
+import { Navigate } from "react-router-dom";
 
 import {
   AccountContainer,
@@ -9,7 +9,7 @@ import {
   Tab,
   SmallNumber,
   AccountWrapper,
-} from './AccountPage.styles';
+} from "./AccountPage.styles";
 import {
   AccountBanner,
   CreatedIco,
@@ -18,22 +18,22 @@ import {
   RewardIco,
   ReferralIco,
   AchievementsIco,
-} from './imports';
-import AccountCard from './page-components/AccountCard/AccountCard';
-import Achievements from './page-components/Achievements/Achievements';
-import FavouriteMenu from './page-components/MainMenu/FavouriteMenu';
-import MainMenu from './page-components/MainMenu/MainMenu';
-import OffersMenu from './page-components/MainMenu/OffersMenu';
-import RewardMenu from './page-components/MainMenu/RewardMenu';
-import Referral from './page-components/Referral/Referral';
+} from "./imports";
+import AccountCard from "./page-components/AccountCard/AccountCard";
+import Achievements from "./page-components/Achievements/Achievements";
+import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
+import MainMenu from "./page-components/MainMenu/MainMenu";
+import OffersMenu from "./page-components/MainMenu/OffersMenu";
+import RewardMenu from "./page-components/MainMenu/RewardMenu";
+import Referral from "./page-components/Referral/Referral";
 
-import ASideFilter from '../../components/ASideFilter/ASideFilter';
-import Context from '../../utils/Context';
-import { Banner } from '../CategoriesPage/Categories.styles';
-import { Wrapper } from '../CategoriesPage/Categories.styles';
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import Context from "../../utils/Context";
+import { Banner } from "../CategoriesPage/Categories.styles";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const AccountPage: React.FC = () => {
-  const [tab, setTab] = useState('offers');
+  const [tab, setTab] = useState("offers");
   const { account, deactivate } = useWeb3React();
 
   const { connector } = useContext(Context);
@@ -59,7 +59,7 @@ const AccountPage: React.FC = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: 'goerli',
+      chain: "goerli",
       address: account,
     });
     return listOfNFTS;
@@ -72,24 +72,24 @@ const AccountPage: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
+        index === self.findIndex((t) => t.token_id === value.token_id)
     );
     setNFTList(response.result);
   };
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log('loading');
+      return console.log("loading");
     }
     getListData();
   }, [connector, account]);
 
   if (!account) {
-    return <Navigate to={'/login'} replace={true} />;
+    return <Navigate to={"/login"} replace={true} />;
   }
 
   function disconnect() {
-    localStorage.removeItem('connector');
+    localStorage.removeItem("connector");
     deactivate();
   }
 
@@ -101,65 +101,65 @@ const AccountPage: React.FC = () => {
         </Banner>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== 'favourite' &&
-            tab !== 'reward' &&
-            tab !== 'referral' &&
-            tab !== 'achievements' && <ASideFilter marginTop="140px" />}
+          {tab !== "favourite" &&
+            tab !== "reward" &&
+            tab !== "referral" &&
+            tab !== "achievements" && <ASideFilter marginTop="140px" />}
           <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
                 <Tab
-                  onClick={() => setTab('')}
-                  className={tab === '' ? 'active' : ''}
+                  onClick={() => setTab("")}
+                  className={tab === "" ? "active" : ""}
                 >
                   <CreatedIco />
                   <span>Created</span>
                   <SmallNumber>2</SmallNumber>
                 </Tab>
                 <Tab
-                  onClick={() => setTab('offers')}
-                  className={tab === 'offers' ? 'active' : ''}
+                  onClick={() => setTab("offers")}
+                  className={tab === "offers" ? "active" : ""}
                 >
                   <OffersIco />
                   <span>Offers</span>
                   <SmallNumber>6</SmallNumber>
                 </Tab>
                 <Tab
-                  onClick={() => setTab('favourite')}
-                  className={tab === 'favourite' ? 'active' : ''}
+                  onClick={() => setTab("favourite")}
+                  className={tab === "favourite" ? "active" : ""}
                 >
                   <FavouriteIco />
                   <span>Favourite</span>
                 </Tab>
                 <Tab
-                  onClick={() => setTab('reward')}
-                  className={tab === 'reward' ? 'active' : ''}
+                  onClick={() => setTab("reward")}
+                  className={tab === "reward" ? "active" : ""}
                 >
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
                 <Tab
-                  onClick={() => setTab('referral')}
-                  className={tab === 'referral' ? 'active' : ''}
+                  onClick={() => setTab("referral")}
+                  className={tab === "referral" ? "active" : ""}
                 >
                   <ReferralIco />
                   <span>Referral</span>
                 </Tab>
                 <Tab
-                  onClick={() => setTab('achievements')}
-                  className={tab === 'achievements' ? 'active' : ''}
+                  onClick={() => setTab("achievements")}
+                  className={tab === "achievements" ? "active" : ""}
                 >
                   <AchievementsIco />
                   <span>Achievements</span>
                 </Tab>
               </TabsMenu>
             </Wrapper>
-            {tab === '' && <MainMenu />}
-            {tab === 'favourite' && <FavouriteMenu />}
-            {tab === 'offers' && <OffersMenu />}
-            {tab === 'reward' && <RewardMenu />}
-            {tab === 'referral' && <Referral />}
-            {tab === 'achievements' && <Achievements />}
+            {tab === "" && <MainMenu />}
+            {tab === "favourite" && <FavouriteMenu />}
+            {tab === "offers" && <OffersMenu />}
+            {tab === "reward" && <RewardMenu />}
+            {tab === "referral" && <Referral />}
+            {tab === "achievements" && <Achievements />}
           </Wrapper>
         </AccountContainer>
       </AccountWrapper>

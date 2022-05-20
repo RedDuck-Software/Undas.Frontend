@@ -1,5 +1,5 @@
-import React from 'react';
-import Accordion from 'react-bootstrap/Accordion';
+import React from "react";
+import Accordion from "react-bootstrap/Accordion";
 
 import {
   AccountSupportWrap,
@@ -12,12 +12,12 @@ import {
   AccountSupportCheckboxInput,
   AccountSupportCheckboxLabel,
   AccountSupportButton,
-} from './AccountSupport.styles';
-import { DollarIco } from './imports';
+} from "./AccountSupport.styles";
+import { DollarIco } from "./imports";
 
-import { PageTitle } from '../../../../globalStyles';
-import { CheckboxBlock } from '../Profile/ProfileSettings.styles';
-import { DescriptionText } from '../SettingsTabs.styles';
+import { PageTitle } from "../../../../globalStyles";
+import { CheckboxBlock } from "../Profile/ProfileSettings.styles";
+import { DescriptionText } from "../SettingsTabs.styles";
 
 const AccountSupport: React.FC = () => {
   return (

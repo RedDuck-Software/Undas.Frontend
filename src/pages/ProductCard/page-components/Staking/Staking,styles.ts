@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface StakingProps {
   closed?: boolean;
@@ -9,10 +9,10 @@ export const StakingContainer = styled.div``;
 export const StakingTop = styled.div<StakingProps>`
   background: #ffffff;
   border: 1px solid #5d3f92;
-  ${({ closed }) => (closed ? `` : 'border-bottom: none')};
+  ${({ closed }) => (closed ? `` : "border-bottom: none")};
   word-spacing: 4px;
   padding: 3%;
-  border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
+  border-radius: ${({ closed }) => (closed ? `10px` : "10px 10px 0px 0px")};
   margin-top: 1.4rem;
   cursor: pointer;
 

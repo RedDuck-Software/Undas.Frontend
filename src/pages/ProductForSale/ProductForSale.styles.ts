@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
-import Like from '../../icons/like.svg';
+import { Container } from "../../globalStyles";
+import Like from "../../icons/like.svg";
 
 interface ProductForSaleProps {
   mobile?: boolean;
@@ -128,7 +128,7 @@ export const BookmarkButton = styled.button`
 
   &:before {
     cursor: pointer;
-    content: url('${Like}');
+    content: url("${Like}");
     position: relative;
     top: 1px;
     right: 4px;

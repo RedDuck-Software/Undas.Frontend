@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   OfferMenuWrap,
@@ -21,15 +21,15 @@ import {
   FilterName,
   FilterClose,
   ClearAll,
-} from './Menu.styles';
+} from "./Menu.styles";
 
-import { CartIco, HandShakeIco } from '../../../NFTPage/imports';
+import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
   OffersTr,
   OffersTd,
   OffersHeadTr,
   OffersText,
-} from '../../../NFTPage/page-components/Accordion/Accordion.styles';
+} from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import {
   OffResaivedIco,
   OffMadeIco,
@@ -37,7 +37,7 @@ import {
   ItemVerifyIco,
   filter,
   close,
-} from '../../imports';
+} from "../../imports";
 
 const OffersMenu: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 export const NewNFTsContainer = styled(Container)`
   display: flex;

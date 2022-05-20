@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import NFTImage from '../../../assets/about-nft-image.png';
+import NFTImage from "../../../assets/about-nft-image.png";
 import {
   TwitterIco,
   TelegramIco,
   DiscordIco,
   InstagramIco,
-} from '../../../imports';
+} from "../../../imports";
 import {
   ImageWrap,
   AboutSocial,
@@ -14,7 +14,7 @@ import {
   AccordionText,
   WrapperAbout,
   AboutWrap,
-} from '../Accordion.styles';
+} from "../Accordion.styles";
 
 const About: React.FC = () => {
   return (

@@ -1,18 +1,18 @@
-import { css } from '@emotion/react';
-import { ethers } from 'ethers';
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from "@emotion/react";
+import { ethers } from "ethers";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
-import { UndasGeneralNFT__factory } from '../../../typechain';
-import { NFT_ADDRESS } from '../../../utils/addressHelpers';
-import Context from '../../../utils/Context';
-import { getListing } from '../../../utils/getListing';
-import { getNFTListingIds } from '../../../utils/getNFTListingIds';
-import { getNFTStakingIds } from '../../../utils/getNFTStakingIds';
-import { getStaking } from '../../../utils/getStaking';
-import getTokenURI from '../../../utils/getTokenURI';
-import { Wrapper } from '../../CategoriesPage/Categories.styles';
+import { UndasGeneralNFT__factory } from "../../../typechain";
+import { NFT_ADDRESS } from "../../../utils/addressHelpers";
+import Context from "../../../utils/Context";
+import { getListing } from "../../../utils/getListing";
+import { getNFTListingIds } from "../../../utils/getNFTListingIds";
+import { getNFTStakingIds } from "../../../utils/getNFTStakingIds";
+import { getStaking } from "../../../utils/getStaking";
+import getTokenURI from "../../../utils/getTokenURI";
+import { Wrapper } from "../../CategoriesPage/Categories.styles";
 import {
   AboutIco,
   CartIco,
@@ -31,7 +31,7 @@ import {
   ThreeCircleIco,
   UnlockIco,
   ViewsIco,
-} from '../imports';
+} from "../imports";
 import {
   Background,
   SellerNavigation,
@@ -56,16 +56,16 @@ import {
   RentElement,
   SaleBlock,
   TopBar,
-} from '../NFTPage.styles';
-import Accordion from '../page-components/Accordion/Accordion';
-import About from '../page-components/Accordion/accordrion-components/About';
-import Description from '../page-components/Accordion/accordrion-components/Description';
-import Details from '../page-components/Accordion/accordrion-components/Details';
-import Levels from '../page-components/Accordion/accordrion-components/Levels';
-import Offers from '../page-components/Accordion/accordrion-components/Offers';
-import Properties from '../page-components/Accordion/accordrion-components/Properties';
-import Stats from '../page-components/Accordion/accordrion-components/Stats';
-import Buy from '../page-components/Buy';
+} from "../NFTPage.styles";
+import Accordion from "../page-components/Accordion/Accordion";
+import About from "../page-components/Accordion/accordrion-components/About";
+import Description from "../page-components/Accordion/accordrion-components/Description";
+import Details from "../page-components/Accordion/accordrion-components/Details";
+import Levels from "../page-components/Accordion/accordrion-components/Levels";
+import Offers from "../page-components/Accordion/accordrion-components/Offers";
+import Properties from "../page-components/Accordion/accordrion-components/Properties";
+import Stats from "../page-components/Accordion/accordrion-components/Stats";
+import Buy from "../page-components/Buy";
 
 const NFTPageSell: React.FC = () => {
   const override = css`
@@ -91,7 +91,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -109,7 +109,7 @@ const NFTPageSell: React.FC = () => {
 
     if (
       address === owner &&
-      maker === '0x0000000000000000000000000000000000000000'
+      maker === "0x0000000000000000000000000000000000000000"
     ) {
       setShowStaking(true);
     }
@@ -119,7 +119,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -136,7 +136,7 @@ const NFTPageSell: React.FC = () => {
 
     if (
       address === owner &&
-      seller === '0x0000000000000000000000000000000000000000'
+      seller === "0x0000000000000000000000000000000000000000"
     ) {
       setShowBuy(true);
     }
@@ -146,7 +146,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -164,7 +164,7 @@ const NFTPageSell: React.FC = () => {
 
     if (
       address !== owner &&
-      maker !== '0x0000000000000000000000000000000000000000'
+      maker !== "0x0000000000000000000000000000000000000000"
     ) {
       setShowRent(true);
     }
@@ -177,7 +177,7 @@ const NFTPageSell: React.FC = () => {
     const stakingId = await getNFTStakingIds(
       NFT_ADDRESS,
       Number(tokenId),
-      connector,
+      connector
     );
 
     setStakingId(stakingId!.value.toNumber());
@@ -195,7 +195,7 @@ const NFTPageSell: React.FC = () => {
     const listingId = await getNFTListingIds(
       NFT_ADDRESS,
       Number(tokenId),
-      connector,
+      connector
     );
 
     setListingId(listingId!.value.toNumber());
@@ -228,7 +228,7 @@ const NFTPageSell: React.FC = () => {
       <NFTPageWrap>
         {loading ? (
           <ClipLoader
-            color={'#BD10E0'}
+            color={"#BD10E0"}
             css={override}
             loading={loading}
             size={150}

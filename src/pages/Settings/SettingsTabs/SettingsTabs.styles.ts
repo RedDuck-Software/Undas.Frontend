@@ -1,5 +1,5 @@
-import { Tabs, Tab } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Tabs, Tab } from "react-bootstrap";
+import styled from "styled-components";
 
 export const SettingsTabWrap = styled.div`
   .nav-tabs .nav-item.show .nav-link,

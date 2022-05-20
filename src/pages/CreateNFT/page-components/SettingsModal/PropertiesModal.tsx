@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 
 import {
   CreateModalWrap,
@@ -11,10 +11,10 @@ import {
   ModalInput,
   InputButton,
   ModalLabelStraight,
-  CreateModalFormButton
-} from './CreateModal.styles';
+  CreateModalFormButton,
+} from "./CreateModal.styles";
 
-import './styles.css';
+import "./styles.css";
 
 const PropertiesModal: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -43,8 +43,12 @@ const PropertiesModal: React.FC = () => {
           </ModalInputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <CreateModalFormButton onClick={handleClose}>Add More</CreateModalFormButton>
-          <CreateModalFormButton onClick={handleClose} className="colored-btn">Save</CreateModalFormButton>
+          <CreateModalFormButton onClick={handleClose}>
+            Add More
+          </CreateModalFormButton>
+          <CreateModalFormButton onClick={handleClose} className="colored-btn">
+            Save
+          </CreateModalFormButton>
         </Modal.Footer>
       </Modal>
     </CreateModalWrap>

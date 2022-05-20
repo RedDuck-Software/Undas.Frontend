@@ -1,5 +1,5 @@
-import { Card } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Card } from "react-bootstrap";
+import styled from "styled-components";
 
 export const CardWrap = styled.div`
   width: 100%;

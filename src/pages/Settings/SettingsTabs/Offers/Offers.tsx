@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   OffersWrap,
@@ -9,10 +9,10 @@ import {
   OffersHeadWrap,
   OffersContentWrap,
   OffersContentText,
-} from './Offers.styles';
+} from "./Offers.styles";
 
-import { PageTitle } from '../../../../globalStyles';
-import { DescriptionText } from '../SettingsTabs.styles';
+import { PageTitle } from "../../../../globalStyles";
+import { DescriptionText } from "../SettingsTabs.styles";
 
 const Offers: React.FC = () => {
   return (

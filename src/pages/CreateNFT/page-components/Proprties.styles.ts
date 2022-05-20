@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ColoredText = styled.span<{
   color?: string;
@@ -6,10 +6,10 @@ export const ColoredText = styled.span<{
   fw?: string;
   cursor?: string;
 }>`
-  color: ${(props) => props.color || ''};
-  font-size: ${(props) => props.fs || ''};
-  font-weight: ${(props) => props.fw || ''};
-  cursor: ${(props) => props.cursor || ''};
+  color: ${(props) => props.color || ""};
+  font-size: ${(props) => props.fs || ""};
+  font-weight: ${(props) => props.fw || ""};
+  cursor: ${(props) => props.cursor || ""};
 `;
 
 //Properties
@@ -71,16 +71,16 @@ export const CompleteWrap = styled.div<{ complete?: number }>`
   margin-bottom: 10px;
   &:before {
     margin-left: -20px;
-    content: '';
+    content: "";
     position: absolute;
     height: 100%;
     width: ${(props) =>
-      (props.complete === 0 && '') ||
-      (props.complete === 1 && '20%') ||
-      (props.complete === 2 && '40%') ||
-      (props.complete === 3 && '60%') ||
-      (props.complete === 4 && '80%') ||
-      (props.complete === 5 && '100%')};
+      (props.complete === 0 && "") ||
+      (props.complete === 1 && "20%") ||
+      (props.complete === 2 && "40%") ||
+      (props.complete === 3 && "60%") ||
+      (props.complete === 4 && "80%") ||
+      (props.complete === 5 && "100%")};
     background-color: #e2d1ff;
     z-index: 1;
   }
@@ -89,7 +89,7 @@ export const CompleteWrap = styled.div<{ complete?: number }>`
   }
 `;
 export const LevelsWrap = styled.ul<{ padd?: string }>`
-  padding: ${(props) => props.padd || '0'};
+  padding: ${(props) => props.padd || "0"};
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

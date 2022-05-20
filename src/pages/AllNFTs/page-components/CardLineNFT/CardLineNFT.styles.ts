@@ -1,7 +1,7 @@
-import { Col, Row, Tab } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Col, Row, Tab } from "react-bootstrap";
+import styled from "styled-components";
 
-import { block, ethereum } from './imports';
+import { block, ethereum } from "./imports";
 
 export const TabShop = styled(Tab)`
   background-image: url(${block});
@@ -37,7 +37,7 @@ export const PeriodText = styled.div`
   position: absolute;
   right: 10px;
   top: 11px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -68,7 +68,7 @@ export const EthereumText = styled.div`
   position: absolute;
   right: 10px;
   top: 11px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -82,7 +82,7 @@ export const EthereumText = styled.div`
 `;
 export const DepositText = styled.span`
   position: absolute;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -138,7 +138,7 @@ export const ImageChecked = styled.img`
   top: 12px;
 `;
 export const TextUND = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -150,7 +150,7 @@ export const TextUND = styled.span`
   left: 275px;
 `;
 export const TextNameNFT = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -161,7 +161,7 @@ export const TextNameNFT = styled.span`
   position: absolute;
 `;
 export const TextPreview = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

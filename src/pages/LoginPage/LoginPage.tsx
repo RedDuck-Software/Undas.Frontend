@@ -1,10 +1,10 @@
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { useWeb3React } from '@web3-react/core';
-import React, { useState, useContext } from 'react';
-import { isMobile, isAndroid, osVersion } from 'react-device-detect';
-import { Navigate } from 'react-router-dom';
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { useWeb3React } from "@web3-react/core";
+import React, { useState, useContext } from "react";
+import { isMobile, isAndroid, osVersion } from "react-device-detect";
+import { Navigate } from "react-router-dom";
 
-import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from './imports';
+import { MetaMask, Coinbase, WalletConnect, Fortmatic, Trust } from "./imports";
 import {
   LoginSec,
   TextWrapper,
@@ -18,16 +18,16 @@ import {
   Circle,
   ButtonText,
   ShowMore,
-} from './LoginPage.styles';
+} from "./LoginPage.styles";
 
 import {
   injected,
   walletconnect,
   fortmatic,
   resetWalletConnect,
-} from '../../components/Wallets/Connectors';
-import { Container } from '../../globalStyles';
-import Context from '../../utils/Context';
+} from "../../components/Wallets/Connectors";
+import { Container } from "../../globalStyles";
+import Context from "../../utils/Context";
 
 const LoginPage: React.FC = () => {
   const value = useContext(Context);
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
 
     if (connector) {
       value.setConnectorFun(connector);
-      return <Navigate to={'/account'} replace={true} />;
+      return <Navigate to={"/account"} replace={true} />;
     }
   }
 
@@ -50,7 +50,7 @@ const LoginPage: React.FC = () => {
     resetWalletConnect(walletConnector);
     try {
       await web3Current.activate(walletConnector);
-      return <Navigate to={'/account'} replace={true} />;
+      return <Navigate to={"/account"} replace={true} />;
     } catch (ex) {
       console.log(ex);
     }
@@ -59,9 +59,9 @@ const LoginPage: React.FC = () => {
   const ethereumWallets = [
     {
       icon: MetaMask,
-      text: 'MetaMask' + (disabled ? '...' : ''),
+      text: "MetaMask" + (disabled ? "..." : ""),
       handleClick: function () {
-        localStorage.setItem('connector', 'injected');
+        localStorage.setItem("connector", "injected");
         isMobile ? connect(walletconnect) : connect(injected);
       },
       disabled: disabled,
@@ -69,42 +69,42 @@ const LoginPage: React.FC = () => {
     {
       icon: Coinbase,
       text: isMobile
-        ? 'Coinbase (desktop only)'
-        : 'Coinbase' + (disabled ? '...' : ''),
+        ? "Coinbase (desktop only)"
+        : "Coinbase" + (disabled ? "..." : ""),
       handleClick: function () {
-        localStorage.setItem('connector', 'walletconnect');
+        localStorage.setItem("connector", "walletconnect");
         connect(walletconnect);
       },
       disabled: isMobile ? true : disabled,
     },
     {
       icon: WalletConnect,
-      text: 'WalletConnect' + (disabled ? '...' : ''),
+      text: "WalletConnect" + (disabled ? "..." : ""),
       handleClick: function () {
-        localStorage.setItem('connector', 'walletconnect');
+        localStorage.setItem("connector", "walletconnect");
         connect(walletconnect);
       },
       disabled: disabled,
     },
     {
       icon: Fortmatic,
-      text: 'Fortmatic' + (disabled ? '...' : ''),
+      text: "Fortmatic" + (disabled ? "..." : ""),
       handleClick: function () {
-        localStorage.setItem('connector', 'fortmatic');
+        localStorage.setItem("connector", "fortmatic");
         connect(fortmatic);
       },
       disabled: disabled,
     },
     {
       icon: Trust,
-      text: 'Trust' + (disabled ? '...' : ''),
+      text: "Trust" + (disabled ? "..." : ""),
       handleClick: function () {
-        isAndroid && osVersion === '11'
+        isAndroid && osVersion === "11"
           ? window.open(
-              'https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app',
-              '_blank',
+              "https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app",
+              "_blank"
             )
-          : localStorage.setItem('connector', 'walletconnect');
+          : localStorage.setItem("connector", "walletconnect");
         connect(walletconnect);
       },
       disabled: disabled,
@@ -118,8 +118,8 @@ const LoginPage: React.FC = () => {
           <TextWrapper>
             <LoginTitle>You need an Ethereum wallet to use UNDAS</LoginTitle>
             <LoginText>
-              Connect with one of our available <VioletText>wallet</VioletText>{' '}
-              providers or create a new one.{' '}
+              Connect with one of our available <VioletText>wallet</VioletText>{" "}
+              providers or create a new one.{" "}
             </LoginText>
           </TextWrapper>
           <ButtonWrapper>

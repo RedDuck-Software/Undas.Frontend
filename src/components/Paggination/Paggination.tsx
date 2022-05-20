@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { PagginationList, ListItem } from './Paggination.styles';
+import { PagginationList, ListItem } from "./Paggination.styles";
 
 const Paggination = () => {
   return (

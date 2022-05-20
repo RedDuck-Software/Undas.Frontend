@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   ExploreContainer,
@@ -9,11 +9,11 @@ import {
   ExploreTitle,
   ExploreSubtitle,
   ExplorePagginationContainer,
-} from './ExplorePage.styles';
+} from "./ExplorePage.styles";
 
-import { LargeCardList, Paggination } from '../../components';
-import { Background } from '../../globalStyles';
-import BackgroundImg from '../../images/image-explore/explore-background.png';
+import { LargeCardList, Paggination } from "../../components";
+import { Background } from "../../globalStyles";
+import BackgroundImg from "../../images/image-explore/explore-background.png";
 
 interface ExplorePageProps {
   pageType: string;

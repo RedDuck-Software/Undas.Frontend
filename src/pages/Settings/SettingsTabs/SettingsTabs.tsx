@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
-
-import AccountSupport from './AccountSupport/AccountSupport';
-import Earnings from './Earnings/Earnings';
-import Notifications from './Notifications/Notifications';
-import Offers from './Offers/Offers';
-import ProfileSettings from './Profile/ProfileSettings';
+import AccountSupport from "./AccountSupport/AccountSupport";
+import Earnings from "./Earnings/Earnings";
+import Notifications from "./Notifications/Notifications";
+import Offers from "./Offers/Offers";
+import ProfileSettings from "./Profile/ProfileSettings";
 import {
   SettingsTabWrap,
   DesktopTabs,
@@ -13,8 +12,8 @@ import {
   MobileTabs,
   MobileTab,
   MobileSettingsTabWrap,
-} from './SettingsTabs.styles';
-import './settings-tabs.css';
+} from "./SettingsTabs.styles";
+import "./settings-tabs.css";
 
 const SettingsTabs: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Button } from '../../../../globalStyles';
-import OLetter from '../../../../icons/o-letter.svg';
+import { Button } from "../../../../globalStyles";
+import OLetter from "../../../../icons/o-letter.svg";
 
 interface InfoSectionProps {
   big?: boolean;
@@ -89,19 +89,19 @@ export const RightColumn = styled.div`
 export const TextWrapper = styled.div``;
 
 export const Tagline = styled.h1<InfoSectionProps>`
-  font-size: ${({ big }) => (big ? '3.8rem' : '2.05rem')};
+  font-size: ${({ big }) => (big ? "3.8rem" : "2.05rem")};
   font-weight: 400;
   word-spacing: 1rem;
 
   &:nth-child(2) {
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
       height: 25px;
       width: 25px;
       background-size: 25px 25px;
       background-image: ${(props) =>
-        props.icon ? `url('${OLetter}')` : 'none'};
+        props.icon ? `url('${OLetter}')` : "none"};
       background-repeat: no-repeat;
       position: relative;
       top: 2px;
@@ -109,11 +109,11 @@ export const Tagline = styled.h1<InfoSectionProps>`
   }
 
   @media (max-width: 1009px) {
-    font-size: ${(props) => (props.big ? '3.2rem' : '1.75rem')};
+    font-size: ${(props) => (props.big ? "3.2rem" : "1.75rem")};
   }
 
   @media (max-width: 801px) {
-    font-size: ${(props) => (props.big ? '2.1rem' : '1.3rem')};
+    font-size: ${(props) => (props.big ? "2.1rem" : "1.3rem")};
     word-spacing: 0.3rem;
 
     &:nth-child(2) {
@@ -126,7 +126,7 @@ export const Tagline = styled.h1<InfoSectionProps>`
   }
 
   @media (max-width: 680px) {
-    font-size: ${(props) => (props.big ? '2.1rem' : '1.15rem')};
+    font-size: ${(props) => (props.big ? "2.1rem" : "1.15rem")};
     word-spacing: 0.3rem;
 
     &:nth-child(2) {

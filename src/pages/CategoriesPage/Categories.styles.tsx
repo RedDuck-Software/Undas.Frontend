@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Banner = styled.div`
   width: 100%;
@@ -118,10 +118,10 @@ interface IText {
 }
 
 export const CollectionText = styled.span<IText>`
-  max-width: ${(props) => props.mw || ''};
+  max-width: ${(props) => props.mw || ""};
   font-weight: 400;
-  font-size: ${(props) => props.fs || '14px'};
-  line-height: ${(props) => props.lh || '17px'};
+  font-size: ${(props) => props.fs || "14px"};
+  line-height: ${(props) => props.lh || "17px"};
   padding: ${(props) => props.padd};
   color: #fff;
 `;
@@ -143,19 +143,19 @@ interface IWrapper {
 
 export const Wrapper = styled.div<IWrapper>`
   position: relative;
-  width: ${(props) => props.w || ''};
-  display: ${(props) => props.disp || 'inline-block'};
+  width: ${(props) => props.w || ""};
+  display: ${(props) => props.disp || "inline-block"};
   margin: ${(props) => props.marg};
   align-items: ${(props) => props.alignItems};
   justify-content: ${(props) => props.justifyContent};
   justify-self: ${(props) => props.justifySelf};
-  flex-direction: ${(props) => props.flexDirection || ''};
+  flex-direction: ${(props) => props.flexDirection || ""};
   margin: ${(props) => props.marg};
   max-width: ${(props) => props.mw};
   gap: ${(props) => props.gap};
-  flex-wrap: ${(props) => props.flexWrap || ''};
-  background-color: ${(props) => props.bg || ''};
-  cursor: ${(props) => props.curs || ''};
+  flex-wrap: ${(props) => props.flexWrap || ""};
+  background-color: ${(props) => props.bg || ""};
+  cursor: ${(props) => props.curs || ""};
 `;
 
 interface IPlatform {
@@ -163,11 +163,11 @@ interface IPlatform {
 }
 
 export const Platform = styled.strong<IPlatform>`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-weight: 600;
   font-size: 12px;
   line-height: 17px;
-  color: ${(props) => props.col || '#CCB7F2'};
+  color: ${(props) => props.col || "#CCB7F2"};
 `;
 
 export const NFTCards = styled.div`

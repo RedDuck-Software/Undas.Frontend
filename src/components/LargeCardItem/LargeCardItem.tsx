@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   CardContainer,
@@ -9,9 +9,9 @@ import {
   CardCollectionCreator,
   CardDescription,
   PurpleText,
-} from './LargeCardItem.styles';
+} from "./LargeCardItem.styles";
 
-import { ImageProps } from '../../types/ImageProps';
+import { ImageProps } from "../../types/ImageProps";
 
 const LargeCardItem: React.FC<ImageProps> = ({ image }) => {
   return (

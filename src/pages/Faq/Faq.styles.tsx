@@ -1,5 +1,5 @@
-import { Nav } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Nav } from "react-bootstrap";
+import styled from "styled-components";
 
 export const FaqTabsWrapper = styled.div`
   min-height: 550px;
@@ -27,7 +27,7 @@ export const TabButton = styled(Nav.Link)`
 `;
 export const TabText = styled.div``;
 export const ContentTitle = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -37,7 +37,7 @@ export const ContentTitle = styled.h2`
   max-width: 300px;
 `;
 export const ContentText = styled.p`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

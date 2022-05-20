@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   CollectionCard,
@@ -9,7 +9,7 @@ import {
   NFTCards,
   Platform,
   Wrapper,
-} from '../Categories.styles';
+} from "../Categories.styles";
 import {
   CollectionBG,
   CollectionPic,
@@ -17,7 +17,7 @@ import {
   NFT2,
   NFT3,
   Verified,
-} from '../imports';
+} from "../imports";
 
 const Collection: React.FC = () => {
   return (

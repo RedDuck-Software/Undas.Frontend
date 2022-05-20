@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { BannerIcon } from './imports';
+import { BannerIcon } from "./imports";
 import {
   ProfileWrap,
   BannerWrap,
@@ -27,11 +27,10 @@ import {
   InputGroup,
   AdressInput,
   CopyButton,
-  FormButtonsWrap,
-  FormButton,
-} from './ProfileSettings.styles';
+} from "./ProfileSettings.styles";
 
-import './profile.css';
+import { FormButtonsWrap, FormButton } from "../../../../globalStyles";
+import "./profile.css";
 
 const ProfileSettings = () => {
   return (

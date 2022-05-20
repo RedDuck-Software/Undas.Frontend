@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { CardWrap } from '../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles';
-import { Verified, Copy, SingOut, Settings } from '../../imports';
+import { CardWrap } from "../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles";
+import { Verified, Copy, SingOut, Settings } from "../../imports";
 
 export const CopyIco = styled(Copy)`
   cursor: pointer;
