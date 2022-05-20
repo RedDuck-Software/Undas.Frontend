@@ -17,7 +17,7 @@ import {
 } from './CreateCollection.styles';
 import { ImgIcon, ExplicitContentIco, ArtIcon } from './imports';
 
-import { Background } from '../../globalStyles';
+import { Background, FormButtonsWrap } from '../../globalStyles';
 import {
   CreateSec,
   CreateContainer,
@@ -31,11 +31,11 @@ import {
   CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
-  CreateFormButton,
   ButtonsBlock,
+  CreateFormButton,
 } from '../CreateNFT/CreateNFT.styles';
 import Switcher from '../CreateNFT/page-components/Switcher/Switcher';
-import { FormButtonsWrap } from '../Settings/SettingsTabs/Profile/ProfileSettings.styles';
+
 
 type CreateSubmitForm = {
   contentURL: string;
