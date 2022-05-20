@@ -44,5 +44,4 @@ module.exports = {
       version: 'detect',
     },
   },
-  hasSuggestions: true,
 };
