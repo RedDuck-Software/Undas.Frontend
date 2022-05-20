@@ -1,5 +1,5 @@
-import Pagination from 'react-bootstrap/Pagination';
-import styled from 'styled-components';
+import Pagination from "react-bootstrap/Pagination";
+import styled from "styled-components";
 
 export const ReferralWrap = styled.div`
   padding: 60px 0 120px;

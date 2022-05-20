@@ -1,12 +1,12 @@
-import React from 'react';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import './HeroSlides.css';
+import React from "react";
+import { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "./HeroSlides.css";
 
-import { SliderBG } from './imports';
+import { SliderBG } from "./imports";
 import {
   SliderImage,
   UndasDiv,
@@ -20,14 +20,14 @@ import {
   IMGdiv,
   CollectionTitle,
   SeeCollection,
-} from './Slider.styles';
+} from "./Slider.styles";
 
 const Slider: React.FC = () => {
   return (
     <Swiper
       className="home-slider"
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
+      onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
       modules={[Navigation, Pagination]}
       loop={true}
@@ -36,7 +36,7 @@ const Slider: React.FC = () => {
     >
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{' '}
+          <TextGet>Get passive income from your NFT with </TextGet>{" "}
           <TextUndas>UNDAS</TextUndas>
           <br></br>
           <TextStacking>
@@ -56,7 +56,7 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{' '}
+          <TextGet>Get passive income from your NFT with </TextGet>{" "}
           <TextUndas>UNDAS</TextUndas>
           <br></br>
           <TextStacking>
@@ -76,7 +76,7 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{' '}
+          <TextGet>Get passive income from your NFT with </TextGet>{" "}
           <TextUndas>UNDAS</TextUndas>
           <br></br>
           <TextStacking>

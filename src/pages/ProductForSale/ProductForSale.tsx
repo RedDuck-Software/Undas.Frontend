@@ -1,10 +1,10 @@
-import { useWeb3React } from '@web3-react/core';
-import { id } from 'ethers/lib/utils';
-import React, { useContext, useEffect, useState } from 'react';
-import { useMoralis } from 'react-moralis';
-import { useParams } from 'react-router-dom';
+import { useWeb3React } from "@web3-react/core";
+import { id } from "ethers/lib/utils";
+import React, { useContext, useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
+import { useParams } from "react-router-dom";
 
-import { SaleSection, Staking } from './page-components';
+import { SaleSection, Staking } from "./page-components";
 import {
   LeftSide,
   CardImageContainer,
@@ -15,11 +15,11 @@ import {
   RightSide,
   ItemInformation,
   ProductTitle,
-} from './ProductForSale.styles';
+} from "./ProductForSale.styles";
 
-import { Background } from '../../globalStyles';
-import Image from '../../images/card-item.png';
-import Context from '../../utils/Context';
+import { Background } from "../../globalStyles";
+import Image from "../../images/card-item.png";
+import Context from "../../utils/Context";
 
 const ProductForSale: React.FC = () => {
   const { id: pageId } = useParams();
@@ -46,7 +46,7 @@ const ProductForSale: React.FC = () => {
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: 'goerli',
+      chain: "goerli",
       address: account,
     });
     return listOfNFTS;
@@ -62,7 +62,7 @@ const ProductForSale: React.FC = () => {
 
   useEffect(() => {
     if (!connector || !account) {
-      return console.log('loading');
+      return console.log("loading");
     }
     getListData();
   }, [connector, account]);

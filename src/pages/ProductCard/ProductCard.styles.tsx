@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
-import Graph from '../../icons/graph.svg';
+import { Container } from "../../globalStyles";
+import Graph from "../../icons/graph.svg";
 
 export const ProductCardSec = styled.div`
   padding: 7rem 0;
@@ -83,7 +83,7 @@ export const PriceHistoryClosed = styled.div`
   }
 
   &:before {
-    content: url('${Graph}');
+    content: url("${Graph}");
     position: relative;
     top: 2px;
     padding-right: 1rem;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const InfoBlock = styled.div`
   width: 100%;
@@ -30,7 +30,7 @@ export const InfoList = styled.li`
 `;
 
 export const InfoText = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-weight: 600;
   font-size: 18px;
   line-height: 26px;

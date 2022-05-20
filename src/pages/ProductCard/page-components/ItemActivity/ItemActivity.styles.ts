@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Rhombus from '../../../../icons/rhombus.svg';
+import Rhombus from "../../../../icons/rhombus.svg";
 
 interface ItemActivityProps {
   closed?: boolean;
@@ -25,10 +25,10 @@ export const ItemActivityTop = styled.div<ItemActivityProps>`
 
   background: #ffffff;
   border: 1px solid #5d3f92;
-  ${(props) => (props.closed ? `` : '')};
+  ${(props) => (props.closed ? `` : "")};
   word-spacing: 4px;
   padding: 3%;
-  border-radius: ${(props) => (props.closed ? `10px` : '10px 10px 0px 0px')};
+  border-radius: ${(props) => (props.closed ? `10px` : "10px 10px 0px 0px")};
   margin-top: 1.4rem;
   cursor: pointer;
 
@@ -171,7 +171,7 @@ export const PriceNumber = styled.span`
   color: #000000;
 
   &:before {
-    content: url('${Rhombus}');
+    content: url("${Rhombus}");
     position: relative;
     top: 3px;
     padding-right: 0.4rem;

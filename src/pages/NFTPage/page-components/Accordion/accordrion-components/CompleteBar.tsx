@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CompleteWrap, ColoredText } from '../Accordion.styles';
+import { CompleteWrap, ColoredText } from "../Accordion.styles";
 
 const CompleteBar: React.FC<{ complete?: number }> = ({ complete }) => {
   return (

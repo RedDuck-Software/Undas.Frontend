@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 interface RentNFTPageProps {
   mirrored?: boolean;
@@ -196,7 +196,7 @@ export const DoubleCurveContainer = styled.div`
 export const DoubleCurve = styled.img<RentNFTPageProps>`
   width: 60%;
   ${({ mirrored }) =>
-    mirrored ? '-webkit-transform: scaleX(-1); transform: scaleX(-1);' : ''}
+    mirrored ? "-webkit-transform: scaleX(-1); transform: scaleX(-1);" : ""}
 
   @media (max-width: 641px) {
     width: 80%;
@@ -210,7 +210,7 @@ export const DoubleCurve = styled.img<RentNFTPageProps>`
 
 export const DoubleCurveMobile = styled.img<RentNFTPageProps>`
   ${({ mirrored }) =>
-    mirrored ? '-webkit-transform: scaleX(-1); transform: scaleX(-1);' : ''}
+    mirrored ? "-webkit-transform: scaleX(-1); transform: scaleX(-1);" : ""}
 
   display: none;
 

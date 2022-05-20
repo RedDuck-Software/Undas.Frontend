@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { CopyIco } from '../../../../AccountPage/page-components/AccountCard/AccountCard.styles';
-import { Wrapper } from '../../../../CategoriesPage/Categories.styles';
-import { DetailsWrap, DetailsElement, ColoredText } from '../Accordion.styles';
+import { CopyIco } from "../../../../AccountPage/page-components/AccountCard/AccountCard.styles";
+import { Wrapper } from "../../../../CategoriesPage/Categories.styles";
+import { DetailsWrap, DetailsElement, ColoredText } from "../Accordion.styles";
 
 const Details: React.FC = () => {
   return (

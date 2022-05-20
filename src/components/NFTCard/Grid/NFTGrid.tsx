@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   NFTWrap,
@@ -18,17 +18,17 @@ import {
   PriceItem,
   PriceInEth,
   TextSpan,
-} from './NFTGrid.styles';
+} from "./NFTGrid.styles";
 
-import { ReactComponent as EthLogo } from '../../../icons/eth-logo-nft.svg';
-import { ReactComponent as LockIco } from '../../../icons/lock.svg';
-import { ReactComponent as PreviewIco } from '../../../icons/preview.svg';
+import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
+import { ReactComponent as LockIco } from "../../../icons/lock.svg";
+import { ReactComponent as PreviewIco } from "../../../icons/preview.svg";
 import {
   Platform,
   Wrapper,
-} from '../../../pages/CategoriesPage/Categories.styles';
-import { Verified } from '../../../pages/CategoriesPage/imports';
-import { setComponent } from '../../../store/reducers/modalAction';
+} from "../../../pages/CategoriesPage/Categories.styles";
+import { Verified } from "../../../pages/CategoriesPage/imports";
+import { setComponent } from "../../../store/reducers/modalAction";
 
 interface NFTGridProps {
   tokenId: number;
@@ -68,7 +68,7 @@ const NFTGrid: React.FC<NFTGridProps> = (props) => {
           <BuyBtn
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(setComponent('buy', props.tokenId));
+              dispatch(setComponent("buy", props.tokenId));
             }}
           >
             Buy now
@@ -79,14 +79,14 @@ const NFTGrid: React.FC<NFTGridProps> = (props) => {
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{props.price ?? '-'}</PriceInEth>
+              <PriceInEth>{props.price ?? "-"}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Rent</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{props.premium ?? '-'}</PriceInEth>
+              <PriceInEth>{props.premium ?? "-"}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>

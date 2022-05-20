@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { CloseIco, InfoIco } from '../imports';
+import { CloseIco, InfoIco } from "../imports";
 
 export const WindowWrap = styled.div`
   max-width: 560px;
@@ -38,7 +38,7 @@ export const NFTWrap = styled.div<{ marg?: string }>`
   align-items: center;
   font-weight: 400;
   font-size: 18px;
-  margin: ${(props) => props.marg || ''};
+  margin: ${(props) => props.marg || ""};
   color: #232428;
 `;
 
@@ -61,7 +61,7 @@ export const PaymentElement = styled.li<{ padd?: string }>`
   margin-top: -1px;
   display: flex;
   justify-content: space-between;
-  padding: ${(props) => props.padd || '15px 0'};
+  padding: ${(props) => props.padd || "15px 0"};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -146,7 +146,7 @@ export const CheckboxInput = styled.input`
     position: relative;
   }
   &.custom-checkbox + label::before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -164,7 +164,7 @@ export const CheckboxInput = styled.input`
     background-color: #ffffff;
   }
   &.custom-checkbox:checked + label::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 8px;
     border-bottom: 1px solid #5d3f92;
@@ -197,9 +197,9 @@ export const ColoredTextAgreement = styled.span<{
   fw?: string;
   cursor?: string;
 }>`
-  color: ${(props) => props.color || ''};
-  font-size: ${(props) => props.fs || ''};
-  font-weight: ${(props) => props.fw || ''};
-  cursor: ${(props) => props.cursor || ''};
+  color: ${(props) => props.color || ""};
+  font-size: ${(props) => props.fs || ""};
+  font-weight: ${(props) => props.fw || ""};
+  cursor: ${(props) => props.cursor || ""};
   padding-left: 6px;
 `;

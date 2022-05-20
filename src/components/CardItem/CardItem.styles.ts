@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import CheckMark from '../../icons/check-mark.svg';
-import RhombusWhite from '../../icons/rhombus-white.svg';
+import CheckMark from "../../icons/check-mark.svg";
+import RhombusWhite from "../../icons/rhombus-white.svg";
 
 export const CardItemContainer = styled.div`
   position: relative;
@@ -26,7 +26,7 @@ export const TransparentLayer = styled.div`
   &::after {
     bottom: 1px;
     left: 0;
-    content: '';
+    content: "";
     background: #edd2ff;
     opacity: 0.2;
     width: 100%;
@@ -59,7 +59,7 @@ export const CardTitle = styled.span`
   font-size: 0.75rem;
 
   &:after {
-    content: url('${CheckMark}');
+    content: url("${CheckMark}");
     position: relative;
     left: 7px;
     bottom: 3px;
@@ -73,7 +73,7 @@ export const CardNumber = styled.span`
 
 export const CardPrice = styled.span`
   &:before {
-    content: url('${RhombusWhite}');
+    content: url("${RhombusWhite}");
     position: relative;
     top: 4px;
     right: 5%;

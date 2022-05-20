@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   BrowseSec,
@@ -9,11 +9,11 @@ import {
   CategoryImage,
   BlackLayer,
   CategoryText,
-} from './BrowseCategory.styles';
-import { category01, category02, category03 } from './imports';
+} from "./BrowseCategory.styles";
+import { category01, category02, category03 } from "./imports";
 
-import { Container, ComingSoonImage } from '../../../../globalStyles';
-import comingSoon from '../../../../images/coming-soon.png';
+import { Container, ComingSoonImage } from "../../../../globalStyles";
+import comingSoon from "../../../../images/coming-soon.png";
 
 const BrowseCategory: React.FC = () => {
   const [showCategory] = useState(false);

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { PriceText } from '../../../NFTPage.styles';
+import { PriceText } from "../../../NFTPage.styles";
 import {
   ActivityWrap,
   ActivityTableWrap,
@@ -12,7 +12,7 @@ import {
   ActivityTd,
   ActivityColorText,
   EtherIcon,
-} from '../Accordion.styles';
+} from "../Accordion.styles";
 
 const ItemActivity: React.FC = () => {
   return (

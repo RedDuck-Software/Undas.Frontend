@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Rhombus from '../../../../icons/rhombus-purple.svg';
+import Rhombus from "../../../../icons/rhombus-purple.svg";
 
 export const TableRow = styled.tr`
   border-top: 1px solid #5d3f92;
@@ -42,7 +42,7 @@ export const PriceNumber = styled.span`
   color: #000000;
 
   &:before {
-    content: url('${Rhombus}');
+    content: url("${Rhombus}");
     position: relative;
     top: 3px;
     padding-right: 0.4rem;

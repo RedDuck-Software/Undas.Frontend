@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   gallery01,
@@ -8,7 +8,7 @@ import {
   gallery04,
   gallery05,
   gallery06,
-} from './imports';
+} from "./imports";
 import {
   InfoSec,
   InfoRow,
@@ -19,9 +19,9 @@ import {
   ButtonsWrapper,
   ImageGallery,
   Image,
-} from './InfoSection.styles';
+} from "./InfoSection.styles";
 
-import { Container, Button } from '../../../../globalStyles';
+import { Container, Button } from "../../../../globalStyles";
 
 const InfoSection: React.FC = () => {
   return (

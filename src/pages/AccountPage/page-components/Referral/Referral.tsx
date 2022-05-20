@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Copy, Twitter, Telegram, Discord, Instagram, EthIco } from './imports';
+import { Copy, Twitter, Telegram, Discord, Instagram, EthIco } from "./imports";
 import {
   ReferralWrap,
   PageHead,
@@ -19,7 +19,7 @@ import {
   ContentTableTh,
   ContentTableTd,
   ReferralPagination,
-} from './Referral.styles';
+} from "./Referral.styles";
 
 const Referral: React.FC = () => {
   return (

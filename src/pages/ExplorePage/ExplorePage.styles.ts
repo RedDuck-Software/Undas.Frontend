@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Container } from '../../globalStyles';
+import { Container } from "../../globalStyles";
 
 export const ExploreContainer = styled(Container)`
   display: flex;

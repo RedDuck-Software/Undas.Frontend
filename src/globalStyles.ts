@@ -1,9 +1,9 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
-import LRBackground from './images/LRBackground.png';
-import LRBackground2 from './images/LRBackground.png';
-import RBackground from './images/RBackground.png';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import LRBackground from "./images/LRBackground.png";
+import LRBackground2 from "./images/LRBackground.png";
+import RBackground from "./images/RBackground.png";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 interface GlobalStylesProps {
   violet?: boolean;
@@ -40,44 +40,44 @@ export const Container = styled.div`
 
 export const Button = styled.button<GlobalStylesProps>`
   border-radius: 0.5rem;
-  background: ${({ violet }) => (violet ? '#893AC2' : '#fff')};
+  background: ${({ violet }) => (violet ? "#893AC2" : "#fff")};
   white-space: nowrap;
   font-size: 1.05rem;
-  padding: ${({ big }) => (big ? '0.8rem 10rem' : '0.8rem 4.6rem')};
-  color: ${({ violet }) => (violet ? '#fff' : '#000000')};
+  padding: ${({ big }) => (big ? "0.8rem 10rem" : "0.8rem 4.6rem")};
+  color: ${({ violet }) => (violet ? "#fff" : "#000000")};
   outline: none;
-  border: ${({ violet }) => (violet ? 'none' : '1px solid #893AC2')};
+  border: ${({ violet }) => (violet ? "none" : "1px solid #893AC2")};
   box-shadow: ${({ violet }) =>
     violet
-      ? 'inset 0px 4px 4px rgba(0, 0, 0, 0.25)'
-      : 'inset 0px 4px 4px rgba(93, 63, 146, 0.31)'};
+      ? "inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
+      : "inset 0px 4px 4px rgba(93, 63, 146, 0.31)"};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: ${({ violet }) => (violet ? '#6a358f' : '#f5f5f5')};
+    background: ${({ violet }) => (violet ? "#6a358f" : "#f5f5f5")};
   }
 
   @media (max-width: 1169px) {
     grid-gap: 0.8rem;
-    padding: ${({ big }) => (big ? '0.8rem 6rem' : '0.8rem 4rem')};
+    padding: ${({ big }) => (big ? "0.8rem 6rem" : "0.8rem 4rem")};
   }
 
   @media (max-width: 1009px) {
-    padding: ${({ big }) => (big ? '0.8rem 4rem' : '0.8rem 3.6rem')};
+    padding: ${({ big }) => (big ? "0.8rem 4rem" : "0.8rem 3.6rem")};
   }
 
   @media (max-width: 801px) {
-    padding: ${({ big }) => (big ? '0.8rem 3.6rem' : '0.8rem 3rem')};
+    padding: ${({ big }) => (big ? "0.8rem 3.6rem" : "0.8rem 3rem")};
   }
 
   @media (max-width: 661px) {
-    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '0.6rem 2rem')};
+    padding: ${({ big }) => (big ? "0.6rem 2.4rem" : "0.6rem 2rem")};
   }
 
   @media (max-width: 539px) {
     font-size: 0.85rem;
-    padding: ${({ big }) => (big ? '0.6rem 2.4rem' : '2% 8%')};
+    padding: ${({ big }) => (big ? "0.6rem 2.4rem" : "2% 8%")};
   }
 `;
 
@@ -165,43 +165,48 @@ export const SubTitle = styled.h2`
   }
 `;
 export const FormButtonsWrap = styled.div`
-    @media (max-width: 992px) {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    @media (max-width: 576px) {
-        flex-wrap: wrap;
-    }
+  @media (max-width: 992px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
 export const FormButton = styled.button`
-    background: #FFFFFF;
-    border: 1px solid #873DC1;
-    border-radius: 10px;
-    color: #873DC1;
-    padding: 7px 37px;
-    margin-left: 25px;
-    transition: all .3s;
-    &:hover{
-        color: #FFFFFF;
-        background: #873DC1;
-        border: 1px solid transparent;
+  background: #ffffff;
+  border: 1px solid #873dc1;
+  border-radius: 10px;
+  color: #873dc1;
+  padding: 7px 37px;
+  margin-left: 25px;
+  transition: all 0.3s;
+  &:hover {
+    color: #ffffff;
+    background: #873dc1;
+    border: 1px solid transparent;
+  }
+  @media (max-width: 992px) {
+    flex: 0 0 45%;
+    &.left-btn {
+      border: 1px solid transparent;
+      background: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.5)
+        ),
+        #873dc1;
+      color: #fff;
+      margin-left: 0;
     }
-    @media (max-width: 992px) {
-        flex: 0 0 45%;
-        &.left-btn{
-            border: 1px solid transparent;
-            background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #873DC1;
-            color: #fff;
-            margin-left: 0;
-        }
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+    margin: 0;
+    &.left-btn {
+      margin-bottom: 15px;
     }
-    @media (max-width: 576px) {
-        flex: 0 0 100%;
-        margin: 0;
-        &.left-btn{
-            margin-bottom: 15px;
-        }
-    }
+  }
 `;
 export default GlobalStyle;

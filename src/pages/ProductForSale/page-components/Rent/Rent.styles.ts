@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RentContainer = styled.div``;
 
@@ -8,12 +8,12 @@ interface RentTopProps {
 }
 
 export const RentTop = styled.div<RentTopProps>`
-  ${({ grey }) => (grey ? `background: #F4F4F4;` : 'background: #ffffff;')};
+  ${({ grey }) => (grey ? `background: #F4F4F4;` : "background: #ffffff;")};
   border: 1px solid #5d3f92;
-  ${({ closed }) => (closed ? `` : 'border-bottom: none')};
+  ${({ closed }) => (closed ? `` : "border-bottom: none")};
   word-spacing: 4px;
   padding: 3%;
-  border-radius: ${({ closed }) => (closed ? `10px` : '10px 10px 0px 0px')};
+  border-radius: ${({ closed }) => (closed ? `10px` : "10px 10px 0px 0px")};
   margin-top: 1.4rem;
   cursor pointer;
 
@@ -30,7 +30,7 @@ export const RentContent = styled.div<RentTopProps>`
   border: 1px solid #5d3f92;
   border-radius: 0px 0px 10px 10px;
   ${({ grey }) =>
-    grey ? `padding: 1rem 6rem; background: #F4F4F4;` : 'border-top: none;'}
+    grey ? `padding: 1rem 6rem; background: #F4F4F4;` : "border-top: none;"}
 `;
 
 export const RentTable = styled.table`

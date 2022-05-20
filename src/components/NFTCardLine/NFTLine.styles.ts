@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ReactComponent as FavoriteIco } from '../../../icons/nftcard-favorite.svg';
+import { ReactComponent as FavoriteIco } from "../../../icons/nftcard-favorite.svg";
 
 export const NFTWrap = styled.div`
   cursor: pointer;

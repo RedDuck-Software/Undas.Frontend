@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ethereum, und, hourglass } from './imports';
+import { ethereum, und, hourglass } from "./imports";
 
 export const ButtonOffer = styled.button`
   position: absolute;
@@ -11,7 +11,7 @@ export const ButtonOffer = styled.button`
   height: 36px;
   bottom: 50px;
   left: 150px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -23,7 +23,7 @@ export const FormButton = styled.button`
   width: 250px;
 `;
 export const MakeOfferText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -33,7 +33,7 @@ export const MakeOfferText = styled.div`
   width: 100%;
 `;
 export const ItemText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -41,7 +41,7 @@ export const ItemText = styled.span`
   color: #232428;
 `;
 export const NameNFT = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -49,7 +49,7 @@ export const NameNFT = styled.span`
   color: #873dc1;
 `;
 export const NumberText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -135,7 +135,7 @@ export const NFTImgCol4 = styled.img`
   }
 `;
 export const AllNftUser = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -143,7 +143,7 @@ export const AllNftUser = styled.div`
   margin-top: 40px;
 `;
 export const ButtonAddNFT = styled.button`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -174,7 +174,7 @@ export const Plus = styled.span`
   color: #7c7c7c;
 `;
 export const TextAllNFT = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -188,7 +188,7 @@ export const ButtonClear = styled.button`
   position: absolute;
   width: 56px;
   height: 17px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -242,7 +242,7 @@ export const CollectionNFTImg = styled.img`
 `;
 export const CollectionNftText = styled.span`
   position: absolute;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -253,7 +253,7 @@ export const CollectionNftText = styled.span`
 `;
 export const UNDText = styled.div`
   position: absolute;
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -271,7 +271,7 @@ export const UNDText = styled.div`
   }
 `;
 export const Name = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -283,7 +283,7 @@ export const Name = styled.div`
 `;
 export const CollectionNftTextRight = styled.span`
   position: absolute;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -294,7 +294,7 @@ export const CollectionNftTextRight = styled.span`
 `;
 export const UNDTextRight = styled.div`
   position: absolute;
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -312,7 +312,7 @@ export const UNDTextRight = styled.div`
   }
 `;
 export const NameRight = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -351,7 +351,7 @@ export const OfferDiv = styled.div`
   border-top: 1px solid #e6e6e6;
 `;
 export const PriceText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -369,7 +369,7 @@ export const BlockBtnAmmount = styled.div`
   margin-top: 20px;
 `;
 export const EthText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -390,7 +390,7 @@ export const AmmountInput = styled.input`
   box-shadow: inset 0px 0px 1px #7c7c7c;
   border: 1px solid #e6e6e6;
   margin-top: -1px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -411,7 +411,7 @@ export const SumUSD = styled.div`
   border-radius: 0px 0px 0px 0px;
   border: none;
   display: contents;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -422,12 +422,12 @@ export const USDText = styled.span`
   padding-left: 30px;
 
   &:before {
-    content: '$';
+    content: "$";
     padding-right: 10px;
   }
 `;
 export const DayText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -438,7 +438,7 @@ export const DayText = styled.span`
   top: 8px;
 `;
 export const PmAmText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -448,7 +448,7 @@ export const PmAmText = styled.span`
   padding-left: 220px;
 `;
 export const TimeText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -480,7 +480,7 @@ export const CheckboxInput = styled.input`
     position: relative;
   }
   &.custom-checkbox + label::before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -498,7 +498,7 @@ export const CheckboxInput = styled.input`
     background-color: #ffffff;
   }
   &.custom-checkbox:checked + label::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 8px;
     border-bottom: 1px solid #5d3f92;
@@ -520,7 +520,7 @@ export const CheckboxLabel = styled.label`
   }
 `;
 export const LinkAgreement = styled.a`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -545,7 +545,7 @@ export const BtnMakeOffer = styled.button`
     ),
     #873dc1;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

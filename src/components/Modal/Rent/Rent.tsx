@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { Wrapper } from '../../../pages/CategoriesPage/Categories.styles';
-import { ColoredText } from '../../../pages/NFTPage/page-components/Accordion/Accordion.styles';
-import { closeModal } from '../../../store/reducers/modalAction';
-import { EthIco } from '../../ASideFilter/imports';
+import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
+import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
+import { closeModal } from "../../../store/reducers/modalAction";
+import { EthIco } from "../../ASideFilter/imports";
 import {
   WindowWrap,
   Title,
@@ -19,8 +19,8 @@ import {
   PrivacyPolicyBlock,
   ConfirmBtn,
   InputWrap,
-} from '../BuyNFT/BuyNFT.styles';
-import { EthIcoLight, InfoIco, NFTImg, UNDIco } from '../imports';
+} from "../BuyNFT/BuyNFT.styles";
+import { EthIcoLight, InfoIco, NFTImg, UNDIco } from "../imports";
 
 const Rent: React.FC = () => {
   const dispatch = useDispatch();
@@ -105,7 +105,7 @@ const Rent: React.FC = () => {
           <PaymentElement padd="10px 0">
             <Wrapper disp="flex" alignItems="center" gap="15px">
               <span>
-                Rental price for <ColoredText color="#873DC1">7</ColoredText>{' '}
+                Rental price for <ColoredText color="#873DC1">7</ColoredText>{" "}
                 days
               </span>
               <InfoIco />
@@ -195,7 +195,7 @@ const Rent: React.FC = () => {
         <PrivacyPolicyBlock>
           <input type="checkbox" name="PayInUnd" />
           <label>
-            I agree to the platform{' '}
+            I agree to the platform{" "}
             <ColoredText cursor="pointer" color="#893AC2">
               agreement ....
             </ColoredText>

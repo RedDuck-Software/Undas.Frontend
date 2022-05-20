@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   OfferMenuWrap,
@@ -12,15 +12,15 @@ import {
   PercentTextTop,
   PercentTextButtom,
   OffersTr,
-} from './FavouriteTable.styles';
+} from "./FavouriteTable.styles";
 
-import { PriceText } from '../../../../NFTPage/NFTPage.styles';
+import { PriceText } from "../../../../NFTPage/NFTPage.styles";
 import {
   OffersTd,
   OffersHeadTr,
   EtherIcon,
-} from '../../../../NFTPage/page-components/Accordion/Accordion.styles';
-import { ItemImg, ItemVerifyIco } from '../../../imports';
+} from "../../../../NFTPage/page-components/Accordion/Accordion.styles";
+import { ItemImg, ItemVerifyIco } from "../../../imports";
 
 const FavouriteTable: React.FC = () => {
   return (

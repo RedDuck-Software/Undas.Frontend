@@ -1,8 +1,8 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import * as Yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import * as Yup from "yup";
 
 import {
   StakingContainer,
@@ -13,11 +13,11 @@ import {
   StakingInput,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles';
+} from "./Staking,styles";
 
-import { Button } from '../../../../globalStyles';
-import Context from '../../../../utils/Context';
-import { quoteForStaking } from '../../../../utils/quoteForStaking';
+import { Button } from "../../../../globalStyles";
+import Context from "../../../../utils/Context";
+import { quoteForStaking } from "../../../../utils/quoteForStaking";
 
 type FormData = {
   price: number;
@@ -32,11 +32,11 @@ const Staking: React.FC<{ id: string }> = ({ id }) => {
   const [isPuttedForStaking, setIsPuttedForStaking] = useState(false);
 
   const validationSchema = Yup.object().shape({
-    price: Yup.number().required('Price is required'),
-    premium: Yup.number().required('Premium is required'),
+    price: Yup.number().required("Price is required"),
+    premium: Yup.number().required("Premium is required"),
     term: Yup.number()
-      .required('Term is required')
-      .min(7, 'Term cannot be smaller tnan 7 days'),
+      .required("Term is required")
+      .min(7, "Term cannot be smaller tnan 7 days"),
   });
 
   const { register, handleSubmit } = useForm<FormData>({
@@ -57,9 +57,9 @@ const Staking: React.FC<{ id: string }> = ({ id }) => {
       price.toString(),
       premium.toString(),
       term.toString(),
-      connector,
+      connector
     ).then(() => {
-      console.log('Great success!');
+      console.log("Great success!");
       setIsPuttedForStaking(true);
     });
   };
@@ -74,19 +74,19 @@ const Staking: React.FC<{ id: string }> = ({ id }) => {
           <StakingForm onSubmit={handleSubmit(onSubmit)}>
             <StakingFormGroup>
               <StakingLabel htmlFor="price">Price (ETH)</StakingLabel>
-              <StakingInput type="number" id="price" {...register('price')} />
+              <StakingInput type="number" id="price" {...register("price")} />
             </StakingFormGroup>
             <StakingFormGroup>
               <StakingLabel htmlFor="premium">Premium (ETH)</StakingLabel>
               <StakingInput
                 type="number"
                 id="premium"
-                {...register('premium')}
+                {...register("premium")}
               />
             </StakingFormGroup>
             <StakingFormGroup>
               <StakingLabel htmlFor="term">Term</StakingLabel>
-              <StakingInput type="number" id="term" {...register('term')} />
+              <StakingInput type="number" id="term" {...register("term")} />
             </StakingFormGroup>
             <ButtonRow>
               {isPuttedForStaking ? (

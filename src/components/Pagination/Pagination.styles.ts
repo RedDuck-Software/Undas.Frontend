@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PaginationList = styled.ul`
   display: flex;
@@ -20,7 +20,7 @@ export const PageLink = styled.a`
   text-decoration: none;
 
   &::after {
-    content: ',';
+    content: ",";
   }
 
   &:nth-child(2) {
@@ -42,7 +42,7 @@ export const PageLink = styled.a`
     bottom: 0.5rem;
 
     &::after {
-      content: '';
+      content: "";
     }
   }
 

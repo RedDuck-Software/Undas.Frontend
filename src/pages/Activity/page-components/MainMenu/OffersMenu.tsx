@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   OfferMenuWrap,
@@ -20,17 +20,17 @@ import {
   FilterName,
   FilterClose,
   ClearAll,
-} from './Menu.styles';
+} from "./Menu.styles";
 
-import { PriceText } from '../../../NFTPage/NFTPage.styles';
+import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import {
   OffersTr,
   OffersTd,
   OffersHeadTr,
   OffersText,
   EtherIcon,
-} from '../../../NFTPage/page-components/Accordion/Accordion.styles';
-import { ItemImg, ItemVerifyIco, close, filter } from '../../imports';
+} from "../../../NFTPage/page-components/Accordion/Accordion.styles";
+import { ItemImg, ItemVerifyIco, close, filter } from "../../imports";
 
 const OffersMenu: React.FC = () => {
   return (

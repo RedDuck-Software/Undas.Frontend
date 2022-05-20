@@ -1,5 +1,5 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   WindowWrap,
@@ -19,14 +19,14 @@ import {
   TextPay,
   CheckboxBlock,
   ColoredTextAgreement,
-} from './BuyNFT.styles';
+} from "./BuyNFT.styles";
 
-import { Wrapper } from '../../../pages/CategoriesPage/Categories.styles';
-import { ColoredText } from '../../../pages/NFTPage/page-components/Accordion/Accordion.styles';
-import { useToken } from '../../../store';
-import { closeModal } from '../../../store/reducers/modalAction';
-import { EthIco } from '../../ASideFilter/imports';
-import { NFTImg, UNDIco } from '../imports';
+import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
+import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
+import { useToken } from "../../../store";
+import { closeModal } from "../../../store/reducers/modalAction";
+import { EthIco } from "../../ASideFilter/imports";
+import { NFTImg, UNDIco } from "../imports";
 
 const BuyNFT: React.FC = () => {
   const dispatch = useDispatch();
@@ -155,8 +155,8 @@ const BuyNFT: React.FC = () => {
               className="custom-checkbox"
             />
             <CheckboxLabel htmlFor="purchases">
-              {' '}
-              I agree to the platform{' '}
+              {" "}
+              I agree to the platform{" "}
               <ColoredTextAgreement cursor="pointer" color="#893AC2">
                 agreement ....
               </ColoredTextAgreement>

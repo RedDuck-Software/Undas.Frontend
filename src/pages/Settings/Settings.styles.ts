@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import LRBackground from '../../images/LRBackground.png';
+import LRBackground from "../../images/LRBackground.png";
 
 export const SettingsWrap = styled.div``;
 export const BackgroundSettings = styled.div`

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 import {
   PropertiesWrap,
   PropertiesElement,
   ColoredText,
   PropertiesElementItem,
-} from './Proprties.styles';
+} from "./Proprties.styles";
 
 const Properties: React.FC = () => {
   return (

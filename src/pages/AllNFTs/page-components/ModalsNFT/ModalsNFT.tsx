@@ -1,9 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import React from "react";
+import { useState } from "react";
+import { Modal } from "react-bootstrap";
 
-import './TabsNFTModal.css';
-import { NFTModal, collection, imageNft, btnLeft, btnRight } from './imports';
+import "./TabsNFTModal.css";
+import { NFTModal, collection, imageNft, btnLeft, btnRight } from "./imports";
 import {
   ButtonOffer,
   FormButton,
@@ -49,7 +49,7 @@ import {
   CheckboxLabel,
   LinkAgreement,
   ModalNftDiv,
-} from './ModalsNFT.styles';
+} from "./ModalsNFT.styles";
 
 const ModalsNFT: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -176,7 +176,7 @@ const ModalsNFT: React.FC = () => {
               className="custom-checkbox"
             />
             <CheckboxLabel htmlFor="poject">
-              I agree to the platform{' '}
+              I agree to the platform{" "}
               <LinkAgreement> agreement ...</LinkAgreement>
             </CheckboxLabel>
           </OfferDiv>

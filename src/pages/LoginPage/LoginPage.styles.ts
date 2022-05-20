@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const LoginSec = styled.div`
   padding: 9.5rem 0;

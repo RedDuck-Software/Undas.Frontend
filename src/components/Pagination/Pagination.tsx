@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { PaginationList, PageItem, PageLink } from './Pagination.styles';
+import { PaginationList, PageItem, PageLink } from "./Pagination.styles";
 
 type PaginationType = {
   itemPerPage: number;

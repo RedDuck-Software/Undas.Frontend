@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Swiper
-import SwiperClass, { FreeMode, Navigation, Thumbs } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperClass, { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
-import './AboutSlides.css';
+import "./AboutSlides.css";
 
 import {
   SliderImg1,
@@ -16,8 +16,8 @@ import {
   SliderImg3,
   SliderImg4,
   SliderImg5,
-} from './imports';
-import { SliderImage } from './Slider.styles';
+} from "./imports";
+import { SliderImage } from "./Slider.styles";
 
 export default function AboutSlider() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass>();

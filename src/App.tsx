@@ -1,17 +1,17 @@
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { useWeb3React } from '@web3-react/core';
-import React, { useState, useEffect } from 'react';
-import { MoralisProvider } from 'react-moralis';
-import { Route, Routes } from 'react-router-dom';
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { useWeb3React } from "@web3-react/core";
+import React, { useState, useEffect } from "react";
+import { MoralisProvider } from "react-moralis";
+import { Route, Routes } from "react-router-dom";
 
-import { Navbar } from './components';
-import Modal from './components/Modal/Modal';
+import { Navbar } from "./components";
+import Modal from "./components/Modal/Modal";
 import {
   injected,
   walletconnect,
   fortmatic,
   walletlink,
-} from './components/Wallets/Connectors';
+} from "./components/Wallets/Connectors";
 import {
   HomePage,
   LoginPage,
@@ -33,30 +33,30 @@ import {
   Settings,
   TopCollectionPage,
   Blog,
-} from './pages';
-import ActivityPage from './pages/Activity/ActivityPage';
-import NFTPageSell from './pages/NFTPage/NFTPageSell/NFTPageSell';
-import ProductForSale from './pages/ProductForSale/ProductForSale';
-import { ConnectorState } from './types/ConnectorState';
-import Context from './utils/Context';
+} from "./pages";
+import ActivityPage from "./pages/Activity/ActivityPage";
+import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
+import ProductForSale from "./pages/ProductForSale/ProductForSale";
+import { ConnectorState } from "./types/ConnectorState";
+import Context from "./utils/Context";
 
 const App: React.FC = () => {
   const web3Current = useWeb3React();
-  const connectorName = localStorage.getItem('connector');
+  const connectorName = localStorage.getItem("connector");
 
   useEffect(() => {
     switch (connectorName) {
-      case 'injected':
+      case "injected":
         web3Current.activate(injected);
         break;
-      case 'walletconnect':
+      case "walletconnect":
         walletconnect.walletConnectProvider = undefined;
         web3Current.activate(walletconnect);
         break;
-      case 'fortmatic':
+      case "fortmatic":
         web3Current.activate(fortmatic);
         break;
-      case 'walletlink':
+      case "walletlink":
         web3Current.activate(walletlink);
         break;
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   CardWrap,
@@ -8,10 +8,10 @@ import {
   Description,
   Creator,
   PurpleText,
-} from './CollectionCard.styles';
+} from "./CollectionCard.styles";
 
-import { Platform, Wrapper } from '../../../CategoriesPage/Categories.styles';
-import { Verified } from '../../../CategoriesPage/imports';
+import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
+import { Verified } from "../../../CategoriesPage/imports";
 import {
   CollectionPic,
   TwitterIco,
@@ -19,7 +19,7 @@ import {
   DiscordIco,
   InstagramIco,
   SiteIco,
-} from '../../imports';
+} from "../../imports";
 
 const CollectionCard: React.FC = () => {
   return (

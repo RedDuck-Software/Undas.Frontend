@@ -1,6 +1,6 @@
 export const calculateRequiredPayments = (
   deadline: number,
-  startRentalUTC: number,
+  startRentalUTC: number
 ) => {
   if (startRentalUTC === 0) return 0;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   RewardMenuWrap,
@@ -21,7 +21,7 @@ import {
   CentralBlockHead,
   RightBlockHead,
   RightBlockButton,
-} from './Menu.styles';
+} from "./Menu.styles";
 
 import {
   HoldingIco,
@@ -37,14 +37,14 @@ import {
   SolanaIco,
   FtmIco,
   AvaxIco,
-} from '../../imports';
-import RewardTable from '../RewardTable/RewardTable';
+} from "../../imports";
+import RewardTable from "../RewardTable/RewardTable";
 import {
   ContentTable,
   ContentTr,
   ContentTd,
   Icon,
-} from '../RewardTable/RewardTable.styles';
+} from "../RewardTable/RewardTable.styles";
 
 const RewardMenu: React.FC = () => {
   return (

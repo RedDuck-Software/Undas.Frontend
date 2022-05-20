@@ -1,8 +1,8 @@
-import { css } from '@emotion/react';
-import { ethers } from 'ethers';
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from "@emotion/react";
+import { ethers } from "ethers";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import {
   ProductPrice,
@@ -11,7 +11,7 @@ import {
   Staking,
   ItemActivity,
   MoreFromCollection,
-} from './page-components';
+} from "./page-components";
 import {
   LeftSide,
   CardImageContainer,
@@ -20,17 +20,17 @@ import {
   ProductContainer,
   ProductContainerCenter,
   RightSide,
-} from './ProductCard.styles';
+} from "./ProductCard.styles";
 
-import { Background } from '../../globalStyles';
-import { UndasGeneralNFT__factory } from '../../typechain';
-import { NFT_ADDRESS } from '../../utils/addressHelpers';
-import Context from '../../utils/Context';
-import { getListing } from '../../utils/getListing';
-import { getNFTListingIds } from '../../utils/getNFTListingIds';
-import { getNFTStakingIds } from '../../utils/getNFTStakingIds';
-import { getStaking } from '../../utils/getStaking';
-import getTokenURI from '../../utils/getTokenURI';
+import { Background } from "../../globalStyles";
+import { UndasGeneralNFT__factory } from "../../typechain";
+import { NFT_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
+import { getListing } from "../../utils/getListing";
+import { getNFTListingIds } from "../../utils/getNFTListingIds";
+import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
+import { getStaking } from "../../utils/getStaking";
+import getTokenURI from "../../utils/getTokenURI";
 
 const ProductCard: React.FC = () => {
   const { connector } = useContext(Context);
@@ -55,7 +55,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -73,7 +73,7 @@ const ProductCard: React.FC = () => {
 
     if (
       address === owner &&
-      maker === '0x0000000000000000000000000000000000000000'
+      maker === "0x0000000000000000000000000000000000000000"
     ) {
       setShowStaking(true);
     }
@@ -83,7 +83,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -100,7 +100,7 @@ const ProductCard: React.FC = () => {
 
     if (
       address === owner &&
-      seller === '0x0000000000000000000000000000000000000000'
+      seller === "0x0000000000000000000000000000000000000000"
     ) {
       setShowBuy(true);
     }
@@ -110,7 +110,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
 
     const signer = provider.getSigner(0);
@@ -128,7 +128,7 @@ const ProductCard: React.FC = () => {
 
     if (
       address !== owner &&
-      maker !== '0x0000000000000000000000000000000000000000'
+      maker !== "0x0000000000000000000000000000000000000000"
     ) {
       setShowRent(true);
     }
@@ -141,7 +141,7 @@ const ProductCard: React.FC = () => {
     const stakingId = await getNFTStakingIds(
       NFT_ADDRESS,
       Number(pageId),
-      connector,
+      connector
     );
 
     setStakingId(stakingId!.value.toNumber());
@@ -159,7 +159,7 @@ const ProductCard: React.FC = () => {
     const listingId = await getNFTListingIds(
       NFT_ADDRESS,
       Number(pageId),
-      connector,
+      connector
     );
 
     setListingId(listingId!.value.toNumber());
@@ -185,7 +185,7 @@ const ProductCard: React.FC = () => {
     <Background>
       {loading ? (
         <ClipLoader
-          color={'#BD10E0'}
+          color={"#BD10E0"}
           css={override}
           loading={loading}
           size={150}

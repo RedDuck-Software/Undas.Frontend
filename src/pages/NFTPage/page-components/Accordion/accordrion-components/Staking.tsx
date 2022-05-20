@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   StakingWrap,
@@ -10,7 +10,7 @@ import {
   StakingHeadTdMobile,
   StakingTdMobile,
   StakingTrMobile,
-} from '../Accordion.styles';
+} from "../Accordion.styles";
 
 const Staking: React.FC = () => {
   return (

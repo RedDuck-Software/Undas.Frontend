@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import {
   AllNFTContainer,
@@ -14,17 +14,17 @@ import {
   FilterMenu,
   SettingsElement,
   ViewOption,
-} from './AllNFTs.styles';
-import { GridIco, ListIco } from './imports';
-import CardLineNFT from './page-components/CardLineNFT/CardLineNFT';
+} from "./AllNFTs.styles";
+import { GridIco, ListIco } from "./imports";
+import CardLineNFT from "./page-components/CardLineNFT/CardLineNFT";
 
-import ASideFilter from '../../components/ASideFilter/ASideFilter';
-import AllGridWrap from '../../components/NFTCard/Grid/AllGridWrap';
-import { Wrapper } from '../CategoriesPage/Categories.styles';
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const AllNFTs: React.FC = () => {
   const [results, setResults] = useState<any>();
-  const [priceFilter, setPriceFilter] = useState<string>('');
+  const [priceFilter, setPriceFilter] = useState<string>("");
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
@@ -44,7 +44,6 @@ const AllNFTs: React.FC = () => {
           <SettingsBlock>
             <SettingsElement>
               <ViewOption>
-
                 <ViewButton className="grid-active">
                   <GridIco />
                 </ViewButton>
@@ -53,7 +52,7 @@ const AllNFTs: React.FC = () => {
                 </ViewButton>
               </ViewOption>
             </SettingsElement>
-            <Filter className={active.price && 'price-active'}>
+            <Filter className={active.price && "price-active"}>
               <FilterItem
                 onClick={() => {
                   if (!active.price) {
@@ -62,13 +61,13 @@ const AllNFTs: React.FC = () => {
                 }}
               >
                 <FilterTitle>Sort by Price</FilterTitle>
-                <Arrow className={active.price && 'price-active'} />
+                <Arrow className={active.price && "price-active"} />
               </FilterItem>
-              <FilterMenu className={active.price && 'price-active'}>
+              <FilterMenu className={active.price && "price-active"}>
                 <MenuItem
                   hover={true}
                   onClick={() => {
-                    setPriceFilter('low-to-high');
+                    setPriceFilter("low-to-high");
                   }}
                 >
                   <span>Price: Low to High</span>
@@ -76,14 +75,14 @@ const AllNFTs: React.FC = () => {
                 <MenuItem
                   hover={true}
                   onClick={() => {
-                    setPriceFilter('high-to-low');
+                    setPriceFilter("high-to-low");
                   }}
                 >
                   <span>Price: High to Low</span>
                 </MenuItem>
               </FilterMenu>
             </Filter>
-            <Filter className={active.event && 'event-active'}>
+            <Filter className={active.event && "event-active"}>
               <FilterItem
                 onClick={() => {
                   if (!active.event) {
@@ -92,9 +91,9 @@ const AllNFTs: React.FC = () => {
                 }}
               >
                 <FilterTitle>Sort by Event</FilterTitle>
-                <Arrow className={active.event && 'event-active'} />
+                <Arrow className={active.event && "event-active"} />
               </FilterItem>
-              <FilterMenu className={active.event && 'event-active'}>
+              <FilterMenu className={active.event && "event-active"}>
                 <MenuItem hover={true}>
                   <span>Newly Created</span>
                 </MenuItem>
@@ -112,10 +111,13 @@ const AllNFTs: React.FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
+        <AllGridWrap
+          getResults={(amount: any) => setResults(amount)}
+          priceFilter={priceFilter}
+        />
 
         <div>
-        <CardLineNFT/>
+          <CardLineNFT />
         </div>
         {/* <TabsMenu>
           <Tab onClick={() => setTab('grid')}>

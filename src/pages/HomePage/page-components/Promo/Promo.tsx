@@ -1,17 +1,17 @@
-import React from 'react';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import { PromoSlide, SlideText } from './Promo.styles';
+import { PromoSlide, SlideText } from "./Promo.styles";
 
-import './PromoSlider.css';
+import "./PromoSlider.css";
 
 const Promo: React.FC = () => {
   return (
     <Swiper
       className="promo-slider"
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
+      onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
       modules={[Navigation]}
       loop={true}

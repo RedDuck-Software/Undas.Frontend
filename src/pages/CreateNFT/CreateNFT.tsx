@@ -1,7 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 
 import {
   CreateSec,
@@ -23,7 +23,7 @@ import {
   ButtonsBlock,
   WithPropertiesBlock,
   CreateFormButton,
-} from './CreateNFT.styles';
+} from "./CreateNFT.styles";
 import {
   ImgIcon,
   PropertiesIco,
@@ -31,17 +31,17 @@ import {
   StatsIco,
   UnlockableContentIco,
   ExplicitContentIco,
-} from './imports';
-import Levels from './page-components/Levels';
-import Properties from './page-components/Properties';
-import LevelsModal from './page-components/SettingsModal/LevelsModal';
-import PropertiesModal from './page-components/SettingsModal/PropertiesModal';
-import StatsModal from './page-components/SettingsModal/StatsModal';
-import Stats from './page-components/Stats';
-import Switcher from './page-components/Switcher/Switcher';
+} from "./imports";
+import Levels from "./page-components/Levels";
+import Properties from "./page-components/Properties";
+import LevelsModal from "./page-components/SettingsModal/LevelsModal";
+import PropertiesModal from "./page-components/SettingsModal/PropertiesModal";
+import StatsModal from "./page-components/SettingsModal/StatsModal";
+import Stats from "./page-components/Stats";
+import Switcher from "./page-components/Switcher/Switcher";
 
-import { Background } from '../../globalStyles';
-import { FormButtonsWrap } from '../Settings/SettingsTabs/Profile/ProfileSettings.styles';
+import { Background } from "../../globalStyles";
+import { FormButtonsWrap } from "../Settings/SettingsTabs/Profile/ProfileSettings.styles";
 
 type CreateSubmitForm = {
   externalLink: string;
@@ -56,16 +56,16 @@ const CreateNFT: React.FC = () => {
   // const web3ReactState = useWeb3React();
   // const { account } = web3ReactState;
 
-  const [externalLink, setExternalLink] = useState('');
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [supply, setSupply] = useState('');
-  const [freezeMetadata, setFreezeMetadata] = useState('');
+  const [externalLink, setExternalLink] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [supply, setSupply] = useState("");
+  const [freezeMetadata, setFreezeMetadata] = useState("");
 
   const validationSchema = Yup.object().shape({
-    contentURL: Yup.string().required('External Link is required'),
-    name: Yup.string().required('Name is required'),
-    description: Yup.string().required('Description is required'),
+    contentURL: Yup.string().required("External Link is required"),
+    name: Yup.string().required("Name is required"),
+    description: Yup.string().required("Description is required"),
   });
 
   const { register } = useForm<CreateSubmitForm>({
@@ -124,7 +124,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="Item name"
                 maxLength={25}
                 required
-                {...register('name')}
+                {...register("name")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -140,7 +140,7 @@ const CreateNFT: React.FC = () => {
                 type="text"
                 id="external-link"
                 placeholder="https://yoursite.io/item/123"
-                {...register('externalLink')}
+                {...register("externalLink")}
                 value={externalLink}
                 onChange={(e) => setExternalLink(e.target.value)}
               />
@@ -155,7 +155,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="Provide a detailed description of your item"
                 id="description"
                 maxLength={500}
-                {...register('description')}
+                {...register("description")}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -242,13 +242,13 @@ const CreateNFT: React.FC = () => {
             <CreateFormGroup>
               <CreateLabel htmlFor="supply">Supply</CreateLabel>
               <BlockDescript>
-                The number of items that can be minted. No gas cost to you!{' '}
+                The number of items that can be minted. No gas cost to you!{" "}
               </BlockDescript>
               <CreateInput
                 type="text"
                 id="supply"
                 placeholder="1"
-                {...register('supply')}
+                {...register("supply")}
                 value={supply}
                 onChange={(e) => setSupply(e.target.value)}
               />
@@ -266,7 +266,7 @@ const CreateNFT: React.FC = () => {
                 type="text"
                 id="freeze-metadata"
                 placeholder="To freeze your metadata, you must create your item first"
-                {...register('freezeMetadata')}
+                {...register("freezeMetadata")}
                 value={freezeMetadata}
                 onChange={(e) => setFreezeMetadata(e.target.value)}
               />

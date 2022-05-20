@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import './tabs-nft.css';
+import "./tabs-nft.css";
 
-import { ethereum, time } from './imports';
+import { ethereum, time } from "./imports";
 
 export const InputTypeYourBid = styled.input`
   position: absolute;
@@ -13,7 +13,7 @@ export const InputTypeYourBid = styled.input`
   height: 36px;
   bottom: 50px;
   left: 150px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -28,7 +28,7 @@ export const InputTypeYourBid = styled.input`
   }
 `;
 export const ReturneText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -47,7 +47,7 @@ export const ButtonRent = styled.button`
   bottom: 50px;
   left: 15px;
   border: none;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -63,7 +63,7 @@ export const ButtonRentSale = styled.button`
   bottom: 50px;
   left: 15px;
   border: none;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -79,7 +79,7 @@ export const ButtonOffer = styled.button`
   height: 36px;
   bottom: 50px;
   left: 150px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -95,7 +95,7 @@ export const ButtonBid = styled.button`
   height: 36px;
   bottom: 50px;
   left: 333px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -103,7 +103,7 @@ export const ButtonBid = styled.button`
   color: #873dc1;
 `;
 export const SpanSale = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -139,7 +139,7 @@ export const DivDeposit = styled.div`
 `;
 export const DepositText = styled.span`
   position: absolute;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -152,7 +152,7 @@ export const EthereumText = styled.div`
   position: absolute;
   right: 10px;
   top: 11px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -189,7 +189,7 @@ export const PeriodText = styled.div`
   position: absolute;
   right: 10px;
   top: 11px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -217,7 +217,7 @@ export const BtnMakeOffer = styled.button`
     ),
     #873dc1;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

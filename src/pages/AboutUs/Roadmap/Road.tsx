@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Line, Circle, LineWrap } from './Road.styles';
+import { Line, Circle, LineWrap } from "./Road.styles";
 
 const Road = () => {
   return (

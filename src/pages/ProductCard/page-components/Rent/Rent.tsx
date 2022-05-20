@@ -1,8 +1,8 @@
-import { useWeb3React } from '@web3-react/core';
-import { ethers } from 'ethers';
-import React from 'react';
-import { useState, useContext, useEffect } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+import React from "react";
+import { useState, useContext, useEffect } from "react";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import {
   RentContainer,
@@ -15,22 +15,22 @@ import {
   RentTableBody,
   TableColumn,
   ButtonRow,
-} from './Rent.styles';
+} from "./Rent.styles";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 import {
   UndasGeneralNFT__factory,
   Marketplace__factory,
-} from '../../../../typechain';
+} from "../../../../typechain";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import { calculateRequiredPayments } from '../../../../utils/calculateRequiredPayments';
-import { calculateTerm } from '../../../../utils/calculateTerm';
-import { canRentNFTFunction } from '../../../../utils/canRentNFT';
-import Context from '../../../../utils/Context';
-import { getStaking } from '../../../../utils/getStaking';
+} from "../../../../utils/addressHelpers";
+import { calculateRequiredPayments } from "../../../../utils/calculateRequiredPayments";
+import { calculateTerm } from "../../../../utils/calculateTerm";
+import { canRentNFTFunction } from "../../../../utils/canRentNFT";
+import Context from "../../../../utils/Context";
+import { getStaking } from "../../../../utils/getStaking";
 
 const Rent: React.FC<{ id: number }> = ({ id }) => {
   const { connector } = useContext(Context);
@@ -54,7 +54,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     if (!connector || !rentOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
@@ -62,12 +62,12 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -90,13 +90,13 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
   const payPremium = async (itemId: number) => {
     if (!connector || !rentOpen) return;
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const tx = await MarketplaceContract.payPremium(itemId, {
@@ -110,7 +110,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
   const stopRental = async (itemId: number) => {
     if (!connector) return;
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
@@ -119,12 +119,12 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -143,13 +143,13 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
   const getDateOfNextPayment = async (itemId: number) => {
     if (!connector) return;
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const tx = await MarketplaceContract.dateOfNextPayment(itemId);
@@ -163,13 +163,13 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       return;
     }
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const productValue = await getStaking(id, connector);
@@ -179,12 +179,12 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const { deadline, startRentalUTC } = productValue.tx;
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const startRentalUTCInNum = Number(
-      ethers.utils.formatUnits(startRentalUTC, 0),
+      ethers.utils.formatUnits(startRentalUTC, 0)
     );
 
     const requiredPayments = calculateRequiredPayments(
       deadlineInNum,
-      startRentalUTCInNum,
+      startRentalUTCInNum
     );
     const paymentsDue = await MarketplaceContract.paymentsDue(itemId);
 
@@ -206,8 +206,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       return;
     }
 
-    const { collateral, premium, deadline, paymentsAmount } =
-      ProductValue.tx;
+    const { collateral, premium, deadline, paymentsAmount } = ProductValue.tx;
 
     const deadlineInNum = Number(ethers.utils.formatUnits(deadline, 0));
     const deadlineInSecs = deadlineInNum;
@@ -216,7 +215,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
     const collateralInNum = Number(ethers.utils.formatUnits(collateral, 18));
     const paymentsAmountInNum = Number(
-      ethers.utils.formatUnits(paymentsAmount, 0),
+      ethers.utils.formatUnits(paymentsAmount, 0)
     );
 
     setCollateral(collateralInNum);
@@ -239,11 +238,11 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       return;
     }
     const dateOfNextPaymentInNum = Number(
-      ethers.utils.formatUnits(dateOfNextPayment, 0),
+      ethers.utils.formatUnits(dateOfNextPayment, 0)
     );
     const now = Date.now();
     const nextPaymentDateInDays = Math.round(
-      (dateOfNextPaymentInNum - now / 1000) / 86400,
+      (dateOfNextPaymentInNum - now / 1000) / 86400
     );
 
     setNextPaymentDate(Math.round(nextPaymentDateInDays));
@@ -253,7 +252,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     if (isRented) {
@@ -263,7 +262,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     getProductValue();
@@ -315,7 +314,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
                       <TableRow>
                         <TableColumn>Payments to be made already</TableColumn>
                         <TableColumn>
-                          {paymentsDue > 0 ? paymentsDue : 'All paid!'}
+                          {paymentsDue > 0 ? paymentsDue : "All paid!"}
                         </TableColumn>
                       </TableRow>
                     </>

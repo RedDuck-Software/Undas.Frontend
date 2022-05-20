@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const EarningsWrap = styled.div`
   padding-bottom: 80px;

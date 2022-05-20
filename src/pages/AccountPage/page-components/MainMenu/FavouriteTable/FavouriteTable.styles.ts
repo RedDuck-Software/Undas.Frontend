@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { top, buttom } from '../../../imports';
+import { top, buttom } from "../../../imports";
 
 export const FavouriteSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -48,7 +48,7 @@ export const ItemIcon = styled.div`
   }
 `;
 export const ItemName = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -64,7 +64,7 @@ export const UNDText = styled.span`
   margin-right: 5px;
   margin-left: -49px;
   margin-top: 30px;
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -109,26 +109,26 @@ export const PriceTextW = styled.div`
   float: left;
 `;
 export const PercentTextTop = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #008c38;
   &:after {
-    content: url('${top}');
+    content: url("${top}");
     margin-left: 10px;
   }
 `;
 export const PercentTextButtom = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #cc252f;
   &:after {
-    content: url('${buttom}');
+    content: url("${buttom}");
     margin-left: 10px;
   }
 `;

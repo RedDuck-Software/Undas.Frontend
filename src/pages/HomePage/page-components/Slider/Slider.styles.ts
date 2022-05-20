@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { CollectionPrev } from './imports';
+import { CollectionPrev } from "./imports";
 
 export const SliderImage = styled.img`
   width: 100%;
@@ -27,7 +27,7 @@ export const UndasDiv = styled.div`
 `;
 
 export const TextGet = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: semibold;
   font-weight: 600;
   font-size: 36px;
@@ -39,7 +39,7 @@ export const TextGet = styled.span`
   text-fill-color: transparent;
 `;
 export const TextUndas = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -51,7 +51,7 @@ export const TextUndas = styled.span`
   text-fill-color: transparent;
 `;
 export const TextStacking = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -89,7 +89,7 @@ export const ExploreButton = styled.button`
   background: #873dc1;
   border-radius: 10px;
   border: none;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -104,7 +104,7 @@ export const CreateButton = styled.button`
   border: 1px solid #873dc1;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -145,7 +145,7 @@ export const IMGdiv = styled.div`
   position: absolute;
 `;
 export const CollectionTitle = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -157,7 +157,7 @@ export const CollectionTitle = styled.span`
   width: 100px;
 `;
 export const SeeCollection = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

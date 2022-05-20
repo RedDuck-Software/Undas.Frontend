@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   MetaversesImg,
@@ -6,7 +6,7 @@ import {
   CelebrityImg,
   RwaImg,
   ArtworkImg,
-} from './imports';
+} from "./imports";
 import {
   RecommendedContainer,
   Title,
@@ -16,7 +16,7 @@ import {
   TitleWrap,
   Name,
   Image,
-} from './Recommended.styles';
+} from "./Recommended.styles";
 
 const Recommended: React.FC = () => {
   return (

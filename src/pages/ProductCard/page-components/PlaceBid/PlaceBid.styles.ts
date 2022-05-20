@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Button } from '../../../../globalStyles';
-import Rhombus from '../../../../icons/rhombus.svg';
+import { Button } from "../../../../globalStyles";
+import Rhombus from "../../../../icons/rhombus.svg";
 
 export const PlaceBidWrapper = styled.div`
   position: relative;
@@ -50,7 +50,7 @@ export const DropdownLine = styled.div`
 
 export const DropdownPrice = styled.span`
   &:after {
-    content: url('${Rhombus}');
+    content: url("${Rhombus}");
     position: relative;
     top: 2px;
   }
@@ -99,7 +99,7 @@ export const DropdownButton = styled(Button)`
             background: #D8D8D8;
           }
           `
-      : ''}
+      : ""}
 
   ${Button}
 `;

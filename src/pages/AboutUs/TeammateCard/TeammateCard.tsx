@@ -1,13 +1,13 @@
-import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Card, Row, Col } from "react-bootstrap";
 
-import { CardImg1, CardImg2, LinkedInIco, TwitterIco } from './imports';
+import { CardImg1, CardImg2, LinkedInIco, TwitterIco } from "./imports";
 import {
   CardWrap,
   TeamCard,
   TeamCardTitle,
   TeamCardLink,
-} from './TeammateCard.styles';
+} from "./TeammateCard.styles";
 
 const TeammateCards = () => {
   return (

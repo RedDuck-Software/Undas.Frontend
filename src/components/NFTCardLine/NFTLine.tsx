@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { ContainerLine } from './NFTLine.styles';
+import { ContainerLine } from "./NFTLine.styles";
 
 interface NFTGridProps {
   tokenId: number;

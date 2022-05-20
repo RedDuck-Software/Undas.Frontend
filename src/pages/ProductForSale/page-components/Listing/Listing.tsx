@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import React, { useState } from "react";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import {
   ListingContainer,
@@ -13,7 +13,7 @@ import {
   TableColumn,
   PriceNumber,
   BuyButton,
-} from './Listing.styled';
+} from "./Listing.styled";
 
 const Listing: React.FC = () => {
   const [Listing, setListing] = useState(false);

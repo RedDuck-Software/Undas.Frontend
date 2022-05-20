@@ -1,19 +1,19 @@
-import { ethers } from 'ethers';
-import React, { FC, useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import ClipLoader from 'react-spinners/ClipLoader';
+import { ethers } from "ethers";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
 
-import NFTGrid from './NFTGrid';
+import NFTGrid from "./NFTGrid";
 
-import { GridLayout } from '../../../pages/AllNFTs/AllNFTs.styles';
-import { useFilter } from '../../../store';
-import { canRentNFTFunction } from '../../../utils/canRentNFT';
-import Context from '../../../utils/Context';
-import { getListing } from '../../../utils/getListing';
-import { getListingsLastIndex } from '../../../utils/getListingsLastIndex';
-import { getStaking } from '../../../utils/getStaking';
-import { getStakingsLastIndex } from '../../../utils/getStakingsLastIndex';
-import { isBuyableFunction } from '../../../utils/isBuyable';
+import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
+import { useFilter } from "../../../store";
+import { canRentNFTFunction } from "../../../utils/canRentNFT";
+import Context from "../../../utils/Context";
+import { getListing } from "../../../utils/getListing";
+import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
+import { getStaking } from "../../../utils/getStaking";
+import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
+import { isBuyableFunction } from "../../../utils/isBuyable";
 
 /* interface CardListProps {
   newFilter?: boolean;
@@ -106,7 +106,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       const CardProps = await getStaking(i, connector);
 
       let canRentNFT;
-      if (CardProps?.tx.tokenId._hex !== '0x00') {
+      if (CardProps?.tx.tokenId._hex !== "0x00") {
         canRentNFT = await canRentNFTFunction(i, connector);
       }
 
@@ -140,7 +140,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
 
   useEffect(() => {
     if (!connector) {
-      return console.log('loading');
+      return console.log("loading");
     }
 
     setLoading(false);
@@ -152,7 +152,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
   const priceSort = async () => {
     if (!priceFilter) return list;
     let sortedArr;
-    if (priceFilter === 'low-to-high') {
+    if (priceFilter === "low-to-high") {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! > b.priceInNum!) {
           return 1;
@@ -164,7 +164,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       });
       return sortedArr;
     }
-    if (priceFilter === 'high-to-low') {
+    if (priceFilter === "high-to-low") {
       sortedArr = await list?.sort((a, b) => {
         if (a.priceInNum! < b.priceInNum!) {
           return 1;
@@ -191,7 +191,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       } else {
         priceSort()
           .then((sortedArr) => {
-            console.log('sortedArr: ', sortedArr);
+            console.log("sortedArr: ", sortedArr);
             setList(sortedArr);
           })
           .catch((e) => console.log(e));
@@ -202,18 +202,18 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
         ];
         common = common.filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.id === value.id),
+            index === self.findIndex((t) => t.id === value.id)
         );
         setCommonList(common);
-        console.log('list: ', list);
-        console.log('common: ', commonList);
+        console.log("list: ", list);
+        console.log("common: ", commonList);
       }
     }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
 
   return loading ? (
-    <ClipLoader color={'#BD10E0'} loading={loading} size={150} />
+    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
     <>
       <GridLayout>

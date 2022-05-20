@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { MoneyIco, HandIco, NFTIco, SaleIco } from './imports';
-import { InfoBlock, InfoWrap, InfoList, InfoText } from './Info.styles';
+import { MoneyIco, HandIco, NFTIco, SaleIco } from "./imports";
+import { InfoBlock, InfoWrap, InfoList, InfoText } from "./Info.styles";
 
 const Info: React.FC = () => {
   return (

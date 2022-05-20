@@ -1,5 +1,5 @@
 export const getId = (number: number) => {
-  let id = '';
+  let id = "";
 
   if (number < 10) {
     id = `00${number}`;

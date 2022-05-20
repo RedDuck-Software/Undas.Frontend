@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import React, { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 import {
   PriceHistoryTop,
@@ -12,7 +12,7 @@ import {
   PriceHistoryGraph,
   PriceHistoryGraphContainer,
   PriceHistoryPage,
-} from './PriceHistory.styles';
+} from "./PriceHistory.styles";
 
 const PriceHistory: React.FC = () => {
   const [isPriceHistoryOpen] = useState(false);

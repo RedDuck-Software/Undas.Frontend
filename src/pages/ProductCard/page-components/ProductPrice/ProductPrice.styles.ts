@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Rhombus from '../../../../icons/rhombus.svg';
+import Rhombus from "../../../../icons/rhombus.svg";
 
 export const Price = styled.div`
   padding: 1rem 0;
@@ -28,7 +28,7 @@ export const PriceContainer = styled.div`
   }
 
   &:before {
-    content: url('${Rhombus}');
+    content: url("${Rhombus}");
     position: relative;
     top: 2px;
     margin-right: 5px;

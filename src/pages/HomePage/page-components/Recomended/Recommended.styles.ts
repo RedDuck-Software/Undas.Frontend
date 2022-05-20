@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const RecommendedContainer = styled.div`
   margin-top: 80px;
@@ -12,7 +12,7 @@ export const Title = styled.h2`
   line-height: 44px;
   color: #232428;
   &:before {
-    content: '';
+    content: "";
     display: inline-block;
     margin-right: 10px;
     transform: translateY(-10px);

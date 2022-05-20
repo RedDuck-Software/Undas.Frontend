@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   ASideWrap,
@@ -17,16 +17,10 @@ import {
   PriceElement,
   ApplyBtn,
   PriceVariations,
-} from './ASideFilter.styles';
-import {
-  FilterIco,
-  StatusIco,
-  PriceIco,
-  UsdIco,
-  EthIco,
-} from './imports';
+} from "./ASideFilter.styles";
+import { FilterIco, StatusIco, PriceIco, UsdIco, EthIco } from "./imports";
 
-import { filterAction } from '../../store/reducers/filterReducer';
+import { filterAction } from "../../store/reducers/filterReducer";
 
 const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
   const dispatch = useDispatch();
@@ -38,14 +32,14 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
   const [priceMenu, setPriceMenu] = useState<boolean>(false);
   const [priceCurrency, setPriceCurrency] = useState([
     {
-      currency: 'eth',
-      text: 'Ether (ETH)',
+      currency: "eth",
+      text: "Ether (ETH)",
       ico: <EthIco />,
       selected: true,
     },
     {
-      currency: 'usd',
-      text: 'United States Dollar (USD)',
+      currency: "usd",
+      text: "United States Dollar (USD)",
       ico: <UsdIco />,
       selected: false,
     },
@@ -67,14 +61,14 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
           item.selected = true;
         }
         return { ...item };
-      }),
+      })
     );
   };
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
   return (
-    <ASideWrap className={(active && 'active') || ''}>
+    <ASideWrap className={(active && "active") || ""}>
       <Holder marginTop={marginTop}>
         <HolderElement
           onClick={() => {
@@ -103,12 +97,12 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
           <StatusIco />
           <ElementText>Status</ElementText>
           <AccordionArrow
-            className={(activeMenu.status && 'active-status') || ''}
+            className={(activeMenu.status && "active-status") || ""}
           />
         </HolderElement>
         <AccordionMenu
           mh="146px"
-          className={(activeMenu.status && 'active-status') || ''}
+          className={(activeMenu.status && "active-status") || ""}
         >
           <AccordionElement
             onClick={() => {
@@ -159,19 +153,19 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
           <PriceIco />
           <ElementText>Price</ElementText>
           <AccordionArrow
-            className={(activeMenu.price && 'active-price') || ''}
+            className={(activeMenu.price && "active-price") || ""}
           />
         </HolderElement>
         <AccordionMenu
           mh="178px"
-          className={(activeMenu.price && 'active-price') || ''}
+          className={(activeMenu.price && "active-price") || ""}
         >
           <AccordionElement padd="15px 15px 20px 15px" direction="column">
             {priceCurrency.map((item) => {
               if (item.selected)
                 return (
                   <PriceElement
-                    className={(priceMenu && 'price-menu-active') || ''}
+                    className={(priceMenu && "price-menu-active") || ""}
                     onClick={() => {
                       !priceMenu ? setPriceMenu(true) : setPriceMenu(false);
                     }}
@@ -179,12 +173,12 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
                     {item.ico}
                     <span>{item.text}</span>
                     <AccordionArrow
-                      className={(priceMenu && 'price-menu-active') || ''}
+                      className={(priceMenu && "price-menu-active") || ""}
                     />
                   </PriceElement>
                 );
             })}
-            <PriceSelect className={(priceMenu && 'price-menu-active') || ''}>
+            <PriceSelect className={(priceMenu && "price-menu-active") || ""}>
               {variations.map((item) => {
                 return (
                   <PriceVariations

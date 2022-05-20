@@ -1,6 +1,6 @@
-import { ethers } from 'ethers';
-import React, { useState, useContext, useEffect } from 'react';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { ethers } from "ethers";
+import React, { useState, useContext, useEffect } from "react";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import {
   StakingContainer,
@@ -15,35 +15,35 @@ import {
   TableColumn,
   ButtonRow,
   CongratulationContainer,
-} from './Staking,styles';
+} from "./Staking,styles";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 import {
   UndasGeneralNFT__factory,
   Marketplace__factory,
-} from '../../../../typechain';
+} from "../../../../typechain";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
-} from '../../../../utils/addressHelpers';
-import Context from '../../../../utils/Context';
-import { getNFTStakingIds } from '../../../../utils/getNFTStakingIds';
-import intervalIntoTimeStamp from '../../../../utils/intervalIntoTimeStamp';
+} from "../../../../utils/addressHelpers";
+import Context from "../../../../utils/Context";
+import { getNFTStakingIds } from "../../../../utils/getNFTStakingIds";
+import intervalIntoTimeStamp from "../../../../utils/intervalIntoTimeStamp";
 
 const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const [stakingOpen, setStakingOpen] = useState(false);
   const [isPuttedForStaking, setIsPuttedForStaking] = useState<boolean>();
   const [stakingId, setStakingId] = useState<number>();
   const { connector } = useContext(Context);
-  const [price, setPrice] = useState('280');
-  const [deadline, setDeadline] = useState('7');
-  const [premium, setPremium] = useState('15');
+  const [price, setPrice] = useState("280");
+  const [deadline, setDeadline] = useState("7");
+  const [premium, setPremium] = useState("15");
 
   const quoteForStaking = async () => {
     if (!connector || !stakingOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
@@ -52,12 +52,12 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
+      MARKETPLACE_ADDRESS
     );
 
     if (!isApprovedForAll) {
@@ -72,7 +72,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       ethers.utils.parseEther(price.toString()),
       ethers.utils.parseEther(premium.toString()),
       intervalIntoTimeStamp(deadline),
-      { value: ethers.utils.parseEther('0.1') },
+      { value: ethers.utils.parseEther("0.1") }
     );
     await tx.wait();
   };
@@ -81,13 +81,13 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || !stakingOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider()
     );
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer,
+      signer
     );
 
     const tx = await MarketplaceContract.stopStaking(stakingId!);

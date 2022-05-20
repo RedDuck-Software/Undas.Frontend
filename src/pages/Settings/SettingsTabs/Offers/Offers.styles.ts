@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { InformIco } from './imports';
+import { InformIco } from "./imports";
 
 export const OffersWrap = styled.div`
   padding-bottom: 80px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   CardItemContainer,
@@ -8,7 +8,7 @@ import {
   CardNumber,
   CardPrice,
   CardETH,
-} from './CardItem.styles';
+} from "./CardItem.styles";
 
 interface CardItemProps {
   image?: string;

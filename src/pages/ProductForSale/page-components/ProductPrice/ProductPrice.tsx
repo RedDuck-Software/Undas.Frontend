@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   ProductPriceContainer,
@@ -6,9 +6,9 @@ import {
   CurrentPrice,
   PriceContainer,
   ButtonsContainer,
-} from './ProductPrice.styles';
+} from "./ProductPrice.styles";
 
-import { Button } from '../../../../globalStyles';
+import { Button } from "../../../../globalStyles";
 
 const ProductPrice: React.FC = () => {
   return (

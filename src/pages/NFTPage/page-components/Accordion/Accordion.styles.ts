@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import { Arrow } from '../../../AllNFTs/AllNFTs.styles';
-import { EthIco, EthBlack } from '../../imports';
+import { Arrow } from "../../../AllNFTs/AllNFTs.styles";
+import { EthIco, EthBlack } from "../../imports";
 
 export const AccordionWrap = styled.ul`
   margin-top: 20px;
@@ -62,8 +62,8 @@ interface IOffersTd {
 }
 
 export const OffersTd = styled.td<IOffersTd>`
-  padding: ${(props) => props.padd || '10px 30px'};
-  text-align: ${(props) => props.textAlign || ''};
+  padding: ${(props) => props.padd || "10px 30px"};
+  text-align: ${(props) => props.textAlign || ""};
   font-weight: 400;
   font-size: 14px;
   color: #7c7c7c;
@@ -84,7 +84,7 @@ export const OffersTdText = styled.td`
 export const OffersText = styled.span<{ color?: string }>`
   font-weight: 400;
   font-size: 12px;
-  color: ${(props) => props.color || '#7C7C7C'};
+  color: ${(props) => props.color || "#7C7C7C"};
   vertical-align: middle;
   @media (max-width: 576px) {
     font-size: 10px;
@@ -151,7 +151,7 @@ export const StakingTd = styled.td`
   color: #7c7c7c;
 `;
 export const StyledUnd = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -240,7 +240,7 @@ export const ActivityTd = styled.td`
   }
 `;
 export const ActivityColorText = styled.span<{ color?: string }>`
-  color: ${(props) => props.color || '#7C7C7C'};
+  color: ${(props) => props.color || "#7C7C7C"};
 `;
 // export const ActivityTableWrapMobile = styled.table`
 // display: none;
@@ -299,7 +299,7 @@ export const DescriptionWrap = styled.li`
 export const Title = styled.span<{ color?: string }>`
   font-size: 18px;
   line-height: 22px;
-  color: ${(props) => props.color || '#7C7C7C'};
+  color: ${(props) => props.color || "#7C7C7C"};
   margin-bottom: 5px;
   @media (max-width: 576px) {
     font-size: 14px;
@@ -340,7 +340,7 @@ export const MoreBtn = styled.button`
 export const DetailsWrap = styled.ul<{ padd?: string }>`
   box-shadow: inset 0px 0px 1px #7c7c7c;
   background-color: #fbf5ff;
-  padding: ${(props) => props.padd || '15px 30px'};
+  padding: ${(props) => props.padd || "15px 30px"};
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -369,17 +369,17 @@ export const ColoredText = styled.span<{
   fw?: string;
   cursor?: string;
 }>`
-  color: ${(props) => props.color || ''};
-  font-size: ${(props) => props.fs || ''};
-  font-weight: ${(props) => props.fw || ''};
-  cursor: ${(props) => props.cursor || ''};
+  color: ${(props) => props.color || ""};
+  font-size: ${(props) => props.fs || ""};
+  font-weight: ${(props) => props.fw || ""};
+  cursor: ${(props) => props.cursor || ""};
 `;
 
 //About
 export const AboutWrap = styled.ul<{ padd?: string }>`
   box-shadow: inset 0px 0px 1px #7c7c7c;
   background-color: #fbf5ff;
-  padding: ${(props) => props.padd || '15px 30px'};
+  padding: ${(props) => props.padd || "15px 30px"};
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -514,16 +514,16 @@ export const CompleteWrap = styled.div<{ complete?: number }>`
   margin-bottom: 10px;
   &:before {
     margin-left: -20px;
-    content: '';
+    content: "";
     position: absolute;
     height: 100%;
     width: ${(props) =>
-      (props.complete === 0 && '') ||
-      (props.complete === 1 && '20%') ||
-      (props.complete === 2 && '40%') ||
-      (props.complete === 3 && '60%') ||
-      (props.complete === 4 && '80%') ||
-      (props.complete === 5 && '100%')};
+      (props.complete === 0 && "") ||
+      (props.complete === 1 && "20%") ||
+      (props.complete === 2 && "40%") ||
+      (props.complete === 3 && "60%") ||
+      (props.complete === 4 && "80%") ||
+      (props.complete === 5 && "100%")};
     background-color: #e2d1ff;
     z-index: 1;
   }
@@ -538,7 +538,7 @@ export const AccordionText = styled.span`
   }
 `;
 export const PriceTextETH = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -571,7 +571,7 @@ export const AcceptBTN = styled.button`
   border-radius: 10px;
   width: 100px;
   height: 36px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -593,7 +593,7 @@ export const MakeOfferBTN = styled.button`
   background: #ffffff;
   border: 1px solid #873dc1;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -613,7 +613,7 @@ export const DenyBTN = styled.button`
   background: #ffffff;
   border: 1px solid #ff2a36;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

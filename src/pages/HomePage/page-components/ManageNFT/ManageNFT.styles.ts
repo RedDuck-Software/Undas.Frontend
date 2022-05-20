@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ManageNFTContainer = styled.div`
   margin: 120px 0;
@@ -16,7 +16,7 @@ interface ICard {
 }
 
 export const ManageCard = styled.li<ICard>`
-  align-self: ${(props) => props.alignSelf || 'self-start'};
+  align-self: ${(props) => props.alignSelf || "self-start"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ export const ManageCard = styled.li<ICard>`
 
 export const CardTitle = styled.span`
   margin: 30px 0 20px 0;
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -56,7 +56,7 @@ export const DescList = styled.li`
   line-height: 17px;
   color: #232428;
   &:before {
-    content: '';
+    content: "";
     display: inline-block;
     margin-right: 5px;
     transform: translateY(-2px);
@@ -79,7 +79,7 @@ export const PurpleText = styled.span<IPurpleText>`
   width: 100%;
   cursor: pointer;
   font-weight: 400;
-  font-size: ${(props) => props.fs || '12px'};
+  font-size: ${(props) => props.fs || "12px"};
   text-align: right;
   color: #873dc1;
 `;
