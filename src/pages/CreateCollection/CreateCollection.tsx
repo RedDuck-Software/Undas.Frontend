@@ -36,6 +36,7 @@ import {
 } from '../CreateNFT/CreateNFT.styles';
 import Switcher from '../CreateNFT/page-components/Switcher/Switcher';
 
+
 type CreateSubmitForm = {
   contentURL: string;
   name: string;
