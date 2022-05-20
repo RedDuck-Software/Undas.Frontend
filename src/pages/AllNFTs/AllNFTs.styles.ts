@@ -17,7 +17,6 @@ export const MenuWrap = styled.div<IMenuWrap>`
   display: flex;
   justify-content: ${(props) => props.justifyContent || ''};
   align-items: center;
-  padding-left: 100px;
   margin: ${(props) => props.marg || '64px 0 20px'};
 `;
 

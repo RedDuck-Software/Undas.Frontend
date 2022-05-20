@@ -12,8 +12,8 @@ import {
   FilterTitle,
   Arrow,
   FilterMenu,
-  TabsMenu,
-  Tab,
+  SettingsElement,
+  ViewOption,
 } from './AllNFTs.styles';
 import { GridIco, ListIco } from './imports';
 import CardLineNFT from './page-components/CardLineNFT/CardLineNFT';
@@ -33,7 +33,7 @@ const AllNFTs: React.FC = () => {
     console.log(priceFilter);
   }, [active, priceFilter]);
 
-  const [tab, setTab] = useState('grid');
+  // const [tab, setTab] = useState('grid');
 
   return (
     <AllNFTContainer>
@@ -42,7 +42,7 @@ const AllNFTs: React.FC = () => {
         {/*rm marg after deploy*/}
         <MenuWrap justifyContent="space-between">
           <SettingsBlock>
-            {/* <SettingsElement>
+            <SettingsElement>
               <ViewOption>
 
                 <ViewButton className="grid-active">
@@ -52,7 +52,7 @@ const AllNFTs: React.FC = () => {
                   <ListIco />
                 </ViewButton>
               </ViewOption>
-            </SettingsElement> */}
+            </SettingsElement>
             <Filter className={active.price && 'price-active'}>
               <FilterItem
                 onClick={() => {
@@ -112,7 +112,12 @@ const AllNFTs: React.FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <TabsMenu>
+        <AllGridWrap getResults={(amount: any) => setResults(amount)} priceFilter={priceFilter}/>
+
+        <div>
+        <CardLineNFT/>
+        </div>
+        {/* <TabsMenu>
           <Tab onClick={() => setTab('grid')}>
             <ViewButton className="grid-active">
               <GridIco />
@@ -130,7 +135,7 @@ const AllNFTs: React.FC = () => {
             priceFilter={priceFilter}
           />
         )}
-        {tab === 'list' && <CardLineNFT />}
+        {tab === 'list' && <CardLineNFT />} */}
       </Wrapper>
     </AllNFTContainer>
   );
