@@ -31,10 +31,11 @@ import {
   CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
-  FormButton,
+  CreateFormButton,
   ButtonsBlock,
 } from '../CreateNFT/CreateNFT.styles';
 import Switcher from '../CreateNFT/page-components/Switcher/Switcher';
+import { FormButtonsWrap } from '../Settings/SettingsTabs/Profile/ProfileSettings.styles';
 
 type CreateSubmitForm = {
   contentURL: string;
