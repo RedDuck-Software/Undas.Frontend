@@ -48,10 +48,12 @@
     
 }
 .AboutSwiper2 .swiper-button-prev::after {
+    content: '';
     border-bottom: 2px solid #ffffff;
     border-left: 2px solid #ffffff;
 }
 .AboutSwiper2 .swiper-button-next::after {
+    content: '';
     border-bottom: 2px solid #ffffff;
     border-right: 2px solid #ffffff;
 }
