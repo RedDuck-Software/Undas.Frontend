@@ -15,6 +15,10 @@ export const Info = styled.div`
   margin: 30px 0 10px;
   font-weight: 400;
   align-items: center;
+
+  @media (max-width: 1100px) {
+    display: block;
+  }
 `;
 
 export const Title = styled.h1`
@@ -23,12 +27,27 @@ export const Title = styled.h1`
   line-height: 44px;
   margin-bottom: 10px;
   color: #232428;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    font-size: 24px;
+  }
+  @media (max-width: 640px) {
+    font-size: 18px;
+  }
 `;
 
 export const Subtitle = styled.h2`
   font-weight: 400;
   font-size: 24px;
   color: #232428;
+
+  @media (max-width: 1100px) {
+    font-size: 18px;
+  }
+  @media (max-width: 640px) {
+    font-size: 14px;
+  }
 `;
 
 export const InfoCard = styled.div`
@@ -41,6 +60,11 @@ export const InfoCard = styled.div`
   background-color: #fbf5ff;
   box-shadow: 0 4px 10px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    margin-top: 10px;
+  }
 `;
 
 export const InfoText = styled.span`
@@ -76,9 +100,22 @@ export const CollectionCard = styled.div`
   padding: 20px;
   background-color: hotpink;
   border-radius: 20px;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1100px) {
+    height: 180px;
+    padding: 0px;
+  }
+  @media (max-width: 640px) {
+    height: 160px;
+    padding: 0px;
+  }
+  @media (max-width: 501px) {
+    height: 165px;
+    padding: 0px;
+  }
 `;
 
 export const CollectionBackground = styled.img`
@@ -98,6 +135,22 @@ export const AuthorWrap = styled.div`
   background: rgba(35, 36, 40, 0.7);
   backdrop-filter: blur(50px);
   border-radius: 20px;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    position: absolute;
+    margin-top: 110px;
+  }
+  @media (max-width: 640px) {
+    width: 100%;
+    position: absolute;
+    margin-top: 90px;
+  }
+  @media (max-width: 501px) {
+    height: 95px;
+    margin-top: 70px;
+    align-items: unset;
+  }
 `;
 
 export const CollectionPicWrap = styled.div`
@@ -108,6 +161,12 @@ export const CollectionPicWrap = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+
+  @media (max-width: 501px) {
+    height: 60px;
+    width: 60px;
+    align-items: unset;
+  }
 `;
 
 interface IText {
@@ -124,7 +183,20 @@ export const CollectionText = styled.span<IText>`
   line-height: ${(props) => props.lh || "17px"};
   padding: ${(props) => props.padd};
   color: #fff;
-`;
+
+  @media (max-width: 1100px) {
+    max-width: unset;
+    width: 65%;
+    font-size: 12px;
+  }
+  @media (max-width: 501px) {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    display: table-cell;
+  `;
 
 interface IWrapper {
   disp?: string;
@@ -156,6 +228,17 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
+
+  @media (max-width: 1100px) {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    max-width: unset;
+    text-align: left;
+  }
+  @media (max-width: 501px) {
+    margin-top: 10px;
+  }
 `;
 
 interface IPlatform {
@@ -180,4 +263,85 @@ export const NFTCards = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 20px;
+
+  @media (max-width: 1100px) {
+    width: 80px;
+    height: 80px;
+  }
+  @media (max-width: 640px) {
+    width: 60px;
+    height: 60px;
+  }
+  @media (max-width: 501px) {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+`;
+
+export const NameNft = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 20px 0 0;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 501px) {
+    margin-top: 10px;
+  }
+`;
+
+export const CollectionTextDiv = styled.div`
+  position: relative;
+  display: flex;
+  max-width: 320px;
+  margin: 0 0 0 auto;
+
+  @media (max-width: 1100px) {
+    max-width: unset;
+    position: absolute;
+    right: 15px;
+    display: block;
+    width: 70%;
+  }
+  @media (max-width: 950px) {
+    width: 60%;
+  }
+  @media (max-width: 700px) {
+    width: 56%;
+    line-height: 12px;
+    display: table-cell;
+    left: 20px;
+    margin-left: 210px;
+    top: 10px;
+    bottom: 10px;
+  }
+  @media (max-width: 646px) {
+    width: 56%;
+  }
+  @media (max-width: 626px) {
+    width: 53%;
+  }
+  @media (max-width: 580px) {
+    width: 45%;
+  }
+  @media (max-width: 540px) {
+    width: 37%;
+  }
+  @media (max-width: 501px) {
+    left: 170px;
+    margin-left: -100px;
+    width: 68%;
+    bottom: 10px;
+    top: unset;
+  }
+  @media (max-width: 486px) {
+    width: 60%;
+  }
+  @media (max-width: 390px) {
+    width: 50%;
+  }
+  @media (max-width: 340px) {
+    width: 45%;
+  }
 `;
