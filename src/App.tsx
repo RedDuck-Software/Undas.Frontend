@@ -33,6 +33,7 @@ import {
   Settings,
   TopCollectionPage,
   Blog,
+  CreatorCardPage,
 } from "./pages";
 import ActivityPage from "./pages/Activity/ActivityPage";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
@@ -120,6 +121,7 @@ const App: React.FC = () => {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/creator-card" element={<CreatorCardPage />} />
         </Routes>
       </Context.Provider>
     </MoralisProvider>
