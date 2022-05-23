@@ -55,7 +55,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -83,7 +83,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -110,7 +110,7 @@ const ProductCard: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -141,7 +141,7 @@ const ProductCard: React.FC = () => {
     const stakingId = await getNFTStakingIds(
       NFT_ADDRESS,
       Number(pageId),
-      connector
+      connector,
     );
 
     setStakingId(stakingId!.value.toNumber());
@@ -159,7 +159,7 @@ const ProductCard: React.FC = () => {
     const listingId = await getNFTListingIds(
       NFT_ADDRESS,
       Number(pageId),
-      connector
+      connector,
     );
 
     setListingId(listingId!.value.toNumber());

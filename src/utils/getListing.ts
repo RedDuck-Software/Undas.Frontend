@@ -7,12 +7,12 @@ import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
 
 export const getListing = async (
   listingId: number,
-  connector: AbstractConnector
+  connector: AbstractConnector,
 ) => {
   if (!connector) return;
 
   const provider = new ethers.providers.Web3Provider(
-    await connector?.getProvider()
+    await connector?.getProvider(),
   );
 
   const signer = provider.getSigner(0);
@@ -21,7 +21,7 @@ export const getListing = async (
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
-    signer
+    signer,
   );
 
   const tx = await MarketplaceContract.getListing(listingId);

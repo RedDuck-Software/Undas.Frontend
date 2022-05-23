@@ -30,7 +30,7 @@ import {
   ViewOption,
 } from "../AllNFTs/AllNFTs.styles";
 import { GridIco, ListIco } from "../AllNFTs/imports";
-import CardLineNFT from "../AllNFTs/page-components/CardLineNFT/CardLineNFT";
+import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -156,9 +156,9 @@ const CollectionPage: React.FC = () => {
               </MenuSearchWrap>
             </MenuWrap>
             <CollectionGridWrap />
-            <CardLineNFT />
-            <CardLineNFT />
-            <CardLineNFT />
+            <NFTListItem name="item1" />
+            <NFTListItem name="item1" />
+            <NFTListItem name="item1" />
           </Wrapper>
         </AllNFTContainer>
       </div>

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
-import NFTGrid from "../../../../components/NFTCard/Grid/NFTGrid";
+import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import Context from "../../../../utils/Context";
 import {
   Arrow,
@@ -24,15 +24,41 @@ import {
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
 import { GridIco, ListIco } from "../../../AllNFTs/imports";
+import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 
 const MainMenu: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
+
+  const [viewMode, setViewMode] = useState<string>("grid");
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
+
+  const testNFTList = [
+    {
+      tokenId: 2,
+      tokenURI: "uriuri",
+      name: "item.name2",
+    },
+    {
+      tokenId: 3,
+      tokenURI: "uriuri",
+      name: "item.name3",
+    },
+    {
+      tokenId: 4,
+      tokenURI: "uriuri",
+      name: "item.name4",
+    },
+    {
+      tokenId: 5,
+      tokenURI: "uriuri",
+      name: "item.name5",
+    },
+  ];
 
   const [, setNFTList] = useState<
     {
@@ -67,7 +93,7 @@ const MainMenu: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };
@@ -89,10 +115,16 @@ const MainMenu: React.FC = () => {
         <SettingsBlock>
           <SettingsElement>
             <ViewOption>
-              <ViewButton className="grid-active">
+              <ViewButton
+                className={viewMode === "grid" ? "grid-active" : ""}
+                onClick={() => setViewMode("grid")}
+              >
                 <GridIco />
               </ViewButton>
-              <ViewButton>
+              <ViewButton
+                className={viewMode === "list" ? "grid-active" : ""}
+                onClick={() => setViewMode("list")}
+              >
                 <ListIco />
               </ViewButton>
             </ViewOption>
@@ -150,18 +182,26 @@ const MainMenu: React.FC = () => {
         </MenuSearchWrap>
         <ResultsTotal>2</ResultsTotal>
       </MenuWrap>
-      <GridLayout>
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name"} />
-        {/* {NFTList?.map((item) => {
-          return (
-                        <NFTGrid
-                            tokenId={+item.token_id}
-                            URI={item.token_uri!}
-                            name={item.name}
-                        />
-                    );
-        })} */}
-      </GridLayout>
+
+      {/* <NFTGrid tokenId={2} URI={'assdf'} name={'item.name'} /> */}
+      {viewMode === "grid" ? (
+        <GridLayout>
+          {testNFTList?.map((item) => {
+            return (
+              <NFTGridItem
+                key={item.tokenId}
+                tokenId={+item.tokenId}
+                URI={item.tokenURI!}
+                name={item.name}
+              />
+            );
+          })}
+        </GridLayout>
+      ) : (
+        testNFTList?.map((item) => {
+          return <NFTListItem key={item.tokenId} name={item.name} />;
+        })
+      )}
     </div>
   );
 };

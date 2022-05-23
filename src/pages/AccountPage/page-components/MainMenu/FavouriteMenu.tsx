@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
 
-import NFTGrid from "../../../../components/NFTCard/Grid/NFTGrid";
+import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import Context from "../../../../utils/Context";
 import {
   Input,
@@ -21,7 +21,7 @@ import {
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
 import { GridIco, ListIco } from "../../../AllNFTs/imports";
-import CardLineNFT from "../../../AllNFTs/page-components/CardLineNFT/CardLineNFT";
+import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
 
 const FavouriteMenu: React.FC = () => {
@@ -62,7 +62,7 @@ const FavouriteMenu: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };
@@ -109,25 +109,25 @@ const FavouriteMenu: React.FC = () => {
 
       <GridLayout>
         {/* NFTList?.map((item) => {}) */}
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name1"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name2"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name2"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name3"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name3"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name4"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name4"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name5"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name5"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name6"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name6"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name7"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name7"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name8"} />
+        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
       </GridLayout>
-      <CardLineNFT />
-      <CardLineNFT />
-      <CardLineNFT />
+      <NFTListItem name="item1" />
+      <NFTListItem name="item1" />
+      <NFTListItem name="item1" />
       <FavouriteTable />
     </FavouriteWrap>
   );

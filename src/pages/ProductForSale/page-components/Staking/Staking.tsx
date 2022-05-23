@@ -43,7 +43,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || !stakingOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
@@ -52,12 +52,12 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS
+      MARKETPLACE_ADDRESS,
     );
 
     if (!isApprovedForAll) {
@@ -72,7 +72,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       ethers.utils.parseEther(price.toString()),
       ethers.utils.parseEther(premium.toString()),
       intervalIntoTimeStamp(deadline),
-      { value: ethers.utils.parseEther("0.1") }
+      { value: ethers.utils.parseEther("0.1") },
     );
     await tx.wait();
   };
@@ -81,13 +81,13 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || !stakingOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.stopStaking(stakingId!);

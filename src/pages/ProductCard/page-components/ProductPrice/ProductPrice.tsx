@@ -23,14 +23,14 @@ const ProductPrice: React.FC<{ id: number }> = ({ id }) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.getListing(itemId);
@@ -42,14 +42,14 @@ const ProductPrice: React.FC<{ id: number }> = ({ id }) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.buyToken(itemId, {

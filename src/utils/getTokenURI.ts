@@ -10,7 +10,7 @@ const getTokenURI = async (i: number, connector: AbstractConnector) => {
     return;
   }
   const provider = new ethers.providers.Web3Provider(
-    await connector.getProvider()
+    await connector.getProvider(),
   );
   const signer = provider.getSigner(0);
   const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);

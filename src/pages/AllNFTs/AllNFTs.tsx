@@ -16,7 +16,7 @@ import {
   ViewOption,
 } from "./AllNFTs.styles";
 import { GridIco, ListIco } from "./imports";
-import CardLineNFT from "./page-components/CardLineNFT/CardLineNFT";
+import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
@@ -117,7 +117,7 @@ const AllNFTs: React.FC = () => {
         />
 
         <div>
-          <CardLineNFT />
+          <NFTListItem name="item1" />
         </div>
         {/* <TabsMenu>
           <Tab onClick={() => setTab('grid')}>
