@@ -9,6 +9,8 @@ import {
   NFTCards,
   Platform,
   Wrapper,
+  NameNft,
+  CollectionTextDiv,
 } from "../Categories.styles";
 import {
   CollectionBG,
@@ -29,19 +31,19 @@ const Collection: React.FC = () => {
         </CollectionPicWrap>
         {/*CategoriesPage name*/}
         <div>
-          <Wrapper disp="flex" alignItems="center" gap="10px" marg="0 20px 0 0">
+          <NameNft>
             <CollectionText fs="14px">Borya Borya</CollectionText>
             <img src={Verified} alt="verified-ico" />
             <Platform>UND</Platform>
-          </Wrapper>
+          </NameNft>
           <CollectionText>by Borya Borya</CollectionText>
         </div>
-        <Wrapper disp="flex" mw="320px" marg="0 0 0 auto">
+        <CollectionTextDiv>
           <CollectionText lh="15px" padd="5px 0">
             If you believe in the future of DeFi, then you believein the future
             of rekt.news. Each auction winner will also be sent ...
           </CollectionText>
-        </Wrapper>
+        </CollectionTextDiv>
       </AuthorWrap>
       <Wrapper disp="flex" gap="15px">
         <NFTCards>
