@@ -61,7 +61,7 @@ const ASideFilter: React.FC<{ marginTop?: string }> = ({ marginTop }) => {
           item.selected = true;
         }
         return { ...item };
-      })
+      }),
     );
   };
 

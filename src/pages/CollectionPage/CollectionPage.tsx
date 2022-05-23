@@ -12,6 +12,8 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import { ViewMode } from "../../types/viewMode";
+import useViewMode from "../../utils/hooks/useViewMode";
 import {
   AllNFTContainer,
   Arrow,
@@ -25,24 +27,18 @@ import {
   SearchIco,
   Input,
   SettingsBlock,
-  SettingsElement,
-  ViewButton,
-  ViewOption,
 } from "../AllNFTs/AllNFTs.styles";
-import { GridIco, ListIco } from "../AllNFTs/imports";
-import CardLineNFT from "../AllNFTs/page-components/CardLineNFT/CardLineNFT";
+import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-
-//Components
-
-//Assets
 
 const CollectionPage: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
+
+  const { viewMode, viewButtonsRender } = useViewMode();
   return (
     <>
       <div>
@@ -93,16 +89,7 @@ const CollectionPage: React.FC = () => {
             </Wrapper>
             <MenuWrap marg="40px 0 20px 0">
               <SettingsBlock>
-                <SettingsElement>
-                  <ViewOption>
-                    <ViewButton className="grid-active">
-                      <GridIco />
-                    </ViewButton>
-                    <ViewButton>
-                      <ListIco />
-                    </ViewButton>
-                  </ViewOption>
-                </SettingsElement>
+                {viewButtonsRender}
                 <Filter className={active.price && "price-active"}>
                   <FilterItem
                     onClick={() => {
@@ -155,10 +142,15 @@ const CollectionPage: React.FC = () => {
                 <Input />
               </MenuSearchWrap>
             </MenuWrap>
-            <CollectionGridWrap />
-            <CardLineNFT />
-            <CardLineNFT />
-            <CardLineNFT />
+            {viewMode === ViewMode.grid ? (
+              <CollectionGridWrap />
+            ) : (
+              <>
+                <NFTListItem name="item1" />
+                <NFTListItem name="item1" />
+                <NFTListItem name="item1" />
+              </>
+            )}
           </Wrapper>
         </AllNFTContainer>
       </div>

@@ -101,7 +101,7 @@ const LoginPage: React.FC = () => {
         isAndroid && osVersion === "11"
           ? window.open(
               "https://link.trustwallet.com/open_url?coin_id=60&url=https://reverent-allen-ae7346.netlify.app",
-              "_blank"
+              "_blank",
             )
           : localStorage.setItem("connector", "walletconnect");
         connect(walletconnect);

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { girlNFT, eye, checked, block, heart } from "./imports";
 import {
   ColImg,
   ImgNFT,
@@ -14,12 +15,15 @@ import {
   ImageBlock,
   ImageHeart,
   RowCenter,
-} from "./CardLineNFT.styles";
-import { girlNFT, eye, checked, block, heart } from "./imports";
+} from "./NFTListItem.styles";
 
 import TabsNFT from "../TabsNFT/TabsNFT";
 
-const CardLineNFT: React.FC = () => {
+interface NFTListItemProps {
+  name: string;
+}
+
+const NFTListItem: React.FC<NFTListItemProps> = ({ name }) => {
   return (
     <>
       <RowLine>
@@ -31,7 +35,7 @@ const CardLineNFT: React.FC = () => {
           </ImagePreview>
         </ColImg>
         <ColTextTop>
-          <TextNameNFT>Returne by Borya Borya</TextNameNFT>
+          <TextNameNFT>{name}</TextNameNFT>
           <ImageChecked src={checked} alt="checked-image" />
           <TextUND>UND</TextUND>
           <ImageBlock src={block} alt="block-image" />
@@ -45,4 +49,4 @@ const CardLineNFT: React.FC = () => {
   );
 };
 
-export default CardLineNFT;
+export default NFTListItem;
