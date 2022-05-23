@@ -4,6 +4,7 @@ import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
 import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
+import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
 import {
@@ -18,7 +19,6 @@ import {
   MenuWrap,
   SearchIco,
   SettingsBlock,
-  SettingsElement,
   ResultsTotal,
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
@@ -111,7 +111,7 @@ const MainMenu: React.FC = () => {
     <div>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
         <SettingsBlock>
-          <SettingsElement>{viewButtonsRender}</SettingsElement>
+          <>{viewButtonsRender}</>
           <Filter className={active.price && "price-active"}>
             <FilterItem
               onClick={() => {
@@ -166,8 +166,7 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>2</ResultsTotal>
       </MenuWrap>
 
-      {/* <NFTGrid tokenId={2} URI={'assdf'} name={'item.name'} /> */}
-      {viewMode === "grid" ? (
+      {viewMode === ViewMode.grid ? (
         <GridLayout>
           {testNFTList?.map((item) => {
             return (

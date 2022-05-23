@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { ViewButton, ViewOption } from "../../pages/AllNFTs/AllNFTs.styles";
 import { GridIco, ListIco } from "../../pages/AllNFTs/imports";
 import { ViewMode } from "../../types/viewMode";

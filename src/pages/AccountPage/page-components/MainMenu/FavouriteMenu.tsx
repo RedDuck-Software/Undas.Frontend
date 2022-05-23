@@ -7,20 +7,18 @@ import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
 
 import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
+import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
+import useViewMode from "../../../../utils/hooks/useViewMode";
 import {
   Input,
   MenuSearchWrap,
   MenuWrap,
   SearchIco,
   SettingsBlock,
-  SettingsElement,
-  ViewButton,
-  ViewOption,
   ResultsTotal,
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
-import { GridIco, ListIco } from "../../../AllNFTs/imports";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
 
@@ -28,6 +26,8 @@ const FavouriteMenu: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
+
+  const { viewMode, viewButtonsRender } = useViewMode();
 
   const [, setNFTList] = useState<
     {
@@ -88,17 +88,7 @@ const FavouriteMenu: React.FC = () => {
             </FavouriteButton>
             <FavouriteButton>Favourite Collections</FavouriteButton>
           </FavouriteSelect>
-          <SettingsElement></SettingsElement>
-          <SettingsElement>
-            <ViewOption>
-              <ViewButton className="grid-active">
-                <GridIco />
-              </ViewButton>
-              <ViewButton>
-                <ListIco />
-              </ViewButton>
-            </ViewOption>
-          </SettingsElement>
+          {viewButtonsRender}
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
@@ -107,27 +97,32 @@ const FavouriteMenu: React.FC = () => {
         <ResultsTotal>4</ResultsTotal>
       </MenuWrap>
 
-      <GridLayout>
-        {/* NFTList?.map((item) => {}) */}
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
+      {viewMode === ViewMode.grid ? (
+        <GridLayout>
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name2"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name2"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name3"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name3"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name4"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name4"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name5"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name5"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name6"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name6"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name7"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name7"} />
 
-        <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
-      </GridLayout>
-      <NFTListItem name="item1" />
-      <NFTListItem name="item1" />
-      <NFTListItem name="item1" />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
+        </GridLayout>
+      ) : (
+        <>
+          <NFTListItem name="item1" />
+          <NFTListItem name="item1" />
+          <NFTListItem name="item1" />
+        </>
+      )}
+
       <FavouriteTable />
     </FavouriteWrap>
   );
