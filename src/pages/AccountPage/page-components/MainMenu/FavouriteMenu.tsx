@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
+import { FavouriteType } from "./types";
 
 import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import { ViewMode } from "../../../../types/viewMode";
@@ -28,6 +29,9 @@ const FavouriteMenu: React.FC = () => {
   const { Moralis } = useMoralis();
 
   const { viewMode, viewButtonsRender } = useViewMode();
+  const [favouriteType, setFavouriteType] = useState<FavouriteType>(
+    FavouriteType.nft,
+  );
 
   const [, setNFTList] = useState<
     {
@@ -83,12 +87,26 @@ const FavouriteMenu: React.FC = () => {
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
         <SettingsBlock>
           <FavouriteSelect>
-            <FavouriteButton className="favourite-active">
+            <FavouriteButton
+              className={
+                favouriteType === FavouriteType.nft ? "favourite-active" : ""
+              }
+              onClick={() => setFavouriteType(FavouriteType.nft)}
+            >
               Favourite NFTs
             </FavouriteButton>
-            <FavouriteButton>Favourite Collections</FavouriteButton>
+            <FavouriteButton
+              className={
+                favouriteType === FavouriteType.collection
+                  ? "favourite-active"
+                  : ""
+              }
+              onClick={() => setFavouriteType(FavouriteType.collection)}
+            >
+              Favourite Collections
+            </FavouriteButton>
           </FavouriteSelect>
-          {viewButtonsRender}
+          {favouriteType === FavouriteType.nft && viewButtonsRender}
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
@@ -97,7 +115,7 @@ const FavouriteMenu: React.FC = () => {
         <ResultsTotal>4</ResultsTotal>
       </MenuWrap>
 
-      {viewMode === ViewMode.grid ? (
+      {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
         <GridLayout>
           <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
 
@@ -115,7 +133,9 @@ const FavouriteMenu: React.FC = () => {
 
           <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
         </GridLayout>
-      ) : (
+      )}
+
+      {viewMode === ViewMode.list && favouriteType === FavouriteType.nft && (
         <>
           <NFTListItem name="item1" />
           <NFTListItem name="item1" />
@@ -123,7 +143,7 @@ const FavouriteMenu: React.FC = () => {
         </>
       )}
 
-      <FavouriteTable />
+      {favouriteType === FavouriteType.collection && <FavouriteTable />}
     </FavouriteWrap>
   );
 };
