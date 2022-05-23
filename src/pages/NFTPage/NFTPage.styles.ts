@@ -51,6 +51,9 @@ export const NFTPageWrap = styled(Container)`
   position: relative;
   overflow: hidden;
   padding-bottom: 120px;
+  @media (max-width: 768px) {
+    padding-bottom: 50px;
+  }
   ${Container}
 `;
 
@@ -60,7 +63,7 @@ export const NavigationWrap = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     margin-top: 40px;
   }
 `;
@@ -70,11 +73,11 @@ export const Name = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     font-size: 32px;
     line-height: 39px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     font-size: 24px;
     line-height: 29px;
   }
@@ -96,7 +99,7 @@ export const NavElement = styled.li`
   width: 36px;
   height: 36px;
   box-shadow: 0px 0px 1px #7c7c7c;
-  &:hover{
+  &:hover {
     background-color: #fbf5ff;
   }
 `;
@@ -116,7 +119,6 @@ export const ImageWrap = styled.div`
   border-radius: 10px;
   flex: 0 1 49%;
   @media (max-width: 1200px) {
-    
   }
   @media (max-width: 992px) {
     flex: 0 0 80%;
@@ -126,12 +128,10 @@ export const ImageWrap = styled.div`
 export const Image = styled.img`
   object-fit: cover;
   width: 100%;
- 
 `;
 export const RightSideBlock = styled.div`
   flex: 0 0 48%;
   @media (max-width: 1200px) {
-    
   }
   @media (max-width: 992px) {
     flex: 0 0 100%;
@@ -156,7 +156,6 @@ export const InfoElement = styled.li`
   display: flex;
   align-items: center;
   gap: 5px;
- 
 `;
 export const PurpleText = styled.span`
   color: #873dc1;
@@ -237,7 +236,6 @@ export const ButtonWrap = styled.div`
     flex: 0 0 100%;
     margin-top: 20px;
   }
-
 `;
 
 interface IButton {
@@ -258,12 +256,12 @@ export const InfoButton = styled.button<IButton>`
   color: ${(props) => props.fc || "#fff"};
   flex: ${(props) => props.flex || ""};
   transition: all 0.3s linear;
-  &.colored-btn:hover{
+  &.colored-btn:hover {
     background-color: #fff;
-    color: #873DC1;
+    color: #873dc1;
   }
-  &:hover{
-    background-color: #873DC1;
+  &:hover {
+    background-color: #873dc1;
     color: #fff;
   }
 `;
