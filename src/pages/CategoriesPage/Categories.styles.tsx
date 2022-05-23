@@ -196,7 +196,7 @@ export const CollectionText = styled.span<IText>`
     font-size: 10px;
     line-height: 12px;
     display: table-cell;
-  `;
+  }`;
 
 interface IWrapper {
   disp?: string;
@@ -228,17 +228,6 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
-
-  @media (max-width: 1100px) {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    max-width: unset;
-    text-align: left;
-  }
-  @media (max-width: 501px) {
-    margin-top: 10px;
-  }
 `;
 
 interface IPlatform {
