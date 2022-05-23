@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   OfferMenuWrap,
@@ -22,6 +22,7 @@ import {
   FilterClose,
   ClearAll,
 } from "./Menu.styles";
+import { OfferType } from "./types";
 
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
@@ -40,14 +41,21 @@ import {
 } from "../../imports";
 
 const OffersMenu: React.FC = () => {
+  const [offerType, setOfferType] = useState(OfferType.resaived);
   return (
     <OfferMenuWrap>
       <OfferFilterWrap>
-        <FilterButton className="offers-active">
+        <FilterButton
+          className={offerType === OfferType.resaived ? "offers-active" : ""}
+          onClick={() => setOfferType(OfferType.resaived)}
+        >
           <OffResaivedIco />
           Offers Resaived
         </FilterButton>
-        <FilterButton>
+        <FilterButton
+          className={offerType === OfferType.made ? "offers-active" : ""}
+          onClick={() => setOfferType(OfferType.made)}
+        >
           Offers Made
           <OffMadeIco />
         </FilterButton>
@@ -61,120 +69,128 @@ const OffersMenu: React.FC = () => {
         <ClearAll>Clear All</ClearAll>
       </SelectedFilters>
       <OffersWrapTable>
-        <OffersHeadTr className="offers-menu-head">
-          <OffersTd className="first-column"></OffersTd>
-          <OffersTd>Item</OffersTd>
-          <OffersTd>Price</OffersTd>
-          <OffersTd>Expiration</OffersTd>
-          <OffersTd>From</OffersTd>
-          <OffersTd></OffersTd>
-          <OffersTd></OffersTd>
-          <OffersTd></OffersTd>
-        </OffersHeadTr>
-        <OffersTr className="offers-menu-row">
-          <OffersTdText className="first-column">
-            <HandShakeIco />
-            <OffersTooltipWrap className="offers-tooltip">
-              <OffersTooltip>Rent</OffersTooltip>
-            </OffersTooltipWrap>
-          </OffersTdText>
-          <OffersTdText className="offers-table-item">
-            <ItemIcon>
-              <img
-                src={ItemImg}
-                alt="item image"
-                className="offers-item-image"
-              />
-            </ItemIcon>
-            <ItemName>Name</ItemName>
-            <ItemVerifyIco />
-          </OffersTdText>
-          <OffersTdText>
-            <PriceTextETH>1,2</PriceTextETH>
-            <WethText>WETH</WethText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText>In 20 hours</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText color="#5D3F92">65BA4F</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <AcceptBTN>Accept</AcceptBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <MakeOfferBTN>Make offer</MakeOfferBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <DenyBTN>Deny</DenyBTN>
-          </OffersTdText>
-        </OffersTr>
-        <OffersTr className="offers-menu-row">
-          <OffersTdText className="first-column">
-            <CartIco />
-            <OffersTooltipWrap className="offers-tooltip">
-              <OffersTooltip>Rent</OffersTooltip>
-            </OffersTooltipWrap>
-          </OffersTdText>
-          <OffersTdText className="offers-table-item">
-            <ItemIcon>
-              <img src={ItemImg} alt="item icon" />
-            </ItemIcon>
-            <ItemName>Name</ItemName>
-          </OffersTdText>
-          <OffersTdText>
-            <PriceTextETH>1,2</PriceTextETH>
-            <WethText>WETH</WethText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText>In 20 hours</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText color="#5D3F92">65BA4F</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <AcceptBTN>Accept</AcceptBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <MakeOfferBTN>Make offer</MakeOfferBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <DenyBTN>Deny</DenyBTN>
-          </OffersTdText>
-        </OffersTr>
-        <OffersTr className="offers-menu-row">
-          <OffersTdText className="first-column">
-            <HandShakeIco />
-            <OffersTooltipWrap className="offers-tooltip">
-              <OffersTooltip>Rent</OffersTooltip>
-            </OffersTooltipWrap>
-          </OffersTdText>
-          <OffersTdText className="offers-table-item">
-            <ItemIcon>
-              <img src={ItemImg} alt="item icon" />
-            </ItemIcon>
-            <ItemName>Name</ItemName>
-          </OffersTdText>
-          <OffersTdText>
-            <PriceTextETH>1,2</PriceTextETH>
-            <WethText>WETH</WethText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText>In 20 hours</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <OffersText color="#5D3F92">65BA4F</OffersText>
-          </OffersTdText>
-          <OffersTdText>
-            <AcceptBTN>Accept</AcceptBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <MakeOfferBTN>Make offer</MakeOfferBTN>
-          </OffersTdText>
-          <OffersTdText>
-            <DenyBTN>Deny</DenyBTN>
-          </OffersTdText>
-        </OffersTr>
+        {offerType === OfferType.resaived && (
+          <>
+            <OffersHeadTr className="offers-menu-head">
+              <OffersTd className="first-column"></OffersTd>
+              <OffersTd>Item</OffersTd>
+              <OffersTd>Price</OffersTd>
+              <OffersTd>Expiration</OffersTd>
+              <OffersTd>From</OffersTd>
+              <OffersTd></OffersTd>
+              <OffersTd></OffersTd>
+              <OffersTd></OffersTd>
+            </OffersHeadTr>
+            <OffersTr className="offers-menu-row">
+              <OffersTdText className="first-column">
+                <HandShakeIco />
+                <OffersTooltipWrap className="offers-tooltip">
+                  <OffersTooltip>Rent</OffersTooltip>
+                </OffersTooltipWrap>
+              </OffersTdText>
+              <OffersTdText className="offers-table-item">
+                <ItemIcon>
+                  <img
+                    src={ItemImg}
+                    alt="item image"
+                    className="offers-item-image"
+                  />
+                </ItemIcon>
+                <ItemName>Name</ItemName>
+                <ItemVerifyIco />
+              </OffersTdText>
+              <OffersTdText>
+                <PriceTextETH>1,2</PriceTextETH>
+                <WethText>WETH</WethText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText>In 20 hours</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText color="#5D3F92">65BA4F</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <AcceptBTN>Accept</AcceptBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <MakeOfferBTN>Make offer</MakeOfferBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <DenyBTN>Deny</DenyBTN>
+              </OffersTdText>
+            </OffersTr>
+            <OffersTr className="offers-menu-row">
+              <OffersTdText className="first-column">
+                <CartIco />
+                <OffersTooltipWrap className="offers-tooltip">
+                  <OffersTooltip>Rent</OffersTooltip>
+                </OffersTooltipWrap>
+              </OffersTdText>
+              <OffersTdText className="offers-table-item">
+                <ItemIcon>
+                  <img src={ItemImg} alt="item icon" />
+                </ItemIcon>
+                <ItemName>Name</ItemName>
+              </OffersTdText>
+              <OffersTdText>
+                <PriceTextETH>1,2</PriceTextETH>
+                <WethText>WETH</WethText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText>In 20 hours</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText color="#5D3F92">65BA4F</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <AcceptBTN>Accept</AcceptBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <MakeOfferBTN>Make offer</MakeOfferBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <DenyBTN>Deny</DenyBTN>
+              </OffersTdText>
+            </OffersTr>
+          </>
+        )}
+        {offerType === OfferType.made && (
+          <>
+            <OffersTr className="offers-menu-row">
+              <OffersTdText className="first-column">
+                <HandShakeIco />
+                <OffersTooltipWrap className="offers-tooltip">
+                  <OffersTooltip>Rent</OffersTooltip>
+                </OffersTooltipWrap>
+              </OffersTdText>
+              <OffersTdText className="offers-table-item">
+                <ItemIcon>
+                  <img src={ItemImg} alt="item icon" />
+                </ItemIcon>
+                <ItemName>Name</ItemName>
+              </OffersTdText>
+              <OffersTdText>
+                <PriceTextETH>1,2</PriceTextETH>
+                <WethText>WETH</WethText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText>In 20 hours</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <OffersText color="#5D3F92">65BA4F</OffersText>
+              </OffersTdText>
+              <OffersTdText>
+                <AcceptBTN>Accept</AcceptBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <MakeOfferBTN>Make offer</MakeOfferBTN>
+              </OffersTdText>
+              <OffersTdText>
+                <DenyBTN>Deny</DenyBTN>
+              </OffersTdText>
+            </OffersTr>
+          </>
+        )}
       </OffersWrapTable>
     </OfferMenuWrap>
   );
