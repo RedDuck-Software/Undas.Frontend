@@ -7,6 +7,9 @@ const CollectionGridWrap: React.FC = () => {
   return (
     <GridLayout>
       <NFTGrid tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGrid tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGrid tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGrid tokenId={123} URI={"img"} name={"Return"} />
     </GridLayout>
   );
 };

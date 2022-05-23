@@ -8,6 +8,11 @@ import {
   Description,
   Creator,
   PurpleText,
+  MakeComplaint,
+  MoreInfo,
+  ImgCollection,
+  DescriptionS,
+  CreatorWrapper,
 } from "./CollectionCard.styles";
 
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
@@ -19,6 +24,7 @@ import {
   DiscordIco,
   InstagramIco,
   SiteIco,
+  More,
 } from "../../imports";
 
 const CollectionCard: React.FC = () => {
@@ -26,7 +32,7 @@ const CollectionCard: React.FC = () => {
     <CardWrap>
       <Wrapper disp="flex" gap="20px">
         <ImageWrap>
-          <img src={CollectionPic} alt="collection-pic" />
+          <ImgCollection src={CollectionPic} alt="collection-pic" />
         </ImageWrap>
         <Wrapper
           disp="flex"
@@ -41,20 +47,28 @@ const CollectionCard: React.FC = () => {
             <DiscordIco />
             <InstagramIco />
           </SocialWrap>
+          <MoreInfo>
+            <img src={More} alt="more-info" />
+          </MoreInfo>
           <Description>
             If you believe in the future of DeFi, then you believein the future
             of ...
           </Description>
         </Wrapper>
       </Wrapper>
-      <Wrapper disp="flex" alignItems="center" gap="10px" marg="20px 0 5px 0">
+      <DescriptionS>
+        If you believe in the future of DeFi, then you believein the future of
+        ...
+      </DescriptionS>
+      <CreatorWrapper>
         <CollectionName>Borya Borya</CollectionName>
         <img src={Verified} alt="verified-ico" />
         <Platform>UND</Platform>
-      </Wrapper>
+      </CreatorWrapper>
       <Creator>
         Creator <PurpleText>Borya Borya</PurpleText>
       </Creator>
+      <MakeComplaint>Make a Complaint</MakeComplaint>
     </CardWrap>
   );
 };
