@@ -5,21 +5,19 @@ import {
   MenuWrap,
   ResultsTotal,
   SettingsBlock,
-  ViewButton,
   Filter,
   FilterItem,
   MenuItem,
   FilterTitle,
   Arrow,
   FilterMenu,
-  SettingsElement,
-  ViewOption,
 } from "./AllNFTs.styles";
-import { GridIco, ListIco } from "./imports";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import { ViewMode } from "../../types/viewMode";
+import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const AllNFTs: React.FC = () => {
@@ -33,7 +31,7 @@ const AllNFTs: React.FC = () => {
     console.log(priceFilter);
   }, [active, priceFilter]);
 
-  // const [tab, setTab] = useState('grid');
+  const { viewMode, viewButtonsRender } = useViewMode();
 
   return (
     <AllNFTContainer>
@@ -42,16 +40,7 @@ const AllNFTs: React.FC = () => {
         {/*rm marg after deploy*/}
         <MenuWrap justifyContent="space-between">
           <SettingsBlock>
-            <SettingsElement>
-              <ViewOption>
-                <ViewButton className="grid-active">
-                  <GridIco />
-                </ViewButton>
-                <ViewButton>
-                  <ListIco />
-                </ViewButton>
-              </ViewOption>
-            </SettingsElement>
+            {viewButtonsRender}
             <Filter className={active.price && "price-active"}>
               <FilterItem
                 onClick={() => {
@@ -111,33 +100,14 @@ const AllNFTs: React.FC = () => {
           </SettingsBlock>
           <ResultsTotal>{results}</ResultsTotal>
         </MenuWrap>
-        <AllGridWrap
-          getResults={(amount: any) => setResults(amount)}
-          priceFilter={priceFilter}
-        />
-
-        <div>
-          <NFTListItem name="item1" />
-        </div>
-        {/* <TabsMenu>
-          <Tab onClick={() => setTab('grid')}>
-            <ViewButton className="grid-active">
-              <GridIco />
-            </ViewButton>
-          </Tab>
-          <Tab onClick={() => setTab('list')}>
-            <ViewButton>
-              <ListIco />
-            </ViewButton>
-          </Tab>
-        </TabsMenu>
-        {tab === 'grid' && (
+        {viewMode === ViewMode.grid ? (
           <AllGridWrap
             getResults={(amount: any) => setResults(amount)}
             priceFilter={priceFilter}
           />
+        ) : (
+          <NFTListItem name="item1" />
         )}
-        {tab === 'list' && <CardLineNFT />} */}
       </Wrapper>
     </AllNFTContainer>
   );

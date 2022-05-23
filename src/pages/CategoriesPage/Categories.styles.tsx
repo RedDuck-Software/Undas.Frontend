@@ -190,13 +190,14 @@ export const CollectionText = styled.span<IText>`
     font-size: 12px;
   }
   @media (max-width: 501px) {
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     display: table-cell;
-  }`;
+  }
+`;
 
 interface IWrapper {
   disp?: string;
