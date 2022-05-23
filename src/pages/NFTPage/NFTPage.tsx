@@ -181,9 +181,10 @@ const NFTPage: React.FC = () => {
       connector
     );
 
-    if(stakingId) {
+    if(stakingId){
     setStakingId(stakingId.value.toNumber());
-  }
+    }
+
     await getShowStaking();
     await getShowRent();
 

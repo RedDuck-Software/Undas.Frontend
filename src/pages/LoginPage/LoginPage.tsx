@@ -18,6 +18,7 @@ import {
   Circle,
   ButtonText,
   ShowMore,
+  UNDAS,
 } from "./LoginPage.styles";
 
 import {
@@ -68,9 +69,7 @@ const LoginPage: React.FC = () => {
     },
     {
       icon: Coinbase,
-      text: isMobile
-        ? "Coinbase (desktop only)"
-        : "Coinbase" + (disabled ? "..." : ""),
+      text: isMobile ? "Coinbase" : "Coinbase" + (disabled ? "..." : ""),
       handleClick: function () {
         localStorage.setItem("connector", "walletconnect");
         connect(walletconnect);
@@ -116,10 +115,12 @@ const LoginPage: React.FC = () => {
       <LoginSec>
         <Container>
           <TextWrapper>
-            <LoginTitle>You need an Ethereum wallet to use UNDAS</LoginTitle>
+            <LoginTitle>
+              You need an Ethereum wallet to use <UNDAS>UNDAS</UNDAS>
+            </LoginTitle>
             <LoginText>
               Connect with one of our available <VioletText>wallet</VioletText>{" "}
-              providers or create a new one.{" "}
+              providers or create a new one{" "}
             </LoginText>
           </TextWrapper>
           <ButtonWrapper>
