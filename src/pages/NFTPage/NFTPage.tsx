@@ -45,6 +45,7 @@ import {
   PriceInUSD,
   RentElement,
   RentalPeriod,
+  RightSideBlock
 } from "./NFTPage.styles";
 import Accordion from "./page-components/Accordion/Accordion";
 import About from "./page-components/Accordion/accordrion-components/About";
@@ -235,7 +236,7 @@ const NFTPage: React.FC = () => {
         ) : (
           <>
             <NavigationWrap>
-              <Name>Returne #274</Name>
+              <Name>Name NFT</Name>
               <NavMenu>
                 <NavElement>
                   <RefreshIco />
@@ -255,6 +256,7 @@ const NFTPage: React.FC = () => {
               <ImageWrap>
                 <Image src={NFTImage} alt="nft-image" />
               </ImageWrap>
+              <RightSideBlock>
               <Wrapper
                 disp="flex"
                 flexDirection="column"
@@ -312,13 +314,14 @@ const NFTPage: React.FC = () => {
                     <RentalPeriod placeholder="7 for 90 days" />
                   </RentElement>
                   <RentElement h="76px">
-                    <InfoButton bg="#873DC1" flex="1 1 0">
+                    <InfoButton bg="#873DC1" flex="1 1 0" className="colored-btn">
                       Rent
                     </InfoButton>
                     <InfoButton fc="#873DC1">Make offer</InfoButton>
                   </RentElement>
                 </SaleBlock>
               </Wrapper>
+              </RightSideBlock>
             </MainInfoWrap>
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">

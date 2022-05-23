@@ -39,6 +39,13 @@ export const AccordionArrow = styled(Arrow)`
 export const OffersWrap = styled.table`
   width: 100%;
   border-collapse: collapse;
+  @media (max-width: 822px) {
+    display: block;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 `;
 
 export const OffersHeadTr = styled.tr`
@@ -71,12 +78,18 @@ export const OffersTd = styled.td<IOffersTd>`
     padding: 15px 0 15px 20px;
     width: 3%;
   }
+  @media (max-width: 992px) {
+    padding: 10px 10px 10px 20px;
+  }
   @media (max-width: 576px) {
     padding: 10px;
   }
 `;
 export const OffersTdText = styled.td`
   padding: 10px 30px;
+  @media (max-width: 992px) {
+    padding: 10px 10px 10px 20px;
+  }
   @media (max-width: 576px) {
     padding: 10px;
   }
@@ -570,7 +583,7 @@ export const AcceptBTN = styled.button`
   background: #873dc1;
   border-radius: 10px;
   width: 100px;
-  height: 36px;
+  padding: 7px 10px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -588,7 +601,7 @@ export const AcceptBTN = styled.button`
 `;
 export const MakeOfferBTN = styled.button`
   width: 100px;
-  height: 36px;
+  padding: 7px 5px;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #873dc1;
@@ -608,7 +621,7 @@ export const MakeOfferBTN = styled.button`
 `;
 export const DenyBTN = styled.button`
   width: 100px;
-  height: 36px;
+  padding: 7px 10px;
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #ff2a36;
