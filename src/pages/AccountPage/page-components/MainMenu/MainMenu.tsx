@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import Context from "../../../../utils/Context";
+import useViewMode from "../../../../utils/hooks/useViewMode";
 import {
   Arrow,
   Filter,
@@ -18,12 +19,9 @@ import {
   SearchIco,
   SettingsBlock,
   SettingsElement,
-  ViewButton,
-  ViewOption,
   ResultsTotal,
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
-import { GridIco, ListIco } from "../../../AllNFTs/imports";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 
 const MainMenu: React.FC = () => {
@@ -32,7 +30,7 @@ const MainMenu: React.FC = () => {
     event: false,
   });
 
-  const [viewMode, setViewMode] = useState<string>("grid");
+  const { viewMode, viewButtonsRender } = useViewMode();
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
@@ -113,22 +111,7 @@ const MainMenu: React.FC = () => {
     <div>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
         <SettingsBlock>
-          <SettingsElement>
-            <ViewOption>
-              <ViewButton
-                className={viewMode === "grid" ? "grid-active" : ""}
-                onClick={() => setViewMode("grid")}
-              >
-                <GridIco />
-              </ViewButton>
-              <ViewButton
-                className={viewMode === "list" ? "grid-active" : ""}
-                onClick={() => setViewMode("list")}
-              >
-                <ListIco />
-              </ViewButton>
-            </ViewOption>
-          </SettingsElement>
+          <SettingsElement>{viewButtonsRender}</SettingsElement>
           <Filter className={active.price && "price-active"}>
             <FilterItem
               onClick={() => {
