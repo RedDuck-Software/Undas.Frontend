@@ -30,3 +30,7 @@
     transform: rotate(-45deg);
     margin-right: 6px;
 }
+.promo-slider .swiper-button-next:after, .promo-slider .swiper-rtl .swiper-button-prev:after,
+.promo-slider .swiper-button-prev:after, .promo-slider .swiper-rtl .swiper-button-next:after{
+    content: '';
+}
