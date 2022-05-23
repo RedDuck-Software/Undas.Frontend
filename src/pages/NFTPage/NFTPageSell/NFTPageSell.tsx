@@ -179,6 +179,7 @@ const NFTPageSell: React.FC = () => {
       Number(tokenId),
       connector
     );
+
     if (stakingId) {
       setStakingId(stakingId.value.toNumber());
     }
@@ -197,6 +198,7 @@ const NFTPageSell: React.FC = () => {
       Number(tokenId),
       connector
     );
+
     if (listingId) {
       setListingId(listingId.value.toNumber());
     }

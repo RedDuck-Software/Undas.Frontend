@@ -201,8 +201,8 @@ const NFTPage: React.FC = () => {
       connector
     );
 
-    if(listingId){
-    setListingId(listingId.value.toNumber());
+    if(listingId) {
+      setListingId(listingId.value.toNumber());
     }
     await getShowBuy();
     setLoading(false);
