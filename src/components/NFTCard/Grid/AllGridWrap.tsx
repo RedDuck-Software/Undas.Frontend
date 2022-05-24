@@ -195,7 +195,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
             setList(sortedArr);
           })
           .catch((e) => console.log(e));
-        console.log(list);
         let common: (ItemsProps | StakingsProps)[] = [
           ...list!,
           ...stakingsList!,
@@ -205,8 +204,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
             index === self.findIndex((t) => t.id === value.id),
         );
         setCommonList(common);
-        console.log("list: ", list);
-        console.log("common: ", commonList);
       }
     }
     //console.log("List", list);
