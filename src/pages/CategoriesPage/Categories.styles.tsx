@@ -7,6 +7,13 @@ export const Banner = styled.div`
   & img {
     width: 100%;
   }
+
+  @media (max-width: 620px) {
+    height: 60px;
+    & img {
+      height: 60px;
+    }
+  }
 `;
 
 export const Info = styled.div`

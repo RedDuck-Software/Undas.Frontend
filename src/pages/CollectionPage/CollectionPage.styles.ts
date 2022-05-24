@@ -9,6 +9,39 @@ export const Info = styled.ul`
   background-color: #fff;
   overflow: hidden;
   max-height: 80px;
+
+  @media (max-width: 620px) {
+    display: none;
+  }
+`;
+
+export const InfoS = styled.div`
+  display: none;
+  box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
+  background-color: #fff;
+  max-height: 80px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @media (max-width: 620px) {
+    display: flex;
+  }
+`;
+
+export const InfoSBorder = styled.div`
+  display: none;
+  box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
+  background-color: #fff;
+  max-height: 80px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0 0 20px 20px;
+  
+  @media (max-width: 620px) {
+    display: flex;
+  }
 `;
 
 export const InfoElement = styled.li`
@@ -45,29 +78,28 @@ export const MakeComplaint = styled.button`
   margin-top: 44px;
   max-height: 36px;
   cursor: pointer;
-
-  @media (max-width: 1270px) {
-    display: none;
-  }
 `;
 
 export const AddToFav = styled.button`
   margin-top: 52px;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
-  border: none;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #5d3f92;
-  padding: 10px 8px;
+  font-size: 18px;
+  color: #873dc1;
+  padding: 6px 18px;
+  border: none;
+  margin-top: 44px;
+  max-height: 36px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 18px;
   max-height: 36px;
   cursor: pointer;
   align-self: end;
+  min-width: 200px;
 
   @media (max-width: 1050px) {
     display: none;
@@ -97,7 +129,7 @@ export const ViewOptionCollection = styled.div`
   display: flex;
   align-items: center;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 992px) {
     display: none;
   }
 `;
@@ -135,11 +167,14 @@ export const SettingsBlockCollection = styled.ul`
   display: flex;
   gap: 15px;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 992px) {
     gap: 0px;
   }
   @media (max-width: 670px) {
     width: 100%;
+  }
+  @media (max-width: 620px) {
+    display: block;
   }
 `;
 
@@ -165,9 +200,13 @@ export const FilterNewly = styled.ul`
   @media (max-width: 1050px) {
     margin-left: 30px;
   }
-
   @media (max-width: 670px) {
     width: 47%;
+  }
+  @media (max-width: 620px) {
+    width: 100%;
+    margin-left: unset;
+    margin-top: 15px;
   }
 `;
 
@@ -190,10 +229,13 @@ export const Results = styled.div`
   @media (max-width: 670px) {
     margin-top: 68px;
   }
+  @media (max-width: 620px) {
+    margin-top: 30px;
+  }
 `;
 
 export const TextResult = styled.span`
-  text-alight: right;
+  text-align: right;
 `;
 
 interface IMenuWrap {
@@ -235,6 +277,15 @@ export const SelectedFiltersCollection = styled.div`
 `;
 
 export const DispS = styled.div`
+  min-width: 30px;
+  max-width: 30px;
+  height: auto;
+  background: rgba(251,245,255,0.7);
+  box-shadow: inset 0 0 3px rgb(124 124 124 / 50%);
+  margin-right: 15px;
+  overflow: hidden;
+  position: relative;
+
   @media (max-width: 670px) {
     display: none;
   }
@@ -246,7 +297,6 @@ export const FilterPrice = styled.ul`
   cursor: pointer;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
-  //overflow: hidden;
   border-radius: 10px;
   font-weight: 400;
   font-size: 14px;
@@ -258,9 +308,11 @@ export const FilterPrice = styled.ul`
   &.event-active {
     border-radius: 10px 10px 0 0;
   }
-
   @media (max-width: 670px) {
     width: 47%;
+  }
+  @media (max-width: 620px) {
+    width: 100%;
   }
 `;
 
@@ -279,6 +331,9 @@ export const FilterButton = styled.div`
   @media (max-width: 670px) {
     display: block;
   }
+  @media (max-width: 620px) {
+    width: 120px;
+  }
 `;
 
 export const FilterText = styled.span`
@@ -296,31 +351,6 @@ export const FilterText = styled.span`
   }
 `;
 
-export const MakeComplaintL = styled.button`
-  background-color: #fff;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #873dc1;
-  padding: 6px 18px;
-  border: none;
-  margin-top: 44px;
-  max-height: 36px;
-  cursor: pointer;
-  display: none;
-
-  @media (max-width: 1270px) {
-    display: block;
-  }
-  @media (max-width: 1224px) {
-    margin-top: 75px;
-  }
-  @media (max-width: 1050px) {
-    display: none;
-  }
-`;
-
 export const HeadWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -331,4 +361,28 @@ export const HeadWrapper = styled.div`
     display: block;
     margin-top: 50px;
   }
+`;
+
+export const ItemsOwners = styled.div`
+  width: 50%;
+  height: 50px;
+  text-align: center;
+`;
+
+export const TextInfo = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  color: #7C7C7C;
+
+  @media (max-width: 620px) {
+    font-size: 12px;
+  }
+`;
+
+export const ContainerCollection = styled.div`
+  margin-bottom: 40px;
 `;
