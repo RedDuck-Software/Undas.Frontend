@@ -110,11 +110,9 @@ export const CollectionCard = styled.div`
   }
   @media (max-width: 640px) {
     height: 160px;
-    padding: 0px;
   }
   @media (max-width: 501px) {
     height: 165px;
-    padding: 0px;
   }
 `;
 
@@ -142,8 +140,6 @@ export const AuthorWrap = styled.div`
     margin-top: 110px;
   }
   @media (max-width: 640px) {
-    width: 100%;
-    position: absolute;
     margin-top: 90px;
   }
   @media (max-width: 501px) {
@@ -192,7 +188,6 @@ export const CollectionText = styled.span<IText>`
   @media (max-width: 501px) {
     font-family: "Montserrat";
     font-style: normal;
-    font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     display: table-cell;
@@ -333,5 +328,22 @@ export const CollectionTextDiv = styled.div`
   }
   @media (max-width: 340px) {
     width: 45%;
+  }
+`;
+
+export const CardsWrapper = styled.div`
+  position: relative;
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 1100px) {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    max-width: unset;
+    text-align: left;
+  }
+  @media (max-width: 501px) {
+    margin-top: 10px;
   }
 `;

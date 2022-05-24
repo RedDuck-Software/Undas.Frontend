@@ -15,6 +15,7 @@ export const SettingsIco = styled(Settings)`
 
 export const AccountWrap = styled(CardWrap)`
   width: 350px;
+  position: absolute;
   ${CardWrap}
 `;
 
