@@ -228,17 +228,6 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
-
-  @media (max-width: 1100px) {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    max-width: unset;
-    text-align: left;
-  }
-  @media (max-width: 501px) {
-    margin-top: 10px;
-  }
 `;
 
 interface IPlatform {
@@ -343,5 +332,22 @@ export const CollectionTextDiv = styled.div`
   }
   @media (max-width: 340px) {
     width: 45%;
+  }
+`;
+
+export const CardsWrapper = styled.div`
+  position: relative;
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 1100px) {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    max-width: unset;
+    text-align: left;
+  }
+  @media (max-width: 501px) {
+    margin-top: 10px;
   }
 `;
