@@ -8,9 +8,9 @@ import {
   CollectionText,
   NFTCards,
   Platform,
-  Wrapper,
   NameNft,
   CollectionTextDiv,
+  CardsWrapper,
 } from "../Categories.styles";
 import {
   CollectionBG,
@@ -45,7 +45,7 @@ const Collection: React.FC = () => {
           </CollectionText>
         </CollectionTextDiv>
       </AuthorWrap>
-      <Wrapper disp="flex" gap="15px">
+      <CardsWrapper>
         <NFTCards>
           <img src={NFT1} alt="nft-card" />
         </NFTCards>
@@ -55,7 +55,7 @@ const Collection: React.FC = () => {
         <NFTCards>
           <img src={NFT3} alt="nft-card" />
         </NFTCards>
-      </Wrapper>
+      </CardsWrapper>
     </CollectionCard>
   );
 };
