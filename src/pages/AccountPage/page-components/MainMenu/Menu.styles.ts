@@ -51,6 +51,21 @@ export const OffersWrapTable = styled.table`
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
+  display: block;
+  max-height: 660px;
+  overflow-y: auto;
+  @media (max-width: 992px) {
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-height: 480px;
+  }
+  @media (max-width: 768px) {
+    max-height: 380px;
+  }
+  @media (max-width: 576px) {
+    max-height: 325px;
+    }
 `;
 export const ItemIcon = styled.div`
   width: 30px;
@@ -78,9 +93,6 @@ export const OffersTdText = styled.td`
     display: flex;
     align-items: center;
   }
-  @media (max-width: 576px) {
-    padding: 10px;
-  }
   &.first-column {
     padding: 15px 0 15px 20px;
     width: 3%;
@@ -92,6 +104,9 @@ export const OffersTdText = styled.td`
   &.first-column:hover .offers-tooltip {
     visibility: visible;
     opacity: 1;
+  }
+  @media (max-width: 1200px) {
+    padding: 10px;
   }
 `;
 export const OffersTooltipWrap = styled.div`

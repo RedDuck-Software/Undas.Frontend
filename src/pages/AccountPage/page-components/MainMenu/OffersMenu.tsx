@@ -27,7 +27,6 @@ import { OfferType } from "./types";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
   OffersTr,
-  OffersTd,
   OffersHeadTr,
   OffersText,
 } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
@@ -72,14 +71,14 @@ const OffersMenu: React.FC = () => {
         {offerType === OfferType.resaived && (
           <>
             <OffersHeadTr className="offers-menu-head">
-              <OffersTd className="first-column"></OffersTd>
-              <OffersTd>Item</OffersTd>
-              <OffersTd>Price</OffersTd>
-              <OffersTd>Expiration</OffersTd>
-              <OffersTd>From</OffersTd>
-              <OffersTd></OffersTd>
-              <OffersTd></OffersTd>
-              <OffersTd></OffersTd>
+              <OffersTdText className="first-column"></OffersTdText>
+              <OffersTdText>Item</OffersTdText>
+              <OffersTdText>Price</OffersTdText>
+              <OffersTdText>Expiration</OffersTdText>
+              <OffersTdText>From</OffersTdText>
+              <OffersTdText></OffersTdText>
+              <OffersTdText></OffersTdText>
+              <OffersTdText></OffersTdText>
             </OffersHeadTr>
             <OffersTr className="offers-menu-row">
               <OffersTdText className="first-column">
