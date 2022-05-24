@@ -16,7 +16,7 @@ export const RowLine = styled(Row)`
 `;
 
 export const ColTextTop = styled(Col)`
-  width: 85% !important;
+  width: 85%;
   height: 40px;
   background: #ffffff;
   border-radius: 0px 10px 0px 0px;
@@ -191,6 +191,6 @@ export const ImgNFT = styled.img`
 export const ColImg = styled(Col)`
   padding-left: 0px;
   height: 200px;
-  width: 15% !important;
+  width: 15%;
   display: contents;
 `;
