@@ -354,3 +354,7 @@ export const CardsWrapper = styled.div`
     margin-top: 10px;
   }
 `;
+
+export const ImageCollection = styled.img`
+  width: 100%;
+`;
