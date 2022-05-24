@@ -15,6 +15,10 @@ export const NFTWrap = styled.div`
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
   }
   /* filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5)); */
+
+  @media (max-width: 650px) {
+    max-width: 240px;
+  }
 `;
 
 export const Info = styled(Wrapper)`

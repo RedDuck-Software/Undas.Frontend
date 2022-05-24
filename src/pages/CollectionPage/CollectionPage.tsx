@@ -6,26 +6,50 @@ import {
   Amount,
   MakeComplaint,
   AddToFav,
+  InfoBox,
+  ViewOptionCollection,
+  MenuSearchWrapSmall,
+  DisplayNone,
+  SettingsBlockCollection,
+  FilterNewly,
+  Results,
+  TextResult,
+  MenuWrapCollection,
+  FilterSelected,
+  SelectedFiltersCollection,
+  DispS,
+  FilterPrice,
+  FilterButton,
+  FilterText,
+  MakeComplaintL,
+  HeadWrapper,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco, AddToFavIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import { close, filter } from "../Activity/imports";
+import {
+  FilterImg,
+  FilterName,
+  FilterClose,
+  ClearAll,
+} from "../Activity/page-components/MainMenu/Menu.styles";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import {
   AllNFTContainer,
   Arrow,
-  Filter,
   FilterItem,
   FilterMenu,
   FilterTitle,
   MenuItem,
-  MenuWrap,
   MenuSearchWrap,
   SearchIco,
   Input,
+  SettingsElement,
+  ViewButton,
   SettingsBlock,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
@@ -46,16 +70,13 @@ const CollectionPage: React.FC = () => {
           <img src={CollectionBanner} alt="CollectionBanner" />
         </Banner>
         <AllNFTContainer>
-          <CollectionCard />
-          <ASideFilter marginTop="208px" />
+          <DispS>
+            <ASideFilter marginTop="208px" />
+          </DispS>
           <Wrapper w="100%">
-            <Wrapper w="100%" disp="flex" justifyContent="flex-end">
-              <Wrapper
-                disp="flex"
-                justifyContent="space-between"
-                flexWrap="wrap"
-                mw="740px"
-              >
+            <HeadWrapper>
+              <CollectionCard />
+              <InfoBox>
                 <Info>
                   <InfoElement>
                     <span>Items</span>
@@ -85,12 +106,21 @@ const CollectionPage: React.FC = () => {
                   <AddToFavIco />
                   Add to Favorites
                 </AddToFav>
-              </Wrapper>
-            </Wrapper>
-            <MenuWrap marg="40px 0 20px 0">
-              <SettingsBlock>
-                {viewButtonsRender}
-                <Filter className={active.price && "price-active"}>
+                <MakeComplaintL>Make a Complaint</MakeComplaintL>
+              </InfoBox>
+            </HeadWrapper>
+            <MenuSearchWrapSmall>
+              <SearchIco />
+              <Input placeholder="Search" />
+            </MenuSearchWrapSmall>
+            <MenuWrapCollection marg="40px 0 20px 0">
+              <SettingsBlockCollection>
+                <SettingsElement>
+                  <ViewOptionCollection>
+                    {viewButtonsRender}
+                  </ViewOptionCollection>
+                </SettingsElement>
+                <FilterPrice className={active.price && "price-active"}>
                   <FilterItem
                     onClick={() => {
                       if (!active.price) {
@@ -109,8 +139,8 @@ const CollectionPage: React.FC = () => {
                       <span>Price: High to Low</span>
                     </MenuItem>
                   </FilterMenu>
-                </Filter>
-                <Filter className={active.event && "event-active"}>
+                </FilterPrice>
+                <FilterNewly className={active.event && "event-active"}>
                   <FilterItem
                     onClick={() => {
                       if (!active.event) {
@@ -135,13 +165,29 @@ const CollectionPage: React.FC = () => {
                       <span>Recently Staking</span>
                     </MenuItem>
                   </FilterMenu>
-                </Filter>
-              </SettingsBlock>
-              <MenuSearchWrap>
-                <SearchIco />
-                <Input />
-              </MenuSearchWrap>
-            </MenuWrap>
+                </FilterNewly>
+                <Results>
+                  <TextResult>8 results</TextResult>
+                </Results>
+              </SettingsBlockCollection>
+              <DisplayNone>
+                <MenuSearchWrap>
+                  <SearchIco />
+                  <Input placeholder="Search" />
+                </MenuSearchWrap>
+              </DisplayNone>
+            </MenuWrapCollection>
+            <FilterButton>
+              <FilterText>Filter</FilterText>
+            </FilterButton>
+            <SelectedFiltersCollection>
+              <FilterSelected>
+                <FilterImg src={filter} alt="filter-image" />
+                <FilterName>Borya Fo...</FilterName>
+                <FilterClose src={close} alt="close" />
+              </FilterSelected>
+              <ClearAll>Clear All</ClearAll>
+            </SelectedFiltersCollection>
             {viewMode === ViewMode.grid ? (
               <CollectionGridWrap />
             ) : (
@@ -151,6 +197,10 @@ const CollectionPage: React.FC = () => {
                 <NFTListItem name="item1" />
               </>
             )}
+            <MenuSearchWrap>
+              <SearchIco />
+              <Input />
+            </MenuSearchWrap>
           </Wrapper>
         </AllNFTContainer>
       </div>
