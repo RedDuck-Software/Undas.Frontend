@@ -8,18 +8,18 @@ import { Marketplace__factory } from "../typechain";
 export const getNFTStakingIds = async (
   address: string,
   itemId: number,
-  connector: AbstractConnector
+  connector: AbstractConnector,
 ) => {
   if (!connector) return;
 
   const provider = new ethers.providers.Web3Provider(
-    await connector?.getProvider()
+    await connector?.getProvider(),
   );
   const signer = provider.getSigner(0);
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
-    signer
+    signer,
   );
 
   const tx = await MarketplaceContract.nftStakingIds(address, itemId);

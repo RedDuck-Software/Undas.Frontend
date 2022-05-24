@@ -6,6 +6,7 @@ import OffersMenu from "./page-components/MainMenu/OffersMenu";
 import { AccountContainer, StatisticsText } from "./TopCollectionPage.styles";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import { Container } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -48,7 +49,7 @@ const TopCollectionPage: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };
@@ -61,7 +62,7 @@ const TopCollectionPage: React.FC = () => {
   }, [connector, account]);
 
   return (
-    <>
+    <Container>
       <Wrapper w="100%">
         <AccountContainer>
           <ASideFilter marginTop="140px" />
@@ -73,7 +74,7 @@ const TopCollectionPage: React.FC = () => {
           </Wrapper>
         </AccountContainer>
       </Wrapper>
-    </>
+    </Container>
   );
 };
 

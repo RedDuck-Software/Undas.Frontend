@@ -38,7 +38,7 @@ const Listing: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -50,17 +50,17 @@ const Listing: React.FC = () => {
 
     const NFTContract = UndasGeneralNFT__factory.connect(
       "0xB073DeaC0dc753d27cC41a0f443000579d017361",
-      signer
+      signer,
     );
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS
+      MARKETPLACE_ADDRESS,
     );
 
     if (!isApprovedForAll) {
@@ -73,7 +73,7 @@ const Listing: React.FC = () => {
       NFTAddress,
       tokenId,
       ethers.utils.parseEther(price),
-      { value: ethers.utils.parseEther("0.1") }
+      { value: ethers.utils.parseEther("0.1") },
     );
 
     await tx.wait().then(() => {

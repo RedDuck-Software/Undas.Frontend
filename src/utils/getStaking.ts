@@ -7,18 +7,18 @@ import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
 
 export const getStaking = async (
   stakingId: number,
-  connector: AbstractConnector
+  connector: AbstractConnector,
 ) => {
   if (!connector) return;
 
   const provider = new ethers.providers.Web3Provider(
-    await connector?.getProvider()
+    await connector?.getProvider(),
   );
   const signer = provider.getSigner(0);
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
-    signer
+    signer,
   );
 
   const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);

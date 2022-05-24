@@ -5,29 +5,33 @@ import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
+import { FavouriteType } from "./types";
 
-import NFTGrid from "../../../../components/NFTCard/Grid/NFTGrid";
+import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
+import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
+import useViewMode from "../../../../utils/hooks/useViewMode";
 import {
   Input,
   MenuSearchWrap,
   MenuWrap,
   SearchIco,
   SettingsBlock,
-  SettingsElement,
-  ViewButton,
-  ViewOption,
   ResultsTotal,
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
-import { GridIco, ListIco } from "../../../AllNFTs/imports";
-import CardLineNFT from "../../../AllNFTs/page-components/CardLineNFT/CardLineNFT";
+import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
 
 const FavouriteMenu: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
+
+  const { viewMode, viewButtonsRender } = useViewMode();
+  const [favouriteType, setFavouriteType] = useState<FavouriteType>(
+    FavouriteType.nft,
+  );
 
   const [, setNFTList] = useState<
     {
@@ -62,7 +66,7 @@ const FavouriteMenu: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };
@@ -83,22 +87,26 @@ const FavouriteMenu: React.FC = () => {
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
         <SettingsBlock>
           <FavouriteSelect>
-            <FavouriteButton className="favourite-active">
+            <FavouriteButton
+              className={
+                favouriteType === FavouriteType.nft ? "favourite-active" : ""
+              }
+              onClick={() => setFavouriteType(FavouriteType.nft)}
+            >
               Favourite NFTs
             </FavouriteButton>
-            <FavouriteButton>Favourite Collections</FavouriteButton>
+            <FavouriteButton
+              className={
+                favouriteType === FavouriteType.collection
+                  ? "favourite-active"
+                  : ""
+              }
+              onClick={() => setFavouriteType(FavouriteType.collection)}
+            >
+              Favourite Collections
+            </FavouriteButton>
           </FavouriteSelect>
-          <SettingsElement></SettingsElement>
-          <SettingsElement>
-            <ViewOption>
-              <ViewButton className="grid-active">
-                <GridIco />
-              </ViewButton>
-              <ViewButton>
-                <ListIco />
-              </ViewButton>
-            </ViewOption>
-          </SettingsElement>
+          {favouriteType === FavouriteType.nft && viewButtonsRender}
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
@@ -107,28 +115,35 @@ const FavouriteMenu: React.FC = () => {
         <ResultsTotal>4</ResultsTotal>
       </MenuWrap>
 
-      <GridLayout>
-        {/* NFTList?.map((item) => {}) */}
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name1"} />
+      {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
+        <GridLayout>
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name2"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name2"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name3"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name3"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name4"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name4"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name5"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name5"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name6"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name6"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name7"} />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name7"} />
 
-        <NFTGrid tokenId={2} URI={"assdf"} name={"item.name8"} />
-      </GridLayout>
-      <CardLineNFT />
-      <CardLineNFT />
-      <CardLineNFT />
-      <FavouriteTable />
+          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
+        </GridLayout>
+      )}
+
+      {viewMode === ViewMode.list && favouriteType === FavouriteType.nft && (
+        <>
+          <NFTListItem name="item1" />
+          <NFTListItem name="item1" />
+          <NFTListItem name="item1" />
+        </>
+      )}
+
+      {favouriteType === FavouriteType.collection && <FavouriteTable />}
     </FavouriteWrap>
   );
 };
