@@ -45,6 +45,7 @@ import {
   PriceInUSD,
   RentElement,
   RentalPeriod,
+  RightSideBlock,
 } from "./NFTPage.styles";
 import Accordion from "./page-components/Accordion/Accordion";
 import About from "./page-components/Accordion/accordrion-components/About";
@@ -58,6 +59,7 @@ import Staking from "./page-components/Accordion/accordrion-components/Staking";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
 
+import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import { NFT_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
@@ -235,7 +237,7 @@ const NFTPage: React.FC = () => {
         ) : (
           <>
             <NavigationWrap>
-              <Name>Returne #274</Name>
+              <Name>Name NFT</Name>
               <NavMenu>
                 <NavElement>
                   <RefreshIco />
@@ -255,70 +257,76 @@ const NFTPage: React.FC = () => {
               <ImageWrap>
                 <Image src={NFTImage} alt="nft-image" />
               </ImageWrap>
-              <Wrapper
-                disp="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-              >
-                <Info>
-                  <InfoElement>
-                    <span>
-                      Owned by <PurpleText>Hype-eth</PurpleText>
-                    </span>
-                  </InfoElement>
-                  <InfoElement>
-                    <ViewsIco />
-                    <span>91 views</span>
-                  </InfoElement>
-                  <InfoElement>
-                    <FavouriteIco />
-                    <span>10 favourites</span>
-                  </InfoElement>
-                  <InfoElement>
-                    <UnlockIco />
-                    <span>Unlockable Content</span>
-                  </InfoElement>
-                </Info>
-                <SaleBlock>
-                  <TopBar>
-                    <CartIco />
-                    Sale
-                  </TopBar>
-                  <Buy id={listingId} />
-                </SaleBlock>
-                <SaleBlock>
-                  <TopBar>
-                    <RentIco />
-                    Rent
-                  </TopBar>
-                  <RentElement>
-                    <span>Deposit</span>
-                    <Wrapper disp="flex" alignItems="center">
-                      <EthIco />
-                      <PriceText>2,5</PriceText>
-                      <PriceInUSD>($18 465,32)</PriceInUSD>
-                    </Wrapper>
-                  </RentElement>
-                  <RentElement>
-                    <span>Price for 1 Day Rental</span>
-                    <Wrapper disp="flex" alignItems="center">
-                      <EthIco />
-                      <PriceText>0,005</PriceText>
-                      <PriceInUSD>($36,93)</PriceInUSD>
-                    </Wrapper>
-                  </RentElement>
-                  <RentElement>
-                    <span>Period</span>
-                    <RentalPeriod placeholder="7 for 90 days" />
-                  </RentElement>
-                  <RentElement h="76px">
-                    <InfoButton bg="#873DC1" flex="1 1 0">
+              <RightSideBlock>
+                <Wrapper
+                  disp="flex"
+                  flexDirection="column"
+                  justifyContent="space-between"
+                >
+                  <Info>
+                    <InfoElement>
+                      <span>
+                        Owned by <PurpleText>Hype-eth</PurpleText>
+                      </span>
+                    </InfoElement>
+                    <InfoElement>
+                      <ViewsIco />
+                      <span>91 views</span>
+                    </InfoElement>
+                    <InfoElement>
+                      <FavouriteIco />
+                      <span>10 favourites</span>
+                    </InfoElement>
+                    <InfoElement>
+                      <UnlockIco />
+                      <span>Unlockable Content</span>
+                    </InfoElement>
+                  </Info>
+                  <SaleBlock>
+                    <TopBar>
+                      <CartIco />
+                      Sale
+                    </TopBar>
+                    <Buy id={listingId} />
+                  </SaleBlock>
+                  <SaleBlock>
+                    <TopBar>
+                      <RentIco />
                       Rent
-                    </InfoButton>
-                    <InfoButton fc="#873DC1">Make offer</InfoButton>
-                  </RentElement>
-                </SaleBlock>
-              </Wrapper>
+                    </TopBar>
+                    <RentElement>
+                      <span>Deposit</span>
+                      <Wrapper disp="flex" alignItems="center">
+                        <EthIco />
+                        <PriceText>2,5</PriceText>
+                        <PriceInUSD>($18 465,32)</PriceInUSD>
+                      </Wrapper>
+                    </RentElement>
+                    <RentElement>
+                      <span>Price for 1 Day Rental</span>
+                      <Wrapper disp="flex" alignItems="center">
+                        <EthIco />
+                        <PriceText>0,005</PriceText>
+                        <PriceInUSD>($36,93)</PriceInUSD>
+                      </Wrapper>
+                    </RentElement>
+                    <RentElement>
+                      <span>Period</span>
+                      <RentalPeriod placeholder="7 for 90 days" />
+                    </RentElement>
+                    <RentElement h="76px">
+                      <InfoButton
+                        bg="#873DC1"
+                        flex="1 1 0"
+                        className="colored-btn"
+                      >
+                        Rent
+                      </InfoButton>
+                      <InfoButton fc="#873DC1">Make offer</InfoButton>
+                    </RentElement>
+                  </SaleBlock>
+                </Wrapper>
+              </RightSideBlock>
             </MainInfoWrap>
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
@@ -377,6 +385,7 @@ const NFTPage: React.FC = () => {
               </Accordion>
               {/* </Wrapper> */}
             </Wrapper>
+            <AdvertisingSlider />
           </>
         )}
       </NFTPageWrap>

@@ -51,6 +51,9 @@ export const NFTPageWrap = styled(Container)`
   position: relative;
   overflow: hidden;
   padding-bottom: 120px;
+  @media (max-width: 768px) {
+    padding-bottom: 50px;
+  }
   ${Container}
 `;
 
@@ -60,6 +63,9 @@ export const NavigationWrap = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 992px) {
+    margin-top: 40px;
+  }
 `;
 
 export const Name = styled.h1`
@@ -67,6 +73,14 @@ export const Name = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
+  @media (max-width: 768px) {
+    font-size: 32px;
+    line-height: 39px;
+  }
+  @media (max-width: 576px) {
+    font-size: 24px;
+    line-height: 29px;
+  }
 `;
 
 export const NavMenu = styled.ul`
@@ -85,6 +99,9 @@ export const NavElement = styled.li`
   width: 36px;
   height: 36px;
   box-shadow: 0px 0px 1px #7c7c7c;
+  &:hover {
+    background-color: #fbf5ff;
+  }
 `;
 
 export const MainInfoWrap = styled.div`
@@ -100,21 +117,26 @@ export const MainInfoWrap = styled.div`
 export const ImageWrap = styled.div`
   filter: drop-shadow(0px 5px 5px rgba(124, 124, 124, 0.25));
   border-radius: 10px;
-  width: 540px;
-  height: 515px;
+  flex: 0 1 49%;
+  @media (max-width: 1200px) {
+  }
   @media (max-width: 992px) {
-    flex: 0 0 100%;
-    height: auto;
+    flex: 0 0 80%;
+    margin: 0 auto;
   }
 `;
-
 export const Image = styled.img`
   object-fit: cover;
+  width: 100%;
+`;
+export const RightSideBlock = styled.div`
+  flex: 0 0 48%;
+  @media (max-width: 1200px) {
+  }
   @media (max-width: 992px) {
-    width: 100%;
+    flex: 0 0 100%;
   }
 `;
-
 export const Info = styled.ul`
   font-weight: 400;
   font-size: 14px;
@@ -122,6 +144,12 @@ export const Info = styled.ul`
   color: #232428;
   display: flex;
   gap: 20px;
+  @media (max-width: 1250px) {
+    gap: 10px;
+  }
+  @media (max-width: 992px) {
+    justify-content: space-around;
+  }
 `;
 
 export const InfoElement = styled.li`
@@ -137,6 +165,7 @@ export const SaleBlock = styled.ul`
   list-style: none;
   border-radius: 10px;
   overflow: hidden;
+  margin: 20px 0;
 `;
 
 export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
@@ -164,6 +193,16 @@ export const BuyBar = styled.li`
   color: #7c7c7c;
   background: #fbf5ff;
   box-shadow: inset 0px 0px 1px #7c7c7c;
+  @media (max-width: 992px) {
+    flex-flow: row wrap;
+    align-items: center;
+  }
+`;
+export const PriceWrap = styled.div`
+  margin: 10px 0 20px 0;
+  @media (max-width: 992px) {
+    margin: 0 0 0 20px;
+  }
 `;
 
 export const PriceText = styled.span`
@@ -173,6 +212,7 @@ export const PriceText = styled.span`
   font-size: 18px;
   color: #232428;
   vertical-align: middle;
+  margin: 0 10px 0 5px;
   @media (max-width: 576px) {
     margin: 0 3px 0 3px;
     font-size: 14px;
@@ -192,6 +232,10 @@ export const ButtonWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+  @media (max-width: 992px) {
+    flex: 0 0 100%;
+    margin-top: 20px;
+  }
 `;
 
 interface IButton {
@@ -205,11 +249,21 @@ export const InfoButton = styled.button<IButton>`
   border: 1px solid #873dc1;
   box-sizing: border-box;
   border-radius: 10px;
-  padding: 10px 80px;
+  padding: 10px;
+  width: 45%;
   font-size: 14px;
   background-color: ${(props) => props.bg || "#fff"};
   color: ${(props) => props.fc || "#fff"};
   flex: ${(props) => props.flex || ""};
+  transition: all 0.3s linear;
+  &.colored-btn:hover {
+    background-color: #fff;
+    color: #873dc1;
+  }
+  &:hover {
+    background-color: #873dc1;
+    color: #fff;
+  }
 `;
 
 // Rent Bar
