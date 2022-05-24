@@ -48,7 +48,7 @@ const ActivityPage: React.FC = () => {
     // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
     response.result = response.result.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id)
+        index === self.findIndex((t) => t.token_id === value.token_id),
     );
     setNFTList(response.result);
   };

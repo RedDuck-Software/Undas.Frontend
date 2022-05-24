@@ -18,7 +18,7 @@ import {
   PriceItem,
   PriceInEth,
   TextSpan,
-} from "./NFTGrid.styles";
+} from "./NFTGridItem.styles";
 
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import { ReactComponent as LockIco } from "../../../icons/lock.svg";
@@ -38,7 +38,7 @@ interface NFTGridProps {
   premium?: number;
 }
 
-const NFTGrid: React.FC<NFTGridProps> = (props) => {
+const NFTGridItem: React.FC<NFTGridProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -109,4 +109,4 @@ const NFTGrid: React.FC<NFTGridProps> = (props) => {
   );
 };
 
-export default NFTGrid;
+export default NFTGridItem;

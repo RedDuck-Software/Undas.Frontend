@@ -13,7 +13,6 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
     'import/order': [
       'error',
       {
@@ -37,6 +36,8 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'warn',
     'react/display-name': 'off',
   },
   settings: {

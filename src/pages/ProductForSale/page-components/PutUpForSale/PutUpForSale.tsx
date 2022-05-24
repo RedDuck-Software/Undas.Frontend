@@ -50,7 +50,7 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || isButtonsActive === "disabled") return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -60,12 +60,12 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS
+      MARKETPLACE_ADDRESS,
     );
 
     if (!isApprovedForAll) {
@@ -81,7 +81,7 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
       {
         value: ethers.utils.parseEther("0.1"),
         gasLimit: 300000,
-      }
+      },
     );
 
     await tx.wait().then(
@@ -92,7 +92,7 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
       },
       (error) => {
         console.log(error);
-      }
+      },
     );
   };
 
@@ -100,14 +100,14 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
     if (!connector || !listingId) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
-      signer
+      signer,
     );
 
     const tx = await MarketplaceContract.cancel(listingId);

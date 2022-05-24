@@ -3,7 +3,7 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import NFTGrid from "./NFTGrid";
+import NFTGridItem from "./NFTGridItem";
 
 import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
@@ -202,7 +202,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
         ];
         common = common.filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.id === value.id)
+            index === self.findIndex((t) => t.id === value.id),
         );
         setCommonList(common);
         console.log("list: ", list);
@@ -221,7 +221,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
           commonList?.map((item) => {
             getResults(commonList.length);
             return (
-              <NFTGrid
+              <NFTGridItem
                 key={item.id}
                 tokenId={item.id}
                 name={item.name}

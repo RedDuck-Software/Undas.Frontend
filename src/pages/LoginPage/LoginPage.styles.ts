@@ -32,17 +32,32 @@ export const LoginTitle = styled.h2`
 
   @media (max-width: 801px) {
     font-size: 1.5rem;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    font-size: 18px;
+    text-align: center;
+  }
+  @media (max-width: 501px) {
+    font-size: 14px;
   }
 `;
 
 export const LoginText = styled.p`
-  font-size: 1.2rem;
+  font-size: 18px;
   word-spacing: 0.3rem;
   color: #747474;
 
   @media (max-width: 801px) {
-    max-width: 570px;
-    font-size: 1.15rem;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    font-size: 14px;
+    text-align: center;
+    word-spacing: unset;
+  }
+  @media (max-width: 501px) {
+    font-size: 12px;
   }
 `;
 
@@ -51,6 +66,10 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
 `;
 
 export const ButtonToggle = styled.button`
@@ -62,6 +81,12 @@ export const ButtonToggle = styled.button`
   border-radius: 18px 0 0 18px;
   width: 116px;
   transition: all 0.2s ease-in-out;
+
+  @media (max-width: 1019px) {
+    width: 65px;
+    height: 30px;
+    padding: 6px;
+  }
 `;
 export const Circle = styled.div`
   border: 1px solid transparent;
@@ -70,6 +95,11 @@ export const Circle = styled.div`
   height: 30px;
   background-color: #fff;
   transition: all 0.2s ease-in-out;
+
+  @media (max-width: 1019px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 export const LoginButton = styled.button`
@@ -80,7 +110,7 @@ export const LoginButton = styled.button`
   //gap: 0.8rem;
   padding: 14px 0 14px;
   height: 10rem;
-  width: 24%;
+  width: 23%;
   background: #fff;
   border: none;
   box-shadow: 0 0 5px rgba(124, 124, 124, 0.25);
@@ -105,15 +135,24 @@ export const LoginButton = styled.button`
   }
 
   @media (max-width: 1019px) {
-    width: 80%;
+    width: 23%;
+    height: 130px;
   }
 
   @media (max-width: 801px) {
-    height: 50px;
+    height: 100px;
   }
 
+  @media (max-width: 640px) {
+    height: 100px;
+    width: 35%;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
   @media (max-width: 501px) {
-    width: 100%;
+    width: 40%;
+    margin-right: 10px;
+    margin-left: 10px;
   }
 `;
 
@@ -128,7 +167,7 @@ export const ButtonIcon = styled.img`
 export const ButtonText = styled.span`
   font-size: 1.2rem;
   @media (max-width: 801px) {
-    font-size: 1rem;
+    font-size: 14px;
   }
 `;
 
@@ -149,4 +188,13 @@ export const ShowMore = styled.button`
     background: #f7ecff;
     box-shadow: 0 0 5px rgba(135, 61, 193, 0.4);
   }
+`;
+export const UNDAS = styled.span`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #873dc1;
 `;

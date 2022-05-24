@@ -57,7 +57,7 @@ const Staking: React.FC<{ id: string }> = ({ id }) => {
       price.toString(),
       premium.toString(),
       term.toString(),
-      connector
+      connector,
     ).then(() => {
       console.log("Great success!");
       setIsPuttedForStaking(true);

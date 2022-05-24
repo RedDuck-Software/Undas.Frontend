@@ -48,7 +48,7 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
     if (!listingsLastIndex || !stakingsLastIndex) return;
     const lastIndex = Math.max(
       listingsLastIndex?.toNumber(),
-      stakingsLastIndex?.toNumber()
+      stakingsLastIndex?.toNumber(),
     );
 
     for (let i = 0; i < lastIndex; i++) {

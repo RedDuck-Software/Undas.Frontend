@@ -11,12 +11,12 @@ export const quoteForStaking = async (
   price: string,
   premium: string,
   term: string,
-  connector: AbstractConnector
+  connector: AbstractConnector,
 ) => {
   if (!connector) return;
 
   const provider = new ethers.providers.Web3Provider(
-    await connector.getProvider()
+    await connector.getProvider(),
   );
   const signer = provider.getSigner(0);
   const SIGNER_ADDRESS = await signer.getAddress();
@@ -25,12 +25,12 @@ export const quoteForStaking = async (
 
   const MarketplaceContract = Marketplace__factory.connect(
     MARKETPLACE_ADDRESS,
-    signer
+    signer,
   );
 
   const isApprovedForAll = await NFTContract.isApprovedForAll(
     SIGNER_ADDRESS,
-    MARKETPLACE_ADDRESS
+    MARKETPLACE_ADDRESS,
   );
 
   if (!isApprovedForAll) {
@@ -46,7 +46,7 @@ export const quoteForStaking = async (
     ethers.utils.parseEther(price.toString()),
     ethers.utils.parseEther(premium.toString()),
     intervalIntoTimeStamp(term),
-    { value: ethers.utils.parseEther("0.1") }
+    { value: ethers.utils.parseEther("0.1") },
   );
 
   await tx.wait();

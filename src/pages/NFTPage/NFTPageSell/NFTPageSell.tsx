@@ -91,7 +91,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -119,7 +119,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -146,7 +146,7 @@ const NFTPageSell: React.FC = () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider()
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -177,7 +177,7 @@ const NFTPageSell: React.FC = () => {
     const stakingId = await getNFTStakingIds(
       NFT_ADDRESS,
       Number(tokenId),
-      connector
+      connector,
     );
 
     if (stakingId) {
@@ -196,7 +196,7 @@ const NFTPageSell: React.FC = () => {
     const listingId = await getNFTListingIds(
       NFT_ADDRESS,
       Number(tokenId),
-      connector
+      connector,
     );
 
     if (listingId) {
