@@ -29,6 +29,9 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import { ViewMode } from "../../types/viewMode";
+import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
 import {
   FilterImg,
@@ -36,8 +39,6 @@ import {
   FilterClose,
   ClearAll,
 } from "../Activity/page-components/MainMenu/Menu.styles";
-import { ViewMode } from "../../types/viewMode";
-import useViewMode from "../../utils/hooks/useViewMode";
 import {
   AllNFTContainer,
   Arrow,
@@ -49,8 +50,8 @@ import {
   SearchIco,
   Input,
   SettingsElement,
-  ViewButton,
-  SettingsBlock,
+  // ViewButton,
+  // SettingsBlock,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
@@ -202,6 +203,7 @@ const CollectionPage: React.FC = () => {
               <Input />
             </MenuSearchWrap>
           </Wrapper>
+          <FilterMobileButton />
         </AllNFTContainer>
       </div>
     </>
