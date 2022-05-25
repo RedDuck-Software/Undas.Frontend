@@ -4,7 +4,6 @@ import {
   Info,
   InfoElement,
   Amount,
-  MakeComplaint,
   AddToFav,
   InfoBox,
   ViewOptionCollection,
@@ -17,16 +16,21 @@ import {
   MenuWrapCollection,
   FilterSelected,
   SelectedFiltersCollection,
-  DispS,
   FilterPrice,
   FilterButton,
   FilterText,
-  MakeComplaintL,
   HeadWrapper,
+  InfoS,
+  ItemsOwners,
+  InfoSBorder,
+  TextInfo,
+  ContainerCollection,
 } from "./CollectionPage.styles";
-import { CollectionBanner, PurpleEthIco, AddToFavIco } from "./imports";
+import { CollectionBanner, PurpleEthIco } from "./imports";
+import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
+import NFTListCollection from "./page-components/NFTListCollection/NFTListCollection";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import nft0 from "../../images/temp-nft-examples/nft-exp-0.png";
@@ -41,6 +45,7 @@ import nft6 from "../../images/temp-nft-examples/nft-exp-6.png";
 import nft7 from "../../images/temp-nft-examples/nft-exp-7.png";
 import nft8 from "../../images/temp-nft-examples/nft-exp-8.png";
 import nft9 from "../../images/temp-nft-examples/nft-exp-9.png";
+import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton"; 
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
@@ -62,7 +67,6 @@ import {
   Input,
   SettingsElement,
 } from "../AllNFTs/AllNFTs.styles";
-import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -138,49 +142,66 @@ const CollectionPage: React.FC = () => {
   const { viewMode, viewButtonsRender } = useViewMode();
   return (
     <>
-      <div>
+      <ContainerCollection>
         <Banner>
           <img src={CollectionBanner} alt="CollectionBanner" />
         </Banner>
         <AllNFTContainer>
-          <DispS>
-            <ASideFilter marginTop="208px" />
-          </DispS>
+          <ASideFilterCollection marginTop="208px" />
           <Wrapper w="100%">
             <HeadWrapper>
               <CollectionCard />
               <InfoBox>
                 <Info>
                   <InfoElement>
-                    <span>Items</span>
+                    <TextInfo>Items</TextInfo>
                     <Amount>14000</Amount>
                   </InfoElement>
                   <InfoElement>
-                    <span>Owners</span>
+                    <TextInfo>Owners</TextInfo>
                     <Amount>6400</Amount>
                   </InfoElement>
                   <InfoElement>
-                    <span>Floor Price</span>
+                    <TextInfo>Floor Price</TextInfo>
                     <Wrapper disp="flex" gap="5px">
                       <PurpleEthIco />
                       <Amount>3,2</Amount>
                     </Wrapper>
                   </InfoElement>
                   <InfoElement>
-                    <span>Total Vol</span>
+                    <TextInfo>Total Vol</TextInfo>
                     <Wrapper disp="flex" gap="5px">
                       <PurpleEthIco />
                       <Amount>13,402,000</Amount>
                     </Wrapper>
                   </InfoElement>
                 </Info>
-                <MakeComplaint>Make a Complaint</MakeComplaint>
                 <AddToFav>
-                  <AddToFavIco />
-                  Add to Favorites
+                  Make a Complaint
                 </AddToFav>
-                <MakeComplaintL>Make a Complaint</MakeComplaintL>
               </InfoBox>
+              <InfoS>
+                <ItemsOwners>
+                  <TextInfo>Items</TextInfo><br></br>
+                  <Amount>14000</Amount>
+                </ItemsOwners>
+                <ItemsOwners>
+                  <TextInfo>Owners</TextInfo><br></br>
+                  <Amount>6400</Amount>
+                </ItemsOwners>
+              </InfoS>
+              <InfoSBorder>
+                <ItemsOwners>
+                  <TextInfo>Floor Price</TextInfo><br></br>
+                  <PurpleEthIco />{" "}
+                  <Amount>3,2</Amount>
+                </ItemsOwners>
+                <ItemsOwners>
+                  <TextInfo>Total Vol</TextInfo><br></br>
+                  <PurpleEthIco />{" "}
+                  <Amount>13,402,000</Amount>
+                </ItemsOwners>
+              </InfoSBorder>
             </HeadWrapper>
             <MenuSearchWrapSmall>
               <SearchIco />
@@ -276,13 +297,10 @@ const CollectionPage: React.FC = () => {
                 })}
               </>
             )}
-            <MenuSearchWrap>
-              <SearchIco />
-              <Input />
-            </MenuSearchWrap>
           </Wrapper>
+          <FilterMobileButton />
         </AllNFTContainer>
-      </div>
+      </ContainerCollection>
     </>
   );
 };

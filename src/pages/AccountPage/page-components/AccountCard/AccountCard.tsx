@@ -25,7 +25,7 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
   return (
     <AccountWrap>
       <Wrapper disp="flex" gap="10px">
-        <ImageWrap>
+        <ImageWrap className="account-image">
           <img src={ProfilePic} alt="profile-pic" />
         </ImageWrap>
         <Wrapper disp="flex" flexDirection="column" gap="10px">

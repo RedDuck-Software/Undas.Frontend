@@ -11,6 +11,7 @@ import {
   NameNft,
   CollectionTextDiv,
   CardsWrapper,
+  ImageCollection,
 } from "../Categories.styles";
 import {
   CollectionBG,
@@ -47,13 +48,13 @@ const Collection: React.FC = () => {
       </AuthorWrap>
       <CardsWrapper>
         <NFTCards>
-          <img src={NFT1} alt="nft-card" />
+          <ImageCollection src={NFT1} alt="nft-card" />
         </NFTCards>
         <NFTCards>
-          <img src={NFT2} alt="nft-card" />
+          <ImageCollection src={NFT2} alt="nft-card" />
         </NFTCards>
         <NFTCards>
-          <img src={NFT3} alt="nft-card" />
+          <ImageCollection src={NFT3} alt="nft-card" />
         </NFTCards>
       </CardsWrapper>
     </CollectionCard>
