@@ -30,7 +30,7 @@ import {
 import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
 
-interface NFTGridProps {
+interface NFTGridItemProps {
   tokenId: number;
   URI: string;
   name: string;
@@ -38,7 +38,7 @@ interface NFTGridProps {
   premium?: number;
 }
 
-const NFTGridItem: React.FC<NFTGridProps> = (props) => {
+const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

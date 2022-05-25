@@ -187,6 +187,7 @@ export const ImgNFT = styled.img`
   width: 180px;
   height: 200px;
   position: relative;
+  object-fit: scale-down;
 `;
 export const ColImg = styled(Col)`
   padding-left: 0px;

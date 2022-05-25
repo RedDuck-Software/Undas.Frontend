@@ -13,7 +13,7 @@ import {
   PriceInUSD,
   ButtonWrap,
   InfoButton,
-  PriceWrap
+  PriceWrap,
 } from "../NFTPage.styles";
 
 const Buy: React.FC<{ id: number }> = ({ id }) => {
@@ -113,7 +113,11 @@ const Buy: React.FC<{ id: number }> = ({ id }) => {
         </PriceWrap>
       </Wrapper>
       <ButtonWrap>
-        <InfoButton bg="#873DC1" onClick={() => buyToken(id)} className="colored-btn">
+        <InfoButton
+          bg="#873DC1"
+          onClick={() => buyToken(id)}
+          className="colored-btn"
+        >
           Buy now
         </InfoButton>
         <InfoButton fc="#873DC1">Make offer</InfoButton>
