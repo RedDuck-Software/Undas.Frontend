@@ -10,7 +10,7 @@ export const AccountWrapper = styled(Wrapper)`
 
 export const AccountContainer = styled(Container)`
   display: flex;
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -26,15 +26,15 @@ export const TabsMenu = styled.ul`
   margin-left: auto;
   max-width: 70%;
   justify-content: flex-end;
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     max-width: 100%;
     margin: 30px auto 0;
   }
-  @media (max-width:850px) {
+  @media (max-width: 850px) {
     justify-content: space-between;
     gap: 10px;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     margin-top: 15px;
   }
 `;
@@ -59,16 +59,16 @@ export const Tab = styled.li`
     background: #fbf5ff;
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   }
-  @media (max-width:1200px) {
+  @media (max-width: 1200px) {
     width: 40%;
   }
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     width: 32%;
   }
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     width: 48%;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;

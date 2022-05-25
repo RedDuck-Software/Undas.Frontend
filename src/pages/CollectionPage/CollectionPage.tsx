@@ -30,9 +30,8 @@ import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
-import NFTListCollection from "./page-components/NFTListCollection/NFTListCollection";
 
-import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import nft0 from "../../images/temp-nft-examples/nft-exp-0.png";
 import nft1 from "../../images/temp-nft-examples/nft-exp-1.png";
 import nft10 from "../../images/temp-nft-examples/nft-exp-10.png";
@@ -45,7 +44,6 @@ import nft6 from "../../images/temp-nft-examples/nft-exp-6.png";
 import nft7 from "../../images/temp-nft-examples/nft-exp-7.png";
 import nft8 from "../../images/temp-nft-examples/nft-exp-8.png";
 import nft9 from "../../images/temp-nft-examples/nft-exp-9.png";
-import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton"; 
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
@@ -67,6 +65,7 @@ import {
   Input,
   SettingsElement,
 } from "../AllNFTs/AllNFTs.styles";
+import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -176,30 +175,30 @@ const CollectionPage: React.FC = () => {
                     </Wrapper>
                   </InfoElement>
                 </Info>
-                <AddToFav>
-                  Make a Complaint
-                </AddToFav>
+                <AddToFav>Make a Complaint</AddToFav>
               </InfoBox>
               <InfoS>
                 <ItemsOwners>
-                  <TextInfo>Items</TextInfo><br></br>
+                  <TextInfo>Items</TextInfo>
+                  <br></br>
                   <Amount>14000</Amount>
                 </ItemsOwners>
                 <ItemsOwners>
-                  <TextInfo>Owners</TextInfo><br></br>
+                  <TextInfo>Owners</TextInfo>
+                  <br></br>
                   <Amount>6400</Amount>
                 </ItemsOwners>
               </InfoS>
               <InfoSBorder>
                 <ItemsOwners>
-                  <TextInfo>Floor Price</TextInfo><br></br>
-                  <PurpleEthIco />{" "}
-                  <Amount>3,2</Amount>
+                  <TextInfo>Floor Price</TextInfo>
+                  <br></br>
+                  <PurpleEthIco /> <Amount>3,2</Amount>
                 </ItemsOwners>
                 <ItemsOwners>
-                  <TextInfo>Total Vol</TextInfo><br></br>
-                  <PurpleEthIco />{" "}
-                  <Amount>13,402,000</Amount>
+                  <TextInfo>Total Vol</TextInfo>
+                  <br></br>
+                  <PurpleEthIco /> <Amount>13,402,000</Amount>
                 </ItemsOwners>
               </InfoSBorder>
             </HeadWrapper>

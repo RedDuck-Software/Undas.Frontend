@@ -16,25 +16,25 @@ export const SettingsIco = styled(Settings)`
 export const AccountWrap = styled(CardWrap)`
   width: 350px;
   position: absolute;
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     position: static;
     width: 80%;
     margin-top: -5%;
     margin-right: 0;
   }
-  @media (max-width: 620px){
+  @media (max-width: 620px) {
     width: 100%;
     height: auto;
-    & .account-image{
+    & .account-image {
       min-width: 80px;
       height: 80px;
-      img{
+      img {
         width: 100%;
       }
     }
   }
-  @media (max-width: 576px){
-    & .account-image{
+  @media (max-width: 576px) {
+    & .account-image {
       min-width: 60px;
       height: 60px;
     }
@@ -47,7 +47,7 @@ export const Name = styled.span`
   font-size: 24px;
   line-height: 29px;
   color: #232428;
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     font-size: 18px;
     line-height: 22px;
   }

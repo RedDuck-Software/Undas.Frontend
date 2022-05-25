@@ -18,5 +18,5 @@ export {
   ChainsIco,
   UsdIco,
   EthIco,
-  FilterMobileIco
+  FilterMobileIco,
 };

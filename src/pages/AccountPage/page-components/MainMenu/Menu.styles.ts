@@ -32,12 +32,12 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     margin-top: 15px;
   }
 `;
 export const OfferFilterWrap = styled(ViewOption)`
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     width: 100%;
   }
 `;
@@ -52,7 +52,7 @@ export const FilterButton = styled(FavouriteButton)`
   &.offers-active {
     background-color: #edd2ff;
   }
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     width: 50%;
   }
 `;
@@ -75,7 +75,7 @@ export const OffersWrapTable = styled.table`
   }
   @media (max-width: 576px) {
     max-height: 325px;
-    }
+  }
 `;
 export const ItemIcon = styled.div`
   width: 30px;
