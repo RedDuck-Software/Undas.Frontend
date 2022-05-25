@@ -230,3 +230,9 @@ export const BtnMakeOffer = styled.button`
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
   }
 `;
+
+export const RentIcon = styled.span`
+  position: absolute;
+  top: 7px;
+  left: 12px;
+`;

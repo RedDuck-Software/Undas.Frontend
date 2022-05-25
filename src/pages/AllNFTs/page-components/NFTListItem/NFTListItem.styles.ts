@@ -16,7 +16,7 @@ export const RowLine = styled(Row)`
 `;
 
 export const ColTextTop = styled(Col)`
-  width: 85% !important;
+  width: 85%;
   height: 40px;
   background: #ffffff;
   border-radius: 0px 10px 0px 0px;
@@ -124,18 +124,18 @@ export const ImageHeart = styled.img`
   height: 16px;
 `;
 export const ImageBlock = styled.img`
-  position: absolute;
-  left: 315px;
+  position: relative;
+  left: 25px;
   width: 14px;
   height: 16px;
-  top: 12px;
+  top: 7px;
 `;
 export const ImageChecked = styled.img`
-  position: absolute;
-  left: 245px;
+  position: relative;
+  left: 10px;
   width: 16px;
   height: 16px;
-  top: 12px;
+  top: 8px;
 `;
 export const TextUND = styled.span`
   font-family: "Jost";
@@ -145,9 +145,9 @@ export const TextUND = styled.span`
   line-height: 17px;
   text-align: center;
   color: #873dc1;
-  position: absolute;
-  top: 12px;
-  left: 275px;
+  position: relative;
+  top: 8px;
+  left: 15px;
 `;
 export const TextNameNFT = styled.span`
   font-family: "Montserrat";
@@ -156,9 +156,9 @@ export const TextNameNFT = styled.span`
   font-size: 18px;
   line-height: 22px;
   color: #232428;
-  padding-top: 10px;
+  top: 8px;
   padding-right: 20px;
-  position: absolute;
+  position: relative;
 `;
 export const TextPreview = styled.span`
   font-family: "Montserrat";
@@ -187,11 +187,12 @@ export const ImgNFT = styled.img`
   width: 180px;
   height: 200px;
   position: relative;
-  object-fit: scale-down;
+  object-fit: cover;
+  border-radius: 10px 0px 0px 10px;
 `;
 export const ColImg = styled(Col)`
   padding-left: 0px;
   height: 200px;
-  width: 15% !important;
+  width: 15%;
   display: contents;
 `;

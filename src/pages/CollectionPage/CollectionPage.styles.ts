@@ -15,7 +15,7 @@ export const Info = styled.ul`
   }
 `;
 
-export const InfoS = styled.div`
+export const InfoBlock = styled.div`
   display: none;
   box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
   background-color: #fff;
@@ -29,7 +29,7 @@ export const InfoS = styled.div`
   }
 `;
 
-export const InfoSBorder = styled.div`
+export const InfoSmallBorder = styled.div`
   display: none;
   box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
   background-color: #fff;

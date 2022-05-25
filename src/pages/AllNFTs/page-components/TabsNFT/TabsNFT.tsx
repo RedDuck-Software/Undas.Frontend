@@ -19,6 +19,7 @@ import {
   DivPeriod,
   PeriodText,
   DivLastSales,
+  RentIcon,
 } from "./TabsNFT.styles";
 
 import { setComponent } from "../../../../store/reducers/modalAction";
@@ -101,9 +102,9 @@ const TabsNFT: React.FC = () => {
       <Tab
         eventKey="third"
         title={
-          <span>
+          <RentIcon>
             <i className="profile-icon-handshake tab-figure" />
-          </span>
+          </RentIcon>
         }
       >
         <ReturneText>Returne #204</ReturneText>
