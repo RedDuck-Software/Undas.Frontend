@@ -13,6 +13,9 @@ export const RowLine = styled(Row)`
   height: 200px;
   filter: drop-shadow(0px 3px 5px rgba(124, 124, 124, 0.25));
   margin-top: 20px;
+  width: 100%;
+  margin-right: 0;
+  margin-left: auto;
 `;
 
 export const ColTextTop = styled(Col)`
@@ -104,7 +107,7 @@ export const RowDown = styled.div`
   height: 36px;
   position: absolute;
   background-color: #ffffff;
-  width: 101.16%;
+  width: 100%;
   padding-right: 10px;
   bottom: 0;
   border-radius: 0px 0px 10px 0px;
@@ -113,8 +116,9 @@ export const RowCenter = styled.div`
   height: 160px;
   margin-top: -160px;
   position: relative;
-  margin-left: 168px;
+  margin-left: 180px;
   background-color: #e2d1ff;
+  border-radius: 0px 0px 10px 0px;
 `;
 export const ImageHeart = styled.img`
   right: 12px;
