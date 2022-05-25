@@ -180,6 +180,13 @@ export const GridLayout = styled.div`
   grid-gap: 30px 15px;
   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   justify-content: space-between;
+
+  @media (max-width: 786px) {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  }
 `;
 export const TabsMenu = styled.ul`
   display: flex;

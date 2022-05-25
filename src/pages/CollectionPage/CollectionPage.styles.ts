@@ -10,7 +10,7 @@ export const Info = styled.ul`
   overflow: hidden;
   max-height: 80px;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: none;
   }
 `;
@@ -24,7 +24,7 @@ export const InfoS = styled.div`
   margin-left: auto;
   margin-right: auto;
   
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: flex;
   }
 `;
@@ -39,7 +39,7 @@ export const InfoSBorder = styled.div`
   margin-right: auto;
   border-radius: 0 0 20px 20px;
   
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: flex;
   }
 `;
@@ -61,7 +61,7 @@ export const Amount = styled.span`
   text-align: center;
   color: #232428;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     font-size: 12px;
   }
 `;
@@ -101,7 +101,7 @@ export const AddToFav = styled.button`
   align-self: end;
   min-width: 200px;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -113,7 +113,7 @@ export const InfoBox = styled.div`
   max-width: 740px;
   flex-wrap: wrap;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -151,13 +151,13 @@ export const MenuSearchWrapSmall = styled.div<IMenuSearch>`
   border: none;
   margin-top: 20px;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: flex;
   }
 `;
 
 export const DisplayNone = styled.div`
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -170,10 +170,10 @@ export const SettingsBlockCollection = styled.ul`
   @media (max-width: 992px) {
     gap: 0px;
   }
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: block;
   }
 `;
@@ -197,13 +197,13 @@ export const FilterNewly = styled.ul`
     border-radius: 10px 10px 0 0;
   }
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     margin-left: 30px;
   }
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     width: 47%;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 100%;
     margin-left: unset;
     margin-top: 15px;
@@ -223,13 +223,13 @@ export const Results = styled.div`
   position: absolute;
   right: 0;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: inline-block;
   }
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     margin-top: 68px;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     margin-top: 30px;
   }
 `;
@@ -250,7 +250,7 @@ export const MenuWrapCollection = styled.div<IMenuWrap>`
   align-items: center;
   margin: ${(props) => props.marg || "64px 0 20px"};
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     margin: 20px 0 20px 0;
   }
 `;
@@ -286,7 +286,7 @@ export const DispS = styled.div`
   overflow: hidden;
   position: relative;
 
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -308,10 +308,10 @@ export const FilterPrice = styled.ul`
   &.event-active {
     border-radius: 10px 10px 0 0;
   }
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     width: 47%;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;
@@ -328,10 +328,10 @@ export const FilterButton = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media (max-width: 670px) {
+  @media (max-width: 768px) {
     display: block;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 120px;
   }
 `;
@@ -357,7 +357,7 @@ export const HeadWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: block;
     margin-top: 50px;
   }
@@ -378,7 +378,7 @@ export const TextInfo = styled.span`
   text-align: center;
   color: #7C7C7C;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     font-size: 12px;
   }
 `;

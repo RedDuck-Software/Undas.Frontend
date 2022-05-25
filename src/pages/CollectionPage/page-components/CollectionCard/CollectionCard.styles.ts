@@ -15,12 +15,12 @@ export const CardWrap = styled.div`
   margin-top: -70px;
   margin-right: 15px;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     max-width: unset;
     width: 100%;
     display: block;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     height: 250px;
   }
 `;
@@ -32,7 +32,7 @@ export const ImageWrap = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 60px;
     height: 60px;
     min-width: 60px;
@@ -42,10 +42,10 @@ export const ImageWrap = styled.div`
 export const Description = styled.span`
   max-width: 218px;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     max-width: unset;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: none;
   }
 `;
@@ -62,10 +62,10 @@ export const SocialWrap = styled.div`
   svg {
     cursor: pointer;
   }
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     margin-left: auto;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: none;
   }
 `;
@@ -74,7 +74,7 @@ export const CollectionName = styled.h2`
   font-size: 36px;
   font-weight: 400;
 
-  @media (max-width: 620px) {
+  @media (max-width: 1200px) {
     font-size: 18px;
   }
 `;
@@ -86,7 +86,7 @@ export const Creator = styled.h4`
   display: inline-block;
   color: #232428;
 
-  @media (max-width: 620px) {
+  @media (max-width: 1200px) {
     font-size: 14px;
   }
 `;
@@ -109,10 +109,10 @@ export const MakeComplaint = styled.button`
   cursor: pointer;
   display: none;
 
-  @media (max-width: 1050px) {
+  @media (max-width: 1200px) {
     display: inline-block;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;
@@ -128,7 +128,7 @@ export const MoreInfo = styled.div`
   padding: 9px 16px;
   margin-left: auto;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: inline-block;
   }
 `;
@@ -137,7 +137,7 @@ export const ImgCollection = styled.img`
   width: 100px;
   height: 100px;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     width: 60px;
     height: 60px;
   }
@@ -146,7 +146,7 @@ export const ImgCollection = styled.img`
 export const DescriptionS = styled.span`
   display: none;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     display: inline-block;
   }
 `;
@@ -158,7 +158,7 @@ export const CreatorWrapper = styled.div`
   margin: 20px 0 5px 0;
   gap: 10px;
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     margin: 10px 0 0 0;
   }
 `;
