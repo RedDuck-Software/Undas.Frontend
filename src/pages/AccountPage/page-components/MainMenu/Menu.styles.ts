@@ -232,8 +232,8 @@ export const CancelBtn = styled.button`
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #5D3F92;
-  background: #FFFFFF;
+  color: #5d3f92;
+  background: #ffffff;
   box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   border: none;
@@ -243,7 +243,7 @@ export const CancelBtn = styled.button`
   right: 2px;
   top: 2px;
   transition: background-color 0.3s;
-  &:hover{
+  &:hover {
     background-color: #edd2ff;
   }
   @media (max-width: 576px) {

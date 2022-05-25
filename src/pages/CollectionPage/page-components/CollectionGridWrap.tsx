@@ -1,6 +1,7 @@
 import React from "react";
 
-import NFTGridItem from "../../../components/NFTCard/Grid/NFTGridItem";
+import NFTGridCollection from "./CollectionGrid/NFTGridCollection";
+
 import nft0 from "../../../images/temp-nft-examples/nft-exp-0.png";
 import nft1 from "../../../images/temp-nft-examples/nft-exp-1.png";
 import nft10 from "../../../images/temp-nft-examples/nft-exp-10.png";
@@ -84,7 +85,7 @@ const CollectionGridWrap: React.FC = () => {
       {testNFTList.map(
         (item: { tokenId: React.Key; tokenURI: string; name: string }) => {
           return (
-            <NFTGridItem
+            <NFTGridCollection
               key={item.tokenId}
               tokenId={+item.tokenId}
               URI={item.tokenURI!}
