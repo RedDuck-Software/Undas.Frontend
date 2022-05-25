@@ -32,8 +32,15 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
+  @media (max-width:576px) {
+    margin-top: 15px;
+  }
 `;
-export const OfferFilterWrap = styled(ViewOption)``;
+export const OfferFilterWrap = styled(ViewOption)`
+  @media (max-width:992px) {
+    width: 100%;
+  }
+`;
 export const FilterButton = styled(FavouriteButton)`
   width: 180px;
   font-size: 14px;
@@ -45,12 +52,30 @@ export const FilterButton = styled(FavouriteButton)`
   &.offers-active {
     background-color: #edd2ff;
   }
+  @media (max-width:992px) {
+    width: 50%;
+  }
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   flex: 0 0 100%;
-  margin: 20px 0;
+  margin: 20px auto;
+  display: block;
+  max-height: 660px;
+  overflow-y: auto;
+  @media (max-width: 992px) {
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-height: 480px;
+  }
+  @media (max-width: 768px) {
+    max-height: 380px;
+  }
+  @media (max-width: 576px) {
+    max-height: 325px;
+    }
 `;
 export const ItemIcon = styled.div`
   width: 30px;
@@ -78,9 +103,6 @@ export const OffersTdText = styled.td`
     display: flex;
     align-items: center;
   }
-  @media (max-width: 576px) {
-    padding: 10px;
-  }
   &.first-column {
     padding: 15px 0 15px 20px;
     width: 3%;
@@ -92,6 +114,9 @@ export const OffersTdText = styled.td`
   &.first-column:hover .offers-tooltip {
     visibility: visible;
     opacity: 1;
+  }
+  @media (max-width: 1200px) {
+    padding: 10px;
   }
 `;
 export const OffersTooltipWrap = styled.div`

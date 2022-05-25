@@ -32,6 +32,8 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 import NFTListCollection from "./page-components/NFTListCollection/NFTListCollection";
 
+import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton"; 
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
@@ -215,6 +217,7 @@ const CollectionPage: React.FC = () => {
               </>
             )}
           </Wrapper>
+          <FilterMobileButton />
         </AllNFTContainer>
       </ContainerCollection>
     </>
