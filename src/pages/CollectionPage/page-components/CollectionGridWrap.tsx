@@ -1,15 +1,16 @@
 import React from "react";
 
-import NFTGridItem from "../../../components/NFTCard/Grid/NFTGridItem";
+import NFTGridCollection from "./CollectionGrid/NFTGridCollection";
+
 import { GridLayout } from "../../AllNFTs/AllNFTs.styles";
 
 const CollectionGridWrap: React.FC = () => {
   return (
     <GridLayout>
-      <NFTGridItem tokenId={123} URI={"img"} name={"Return"} />
-      <NFTGridItem tokenId={123} URI={"img"} name={"Return"} />
-      <NFTGridItem tokenId={123} URI={"img"} name={"Return"} />
-      <NFTGridItem tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGridCollection tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGridCollection tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGridCollection tokenId={123} URI={"img"} name={"Return"} />
+      <NFTGridCollection tokenId={123} URI={"img"} name={"Return"} />
     </GridLayout>
   );
 };

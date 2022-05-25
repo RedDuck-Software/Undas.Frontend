@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LoginSec = styled.div`
-  padding: 9.5rem 0;
+  padding: 80px 0;
 
   @media (max-width: 801px) {
     padding: 4rem 0;
@@ -26,7 +26,7 @@ export const VioletText = styled.span`
 
 export const LoginTitle = styled.h2`
   font-weight: 400;
-  font-size: 2.05rem;
+  font-size: 24px;
   display: block;
   margin-bottom: 0.8rem;
 
@@ -34,9 +34,8 @@ export const LoginTitle = styled.h2`
     font-size: 1.5rem;
     text-align: center;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     font-size: 18px;
-    text-align: center;
   }
   @media (max-width: 501px) {
     font-size: 14px;
@@ -51,9 +50,8 @@ export const LoginText = styled.p`
   @media (max-width: 801px) {
     text-align: center;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     font-size: 14px;
-    text-align: center;
     word-spacing: unset;
   }
   @media (max-width: 501px) {
@@ -67,7 +65,7 @@ export const ButtonWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     justify-content: center;
   }
 `;
@@ -143,16 +141,16 @@ export const LoginButton = styled.button`
     height: 100px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     height: 100px;
     width: 35%;
     margin-right: 15px;
     margin-left: 15px;
   }
   @media (max-width: 501px) {
-    width: 40%;
-    margin-right: 10px;
-    margin-left: 10px;
+    width: 46%;
+    margin-right: 2%;
+    margin-left: 2%;
   }
 `;
 
@@ -188,6 +186,11 @@ export const ShowMore = styled.button`
     background: #f7ecff;
     box-shadow: 0 0 5px rgba(135, 61, 193, 0.4);
   }
+
+  @media (max-width: 501px) {
+    width: 96%;
+    margin-left: 2%;
+  }
 `;
 export const UNDAS = styled.span`
   font-family: "Montserrat";
@@ -197,4 +200,11 @@ export const UNDAS = styled.span`
   line-height: 29px;
   text-align: center;
   color: #873dc1;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 501px) {
+    font-size: 14px;
+  }
 `;
