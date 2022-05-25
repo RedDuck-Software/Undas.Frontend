@@ -23,7 +23,7 @@ export const InfoS = styled.div`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  
+
   @media (max-width: 576px) {
     display: flex;
   }
@@ -38,7 +38,7 @@ export const InfoSBorder = styled.div`
   margin-left: auto;
   margin-right: auto;
   border-radius: 0 0 20px 20px;
-  
+
   @media (max-width: 576px) {
     display: flex;
   }
@@ -280,7 +280,7 @@ export const DispS = styled.div`
   min-width: 30px;
   max-width: 30px;
   height: auto;
-  background: rgba(251,245,255,0.7);
+  background: rgba(251, 245, 255, 0.7);
   box-shadow: inset 0 0 3px rgb(124 124 124 / 50%);
   margin-right: 15px;
   overflow: hidden;
@@ -370,13 +370,13 @@ export const ItemsOwners = styled.div`
 `;
 
 export const TextInfo = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 15px;
   text-align: center;
-  color: #7C7C7C;
+  color: #7c7c7c;
 
   @media (max-width: 576px) {
     font-size: 12px;

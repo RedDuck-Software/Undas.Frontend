@@ -21,14 +21,15 @@ import TabsNFT from "../TabsNFT/TabsNFT";
 
 interface NFTListItemProps {
   name: string;
+  URI?: string;
 }
 
-const NFTListItem: React.FC<NFTListItemProps> = ({ name }) => {
+const NFTListItem: React.FC<NFTListItemProps> = ({ name, URI }) => {
   return (
     <>
       <RowLine>
         <ColImg>
-          <ImgNFT src={girlNFT}></ImgNFT>
+          <ImgNFT src={URI ? URI : girlNFT}></ImgNFT>
           <ImagePreview>
             <ImageEye src={eye} alt="eye-image" />
             <TextPreview>Preview</TextPreview>

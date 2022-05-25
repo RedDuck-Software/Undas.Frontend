@@ -28,6 +28,7 @@ import RewardMenu from "./page-components/MainMenu/RewardMenu";
 import Referral from "./page-components/Referral/Referral";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
@@ -161,6 +162,7 @@ const AccountPage: React.FC = () => {
             {tab === "referral" && <Referral />}
             {tab === "achievements" && <Achievements />}
           </Wrapper>
+          <FilterMobileButton />
         </AccountContainer>
       </AccountWrapper>
     </>

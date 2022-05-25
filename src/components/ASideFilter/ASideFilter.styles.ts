@@ -54,6 +54,9 @@ export const ASideWrap = styled.div`
       box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
     }
   }
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 interface IHolder {
