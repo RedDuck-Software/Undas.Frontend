@@ -7,6 +7,13 @@ export const Banner = styled.div`
   & img {
     width: 100%;
   }
+
+  @media (max-width: 620px) {
+    height: 60px;
+    & img {
+      height: 60px;
+    }
+  }
 `;
 
 export const Info = styled.div`
@@ -346,4 +353,8 @@ export const CardsWrapper = styled.div`
   @media (max-width: 501px) {
     margin-top: 10px;
   }
+`;
+
+export const ImageCollection = styled.img`
+  width: 100%;
 `;
