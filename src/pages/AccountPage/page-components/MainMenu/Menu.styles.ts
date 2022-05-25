@@ -5,6 +5,7 @@ import BgImgRotate from "../../assets/bg-img-rotate.png";
 import BgImg from "../../assets/bg-img.png";
 import { EthBlack } from "../../imports";
 
+//Favorite
 export const FavouriteSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
@@ -28,6 +29,7 @@ export const FavouriteButton = styled.button`
     background-color: #edd2ff;
   }
 `;
+//Offers
 export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
@@ -64,6 +66,8 @@ export const OffersWrapTable = styled.table`
   display: block;
   max-height: 660px;
   overflow-y: auto;
+  position: relative;
+  padding-top: 50px;
   @media (max-width: 992px) {
     max-width: fit-content;
     overflow-x: auto;
@@ -119,6 +123,19 @@ export const OffersTdText = styled.td`
     padding: 10px;
   }
 `;
+export const OffersTdEmpty = styled(OffersTdText)`
+  padding: 10px 50px;
+  @media (max-width: 850px) {
+    padding: 10px;
+  }
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+`;
+export const OffersTdButton = styled(OffersTdText)`
+  padding: 10px;
+`;
+
 export const OffersTooltipWrap = styled.div`
   position: absolute;
   top: -14px;
@@ -210,6 +227,30 @@ export const DenyBTN = styled.button`
     box-shadow: 0px 0px 10px #ff2a36;
   }
 `;
+export const CancelBtn = styled.button`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #5D3F92;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 10px 25px;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  transition: background-color 0.3s;
+  &:hover{
+    background-color: #edd2ff;
+  }
+  @media (max-width: 576px) {
+    width: 99%;
+  }
+`;
+
 export const WethText = styled.span`
   font-weight: 400;
   font-size: 12px;
