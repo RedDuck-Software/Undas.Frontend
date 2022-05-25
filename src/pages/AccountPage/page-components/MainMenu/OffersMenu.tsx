@@ -10,9 +10,12 @@ import {
   OffersTooltip,
   OffersTooltipWrap,
   OffersTdText,
+  OffersTdButton,
+  OffersTdEmpty,
   AcceptBTN,
   MakeOfferBTN,
   DenyBTN,
+  CancelBtn,
   WethText,
   PriceTextETH,
   SelectedFilters,
@@ -108,15 +111,15 @@ const OffersMenu: React.FC = () => {
               <OffersTdText>
                 <OffersText color="#5D3F92">65BA4F</OffersText>
               </OffersTdText>
-              <OffersTdText>
+              <OffersTdButton>
                 <AcceptBTN>Accept</AcceptBTN>
-              </OffersTdText>
-              <OffersTdText>
+              </OffersTdButton>
+              <OffersTdButton>
                 <MakeOfferBTN>Make offer</MakeOfferBTN>
-              </OffersTdText>
-              <OffersTdText>
+              </OffersTdButton>
+              <OffersTdButton>
                 <DenyBTN>Deny</DenyBTN>
-              </OffersTdText>
+              </OffersTdButton>
             </OffersTr>
             <OffersTr className="offers-menu-row">
               <OffersTdText className="first-column">
@@ -141,20 +144,31 @@ const OffersMenu: React.FC = () => {
               <OffersTdText>
                 <OffersText color="#5D3F92">65BA4F</OffersText>
               </OffersTdText>
-              <OffersTdText>
+              <OffersTdButton>
                 <AcceptBTN>Accept</AcceptBTN>
-              </OffersTdText>
-              <OffersTdText>
+              </OffersTdButton>
+              <OffersTdButton>
                 <MakeOfferBTN>Make offer</MakeOfferBTN>
-              </OffersTdText>
-              <OffersTdText>
+              </OffersTdButton>
+              <OffersTdButton>
                 <DenyBTN>Deny</DenyBTN>
-              </OffersTdText>
+              </OffersTdButton>
             </OffersTr>
           </>
         )}
         {offerType === OfferType.made && (
           <>
+            <CancelBtn>Cancel all Offers</CancelBtn>
+            <OffersHeadTr className="offers-menu-head">
+              <OffersTdText className="first-column"></OffersTdText>
+              <OffersTdText>Item</OffersTdText>
+              <OffersTdText>Price</OffersTdText>
+              <OffersTdText>Expiration</OffersTdText>
+              <OffersTdText>From</OffersTdText>
+              <OffersTdText></OffersTdText>
+              <OffersTdText></OffersTdText>
+              <OffersTdText></OffersTdText>
+            </OffersHeadTr>
             <OffersTr className="offers-menu-row">
               <OffersTdText className="first-column">
                 <HandShakeIco />
@@ -178,15 +192,13 @@ const OffersMenu: React.FC = () => {
               <OffersTdText>
                 <OffersText color="#5D3F92">65BA4F</OffersText>
               </OffersTdText>
-              <OffersTdText>
-                <AcceptBTN>Accept</AcceptBTN>
-              </OffersTdText>
-              <OffersTdText>
-                <MakeOfferBTN>Make offer</MakeOfferBTN>
-              </OffersTdText>
-              <OffersTdText>
-                <DenyBTN>Deny</DenyBTN>
-              </OffersTdText>
+              <OffersTdEmpty></OffersTdEmpty>
+              <OffersTdButton>
+                <MakeOfferBTN>Edit Offer</MakeOfferBTN>
+              </OffersTdButton>
+              <OffersTdButton>
+                <DenyBTN>Cancel</DenyBTN>
+              </OffersTdButton>
             </OffersTr>
           </>
         )}
