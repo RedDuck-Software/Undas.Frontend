@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+/* tslint:disable */
+/* eslint-disable */
+import React, { useState } from "react";
+import Carousel from "react-elastic-carousel";
+import { Link } from "react-router-dom";
 
 import {
   BuyersSec,
@@ -13,14 +16,13 @@ import {
   UserName,
   UserInformation,
   ButtonWrapper,
-} from './TopBuyers.styles';
+} from "./TopBuyers.styles";
 
-import '../CarouselStyling.css';
-import { Container, Button, ComingSoonImage } from '../../../../globalStyles';
-import profile from '../../../../icons/buyers-profile.png';
-import image from '../../../../images/buyers-image.png';
-import comingSoon from '../../../../images/coming-soon.png';
-import Carousel from 'react-elastic-carousel';
+import "../CarouselStyling.css";
+import { Container, Button, ComingSoonImage } from "../../../../globalStyles";
+import profile from "../../../../icons/buyers-profile.png";
+import image from "../../../../images/buyers-image.png";
+import comingSoon from "../../../../images/coming-soon.png";
 
 const breakPoints = [
   { width: 460, itemsToShow: 1 },
