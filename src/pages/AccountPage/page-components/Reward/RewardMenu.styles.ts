@@ -6,6 +6,10 @@ import BgImg from "../../assets/bg-img.png";
 //RewardMenu
 export const RewardMenuWrap = styled.div`
   padding: 40px 0 120px;
+  margin-top: -40px;
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 export const ContentWrap = styled.div`
   &.top-table {
@@ -19,13 +23,40 @@ export const ButtonsBlock = styled.div`
   line-height: 17px;
   text-align: right;
   color: #232428;
+  @media (max-width: 992px) {
+    text-align: left;
+  }
+  @media (max-width: 576px) {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 `;
+export const IntervalInput = styled.input`
+    border: none;
+    outline: none;
+    width: 55px;
+    &:focus{
+        background-color: #fbf5ff;
+    }
+`;
+
 export const Title = styled.h1`
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
   line-height: 39px;
   color: #232428;
+  margin-top: 40px;
+  margin-bottom: 0;
+  @media (max-width: 992px) {
+    font-size: 26px;
+    line-height: 31px;   
+  }
+  @media (max-width: 576px) {
+      margin-top: 30px;
+      font-size: 22px;
+      line-height: 27px;
+  }
 `;
 export const Button = styled.button`
   padding: 10px;
@@ -40,6 +71,9 @@ export const Button = styled.button`
   }
   &.active {
     background: #fbf5ff;
+  }
+  @media (max-width: 576px) {
+    margin-left: 10px;
   }
 `;
 export const ContentTableWrap = styled.div`
@@ -66,23 +100,48 @@ export const ContentTableWrap = styled.div`
 `;
 export const ImageBlock = styled.div`
   padding: 60px 40px 0 0;
+  flex: 0 0 7%;
   @media (max-width: 1200px) {
     padding: 60px 0 0;
+  }
+  @media (max-width: 992px) {
+    padding: 0;
   }
 `;
 
 export const MainBlock = styled.div`
   width: 400px;
   padding: 40px 10px;
+  flex: 1 0 28%;
+  @media (max-width: 992px) {
+    width: 100%;
+    padding: 10px;
+    background: url(${BgImg}) no-repeat left bottom;
+  }
 `;
 export const CentralBlock = styled.div`
   padding: 45px 20px 75px;
   background: #ffffff;
   border: 1px solid rgba(124, 124, 124, 0.25);
+  flex: 0 0 28%;
+  @media (max-width: 992px) {
+      border: none;
+      padding: 30px;
+  }
+  @media (max-width: 576px) {
+      padding: 20px 10px;
+  }
 `;
 export const RightBlock = styled.div`
-  padding: 40px 10px 20px;
+  padding: 40px 20px 20px 10px;
   text-align: center;
+  flex: 0 0 28%;
+  @media (max-width: 992px) {
+      padding: 30px;
+  }
+  @media (max-width: 576px) {
+      padding: 20px 10px;
+  }
 `;
 export const BlockTitleWrap = styled.div`
   display: flex;
@@ -95,10 +154,21 @@ export const BlockTitle = styled.h2`
   font-size: 24px;
   line-height: 29px;
   color: #232428;
+  @media (max-width: 992px) {
+    margin-right: auto;
+    margin-left: 10px;
+  }
+  @media (max-width: 576px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 export const BlockValue = styled.div`
   display: flex;
   align-items: flex-start;
+  @media (max-width: 576px) {
+    align-items: flex-end;
+  }
 `;
 export const TextValue = styled.span`
   font-size: 24px;
@@ -110,6 +180,15 @@ export const TextValue = styled.span`
     font-size: 48px;
     line-height: 50px;
   }
+  @media (max-width: 576px) {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 0.5rem;
+    & .number {
+        font-size: 20px;
+        line-height: 24px;
+    }
+  }
 `;
 export const InformButton = styled.button`
   border: none;
@@ -120,19 +199,32 @@ export const BlockContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 10px;
 `;
 export const BlockContentTotal = styled.h4`
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: #7c7c7c;
+  margin-right: 30px;
+  @media (max-width: 576px){
+    margin-right: 15px;
+  }
 `;
-export const CentralBlockHead = styled.h4`
+export const CentralBlockHead = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #5d3f92;
   text-align: center;
+  @media (max-width: 992px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
 `;
 export const RightBlockHead = styled.h4`
   font-weight: 400;
@@ -158,4 +250,8 @@ export const RightBlockButton = styled.button`
     color: #873dc1;
     border: 1px solid #873dc1;
   }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
 `;
+
