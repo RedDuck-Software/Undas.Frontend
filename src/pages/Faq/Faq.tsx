@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
 
 import {
   FaqTabsWrapper,
@@ -7,6 +8,11 @@ import {
   ContentTitle,
   ContentText,
   TabButton,
+  UndasLink,
+  AddToWatchlistLink,
+  AccordionWrap,
+  AccordionItem,
+  DescriptionText,
 } from "./Faq.styles";
 
 import { Background, Container, PageTitle } from "../../globalStyles";
@@ -46,14 +52,15 @@ const Faq: React.FC = () => {
                         How can I add a collection to my watchlist?
                       </ContentTitle>
                       <ContentText>
-                        To get started, navigate to any collection page on
-                        <a href="#" className="content-text-link">
-                          UNDAS
-                        </a>
+                        To get started, navigate to any collection page on{" "}
+                        <UndasLink href="#">UNDAS</UndasLink>
                       </ContentText>
                       <ContentText>
                         On the right side of the collection view, you&#39;ll see
-                        a new button, <span>Add to Watchlist</span>
+                        a new button -{" "}
+                        <AddToWatchlistLink>
+                          Add to Watchlist
+                        </AddToWatchlistLink>
                       </ContentText>
                       <ContentText>
                         Click the button to add the collection to your
@@ -92,6 +99,42 @@ const Faq: React.FC = () => {
             </Row>
           </Tab.Container>
         </FaqTabsWrapper>
+        <AccordionWrap className="settings-accordion">
+        <Accordion>
+          <AccordionItem eventKey="0">
+            <Accordion.Header>General help</Accordion.Header>
+            <Accordion.Body>
+              <DescriptionText>
+               ноеноеноенео
+              </DescriptionText>
+            </Accordion.Body>
+          </AccordionItem>
+          <AccordionItem eventKey="1">
+            <Accordion.Header>Contact UNDAS Support</Accordion.Header>
+            <Accordion.Body>
+              <DescriptionText>
+                еоаноеоен
+              </DescriptionText>
+            </Accordion.Body>
+          </AccordionItem>
+          <AccordionItem eventKey="2">
+            <Accordion.Header>Help with a compromised account</Accordion.Header>
+            <Accordion.Body>
+              <DescriptionText>
+                ноеоеноне
+              </DescriptionText>
+            </Accordion.Body>
+          </AccordionItem>
+          <AccordionItem eventKey="3">
+            <Accordion.Header>Contact UNDAS Support</Accordion.Header>
+            <Accordion.Body>
+              <DescriptionText>
+                You currently do not have any listings or offers to cancel
+              </DescriptionText>
+            </Accordion.Body>
+          </AccordionItem>
+        </Accordion>
+      </AccordionWrap>
       </Container>
     </Background>
   );
