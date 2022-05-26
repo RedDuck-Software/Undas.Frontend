@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const LineWrap = styled.div``;
+export const LineWrap = styled.div`
+@media (max-width: 992px) {
+  margin-top: 380px;
+}
+`;
 
 export const Line = styled.div`
   width: 5px;

@@ -9,12 +9,24 @@ export const AboutTopContent = styled.div`
   justify-content: space-between;
   gap: 30px;
   margin-bottom: 60px;
+
+  @media (max-width: 992px) {
+    display: block;
+  }
 `;
 export const AboutGallery = styled.div`
   width: 45%;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 export const AboutContentText = styled.div`
   width: 50%;
+
+  @media (max-width: 992px) {
+    width: 100%;
+  }
 `;
 export const ArticleText = styled.div`
   font-weight: 400;
@@ -30,6 +42,16 @@ export const ArticleText = styled.div`
   span {
     color: #873dc1;
   }
+
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
+  @media (max-width: 992px) {
+    font-size: 16px;
+    &.bottom-text {
+      max-width: 100%;
+    }
+  }
 `;
 
 export const AboutBottomContent = styled.div`
@@ -39,9 +61,19 @@ export const AboutBottomContent = styled.div`
 `;
 export const AboutContentImage = styled.img`
   width: 50%;
+  max-height: 500px;
+
+  @media (max-width: 992px) {
+    width: 34%;
+    max-height: 300px;
+  }
 `;
 export const OurTeamWrap = styled.div`
   margin-top: 60px;
+
+  @media (max-width: 992px) {
+    margin-top: 40px;
+  }
 `;
 export const OurTeamTitle = styled.div`
   display: flex;
@@ -69,13 +101,21 @@ export const Link = styled.a`
     color: #232428;
     text-decoration: underline;
   }
+
+  @media (max-width: 992px) {
+    margin-left: auto;
+  }
 `;
 
 export const OurTeamContent = styled.div`
   background: #ccb7f2;
   padding: 30px;
   border-radius: 20px;
-  margin: 40px 0 60px;
+  margin: 30px 0 60px;
+
+  @media (max-width: 992px) {
+    margin: 30px 0 40px;
+  }
 `;
 export const Roadmap = styled.div`
   padding: 0 15px 120px;
@@ -90,7 +130,7 @@ export const AchievementСontainerWrap = styled.div`
   flex-wrap: wrap;
 `;
 export const AchievementСontainer = styled.div`
-  width: 540px;
+  width: 48%;
   position: absolute;
 
   &.left-side {
@@ -113,6 +153,14 @@ export const AchievementСontainer = styled.div`
   }
   &.fifth-container {
     top: 70%;
+  }
+
+  @media (max-width: 992px) {
+    width: 90%;
+    &.left-side {
+      right: 0;
+      left: unset;
+    }
   }
 `;
 export const ContainerHead = styled.div`
@@ -169,32 +217,88 @@ export const ContainerContent = styled.div`
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
     gap: 10px;
     list-style: none;
-    & li {
-      position: relative;
-      padding-left: 8px;
-      display: inline-flex;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
-    }
-    & li::before {
+  & li {
+    position: relative;
+    padding-left: 8px;
+    display: inline-flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  & li::before {
+    content: "";
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #5d3f92;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 0;
+  }
+  & .checked::after {
+    content: "";
+    width: 8px;
+    height: 12px;
+    border-bottom: 2px solid #5d3f92;
+    border-right: 2px solid #5d3f92;
+    transform: rotate(45deg);
+    margin-left: 10px;
+  }
+  }
+
+  @media (max-width: 992px) {
+    &.left-side::before {
       content: "";
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background-color: #5d3f92;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #e2d1ff;
       position: absolute;
-      top: calc(50% - 2px);
-      left: 0;
+      left: -10px;
+      top: 20%;
     }
-    & .checked::after {
-      content: "";
-      width: 8px;
-      height: 12px;
-      border-bottom: 2px solid #5d3f92;
-      border-right: 2px solid #5d3f92;
-      transform: rotate(45deg);
-      margin-left: 10px;
+    &.left-side::after {
+      content: none;
     }
+  }
+`;
+
+export const PageTitleAbout = styled.h1`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+  margin: 60px 0 20px;
+  @media (max-width: 992px) {
+    text-align: center;
+  }
+`;
+
+export const SubTitleArticle = styled.h2`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #232428;
+  margin: 0 0 20px;
+
+  &.align-center {
+    text-align: center;
+  }
+`;
+
+export const AboutGalleryCenter = styled.div`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  margin-top: 20px;
+
+  @media (max-width: 992px) {
+    display: block;
   }
 `;

@@ -19,27 +19,30 @@ import {
   ContainerHead,
   ContainerContent,
   AchievementСontainerWrap,
+  PageTitleAbout,
+  SubTitleArticle,
+  AboutGalleryCenter,
 } from "./AboutUs.styles";
 import { ArticleImg } from "./imports";
 import Road from "./Roadmap/Road";
 import AboutSlider from "./Slider/Slider";
 import TeammateCards from "./TeammateCard/TeammateCard";
 
-import { Background, Container, PageTitle, SubTitle } from "../../globalStyles";
+import { Background, Container, SubTitle } from "../../globalStyles";
 
 const AboutUs = () => {
   return (
     <AboutWrap>
       <Background>
         <Container>
-          <PageTitle>About US</PageTitle>
+          <PageTitleAbout>About Us</PageTitleAbout>
           <AboutContent>
             <AboutTopContent>
               <AboutGallery>
                 <AboutSlider />
               </AboutGallery>
               <AboutContentText>
-                <SubTitle>Our Story</SubTitle>
+                <SubTitleArticle>Our Story</SubTitleArticle>
                 <ArticleText>
                   <p>
                     In 2017 the world witnessed the birth of CryptoKitties. For
@@ -67,6 +70,9 @@ const AboutUs = () => {
                   </p>
                 </ArticleText>
               </AboutContentText>
+              <AboutGalleryCenter>
+                <AboutSlider />
+              </AboutGalleryCenter>
             </AboutTopContent>
             <AboutBottomContent>
               <AboutContentText>
