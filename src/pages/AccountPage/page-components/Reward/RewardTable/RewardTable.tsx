@@ -19,7 +19,7 @@ import {
   SolanaIco,
   FtmIco,
   AvaxIco,
-} from "../../imports";
+} from "../../../imports";
 const RewardTable: React.FC = () => {
   return (
     <Wrap>

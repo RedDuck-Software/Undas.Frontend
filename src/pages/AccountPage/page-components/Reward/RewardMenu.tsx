@@ -21,7 +21,14 @@ import {
   CentralBlockHead,
   RightBlockHead,
   RightBlockButton,
-} from "./Menu.styles";
+} from "./RewardMenu.styles";
+import RewardTable from "./RewardTable/RewardTable";
+import {
+  ContentTable,
+  ContentTr,
+  ContentTd,
+  Icon,
+} from "./RewardTable/RewardTable.styles";
 
 import {
   HoldingIco,
@@ -38,13 +45,6 @@ import {
   FtmIco,
   AvaxIco,
 } from "../../imports";
-import RewardTable from "../RewardTable/RewardTable";
-import {
-  ContentTable,
-  ContentTr,
-  ContentTd,
-  Icon,
-} from "../RewardTable/RewardTable.styles";
 
 const RewardMenu: React.FC = () => {
   return (
