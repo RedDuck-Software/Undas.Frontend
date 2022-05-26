@@ -123,7 +123,7 @@ export const RowDown = styled.div`
   height: 36px;
   position: absolute;
   background-color: #ffffff;
-  width: 101.16%;
+  width: 100%;
   padding-right: 10px;
   bottom: 0;
   border-radius: 0px 0px 10px 0px;

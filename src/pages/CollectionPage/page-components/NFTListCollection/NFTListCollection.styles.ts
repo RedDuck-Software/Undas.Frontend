@@ -104,7 +104,7 @@ export const RowDown = styled.div`
   height: 36px;
   position: absolute;
   background-color: #ffffff;
-  width: 101.16%;
+  width: 100%;
   padding-right: 10px;
   bottom: 0;
   border-radius: 0px 0px 10px 0px;
@@ -115,6 +115,7 @@ export const RowCenter = styled.div`
   position: relative;
   margin-left: 168px;
   background-color: #e2d1ff;
+  border-radius: 0px 0px 10px 0px;
 `;
 export const ImageHeart = styled.img`
   right: 12px;
