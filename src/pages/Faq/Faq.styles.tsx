@@ -4,11 +4,16 @@ import styled from "styled-components";
 
 export const FaqTabsWrapper = styled.div`
   min-height: 550px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
+
 export const TabButton = styled(Nav.Link)`
   background: #ffffff !important;
   box-shadow: 3px 3px 5px rgba(124, 124, 124, 0.25),
-    inset 0px 0px 5px rgba(124, 124, 124, 0.25);
+  inset 0px 0px 5px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   color: #5d3f92;
   margin-bottom: 20px;
@@ -26,6 +31,7 @@ export const TabButton = styled(Nav.Link)`
     text-shadow: 0 0 1px rgba(135, 61, 193, 0.5);
   }
 `;
+
 export const TabText = styled.div``;
 export const ContentTitle = styled.h2`
   font-family: "Montserrat";
@@ -37,11 +43,12 @@ export const ContentTitle = styled.h2`
   margin-bottom: 30px;
   max-width: 300px;
 `;
+
 export const ContentText = styled.p`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 17px;
   color: #232428;
   margin-bottom: 20px;
@@ -54,6 +61,10 @@ export const ContentText = styled.p`
   }
   & span {
     color: #7c7c7c;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
   }
 `;
 
@@ -77,40 +88,35 @@ export const AddToWatchlistLink = styled.a`
   color: #873dc1;
 `;
 
-
-
-
-
-
-
-
 export const AccordionWrap = styled.div`
-  margin: 40px auto;
-  @media (max-width: 768px) {
-    & .accordion-header .accordion-button {
-      font-size: 16px;
-    }
-    .accordion-body {
-      padding: 0 1.25rem 1rem;
-    }
-  }
+  margin: 20px auto;
+  background: #FBF5FF;
+  box-shadow: 3px 5px 5px rgba(135, 61, 193, 0.5);
+  border-radius: 10px;
 `;
 
 export const AccordionItem = styled(Accordion.Item)`
   background-color: #fbf5ff;
+  border-radius: 10px !important;
   & .accordion-button {
     color: #232428;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    background-color: #fbf5ff;
   }
   & .accordion-button:not(.collapsed) {
     box-shadow: none;
+    background: #ffffff;
   }
   & .accordion-button:focus {
     border: none;
     box-shadow: none;
+    background: #fbf5ff;
+  }
+  & .accordion-button:active {
+    border: none;
+    box-shadow: none;
+    background: #fbf5ff;
   }
   & .accordion-button:not(.collapsed)::after {
     background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23212529%27%3e%3cpath fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e");
@@ -134,5 +140,84 @@ export const DescriptionText = styled.p`
   @media (max-width: 576px) {
     font-size: 12px;
     line-height: 14px;
+  }
+`;
+
+export const AccordionHeader = styled(Accordion.Header)`
+  min-height: 60px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #5D3F92;
+`;
+
+export const AccordionBody = styled(Accordion.Body)`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #5D3F92;
+  background: #ffffff;
+`;
+
+export const HeaderText = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #5D3F92;
+  padding-top: 4px;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+`;
+
+export const HeadText = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #232428;
+  pading-bottom: 20px;
+  padding-bottom: 20px;
+  display: block;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+`;
+
+export const AccordionContainer = styled.div`
+  display: none;
+
+  @media (max-width: 992px) {
+    display: block;
+  }
+`;
+
+export const PageFAQTitle = styled.h1`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+  margin: 60px 0 20px;
+
+  @media (max-width: 992px) {
+    margin: 40px 0 30px;
+  }
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+  @media (max-width: 576px) {
+    margin: 30px 0 20px;
+    font-size: 24px;
   }
 `;
