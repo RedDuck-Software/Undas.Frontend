@@ -68,6 +68,7 @@ export const OffersWrapTable = styled.table`
   overflow-y: auto;
   position: relative;
   padding-top: 50px;
+  margin-top: -40px;
   @media (max-width: 992px) {
     max-width: fit-content;
     overflow-x: auto;
