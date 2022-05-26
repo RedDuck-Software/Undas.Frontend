@@ -14,10 +14,6 @@ export const NFTWrap = styled.div`
   &:hover {
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
   }
-  /* filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5)); */
-
-  @media (max-width: 650px) {
-  }
 `;
 
 export const Info = styled(Wrapper)`
@@ -74,6 +70,10 @@ export const BuyingBlock = styled.div`
   font-size: 14px;
   color: #232428;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const LeftBlock = styled.div`
@@ -97,6 +97,13 @@ export const BuyBtn = styled.button`
 
 export const TagName = styled.span`
   padding: 14px 0px 14px 0px;
+
+  @media (max-width: 649px) {
+    padding: 6px 0px 6px 0px;
+  }
+  @media (max-width: 576px) {
+    padding: 14px 0px 14px 0px;
+  }
 `;
 
 export const PriceList = styled.ul`
@@ -122,7 +129,6 @@ export const PriceItem = styled.li`
   font-size: 10px;
   color: #232428;
   background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(30px);
 `;
 export const PriceInEth = styled.span`
   font-size: 12px;

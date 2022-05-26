@@ -8,7 +8,7 @@ export const Banner = styled.div`
     width: 100%;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 576px) {
     height: 60px;
     & img {
       height: 60px;
@@ -23,7 +23,7 @@ export const Info = styled.div`
   font-weight: 400;
   align-items: center;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     display: block;
   }
 `;
@@ -35,11 +35,11 @@ export const Title = styled.h1`
   margin-bottom: 10px;
   color: #232428;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 100%;
     font-size: 24px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     font-size: 18px;
   }
 `;
@@ -49,10 +49,10 @@ export const Subtitle = styled.h2`
   font-size: 24px;
   color: #232428;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     font-size: 18px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     font-size: 14px;
   }
 `;
@@ -68,7 +68,7 @@ export const InfoCard = styled.div`
   box-shadow: 0 4px 10px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 100%;
     margin-top: 10px;
   }
@@ -111,14 +111,14 @@ export const CollectionCard = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     height: 180px;
     padding: 0px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     height: 160px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     height: 165px;
   }
 `;
@@ -141,15 +141,15 @@ export const AuthorWrap = styled.div`
   backdrop-filter: blur(50px);
   border-radius: 20px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 100%;
     position: absolute;
     margin-top: 110px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     margin-top: 90px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     height: 95px;
     margin-top: 70px;
     align-items: unset;
@@ -165,7 +165,7 @@ export const CollectionPicWrap = styled.div`
   justify-content: center;
   border-radius: 20px;
 
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     height: 60px;
     width: 60px;
     align-items: unset;
@@ -186,13 +186,14 @@ export const CollectionText = styled.span<IText>`
   line-height: ${(props) => props.lh || "17px"};
   padding: ${(props) => props.padd};
   color: #fff;
+  
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     max-width: unset;
     width: 65%;
     font-size: 12px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     font-family: "Montserrat";
     font-style: normal;
     font-size: 10px;
@@ -256,15 +257,15 @@ export const NFTCards = styled.div`
   height: 120px;
   border-radius: 20px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 80px;
     height: 80px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     width: 60px;
     height: 60px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -278,7 +279,7 @@ export const NameNft = styled.div`
   align-items: center;
   gap: 10px;
 
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     margin-top: 10px;
   }
 `;
@@ -289,7 +290,7 @@ export const CollectionTextDiv = styled.div`
   max-width: 320px;
   margin: 0 0 0 auto;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     max-width: unset;
     position: absolute;
     right: 15px;
@@ -314,13 +315,13 @@ export const CollectionTextDiv = styled.div`
   @media (max-width: 626px) {
     width: 53%;
   }
-  @media (max-width: 580px) {
+  @media (max-width: 576px) {
     width: 45%;
   }
   @media (max-width: 540px) {
     width: 37%;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     left: 170px;
     margin-left: -100px;
     width: 68%;
@@ -343,14 +344,14 @@ export const CardsWrapper = styled.div`
   display: flex;
   gap: 15px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     position: absolute;
     right: 15px;
     top: 15px;
     max-width: unset;
     text-align: left;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     margin-top: 10px;
   }
 `;

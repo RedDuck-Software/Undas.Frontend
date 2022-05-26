@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LoginSec = styled.div`
   padding: 80px 0;
 
-  @media (max-width: 801px) {
+  @media (max-width: 992px) {
     padding: 4rem 0;
   }
 `;
@@ -15,7 +15,7 @@ export const TextWrapper = styled.div`
   align-items: center;
   margin-bottom: 2.25rem;
 
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     text-align: center;
   }
 `;
@@ -30,14 +30,14 @@ export const LoginTitle = styled.h2`
   display: block;
   margin-bottom: 0.8rem;
 
-  @media (max-width: 801px) {
+  @media (max-width: 992px) {
     font-size: 1.5rem;
     text-align: center;
   }
   @media (max-width: 768px) {
     font-size: 18px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     font-size: 14px;
   }
 `;
@@ -47,14 +47,14 @@ export const LoginText = styled.p`
   word-spacing: 0.3rem;
   color: #747474;
 
-  @media (max-width: 801px) {
+  @media (max-width: 992px) {
     text-align: center;
   }
   @media (max-width: 768px) {
     font-size: 14px;
     word-spacing: unset;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     font-size: 12px;
   }
 `;
@@ -80,7 +80,7 @@ export const ButtonToggle = styled.button`
   width: 116px;
   transition: all 0.2s ease-in-out;
 
-  @media (max-width: 1019px) {
+  @media (max-width: 992px) {
     width: 65px;
     height: 30px;
     padding: 6px;
@@ -94,7 +94,7 @@ export const Circle = styled.div`
   background-color: #fff;
   transition: all 0.2s ease-in-out;
 
-  @media (max-width: 1019px) {
+  @media (max-width: 992px) {
     width: 18px;
     height: 18px;
   }
@@ -132,22 +132,20 @@ export const LoginButton = styled.button`
     cursor: not-allowed;
   }
 
-  @media (max-width: 1019px) {
+  @media (max-width: 992px) {
     width: 23%;
     height: 130px;
   }
-
-  @media (max-width: 801px) {
+  @media (max-width: 880px) {
     height: 100px;
   }
-
   @media (max-width: 768px) {
     height: 100px;
     width: 35%;
     margin-right: 15px;
     margin-left: 15px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     width: 46%;
     margin-right: 2%;
     margin-left: 2%;
@@ -157,14 +155,14 @@ export const LoginButton = styled.button`
 export const ButtonIcon = styled.img`
   margin-left: 20px;
   align-self: self-start;
-  @media (max-width: 801px) {
+  @media (max-width: 992px) {
     width: 28px;
   }
 `;
 
 export const ButtonText = styled.span`
   font-size: 1.2rem;
-  @media (max-width: 801px) {
+  @media (max-width: 992px) {
     font-size: 14px;
   }
 `;
@@ -187,7 +185,7 @@ export const ShowMore = styled.button`
     box-shadow: 0 0 5px rgba(135, 61, 193, 0.4);
   }
 
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     width: 96%;
     margin-left: 2%;
   }
@@ -204,7 +202,7 @@ export const UNDAS = styled.span`
   @media (max-width: 768px) {
     font-size: 18px;
   }
-  @media (max-width: 501px) {
+  @media (max-width: 576px) {
     font-size: 14px;
   }
 `;

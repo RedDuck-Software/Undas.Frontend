@@ -20,9 +20,9 @@ import {
   FilterButton,
   FilterText,
   HeadWrapper,
-  InfoS,
+  InfoBlock,
   ItemsOwners,
-  InfoSBorder,
+  InfoSmallBorder,
   TextInfo,
   ContainerCollection,
 } from "./CollectionPage.styles";
@@ -177,7 +177,7 @@ const CollectionPage: React.FC = () => {
                 </Info>
                 <AddToFav>Make a Complaint</AddToFav>
               </InfoBox>
-              <InfoS>
+              <InfoBlock>
                 <ItemsOwners>
                   <TextInfo>Items</TextInfo>
                   <br></br>
@@ -188,8 +188,8 @@ const CollectionPage: React.FC = () => {
                   <br></br>
                   <Amount>6400</Amount>
                 </ItemsOwners>
-              </InfoS>
-              <InfoSBorder>
+              </InfoBlock>
+              <InfoSmallBorder>
                 <ItemsOwners>
                   <TextInfo>Floor Price</TextInfo>
                   <br></br>
@@ -200,7 +200,7 @@ const CollectionPage: React.FC = () => {
                   <br></br>
                   <PurpleEthIco /> <Amount>13,402,000</Amount>
                 </ItemsOwners>
-              </InfoSBorder>
+              </InfoSmallBorder>
             </HeadWrapper>
             <MenuSearchWrapSmall>
               <SearchIco />
