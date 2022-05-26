@@ -63,6 +63,7 @@
     "universal-cookie": "^4.0.4",
     "url-parse": "^1.5.2",
     "web-vitals": "^1.0.1",
+    "web3modal": "^1.9.7",
     "ws": "^7.4.6",
     "yup": "^0.32.11"
   },
