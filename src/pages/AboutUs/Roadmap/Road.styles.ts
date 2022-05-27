@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const LineWrap = styled.div`
 @media (max-width: 992px) {
-  margin-top: 380px;
+  position: absolute;
+  margin-left: auto;
+  margin-top: 30px;
 }
 `;
 
@@ -14,6 +16,15 @@ export const Line = styled.div`
   margin: 0 auto;
   &.done {
     background-color: #ccb7f2;
+  }
+  @media (max-width: 992px) {
+    height: 62px;
+    &.secondLine {
+      height: 133px;
+    }
+    &.lastLine {
+      height: 44px;
+    }
   }
 `;
 

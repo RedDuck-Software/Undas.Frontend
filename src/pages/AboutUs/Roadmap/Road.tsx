@@ -8,19 +8,19 @@ const Road = () => {
       <Line className="done">
         <Circle className="done" />
       </Line>
-      <Line>
+      <Line className="secondLine">
         <Circle />
       </Line>
-      <Line>
+      <Line className="secondLine">
         <Circle />
       </Line>
-      <Line>
+      <Line className="secondLine">
         <Circle />
       </Line>
-      <Line>
+      <Line className="secondLine">
         <Circle />
       </Line>
-      <Line></Line>
+      <Line className="lastLine"></Line>
     </LineWrap>
   );
 };

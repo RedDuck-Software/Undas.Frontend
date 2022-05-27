@@ -22,6 +22,8 @@ import {
   PageTitleAbout,
   SubTitleArticle,
   AboutGalleryCenter,
+  SubTitleRoadmap,
+  SubTitleBuilding,
 } from "./AboutUs.styles";
 import { ArticleImg } from "./imports";
 import Road from "./Roadmap/Road";
@@ -76,7 +78,7 @@ const AboutUs = () => {
             </AboutTopContent>
             <AboutBottomContent>
               <AboutContentText>
-                <SubTitle>Building an open digital economy</SubTitle>
+                <SubTitleBuilding>Building an open digital economy</SubTitleBuilding>
                 <ArticleText className="bottom-text">
                   <p>
                     At <span>UNDAS</span>, we&#39;re excited about a brand new
@@ -127,7 +129,7 @@ const AboutUs = () => {
             </OurTeamContent>
           </OurTeamWrap>
           <Roadmap>
-            <SubTitle className="align-center">Roadmap</SubTitle>
+            <SubTitleRoadmap className="align-center">Roadmap</SubTitleRoadmap>
             <RoadMapContent>
               <Road />
               <AchievementСontainerWrap>

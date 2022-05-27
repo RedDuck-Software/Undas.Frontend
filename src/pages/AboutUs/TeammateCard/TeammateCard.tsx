@@ -15,7 +15,7 @@ import {
 const TeammateCards = () => {
   return (
     <CardWrap>
-      <Row xs={2} md={5} className="">
+      <Row xs={2} md={5}>
         {Array.from({ length: 5 }).map(() => (
           <>
             <ColTeamCard>

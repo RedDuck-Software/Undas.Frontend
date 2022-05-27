@@ -12,6 +12,7 @@ export const AboutTopContent = styled.div`
 
   @media (max-width: 992px) {
     display: block;
+    margin-bottom: 0px;
   }
 `;
 export const AboutGallery = styled.div`
@@ -64,8 +65,7 @@ export const AboutContentImage = styled.img`
   max-height: 500px;
 
   @media (max-width: 992px) {
-    width: 34%;
-    max-height: 300px;
+    display: none;
   }
 `;
 export const OurTeamWrap = styled.div`
@@ -124,6 +124,9 @@ export const RoadMapContent = styled.div`
   margin: 0 auto;
   position: relative;
   padding-top: 30px;
+  @media (max-width: 992px) {
+    padding-top: unset;
+  }
 `;
 export const AchievementСontainerWrap = styled.div`
   display: flex;
@@ -156,7 +159,10 @@ export const AchievementСontainer = styled.div`
   }
 
   @media (max-width: 992px) {
-    width: 90%;
+    width: 97%;
+    position: relative;
+    margin-left: auto;
+    margin-top: 30px;
     &.left-side {
       right: 0;
       left: unset;
@@ -301,4 +307,31 @@ export const AboutGalleryCenter = styled.div`
   @media (max-width: 992px) {
     display: block;
   }
+`;
+
+export const SubTitleRoadmap = styled.h2`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  text-align: center;
+  
+  @media (max-width: 992px) {
+    text-align: left;
+  }
+`;
+
+export const SubTitleBuilding = styled.h2`
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+color: #232428;
+
+@media (max-width: 992px) {
+  margin-top: 20px;
+}
 `;
