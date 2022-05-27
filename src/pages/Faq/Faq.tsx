@@ -55,7 +55,8 @@ const Faq: React.FC = () => {
                   <Tab.Pane eventKey="first">
                     <TabText>
                       <ContentTitle>
-                        How can I add a collection to my watchlist?
+                        To get started, navigate to any collection page on{" "}
+                        <UndasLink href="#">UNDAS</UndasLink>
                       </ContentTitle>
                       <ContentText>
                         To get started, navigate to any collection page on{" "}
@@ -145,28 +146,27 @@ const Faq: React.FC = () => {
                 <AccordionHeader><HeaderText>Where can I find NFT sales?</HeaderText></AccordionHeader>
                 <AccordionBody>
                   <DescriptionText>
-                    <HeadText>Where can I find NFT sales?</HeadText>
                     <ContentText>
-                            To get started, navigate to any collection page on{" "}
-                            <UndasLink href="#">UNDAS</UndasLink>
-                          </ContentText>
-                          <ContentText>
-                            On the right side of the collection view, you&#39;ll see
-                            a new button -{" "}
-                            <AddToWatchlistLink>
-                              Add to Watchlist
-                            </AddToWatchlistLink>
-                          </ContentText>
-                          <ContentText>
-                            Click the button to add the collection to your
-                            watchlist. If successful, you should get a confirmation
-                            message on the bottom right hand corner of your page
-                          </ContentText>
-                          <ContentText>
-                            To see your watchlist, hover your mouse over your
-                            profile icon on the top right corner your page. Click on
-                            Watchlist, the third option on the dropdown menu
-                      </ContentText>
+                      To get started, navigate to any collection page on{" "}
+                      <UndasLink href="#">UNDAS</UndasLink>
+                    </ContentText>
+                    <ContentText>
+                      On the right side of the collection view, you&#39;ll see
+                      a new button -{" "}
+                      <AddToWatchlistLink>
+                        Add to Watchlist
+                      </AddToWatchlistLink>
+                    </ContentText>
+                    <ContentText>
+                      Click the button to add the collection to your
+                      watchlist. If successful, you should get a confirmation
+                      message on the bottom right hand corner of your page
+                    </ContentText>
+                    <ContentText>
+                      To see your watchlist, hover your mouse over your
+                      profile icon on the top right corner your page. Click on
+                      Watchlist, the third option on the dropdown menu
+                    </ContentText>
                   </DescriptionText>
                 </AccordionBody>
               </AccordionItem>
@@ -178,7 +178,6 @@ const Faq: React.FC = () => {
                 <AccordionHeader><HeaderText>How do I find my transaction hash?</HeaderText></AccordionHeader>
                 <AccordionBody>
                   <DescriptionText>
-                    <HeadText>How do I find my transaction hash?</HeadText>
                     <ContentText>
                             To get started, navigate to any collection page on{" "}
                             <UndasLink href="#">UNDAS</UndasLink>
