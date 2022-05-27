@@ -166,7 +166,7 @@ const CreateNFT: React.FC = () => {
               </CreateLabel>
               <CreateSelect aria-label="" id="collection">
                 <option>Select collection</option>
-                <option value="1">One</option>
+                <option value="1">OneOne</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </CreateSelect>

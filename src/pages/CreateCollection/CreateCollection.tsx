@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import * as Yup from "yup";
 
 import {
   AddImgBlock,
@@ -14,8 +13,12 @@ import {
   CategoryGroup,
   CategoryDescript,
   EarningsInput,
+  ValidationText,
+  ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco, ArtIcon } from "./imports";
+import { CreateSubmitForm } from "./types";
+import { validationSchema } from "./validation";
 
 import { Background, FormButtonsWrap } from "../../globalStyles";
 import {
@@ -29,6 +32,10 @@ import {
   BlockDescript,
   CreateTextArea,
   CreateSelect,
+  CreateDropdown,
+  CreateDropdownCurrent,
+  CreateDropdownList,
+  CreateDropdownItem,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
@@ -36,32 +43,20 @@ import {
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 
-type CreateSubmitForm = {
-  contentURL: string;
-  name: string;
-  information: string;
-  creatorEarnings: string;
-};
-
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
 
-  const [contentURL, setContentURL] = useState("");
   const [name, setName] = useState("");
+  const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
+  const [category, setCategory] = useState("Add Category");
+  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [creatorEarnings, setCreatorEarnings] = useState("");
 
-  const validationSchema = Yup.object().shape({
-    contentURL: Yup.string().required("URL is required"),
-    name: Yup.string().required("Name is required"),
-    information: Yup.string().required("Information is required"),
-    creatorEarnings: Yup.string().required("Creator Earnings is required"),
-  });
-
-  const { register } = useForm<CreateSubmitForm>({
-    resolver: yupResolver(validationSchema),
-  });
-
+  const formOptions = { resolver: yupResolver(validationSchema) };
+  const { register, formState, handleSubmit } =
+    useForm<CreateSubmitForm>(formOptions);
+  const { errors } = formState;
   /* const bid = async () => {
     if (!connector || !account) return;
 
@@ -77,15 +72,18 @@ const CreateCollection: React.FC = () => {
       signer,
     );
 
-    NFTContract.safeMintGeneral(account, information, name, contentURL);
+    NFTContract.safeMintGeneral(account, information, name, customURL);
   }; */
+  const onSubmit = (formValues: any) => {
+    alert(JSON.stringify(formValues));
+  };
 
   return (
     <Background>
       <CreateSec>
         <CreateContainer>
           <CreateTitle>Create Collection</CreateTitle>
-          <CreateForm>
+          <CreateForm onSubmit={handleSubmit(onSubmit)}>
             <BlockDescript>
               <span className="require-asterisk">*</span>Required fields
             </BlockDescript>
@@ -137,13 +135,14 @@ const CreateCollection: React.FC = () => {
               <CreateInput
                 type="text"
                 id="name"
-                placeholder="Example: Pride Lands"
-                maxLength={25}
-                required
                 {...register("name")}
+                placeholder="Example: Pride Lands"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="url">URL</CreateLabel>
@@ -155,19 +154,23 @@ const CreateCollection: React.FC = () => {
                 type="text"
                 id="url"
                 placeholder="https://UNDAS.io/collection/pride-lands"
-                {...register("contentURL")}
-                value={contentURL}
-                onChange={(e) => setContentURL(e.target.value)}
+                {...register("customURL")}
+                value={customURL}
+                onChange={(e) => setCustomURL(e.target.value)}
               />
+              {errors.customURL && (
+                <ValidationBlock>{errors.customURL.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="information">Information</CreateLabel>
               <BlockDescript className="words-counter">
-                0 of 1000 characters used
+                <ValidationText>{information.length}</ValidationText> of 1000
+                characters used
               </BlockDescript>
               <CreateTextArea
                 id="information"
-                maxLength={500}
+                maxLength={1000}
                 {...register("information")}
                 value={information}
                 onChange={(e) => setInformation(e.target.value)}
@@ -178,15 +181,27 @@ const CreateCollection: React.FC = () => {
                 <CreateLabel htmlFor="category" className="category-label">
                   Category
                 </CreateLabel>
-                <CreateSelect aria-label="" id="category">
-                  <option>Add Category</option>
-                  <option value="1">
-                    <ArtIcon />
-                    Artwork
-                  </option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </CreateSelect>
+                <CreateDropdown
+                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                >
+                  <CreateDropdownCurrent tabIndex={0}>
+                    {category}
+                  </CreateDropdownCurrent>
+                  <CreateDropdownList isOpen={isCategoryOpen}>
+                    <CreateDropdownItem onClick={() => setCategory("one")}>
+                      <ArtIcon /> one
+                    </CreateDropdownItem>
+                    <CreateDropdownItem onClick={() => setCategory("two")}>
+                      <ArtIcon /> two
+                    </CreateDropdownItem>
+                    <CreateDropdownItem onClick={() => setCategory("three")}>
+                      <ArtIcon /> three
+                    </CreateDropdownItem>
+                    <CreateDropdownItem onClick={() => setCategory("four")}>
+                      <ArtIcon /> four
+                    </CreateDropdownItem>
+                  </CreateDropdownList>
+                </CreateDropdown>
                 <CategoryDescript>
                   You can select a maximum of one category
                 </CategoryDescript>
@@ -198,16 +213,29 @@ const CreateCollection: React.FC = () => {
                 <InputItem
                   placeholder="Your Twitter Handle"
                   className="twitter"
+                  {...register("twitter")}
                 />
+                {errors.twitter?.message && (
+                  <ValidationBlock>{errors.twitter.message}</ValidationBlock>
+                )}
                 <InputItem
                   placeholder="Your Discord Handle"
                   className="discord"
                 />
+                {errors.discord?.message && (
+                  <ValidationBlock>{errors.discord.message}</ValidationBlock>
+                )}
                 <InputItem
                   placeholder="Your Instagram Handle"
                   className="instagram"
                 />
+                {errors.instagram?.message && (
+                  <ValidationBlock>{errors.instagram.message}</ValidationBlock>
+                )}
                 <InputItem placeholder="Yoursite.io" className="yoursite" />
+                {errors.yourSite?.message && (
+                  <ValidationBlock>{errors.yourSite.message}</ValidationBlock>
+                )}
               </InputList>
             </CreateFormGroup>
             <CreateFormGroup>
