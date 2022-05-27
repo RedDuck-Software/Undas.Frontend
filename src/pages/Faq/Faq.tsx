@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
 
 import {
   FaqTabsWrapper,
@@ -7,15 +8,26 @@ import {
   ContentTitle,
   ContentText,
   TabButton,
+  UndasLink,
+  AddToWatchlistLink,
+  AccordionWrap,
+  AccordionItem,
+  DescriptionText,
+  AccordionHeader,
+  HeaderText,
+  HeadText,
+  AccordionBody,
+  AccordionContainer,
+  PageFAQTitle,
 } from "./Faq.styles";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
+import { Background, Container } from "../../globalStyles";
 
 const Faq: React.FC = () => {
   return (
     <Background>
       <Container>
-        <PageTitle>FAQ</PageTitle>
+        <PageFAQTitle>FAQ</PageFAQTitle>
         <FaqTabsWrapper>
           <Tab.Container id="left-tabs" defaultActiveKey="first">
             <Row>
@@ -46,14 +58,15 @@ const Faq: React.FC = () => {
                         How can I add a collection to my watchlist?
                       </ContentTitle>
                       <ContentText>
-                        To get started, navigate to any collection page on
-                        <a href="#" className="content-text-link">
-                          UNDAS
-                        </a>
+                        To get started, navigate to any collection page on{" "}
+                        <UndasLink href="#">UNDAS</UndasLink>
                       </ContentText>
                       <ContentText>
                         On the right side of the collection view, you&#39;ll see
-                        a new button, <span>Add to Watchlist</span>
+                        a new button -{" "}
+                        <AddToWatchlistLink>
+                          Add to Watchlist
+                        </AddToWatchlistLink>
                       </ContentText>
                       <ContentText>
                         Click the button to add the collection to your
@@ -92,6 +105,107 @@ const Faq: React.FC = () => {
             </Row>
           </Tab.Container>
         </FaqTabsWrapper>
+        <AccordionContainer>
+          <AccordionWrap className="settings-accordion">
+            <Accordion>
+              <AccordionItem eventKey="0">
+                <AccordionHeader><HeaderText>How can I add a collection to my watchlist?</HeaderText></AccordionHeader>
+                <AccordionBody>
+                  <DescriptionText>
+                    <HeadText>How can I add a collection to my watchlist?</HeadText>
+                    <ContentText>
+                            To get started, navigate to any collection page on{" "}
+                            <UndasLink href="#">UNDAS</UndasLink>
+                          </ContentText>
+                          <ContentText>
+                            On the right side of the collection view, you&#39;ll see
+                            a new button -{" "}
+                            <AddToWatchlistLink>
+                              Add to Watchlist
+                            </AddToWatchlistLink>
+                          </ContentText>
+                          <ContentText>
+                            Click the button to add the collection to your
+                            watchlist. If successful, you should get a confirmation
+                            message on the bottom right hand corner of your page
+                          </ContentText>
+                          <ContentText>
+                            To see your watchlist, hover your mouse over your
+                            profile icon on the top right corner your page. Click on
+                            Watchlist, the third option on the dropdown menu
+                      </ContentText>
+                  </DescriptionText>
+                </AccordionBody>
+              </AccordionItem>
+            </Accordion>
+          </AccordionWrap>
+          <AccordionWrap className="settings-accordion">
+            <Accordion>
+              <AccordionItem eventKey="0">
+                <AccordionHeader><HeaderText>Where can I find NFT sales?</HeaderText></AccordionHeader>
+                <AccordionBody>
+                  <DescriptionText>
+                    <HeadText>Where can I find NFT sales?</HeadText>
+                    <ContentText>
+                            To get started, navigate to any collection page on{" "}
+                            <UndasLink href="#">UNDAS</UndasLink>
+                          </ContentText>
+                          <ContentText>
+                            On the right side of the collection view, you&#39;ll see
+                            a new button -{" "}
+                            <AddToWatchlistLink>
+                              Add to Watchlist
+                            </AddToWatchlistLink>
+                          </ContentText>
+                          <ContentText>
+                            Click the button to add the collection to your
+                            watchlist. If successful, you should get a confirmation
+                            message on the bottom right hand corner of your page
+                          </ContentText>
+                          <ContentText>
+                            To see your watchlist, hover your mouse over your
+                            profile icon on the top right corner your page. Click on
+                            Watchlist, the third option on the dropdown menu
+                      </ContentText>
+                  </DescriptionText>
+                </AccordionBody>
+              </AccordionItem>
+            </Accordion>
+          </AccordionWrap>
+          <AccordionWrap className="settings-accordion">
+            <Accordion>
+              <AccordionItem eventKey="0">
+                <AccordionHeader><HeaderText>How do I find my transaction hash?</HeaderText></AccordionHeader>
+                <AccordionBody>
+                  <DescriptionText>
+                    <HeadText>How do I find my transaction hash?</HeadText>
+                    <ContentText>
+                            To get started, navigate to any collection page on{" "}
+                            <UndasLink href="#">UNDAS</UndasLink>
+                          </ContentText>
+                          <ContentText>
+                            On the right side of the collection view, you&#39;ll see
+                            a new button -{" "}
+                            <AddToWatchlistLink>
+                              Add to Watchlist
+                            </AddToWatchlistLink>
+                          </ContentText>
+                          <ContentText>
+                            Click the button to add the collection to your
+                            watchlist. If successful, you should get a confirmation
+                            message on the bottom right hand corner of your page
+                          </ContentText>
+                          <ContentText>
+                            To see your watchlist, hover your mouse over your
+                            profile icon on the top right corner your page. Click on
+                            Watchlist, the third option on the dropdown menu
+                      </ContentText>
+                  </DescriptionText>
+                </AccordionBody>
+              </AccordionItem>
+            </Accordion>
+          </AccordionWrap>
+        </AccordionContainer>
       </Container>
     </Background>
   );

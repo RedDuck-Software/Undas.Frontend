@@ -186,7 +186,6 @@ export const CollectionText = styled.span<IText>`
   line-height: ${(props) => props.lh || "17px"};
   padding: ${(props) => props.padd};
   color: #fff;
-  
 
   @media (max-width: 1200px) {
     max-width: unset;
