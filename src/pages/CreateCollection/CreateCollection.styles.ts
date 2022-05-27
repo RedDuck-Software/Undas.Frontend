@@ -2,6 +2,18 @@ import styled from "styled-components";
 
 import { BlockDescript, CreateInput } from "../CreateNFT/CreateNFT.styles";
 
+export const ValidationBlock = styled("span")`
+  display: block;
+  color: rgb(135, 61, 193);
+  font-weight: 700;
+  font-size: 16px;
+`;
+
+export const ValidationText = styled("span")`
+  color: rgb(135, 61, 193);
+  font-weight: 700;
+`;
+
 export const AddImgBlock = styled.div`
   display: flex;
   align-items: center;
@@ -55,7 +67,7 @@ export const InputItem = styled.input`
   display: block;
   border: 1px solid rgba(124, 124, 124, 0.5);
   outline: none;
-  margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 10px;
   padding: 10px 20px;
   color: #232428;
