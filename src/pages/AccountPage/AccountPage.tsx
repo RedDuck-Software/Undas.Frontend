@@ -24,8 +24,8 @@ import Achievements from "./page-components/Achievements/Achievements";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
-import RewardMenu from "./page-components/MainMenu/RewardMenu";
 import Referral from "./page-components/Referral/Referral";
+import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
