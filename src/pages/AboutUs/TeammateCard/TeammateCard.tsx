@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
 
 import { CardImg1, CardImg2, LinkedInIco, TwitterIco } from "./imports";
 import {
@@ -7,20 +7,23 @@ import {
   TeamCard,
   TeamCardTitle,
   TeamCardLink,
+  ColTeamCard,
+  TeamCardTitleSurname,
+  CardImg,
 } from "./TeammateCard.styles";
 
 const TeammateCards = () => {
   return (
     <CardWrap>
-      <Row xs={2} md={5} className="g-5">
+      <Row xs={2} md={5} className="">
         {Array.from({ length: 5 }).map(() => (
           <>
-            <Col>
+            <ColTeamCard>
               <TeamCard>
-                <Card.Img variant="top" src={CardImg1} />
+                <CardImg variant="top" src={CardImg1} />
                 <Card.Body>
                   <TeamCardTitle>Name</TeamCardTitle>
-                  <TeamCardTitle>Surname</TeamCardTitle>
+                  <TeamCardTitleSurname>Surname</TeamCardTitleSurname>
                   {/* If you will want some Description
                     <Card.Text>
 
@@ -33,13 +36,13 @@ const TeammateCards = () => {
                   </TeamCardLink>
                 </Card.Body>
               </TeamCard>
-            </Col>
-            <Col>
+            </ColTeamCard>
+            <ColTeamCard>
               <TeamCard>
-                <Card.Img variant="top" src={CardImg2} />
+                <CardImg variant="top" src={CardImg2} />
                 <Card.Body>
                   <TeamCardTitle>Name</TeamCardTitle>
-                  <TeamCardTitle>Surname</TeamCardTitle>
+                  <TeamCardTitleSurname>Surname</TeamCardTitleSurname>
                   <TeamCardLink href="#">
                     <img src={LinkedInIco} alt="icon" />
                   </TeamCardLink>
@@ -48,7 +51,7 @@ const TeammateCards = () => {
                   </TeamCardLink>
                 </Card.Body>
               </TeamCard>
-            </Col>
+            </ColTeamCard>
           </>
         ))}
       </Row>
