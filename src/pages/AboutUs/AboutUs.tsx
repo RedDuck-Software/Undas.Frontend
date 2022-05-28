@@ -24,13 +24,19 @@ import {
   AboutGalleryCenter,
   SubTitleRoadmap,
   SubTitleBuilding,
+  SubTitleOurTeam,
+  SubTitleOurTeamSmallSize,
+  Download,
+  TextQuarter,
+  TextDate,
+  TextDateSmallSize,
 } from "./AboutUs.styles";
 import { ArticleImg } from "./imports";
 import Road from "./Roadmap/Road";
 import AboutSlider from "./Slider/Slider";
 import TeammateCards from "./TeammateCard/TeammateCard";
 
-import { Background, Container, SubTitle } from "../../globalStyles";
+import { Background, Container } from "../../globalStyles";
 
 const AboutUs = () => {
   return (
@@ -119,24 +125,27 @@ const AboutUs = () => {
           </AboutContent>
           <OurTeamWrap>
             <OurTeamTitle>
-              <SubTitle>Our Team</SubTitle>
+              <SubTitleOurTeam>Our Team</SubTitleOurTeam>
               <Link href="#" target="_blank">
                 White Paper
               </Link>
+              <Download>Download</Download>
             </OurTeamTitle>
+            <SubTitleOurTeamSmallSize>Our Team</SubTitleOurTeamSmallSize>
             <OurTeamContent>
               <TeammateCards />
             </OurTeamContent>
           </OurTeamWrap>
           <Roadmap>
-            <SubTitleRoadmap className="align-center">Roadmap</SubTitleRoadmap>
+            <SubTitleRoadmap>Roadmap</SubTitleRoadmap>
             <RoadMapContent>
               <Road />
               <AchievementСontainerWrap>
                 <AchievementСontainer className="left-side first-container">
                   <ContainerHead>
-                    <p>UNDAS v2.0 update</p>
-                    <span>04 2022</span>
+                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextQuarter>1st Quarter</TextQuarter>
+                    <TextDate>04 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">
@@ -149,8 +158,9 @@ const AboutUs = () => {
                 </AchievementСontainer>
                 <AchievementСontainer className="right-side second-container">
                   <ContainerHead>
-                    <p>UNDAS v2.0 update</p>
-                    <span>04 2022</span>
+                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextQuarter>2nd Quarter</TextQuarter>
+                    <TextDate>04 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="right-side">
                     <ul className="container-list">
@@ -163,8 +173,9 @@ const AboutUs = () => {
                 </AchievementСontainer>
                 <AchievementСontainer className="left-side third-container">
                   <ContainerHead>
-                    <p>UNDAS v2.0 update</p>
-                    <span>04 2022</span>
+                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextQuarter>3rd Quarter</TextQuarter>
+                    <TextDate>04 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">
@@ -177,8 +188,9 @@ const AboutUs = () => {
                 </AchievementСontainer>
                 <AchievementСontainer className="right-side fourth-container">
                   <ContainerHead>
-                    <p>UNDAS v2.0 update</p>
-                    <span>04 2022</span>
+                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextQuarter>4th Quarter</TextQuarter>
+                    <TextDate>04 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="right-side">
                     <ul className="container-list">
@@ -191,8 +203,9 @@ const AboutUs = () => {
                 </AchievementСontainer>
                 <AchievementСontainer className="left-side fifth-container">
                   <ContainerHead>
-                    <p>UNDAS v2.0 update</p>
-                    <span>04 2022</span>
+                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextQuarter>5th Quarter</TextQuarter>
+                    <TextDate>04 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">

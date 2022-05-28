@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const LineWrap = styled.div`
-@media (max-width: 992px) {
-  position: absolute;
-  margin-left: auto;
-  margin-top: 30px;
-}
+  @media (max-width: 992px) {
+    position: absolute;
+    margin-left: auto;
+    margin-top: 30px;
+  }
+  @media (max-width: 576px) {
+    margin-top: 15px;
+  }
 `;
 
 export const Line = styled.div`
@@ -17,6 +20,7 @@ export const Line = styled.div`
   &.done {
     background-color: #ccb7f2;
   }
+  
   @media (max-width: 992px) {
     height: 62px;
     &.secondLine {
@@ -24,6 +28,18 @@ export const Line = styled.div`
     }
     &.lastLine {
       height: 44px;
+    }
+  }
+  @media (max-width: 576px) {
+    height: 100px;
+    &.secondLine {
+      height: 189px;
+    }
+    &.lastLine {
+      height: 79px;
+    }
+    &.thirLine {
+      height: 188px;
     }
   }
 `;

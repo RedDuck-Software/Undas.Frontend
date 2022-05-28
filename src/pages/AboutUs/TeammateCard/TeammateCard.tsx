@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 import { CardImg1, CardImg2, LinkedInIco, TwitterIco } from "./imports";
 import {
@@ -10,6 +10,7 @@ import {
   ColTeamCard,
   TeamCardTitleSurname,
   CardImg,
+  CardBody,
 } from "./TeammateCard.styles";
 
 const TeammateCards = () => {
@@ -21,7 +22,7 @@ const TeammateCards = () => {
             <ColTeamCard>
               <TeamCard>
                 <CardImg variant="top" src={CardImg1} />
-                <Card.Body>
+                <CardBody>
                   <TeamCardTitle>Name</TeamCardTitle>
                   <TeamCardTitleSurname>Surname</TeamCardTitleSurname>
                   {/* If you will want some Description
@@ -34,13 +35,13 @@ const TeammateCards = () => {
                   <TeamCardLink href="#">
                     <img src={TwitterIco} alt="icon" />
                   </TeamCardLink>
-                </Card.Body>
+                </CardBody>
               </TeamCard>
             </ColTeamCard>
             <ColTeamCard>
               <TeamCard>
                 <CardImg variant="top" src={CardImg2} />
-                <Card.Body>
+                <CardBody>
                   <TeamCardTitle>Name</TeamCardTitle>
                   <TeamCardTitleSurname>Surname</TeamCardTitleSurname>
                   <TeamCardLink href="#">
@@ -49,7 +50,7 @@ const TeammateCards = () => {
                   <TeamCardLink href="#">
                     <img src={TwitterIco} alt="icon" />
                   </TeamCardLink>
-                </Card.Body>
+                </CardBody>
               </TeamCard>
             </ColTeamCard>
           </>

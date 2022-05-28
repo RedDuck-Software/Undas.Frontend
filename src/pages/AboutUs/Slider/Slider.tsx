@@ -52,6 +52,7 @@ export default function AboutSlider() {
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={30}
+          //необходимо добавить условие, если размер страницы меньше 576px, то картинки 2
           slidesPerView={3}
           freeMode={true}
           watchSlidesProgress={true}
