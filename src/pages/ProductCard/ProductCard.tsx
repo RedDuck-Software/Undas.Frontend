@@ -144,7 +144,9 @@ const ProductCard: React.FC = () => {
       connector,
     );
 
-    setStakingId(stakingId!.value.toNumber());
+    if (stakingId) {
+      setStakingId(stakingId.value.toNumber());
+    }
 
     await getShowStaking();
     await getShowRent();
@@ -162,7 +164,9 @@ const ProductCard: React.FC = () => {
       connector,
     );
 
-    setListingId(listingId!.value.toNumber());
+    if (listingId) {
+      setListingId(listingId.value.toNumber());
+    }
     await getShowBuy();
     setLoading(false);
   }
