@@ -140,55 +140,6 @@ export const CreateSelect = styled.select`
   }
 `;
 
-export const CreateDropdown = styled.div`
-  width: 100%;
-  max-width: 255px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-export const CreateDropdownCurrent = styled.div`
-  width: inherit;
-  max-width: inherit;
-
-  outline: none;
-  border: 1px solid rgba(124, 124, 124, 0.5);
-  border-radius: 10px;
-
-  padding: 0.5rem 2rem;
-
-  color: #232428;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-
-  transition: all 0.1s ease-in;
-
-  &:hover,
-  &:focus-visible {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-  }
-  &:focus {
-    font-weight: 900;
-  }
-`;
-
-export const CreateDropdownList = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-export const CreateDropdownItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const ModalTitle = styled(CreateLabel)`
   & svg {
     margin: 0 10px 5px 0;

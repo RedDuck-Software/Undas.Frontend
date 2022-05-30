@@ -60,3 +60,17 @@ export const VerifiedIco = styled(Verified)`
 export const GrayText = styled.span`
   color: #7c7c7c;
 `;
+export const AchievmentsBlock = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: -35px;
+  right: 40px;
+  width: 70%;
+  gap: 10px;
+  justify-content: space-between;
+  @media (max-width: 992px) {
+    width: 100%;
+    justify-content: center;
+    right: 0;
+  }
+`;

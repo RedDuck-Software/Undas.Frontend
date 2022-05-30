@@ -27,12 +27,7 @@ import {
 import MainTable from "./RewardTable/RewardMainTable";
 import RewardTable from "./RewardTable/RewardTable";
 
-import {
-  HoldingIco,
-  StakingIco,
-  TradingIco,
-  InformIco,
-} from "../../imports";
+import { HoldingIco, StakingIco, TradingIco, InformIco } from "../../imports";
 
 const RewardMenu: React.FC = () => {
   return (

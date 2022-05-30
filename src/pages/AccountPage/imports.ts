@@ -59,6 +59,13 @@ import card04 from "../../images/image-cards/card04.png";
 import { ReactComponent as Verified } from "../../images/image-collection/verified.svg";
 import ItemImg from "../../images/item-icon.png";
 
+import { ReactComponent as AchievementColoredIco1 } from "./assets/achievement-colored-ico-1.svg";
+import { ReactComponent as AchievementColoredIco2 } from "./assets/achievement-colored-ico-2.svg";
+import { ReactComponent as AchievementColoredIco3 } from "./assets/achievement-colored-ico-3.svg";
+import { ReactComponent as AchievementColoredIco4 } from "./assets/achievement-colored-ico-4.svg";
+import { ReactComponent as AchievementColoredIco5 } from "./assets/achievement-colored-ico-5.svg";
+import { ReactComponent as AchievementColoredIco6 } from "./assets/achievement-colored-ico-6.svg";
+
 export {
   card01,
   card02,
@@ -119,4 +126,10 @@ export {
   diamond,
   top,
   buttom,
+  AchievementColoredIco1,
+  AchievementColoredIco2,
+  AchievementColoredIco3,
+  AchievementColoredIco4,
+  AchievementColoredIco5,
+  AchievementColoredIco6,
 };

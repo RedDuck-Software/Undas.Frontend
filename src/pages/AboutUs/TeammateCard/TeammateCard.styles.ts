@@ -12,9 +12,14 @@ export const CardWrap = styled.div`
   }
 
   @media (max-width: 992px) {
-    padding: 15px 30px;
+    padding: 5px 30px;
     max-height: 500px;
-    overflow: scroll;
+    overflow-y: scroll;
+    padding: 10px 0;
+  }
+  @media (max-width: 576px) {
+    max-height: 210px;
+    padding: 15px 0;
   }
 `;
 
@@ -29,6 +34,10 @@ export const TeamCardTitle = styled(Card.Title)`
   font-size: 18px;
   line-height: 22px;
   margin-bottom: 0.25rem;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 
 export const TeamCardLink = styled.a`
@@ -44,6 +53,7 @@ export const TeamCardLink = styled.a`
   }
   @media (max-width: 992px) {
     height: 36px;
+    margin: 0 0.5rem;
   }
 `;
 
@@ -52,10 +62,13 @@ export const ColTeamCard = styled(Col)`
   @media (max-width: 992px) {
     width: 33%;
   }
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const TeamCardTitleSurname = styled(Card.Title)`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -63,17 +76,28 @@ export const TeamCardTitleSurname = styled(Card.Title)`
   text-align: center;
   color: #000000;
 
-  @media (max-width: 992px) {
-    display: none;
+  @media (max-width: 576px) {
+    font-size: 14px;
   }
 `;
 
 export const CardImg = styled(Card.Img)`
-  
   @media (max-width: 992px) {
     height: 140px;
     width: 140px;
     margin-left: auto;
     margin-right: auto;
+  }
+  @media (max-width: 576px) {
+    height: 90px;
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
+export const CardBody = styled(Card.Body)`
+  @media (max-width: 992px) {
+    padding: 5px 0;
   }
 `;

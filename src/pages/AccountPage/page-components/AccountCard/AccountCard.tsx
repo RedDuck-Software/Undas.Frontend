@@ -8,11 +8,20 @@ import {
   CopyIco,
   SingOutIco,
   SettingsIco,
+  AchievmentsBlock,
 } from "./AccountCard.styles";
 
 import { Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { ImageWrap } from "../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles";
 import ProfilePic from "../../assets/profile-pic.png";
+import {
+  AchievementColoredIco1,
+  AchievementColoredIco2,
+  AchievementColoredIco3,
+  AchievementColoredIco4,
+  AchievementColoredIco5,
+  AchievementColoredIco6,
+} from "../../imports";
 
 interface IAccountCard {
   account?: string;
@@ -57,6 +66,14 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <GrayText>Sing Out</GrayText>
         </Wrapper>
         <SettingsIco />
+        <AchievmentsBlock>
+          <AchievementColoredIco1 />
+          <AchievementColoredIco2 />
+          <AchievementColoredIco3 />
+          <AchievementColoredIco4 />
+          <AchievementColoredIco5 />
+          <AchievementColoredIco6 />
+        </AchievmentsBlock>
       </Wrapper>
     </AccountWrap>
   );
