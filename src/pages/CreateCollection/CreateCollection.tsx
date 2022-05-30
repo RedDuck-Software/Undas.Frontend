@@ -11,16 +11,20 @@ import {
   InputList,
   InputItem,
   CategoryGroup,
+  CategorySelectWrapper,
   CategoryDescript,
   EarningsInput,
   ValidationText,
   ValidationBlock,
 } from "./CreateCollection.styles";
-import { ImgIcon, ExplicitContentIco, ArtIcon } from "./imports";
+import { ImgIcon, ExplicitContentIco } from "./imports";
 import { CreateSubmitForm } from "./types";
 import { validationSchema } from "./validation";
 
+import { Select, SelectItem } from "../../components/Select/Select";
 import { Background, FormButtonsWrap } from "../../globalStyles";
+import { Category } from "../../types/category";
+import { getCategory } from "../../utils/getCategory";
 import {
   CreateSec,
   CreateContainer,
@@ -32,10 +36,6 @@ import {
   BlockDescript,
   CreateTextArea,
   CreateSelect,
-  CreateDropdown,
-  CreateDropdownCurrent,
-  CreateDropdownList,
-  CreateDropdownItem,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
@@ -43,14 +43,38 @@ import {
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 
+const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
+  return (
+    <>
+      <SelectItem
+        setSelected={setCategory}
+        {...getCategory(Category.artwork)}
+      />
+      <SelectItem setSelected={setCategory} {...getCategory(Category.sport)} />
+      <SelectItem
+        setSelected={setCategory}
+        {...getCategory(Category.photography)}
+      />
+      <SelectItem
+        setSelected={setCategory}
+        {...getCategory(Category.metaverses)}
+      />
+      <SelectItem
+        setSelected={setCategory}
+        {...getCategory(Category.celebrity)}
+      />
+      <SelectItem setSelected={setCategory} {...getCategory(Category.rwaNFT)} />
+    </>
+  );
+};
+
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
 
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
-  const [category, setCategory] = useState("Add Category");
-  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
+  const [category, setCategory] = useState({ icon: "", label: "Add Category" });
   const [creatorEarnings, setCreatorEarnings] = useState("");
 
   const formOptions = { resolver: yupResolver(validationSchema) };
@@ -74,10 +98,10 @@ const CreateCollection: React.FC = () => {
 
     NFTContract.safeMintGeneral(account, information, name, customURL);
   }; */
+
   const onSubmit = (formValues: any) => {
     alert(JSON.stringify(formValues));
   };
-
   return (
     <Background>
       <CreateSec>
@@ -181,30 +205,15 @@ const CreateCollection: React.FC = () => {
                 <CreateLabel htmlFor="category" className="category-label">
                   Category
                 </CreateLabel>
-                <CreateDropdown
-                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                >
-                  <CreateDropdownCurrent tabIndex={0}>
-                    {category}
-                  </CreateDropdownCurrent>
-                  <CreateDropdownList isOpen={isCategoryOpen}>
-                    <CreateDropdownItem onClick={() => setCategory("one")}>
-                      <ArtIcon /> one
-                    </CreateDropdownItem>
-                    <CreateDropdownItem onClick={() => setCategory("two")}>
-                      <ArtIcon /> two
-                    </CreateDropdownItem>
-                    <CreateDropdownItem onClick={() => setCategory("three")}>
-                      <ArtIcon /> three
-                    </CreateDropdownItem>
-                    <CreateDropdownItem onClick={() => setCategory("four")}>
-                      <ArtIcon /> four
-                    </CreateDropdownItem>
-                  </CreateDropdownList>
-                </CreateDropdown>
-                <CategoryDescript>
-                  You can select a maximum of one category
-                </CategoryDescript>
+                <CategorySelectWrapper>
+                  <Select
+                    itemList={<CategoryList setCategory={setCategory} />}
+                    item={{ ...category }}
+                  />
+                  <CategoryDescript>
+                    You can select a maximum of one category
+                  </CategoryDescript>
+                </CategorySelectWrapper>
               </CategoryGroup>
             </CreateFormGroup>
             <CreateFormGroup>

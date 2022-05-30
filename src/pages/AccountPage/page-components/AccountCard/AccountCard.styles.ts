@@ -68,7 +68,7 @@ export const AchievmentsBlock = styled.div`
   width: 70%;
   gap: 10px;
   justify-content: space-between;
-  @media (max-width:992px) {
+  @media (max-width: 992px) {
     width: 100%;
     justify-content: center;
     right: 0;

@@ -32,12 +32,12 @@ export const ButtonsBlock = styled.div`
   }
 `;
 export const IntervalInput = styled.input`
-    border: none;
-    outline: none;
-    width: 55px;
-    &:focus{
-        background-color: #fbf5ff;
-    }
+  border: none;
+  outline: none;
+  width: 55px;
+  &:focus {
+    background-color: #fbf5ff;
+  }
 `;
 
 export const Title = styled.h1`
@@ -50,12 +50,12 @@ export const Title = styled.h1`
   margin-bottom: 0;
   @media (max-width: 992px) {
     font-size: 26px;
-    line-height: 31px;   
+    line-height: 31px;
   }
   @media (max-width: 576px) {
-      margin-top: 30px;
-      font-size: 22px;
-      line-height: 27px;
+    margin-top: 30px;
+    font-size: 22px;
+    line-height: 27px;
   }
 `;
 export const Button = styled.button`
@@ -125,11 +125,11 @@ export const CentralBlock = styled.div`
   border: 1px solid rgba(124, 124, 124, 0.25);
   flex: 0 0 28%;
   @media (max-width: 992px) {
-      border: none;
-      padding: 30px;
+    border: none;
+    padding: 30px;
   }
   @media (max-width: 576px) {
-      padding: 20px 10px;
+    padding: 20px 10px;
   }
 `;
 export const RightBlock = styled.div`
@@ -137,10 +137,10 @@ export const RightBlock = styled.div`
   text-align: center;
   flex: 0 0 28%;
   @media (max-width: 992px) {
-      padding: 30px;
+    padding: 30px;
   }
   @media (max-width: 576px) {
-      padding: 20px 10px;
+    padding: 20px 10px;
   }
 `;
 export const BlockTitleWrap = styled.div`
@@ -185,8 +185,8 @@ export const TextValue = styled.span`
     line-height: 24px;
     margin-bottom: 0.5rem;
     & .number {
-        font-size: 20px;
-        line-height: 24px;
+      font-size: 20px;
+      line-height: 24px;
     }
   }
 `;
@@ -207,7 +207,7 @@ export const BlockContentTotal = styled.h4`
   line-height: 24px;
   color: #7c7c7c;
   margin-right: 30px;
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     margin-right: 15px;
   }
 `;
@@ -254,4 +254,3 @@ export const RightBlockButton = styled.button`
     width: 100%;
   }
 `;
-

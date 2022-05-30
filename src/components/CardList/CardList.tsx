@@ -149,13 +149,15 @@ const CardList: React.FC<CardListProps> = ({ newFilter, priceFilter }) => {
   }, [connector]);
 
   useEffect(() => {
-    setFilteredList(
-      list?.filter(
-        (item) =>
-          item.priceInNum >= priceFilter!.min &&
-          item.priceInNum <= priceFilter!.max,
-      ),
-    );
+    if (priceFilter?.min && priceFilter?.max) {
+      setFilteredList(
+        list?.filter(
+          (item) =>
+            item.priceInNum >= priceFilter.min &&
+            item.priceInNum <= priceFilter.max,
+        ),
+      );
+    }
   }, [priceFilter?.min, priceFilter?.max, priceFilter, list]);
 
   return (

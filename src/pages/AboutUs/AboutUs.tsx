@@ -38,7 +38,7 @@ import TeammateCards from "./TeammateCard/TeammateCard";
 
 import { Background, Container } from "../../globalStyles";
 
-const AboutUs = () => {
+const AboutUs: React.FC = () => {
   return (
     <AboutWrap>
       <Background>
@@ -84,7 +84,9 @@ const AboutUs = () => {
             </AboutTopContent>
             <AboutBottomContent>
               <AboutContentText>
-                <SubTitleBuilding>Building an open digital economy</SubTitleBuilding>
+                <SubTitleBuilding>
+                  Building an open digital economy
+                </SubTitleBuilding>
                 <ArticleText className="bottom-text">
                   <p>
                     At <span>UNDAS</span>, we&#39;re excited about a brand new

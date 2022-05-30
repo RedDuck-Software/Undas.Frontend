@@ -13,7 +13,7 @@ export const FaqTabsWrapper = styled.div`
 export const TabButton = styled(Nav.Link)`
   background: #ffffff !important;
   box-shadow: 3px 3px 5px rgba(124, 124, 124, 0.25),
-  inset 0px 0px 5px rgba(124, 124, 124, 0.25);
+    inset 0px 0px 5px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   color: #5d3f92;
   margin-bottom: 20px;
@@ -90,7 +90,7 @@ export const AddToWatchlistLink = styled.a`
 
 export const AccordionWrap = styled.div`
   margin: 20px auto;
-  background: #FBF5FF;
+  background: #fbf5ff;
   box-shadow: 3px 5px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
 `;
@@ -155,32 +155,32 @@ export const DescriptionText = styled.p`
 
 export const AccordionHeader = styled(Accordion.Header)`
   min-height: 60px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #5D3F92;
+  color: #5d3f92;
 `;
 
 export const AccordionBody = styled(Accordion.Body)`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #5D3F92;
+  color: #5d3f92;
   background: #ffffff;
   border-radius: 10px;
 `;
 
 export const HeaderText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #5D3F92;
+  color: #5d3f92;
   padding-top: 4px;
 
   @media (max-width: 576px) {
@@ -189,7 +189,7 @@ export const HeaderText = styled.span`
 `;
 
 export const HeadText = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -213,7 +213,7 @@ export const AccordionContainer = styled.div`
 `;
 
 export const PageFAQTitle = styled.h1`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;

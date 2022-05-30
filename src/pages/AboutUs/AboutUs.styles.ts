@@ -234,7 +234,6 @@ export const AchievementСontainer = styled.div`
     width: 92%;
     margin-top: 15px;
   }
-  
 `;
 
 export const ContainerHead = styled.div`
@@ -277,10 +276,10 @@ export const ContainerContent = styled.div`
     top: 20%;
   }
   & .container-list {
-      display: grid;
-      grid-template: repeat(2, 1fr) / repeat(2, 1fr);
-      gap: 10px;
-      list-style: none;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    gap: 10px;
+    list-style: none;
     & li {
       position: relative;
       padding-left: 8px;
@@ -328,20 +327,20 @@ export const ContainerContent = styled.div`
   }
 
   @media (max-width: 576px) {
-  & .container-list {
-    grid-template: none;
+    & .container-list {
+      grid-template: none;
+    }
+    &.left-side::before {
+      top: 35px;
+    }
+    &.right-side::before {
+      top: 35px;
+    }
   }
-  &.left-side::before {
-    top: 35px;
-  }
-  &.right-side::before {
-    top: 35px;
-  }
-}
 `;
 
 export const PageTitleAbout = styled.h1`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -362,7 +361,7 @@ export const PageTitleAbout = styled.h1`
 `;
 
 export const SubTitleArticle = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -397,14 +396,14 @@ export const AboutGalleryCenter = styled.div`
 `;
 
 export const SubTitleRoadmap = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
   color: #000000;
   text-align: center;
-  
+
   @media (max-width: 992px) {
     text-align: left;
   }
@@ -418,7 +417,7 @@ export const SubTitleRoadmap = styled.h2`
 `;
 
 export const SubTitleBuilding = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -437,7 +436,7 @@ export const SubTitleBuilding = styled.h2`
 `;
 
 export const SubTitleOurTeam = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -450,7 +449,7 @@ export const SubTitleOurTeam = styled.h2`
 `;
 
 export const SubTitleOurTeamSmallSize = styled.h2`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -469,12 +468,12 @@ export const SubTitleOurTeamSmallSize = styled.h2`
 `;
 
 export const Download = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   display: none;
   padding-top: 6px;
   margin-left: auto;
@@ -498,20 +497,20 @@ export const Download = styled.span`
 `;
 
 export const TextQuarter = styled.span`
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 17px;
-color: #232428;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
 
-@media (max-width: 576px) {
-  display: block;
-}
+  @media (max-width: 576px) {
+    display: block;
+  }
 `;
 
 export const TextDate = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -524,7 +523,7 @@ export const TextDate = styled.span`
 `;
 
 export const TextDateSmallSize = styled.span`
-  font-family: 'Jost';
+  font-family: "Jost";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

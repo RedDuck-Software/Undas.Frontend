@@ -1,40 +1,35 @@
 import React from "react";
 
-import { 
-    MobileRewardMenuWrap,
-    RewardAccordion,
-    RewardAccordionItem,
-    RewardAccordionHeader,
-    RewardAccordionBody
- } from "./MobileReward.styles";
 import {
-    ButtonsBlock,
-    Button,
-    IntervalInput,
-    ImageBlock,
-    MainBlock,
-    CentralBlock,
-    RightBlock,
-    BlockTitleWrap,
-    BlockTitle,
-    BlockValue,
-    TextValue,
-    InformButton,
-    BlockContent,
-    BlockContentTotal,
-    CentralBlockHead,
-    RightBlockHead,
-    RightBlockButton,
+  MobileRewardMenuWrap,
+  RewardAccordion,
+  RewardAccordionItem,
+  RewardAccordionHeader,
+  RewardAccordionBody,
+} from "./MobileReward.styles";
+import {
+  ButtonsBlock,
+  Button,
+  IntervalInput,
+  ImageBlock,
+  MainBlock,
+  CentralBlock,
+  RightBlock,
+  BlockTitleWrap,
+  BlockTitle,
+  BlockValue,
+  TextValue,
+  InformButton,
+  BlockContent,
+  BlockContentTotal,
+  CentralBlockHead,
+  RightBlockHead,
+  RightBlockButton,
 } from "./RewardMenu.styles";
 import MainTable from "./RewardTable/RewardMainTable";
 import RewardTable from "./RewardTable/RewardTable";
 
-import {
-  HoldingIco,
-  StakingIco,
-  TradingIco,
-  InformIco,
-} from "../../imports";
+import { HoldingIco, StakingIco, TradingIco, InformIco } from "../../imports";
 
 const MobileReward: React.FC = () => {
   return (
@@ -44,9 +39,9 @@ const MobileReward: React.FC = () => {
           <RewardAccordionHeader>
             <MainBlock>
               <BlockTitleWrap>
-              <ImageBlock>
-                <HoldingIco />
-              </ImageBlock>
+                <ImageBlock>
+                  <HoldingIco />
+                </ImageBlock>
                 <BlockTitle>Holding</BlockTitle>
                 <BlockValue>
                   <TextValue>
@@ -67,13 +62,13 @@ const MobileReward: React.FC = () => {
             <CentralBlock>
               <CentralBlockHead>
                 <ButtonsBlock>
-                    <span>Day</span>
-                    <Button>1</Button>
-                    <Button className="active">7</Button>
-                    <Button>30</Button>
-                    <Button>
-                        <IntervalInput type="text" placeholder="custom" />
-                    </Button>
+                  <span>Day</span>
+                  <Button>1</Button>
+                  <Button className="active">7</Button>
+                  <Button>30</Button>
+                  <Button>
+                    <IntervalInput type="text" placeholder="custom" />
+                  </Button>
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>
@@ -87,11 +82,12 @@ const MobileReward: React.FC = () => {
           </RewardAccordionBody>
         </RewardAccordionItem>
         <RewardAccordionItem eventKey="1">
-          <RewardAccordionHeader><MainBlock>
+          <RewardAccordionHeader>
+            <MainBlock>
               <BlockTitleWrap>
-              <ImageBlock>
-                <StakingIco />
-              </ImageBlock>
+                <ImageBlock>
+                  <StakingIco />
+                </ImageBlock>
                 <BlockTitle>Staking NFT</BlockTitle>
                 <BlockValue>
                   <TextValue>
@@ -112,13 +108,13 @@ const MobileReward: React.FC = () => {
             <CentralBlock>
               <CentralBlockHead>
                 <ButtonsBlock>
-                    <span>Day</span>
-                    <Button>1</Button>
-                    <Button className="active">7</Button>
-                    <Button>30</Button>
-                    <Button>
-                        <IntervalInput type="text" placeholder="custom" />
-                    </Button>
+                  <span>Day</span>
+                  <Button>1</Button>
+                  <Button className="active">7</Button>
+                  <Button>30</Button>
+                  <Button>
+                    <IntervalInput type="text" placeholder="custom" />
+                  </Button>
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>
@@ -132,11 +128,12 @@ const MobileReward: React.FC = () => {
           </RewardAccordionBody>
         </RewardAccordionItem>
         <RewardAccordionItem eventKey="2">
-          <RewardAccordionHeader><MainBlock>
+          <RewardAccordionHeader>
+            <MainBlock>
               <BlockTitleWrap>
-              <ImageBlock>
-                <TradingIco />
-              </ImageBlock>
+                <ImageBlock>
+                  <TradingIco />
+                </ImageBlock>
                 <BlockTitle>Trading</BlockTitle>
                 <BlockValue>
                   <TextValue>
@@ -157,13 +154,13 @@ const MobileReward: React.FC = () => {
             <CentralBlock>
               <CentralBlockHead>
                 <ButtonsBlock>
-                    <span>Day</span>
-                    <Button>1</Button>
-                    <Button className="active">7</Button>
-                    <Button>30</Button>
-                    <Button>
-                        <IntervalInput type="text" placeholder="custom" />
-                    </Button>
+                  <span>Day</span>
+                  <Button>1</Button>
+                  <Button className="active">7</Button>
+                  <Button>30</Button>
+                  <Button>
+                    <IntervalInput type="text" placeholder="custom" />
+                  </Button>
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>
