@@ -17,14 +17,13 @@ import {
   FilterSelected,
   SelectedFiltersCollection,
   FilterPrice,
-  FilterButton,
-  FilterText,
   HeadWrapper,
   InfoBlock,
   ItemsOwners,
   InfoSmallBorder,
   TextInfo,
   ContainerCollection,
+  ResultsSmallSize,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -270,9 +269,7 @@ const CollectionPage: React.FC = () => {
                 </MenuSearchWrap>
               </DisplayNone>
             </MenuWrapCollection>
-            <FilterButton>
-              <FilterText>Filter</FilterText>
-            </FilterButton>
+         
             <SelectedFiltersCollection>
               <FilterSelected>
                 <FilterImg src={filter} alt="filter-image" />
@@ -281,6 +278,9 @@ const CollectionPage: React.FC = () => {
               </FilterSelected>
               <ClearAll>Clear All</ClearAll>
             </SelectedFiltersCollection>
+            <ResultsSmallSize>
+                  <TextResult>8 results</TextResult>
+            </ResultsSmallSize>
             {viewMode === ViewMode.grid ? (
               <CollectionGridWrap />
             ) : (
