@@ -148,9 +148,11 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
   const setBuyable = async () => {
     if (!connector) return;
     const listingId = await getNFTListingIds(NFT_ADDRESS, +itemId, connector);
-    setListingId(+listingId!.value);
-    if (listingId!.valueExists) {
-      const buyable = await isBuyableFunction(+listingId!.value, connector);
+    if (listingId) {
+      setListingId(+listingId.value);
+    }
+    if (listingId && listingId.valueExists) {
+      const buyable = await isBuyableFunction(+listingId.value, connector);
       setIsBuyable(buyable);
     } else setIsBuyable(false);
   };
