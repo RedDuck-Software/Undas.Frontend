@@ -89,7 +89,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    
+
     const tx = await MarketplaceContract.stopStaking(stakingId);
 
     await tx.wait().then((error) => {
