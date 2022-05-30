@@ -19,7 +19,7 @@ import {
   ContentTableTh,
   ContentTableTd,
   ReferralPagination,
-  ContentTableWrap
+  ContentTableWrap,
 } from "./Referral.styles";
 
 const Referral: React.FC = () => {

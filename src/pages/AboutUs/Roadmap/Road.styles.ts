@@ -20,7 +20,7 @@ export const Line = styled.div`
   &.done {
     background-color: #ccb7f2;
   }
-  
+
   @media (max-width: 992px) {
     height: 62px;
     &.secondLine {

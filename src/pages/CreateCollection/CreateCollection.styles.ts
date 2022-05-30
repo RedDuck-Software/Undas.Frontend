@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { BlockDescript, CreateInput } from "../CreateNFT/CreateNFT.styles";
+import { CreateInput } from "../CreateNFT/CreateNFT.styles";
 
 export const ValidationBlock = styled("span")`
   display: block;
@@ -91,9 +91,20 @@ export const CategoryGroup = styled.div`
   }
 `;
 
-export const CategoryDescript = styled(BlockDescript)`
+export const CategorySelectWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const CategoryDescript = styled.span`
   display: inline-block;
   margin-left: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #7c7c7c;
   @media (max-width: 768px) {
     margin-left: 0;
     order: 2;

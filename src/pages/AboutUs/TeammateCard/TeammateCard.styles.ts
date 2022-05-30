@@ -68,14 +68,14 @@ export const ColTeamCard = styled(Col)`
 `;
 
 export const TeamCardTitleSurname = styled(Card.Title)`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   color: #000000;
- 
+
   @media (max-width: 576px) {
     font-size: 14px;
   }
@@ -101,4 +101,3 @@ export const CardBody = styled(Card.Body)`
     padding: 5px 0;
   }
 `;
-

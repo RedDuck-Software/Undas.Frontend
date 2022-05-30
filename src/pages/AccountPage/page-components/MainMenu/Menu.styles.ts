@@ -330,4 +330,3 @@ export const ClearAll = styled.button`
   background: transparent;
   margin-left: 15px;
 `;
-

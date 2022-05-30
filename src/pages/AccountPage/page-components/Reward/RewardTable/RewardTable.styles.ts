@@ -3,18 +3,18 @@ import styled from "styled-components";
 export const Wrap = styled.div``;
 export const ContentTable = styled.table`
   width: 230px;
-  @media (max-width:1200px) {
+  @media (max-width: 1200px) {
     width: 100%;
   }
 `;
 export const ContentMainTable = styled(ContentTable)`
- @media (max-width:992px) {
+  @media (max-width: 992px) {
     width: 40%;
   }
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     width: 50%;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;
