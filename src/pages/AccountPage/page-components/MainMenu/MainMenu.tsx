@@ -224,7 +224,7 @@ const MainMenu: React.FC = () => {
               <NFTGridItem
                 key={item.tokenId}
                 tokenId={+item.tokenId}
-                URI={item.tokenURI!}
+                URI={item.tokenURI}
                 name={item.name}
               />
             );

@@ -85,8 +85,12 @@ const ProductForSale: React.FC = () => {
               <ItemInformation>
                 <ProductTitle>{}</ProductTitle>
               </ItemInformation>
-              <SaleSection itemId={pageId!} />
-              <Staking itemId={pageId!} />
+              {pageId && (
+                <>
+                  <SaleSection itemId={pageId} />
+                  <Staking itemId={pageId} />
+                </>
+              )}
             </RightSide>
           </ProductContainer>
         </ProductForSaleSec>

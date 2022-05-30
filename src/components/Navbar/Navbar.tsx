@@ -96,7 +96,9 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/"
-                  className={hovered.explore! ? "hovered-explore" : ""}
+                  className={
+                    hovered && hovered.explore ? "hovered-explore" : ""
+                  }
                 >
                   Explore
                 </StyledLink>
@@ -141,7 +143,9 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/topcollection"
-                  className={hovered.activity! ? "hovered-activity" : ""}
+                  className={
+                    hovered && hovered.activity ? "hovered-activity" : ""
+                  }
                 >
                   Activity
                 </StyledLink>
@@ -162,7 +166,9 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/"
-                  className={hovered.community! ? "hovered-community" : ""}
+                  className={
+                    hovered && hovered.community ? "hovered-community" : ""
+                  }
                 >
                   Community
                 </StyledLink>
@@ -201,7 +207,7 @@ const Navbar = () => {
               >
                 <StyledLink
                   to="/create-nft"
-                  className={hovered.create! ? "hovered-create" : ""}
+                  className={hovered && hovered.create ? "hovered-create" : ""}
                 >
                   Create
                 </StyledLink>
@@ -235,7 +241,7 @@ const Navbar = () => {
             >
               <StyledLink
                 to="/login"
-                className={hovered.profile! ? "hovered-profile" : ""}
+                className={hovered && hovered.profile ? "hovered-profile" : ""}
               >
                 <ProfileIco />
               </StyledLink>

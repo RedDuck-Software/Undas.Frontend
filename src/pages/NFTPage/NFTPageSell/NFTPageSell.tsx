@@ -206,15 +206,15 @@ const NFTPageSell: React.FC = () => {
     setLoading(false);
   }
 
-  const fetchTokenURI = async () => {
+  const fetchTokenURI = async (tokenId: any) => {
     if (!connector) return;
-    const uri = await getTokenURI(+tokenId!, connector);
+    const uri = await getTokenURI(+tokenId, connector);
     setTokenURI(uri);
   };
 
   useEffect(() => {
     if (connector) {
-      fetchTokenURI();
+      fetchTokenURI(tokenId);
       getStakingId();
       getListingId();
     }

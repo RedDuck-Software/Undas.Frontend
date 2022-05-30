@@ -88,7 +88,7 @@ const CollectionGridWrap: React.FC = () => {
             <NFTGridCollection
               key={item.tokenId}
               tokenId={+item.tokenId}
-              URI={item.tokenURI!}
+              URI={item.tokenURI}
               name={item.name}
             />
           );

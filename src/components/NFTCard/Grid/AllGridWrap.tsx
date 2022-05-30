@@ -50,8 +50,8 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
 
   const stackingFilter = useSelector(useFilter);
 
-  const [list, setList] = useState<ItemsProps[]>();
-  const [stakingsList, setStakingsList] = useState<StakingsProps[]>();
+  const [list, setList] = useState<ItemsProps[]>([]);
+  const [stakingsList, setStakingsList] = useState<StakingsProps[]>([]);
   // const [filteredList, setFilteredList] = useState<ItemsProps[]>();
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
@@ -130,12 +130,16 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
 
   async function getListingsData() {
     const response = await getListings();
-    setList(response);
+    if (response) {
+      setList(response);
+    }
   }
 
   async function getStakingsData() {
     const response = await getStakings();
-    setStakingsList(response);
+    if (response) {
+      setStakingsList(response);
+    }
   }
 
   useEffect(() => {
@@ -153,27 +157,31 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
     if (!priceFilter) return list;
     let sortedArr;
     if (priceFilter === "low-to-high") {
-      sortedArr = await list?.sort((a, b) => {
-        if (a.priceInNum! > b.priceInNum!) {
-          return 1;
-        }
-        if (a.priceInNum! < b.priceInNum!) {
-          return -1;
-        }
-        return 0;
-      });
+      sortedArr = list?.sort(
+        (a: { priceInNum: any }, b: { priceInNum: any }) => {
+          if (a.priceInNum > b.priceInNum) {
+            return 1;
+          }
+          if (a.priceInNum < b.priceInNum) {
+            return -1;
+          }
+          return 0;
+        },
+      );
       return sortedArr;
     }
     if (priceFilter === "high-to-low") {
-      sortedArr = await list?.sort((a, b) => {
-        if (a.priceInNum! < b.priceInNum!) {
-          return 1;
-        }
-        if (a.priceInNum! > b.priceInNum!) {
-          return -1;
-        }
-        return 0;
-      });
+      sortedArr = list?.sort(
+        (a: { priceInNum: any }, b: { priceInNum: any }) => {
+          if (a.priceInNum < b.priceInNum) {
+            return 1;
+          }
+          if (a.priceInNum > b.priceInNum) {
+            return -1;
+          }
+          return 0;
+        },
+      );
       return sortedArr;
     }
   };
@@ -191,14 +199,12 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       } else {
         priceSort()
           .then((sortedArr) => {
-            console.log("sortedArr: ", sortedArr);
-            setList(sortedArr);
+            if (sortedArr) {
+              setList(sortedArr);
+            }
           })
           .catch((e) => console.log(e));
-        let common: (ItemsProps | StakingsProps)[] = [
-          ...list!,
-          ...stakingsList!,
-        ];
+        let common: (ItemsProps | StakingsProps)[] = [...list, ...stakingsList];
         common = common.filter(
           (value, index, self) =>
             index === self.findIndex((t) => t.id === value.id),
