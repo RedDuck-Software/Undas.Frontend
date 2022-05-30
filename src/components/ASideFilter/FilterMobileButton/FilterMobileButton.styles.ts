@@ -19,7 +19,7 @@ export const FixedButon = styled.button`
     background: #ccb7f2;
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
     border-radius: 10px;
-    z-index: 2;
+    z-index: 10;
     & span {
       margin-left: 10px;
     }

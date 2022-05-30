@@ -2,13 +2,29 @@ import Pagination from "react-bootstrap/Pagination";
 import styled from "styled-components";
 
 export const ReferralWrap = styled.div`
-  padding: 60px 0 120px;
+  padding: 60px 0 100px;
+  @media (max-width:1200px) {
+    padding: 60px 0 80px;
+  }
+  @media (max-width:992px) {
+    padding: 60px 0 40px;
+  }
+  @media (max-width:768px) {
+    padding: 60px 0 20px;
+  }
+  @media (max-width:576px) {
+    padding: 30px 0 0;
+  }
 `;
 export const PageHead = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: -40px 0 20px;
+  @media (max-width:1200px) {
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
 `;
 export const Title = styled.h1`
   text-align: left;
@@ -32,6 +48,13 @@ export const ReferralLinkButton = styled.button`
   &:hover {
     color: #232428;
   }
+  @media (max-width:1200px) {
+    order: 2;
+    flex: 0 0 50%;
+  }
+  @media (max-width:768px) {
+    flex: 0 0 100%;
+  }
 `;
 export const ReferralLink = styled.p`
   margin: 0 20px 0 0;
@@ -41,6 +64,16 @@ export const SocialWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width:1200px) {
+    flex: 0 0 50%;
+    order: 3;
+    justify-content: flex-end;
+  }
+  @media (max-width:768px) {
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
 `;
 export const ShareButton = styled.button`
   border: none;
@@ -76,6 +109,18 @@ export const TextBlock = styled.div`
   background: #fbf5ff;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(135, 61, 193, 0.25);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  @media (max-width:1200px) {
+    order: 1;
+    flex: 0 0 100%;
+    max-width: 80%;
+    margin-bottom: 30px;
+  }
+  @media (max-width:768px) {
+    max-width: 100%;
+  }
 `;
 export const PageContent = styled.div``;
 export const SubTitle = styled.h2`
@@ -85,10 +130,21 @@ export const SubTitle = styled.h2`
   line-height: 22px;
   color: #232428;
 `;
+export const ContentTableWrap = styled.div`
+  width: 100%;
+ @media (max-width:768px) {
+    overflow-x: auto;
+ }
+`;
 export const ContentTable = styled.table`
   width: 100%;
   overflow: hidden;
   border-radius: 10px;
+  @media (max-width:768px) {
+    display: block;
+    width: 650px;
+    white-space: nowrap;
+  }
 `;
 export const ContentTableTr = styled.tr`
   display: flex;
@@ -118,6 +174,15 @@ export const ContentTableTh = styled.th`
     flex: 0 0 40%;
     text-align: left;
   }
+  @media (max-width:992px) {
+    flex: 0 0 40%;
+    &.first-column {
+    flex: 0 0 20%;
+    }
+  }
+  @media (max-width:576px) {
+    padding: 10px;
+  }
 `;
 export const ContentTableTd = styled.td`
   text-align: right;
@@ -130,11 +195,30 @@ export const ContentTableTd = styled.td`
     flex: 0 0 40%;
     text-align: left;
   }
+  @media (max-width:992px) {
+    flex: 0 0 40%;
+    &.first-column {
+      max-width: 125px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 0 0 20%;
+    }
+  }
+  @media (max-width:576px) {
+    padding: 10px;
+  }
 `;
 export const PaginationWrap = styled.div`
   width: 100%;
   margin: 40px auto;
   text-align: center;
+  @media (max-width:768px) {
+    margin: 20px auto;
+  }
+  @media (max-width:768px) {
+    margin: 20px auto 0;
+  }
 `;
 export const ReferralPagination = styled(Pagination)`
   justify-content: center;
@@ -154,5 +238,14 @@ export const ReferralPagination = styled(Pagination)`
   & .page-link:focus {
     background-color: #fbf5ff;
     box-shadow: none;
+  }
+  &.pagination-sm{
+    display: none;
+  }
+  @media (max-width:576px) {
+    display: none;
+    &.pagination-sm{
+      display: flex;
+    }
   }
 `;
