@@ -103,6 +103,7 @@ export const AccordionItem = styled(Accordion.Item)`
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+    border-radius: 10px !important;
   }
   & .accordion-button:not(.collapsed) {
     box-shadow: none;
@@ -119,11 +120,20 @@ export const AccordionItem = styled(Accordion.Item)`
     background: #fbf5ff;
   }
   & .accordion-button:not(.collapsed)::after {
+    margin-top: unset;
     background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23212529%27%3e%3cpath fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e");
+  }
+  & .accordion-button::after {
+    margin-top: 6px;
   }
   & .accordion-text-link {
     color: #873dc1;
     text-decoration: none;
+  }
+  @media (max-width: 576px) {
+    & .accordion-button {
+      padding: 1rem 0.6em;
+    }
   }
 `;
 
@@ -161,6 +171,7 @@ export const AccordionBody = styled(Accordion.Body)`
   line-height: 22px;
   color: #5D3F92;
   background: #ffffff;
+  border-radius: 10px;
 `;
 
 export const HeaderText = styled.span`
