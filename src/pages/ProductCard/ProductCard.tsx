@@ -171,15 +171,15 @@ const ProductCard: React.FC = () => {
     setLoading(false);
   }
 
-  const fetchTokenURI = async () => {
+  const fetchTokenURI = async (pageId: any) => {
     if (!connector) return;
-    const uri = await getTokenURI(+pageId!, connector);
+    const uri = await getTokenURI(+pageId, connector);
     setTokenURI(uri);
   };
 
   useEffect(() => {
     if (connector) {
-      fetchTokenURI();
+      fetchTokenURI(pageId);
       getStakingId();
       getListingId();
     }
@@ -211,7 +211,7 @@ const ProductCard: React.FC = () => {
           </ProductContainer>
           <ProductContainerCenter>
             <ItemActivity />
-            <MoreFromCollection id={+pageId!} />
+            {pageId && <MoreFromCollection id={+pageId} />}
           </ProductContainerCenter>
         </ProductCardSec>
       )}

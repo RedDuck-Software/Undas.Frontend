@@ -77,7 +77,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
     await tx.wait();
   };
 
-  const stopStaking = async () => {
+  const stopStaking = async (stakingId: any) => {
     if (!connector || !stakingOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -89,8 +89,8 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
-    const tx = await MarketplaceContract.stopStaking(stakingId!);
+    
+    const tx = await MarketplaceContract.stopStaking(stakingId);
 
     await tx.wait().then((error) => {
       setIsPuttedForStaking(false);
@@ -101,9 +101,9 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const getIsPuttedForStaking = async () => {
     if (!connector) return;
     const staking = await getNFTStakingIds(NFT_ADDRESS, +itemId, connector);
-    console.log(staking!.valueExists);
-    if (staking!.valueExists) {
-      setStakingId(+staking!.value);
+
+    if (staking && staking.valueExists) {
+      setStakingId(+staking.value);
       setIsPuttedForStaking(true);
     } else setIsPuttedForStaking(false);
   };
@@ -168,7 +168,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
             {isPuttedForStaking ? (
               <CongratulationContainer>
                 <span>Congratulations! You have put your NFT for staking.</span>
-                <Button violet onClick={stopStaking}>
+                <Button violet onClick={() => stopStaking(stakingId)}>
                   Cancel
                 </Button>
               </CongratulationContainer>
