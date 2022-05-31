@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ViewOption } from "../../../AllNFTs/AllNFTs.styles";
+import { ViewOption, ResultsTotal } from "../../../AllNFTs/AllNFTs.styles";
 import { EthBlack } from "../../imports";
 
 //Favorite
@@ -12,6 +12,12 @@ export const FavouriteSelect = styled.div`
   display: flex;
   align-items: center;
   min-width: 400px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  @media (max-width: 576px) {
+    min-width: 100%;
+  }
 `;
 export const FavouriteButton = styled.button`
   cursor: pointer;
@@ -26,7 +32,33 @@ export const FavouriteButton = styled.button`
   &.favourite-active {
     background-color: #edd2ff;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  @media (max-width: 576px) {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 8px;
+  }
 `;
+export const FavouriteResultsTotal = styled(ResultsTotal)`
+  @media (max-width: 1200px) {
+    flex: 0 0 20%;
+    text-align: right;
+    order: 3;
+  }
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+    text-align: left;
+    margin-top: 20px;
+  }
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+`;
+
 //Offers
 export const OfferMenuWrap = styled.div`
   margin-top: 40px;

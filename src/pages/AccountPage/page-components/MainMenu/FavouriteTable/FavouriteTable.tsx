@@ -6,6 +6,7 @@ import {
   ItemIcon,
   ItemName,
   OffersTdText,
+  ItemText,
   UNDText,
   UND,
   PriceTextW,
@@ -27,13 +28,13 @@ const FavouriteTable: React.FC = () => {
     <OfferMenuWrap>
       <OffersWrapTable>
         <OffersHeadTr className="offers-menu-head">
-          <OffersTd>Collection</OffersTd>
-          <OffersTd>Floor price</OffersTd>
-          <OffersTd>7d Volume</OffersTd>
-          <OffersTd>24h %</OffersTd>
-          <OffersTd>7d %</OffersTd>
-          <OffersTd>Owners</OffersTd>
-          <OffersTd>Items</OffersTd>
+          <OffersTd className="favourite-th">Collection</OffersTd>
+          <OffersTd className="favourite-th">Floor price</OffersTd>
+          <OffersTd className="favourite-th">7d Volume</OffersTd>
+          <OffersTd className="favourite-th">24h %</OffersTd>
+          <OffersTd className="favourite-th">7d %</OffersTd>
+          <OffersTd className="favourite-th">Owners</OffersTd>
+          <OffersTd className="favourite-th">Items</OffersTd>
         </OffersHeadTr>
         <OffersTr className="offers-menu-row">
           <OffersTdText className="offers-table-item">
@@ -44,11 +45,13 @@ const FavouriteTable: React.FC = () => {
                 className="offers-item-image"
               />
             </ItemIcon>
-            <ItemName>Name</ItemName>
-            <UNDText>
-              <ItemVerifyIco />
-              <UND>UND</UND>
-            </UNDText>
+            <ItemText>
+              <ItemName>Name</ItemName>
+              <UNDText>
+                <ItemVerifyIco />
+                <UND>UND</UND>
+              </UNDText>
+            </ItemText>
           </OffersTdText>
           <OffersTdText>
             <PriceTextW>
@@ -92,11 +95,13 @@ const FavouriteTable: React.FC = () => {
                 className="offers-item-image"
               />
             </ItemIcon>
-            <ItemName>Name</ItemName>
-            <UNDText>
-              <ItemVerifyIco />
-              <UND>UND</UND>
-            </UNDText>
+            <ItemText>
+              <ItemName>LongerName</ItemName>
+              <UNDText>
+                <ItemVerifyIco />
+                <UND>UND</UND>
+              </UNDText>
+            </ItemText>
           </OffersTdText>
           <OffersTdText>
             <PriceTextW>
@@ -140,11 +145,13 @@ const FavouriteTable: React.FC = () => {
                 className="offers-item-image"
               />
             </ItemIcon>
-            <ItemName>Name</ItemName>
-            <UNDText>
-              <ItemVerifyIco />
-              <UND>UND</UND>
-            </UNDText>
+            <ItemText>
+              <ItemName>More than very long Name</ItemName>
+              <UNDText>
+                <ItemVerifyIco />
+                <UND>UND</UND>
+              </UNDText>
+            </ItemText>
           </OffersTdText>
           <OffersTdText>
             <PriceTextW>
