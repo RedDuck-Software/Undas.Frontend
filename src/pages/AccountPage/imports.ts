@@ -1,4 +1,10 @@
 import AccountBanner from "./assets/account-banner.png";
+import { ReactComponent as AchievementColoredIco1 } from "./assets/achievement-colored-ico-1.svg";
+import { ReactComponent as AchievementColoredIco2 } from "./assets/achievement-colored-ico-2.svg";
+import { ReactComponent as AchievementColoredIco3 } from "./assets/achievement-colored-ico-3.svg";
+import { ReactComponent as AchievementColoredIco4 } from "./assets/achievement-colored-ico-4.svg";
+import { ReactComponent as AchievementColoredIco5 } from "./assets/achievement-colored-ico-5.svg";
+import { ReactComponent as AchievementColoredIco6 } from "./assets/achievement-colored-ico-6.svg";
 import { ReactComponent as AchievementsIco } from "./assets/achievements-ico.svg";
 import { ReactComponent as AvaxIco } from "./assets/avax-ico.svg";
 import backImg from "./assets/back-img.svg";
@@ -58,13 +64,6 @@ import card03 from "../../images/image-cards/card03.png";
 import card04 from "../../images/image-cards/card04.png";
 import { ReactComponent as Verified } from "../../images/image-collection/verified.svg";
 import ItemImg from "../../images/item-icon.png";
-
-import { ReactComponent as AchievementColoredIco1 } from "./assets/achievement-colored-ico-1.svg";
-import { ReactComponent as AchievementColoredIco2 } from "./assets/achievement-colored-ico-2.svg";
-import { ReactComponent as AchievementColoredIco3 } from "./assets/achievement-colored-ico-3.svg";
-import { ReactComponent as AchievementColoredIco4 } from "./assets/achievement-colored-ico-4.svg";
-import { ReactComponent as AchievementColoredIco5 } from "./assets/achievement-colored-ico-5.svg";
-import { ReactComponent as AchievementColoredIco6 } from "./assets/achievement-colored-ico-6.svg";
 
 export {
   card01,

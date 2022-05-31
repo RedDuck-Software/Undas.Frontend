@@ -230,7 +230,7 @@ export const Results = styled.div`
     margin-top: 68px;
   }
   @media (max-width: 576px) {
-    margin-top: 30px;
+    display: none;
   }
 `;
 
@@ -385,4 +385,21 @@ export const TextInfo = styled.span`
 
 export const ContainerCollection = styled.div`
   margin-bottom: 40px;
+`;
+
+export const ResultsSmallSize = styled.div`
+  display: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: right;
+  color: #7c7c7c;
+  position: relative;
+  margin-bottom: 5px;
+
+  @media (max-width: 576px) {
+    display: block;
+  }
 `;

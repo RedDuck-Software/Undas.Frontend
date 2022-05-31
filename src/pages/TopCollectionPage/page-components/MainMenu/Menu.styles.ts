@@ -32,9 +32,17 @@ export const OfferMenuWrap = styled.div`
   flex-wrap: wrap;
   margin-left: 30px;
   margin-right: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 576px) {
+    margin-top: 20px;
+  }
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
+  min-width: 800px;
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
@@ -42,7 +50,7 @@ export const OffersWrapTable = styled.table`
 export const ItemIcon = styled.div`
   width: 50px;
   height: 50px;
-  margin-right: 5px;
+  margin-right: 10px;
   & .offers-item-image {
     width: 100%;
   }
@@ -88,6 +96,7 @@ export const UNDText = styled.span`
 
   @media (max-width: 576px) {
     font-size: 12px;
+    margin-left: -44px;
   }
 `;
 export const UND = styled.span`
@@ -188,7 +197,11 @@ export const OffersTr = styled.tr`
     border-radius: 10px;
   }
 `;
-export const OfferFilterWrap = styled(ViewOption)``;
+export const OfferFilterWrap = styled(ViewOption)`
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+`;
 export const FilterButton = styled(FavouriteButton)`
   width: 100px;
   font-size: 14px;
@@ -199,6 +212,10 @@ export const FilterButton = styled(FavouriteButton)`
   gap: 10px;
   &.offers-active {
     background-color: #edd2ff;
+  }
+
+  @media (max-width: 576px) {
+    width: 50%;
   }
 `;
 export const SelectedFilters = styled.div`
@@ -253,7 +270,15 @@ export const ClearAll = styled.button`
   border: none;
   background: transparent;
   margin-left: 15px;
+
+  @media (max-width: 344px) {
+    margin-top: 20px;
+  }
 `;
 export const TextButton = styled.div`
+  width: 100%;
+`;
+export const ContainerTable = styled.div`
+  overflow: scroll;
   width: 100%;
 `;
