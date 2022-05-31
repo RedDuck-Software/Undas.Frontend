@@ -56,19 +56,32 @@ export const NFTPageWrap = styled(Container)`
   }
   ${Container}
 `;
-
 export const NavigationWrap = styled.div`
   margin: 80px 0 20px 0;
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 992px) {
     margin-top: 40px;
   }
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
 `;
-
-export const Name = styled.h1`
+export const NameInner = styled.div`
+  margin-right: 20px;
+  @media (max-width: 576px) {
+    order: 2;
+  }
+`;
+export const Name = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const NameNft = styled.h1`
+  margin: 0;
   font-weight: 500;
   font-size: 36px;
   line-height: 44px;
@@ -83,14 +96,57 @@ export const Name = styled.h1`
   }
 `;
 
+export const NameCollection = styled.h2`
+  margin: 0;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  @media (max-width: 576px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+`;
+interface IVerifiedIcon {
+  w?: string;
+}
+export const VerifiedIcon = styled.div<IVerifiedIcon>`
+  margin: 0 10px;
+  width: ${(props) => props.w || "16px"};
+   img{
+     width: 100%;
+   }
+`;
+interface IPlatform {
+  col?: string;
+  fs?: string;
+  fsxs?: string;
+}
+export const Platform = styled.strong<IPlatform>`
+  font-family: "Jost";
+  font-weight: 600;
+  font-size: ${(props) => props.fs || "36px"};
+  line-height: 44px;
+  color: ${(props) => props.col || "#CCB7F2"};
+  @media (max-width: 576px) {
+    font-size: ${(props) => props.fsxs || "16px"};
+    line-height: 20px;
+  }
+`;
 export const NavMenu = styled.ul`
   list-style: none;
   background: #ffffff;
   box-shadow: 0 0 1px #7c7c7c, inset 0 0 1px #7c7c7c;
   border-radius: 10px;
   overflow: hidden;
+  @media (max-width: 576px) {
+    order: 1;
+    margin-bottom: 15px;
+  }
 `;
-
 export const NavElement = styled.li`
   cursor: pointer;
   display: inline-block;
@@ -103,7 +159,6 @@ export const NavElement = styled.li`
     background-color: #fbf5ff;
   }
 `;
-
 export const MainInfoWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -111,13 +166,17 @@ export const MainInfoWrap = styled.div`
   width: 100%;
   @media (max-width: 992px) {
     flex-wrap: wrap;
+    gap: 10px;
+  }
+  @media (max-width: 768px) {
+    gap: 0;
   }
 `;
-
 export const ImageWrap = styled.div`
   filter: drop-shadow(0px 5px 5px rgba(124, 124, 124, 0.25));
   border-radius: 10px;
   flex: 0 1 49%;
+  position: relative;
   @media (max-width: 1200px) {
   }
   @media (max-width: 992px) {
@@ -125,6 +184,23 @@ export const ImageWrap = styled.div`
     margin: 0 auto;
   }
 `;
+export const FavouriteCounter = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+`;
+export const CounterNumber = styled.span`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  margin-left: 5px;
+`;
+
 export const Image = styled.img`
   object-fit: cover;
   width: 100%;
@@ -135,6 +211,7 @@ export const RightSideBlock = styled.div`
   }
   @media (max-width: 992px) {
     flex: 0 0 100%;
+    width: 100%;
   }
 `;
 export const Info = styled.ul`
@@ -147,9 +224,24 @@ export const Info = styled.ul`
   @media (max-width: 1250px) {
     gap: 10px;
   }
-  @media (max-width: 992px) {
-    justify-content: space-around;
+  @media (max-width: 1180px) {
+    & .hide{
+      display: none;
+    }
   }
+  @media (max-width: 992px) {
+    margin-bottom: 10px;
+    justify-content: space-around;
+    & .hide{
+      display: inline;
+    }
+  }
+  @media (max-width: 620px) {
+    & .hide{
+      display: none;
+    }
+  }
+  
 `;
 
 export const InfoElement = styled.li`
@@ -197,6 +289,9 @@ export const BuyBar = styled.li`
     flex-flow: row wrap;
     align-items: center;
   }
+  @media (max-width: 576px) {
+    padding: 20px 10px;
+  }
 `;
 export const PriceWrap = styled.div`
   margin: 10px 0 20px 0;
@@ -236,6 +331,9 @@ export const ButtonWrap = styled.div`
     flex: 0 0 100%;
     margin-top: 20px;
   }
+  @media (max-width: 576px) {
+    gap: 10px;
+  }
 `;
 
 interface IButton {
@@ -264,6 +362,9 @@ export const InfoButton = styled.button<IButton>`
     background-color: #873dc1;
     color: #fff;
   }
+  @media (max-width: 576px) {
+    width: 50%;
+  }
 `;
 
 // Rent Bar
@@ -279,6 +380,12 @@ export const RentElement = styled.li<{ h?: string }>`
   justify-content: space-between;
   align-items: center;
   color: #7c7c7c;
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 17px;
+    gap: 10px;
+    padding: 0 10px;
+  }
 `;
 
 export const RentalPeriod = styled.input`
