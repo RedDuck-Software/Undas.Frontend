@@ -221,7 +221,7 @@ const CreateNFT: React.FC = () => {
                 <SwitcherTitle>
                   <UnlockableContentIco /> Unlockable Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher onClick={() => console.log("switch")} />
               </SwitcherBlock>
               <BlockDescript>
                 Include unlockable content that can only be revealed by the
@@ -233,7 +233,7 @@ const CreateNFT: React.FC = () => {
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher onClick={() => console.log("switch")} />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content

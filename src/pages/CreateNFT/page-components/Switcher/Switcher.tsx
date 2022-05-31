@@ -3,9 +3,13 @@ import { Form } from "react-bootstrap";
 
 import { SwitcherWrap } from "./Switcher.styles";
 
-const Switcher: React.FC = () => {
+interface ISwithcerProps {
+  onClick: React.MouseEventHandler;
+}
+
+const Switcher: React.FC<ISwithcerProps> = ({onClick}) => {
   return (
-    <SwitcherWrap>
+    <SwitcherWrap onClick={(event) => onClick(event)}>
       <Form>
         <Form.Switch type="switch" id="switch" label="" />
       </Form>

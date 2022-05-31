@@ -24,6 +24,7 @@ export const AddImgBlock = styled.div`
     }
   }
 `;
+
 export const AddImgButton = styled.button`
   width: 80px;
   height: 80px;

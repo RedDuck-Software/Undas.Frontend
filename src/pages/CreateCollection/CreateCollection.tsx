@@ -18,11 +18,15 @@ import {
   ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco } from "./imports";
-import { CreateSubmitForm } from "./types";
+import { CreateSubmitForm, SelectItemType } from "./types";
 import { validationSchema } from "./validation";
 
-import { Select, SelectItem } from "../../components/Select/Select";
+import {
+  CreateSelect,
+  SelectItem,
+} from "../../components/CreateSelect/CreateSelect";
 import { Background, FormButtonsWrap } from "../../globalStyles";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import {
@@ -35,14 +39,12 @@ import {
   CreateInput,
   BlockDescript,
   CreateTextArea,
-  CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
   CreateFormButton,
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
-
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   return (
     <>
@@ -68,15 +70,30 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   );
 };
 
+const BlockchainList: React.FC<{ setBlockchain: any }> = ({
+  setBlockchain,
+}) => {
+  return (
+    <SelectItem setSelected={setBlockchain} icon={ethIcon} label="Ethereum" />
+  );
+};
+
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
 
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
-  const [category, setCategory] = useState({ icon: "", label: "Add Category" });
+  const [category, setCategory] = useState<SelectItemType>({
+    icon: "",
+    label: "Add Category",
+  });
   const [creatorEarnings, setCreatorEarnings] = useState("");
-
+  const [blockchain, setBlockchain] = useState<SelectItemType>({
+    icon: ethIcon,
+    label: "Ethereum",
+  });
+  const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, formState, handleSubmit } =
     useForm<CreateSubmitForm>(formOptions);
@@ -118,10 +135,12 @@ const CreateCollection: React.FC = () => {
               <AddImgBlock>
                 <AddImgButton>
                   <img src={ImgIcon} alt="image-icon" />
+                  
                 </AddImgButton>
                 <BlockDescript>
                   This image will also be used for navigation
                   <br /> Recommended 350px X 350px
+                  <input type="file" />
                 </BlockDescript>
               </AddImgBlock>
             </CreateFormGroup>
@@ -206,7 +225,7 @@ const CreateCollection: React.FC = () => {
                   Category
                 </CreateLabel>
                 <CategorySelectWrapper>
-                  <Select
+                  <CreateSelect
                     itemList={<CategoryList setCategory={setCategory} />}
                     item={{ ...category }}
                   />
@@ -269,18 +288,19 @@ const CreateCollection: React.FC = () => {
                 Select the blockchain where you&#39;d like new items from this
                 collection to be added by default
               </BlockDescript>
-              <CreateSelect aria-label="" id="blockchain">
-                <option>Ethereum</option>
-                <option>Two</option>
-                <option>Three</option>
-              </CreateSelect>
+              <CreateSelect
+                itemList={<BlockchainList setBlockchain={setBlockchain} />}
+                item={blockchain}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher
+                  onClick={() => setIsSensetiveContent(!isSensetiveContent)}
+                />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content
