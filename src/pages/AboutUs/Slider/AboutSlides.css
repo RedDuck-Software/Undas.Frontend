@@ -65,3 +65,11 @@
 .AboutSwiper .swiper-slide:hover{
   cursor: pointer;
 }
+@media (max-width: 576px) {
+  .AboutSwiper2 {
+    height: auto;
+  }
+  .AboutSwiper {
+    height: auto;
+  }
+}
