@@ -1,2 +1,1 @@
-Deployed web-site:
-https://reverent-allen-ae7346.netlify.app/
+[Deployed web-site](https://main--onlyone.netlify.app)
