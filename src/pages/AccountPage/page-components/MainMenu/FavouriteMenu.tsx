@@ -4,7 +4,7 @@ import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
-import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
+import { FavouriteButton, FavouriteSelect, FavouriteResultsTotal } from "./Menu.styles";
 import { FavouriteType } from "./types";
 
 import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
@@ -17,7 +17,6 @@ import {
   MenuWrap,
   SearchIco,
   SettingsBlock,
-  ResultsTotal,
   GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
@@ -110,9 +109,9 @@ const FavouriteMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
-          <Input />
+          <Input placeholder="Search"/>
         </MenuSearchWrap>
-        <ResultsTotal>4</ResultsTotal>
+        <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
       </MenuWrap>
 
       {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
