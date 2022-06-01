@@ -2,6 +2,32 @@ import styled from "styled-components";
 
 import violetLine from "../../../../icons/violet-line.svg";
 
+export const TitleInner = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const TitleLink = styled.a`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #873DC1;
+  margin-left: 20px;
+  &:hover{
+    color: #873DC1;
+    text-shadow: 0 0 1px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  @media (max-width: 576px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
+`;
+
 export const RentNFTSec = styled.div`
   padding: 4rem 0 8rem;
 
