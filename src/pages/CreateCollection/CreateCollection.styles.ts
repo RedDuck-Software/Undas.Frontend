@@ -25,7 +25,12 @@ export const AddImgBlock = styled.div`
   }
 `;
 
-export const AddImgButton = styled.button`
+export const CollectionImageInput = styled.input.attrs({ type: "file", accept: "image/*" })`
+  display: none;
+`;
+
+export const CollectionLogoLabel = styled.label`
+  display: inline-block;
   width: 80px;
   height: 80px;
   border: 1px dashed #7c7c7c;
@@ -48,7 +53,14 @@ export const AddImgButton = styled.button`
   }
 `;
 
-export const AddFeaturedButton = styled(AddImgButton)`
+export const CollectionImagePreview = styled.img`
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: inherit;
+`
+
+export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   width: 350px;
   height: 100px;
   @media (max-width: 576px) {
@@ -56,7 +68,7 @@ export const AddFeaturedButton = styled(AddImgButton)`
   }
 `;
 
-export const AddBannerButton = styled(AddFeaturedButton)`
+export const CollectionBannerLabel = styled(CollectionFeaturedLabel)`
   width: 100%;
 `;
 

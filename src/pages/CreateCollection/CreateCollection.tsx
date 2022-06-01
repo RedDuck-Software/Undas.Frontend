@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 
 import {
   AddImgBlock,
-  AddImgButton,
-  AddFeaturedButton,
-  AddBannerButton,
+  CollectionImageInput,
+  CollectionImagePreview,
+  CollectionLogoLabel,
+  CollectionFeaturedLabel,
+  CollectionBannerLabel,
   AddBannerBlock,
   InputList,
   InputItem,
@@ -80,7 +82,9 @@ const BlockchainList: React.FC<{ setBlockchain: any }> = ({
 
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
-
+  const [logo, setLogo] = useState<string>("");
+  const [featured, setFeatured] = useState<string>("");
+  const [banner, setBanner] = useState<string>("");
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
@@ -119,6 +123,31 @@ const CreateCollection: React.FC = () => {
   const onSubmit = (formValues: any) => {
     alert(JSON.stringify(formValues));
   };
+
+  const logoHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setLogo(file);
+    }
+  };
+
+  const featuredHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setFeatured(file);
+    }
+  };
+
+  const bannerHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setBanner(file);
+    }
+  };
+
   return (
     <Background>
       <CreateSec>
@@ -133,23 +162,44 @@ const CreateCollection: React.FC = () => {
                 Logo image<span className="require-asterisk">*</span>
               </CreateLabel>
               <AddImgBlock>
-                <AddImgButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                  
-                </AddImgButton>
+                <CollectionLogoLabel htmlFor="logo">
+                  {logo ? (
+                    <CollectionImagePreview src={logo} alt="collection-logo" />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionLogoLabel>
+                <CollectionImageInput
+                  {...register("logoURI")}
+                  id="logo"
+                  onChange={logoHandler}
+                />
+                {errors.logoURI && (
+                  <ValidationBlock>{errors.logoURI.message}</ValidationBlock>
+                )}
                 <BlockDescript>
                   This image will also be used for navigation
                   <br /> Recommended 350px X 350px
-                  <input type="file" />
                 </BlockDescript>
               </AddImgBlock>
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel>Featured image</CreateLabel>
               <AddImgBlock className="featured">
-                <AddFeaturedButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddFeaturedButton>
+                <CollectionFeaturedLabel htmlFor="featured">
+                  {featured ? (
+                    <CollectionImagePreview
+                      src={featured}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionFeaturedLabel>
+                <CollectionImageInput
+                  id="featured"
+                  onChange={featuredHandler}
+                />
                 <BlockDescript>
                   This image will be used for featuring your collection on the
                   homepage, category pages or other promotional areas of UNDAS{" "}
@@ -166,9 +216,17 @@ const CreateCollection: React.FC = () => {
                   dimensions change on different devices <br /> Recommended
                   1400px X 400px
                 </BlockDescript>
-                <AddBannerButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddBannerButton>
+                <CollectionBannerLabel htmlFor="banner">
+                  {banner ? (
+                    <CollectionImagePreview
+                      src={banner}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionBannerLabel>
+                <CollectionImageInput id="banner" onChange={bannerHandler} />
               </AddBannerBlock>
             </CreateFormGroup>
             <CreateFormGroup>
@@ -306,13 +364,15 @@ const CreateCollection: React.FC = () => {
                 Set this item as explicit and sensitive content
               </BlockDescript>
             </CreateFormGroup>
+            <ButtonsBlock>
+              <FormButtonsWrap>
+                <CreateFormButton className="left-btn" type="submit">
+                  Create
+                </CreateFormButton>
+                <CreateFormButton>Back</CreateFormButton>
+              </FormButtonsWrap>
+            </ButtonsBlock>
           </CreateForm>
-          <ButtonsBlock>
-            <FormButtonsWrap>
-              <CreateFormButton className="left-btn">Create</CreateFormButton>
-              <CreateFormButton>Back</CreateFormButton>
-            </FormButtonsWrap>
-          </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
     </Background>
