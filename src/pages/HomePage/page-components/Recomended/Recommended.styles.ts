@@ -3,6 +3,17 @@ import styled from "styled-components";
 
 export const RecommendedContainer = styled.div`
   margin-top: 80px;
+  @media (max-width: 992px){
+    margin-top: 60px;
+  }
+  @media (max-width: 768px){
+    margin-top: 40px;
+  }
+  @media (max-width: 576px){
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 50px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -11,15 +22,31 @@ export const Title = styled.h2`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
+  margin-bottom: 0;
   &:before {
     content: "";
     display: inline-block;
     margin-right: 10px;
-    transform: translateY(-10px);
+    vertical-align: middle;
     width: 30px;
     height: 2px;
     background: #873dc1;
     border-radius: 10px;
+  }
+  @media (max-width: 992px){
+    font-size: 24px;
+    line-height: 29px;
+    &:before {
+      width: 15px;
+    }
+  }
+  @media (max-width: 768px){
+    font-size: 18px;
+    line-height: 22px;
+  }
+  @media (max-width: 576px){
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 export const TitleWrap = styled.div`
@@ -27,6 +54,10 @@ export const TitleWrap = styled.div`
   display: flex;
   margin-bottom: 30px;
   justify-content: space-between;
+  align-items: center;
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 export const ViewAllBtn = styled.button`
   cursor: pointer;
@@ -42,8 +73,20 @@ export const ViewAllBtn = styled.button`
   &:hover {
     background: rgba(135, 61, 193, 0.1);
   }
+  @media (max-width: 576px) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
 `;
-
+export const MobileInner = styled.div`
+  @media (max-width: 992px) {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+`;
 export const CategoriesWrap = styled.ul`
   list-style: none;
   width: 100%;
@@ -53,6 +96,17 @@ export const CategoriesWrap = styled.ul`
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+  @media (max-width: 992px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    height: auto;
+    padding: 20px 0;
+  }
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 `;
 
 interface ICategory {
@@ -73,6 +127,8 @@ export const Image = styled.img`
   object-fit: fill;
   object-position: center;
   z-index: -1;
+  width: 100%;
+  height: 100%;
 `;
 
 export const CategoryWrap = styled(Link)<ICategory>`
@@ -92,5 +148,13 @@ export const CategoryWrap = styled(Link)<ICategory>`
     ${Name} {
       color: #873dc1;
     }
+  }
+  @media (max-width: 992px) {
+    height: 330px;
+    width: 330px;
+  }
+  @media (max-width: 768px) {
+    height: 240px;
+    width: 240px;
   }
 `;
