@@ -12,6 +12,9 @@ import {
   InputButton,
   ModalLabelStraight,
   CreateModalFormButton,
+  ModalInputGroupSmall,
+  TextType,
+  ModalInputSmall,
 } from "./CreateModal.styles";
 
 import "./styles.css";
@@ -41,6 +44,12 @@ const PropertiesModal: React.FC = () => {
             <ModalInput type="text" id="name" placeholder="Male" />
             <InputButton></InputButton>
           </ModalInputGroup>
+          <ModalInputGroupSmall>
+            <TextType>Type</TextType>
+            <ModalInputSmall type="text" id="type" placeholder="Character" className="firt-row"/>
+            <TextType>Name</TextType>
+            <ModalInputSmall type="text" id="name" placeholder="Male" />
+          </ModalInputGroupSmall>
         </Modal.Body>
         <Modal.Footer>
           <CreateModalFormButton onClick={handleClose}>
