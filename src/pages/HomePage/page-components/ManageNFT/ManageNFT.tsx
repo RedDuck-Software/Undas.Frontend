@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WalletIco, AddingNFTIco, StackingIco } from "./imports";
+import { WalletIco, AddingNFTIco, NFTTradingIco, StackingIco } from "./imports";
 import {
   ManageNFTContainer,
   ManageCardWrap,
@@ -44,7 +44,7 @@ const ManageNFT: React.FC = () => {
           <PurpleText>Learn More ...</PurpleText>
         </ManageCard>
         <ManageCard>
-          <AddingNFTIco />
+          <NFTTradingIco />
           <CardTitle>NFT trading</CardTitle>
           <DescHolder>
             <DescList>Sell</DescList>
