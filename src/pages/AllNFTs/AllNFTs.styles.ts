@@ -175,6 +175,9 @@ export const FilterMenu = styled.ul`
     visibility: visible;
     opacity: 1;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 export const FilterTitle = styled.span`
   font-weight: 400;

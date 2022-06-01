@@ -36,6 +36,8 @@ export const OfferMenuWrap = styled.div`
   }
   @media (max-width: 576px) {
     margin-top: unset;
+    margin-left: unset;
+    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -223,8 +225,19 @@ export const ClearAll = styled.button`
   }
 `;
 export const ContainerTable = styled.div`
-  overflow: scroll;
+  overflow-x: scroll;
   width: 100%;
+  margin-bottom: 120px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 80px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
+  }
 `;
 export const OffersTr = styled.tr`
   padding: 0 30px;

@@ -38,6 +38,8 @@ export const OfferMenuWrap = styled.div`
   }
   @media (max-width: 576px) {
     margin-top: 20px;
+    margin-left: unset;
+    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -279,6 +281,17 @@ export const TextButton = styled.div`
   width: 100%;
 `;
 export const ContainerTable = styled.div`
-  overflow: scroll;
+  overflow-x: scroll;
   width: 100%;
+  margin-bottom: 120px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 80px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
+  }
 `;
