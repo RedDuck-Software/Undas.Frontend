@@ -30,7 +30,7 @@ export const BackText = styled.div`
 `;
 
 export const TitleText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
@@ -60,13 +60,13 @@ export const Tab = styled.li`
   border-radius: 10px 0 0 10px;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #5D3F92;
+  color: #5d3f92;
   max-width: 160px;
   &.active {
     background: #fbf5ff;
@@ -86,13 +86,13 @@ export const TabCastom = styled.li`
   border-radius: 0 10px 10px 0;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #5D3F92;
+  color: #5d3f92;
   max-width: 160px;
   &.active {
     background: #fbf5ff;

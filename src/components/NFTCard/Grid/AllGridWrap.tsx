@@ -3,9 +3,9 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import NFTGridItem from "./NFTGridItem";
+//import NFTGridItem from "./NFTGridItem";
 
-import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
+//import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
 import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
@@ -14,6 +14,7 @@ import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
 import { getStaking } from "../../../utils/getStaking";
 import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
 import { isBuyableFunction } from "../../../utils/isBuyable";
+import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
 /* interface CardListProps {
   newFilter?: boolean;
@@ -43,7 +44,7 @@ interface IAllGridWrap {
   priceFilter?: string;
 }
 
-const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
+const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
@@ -117,7 +118,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       const { premium, tokenId } = CardProps.tx;
       const { name, URI } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-      const id = tokenId.toNumber();
+      const id: number = tokenId.toNumber();
 
       if (canRentNFT) {
         stakings.push({ premiumInNum, id, name, URI });
@@ -219,25 +220,11 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
     <>
-      <GridLayout>
-        {commonList ? (
-          commonList?.map((item) => {
-            getResults(commonList.length);
-            return (
-              <NFTGridItem
-                key={item.id}
-                tokenId={item.id}
-                name={item.name}
-                URI={item.URI}
-                price={item?.priceInNum}
-                premium={item?.premiumInNum}
-              />
-            );
-          })
-        ) : (
-          <span>There are no NFTs on the marketplace</span>
-        )}
-      </GridLayout>
+      {commonList ? (
+        <CollectionGridWrap itemList={commonList} />
+      ) : (
+        <span>There are no NFTs on the marketplace</span>
+      )}
     </>
   );
 };
