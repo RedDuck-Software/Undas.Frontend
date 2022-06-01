@@ -152,6 +152,7 @@ export const CategoryWrap = styled(Link)<ICategory>`
   @media (max-width: 992px) {
     height: 330px;
     width: 330px;
+    box-shadow: none;
   }
   @media (max-width: 768px) {
     height: 240px;

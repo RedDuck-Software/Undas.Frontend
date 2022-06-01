@@ -27,6 +27,9 @@ export const NFTWrap = styled.div`
     width: 80%;
     margin: 0 auto;
   }
+  @media (max-width: 360px) {
+    width: 100%;
+  }
 `;
 
 export const Image = styled.img`
