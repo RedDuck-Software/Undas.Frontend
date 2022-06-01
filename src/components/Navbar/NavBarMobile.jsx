@@ -1,20 +1,6 @@
 import React from 'react';
 
 import {
-  Navigation,
-  NavigationMenu,
-  Blur,
-  MobileUl,
-  MobileStyledLink,
-  MobileStyledList,
-  HeaderDropdownButton,
-  HeaderDropdownItem,
-  IconInner,
-  MobileMenuListSocial,
-} from './NavBarMobile.styles';
-import { LanguageTitle, SocialLink } from './Navbar.styles';
-
-import {
   AllNFTsIcon,
   NewIcon,
   ArtIcon,
@@ -45,6 +31,20 @@ import {
   MobileFavoriteIco,
   MobileAccountIco,
 } from './imports';
+import { LanguageTitle, SocialLink } from './Navbar.styles';
+import {
+  Navigation,
+  NavigationMenu,
+  Blur,
+  MobileUl,
+  MobileStyledLink,
+  MobileStyledList,
+  HeaderDropdownButton,
+  HeaderDropdownItem,
+  IconInner,
+  MobileMenuListSocial,
+} from './NavBarMobile.styles';
+
 
 const NavBarMobile = ({ open }) => {
   return (

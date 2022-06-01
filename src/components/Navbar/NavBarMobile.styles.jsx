@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import styled from "styled-components";
+
 import {
   IconsUl,
   StyledList,
