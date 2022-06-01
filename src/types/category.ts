@@ -9,6 +9,6 @@ export enum Category {
     photography,
     metaverses,
     celebrity,
-    rwaNFT
+    rwaNFT,
 }
 
