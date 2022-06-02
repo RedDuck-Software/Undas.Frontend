@@ -4,10 +4,13 @@ import { useForm } from "react-hook-form";
 
 import {
   AddImgBlock,
+  ClearImageInput,
   CollectionImageInput,
   CollectionImagePreview,
   CollectionLogoLabel,
+  CollectionFeaturedLabelWrapper,
   CollectionFeaturedLabel,
+  CollectionBannerLabelWrapper,
   CollectionBannerLabel,
   AddBannerBlock,
   InputList,
@@ -20,7 +23,7 @@ import {
   ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco } from "./imports";
-import { CreateSubmitForm, SelectItemType } from "./types";
+import { CreateSubmitForm, SelectItemType, ImageFile } from "./types";
 import { validationSchema } from "./validation";
 
 import {
@@ -28,6 +31,7 @@ import {
   SelectItem,
 } from "../../components/CreateSelect/CreateSelect";
 import { Background, FormButtonsWrap } from "../../globalStyles";
+import closeIcon from "../../icons/close.svg";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
@@ -85,6 +89,10 @@ const CreateCollection: React.FC = () => {
   const [logo, setLogo] = useState<string>("");
   const [featured, setFeatured] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
+  const [fileSizeError, setFileSizeError] = useState<{
+    message: string;
+    inputName: string;
+  }>();
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
@@ -99,7 +107,7 @@ const CreateCollection: React.FC = () => {
   });
   const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, formState, handleSubmit } =
+  const { register, formState, handleSubmit, trigger } =
     useForm<CreateSubmitForm>(formOptions);
   const { errors } = formState;
   /* const bid = async () => {
@@ -121,31 +129,59 @@ const CreateCollection: React.FC = () => {
   }; */
 
   const onSubmit = (formValues: any) => {
+    trigger("logoURI");
     alert(JSON.stringify(formValues));
+  };
+
+  const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
+    const file = fileList[0];
+    if (file.size > 3145728) {
+      setFileSizeError({
+        message: `${inputName} is too large. Maximum file size is 3Mb.`,
+        inputName,
+      });
+      setLogo("");
+      return true;
+    } else {
+      setFileSizeError({ message: "", inputName: "" });
+      return false;
+    }
   };
 
   const logoHandler = (event: React.FormEvent) => {
     const fileList = (event.target as HTMLInputElement).files;
     if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.logo)) {
+        return;
+      }
       const file = URL.createObjectURL(fileList[0]);
       setLogo(file);
     }
+    trigger("logoURI");
   };
 
   const featuredHandler = (event: React.FormEvent) => {
     const fileList = (event.target as HTMLInputElement).files;
     if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.featured)) {
+        return;
+      }
       const file = URL.createObjectURL(fileList[0]);
       setFeatured(file);
     }
+    trigger("featuredURI");
   };
 
   const bannerHandler = (event: React.FormEvent) => {
     const fileList = (event.target as HTMLInputElement).files;
     if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.banner)) {
+        return;
+      }
       const file = URL.createObjectURL(fileList[0]);
       setBanner(file);
     }
+    trigger("bannerURI");
   };
 
   return (
@@ -173,18 +209,33 @@ const CreateCollection: React.FC = () => {
                   {...register("logoURI")}
                   id="logo"
                   onChange={logoHandler}
+                  required
                 />
-                {errors.logoURI && (
-                  <ValidationBlock>{errors.logoURI.message}</ValidationBlock>
-                )}
+
                 <BlockDescript>
                   This image will also be used for navigation
                   <br /> Recommended 350px X 350px
                 </BlockDescript>
               </AddImgBlock>
+              {fileSizeError && fileSizeError.inputName === ImageFile.logo && (
+                <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>Featured image</CreateLabel>
+              <CollectionFeaturedLabelWrapper>
+                <CreateLabel>Featured image</CreateLabel>
+                {featured && (
+                  <ClearImageInput onClick={() => setFeatured("")}>
+                    <img
+                      src={closeIcon}
+                      alt="clear-logo"
+                      width="15"
+                      height="15"
+                    />
+                  </ClearImageInput>
+                )}
+              </CollectionFeaturedLabelWrapper>
+
               <AddImgBlock className="featured">
                 <CollectionFeaturedLabel htmlFor="featured">
                   {featured ? (
@@ -196,6 +247,7 @@ const CreateCollection: React.FC = () => {
                     <img src={ImgIcon} alt="image-icon" />
                   )}
                 </CollectionFeaturedLabel>
+
                 <CollectionImageInput
                   id="featured"
                   onChange={featuredHandler}
@@ -203,12 +255,28 @@ const CreateCollection: React.FC = () => {
                 <BlockDescript>
                   This image will be used for featuring your collection on the
                   homepage, category pages or other promotional areas of UNDAS{" "}
-                  <br /> Recommended 600px X 400pxx
+                  <br /> Recommended 600px X 400px
                 </BlockDescript>
               </AddImgBlock>
+              {fileSizeError &&
+                fileSizeError.inputName === ImageFile.featured && (
+                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+                )}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>Banner image</CreateLabel>
+              <CollectionBannerLabelWrapper>
+                <CreateLabel>Banner image</CreateLabel>
+                {banner && (
+                  <ClearImageInput onClick={() => setBanner("")}>
+                    <img
+                      src={closeIcon}
+                      alt="clear-logo"
+                      width="15"
+                      height="15"
+                    />
+                  </ClearImageInput>
+                )}
+              </CollectionBannerLabelWrapper>
               <AddBannerBlock>
                 <BlockDescript>
                   This image will appear at the top of your collection page.
@@ -228,6 +296,10 @@ const CreateCollection: React.FC = () => {
                 </CollectionBannerLabel>
                 <CollectionImageInput id="banner" onChange={bannerHandler} />
               </AddBannerBlock>
+              {fileSizeError &&
+                fileSizeError.inputName === ImageFile.banner && (
+                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+                )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">

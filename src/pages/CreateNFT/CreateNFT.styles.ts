@@ -46,6 +46,7 @@ export const CreateFormGroup = styled.div`
 `;
 
 export const CreateLabel = styled.label`
+  display: flex;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -141,8 +142,9 @@ export const CreateSelect = styled.select`
 `;
 
 export const ModalTitle = styled(CreateLabel)`
+  align-items: center;
   & svg {
-    margin: 0 10px 5px 0;
+    margin-right: 10px;
   }
 `;
 

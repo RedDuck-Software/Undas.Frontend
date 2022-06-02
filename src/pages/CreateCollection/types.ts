@@ -19,3 +19,9 @@ export type SelectItemType = {
   icon?: string;
   label: string;
 };
+
+export enum ImageFile {
+  logo = "Logo",
+  featured = "Featured",
+  banner = "Banner",
+}

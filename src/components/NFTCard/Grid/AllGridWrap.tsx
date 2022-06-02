@@ -16,7 +16,7 @@ import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
 // import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
-import { createClient } from 'urql';
+import { createClient } from "urql";
 /* interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
@@ -63,7 +63,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
   console.log(connector);
-  //getting listing from the graph`s API 
+  //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
     if (!connector) {
@@ -71,22 +71,20 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
 
     const tokens = await fetchData();
-    
-    tokens.map((nft:any)=>{
-     
-      if(nft.listingStatus == 'ACTIVE') { 
-    
-          const price = nft.price
-          const id = nft.tokenId
-          const name = nft.tokenName;
-          const URI = nft.tokenURI
-          const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-          items.push({ priceInNum, id, name, URI });
+    tokens.map((nft: any) => {
+      if (nft.listingStatus == "ACTIVE") {
+        const price = nft.price;
+        const id = nft.tokenId;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-          setAmountOfNFTs(amountOfNFTs + 1);
-        }
-      })
+        items.push({ priceInNum, id, name, URI });
+
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
+    });
     return items;
   };
 
@@ -126,7 +124,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   };
 
   async function getListingsData() {
-
     const response = await getListings();
     if (response) {
       setList(response);
@@ -152,7 +149,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   }, [connector]);
 
   const priceSort = async () => {
-    fetchData()
+    fetchData();
     if (!priceFilter) return list;
     let sortedArr;
     if (priceFilter === "low-to-high") {
@@ -226,7 +223,8 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     </>
   );
 };
-const APIURL =  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
 const tokensQuery = `
     query   {
@@ -242,17 +240,15 @@ const tokensQuery = `
         tokenName    
       }
     }  
-`
-  const client = createClient({
-    url: APIURL
-  });
+`;
+const client = createClient({
+  url: APIURL,
+});
 
-  async function fetchData() {
-    const data = await client.query(tokensQuery).toPromise();
-    console.log(data.data.listings)
-    return data.data.listings
-  }
-
+async function fetchData() {
+  const data = await client.query(tokensQuery).toPromise();
+  console.log(data.data.listings);
+  return data.data.listings;
+}
 
 export default AllGridWrap;
-
