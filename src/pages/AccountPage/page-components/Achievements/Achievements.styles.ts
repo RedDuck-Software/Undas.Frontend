@@ -1,12 +1,22 @@
 import styled from "styled-components";
 
-export const AchievementsWrap = styled.div``;
+export const AchievementsWrap = styled.div`
+  padding: 60px 0;
+  @media (max-width: 992px) {
+    padding: 60px 0 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 60px 0 20px;
+  }
+  @media (max-width: 576px) {
+    padding: 30px 0 0;
+  }
+`;
 
 export const AchievementsHeadInner = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 60px;
   @media (max-width: 992px) {
     flex-direction: column;
   }
@@ -133,19 +143,6 @@ export const GoldRewards = styled(PurpleRewards)`
 export const GoldRewardsTitle = styled(PurpleRewardsTitle)`
   background: #ffd700;
   box-shadow: inset 0px 0px 1px #ffd700;
-`;
-export const BackImgSecond = styled.img`
-  position: absolute;
-  margin-top: 1400px;
-  margin-left: -180px;
-  z-index: -1;
-  max-width: 100%;
-`;
-export const BackImg = styled.img`
-  position: absolute;
-  margin-top: 300px;
-  margin-left: -180px;
-  max-width: 100%;
 `;
 export const Diamond = styled.div`
   margin-top: 40px;

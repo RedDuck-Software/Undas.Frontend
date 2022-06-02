@@ -11,12 +11,12 @@ import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 
 const NewNFTContainer = styled.div`
-  margin: 120px 0;
+  margin-top: 120px;
   @media (max-width: 992px) {
-    margin: 70px 0 40px;
+    margin-top: 70px;
   }
   @media (max-width: 768px) {
-    margin: 40px 0;
+    margin-top: 40px;
   }
   @media (max-width: 576px){
     position: relative;

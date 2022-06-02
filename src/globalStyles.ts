@@ -85,26 +85,15 @@ export const Background = styled.div`
   width: 100%;
   background: url(${LRBackground}), url(${RBackground}), url(${LRBackground2});
   background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: left 0 top 150px, right 0 top 1450px, left 0 top 2150px;
+  background-position: left 0 top 250px, right 0 top 1450px, left 0 top 2500px;
 
-  @media (max-width: 1099px) {
+  @media (max-width: 992px) {
     background-position: right 40rem top 12rem, left 40rem top 58rem,
       right 50rem top 112rem;
   }
 
-  @media (max-width: 801px) {
-    background-position: right 30rem top 12rem, left 20rem top 58rem,
-      right 50rem top 112rem;
-  }
-
-  @media (max-width: 639px) {
-    background-position: right 20rem top 12rem, left 20rem top 58rem,
-      right 50rem top 112rem;
-  }
-
-  @media (max-width: 574px) {
-    background-position: right 10rem top 12rem, left 10rem top 58rem,
-      right 50rem top 112rem;
+  @media (max-width: 768px) {
+    background: none;
   }
 `;
 
@@ -140,7 +129,7 @@ export const PageTitle = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin: 40px 0 20px;
+  margin-bottom: 10px;
   @media (max-width: 992px) {
     font-size: 32px;
     line-height: 36px;
@@ -191,12 +180,7 @@ export const FormButton = styled.button`
     flex: 0 0 45%;
     &.left-btn {
       border: 1px solid transparent;
-      background: linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.5),
-          rgba(255, 255, 255, 0.5)
-        ),
-        #873dc1;
+      background: #873dc1;
       color: #fff;
       margin-left: 0;
     }

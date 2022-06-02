@@ -5,16 +5,17 @@ import BgImg from "../../assets/bg-img.png";
 
 //RewardMenu
 export const RewardMenuWrap = styled.div`
-  padding: 40px 0 120px;
-  margin-top: -40px;
+  padding: 60px 0;
   @media (max-width: 992px) {
     display: none;
   }
 `;
+export const HeadWrap = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
 export const ContentWrap = styled.div`
-  &.top-table {
-    margin-top: -40px;
-  }
 `;
 export const ButtonsBlock = styled.div`
   font-style: normal;
@@ -43,10 +44,9 @@ export const IntervalInput = styled.input`
 export const Title = styled.h1`
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 24px;
+  line-height: 29px;
   color: #232428;
-  margin-top: 40px;
   margin-bottom: 0;
   @media (max-width: 992px) {
     font-size: 26px;

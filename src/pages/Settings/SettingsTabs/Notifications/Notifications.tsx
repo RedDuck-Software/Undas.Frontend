@@ -3,18 +3,17 @@ import Form from "react-bootstrap/Form";
 
 import {
   NotificationWrap,
-  NotificationPageTitle,
   FormItemWrapper,
   ItemsForm,
-  Button,
 } from "./Notifications.styles";
 
-import { DescriptionText } from "../SettingsTabs.styles";
+import { Button, DescriptionText } from "../SettingsTabs.styles";
+import { PageTitle } from "../../../../globalStyles";
 
 const Notifications: React.FC = () => {
   return (
     <NotificationWrap>
-      <NotificationPageTitle>Notification Settings</NotificationPageTitle>
+      <PageTitle>Notification Settings</PageTitle>
       <DescriptionText>
         Select which notifications you would like to receive
       </DescriptionText>

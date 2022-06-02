@@ -32,6 +32,7 @@ import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+import { Background } from "../../globalStyles";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("offers");
@@ -95,11 +96,12 @@ const AccountPage: React.FC = () => {
   }
 
   return (
-    <>
+    
       <AccountWrapper>
         <Banner>
           <img src={AccountBanner} alt="account-banner" />
         </Banner>
+        <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
           {tab !== "favourite" &&
@@ -165,8 +167,9 @@ const AccountPage: React.FC = () => {
           <FilterMobileButton />
           {tab == "" || tab == "offers" ? <FilterMobileButton /> : null}
         </AccountContainer>
+        </Background>
       </AccountWrapper>
-    </>
+    
   );
 };
 

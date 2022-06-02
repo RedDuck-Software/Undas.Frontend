@@ -61,7 +61,7 @@ export const TitleWrap = styled.div`
 `;
 export const ViewAllBtn = styled.button`
   cursor: pointer;
-  background: rgba(135, 61, 193, 0);
+  background: #fff;
   border: 1px solid #873dc1;
   box-sizing: border-box;
   border-radius: 10px;
@@ -69,9 +69,10 @@ export const ViewAllBtn = styled.button`
   font-size: 14px;
   padding: 10px 32px;
   color: #873dc1;
-  transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.3s;
   &:hover {
-    background: rgba(135, 61, 193, 0.1);
+    background: #873dc1;
+    color: #fff;
   }
   @media (max-width: 576px) {
     position: absolute;

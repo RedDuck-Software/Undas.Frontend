@@ -19,6 +19,7 @@ import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+import { Background } from "../../globalStyles";
 
 const AllNFTs: React.FC = () => {
   const [results, setResults] = useState<any>();
@@ -34,6 +35,7 @@ const AllNFTs: React.FC = () => {
   const { viewMode, viewButtonsRender } = useViewMode();
 
   return (
+    <Background>
     <AllNFTContainer>
       <ASideFilter />
       <Wrapper w="100%" marg="0 0 200px 0">
@@ -110,6 +112,7 @@ const AllNFTs: React.FC = () => {
         )}
       </Wrapper>
     </AllNFTContainer>
+    </Background>
   );
 };
 

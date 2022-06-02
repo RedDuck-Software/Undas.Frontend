@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
-  margin-bottom: 150px;
+  padding-bottom: 150px;
   @media (max-width: 992px) {
-    margin-bottom: 100px;
+    padding-bottom: 100px;
   }
   @media (max-width: 768px) {
-    margin-bottom: 60px;
+    padding-bottom: 60px;
   }
   @media (max-width: 576px) {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 `;
 

@@ -14,7 +14,7 @@ import {
 import { CollectionBanner, Email, Telegram } from "./imports";
 import Collection from "./page-components/Collection";
 
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 
 const Categories: React.FC = () => {
   return (
@@ -22,6 +22,7 @@ const Categories: React.FC = () => {
       <Banner>
         <img src={CollectionBanner} alt="CollectionBanner" />
       </Banner>
+      <Background>
       <Container>
         <Info>
           <div>
@@ -47,6 +48,7 @@ const Categories: React.FC = () => {
           <Collection />
         </div>
       </Container>
+      </Background>
     </>
   );
 };
