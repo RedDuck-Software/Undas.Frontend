@@ -3,18 +3,20 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import NFTGridItem from "./NFTGridItem";
+//import NFTGridItem from "./NFTGridItem";
 
-import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
+//import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
 import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
-import { getListing } from "../../../utils/getListing";
-import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
+// import { getListing } from "../../../utils/getListing";
+// import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
 import { getStaking } from "../../../utils/getStaking";
 import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
-import { isBuyableFunction } from "../../../utils/isBuyable";
+// import { isBuyableFunction } from "../../../utils/isBuyable";
+import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
+import { createClient } from 'urql';
 /* interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
@@ -43,7 +45,7 @@ interface IAllGridWrap {
   priceFilter?: string;
 }
 
-const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
+const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const { connector } = useContext(Context);
   const items: ItemsProps[] = [];
   const stakings: StakingsProps[] = [];
@@ -60,37 +62,32 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
   // const [showList, setShowList] = useState('NFT to buy');
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
+  console.log(connector);
+  //getting listing from the graph`s API 
   const getListings = async () => {
     setAmountOfNFTs(0);
     if (!connector) {
       return;
     }
 
-    const lastIndex = await getListingsLastIndex(connector);
-    if (lastIndex || lastIndex === 0) {
-      for (let i = 0; i < lastIndex?.toNumber(); i++) {
-        // const metadata = await NFTContract.tokenMetadata(i);
-        const CardProps = await getListing(i, connector);
-        const isBuyable = await isBuyableFunction(i, connector);
+    const tokens = await fetchData();
+    
+    tokens.map((nft:any)=>{
+     
+      if(nft.listingStatus == 'ACTIVE') { 
+    
+          const price = nft.price
+          const id = nft.tokenId
+          const name = nft.tokenName;
+          const URI = nft.tokenURI
+          const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-        if (!CardProps) {
-          continue;
-        }
-
-        const { price, tokenId } = CardProps.tx;
-        const { name, URI } = CardProps;
-
-        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-        const id = tokenId.toNumber();
-
-        if (isBuyable) {
           items.push({ priceInNum, id, name, URI });
+
           setAmountOfNFTs(amountOfNFTs + 1);
         }
-      }
-
-      return items;
-    } else return;
+      })
+    return items;
   };
 
   const getStakings = async () => {
@@ -117,7 +114,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
       const { premium, tokenId } = CardProps.tx;
       const { name, URI } = CardProps;
       const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-      const id = tokenId.toNumber();
+      const id: number = tokenId.toNumber();
 
       if (canRentNFT) {
         stakings.push({ premiumInNum, id, name, URI });
@@ -129,6 +126,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
   };
 
   async function getListingsData() {
+
     const response = await getListings();
     if (response) {
       setList(response);
@@ -148,12 +146,13 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
     }
 
     setLoading(false);
-
+    console.log("useEf");
     getListingsData();
     getStakingsData();
   }, [connector]);
 
   const priceSort = async () => {
+    fetchData()
     if (!priceFilter) return list;
     let sortedArr;
     if (priceFilter === "low-to-high") {
@@ -219,27 +218,41 @@ const AllGridWrap: FC<IAllGridWrap> = ({ getResults, priceFilter }) => {
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
     <>
-      <GridLayout>
-        {commonList ? (
-          commonList?.map((item) => {
-            getResults(commonList.length);
-            return (
-              <NFTGridItem
-                key={item.id}
-                tokenId={item.id}
-                name={item.name}
-                URI={item.URI}
-                price={item?.priceInNum}
-                premium={item?.premiumInNum}
-              />
-            );
-          })
-        ) : (
-          <span>There are no NFTs on the marketplace</span>
-        )}
-      </GridLayout>
+      {commonList ? (
+        <CollectionGridWrap itemList={commonList} />
+      ) : (
+        <span>There are no NFTs on the marketplace</span>
+      )}
     </>
   );
 };
+const APIURL =  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+    query   {
+      listings(first: 5) {
+        id
+        token
+        seller
+        tokenId
+        tokenURI
+        listingStatus
+        price
+        tokenDescription
+        tokenName    
+      }
+    }  
+`
+  const client = createClient({
+    url: APIURL
+  });
+
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    console.log(data.data.listings)
+    return data.data.listings
+  }
+
 
 export default AllGridWrap;
+

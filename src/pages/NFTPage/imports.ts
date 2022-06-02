@@ -3,6 +3,7 @@ import { ReactComponent as CartIco } from "./assets/cart-ico.svg";
 import { ReactComponent as DetailsIco } from "./assets/details-ico.svg";
 import EthBlack from "./assets/eth-black.svg";
 import { ReactComponent as FavouriteIco } from "./assets/favourite-ico.svg";
+import { ReactComponent as FavouriteCounterIco } from "./assets/favourite-counter-ico.svg";
 import { ReactComponent as FlaggedIco } from "./assets/flagged-ico.svg";
 import { ReactComponent as HandShakeIco } from "./assets/hand-shake-ico.svg";
 import { ReactComponent as ItemActivityIco } from "./assets/item-activity-ico.svg";
@@ -32,6 +33,7 @@ export {
   CartIco,
   ViewsIco,
   FavouriteIco,
+  FavouriteCounterIco,
   UnlockIco,
   RefreshIco,
   FlaggedIco,

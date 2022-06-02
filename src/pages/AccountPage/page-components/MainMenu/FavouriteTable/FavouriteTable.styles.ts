@@ -30,11 +30,14 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30px;
-  margin-right: 30px;
+  overflow: auto;
+  @media (max-width: 576px) {
+    margin-top: 0;
+  }
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
+  min-width: 840px;
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
@@ -47,23 +50,28 @@ export const ItemIcon = styled.div`
     width: 100%;
   }
 `;
+
+export const ItemText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const ItemName = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #232428;
-  margin-right: 5px;
-  margin-top: -30px;
+  margin-bottom: 10px;
+  @media (max-width: 1200px) {
+    max-width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   @media (max-width: 576px) {
     font-size: 12px;
   }
 `;
 export const UNDText = styled.span`
-  margin-right: 5px;
-  margin-left: -49px;
-  margin-top: 30px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 600;
@@ -71,19 +79,15 @@ export const UNDText = styled.span`
   line-height: 17px;
   text-align: center;
   color: #873dc1;
-  position: relative;
-
-  @media (max-width: 576px) {
-    font-size: 12px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 export const UND = styled.span`
-  position: absolute;
-  left: 25px;
-  top: 2px;
+  margin-left: 5px;
 `;
 export const OffersTdText = styled.td`
-  padding: 10px 30px;
+  padding: 10px;
   position: relative;
 
   &.offers-table-item {
@@ -141,6 +145,6 @@ export const OffersTr = styled.tr`
   }
   &:hover {
     filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
-    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(124, 124, 124, 0.5);
   }
 `;

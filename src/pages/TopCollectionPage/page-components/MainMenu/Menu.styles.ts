@@ -32,9 +32,19 @@ export const OfferMenuWrap = styled.div`
   flex-wrap: wrap;
   margin-left: 30px;
   margin-right: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 576px) {
+    margin-top: 20px;
+    margin-left: unset;
+    margin-right: unset;
+  }
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
+  min-width: 900px;
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
@@ -42,7 +52,7 @@ export const OffersWrapTable = styled.table`
 export const ItemIcon = styled.div`
   width: 50px;
   height: 50px;
-  margin-right: 5px;
+  margin-right: 10px;
   & .offers-item-image {
     width: 100%;
   }
@@ -55,7 +65,7 @@ export const ItemName = styled.span`
   line-height: 17px;
   color: #232428;
   margin-right: 5px;
-  margin-top: -30px;
+  display: flex;
   @media (max-width: 576px) {
     font-size: 12px;
   }
@@ -75,8 +85,6 @@ export const CollectionName = styled.span`
 `;
 export const UNDText = styled.span`
   margin-right: 5px;
-  margin-left: -49px;
-  margin-top: 30px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 600;
@@ -85,6 +93,7 @@ export const UNDText = styled.span`
   text-align: center;
   color: #873dc1;
   position: relative;
+  display: flex;
 
   @media (max-width: 576px) {
     font-size: 12px;
@@ -188,7 +197,11 @@ export const OffersTr = styled.tr`
     border-radius: 10px;
   }
 `;
-export const OfferFilterWrap = styled(ViewOption)``;
+export const OfferFilterWrap = styled(ViewOption)`
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+`;
 export const FilterButton = styled(FavouriteButton)`
   width: 100px;
   font-size: 14px;
@@ -199,6 +212,10 @@ export const FilterButton = styled(FavouriteButton)`
   gap: 10px;
   &.offers-active {
     background-color: #edd2ff;
+  }
+
+  @media (max-width: 576px) {
+    width: 50%;
   }
 `;
 export const SelectedFilters = styled.div`
@@ -253,7 +270,32 @@ export const ClearAll = styled.button`
   border: none;
   background: transparent;
   margin-left: 15px;
+
+  @media (max-width: 344px) {
+    margin-top: 20px;
+  }
 `;
 export const TextButton = styled.div`
   width: 100%;
+`;
+export const ContainerTable = styled.div`
+  overflow-x: scroll;
+  width: 100%;
+  margin-bottom: 120px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 80px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
+  }
+`;
+
+export const NameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;

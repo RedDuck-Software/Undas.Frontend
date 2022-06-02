@@ -4,10 +4,13 @@ import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
-import { FavouriteButton, FavouriteSelect } from "./Menu.styles";
+import {
+  FavouriteButton,
+  FavouriteSelect,
+  FavouriteResultsTotal,
+} from "./Menu.styles";
 import { FavouriteType } from "./types";
 
-import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
@@ -17,11 +20,85 @@ import {
   MenuWrap,
   SearchIco,
   SettingsBlock,
-  ResultsTotal,
-  GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
+import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
+import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
+import nft10 from "../../../../images/temp-nft-examples/nft-exp-10.png";
+import nft11 from "../../../../images/temp-nft-examples/nft-exp-11.png";
+import nft2 from "../../../../images/temp-nft-examples/nft-exp-2.png";
+import nft3 from "../../../../images/temp-nft-examples/nft-exp-3.png";
+import nft4 from "../../../../images/temp-nft-examples/nft-exp-4.png";
+import nft5 from "../../../../images/temp-nft-examples/nft-exp-5.png";
+import nft6 from "../../../../images/temp-nft-examples/nft-exp-6.png";
+import nft7 from "../../../../images/temp-nft-examples/nft-exp-7.png";
+import nft8 from "../../../../images/temp-nft-examples/nft-exp-8.png";
+import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
+
+const testNFTList = [
+  {
+    id: 0,
+    URI: nft0,
+    name: "Returne by ...",
+  },
+  {
+    id: 1,
+    URI: nft1,
+    name: "Returne by ...",
+  },
+  {
+    id: 2,
+    URI: nft2,
+    name: "Returne by ...",
+  },
+  {
+    id: 3,
+    URI: nft3,
+    name: "Returne by ...",
+  },
+  {
+    id: 4,
+    URI: nft4,
+    name: "Returne by ...",
+  },
+  {
+    id: 5,
+    URI: nft5,
+    name: "Returne by ...",
+  },
+  {
+    id: 6,
+    URI: nft6,
+    name: "Returne by ...",
+  },
+  {
+    id: 7,
+    URI: nft7,
+    name: "Returne by ...",
+  },
+  {
+    id: 8,
+    URI: nft8,
+    name: "Returne by ...",
+  },
+  {
+    id: 9,
+    URI: nft9,
+    name: "Returne by ...",
+  },
+  {
+    id: 10,
+    URI: nft10,
+    name: "Returne by ...",
+  },
+  {
+    id: 11,
+    URI: nft11,
+    name: "Returne by ...",
+  },
+];
 
 const FavouriteMenu: React.FC = () => {
   const { account } = useWeb3React();
@@ -110,36 +187,22 @@ const FavouriteMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
-          <Input />
+          <Input placeholder="Search" />
         </MenuSearchWrap>
-        <ResultsTotal>4</ResultsTotal>
+        <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
       </MenuWrap>
 
       {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
-        <GridLayout>
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name1"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name2"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name3"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name4"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name5"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name6"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name7"} />
-
-          <NFTGridItem tokenId={2} URI={"assdf"} name={"item.name8"} />
-        </GridLayout>
+        <CollectionGridWrap itemList={testNFTList} />
       )}
 
       {viewMode === ViewMode.list && favouriteType === FavouriteType.nft && (
         <>
-          <NFTListItem name="item1" />
-          <NFTListItem name="item1" />
-          <NFTListItem name="item1" />
+          {testNFTList?.map((item) => {
+            return (
+              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
+            );
+          })}
         </>
       )}
 

@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
-import NFTGridItem from "../../../../components/NFTCard/Grid/NFTGridItem";
 import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
 import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
 import nft10 from "../../../../images/temp-nft-examples/nft-exp-10.png";
@@ -32,69 +31,69 @@ import {
   SearchIco,
   SettingsBlock,
   ResultsTotal,
-  GridLayout,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
+import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 
 const testNFTList = [
   {
-    tokenId: 0,
-    tokenURI: nft0,
+    id: 0,
+    URI: nft0,
     name: "Returne by ...",
   },
   {
-    tokenId: 1,
-    tokenURI: nft1,
+    id: 1,
+    URI: nft1,
     name: "Returne by ...",
   },
   {
-    tokenId: 2,
-    tokenURI: nft2,
+    id: 2,
+    URI: nft2,
     name: "Returne by ...",
   },
   {
-    tokenId: 3,
-    tokenURI: nft3,
+    id: 3,
+    URI: nft3,
     name: "Returne by ...",
   },
   {
-    tokenId: 4,
-    tokenURI: nft4,
+    id: 4,
+    URI: nft4,
     name: "Returne by ...",
   },
   {
-    tokenId: 5,
-    tokenURI: nft5,
+    id: 5,
+    URI: nft5,
     name: "Returne by ...",
   },
   {
-    tokenId: 6,
-    tokenURI: nft6,
+    id: 6,
+    URI: nft6,
     name: "Returne by ...",
   },
   {
-    tokenId: 7,
-    tokenURI: nft7,
+    id: 7,
+    URI: nft7,
     name: "Returne by ...",
   },
   {
-    tokenId: 8,
-    tokenURI: nft8,
+    id: 8,
+    URI: nft8,
     name: "Returne by ...",
   },
   {
-    tokenId: 9,
-    tokenURI: nft9,
+    id: 9,
+    URI: nft9,
     name: "Returne by ...",
   },
   {
-    tokenId: 10,
-    tokenURI: nft10,
+    id: 10,
+    URI: nft10,
     name: "Returne by ...",
   },
   {
-    tokenId: 11,
-    tokenURI: nft11,
+    id: 11,
+    URI: nft11,
     name: "Returne by ...",
   },
 ];
@@ -218,27 +217,10 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>2</ResultsTotal>
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
-        <GridLayout>
-          {testNFTList?.map((item) => {
-            return (
-              <NFTGridItem
-                key={item.tokenId}
-                tokenId={+item.tokenId}
-                URI={item.tokenURI}
-                name={item.name}
-              />
-            );
-          })}
-        </GridLayout>
+        <CollectionGridWrap itemList={testNFTList} />
       ) : (
         testNFTList?.map((item) => {
-          return (
-            <NFTListItem
-              key={item.tokenId}
-              name={item.name}
-              URI={item.tokenURI}
-            />
-          );
+          return <NFTListItem key={item.id} name={item.name} URI={item.URI} />;
         })
       )}
     </div>

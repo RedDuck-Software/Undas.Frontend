@@ -17,14 +17,13 @@ import {
   FilterSelected,
   SelectedFiltersCollection,
   FilterPrice,
-  FilterButton,
-  FilterText,
   HeadWrapper,
   InfoBlock,
   ItemsOwners,
   InfoSmallBorder,
   TextInfo,
   ContainerCollection,
+  ResultsSmallSize,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -71,63 +70,63 @@ import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const testNFTList = [
   {
-    tokenId: 0,
-    tokenURI: nft0,
+    id: 0,
+    URI: nft0,
     name: "Returne by ...",
   },
   {
-    tokenId: 1,
-    tokenURI: nft1,
+    id: 1,
+    URI: nft1,
     name: "Returne by ...",
   },
   {
-    tokenId: 2,
-    tokenURI: nft2,
+    id: 2,
+    URI: nft2,
     name: "Returne by ...",
   },
   {
-    tokenId: 3,
-    tokenURI: nft3,
+    id: 3,
+    URI: nft3,
     name: "Returne by ...",
   },
   {
-    tokenId: 4,
-    tokenURI: nft4,
+    id: 4,
+    URI: nft4,
     name: "Returne by ...",
   },
   {
-    tokenId: 5,
-    tokenURI: nft5,
+    id: 5,
+    URI: nft5,
     name: "Returne by ...",
   },
   {
-    tokenId: 6,
-    tokenURI: nft6,
+    id: 6,
+    URI: nft6,
     name: "Returne by ...",
   },
   {
-    tokenId: 7,
-    tokenURI: nft7,
+    id: 7,
+    URI: nft7,
     name: "Returne by ...",
   },
   {
-    tokenId: 8,
-    tokenURI: nft8,
+    id: 8,
+    URI: nft8,
     name: "Returne by ...",
   },
   {
-    tokenId: 9,
-    tokenURI: nft9,
+    id: 9,
+    URI: nft9,
     name: "Returne by ...",
   },
   {
-    tokenId: 10,
-    tokenURI: nft10,
+    id: 10,
+    URI: nft10,
     name: "Returne by ...",
   },
   {
-    tokenId: 11,
-    tokenURI: nft11,
+    id: 11,
+    URI: nft11,
     name: "Returne by ...",
   },
 ];
@@ -270,9 +269,7 @@ const CollectionPage: React.FC = () => {
                 </MenuSearchWrap>
               </DisplayNone>
             </MenuWrapCollection>
-            <FilterButton>
-              <FilterText>Filter</FilterText>
-            </FilterButton>
+
             <SelectedFiltersCollection>
               <FilterSelected>
                 <FilterImg src={filter} alt="filter-image" />
@@ -281,16 +278,19 @@ const CollectionPage: React.FC = () => {
               </FilterSelected>
               <ClearAll>Clear All</ClearAll>
             </SelectedFiltersCollection>
+            <ResultsSmallSize>
+              <TextResult>8 results</TextResult>
+            </ResultsSmallSize>
             {viewMode === ViewMode.grid ? (
-              <CollectionGridWrap />
+              <CollectionGridWrap itemList={testNFTList} />
             ) : (
               <>
                 {testNFTList.map((item) => {
                   return (
                     <NFTListItem
-                      key={item.tokenId}
+                      key={item.id}
                       name={item.name}
-                      URI={item.tokenURI}
+                      URI={item.URI}
                     />
                   );
                 })}

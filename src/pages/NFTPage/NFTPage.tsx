@@ -9,6 +9,7 @@ import {
   CartIco,
   ViewsIco,
   FavouriteIco,
+  FavouriteCounterIco,
   UnlockIco,
   RefreshIco,
   FlaggedIco,
@@ -29,12 +30,19 @@ import {
   Background,
   NFTPageWrap,
   NavigationWrap,
+  NameInner,
   Name,
+  NameNft,
+  NameCollection,
+  VerifiedIcon,
+  Platform,
   NavMenu,
   NavElement,
   MainInfoWrap,
   ImageWrap,
   Image,
+  FavouriteCounter,
+  CounterNumber,
   Info,
   InfoElement,
   PurpleText,
@@ -69,6 +77,7 @@ import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
 import { getStaking } from "../../utils/getStaking";
 import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+import { Verified } from "../CategoriesPage/imports";
 
 const NFTPage: React.FC = () => {
   const override = css`
@@ -237,7 +246,26 @@ const NFTPage: React.FC = () => {
         ) : (
           <>
             <NavigationWrap>
-              <Name>Name NFT</Name>
+              <NameInner>
+                <Name>
+                  <NameNft>Name NFT</NameNft>
+                  <VerifiedIcon w="24px">
+                    <img src={Verified} alt="verified-ico" />
+                  </VerifiedIcon>
+                  <Platform col="#873DC1" fs="36px" fsxs="24px">
+                    UND
+                  </Platform>
+                </Name>
+                <Name>
+                  <NameCollection>Collection Name</NameCollection>
+                  <VerifiedIcon>
+                    <img src={Verified} alt="verified-ico" />
+                  </VerifiedIcon>
+                  <Platform col="#873DC1" fs="24px">
+                    UND
+                  </Platform>
+                </Name>
+              </NameInner>
               <NavMenu>
                 <NavElement>
                   <RefreshIco />
@@ -256,6 +284,10 @@ const NFTPage: React.FC = () => {
             <MainInfoWrap>
               <ImageWrap>
                 <Image src={NFTImage} alt="nft-image" />
+                <FavouriteCounter>
+                  <FavouriteCounterIco />
+                  <CounterNumber>10</CounterNumber>
+                </FavouriteCounter>
               </ImageWrap>
               <RightSideBlock>
                 <Wrapper
@@ -271,15 +303,19 @@ const NFTPage: React.FC = () => {
                     </InfoElement>
                     <InfoElement>
                       <ViewsIco />
-                      <span>91 views</span>
+                      <span>
+                        91 <span className="hide">views</span>
+                      </span>
                     </InfoElement>
                     <InfoElement>
                       <FavouriteIco />
-                      <span>10 favourites</span>
+                      <span>
+                        10 <span className="hide">favourites</span>
+                      </span>
                     </InfoElement>
                     <InfoElement>
                       <UnlockIco />
-                      <span>Unlockable Content</span>
+                      <span className="hide">Unlockable Content</span>
                     </InfoElement>
                   </Info>
                   <SaleBlock>

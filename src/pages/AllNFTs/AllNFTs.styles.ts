@@ -18,6 +18,10 @@ export const MenuWrap = styled.div<IMenuWrap>`
   justify-content: ${(props) => props.justifyContent || ""};
   align-items: center;
   margin: ${(props) => props.marg || "64px 0 20px"};
+  flex-wrap: wrap;
+  @media (max-width: 576px) {
+    margin-bottom: 0;
+  }
 `;
 
 interface IMenuSearch {
@@ -37,6 +41,12 @@ export const MenuSearchWrap = styled.div<IMenuSearch>`
   box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   border: none;
+  @media (max-width: 1200px) {
+    order: 1;
+    flex: 0 0 100%;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
 `;
 export const SearchIco = styled(Search)`
   margin-right: 10px;
@@ -44,7 +54,6 @@ export const SearchIco = styled(Search)`
 export const Input = styled.input`
   font-weight: 400;
   font-size: 12px;
-  color: #7c7c7c;
   border: transparent;
   background: transparent;
   padding-right: 0.5rem;
@@ -61,6 +70,13 @@ export const SettingsBlock = styled.ul`
   list-style: none;
   display: flex;
   gap: 15px;
+  @media (max-width: 1200px) {
+    order: 2;
+    flex: 0 0 80%;
+  }
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+  }
 `;
 export const ViewOption = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -69,6 +85,9 @@ export const ViewOption = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 export const ViewButton = styled.button`
   cursor: pointer;
@@ -155,6 +174,9 @@ export const FilterMenu = styled.ul`
   &.event-active {
     visibility: visible;
     opacity: 1;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 export const FilterTitle = styled.span`

@@ -78,6 +78,9 @@ export const OffersTd = styled.td<IOffersTd>`
     padding: 15px 0 15px 20px;
     width: 3%;
   }
+  &.favourite-th {
+    padding: 10px;
+  }
   @media (max-width: 992px) {
     padding: 10px 10px 10px 20px;
   }
