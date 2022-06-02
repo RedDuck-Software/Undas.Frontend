@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 
 import {
   AddImgBlock,
-  AddImgButton,
-  AddFeaturedButton,
-  AddBannerButton,
+  CollectionImageInput,
+  CollectionImagePreview,
+  CollectionLogoLabel,
+  CollectionFeaturedLabel,
+  CollectionBannerLabel,
   AddBannerBlock,
   InputList,
   InputItem,
@@ -18,11 +20,15 @@ import {
   ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco } from "./imports";
-import { CreateSubmitForm } from "./types";
+import { CreateSubmitForm, SelectItemType } from "./types";
 import { validationSchema } from "./validation";
 
-import { Select, SelectItem } from "../../components/Select/Select";
+import {
+  CreateSelect,
+  SelectItem,
+} from "../../components/CreateSelect/CreateSelect";
 import { Background, FormButtonsWrap } from "../../globalStyles";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import {
@@ -35,14 +41,12 @@ import {
   CreateInput,
   BlockDescript,
   CreateTextArea,
-  CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
   CreateFormButton,
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
-
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   return (
     <>
@@ -68,15 +72,32 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   );
 };
 
+const BlockchainList: React.FC<{ setBlockchain: any }> = ({
+  setBlockchain,
+}) => {
+  return (
+    <SelectItem setSelected={setBlockchain} icon={ethIcon} label="Ethereum" />
+  );
+};
+
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
-
+  const [logo, setLogo] = useState<string>("");
+  const [featured, setFeatured] = useState<string>("");
+  const [banner, setBanner] = useState<string>("");
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
-  const [category, setCategory] = useState({ icon: "", label: "Add Category" });
+  const [category, setCategory] = useState<SelectItemType>({
+    icon: "",
+    label: "Add Category",
+  });
   const [creatorEarnings, setCreatorEarnings] = useState("");
-
+  const [blockchain, setBlockchain] = useState<SelectItemType>({
+    icon: ethIcon,
+    label: "Ethereum",
+  });
+  const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, formState, handleSubmit } =
     useForm<CreateSubmitForm>(formOptions);
@@ -102,6 +123,31 @@ const CreateCollection: React.FC = () => {
   const onSubmit = (formValues: any) => {
     alert(JSON.stringify(formValues));
   };
+
+  const logoHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setLogo(file);
+    }
+  };
+
+  const featuredHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setFeatured(file);
+    }
+  };
+
+  const bannerHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      const file = URL.createObjectURL(fileList[0]);
+      setBanner(file);
+    }
+  };
+
   return (
     <Background>
       <CreateSec>
@@ -116,9 +162,21 @@ const CreateCollection: React.FC = () => {
                 Logo image<span className="require-asterisk">*</span>
               </CreateLabel>
               <AddImgBlock>
-                <AddImgButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddImgButton>
+                <CollectionLogoLabel htmlFor="logo">
+                  {logo ? (
+                    <CollectionImagePreview src={logo} alt="collection-logo" />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionLogoLabel>
+                <CollectionImageInput
+                  {...register("logoURI")}
+                  id="logo"
+                  onChange={logoHandler}
+                />
+                {errors.logoURI && (
+                  <ValidationBlock>{errors.logoURI.message}</ValidationBlock>
+                )}
                 <BlockDescript>
                   This image will also be used for navigation
                   <br /> Recommended 350px X 350px
@@ -128,9 +186,20 @@ const CreateCollection: React.FC = () => {
             <CreateFormGroup>
               <CreateLabel>Featured image</CreateLabel>
               <AddImgBlock className="featured">
-                <AddFeaturedButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddFeaturedButton>
+                <CollectionFeaturedLabel htmlFor="featured">
+                  {featured ? (
+                    <CollectionImagePreview
+                      src={featured}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionFeaturedLabel>
+                <CollectionImageInput
+                  id="featured"
+                  onChange={featuredHandler}
+                />
                 <BlockDescript>
                   This image will be used for featuring your collection on the
                   homepage, category pages or other promotional areas of UNDAS{" "}
@@ -147,9 +216,17 @@ const CreateCollection: React.FC = () => {
                   dimensions change on different devices <br /> Recommended
                   1400px X 400px
                 </BlockDescript>
-                <AddBannerButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddBannerButton>
+                <CollectionBannerLabel htmlFor="banner">
+                  {banner ? (
+                    <CollectionImagePreview
+                      src={banner}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionBannerLabel>
+                <CollectionImageInput id="banner" onChange={bannerHandler} />
               </AddBannerBlock>
             </CreateFormGroup>
             <CreateFormGroup>
@@ -206,7 +283,7 @@ const CreateCollection: React.FC = () => {
                   Category
                 </CreateLabel>
                 <CategorySelectWrapper>
-                  <Select
+                  <CreateSelect
                     itemList={<CategoryList setCategory={setCategory} />}
                     item={{ ...category }}
                   />
@@ -269,30 +346,33 @@ const CreateCollection: React.FC = () => {
                 Select the blockchain where you&#39;d like new items from this
                 collection to be added by default
               </BlockDescript>
-              <CreateSelect aria-label="" id="blockchain">
-                <option>Ethereum</option>
-                <option>Two</option>
-                <option>Three</option>
-              </CreateSelect>
+              <CreateSelect
+                itemList={<BlockchainList setBlockchain={setBlockchain} />}
+                item={blockchain}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher
+                  onClick={() => setIsSensetiveContent(!isSensetiveContent)}
+                />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content
               </BlockDescript>
             </CreateFormGroup>
+            <ButtonsBlock>
+              <FormButtonsWrap>
+                <CreateFormButton className="left-btn" type="submit">
+                  Create
+                </CreateFormButton>
+                <CreateFormButton>Back</CreateFormButton>
+              </FormButtonsWrap>
+            </ButtonsBlock>
           </CreateForm>
-          <ButtonsBlock>
-            <FormButtonsWrap>
-              <CreateFormButton className="left-btn">Create</CreateFormButton>
-              <CreateFormButton>Back</CreateFormButton>
-            </FormButtonsWrap>
-          </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
     </Background>

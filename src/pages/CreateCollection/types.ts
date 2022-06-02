@@ -14,3 +14,8 @@ export interface CreateSubmitForm {
   blockchain: string;
   sensetiveStatus: boolean;
 }
+
+export type SelectItemType = {
+  icon?: string;
+  label: string;
+};

@@ -8,3 +8,4 @@ export { default as LargeCardList } from "./LargeCardList/LargeCardList";
 export { default as Paggination } from "./Paggination/Paggination";
 // export { default as ModalWindow } from "./ModalWindow/ModalWindow";
 export { default as FilterButtons } from "./FilterButtons/FilterButtons";
+export { SelectItem, CreateSelect } from "./CreateSelect/CreateSelect";
