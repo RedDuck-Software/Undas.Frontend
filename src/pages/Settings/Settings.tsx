@@ -1,19 +1,19 @@
 import React from "react";
 
-import { SettingsWrap, BackgroundSettings } from "./Settings.styles";
+import { SettingsWrap } from "./Settings.styles";
 import SettingsTabs from "./SettingsTabs/SettingsTabs";
 
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 
 const Settings = () => {
   return (
-    <BackgroundSettings>
+    <Background>
       <Container>
         <SettingsWrap>
           <SettingsTabs />
         </SettingsWrap>
       </Container>
-    </BackgroundSettings>
+    </Background>
   );
 };
 

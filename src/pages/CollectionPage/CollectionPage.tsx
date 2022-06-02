@@ -67,6 +67,7 @@ import {
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+import { Background } from "../../globalStyles";
 
 const testNFTList = [
   {
@@ -144,6 +145,7 @@ const CollectionPage: React.FC = () => {
         <Banner>
           <img src={CollectionBanner} alt="CollectionBanner" />
         </Banner>
+        <Background>
         <AllNFTContainer>
           <ASideFilterCollection marginTop="208px" />
           <Wrapper w="100%">
@@ -299,6 +301,7 @@ const CollectionPage: React.FC = () => {
           </Wrapper>
           <FilterMobileButton />
         </AllNFTContainer>
+        </Background>
       </ContainerCollection>
     </>
   );

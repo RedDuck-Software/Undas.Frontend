@@ -11,10 +11,11 @@ import Recommended from "./page-components/Recomended/Recommended";
 import Slider from "./page-components/Slider/Slider";
 import MobileHead from "./page-components/MobileHead/MobileHead";
 
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 
 const HomePage: React.FC = () => {
   return (
+    <Background>
     <HomeContainer>
       <MobileHead />
       <Slider />
@@ -34,6 +35,7 @@ const HomePage: React.FC = () => {
         <TopBuyers />
       </Background>*/}
     </HomeContainer>
+    </Background>
   );
 };
 

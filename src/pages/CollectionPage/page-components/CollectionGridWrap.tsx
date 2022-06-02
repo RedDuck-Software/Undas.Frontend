@@ -1,6 +1,6 @@
 import React from "react";
 
-import NFTGridCollection from "./CollectionGrid/NFTGridCollection";
+import NFTGridItem from "../../../components/NFTCard/Grid/NFTGridItem";
 import { GridLayout } from "../../AllNFTs/AllNFTs.styles";
 
 type GridItem = {
@@ -19,7 +19,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
     <GridLayout>
       {itemList.map((item: GridItem) => {
         return (
-          <NFTGridCollection
+          <NFTGridItem
             key={item.id}
             tokenId={+item.id}
             URI={item.URI}

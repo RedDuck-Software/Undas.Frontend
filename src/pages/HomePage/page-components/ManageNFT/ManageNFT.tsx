@@ -28,7 +28,7 @@ const ManageNFT: React.FC = () => {
             <DescList>Register your wallet</DescList>
             <DescList>Connect it to UNDAS</DescList>
           </DescHolder>
-          <PurpleText>Learn More ...</PurpleText>
+          <PurpleText href="faq">Learn More ...</PurpleText>
         </ManageCard>
         <ManageCard alignSelf="self-end">
           <AddingNFTIco />
@@ -41,7 +41,7 @@ const ManageNFT: React.FC = () => {
               <StyledSpan>Choose an NFT and collection to create</StyledSpan>
             </DescList>
           </DescHolder>
-          <PurpleText>Learn More ...</PurpleText>
+          <PurpleText href="faq">Learn More ...</PurpleText>
         </ManageCard>
         <ManageCard>
           <NFTTradingIco />
@@ -51,7 +51,7 @@ const ManageNFT: React.FC = () => {
             <DescList>Rent</DescList>
             <DescList>Exchange</DescList>
           </DescHolder>
-          <PurpleText>Learn More ...</PurpleText>
+          <PurpleText href="faq">Learn More ...</PurpleText>
         </ManageCard>
         <ManageCard alignSelf="self-end">
           <StackingIco />
@@ -60,7 +60,7 @@ const ManageNFT: React.FC = () => {
             <DescList>Earn passive income from NFT Stacking</DescList>
             <DescList>Earn from token holding</DescList>
           </DescHolder>
-          <PurpleText>Learn More ...</PurpleText>
+          <PurpleText href="faq">Learn More ...</PurpleText>
         </ManageCard>
       </ManageCardWrap>
     </ManageNFTContainer>

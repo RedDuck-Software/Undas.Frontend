@@ -6,7 +6,7 @@ import { AccountContainer, StatisticsText } from "./ActivityPage.styles";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -61,6 +61,7 @@ const ActivityPage: React.FC = () => {
   }, [connector, account]);
 
   return (
+    <Background>
     <Container>
       <Wrapper w="100%">
         <AccountContainer>
@@ -74,6 +75,7 @@ const ActivityPage: React.FC = () => {
         </AccountContainer>
       </Wrapper>
     </Container>
+    </Background>
   );
 };
 
