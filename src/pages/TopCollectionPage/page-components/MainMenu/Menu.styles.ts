@@ -44,7 +44,7 @@ export const OfferMenuWrap = styled.div`
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
-  min-width: 800px;
+  min-width: 900px;
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
@@ -65,7 +65,7 @@ export const ItemName = styled.span`
   line-height: 17px;
   color: #232428;
   margin-right: 5px;
-  margin-top: -30px;
+  display: flex;
   @media (max-width: 576px) {
     font-size: 12px;
   }
@@ -85,8 +85,6 @@ export const CollectionName = styled.span`
 `;
 export const UNDText = styled.span`
   margin-right: 5px;
-  margin-left: -49px;
-  margin-top: 30px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 600;
@@ -95,10 +93,10 @@ export const UNDText = styled.span`
   text-align: center;
   color: #873dc1;
   position: relative;
+  display: flex;
 
   @media (max-width: 576px) {
     font-size: 12px;
-    margin-left: -44px;
   }
 `;
 export const UND = styled.span`
@@ -294,4 +292,10 @@ export const ContainerTable = styled.div`
   @media (max-width: 576px) {
     margin-bottom: 40px;
   }
+`;
+
+export const NameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
