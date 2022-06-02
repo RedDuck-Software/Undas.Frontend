@@ -5,7 +5,7 @@ import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 
 export const NFTWrap = styled.div`
   cursor: pointer;
-  max-width: 255px;
+  width: 100%;
   height: 340px;
   border-radius: 10px;
   overflow: hidden;
@@ -40,6 +40,7 @@ export const Favorite = styled(FavoriteIco)`
 export const ImageWrap = styled.div`
   position: relative;
   height: 215px;
+  background-color: #fff;
 `;
 export const TextSpan = styled.span`
   line-height: 10px;
@@ -75,6 +76,9 @@ export const BuyingBlock = styled.div`
   font-size: 14px;
   color: #232428;
   overflow: hidden;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const LeftBlock = styled.div`
@@ -98,6 +102,12 @@ export const BuyBtn = styled.button`
 
 export const TagName = styled.span`
   padding: 14px 0px 14px 0px;
+  @media (max-width: 649px) {
+    padding: 6px 0px 6px 0px;
+  }
+  @media (max-width: 576px) {
+    padding: 14px 0px 14px 0px;
+  }
 `;
 
 export const PriceList = styled.ul`
@@ -105,9 +115,8 @@ export const PriceList = styled.ul`
   border-radius: 0 0 12px 0;
   list-style: none;
   padding-left: 1px;
-  max-width: 134px;
   overflow: hidden;
-  width: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -124,7 +133,6 @@ export const PriceItem = styled.li`
   font-size: 10px;
   color: #232428;
   background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(30px);
 `;
 export const PriceInEth = styled.span`
   font-size: 12px;
