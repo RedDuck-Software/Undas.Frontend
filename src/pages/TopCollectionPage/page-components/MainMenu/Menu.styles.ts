@@ -196,7 +196,6 @@ export const OffersTr = styled.tr`
 
   &:hover {
     filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
-    border-radius: 10px;
   }
 `;
 export const OfferFilterWrap = styled(ViewOption)`
@@ -293,5 +292,31 @@ export const ContainerTable = styled.div`
   }
   @media (max-width: 576px) {
     margin-bottom: 40px;
+  }
+`;
+export const OffersHeadTr = styled.tr`
+  &.offers-menu-head {
+    background-color: #fbf5ff;
+  }
+`;
+interface IOffersTd {
+  padd?: string;
+  textAlign?: string;
+}
+export const OffersTd = styled.td<IOffersTd>`
+  padding: ${(props) => props.padd || "10px 30px"};
+  text-align: ${(props) => props.textAlign || ""};
+  font-weight: 400;
+  font-size: 14px;
+  color: #7c7c7c;
+  &.first-column {
+    padding: 15px 0 15px 20px;
+    width: 3%;
+  }
+  @media (max-width: 992px) {
+    padding: 10px 10px 10px 20px;
+  }
+  @media (max-width: 576px) {
+    padding: 10px;
   }
 `;

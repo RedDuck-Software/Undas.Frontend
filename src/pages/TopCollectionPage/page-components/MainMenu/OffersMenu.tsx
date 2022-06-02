@@ -9,7 +9,6 @@ import {
   ActionText,
   UNDText,
   UND,
-  USDPrise,
   PriceTextW,
   PercentTextTop,
   PercentTextButtom,
@@ -24,6 +23,8 @@ import {
   FilterButton,
   TextButton,
   ContainerTable,
+  OffersHeadTr,
+  OffersTd,
 } from "./Menu.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -52,6 +53,18 @@ const OffersMenu: React.FC = () => {
       </SelectedFilters>
       <ContainerTable>
         <OffersWrapTable>
+        <OffersHeadTr className="offers-menu-head">
+            <OffersTd className="first-column"></OffersTd>
+            <OffersTd>Item</OffersTd>
+            <OffersTd>
+              <PriceTextW>Floor Price</PriceTextW>
+            </OffersTd>
+            <OffersTd>
+              <PriceTextW>Total Vol</PriceTextW>
+            </OffersTd>
+            <OffersTd>24h Vol</OffersTd>
+            <OffersTd>24h Vol</OffersTd>
+          </OffersHeadTr>
           <OffersTr className="offers-menu-row">
             <OffersTdText className="first-column">
               <ActionText>1</ActionText>
@@ -64,7 +77,7 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name</ItemName>
+              <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
@@ -72,28 +85,24 @@ const OffersMenu: React.FC = () => {
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Floor</USDPrise>
                 <EtherIcon />
                 <PriceText>13,0</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Total Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <PercentTextTop>100,00%</PercentTextTop>
               </PriceTextW>
             </OffersTdText>
@@ -110,7 +119,7 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name</ItemName>
+              <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
@@ -118,28 +127,24 @@ const OffersMenu: React.FC = () => {
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Floor</USDPrise>
                 <EtherIcon />
                 <PriceText>13,0</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Total Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <PercentTextButtom>100,00%</PercentTextButtom>
               </PriceTextW>
             </OffersTdText>
@@ -156,7 +161,7 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name</ItemName>
+              <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
@@ -164,28 +169,24 @@ const OffersMenu: React.FC = () => {
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Floor</USDPrise>
                 <EtherIcon />
                 <PriceText>13,0</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>Total Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <EtherIcon />
                 <PriceText>133,20</PriceText>
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
-                <USDPrise>24h Vol</USDPrise>
                 <PercentTextTop>100,00%</PercentTextTop>
               </PriceTextW>
             </OffersTdText>
