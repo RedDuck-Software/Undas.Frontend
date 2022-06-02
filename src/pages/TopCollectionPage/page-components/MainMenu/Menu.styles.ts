@@ -30,16 +30,12 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30px;
-  margin-right: 30px;
 
   @media (max-width: 768px) {
     margin-top: 30px;
   }
   @media (max-width: 576px) {
     margin-top: 20px;
-    margin-left: unset;
-    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
