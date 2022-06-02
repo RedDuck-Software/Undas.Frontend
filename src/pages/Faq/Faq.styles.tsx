@@ -23,6 +23,7 @@ export const TabButton = styled(Nav.Link)`
     color: #232428 !important;
     box-shadow: 3px 5px 5px rgba(124, 124, 124, 0.75);
     text-shadow: 0 0 1px rgba(135, 61, 193, 0.5);
+    cursor: pointer;
   }
   &.active {
     color: #5d3f92 !important;

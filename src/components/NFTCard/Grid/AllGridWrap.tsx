@@ -16,7 +16,7 @@ import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
 // import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
-import { createClient } from 'urql';
+import { createClient } from "urql";
 /* interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
