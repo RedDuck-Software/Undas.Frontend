@@ -43,13 +43,7 @@ import {
   AgreeRowButton,
 } from "./Offer.styles";
 
-import {
-  verify,
-   UND, 
-   cardNFT, 
-   down, 
-   info,
-} from "../../imports";
+import { verify, UND, cardNFT, down, info } from "../../imports";
 
 const Offer: React.FC = () => {
   return (
@@ -57,19 +51,19 @@ const Offer: React.FC = () => {
       <FirstCollum>
         <NameRow>
           <CollectionName>Collection Name</CollectionName>
-          <ImageVerify src={verify} alt="verify-image"/>
-          <ImageUND src={UND} alt="undas-image"/>
+          <ImageVerify src={verify} alt="verify-image" />
+          <ImageUND src={UND} alt="undas-image" />
         </NameRow>
-        <ImageNFT src={cardNFT} alt="undas-image"/>
+        <ImageNFT src={cardNFT} alt="undas-image" />
       </FirstCollum>
       <SecondCollum>
         <NameRow>
           <TextNameNFT>Name NFT</TextNameNFT>
-          <ImageVerifyItem src={verify} alt="verify-image"/>
-          <ImageUNDItem src={UND} alt="undas-image"/>
+          <ImageVerifyItem src={verify} alt="verify-image" />
+          <ImageUNDItem src={UND} alt="undas-image" />
         </NameRow>
         <NameRow>
-          <TextCreator>creator by {'\u00A0'}</TextCreator>
+          <TextCreator>creator by {"\u00A0"}</TextCreator>
           <CreatorName>Boria Boria</CreatorName>
         </NameRow>
         <NameRow>
@@ -78,7 +72,7 @@ const Offer: React.FC = () => {
         <PriceRow>
           <EthSelect>
             <EthText>ETH</EthText>
-            <ImageDown src={down} alt="down-image"/>
+            <ImageDown src={down} alt="down-image" />
           </EthSelect>
           <AmmountInput type="text" placeholder="Amount" />
           <CostSelect>
@@ -90,8 +84,8 @@ const Offer: React.FC = () => {
         </NameRow>
         <PriceRow>
           <DaySelect>
-              3 day
-            <ImageDownOffer src={down} alt="down-image"/>
+            3 day
+            <ImageDownOffer src={down} alt="down-image" />
           </DaySelect>
           <TimeSelect>
             <TextTime>06 : 35</TextTime>
@@ -108,21 +102,24 @@ const Offer: React.FC = () => {
             id="purchases"
             className="custom-checkbox"
           />
-            <CheckboxLabel htmlFor="purchases">
-            Pay in {'\u00A0'}<UNDLabel>UND</UNDLabel>{'\u00A0'} with a 50% discount
-            <ImageInfo src={info} alt="info-image"/>
+          <CheckboxLabel htmlFor="purchases">
+            Pay in {"\u00A0"}
+            <UNDLabel>UND</UNDLabel>
+            {"\u00A0"} with a 50% discount
+            <ImageInfo src={info} alt="info-image" />
             <DollarPrice>258,25</DollarPrice>
           </CheckboxLabel>
         </PayRow>
         <AgreeRow>
           <CheckboxInputAgreement
-              type="checkbox"
-              id="agreement"
-              className="custom-checkbox"
-            />
-              <CheckboxLabelAgreement htmlFor="agreement">
-                I agree to the platform {'\u00A0'}<AgreementLink>agreement...</AgreementLink>
-            </CheckboxLabelAgreement>
+            type="checkbox"
+            id="agreement"
+            className="custom-checkbox"
+          />
+          <CheckboxLabelAgreement htmlFor="agreement">
+            I agree to the platform {"\u00A0"}
+            <AgreementLink>agreement...</AgreementLink>
+          </CheckboxLabelAgreement>
         </AgreeRow>
         <AgreeRowButton>
           <ButtonMakeOffer>Make Offer</ButtonMakeOffer>

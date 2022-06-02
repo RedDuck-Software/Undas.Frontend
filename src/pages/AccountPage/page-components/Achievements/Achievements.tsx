@@ -63,11 +63,11 @@ const Achievements = () => {
       <BackImg src={backImg} alt="back-image" />
       <BackImgSecond src={backImg} alt="back-image" />
       <AchievementsHeadInner>
-      <AchievementsTitle>Achievements</AchievementsTitle>
-      <InfoText>
-        Each reward gives 1% to the total user rate when distributing tokens for
-        staking and trading volume{" "}
-      </InfoText>
+        <AchievementsTitle>Achievements</AchievementsTitle>
+        <InfoText>
+          Each reward gives 1% to the total user rate when distributing tokens
+          for staking and trading volume{" "}
+        </InfoText>
       </AchievementsHeadInner>
       <PurpleRewards>
         <PurpleRewardsTitle>Set of Purple Rewards</PurpleRewardsTitle>
@@ -106,7 +106,8 @@ const Achievements = () => {
         <RewardsBody>
           <RewardsDescription>
             Lifetime discount on all commissions of all Undas services of 6
-            percent, the first thousand users to close the set receives 1,000 und{" "}
+            percent, the first thousand users to close the set receives 1,000
+            und{" "}
           </RewardsDescription>
           <ImagesBlock>
             <RewardImg src={silverDollarReward} alt="dollar-reward-image" />
@@ -149,9 +150,7 @@ const Achievements = () => {
         <Rewards>
           <RewardItem>
             <RewardImgTrading src={dollarReward} alt="dollar-reward-image" />{" "}
-            <TextRewards>
-              1 Grade: Trade turnover of 1 ETH or more
-            </TextRewards>
+            <TextRewards>1 Grade: Trade turnover of 1 ETH or more</TextRewards>
           </RewardItem>
           <RewardItem>
             <RewardImgTrading
@@ -165,16 +164,18 @@ const Achievements = () => {
               src={silverDollarReward}
               alt="dollar-reward-image"
             />{" "}
-            <TextRewards>3 Grade: Trade turnover of 100 ETH or more</TextRewards>
+            <TextRewards>
+              3 Grade: Trade turnover of 100 ETH or more
+            </TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={goldDollarReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>
-            4 Grade: Trade turnover of 10 000 ETH or more
-          </TextRewards>
+            <RewardImgTrading
+              src={goldDollarReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>
+              4 Grade: Trade turnover of 10 000 ETH or more
+            </TextRewards>
           </RewardItem>
         </Rewards>
       </TradingRewards>
@@ -184,30 +185,25 @@ const Achievements = () => {
         </TradingRewardsTitle>
         <Rewards>
           <RewardItem>
-          <RewardImgTrading src={moneyReward} alt="dollar-reward-image" />{" "}
-          <TextRewards>
-            1 Grade: Simultaneous Stacking 5 NFT
-          </TextRewards>
-          </RewardItem>
-          <RewardItem>
-          <RewardImgTrading
-            src={bronzeMoneyReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>2 Grade: Simultaneous Stacking 50 NFT</TextRewards>
-          </RewardItem>
-          <RewardItem>
-          <RewardImgTrading
-            src={silverMoneyReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>3 Grade: Simultaneous Stacking 100 NFT</TextRewards>
+            <RewardImgTrading src={moneyReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>1 Grade: Simultaneous Stacking 5 NFT</TextRewards>
           </RewardItem>
           <RewardItem>
             <RewardImgTrading
-              src={goldMoneyReward}
+              src={bronzeMoneyReward}
               alt="dollar-reward-image"
             />{" "}
+            <TextRewards>2 Grade: Simultaneous Stacking 50 NFT</TextRewards>
+          </RewardItem>
+          <RewardItem>
+            <RewardImgTrading
+              src={silverMoneyReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>3 Grade: Simultaneous Stacking 100 NFT</TextRewards>
+          </RewardItem>
+          <RewardItem>
+            <RewardImgTrading src={goldMoneyReward} alt="dollar-reward-image" />{" "}
             <TextRewards>4 Grade: Simultaneous Stacking 250 NFT</TextRewards>
           </RewardItem>
         </Rewards>
@@ -218,29 +214,20 @@ const Achievements = () => {
         </TradingRewardsTitle>
         <Rewards>
           <RewardItem>
-          <RewardImgTrading src={ethReward} alt="dollar-reward-image" />{" "}
-          <TextRewards>1 Grade: Rent 1 NFT</TextRewards>
+            <RewardImgTrading src={ethReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>1 Grade: Rent 1 NFT</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={bronzeEthReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>2 Grade: Rent 25 NFT</TextRewards>
+            <RewardImgTrading src={bronzeEthReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>2 Grade: Rent 25 NFT</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={silverEthReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>3 Grade: Rent 100 NFT</TextRewards>
+            <RewardImgTrading src={silverEthReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>3 Grade: Rent 100 NFT</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={goldEthReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>4 Grade: Rent 500 NFT</TextRewards>
+            <RewardImgTrading src={goldEthReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>4 Grade: Rent 500 NFT</TextRewards>
           </RewardItem>
         </Rewards>
       </TradingRewards>
@@ -250,37 +237,34 @@ const Achievements = () => {
         </TradingRewardsTitle>
         <Rewards>
           <RewardItem>
-          <RewardImgTrading src={caseReward} alt="dollar-reward-image" />{" "}
-          <TextRewards>
-            1 Grade: A hold of at least 1 000 UND for 30 days
-          </TextRewards>
+            <RewardImgTrading src={caseReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>
+              1 Grade: A hold of at least 1 000 UND for 30 days
+            </TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={bronzeCaseReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>
-            2 Grade: A hold of at least 1 500 UND for 60 days
-          </TextRewards>
+            <RewardImgTrading
+              src={bronzeCaseReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>
+              2 Grade: A hold of at least 1 500 UND for 60 days
+            </TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={silverCaseReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>
-            3 Grade: A hold of at least 3 000 UND for 90 days
-          </TextRewards>
+            <RewardImgTrading
+              src={silverCaseReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>
+              3 Grade: A hold of at least 3 000 UND for 90 days
+            </TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={goldCaseReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>
-            4 Grade: A hold of at least 10 000 UND for 180 days
-          </TextRewards>
+            <RewardImgTrading src={goldCaseReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>
+              4 Grade: A hold of at least 10 000 UND for 180 days
+            </TextRewards>
           </RewardItem>
         </Rewards>
       </TradingRewards>
@@ -290,31 +274,29 @@ const Achievements = () => {
         </TradingRewardsTitle>
         <Rewards>
           <RewardItem>
-          <RewardImgTrading src={peopleReward} alt="dollar-reward-image" />{" "}
-          <TextRewards>
-            1 Grade: Bringing 1 user to the site
-          </TextRewards>
+            <RewardImgTrading src={peopleReward} alt="dollar-reward-image" />{" "}
+            <TextRewards>1 Grade: Bringing 1 user to the site</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={bronzePeopleReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>2 Grade: Bringing 5 user to the site</TextRewards>
+            <RewardImgTrading
+              src={bronzePeopleReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>2 Grade: Bringing 5 user to the site</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={silverPeopleReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>3 Grade: Bringing 25 user to the site</TextRewards>
+            <RewardImgTrading
+              src={silverPeopleReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>3 Grade: Bringing 25 user to the site</TextRewards>
           </RewardItem>
           <RewardItem>
-          <RewardImgTrading
-            src={goldPeopleReward}
-            alt="dollar-reward-image"
-          />{" "}
-          <TextRewards>4 Grade: Bringing 50 user to the site</TextRewards>
+            <RewardImgTrading
+              src={goldPeopleReward}
+              alt="dollar-reward-image"
+            />{" "}
+            <TextRewards>4 Grade: Bringing 50 user to the site</TextRewards>
           </RewardItem>
         </Rewards>
       </TradingRewards>

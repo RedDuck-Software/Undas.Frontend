@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreateDropdown = styled.div`
+export const SelectWrapper = styled.div`
   width: 100%;
   max-width: 255px;
 
@@ -11,7 +11,7 @@ export const CreateDropdown = styled.div`
   flex-direction: column;
 `;
 
-export const CreateDropdownCurrent = styled.div<{ isOpen: boolean }>`
+export const SelectedItemWrapper = styled.div<{ isOpen?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,8 +42,15 @@ export const CreateDropdownCurrent = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-export const CreateDropdownList = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+export const SelectedItem = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const DropdownList = styled.div`
+  display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
@@ -53,7 +60,7 @@ export const CreateDropdownList = styled.div<{ isOpen: boolean }>`
   top: 100%;
 `;
 
-export const CreateDropdownItem = styled.div`
+export const DropdownItemWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -84,4 +91,13 @@ export const DropdownItemIcon = styled.img`
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+`;
+
+export const DropdownArrow = styled.img<{ isOpen: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all ease-in-out 0.15s;
+  transform: ${({ isOpen }) => (isOpen ? `rotate(180deg)` : `rotate(0)`)};
 `;

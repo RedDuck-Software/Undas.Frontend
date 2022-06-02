@@ -1,16 +1,11 @@
 import React from "react";
 
-import {
+import {} from "./CastomOffer.styles";
 
-} from "./CastomOffer.styles";
-
-import {
-} from "../../imports";
+import {} from "../../imports";
 
 const CastomOffer: React.FC = () => {
-  return (
-    <span>grteg</span>
-  );
+  return <span>grteg</span>;
 };
 
 export default CastomOffer;

@@ -116,9 +116,9 @@ interface IVerifiedIcon {
 export const VerifiedIcon = styled.div<IVerifiedIcon>`
   margin: 0 10px;
   width: ${(props) => props.w || "16px"};
-   img{
-     width: 100%;
-   }
+  img {
+    width: 100%;
+  }
 `;
 interface IPlatform {
   col?: string;
@@ -225,23 +225,22 @@ export const Info = styled.ul`
     gap: 10px;
   }
   @media (max-width: 1180px) {
-    & .hide{
+    & .hide {
       display: none;
     }
   }
   @media (max-width: 992px) {
     margin-bottom: 10px;
     justify-content: space-around;
-    & .hide{
+    & .hide {
       display: inline;
     }
   }
   @media (max-width: 620px) {
-    & .hide{
+    & .hide {
       display: none;
     }
   }
-  
 `;
 
 export const InfoElement = styled.li`

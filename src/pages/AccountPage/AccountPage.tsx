@@ -163,6 +163,7 @@ const AccountPage: React.FC = () => {
             {tab === "achievements" && <Achievements />}
           </Wrapper>
           <FilterMobileButton />
+          {tab == "" || tab == "offers" ? <FilterMobileButton /> : null}
         </AccountContainer>
       </AccountWrapper>
     </>

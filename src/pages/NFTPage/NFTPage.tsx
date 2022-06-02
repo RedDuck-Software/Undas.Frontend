@@ -249,13 +249,21 @@ const NFTPage: React.FC = () => {
               <NameInner>
                 <Name>
                   <NameNft>Name NFT</NameNft>
-                  <VerifiedIcon w="24px"><img src={Verified} alt="verified-ico" /></VerifiedIcon>
-                  <Platform col="#873DC1" fs="36px" fsxs="24px">UND</Platform>
+                  <VerifiedIcon w="24px">
+                    <img src={Verified} alt="verified-ico" />
+                  </VerifiedIcon>
+                  <Platform col="#873DC1" fs="36px" fsxs="24px">
+                    UND
+                  </Platform>
                 </Name>
                 <Name>
                   <NameCollection>Collection Name</NameCollection>
-                  <VerifiedIcon><img src={Verified} alt="verified-ico" /></VerifiedIcon>
-                  <Platform col="#873DC1" fs="24px">UND</Platform>
+                  <VerifiedIcon>
+                    <img src={Verified} alt="verified-ico" />
+                  </VerifiedIcon>
+                  <Platform col="#873DC1" fs="24px">
+                    UND
+                  </Platform>
                 </Name>
               </NameInner>
               <NavMenu>
@@ -295,11 +303,15 @@ const NFTPage: React.FC = () => {
                     </InfoElement>
                     <InfoElement>
                       <ViewsIco />
-                      <span>91 <span className="hide">views</span></span>
+                      <span>
+                        91 <span className="hide">views</span>
+                      </span>
                     </InfoElement>
                     <InfoElement>
                       <FavouriteIco />
-                      <span>10 <span className="hide">favourites</span></span>
+                      <span>
+                        10 <span className="hide">favourites</span>
+                      </span>
                     </InfoElement>
                     <InfoElement>
                       <UnlockIco />

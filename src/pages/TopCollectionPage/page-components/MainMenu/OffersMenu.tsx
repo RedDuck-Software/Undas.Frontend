@@ -25,6 +25,7 @@ import {
   ContainerTable,
   OffersHeadTr,
   OffersTd,
+  NameContainer,
 } from "./Menu.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -77,11 +78,13 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name Collection</ItemName>
+              <NameContainer>
+               <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
               </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -119,11 +122,13 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name Collection</ItemName>
+              <NameContainer>
+               <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
               </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -161,11 +166,13 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name Collection</ItemName>
+              <NameContainer>
+               <ItemName>Name Collection</ItemName>
               <UNDText>
                 <ItemVerifyIco />
                 <UND>UND</UND>
               </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
