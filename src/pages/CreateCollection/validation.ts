@@ -10,7 +10,13 @@ import {
 
 export const validationSchema = yup.object().shape(
   {
-    logoURI: yup.string(),
+    logoURI: yup
+      .mixed()
+      .required("Logo is required")
+      .test("fileSize", "The file is too large", (value) => {
+        console.log(value);
+        return value && value[0].size <= 3000000;
+      }),
     featureURI: yup.string(),
     bannerURI: yup.string(),
     name: yup

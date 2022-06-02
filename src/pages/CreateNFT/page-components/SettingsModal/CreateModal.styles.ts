@@ -21,22 +21,32 @@ export const ModalButton = styled.button`
     box-shadow: 0px 0px 10px rgba(135, 61, 193, 0.5);
   }
 `;
+
 export const TitleModal = styled.div`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #232428;
 `;
+
 export const Descriprtion = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
 `;
+
 export const ModalInputGroup = styled.div`
   margin-bottom: 10px;
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 992px) {
+    display: flex;
+  }
+  @media (max-width: 576px) {
+    display: none;
   }
 `;
 
@@ -49,7 +59,16 @@ export const ModalLabel = styled.label`
   font-size: 14px;
   line-height: 17px;
   color: #232428;
+  text-align: center;
+
+  @media (max-width: 992px) {
+    width: 10%;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 5px;
+  }
 `;
+
 export const ModalInput = styled.input`
   border: 1px solid rgba(124, 124, 124, 0.5);
   outline: none;
@@ -66,6 +85,19 @@ export const ModalInput = styled.input`
   }
   &[type="number"] {
     width: 12%;
+  }
+
+  @media (max-width: 992px) {
+    width: 36%;
+    &[type="number"] {
+      width: 17%;
+    }
+  }
+  @media (max-width: 576px) {
+    border-radius: 5px;
+    &[type="number"] {
+      width: 35%;
+    }
   }
 `;
 export const InputButton = styled.button`
@@ -93,10 +125,22 @@ export const InputButton = styled.button`
   &::after {
     transform: rotate(-45deg);
   }
+
+  @media (max-width: 992px) {
+    width: 8%;
+  }
 `;
 export const ModalLabelStraight = styled(ModalLabel)`
   border-radius: 0;
   border-left: 0;
+  text-align: center;
+  
+  @media (max-width: 992px) {
+    width: 10%;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 5px;
+  }
 `;
 
 export const CreateModalFormButton = styled(CreateFormButton)`
@@ -109,11 +153,84 @@ export const CreateModalFormButton = styled(CreateFormButton)`
       background: #873dc1;
       border: 1px solid transparent;
     }
+    flex: 0 0 48%;
+    margin-right: 4%;
+    &.colored-btn {
+      margin-right: unset;
+    }
   }
   @media (max-width: 576px) {
     margin: 0;
+    flex: 0 0 100%;
     &.colored-btn {
-      margin-top: 20px;
+      margin-top: 15px;
+      margin-bottom: 30px;
     }
   }
+`;
+
+export const ModalInputGroupSmall = styled.div`
+  background: #FFFFFF;
+  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  border-radius: 10px;
+  padding: 15px 10px;
+  flex-wrap: wrap;
+  display: none;
+
+  @media (max-width: 576px) {
+    display: flex;
+    &.second-row {
+      margin-top: 15px;
+    }
+  }
+`;
+
+export const TextType = styled.div`
+  display: flex;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  align-self: center;
+  width: 15%;
+  &.of-text {
+    padding-left: 5%;
+  }
+`;
+
+export const ModalInputSmall = styled.input`
+  border: 1px solid rgba(124, 124, 124, 0.5);
+  outline: none;
+  padding: 10px 20px;
+  color: #232428;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #fbf5ff;
+  border-radius: 10px;
+  width: 85%;
+  &::placeholder {
+    color: #7c7c7c;
+  }
+  &:focus {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
+  &[type="number"] {
+    width: 12%;
+  }
+  &.firt-row {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 5px;
+  }
+`;
+
+export const NumberInputGroup = styled.div`
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+  width: 100%;
 `;

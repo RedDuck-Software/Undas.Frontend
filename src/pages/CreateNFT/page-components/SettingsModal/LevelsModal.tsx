@@ -12,6 +12,10 @@ import {
   InputButton,
   ModalLabelStraight,
   CreateModalFormButton,
+  ModalInputGroupSmall,
+  TextType,
+  ModalInputSmall,
+  NumberInputGroup,
 } from "./CreateModal.styles";
 
 import "./styles.css";
@@ -52,6 +56,26 @@ const LevelsModal: React.FC = () => {
             <ModalInput type="number" id="of" placeholder="5" />
             <InputButton></InputButton>
           </ModalInputGroup>
+          <ModalInputGroupSmall>
+            <TextType>Name</TextType>
+            <ModalInputSmall type="text" id="name" placeholder="Male" />
+            <NumberInputGroup>
+              <TextType>Value</TextType>
+              <ModalInput type="number" id="value" placeholder="3" />
+              <TextType className="of-text">Of</TextType>
+              <ModalInput type="number" id="of" placeholder="5" />
+            </NumberInputGroup>
+          </ModalInputGroupSmall>
+          <ModalInputGroupSmall className="second-row">
+          <TextType>Name</TextType>
+            <ModalInputSmall type="text" id="name" placeholder="Male" />
+            <NumberInputGroup>
+              <TextType>Value</TextType>
+              <ModalInput type="number" id="value" placeholder="3" />
+              <TextType className="of-text">Of</TextType>
+              <ModalInput type="number" id="of" placeholder="5" />
+            </NumberInputGroup>
+          </ModalInputGroupSmall>
         </Modal.Body>
         <Modal.Footer>
           <CreateModalFormButton onClick={handleClose}>

@@ -13,7 +13,7 @@ import {
   TextGet,
   TextUndas,
   TextStacking,
-  UndasDivForBotton,
+  SliderButtonsBlock,
   ExploreButton,
   CreateButton,
   CollectionDiv,
@@ -36,17 +36,15 @@ const Slider: React.FC = () => {
     >
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{" "}
-          <TextUndas>UNDAS</TextUndas>
-          <br></br>
+          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>
         </UndasDiv>
-        <UndasDivForBotton>
+        <SliderButtonsBlock>
           <ExploreButton>Explore</ExploreButton>
           <CreateButton>Create</CreateButton>
-        </UndasDivForBotton>
+        </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
@@ -56,17 +54,15 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{" "}
-          <TextUndas>UNDAS</TextUndas>
-          <br></br>
+          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>
         </UndasDiv>
-        <UndasDivForBotton>
+        <SliderButtonsBlock>
           <ExploreButton>Explore</ExploreButton>
           <CreateButton>Create</CreateButton>
-        </UndasDivForBotton>
+        </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
@@ -76,17 +72,15 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with </TextGet>{" "}
-          <TextUndas>UNDAS</TextUndas>
-          <br></br>
+          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>
         </UndasDiv>
-        <UndasDivForBotton>
+        <SliderButtonsBlock>
           <ExploreButton>Explore</ExploreButton>
           <CreateButton>Create</CreateButton>
-        </UndasDivForBotton>
+        </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
