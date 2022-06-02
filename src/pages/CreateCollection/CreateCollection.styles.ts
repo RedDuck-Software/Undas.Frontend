@@ -105,7 +105,9 @@ export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   }
 `;
 
-export const CollectionBannerLabelWrapper = styled(CollectionFeaturedLabelWrapper)`
+export const CollectionBannerLabelWrapper = styled(
+  CollectionFeaturedLabelWrapper,
+)`
   max-width: 100%;
 `;
 

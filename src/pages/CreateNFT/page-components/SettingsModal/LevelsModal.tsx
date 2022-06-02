@@ -67,7 +67,7 @@ const LevelsModal: React.FC = () => {
             </NumberInputGroup>
           </ModalInputGroupSmall>
           <ModalInputGroupSmall className="second-row">
-          <TextType>Name</TextType>
+            <TextType>Name</TextType>
             <ModalInputSmall type="text" id="name" placeholder="Male" />
             <NumberInputGroup>
               <TextType>Value</TextType>

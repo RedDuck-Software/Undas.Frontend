@@ -44,7 +44,7 @@ export const AccordionItem = styled(Accordion.Item)`
   & .accordion-text-link {
     color: #873dc1;
     text-decoration: none;
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -98,8 +98,7 @@ export const AccountSupportCheckboxInput = styled(CheckboxInput)`
     top: 2px;
   }
 `;
-export const AccountSupportCheckboxLabel = styled(CheckboxLabel)`
-`;
+export const AccountSupportCheckboxLabel = styled(CheckboxLabel)``;
 export const AccountSupportButton = styled(FormButton)`
   color: #ff2a36;
   border: 1px solid #ff2a36;

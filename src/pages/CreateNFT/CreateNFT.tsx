@@ -42,14 +42,12 @@ import StatsModal from "./page-components/SettingsModal/StatsModal";
 import Stats from "./page-components/Stats";
 import Switcher from "./page-components/Switcher/Switcher";
 import { Background } from "../../globalStyles";
-import { UndasGeneralNFT__factory} from "../../typechain/factories/UndasGeneralNFT__factory";
+import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
 import { FormButtonsWrap } from "../Settings/SettingsTabs/Profile/ProfileSettings.styles";
 import Moralis from "moralis";
-import {ethers} from "ethers";
+import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
-
-
 
 const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
 
@@ -66,7 +64,7 @@ const CreateNFT: React.FC = () => {
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
   console.log(undasGeneralNFTAbi);
-  
+
   const [externalLink, setExternalLink] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -82,11 +80,10 @@ const CreateNFT: React.FC = () => {
     resolver: yupResolver(validationSchema),
   });
 
-   const mintNFT = async () => {
-
-     console.log("bid");
-     console.log("connector" + connector);
-     console.log("acc" + account); 
+  const mintNFT = async () => {
+    console.log("bid");
+    console.log("connector" + connector);
+    console.log("acc" + account);
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -97,14 +94,13 @@ const CreateNFT: React.FC = () => {
     console.log(signer);
     // const SIGNER_ADDRESS = await signer.getAddress();
     // console.log("signer addr" + SIGNER_ADDRESS);
- 
+
     const NFTContract = UndasGeneralNFT__factory.connect(
-      '0x674002Df32E372E3D2E2CfC253471d0A5912fb9A',//goerli contract addr
+      "0x674002Df32E372E3D2E2CfC253471d0A5912fb9A", //goerli contract addr
       signer,
     );
 
-  NFTContract.safeMintGeneral(account, description, name, externalLink);
-
+    NFTContract.safeMintGeneral(account, description, name, externalLink);
   };
 
   return (
@@ -291,7 +287,9 @@ const CreateNFT: React.FC = () => {
           </CreateForm>
           <ButtonsBlock>
             <FormButtonsWrap>
-              <CreateFormButton className="left-btn" onClick={()=>mintNFT()}>Create</CreateFormButton>
+              <CreateFormButton className="left-btn" onClick={() => mintNFT()}>
+                Create
+              </CreateFormButton>
               <CreateFormButton>Back</CreateFormButton>
             </FormButtonsWrap>
           </ButtonsBlock>

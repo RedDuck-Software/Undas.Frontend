@@ -96,12 +96,11 @@ const AccountPage: React.FC = () => {
   }
 
   return (
-    
-      <AccountWrapper>
-        <Banner>
-          <img src={AccountBanner} alt="account-banner" />
-        </Banner>
-        <Background>
+    <AccountWrapper>
+      <Banner>
+        <img src={AccountBanner} alt="account-banner" />
+      </Banner>
+      <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
           {tab !== "favourite" &&
@@ -166,9 +165,8 @@ const AccountPage: React.FC = () => {
           </Wrapper>
           {tab == "" || tab == "offers" ? <FilterMobileButton /> : null}
         </AccountContainer>
-        </Background>
-      </AccountWrapper>
-    
+      </Background>
+    </AccountWrapper>
   );
 };
 

@@ -13,7 +13,6 @@ import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
 
-
 const RentNFTContainer = styled.div`
   margin: 120px 0;
   @media (max-width: 992px) {
@@ -22,7 +21,7 @@ const RentNFTContainer = styled.div`
   @media (max-width: 768px) {
     margin: 40px 0;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     position: relative;
     padding-bottom: 70px;
   }
@@ -105,19 +104,20 @@ const RentNFT: React.FC = () => {
       >
         {list?.map((item) => {
           console.log(list);
-          return (<>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
+          return (
+            <>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
             </>
           );
         })}

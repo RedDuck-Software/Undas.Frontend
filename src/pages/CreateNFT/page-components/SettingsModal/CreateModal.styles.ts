@@ -134,7 +134,7 @@ export const ModalLabelStraight = styled(ModalLabel)`
   border-radius: 0;
   border-left: 0;
   text-align: center;
-  
+
   @media (max-width: 992px) {
     width: 10%;
   }
@@ -170,7 +170,7 @@ export const CreateModalFormButton = styled(CreateFormButton)`
 `;
 
 export const ModalInputGroupSmall = styled.div`
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   border-radius: 10px;
   padding: 15px 10px;
@@ -187,7 +187,7 @@ export const ModalInputGroupSmall = styled.div`
 
 export const TextType = styled.div`
   display: flex;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

@@ -46,7 +46,12 @@ const PropertiesModal: React.FC = () => {
           </ModalInputGroup>
           <ModalInputGroupSmall>
             <TextType>Type</TextType>
-            <ModalInputSmall type="text" id="type" placeholder="Character" className="firt-row"/>
+            <ModalInputSmall
+              type="text"
+              id="type"
+              placeholder="Character"
+              className="firt-row"
+            />
             <TextType>Name</TextType>
             <ModalInputSmall type="text" id="name" placeholder="Male" />
           </ModalInputGroupSmall>

@@ -117,7 +117,7 @@ export const PurpleText = styled.a<IPurpleText>`
   text-align: right;
   color: #873dc1;
   margin-top: auto;
-  &:hover{
+  &:hover {
     text-decoration: underline;
     color: #873dc1;
   }

@@ -9,4 +9,3 @@ export const SettingsWrap = styled.div`
     padding-bottom: 40px;
   }
 `;
-

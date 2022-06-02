@@ -78,7 +78,8 @@ const AccountSupport: React.FC = () => {
                   className="custom-checkbox"
                 />
                 <AccountSupportCheckboxLabel htmlFor="notary">
-                  I understand I must provide a sworn statement certified by a &nbsp;
+                  I understand I must provide a sworn statement certified by a
+                  &nbsp;
                   <a href="#" className="accordion-text-link">
                     notary public
                   </a>

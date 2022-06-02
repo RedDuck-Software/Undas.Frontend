@@ -18,7 +18,7 @@ const NewNFTContainer = styled.div`
   @media (max-width: 768px) {
     margin-top: 40px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     position: relative;
     padding-bottom: 70px;
   }
@@ -96,24 +96,25 @@ const NewNFT: React.FC = () => {
         navigation={true}
       >
         {list?.map((item) => {
-          return (<>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
+          return (
+            <>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
             </>
           );
         })}
       </Swiper>
-      </NewNFTContainer>
+    </NewNFTContainer>
   );
 };
 

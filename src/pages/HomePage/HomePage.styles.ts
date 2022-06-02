@@ -12,4 +12,3 @@ export const HomeContainer = styled.div`
     padding-bottom: 0;
   }
 `;
-

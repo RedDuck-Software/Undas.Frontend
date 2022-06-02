@@ -54,7 +54,7 @@ const OffersMenu: React.FC = () => {
       </SelectedFilters>
       <ContainerTable>
         <OffersWrapTable>
-        <OffersHeadTr className="offers-menu-head">
+          <OffersHeadTr className="offers-menu-head">
             <OffersTd className="first-column"></OffersTd>
             <OffersTd>Item</OffersTd>
             <OffersTd>
@@ -79,11 +79,11 @@ const OffersMenu: React.FC = () => {
                 />
               </ItemIcon>
               <NameContainer>
-               <ItemName>Name Collection</ItemName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+                <ItemName>Name Collection</ItemName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
               </NameContainer>
             </OffersTdText>
             <OffersTdText>
@@ -123,11 +123,11 @@ const OffersMenu: React.FC = () => {
                 />
               </ItemIcon>
               <NameContainer>
-               <ItemName>Name Collection</ItemName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+                <ItemName>Name Collection</ItemName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
               </NameContainer>
             </OffersTdText>
             <OffersTdText>
@@ -167,11 +167,11 @@ const OffersMenu: React.FC = () => {
                 />
               </ItemIcon>
               <NameContainer>
-               <ItemName>Name Collection</ItemName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+                <ItemName>Name Collection</ItemName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
               </NameContainer>
             </OffersTdText>
             <OffersTdText>

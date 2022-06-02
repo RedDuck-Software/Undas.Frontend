@@ -126,7 +126,7 @@ export const DropdownMenu = styled.ul<IDropdown>`
   transition: all 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
-  @media (max-width:1100px) {
+  @media (max-width: 1100px) {
     left: -85px;
   }
 `;

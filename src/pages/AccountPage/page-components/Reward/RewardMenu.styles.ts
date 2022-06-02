@@ -15,8 +15,7 @@ export const HeadWrap = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `;
-export const ContentWrap = styled.div`
-`;
+export const ContentWrap = styled.div``;
 export const ButtonsBlock = styled.div`
   font-style: normal;
   font-weight: 400;
