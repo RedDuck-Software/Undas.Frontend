@@ -235,12 +235,13 @@ export const Wrapper = styled.div<IWrapper>`
 
 interface IPlatform {
   col?: string;
+  fs?: string;
 }
 
 export const Platform = styled.strong<IPlatform>`
   font-family: "Jost";
   font-weight: 600;
-  font-size: 12px;
+  font-size: ${(props) => props.fs || "12px"};
   line-height: 17px;
   color: ${(props) => props.col || "#CCB7F2"};
 `;

@@ -91,10 +91,11 @@ const RentNFT: React.FC = () => {
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 50,
           },
-          1100: {
+          1200: {
             slidesPerView: 3,
+            spaceBetween: 20,
           },
         }}
         className="rent-slider"
