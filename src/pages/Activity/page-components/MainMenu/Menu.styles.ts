@@ -28,16 +28,12 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30px;
-  margin-right: 30px;
 
   @media (max-width: 992px) {
     margin-top: 10px;
   }
   @media (max-width: 576px) {
     margin-top: unset;
-    margin-left: unset;
-    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -237,6 +233,9 @@ export const OffersTr = styled.tr`
   box-shadow: inset 0 0 1px #7c7c7c;
   &.offers-menu-row {
     background-color: #ffffff;
+  }
+  &:hover {
+    filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
   }
 `;
 
