@@ -1,4 +1,4 @@
-export interface CreateSubmitForm {
+export interface CreateCollectionForm {
   logoURI?: string;
   featuredURI?: string;
   bannerURI?: string;
