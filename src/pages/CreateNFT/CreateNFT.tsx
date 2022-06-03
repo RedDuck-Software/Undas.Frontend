@@ -1,8 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as Yup from "yup";
-
 import {
   CreateSec,
   CreateContainer,
@@ -26,77 +24,83 @@ import {
 } from "./CreateNFT.styles";
 import {
   ImgIcon,
-  PropertiesIco,
   LevelsIco,
   StatsIco,
   UnlockableContentIco,
   ExplicitContentIco,
 } from "./imports";
 import Levels from "./page-components/Levels";
-import Properties from "./page-components/Properties";
 import LevelsModal from "./page-components/SettingsModal/LevelsModal";
-import PropertiesModal from "./page-components/SettingsModal/PropertiesModal";
 import StatsModal from "./page-components/SettingsModal/StatsModal";
 import Stats from "./page-components/Stats";
 import Switcher from "./page-components/Switcher/Switcher";
-
 import { Background } from "../../globalStyles";
+import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
 import { FormButtonsWrap } from "../Settings/SettingsTabs/Profile/ProfileSettings.styles";
-
-type CreateSubmitForm = {
-  externalLink: string;
-  name: string;
-  description: string;
-  supply: string;
-  freezeMetadata: string;
-};
+import { ethers } from "ethers";
+import { useWeb3React } from "@web3-react/core";
+import Context from "../../utils/Context";
+import { validationSchema } from "./validation";
+import { CreateNFTForm, Property } from "./types";
+import Properties from "./page-components/Properties/Properties";
+const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
 
 const CreateNFT: React.FC = () => {
-  // const { connector } = useContext(Context);
-  // const web3ReactState = useWeb3React();
-  // const { account } = web3ReactState;
+  const { connector } = useContext(Context);
+  const web3ReactState = useWeb3React();
+  const { account } = web3ReactState;
+  console.log(undasGeneralNFTAbi);
 
-  const [externalLink, setExternalLink] = useState("");
+  //const [file, setFile] = useState<string>();
   const [name, setName] = useState("");
+  const [externalLink, setExternalLink] = useState("");
   const [description, setDescription] = useState("");
+  //const [collection, setCollection] = useState<string>();
+  const [propertyList, setPropertyList] = useState<Property[]>([
+    { type: "test1", name: "test-name1" },
+    { type: "test2", name: "test-name2" },
+    { type: "test3", name: "test-name3" },
+    { type: "test4", name: "test-name4" },
+  ]);
   const [supply, setSupply] = useState("");
   const [freezeMetadata, setFreezeMetadata] = useState("");
 
-  const validationSchema = Yup.object().shape({
-    contentURL: Yup.string().required("External Link is required"),
-    name: Yup.string().required("Name is required"),
-    description: Yup.string().required("Description is required"),
-  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
+  const { register, handleSubmit } = useForm<CreateNFTForm>(formOptions);
 
-  const { register } = useForm<CreateSubmitForm>({
-    resolver: yupResolver(validationSchema),
-  });
-
-  /* const bid = async () => {
+  const mintNFT = async () => {
+    console.log("bid");
+    console.log("connector" + connector);
+    console.log("acc" + account);
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
-
+    console.log(provider);
     const signer = provider.getSigner(0);
-    const SIGNER_ADDRESS = await signer.getAddress();
+    console.log(signer);
+    // const SIGNER_ADDRESS = await signer.getAddress();
+    // console.log("signer addr" + SIGNER_ADDRESS);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      '0xB073DeaC0dc753d27cC41a0f443000579d017361',
+      "0x674002Df32E372E3D2E2CfC253471d0A5912fb9A", //goerli contract addr
       signer,
     );
 
     NFTContract.safeMintGeneral(account, description, name, externalLink);
-  }; */
+  };
 
+  const onSubmit = (formValues: any) => {
+    alert(JSON.stringify(formValues));
+  };
   return (
     <Background>
       <CreateSec>
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
 
-          <CreateForm>
+          <CreateForm onSubmit={handleSubmit(onSubmit)}>
             <BlockDescript>
               <span className="require-asterisk">*</span>Required fields
             </BlockDescript>
@@ -174,20 +178,10 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
-            <CreateFormGroup>
-              <ModalTitle>
-                <PropertiesIco /> Properties
-              </ModalTitle>
-              <ModalBlock>
-                <ModalBlockDescript>
-                  Textual traits that show up as rectangles
-                </ModalBlockDescript>
-                <PropertiesModal />
-              </ModalBlock>
-              <WithPropertiesBlock>
-                <Properties />
-              </WithPropertiesBlock>
-            </CreateFormGroup>
+            <Properties
+              propertyList={propertyList}
+              setPropertyList={setPropertyList}
+            />
             <CreateFormGroup>
               <ModalTitle>
                 <LevelsIco /> Levels
@@ -221,7 +215,7 @@ const CreateNFT: React.FC = () => {
                 <SwitcherTitle>
                   <UnlockableContentIco /> Unlockable Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher onClick={() => console.log("switch")} />
               </SwitcherBlock>
               <BlockDescript>
                 Include unlockable content that can only be revealed by the
@@ -233,7 +227,7 @@ const CreateNFT: React.FC = () => {
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher onClick={() => console.log("switch")} />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content
@@ -271,13 +265,19 @@ const CreateNFT: React.FC = () => {
                 onChange={(e) => setFreezeMetadata(e.target.value)}
               />
             </CreateFormGroup>
+            <ButtonsBlock>
+              <FormButtonsWrap>
+                <CreateFormButton
+                  type="submit"
+                  className="left-btn"
+                  onClick={() => mintNFT()}
+                >
+                  Create
+                </CreateFormButton>
+                <CreateFormButton>Back</CreateFormButton>
+              </FormButtonsWrap>
+            </ButtonsBlock>
           </CreateForm>
-          <ButtonsBlock>
-            <FormButtonsWrap>
-              <CreateFormButton className="left-btn">Create</CreateFormButton>
-              <CreateFormButton>Back</CreateFormButton>
-            </FormButtonsWrap>
-          </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
     </Background>

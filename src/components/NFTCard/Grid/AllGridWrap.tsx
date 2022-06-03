@@ -9,13 +9,14 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useFilter } from "../../../store";
 import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
-import { getListing } from "../../../utils/getListing";
-import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
+// import { getListing } from "../../../utils/getListing";
+// import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
 import { getStaking } from "../../../utils/getStaking";
 import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
-import { isBuyableFunction } from "../../../utils/isBuyable";
+// import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
+import { createClient } from "urql";
 /* interface CardListProps {
   newFilter?: boolean;
   priceFilter?: { min: number; max: number };
@@ -61,37 +62,30 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   // const [showList, setShowList] = useState('NFT to buy');
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
+  console.log(connector);
+  //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
     if (!connector) {
       return;
     }
 
-    const lastIndex = await getListingsLastIndex(connector);
-    if (lastIndex || lastIndex === 0) {
-      for (let i = 0; i < lastIndex?.toNumber(); i++) {
-        // const metadata = await NFTContract.tokenMetadata(i);
-        const CardProps = await getListing(i, connector);
-        const isBuyable = await isBuyableFunction(i, connector);
+    const tokens = await fetchData();
 
-        if (!CardProps) {
-          continue;
-        }
-
-        const { price, tokenId } = CardProps.tx;
-        const { name, URI } = CardProps;
-
+    tokens.map((nft: any) => {
+      if (nft.listingStatus == "ACTIVE") {
+        const price = nft.price;
+        const id = nft.tokenId;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-        const id = tokenId.toNumber();
 
-        if (isBuyable) {
-          items.push({ priceInNum, id, name, URI });
-          setAmountOfNFTs(amountOfNFTs + 1);
-        }
+        items.push({ priceInNum, id, name, URI });
+
+        setAmountOfNFTs(amountOfNFTs + 1);
       }
-
-      return items;
-    } else return;
+    });
+    return items;
   };
 
   const getStakings = async () => {
@@ -149,12 +143,13 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
 
     setLoading(false);
-
+    console.log("useEf");
     getListingsData();
     getStakingsData();
   }, [connector]);
 
   const priceSort = async () => {
+    fetchData();
     if (!priceFilter) return list;
     let sortedArr;
     if (priceFilter === "low-to-high") {
@@ -228,5 +223,32 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     </>
   );
 };
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+    query   {
+      listings(first: 5) {
+        id
+        token
+        seller
+        tokenId
+        tokenURI
+        listingStatus
+        price
+        tokenDescription
+        tokenName    
+      }
+    }  
+`;
+const client = createClient({
+  url: APIURL,
+});
+
+async function fetchData() {
+  const data = await client.query(tokensQuery).toPromise();
+  console.log(data.data.listings);
+  return data.data.listings;
+}
 
 export default AllGridWrap;

@@ -24,7 +24,39 @@ export const AddImgBlock = styled.div`
     }
   }
 `;
-export const AddImgButton = styled.button`
+
+export const ClearImageInput = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 5px;
+  border: none;
+  background: transparent;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(135, 61, 193, 0.25);
+    border-radius: 10px;
+  }
+`;
+
+export const CollectionImageInput = styled.input.attrs({
+  type: "file",
+  accept: "image/*",
+})`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: none;
+`;
+
+export const CollectionLogoLabel = styled.label`
+  display: inline-block;
   width: 80px;
   height: 80px;
   border: 1px dashed #7c7c7c;
@@ -34,20 +66,38 @@ export const AddImgButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s;
   margin-right: 10px;
   &:hover {
     background: linear-gradient(
         0deg,
-        rgba(124, 124, 124, 0.25),
-        rgba(124, 124, 124, 0.25)
+        rgba(124, 124, 124, 0.5),
+        rgba(124, 124, 124, 0.5)
       ),
       #ffffff;
     cursor: pointer;
+    opacity: 0.8;
   }
+  /* &:hover + ${ClearImageInput} {
+    display: flex;
+  } */
 `;
 
-export const AddFeaturedButton = styled(AddImgButton)`
+export const CollectionImagePreview = styled.img`
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: inherit;
+`;
+
+export const CollectionFeaturedLabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  max-width: 350px;
+`;
+
+export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   width: 350px;
   height: 100px;
   @media (max-width: 576px) {
@@ -55,7 +105,14 @@ export const AddFeaturedButton = styled(AddImgButton)`
   }
 `;
 
-export const AddBannerButton = styled(AddFeaturedButton)`
+export const CollectionBannerLabelWrapper = styled(
+  CollectionFeaturedLabelWrapper,
+)`
+  max-width: 100%;
+`;
+
+export const CollectionBannerLabel = styled(CollectionFeaturedLabel)`
+  margin-top: 1rem;
   width: 100%;
 `;
 

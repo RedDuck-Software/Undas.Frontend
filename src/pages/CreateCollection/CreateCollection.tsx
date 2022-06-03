@@ -4,9 +4,14 @@ import { useForm } from "react-hook-form";
 
 import {
   AddImgBlock,
-  AddImgButton,
-  AddFeaturedButton,
-  AddBannerButton,
+  ClearImageInput,
+  CollectionImageInput,
+  CollectionImagePreview,
+  CollectionLogoLabel,
+  CollectionFeaturedLabelWrapper,
+  CollectionFeaturedLabel,
+  CollectionBannerLabelWrapper,
+  CollectionBannerLabel,
   AddBannerBlock,
   InputList,
   InputItem,
@@ -18,11 +23,16 @@ import {
   ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco } from "./imports";
-import { CreateSubmitForm } from "./types";
+import { CreateCollectionForm, SelectItemType, ImageFile } from "./types";
 import { validationSchema } from "./validation";
 
-import { Select, SelectItem } from "../../components/Select/Select";
+import {
+  CreateSelect,
+  SelectItem,
+} from "../../components/CreateSelect/CreateSelect";
 import { Background, FormButtonsWrap } from "../../globalStyles";
+import closeIcon from "../../icons/close.svg";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import {
@@ -35,14 +45,12 @@ import {
   CreateInput,
   BlockDescript,
   CreateTextArea,
-  CreateSelect,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
   CreateFormButton,
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
-
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   return (
     <>
@@ -68,18 +76,39 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   );
 };
 
+const BlockchainList: React.FC<{ setBlockchain: any }> = ({
+  setBlockchain,
+}) => {
+  return (
+    <SelectItem setSelected={setBlockchain} icon={ethIcon} label="Ethereum" />
+  );
+};
+
 const CreateCollection: React.FC = () => {
   // const web3ReactState = useWeb3React();
-
+  const [logo, setLogo] = useState<string>("");
+  const [featured, setFeatured] = useState<string>("");
+  const [banner, setBanner] = useState<string>("");
+  const [fileSizeError, setFileSizeError] = useState<{
+    message: string;
+    inputName: string;
+  }>();
   const [name, setName] = useState("");
   const [customURL, setCustomURL] = useState("");
   const [information, setInformation] = useState("");
-  const [category, setCategory] = useState({ icon: "", label: "Add Category" });
+  const [category, setCategory] = useState<SelectItemType>({
+    icon: "",
+    label: "Add Category",
+  });
   const [creatorEarnings, setCreatorEarnings] = useState("");
-
+  const [blockchain, setBlockchain] = useState<SelectItemType>({
+    icon: ethIcon,
+    label: "Ethereum",
+  });
+  const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, formState, handleSubmit } =
-    useForm<CreateSubmitForm>(formOptions);
+  const { register, formState, handleSubmit, trigger } =
+    useForm<CreateCollectionForm>(formOptions);
   const { errors } = formState;
   /* const bid = async () => {
     if (!connector || !account) return;
@@ -100,8 +129,61 @@ const CreateCollection: React.FC = () => {
   }; */
 
   const onSubmit = (formValues: any) => {
+    trigger("logoURI");
     alert(JSON.stringify(formValues));
   };
+
+  const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
+    const file = fileList[0];
+    if (file.size > 3145728) {
+      setFileSizeError({
+        message: `${inputName} is too large. Maximum file size is 3Mb.`,
+        inputName,
+      });
+      setLogo("");
+      return true;
+    } else {
+      setFileSizeError({ message: "", inputName: "" });
+      return false;
+    }
+  };
+
+  const logoHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.logo)) {
+        return;
+      }
+      const file = URL.createObjectURL(fileList[0]);
+      setLogo(file);
+    }
+    trigger("logoURI");
+  };
+
+  const featuredHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.featured)) {
+        return;
+      }
+      const file = URL.createObjectURL(fileList[0]);
+      setFeatured(file);
+    }
+    trigger("featuredURI");
+  };
+
+  const bannerHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      if (imageSizeValidation(fileList, ImageFile.banner)) {
+        return;
+      }
+      const file = URL.createObjectURL(fileList[0]);
+      setBanner(file);
+    }
+    trigger("bannerURI");
+  };
+
   return (
     <Background>
       <CreateSec>
@@ -116,30 +198,85 @@ const CreateCollection: React.FC = () => {
                 Logo image<span className="require-asterisk">*</span>
               </CreateLabel>
               <AddImgBlock>
-                <AddImgButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddImgButton>
+                <CollectionLogoLabel htmlFor="logo">
+                  {logo ? (
+                    <CollectionImagePreview src={logo} alt="collection-logo" />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionLogoLabel>
+                <CollectionImageInput
+                  {...register("logoURI")}
+                  id="logo"
+                  onChange={logoHandler}
+                  required
+                />
+
                 <BlockDescript>
                   This image will also be used for navigation
                   <br /> Recommended 350px X 350px
                 </BlockDescript>
               </AddImgBlock>
+              {fileSizeError && fileSizeError.inputName === ImageFile.logo && (
+                <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>Featured image</CreateLabel>
+              <CollectionFeaturedLabelWrapper>
+                <CreateLabel>Featured image</CreateLabel>
+                {featured && (
+                  <ClearImageInput onClick={() => setFeatured("")}>
+                    <img
+                      src={closeIcon}
+                      alt="clear-logo"
+                      width="15"
+                      height="15"
+                    />
+                  </ClearImageInput>
+                )}
+              </CollectionFeaturedLabelWrapper>
+
               <AddImgBlock className="featured">
-                <AddFeaturedButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddFeaturedButton>
+                <CollectionFeaturedLabel htmlFor="featured">
+                  {featured ? (
+                    <CollectionImagePreview
+                      src={featured}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionFeaturedLabel>
+
+                <CollectionImageInput
+                  id="featured"
+                  onChange={featuredHandler}
+                />
                 <BlockDescript>
                   This image will be used for featuring your collection on the
                   homepage, category pages or other promotional areas of UNDAS{" "}
-                  <br /> Recommended 600px X 400pxx
+                  <br /> Recommended 600px X 400px
                 </BlockDescript>
               </AddImgBlock>
+              {fileSizeError &&
+                fileSizeError.inputName === ImageFile.featured && (
+                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+                )}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>Banner image</CreateLabel>
+              <CollectionBannerLabelWrapper>
+                <CreateLabel>Banner image</CreateLabel>
+                {banner && (
+                  <ClearImageInput onClick={() => setBanner("")}>
+                    <img
+                      src={closeIcon}
+                      alt="clear-logo"
+                      width="15"
+                      height="15"
+                    />
+                  </ClearImageInput>
+                )}
+              </CollectionBannerLabelWrapper>
               <AddBannerBlock>
                 <BlockDescript>
                   This image will appear at the top of your collection page.
@@ -147,10 +284,22 @@ const CreateCollection: React.FC = () => {
                   dimensions change on different devices <br /> Recommended
                   1400px X 400px
                 </BlockDescript>
-                <AddBannerButton>
-                  <img src={ImgIcon} alt="image-icon" />
-                </AddBannerButton>
+                <CollectionBannerLabel htmlFor="banner">
+                  {banner ? (
+                    <CollectionImagePreview
+                      src={banner}
+                      alt="collection-featured"
+                    />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </CollectionBannerLabel>
+                <CollectionImageInput id="banner" onChange={bannerHandler} />
               </AddBannerBlock>
+              {fileSizeError &&
+                fileSizeError.inputName === ImageFile.banner && (
+                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+                )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
@@ -206,7 +355,7 @@ const CreateCollection: React.FC = () => {
                   Category
                 </CreateLabel>
                 <CategorySelectWrapper>
-                  <Select
+                  <CreateSelect
                     itemList={<CategoryList setCategory={setCategory} />}
                     item={{ ...category }}
                   />
@@ -269,30 +418,33 @@ const CreateCollection: React.FC = () => {
                 Select the blockchain where you&#39;d like new items from this
                 collection to be added by default
               </BlockDescript>
-              <CreateSelect aria-label="" id="blockchain">
-                <option>Ethereum</option>
-                <option>Two</option>
-                <option>Three</option>
-              </CreateSelect>
+              <CreateSelect
+                itemList={<BlockchainList setBlockchain={setBlockchain} />}
+                item={blockchain}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher />
+                <Switcher
+                  onClick={() => setIsSensetiveContent(!isSensetiveContent)}
+                />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content
               </BlockDescript>
             </CreateFormGroup>
+            <ButtonsBlock>
+              <FormButtonsWrap>
+                <CreateFormButton className="left-btn" type="submit">
+                  Create
+                </CreateFormButton>
+                <CreateFormButton>Back</CreateFormButton>
+              </FormButtonsWrap>
+            </ButtonsBlock>
           </CreateForm>
-          <ButtonsBlock>
-            <FormButtonsWrap>
-              <CreateFormButton className="left-btn">Create</CreateFormButton>
-              <CreateFormButton>Back</CreateFormButton>
-            </FormButtonsWrap>
-          </ButtonsBlock>
         </CreateContainer>
       </CreateSec>
     </Background>

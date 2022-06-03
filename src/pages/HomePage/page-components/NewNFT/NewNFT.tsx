@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,6 +9,20 @@ import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
 import { isBuyableFunction } from "../../../../utils/isBuyable";
 import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
+
+const NewNFTContainer = styled.div`
+  margin-top: 120px;
+  @media (max-width: 992px) {
+    margin-top: 70px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 576px) {
+    position: relative;
+    padding-bottom: 70px;
+  }
+`;
 
 const NewNFT: React.FC = () => {
   const { connector } = useContext(Context);
@@ -54,28 +69,52 @@ const NewNFT: React.FC = () => {
   }, [connector]);
 
   return (
-    <>
+    <NewNFTContainer>
       <TitleWrap>
         <Title>New NFTs</Title>
         <ViewAllBtn>View all</ViewAllBtn>
       </TitleWrap>
       <Swiper
+        slidesPerView={1}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
         className="rent-slider"
-        slidesPerView={3}
         modules={[Navigation]}
         loop={false}
         navigation={true}
-        spaceBetween={66}
       >
         {list?.map((item) => {
           return (
-            <SwiperSlide key={item.id}>
-              <NFTCard uri={item.URI} name={item.name} />
-            </SwiperSlide>
+            <>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+              <SwiperSlide key={item.id}>
+                <NFTCard uri={item.URI} name={item.name} />
+              </SwiperSlide>
+            </>
           );
         })}
       </Swiper>
-    </>
+    </NewNFTContainer>
   );
 };
 

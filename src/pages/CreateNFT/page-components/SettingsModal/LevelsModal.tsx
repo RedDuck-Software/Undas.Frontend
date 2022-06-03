@@ -24,7 +24,6 @@ const LevelsModal: React.FC = () => {
   return (
     <CreateModalWrap>
       <ModalButton onClick={handleShow}>+</ModalButton>
-
       <Modal className="modal-wrap" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <TitleModal>Add Levels</TitleModal>
@@ -37,19 +36,19 @@ const LevelsModal: React.FC = () => {
           <ModalInputGroup>
             <ModalLabel htmlFor="name">Name</ModalLabel>
             <ModalInput type="text" id="name" placeholder="strength" />
-            <ModalLabelStraight htmlFor="value">Value</ModalLabelStraight>
-            <ModalInput type="number" id="value" placeholder="3" />
-            <ModalLabelStraight htmlFor="of">Of</ModalLabelStraight>
-            <ModalInput type="number" id="of" placeholder="5" />
+            <ModalLabelStraight htmlFor="value" className="margin-for-small">Value</ModalLabelStraight>
+            <ModalInput type="number" id="value" placeholder="3" className="margin-for-small" />
+            <ModalLabelStraight htmlFor="of" className="margin-for-of">Of</ModalLabelStraight>
+            <ModalInput type="number" id="of" placeholder="5" className="margin-for-small" />
             <InputButton></InputButton>
           </ModalInputGroup>
           <ModalInputGroup>
             <ModalLabel htmlFor="name">Name</ModalLabel>
             <ModalInput type="text" id="name" placeholder="strength" />
-            <ModalLabelStraight htmlFor="value">Value</ModalLabelStraight>
-            <ModalInput type="number" id="value" placeholder="3" />
-            <ModalLabelStraight htmlFor="of">Of</ModalLabelStraight>
-            <ModalInput type="number" id="of" placeholder="5" />
+            <ModalLabelStraight htmlFor="value" className="margin-for-small">Value</ModalLabelStraight>
+            <ModalInput type="number" id="value" placeholder="3" className="margin-for-small" />
+            <ModalLabelStraight htmlFor="of" className="margin-for-of">Of</ModalLabelStraight>
+            <ModalInput type="number" id="of" placeholder="5" className="margin-for-small" />
             <InputButton></InputButton>
           </ModalInputGroup>
         </Modal.Body>

@@ -10,20 +10,20 @@ import {
 
 export const validationSchema = yup.object().shape(
   {
-    logoURI: yup.string(),
+    logoURI: yup.string().required("Logo is required"),
     featureURI: yup.string(),
     bannerURI: yup.string(),
     name: yup
       .string()
-      .min(2, "Name must be longer than 1 symbol.")
-      .required("Name is required."),
+      .required("Name is required.")
+      .min(3, "Name must be longer than 2 symbols."),
     customURL: yup
       .string()
       .nullable()
       .notRequired()
       .when("customURL", {
         is: (value: string) => value?.length,
-        then: (rule) => rule.matches(customUrlName, "Wrong symbols."),
+        then: (rule) => rule.matches(customUrlName, "Enter correct url!"),
       }),
     information: yup.string().nullable().notRequired(),
     category: yup.string(),
@@ -64,6 +64,10 @@ export const validationSchema = yup.object().shape(
     sensetiveStatus: yup.boolean(),
   },
   [
+    ["logoURI", "logoURI"],
+    ["featuredURI", "featuredURI"],
+    ["bannerURI", "bannerURI"],
+    ["name", "name"],
     ["customURL", "customURL"],
     ["twitter", "twitter"],
     ["discord", "discord"],

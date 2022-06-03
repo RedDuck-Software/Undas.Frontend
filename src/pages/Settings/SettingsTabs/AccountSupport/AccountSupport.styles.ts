@@ -7,10 +7,12 @@ import {
   FormButton,
 } from "../Profile/ProfileSettings.styles";
 
-export const AccountSupportWrap = styled.div``;
+export const AccountSupportWrap = styled.div`
+  padding-top: 30px;
+`;
 
 export const AccordionWrap = styled.div`
-  margin: 40px auto;
+  margin: 40px auto 0;
   @media (max-width: 768px) {
     & .accordion-header .accordion-button {
       font-size: 16px;
@@ -42,6 +44,9 @@ export const AccordionItem = styled(Accordion.Item)`
   & .accordion-text-link {
     color: #873dc1;
     text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 export const MessageBlock = styled.div`
@@ -99,10 +104,7 @@ export const AccountSupportButton = styled(FormButton)`
   border: 1px solid #ff2a36;
   margin: 20px 0;
   &:hover {
-    color: #ff2a36;
-    background-color: #fff;
-    box-shadow: 0 0 5px;
-    text-shadow: 0 0 1px;
+    background-color: #ff2a36;
   }
   @media (max-width: 768px) {
     width: 100%;

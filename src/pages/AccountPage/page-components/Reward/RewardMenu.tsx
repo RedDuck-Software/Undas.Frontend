@@ -3,6 +3,7 @@ import React from "react";
 import MobileReward from "./MobileReward";
 import {
   RewardMenuWrap,
+  HeadWrap,
   ButtonsBlock,
   Title,
   ContentWrap,
@@ -32,18 +33,20 @@ import { HoldingIco, StakingIco, TradingIco, InformIco } from "../../imports";
 const RewardMenu: React.FC = () => {
   return (
     <>
-      <Title>Rewards</Title>
       <RewardMenuWrap>
         <ContentWrap className="top-table">
-          <ButtonsBlock>
-            <span>Day</span>
-            <Button>1</Button>
-            <Button className="active">7</Button>
-            <Button>30</Button>
-            <Button>
-              <IntervalInput type="text" placeholder="custom" />
-            </Button>
-          </ButtonsBlock>
+          <HeadWrap>
+            <Title>Rewards</Title>
+            <ButtonsBlock>
+              <span>Day</span>
+              <Button>1</Button>
+              <Button className="active">7</Button>
+              <Button>30</Button>
+              <Button>
+                <IntervalInput type="text" placeholder="custom" />
+              </Button>
+            </ButtonsBlock>
+          </HeadWrap>
           <ContentTableWrap>
             <ImageBlock>
               <HoldingIco />

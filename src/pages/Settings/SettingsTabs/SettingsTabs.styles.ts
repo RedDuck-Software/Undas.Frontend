@@ -42,6 +42,22 @@ export const DesktopTabs = styled(Tabs)`
   }
 `;
 export const DesktopTab = styled(Tab)``;
+export const Button = styled.button`
+  background: #ffffff;
+  border: 1px solid #873dc1;
+  border-radius: 10px;
+  color: #873dc1;
+  padding: 7px 37px;
+  margin-top: 40px;
+  transition: all 0.3s;
+  &:hover {
+    color: #ffffff;
+    background: #873dc1;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+`;
 
 export const MobileSettingsTabWrap = styled.div`
   display: none;

@@ -28,16 +28,12 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30px;
-  margin-right: 30px;
 
   @media (max-width: 992px) {
     margin-top: 10px;
   }
   @media (max-width: 576px) {
     margin-top: unset;
-    margin-left: unset;
-    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -67,30 +63,21 @@ export const ItemName = styled.span`
   line-height: 17px;
   color: #232428;
   margin-right: 5px;
-  margin-top: -30px;
   @media (max-width: 576px) {
     font-size: 12px;
-    margin-right: unset;
-    margin-left: -10px;
   }
 `;
 export const CollectionName = styled.span`
   margin-right: 5px;
-  margin-left: -80px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
   color: #7c7c7c;
-  @media (max-width: 576px) {
-    margin-left: -64px;
-  }
 `;
 export const UNDText = styled.span`
   margin-right: 5px;
-  margin-left: -95px;
-  margin-top: 30px;
   font-family: "Jost";
   font-style: normal;
   font-weight: 600;
@@ -99,6 +86,7 @@ export const UNDText = styled.span`
   text-align: center;
   color: #873dc1;
   position: relative;
+  display: flex;
 
   @media (max-width: 576px) {
     font-size: 12px;
@@ -246,6 +234,9 @@ export const OffersTr = styled.tr`
   &.offers-menu-row {
     background-color: #ffffff;
   }
+  &:hover {
+    filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
+  }
 `;
 
 interface IOffersTd {
@@ -283,4 +274,9 @@ export const OffersText = styled.span<{ color?: string }>`
   @media (max-width: 576px) {
     font-size: 12px;
   }
+`;
+export const NameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 `;

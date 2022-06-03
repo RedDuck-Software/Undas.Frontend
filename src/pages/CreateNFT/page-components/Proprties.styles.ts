@@ -26,6 +26,7 @@ export const PropertiesWrap = styled.div`
     padding: 15px;
   }
 `;
+
 export const PropertiesElement = styled.li`
   display: flex;
   align-items: center;
@@ -88,6 +89,7 @@ export const CompleteWrap = styled.div<{ complete?: number }>`
     z-index: 2;
   }
 `;
+
 export const LevelsWrap = styled.ul<{ padd?: string }>`
   padding: ${(props) => props.padd || "0"};
   font-style: normal;

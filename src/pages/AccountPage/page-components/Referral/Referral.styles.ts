@@ -2,10 +2,7 @@ import Pagination from "react-bootstrap/Pagination";
 import styled from "styled-components";
 
 export const ReferralWrap = styled.div`
-  padding: 60px 0 100px;
-  @media (max-width: 1200px) {
-    padding: 60px 0 80px;
-  }
+  padding: 60px 0;
   @media (max-width: 992px) {
     padding: 60px 0 40px;
   }
@@ -140,6 +137,7 @@ export const ContentTable = styled.table`
   width: 100%;
   overflow: hidden;
   border-radius: 10px;
+  background-color: #fff;
   @media (max-width: 768px) {
     display: block;
     width: 650px;

@@ -21,22 +21,39 @@ export const ModalButton = styled.button`
     box-shadow: 0px 0px 10px rgba(135, 61, 193, 0.5);
   }
 `;
+
 export const TitleModal = styled.div`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #232428;
 `;
+
 export const Descriprtion = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
 `;
+
 export const ModalInputGroup = styled.div`
   margin-bottom: 10px;
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 992px) {
+    display: flex;
+  }
+  @media (max-width: 576px) {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    border-radius: 10px;
+    padding: 15px 10px;
+    flex-wrap: wrap;
+    &.second-row {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -49,7 +66,22 @@ export const ModalLabel = styled.label`
   font-size: 14px;
   line-height: 17px;
   color: #232428;
+  text-align: center;
+
+  @media (max-width: 992px) {
+    width: 10%;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 5px;
+  }
+  @media (max-width: 576px) {
+    padding: 10px 0;
+    text-align: left;
+    border: none;
+    width: 15%;
+  }
 `;
+
 export const ModalInput = styled.input`
   border: 1px solid rgba(124, 124, 124, 0.5);
   outline: none;
@@ -67,6 +99,24 @@ export const ModalInput = styled.input`
   &[type="number"] {
     width: 12%;
   }
+
+  @media (max-width: 992px) {
+    width: 36%;
+    &[type="number"] {
+      width: 17%;
+    }
+  }
+  @media (max-width: 576px) {
+    border-radius: 5px;
+      width: 85%;
+    &[type="number"] {
+      width: 35%;
+    }
+    &.margin-for-small {
+      margin-top: 15px;
+    }
+  }
+  
 `;
 export const InputButton = styled.button`
   padding: 23px 20px 14px 40px;
@@ -93,27 +143,59 @@ export const InputButton = styled.button`
   &::after {
     transform: rotate(-45deg);
   }
+
+  @media (max-width: 992px) {
+    width: 8%;
+  }
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 export const ModalLabelStraight = styled(ModalLabel)`
   border-radius: 0;
   border-left: 0;
-`;
+  text-align: center;
 
+  @media (max-width: 992px) {
+    width: 10%;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 5px;
+  }
+  @media (max-width: 576px) {
+    text-align: left;
+    padding: 10px 0;
+    width: 15%;
+    &.margin-for-small {
+      margin-top: 15px;
+    }
+    &.margin-for-of {
+      margin-top: 15px;
+      text-align: center;
+    }
+  }
+`;
 export const CreateModalFormButton = styled(CreateFormButton)`
   &.colored-btn {
     margin-right: 0;
+    color: #ffffff;
+    background: #873dc1;
+    }
   }
   @media (max-width: 992px) {
+    flex: 0 0 48%;
+    margin-right: 4%;
     &.colored-btn {
-      color: #ffffff;
-      background: #873dc1;
-      border: 1px solid transparent;
+      margin-right: unset;
     }
   }
   @media (max-width: 576px) {
     margin: 0;
+    flex: 0 0 100%;
     &.colored-btn {
-      margin-top: 20px;
+      margin-top: 15px;
+      margin-bottom: 30px;
     }
   }
 `;
+

@@ -1,4 +1,4 @@
-export interface CreateSubmitForm {
+export interface CreateCollectionForm {
   logoURI?: string;
   featuredURI?: string;
   bannerURI?: string;
@@ -13,4 +13,15 @@ export interface CreateSubmitForm {
   creatorEarnings: string;
   blockchain: string;
   sensetiveStatus: boolean;
+}
+
+export type SelectItemType = {
+  icon?: string;
+  label: string;
+};
+
+export enum ImageFile {
+  logo = "Logo",
+  featured = "Featured",
+  banner = "Banner",
 }

@@ -595,7 +595,8 @@ export const AcceptBTN = styled.button`
   text-align: center;
   color: #ffffff;
   border-color: #873dc1;
-
+  outline: none;
+  border: none;
   &:hover {
     color: #873dc1;
     background: #ffffff;
@@ -618,8 +619,8 @@ export const MakeOfferBTN = styled.button`
   color: #873dc1;
 
   &:hover {
-    border: 1px solid #873dc1;
-    box-shadow: 0px 0px 10px #873dc1;
+    background: #873dc1;
+    color: #ffffff;
   }
 `;
 export const DenyBTN = styled.button`
@@ -638,7 +639,7 @@ export const DenyBTN = styled.button`
   color: #ff2a36;
 
   &:hover {
-    border: 1px solid #ff2a36;
-    box-shadow: 0px 0px 10px #ff2a36;
+    background: #ff2a36;
+    color: #ffffff;
   }
 `;

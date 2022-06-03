@@ -18,7 +18,6 @@ import {
   SilverRewardsTitle,
   GoldRewards,
   GoldRewardsTitle,
-  BackImg,
   ImageInner,
   Diamond,
   DiamondImg,
@@ -29,7 +28,6 @@ import {
   RewardImgTrading,
   TextRewards,
   Rewards,
-  BackImgSecond,
 } from "./Achievements.styles";
 
 import {
@@ -53,15 +51,12 @@ import {
   goldEthReward,
   goldMoneyReward,
   goldPeopleReward,
-  backImg,
   diamond,
 } from "../../imports";
 
 const Achievements = () => {
   return (
     <AchievementsWrap>
-      <BackImg src={backImg} alt="back-image" />
-      <BackImgSecond src={backImg} alt="back-image" />
       <AchievementsHeadInner>
         <AchievementsTitle>Achievements</AchievementsTitle>
         <InfoText>

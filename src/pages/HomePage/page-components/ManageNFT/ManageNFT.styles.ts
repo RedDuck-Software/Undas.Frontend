@@ -2,6 +2,15 @@ import styled from "styled-components";
 
 export const ManageNFTContainer = styled.div`
   margin: 120px 0;
+  @media (max-width: 992px) {
+    margin: 60px 0;
+  }
+  @media (max-width: 768px) {
+    margin: 40px 0;
+  }
+  @media (max-width: 576px) {
+    margin: 20px 0;
+  }
 `;
 
 export const ManageCardWrap = styled.ul`
@@ -9,6 +18,12 @@ export const ManageCardWrap = styled.ul`
   display: flex;
   justify-content: space-between;
   height: 400px;
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 30px;
+    justify-content: center;
+  }
 `;
 
 interface ICard {
@@ -27,6 +42,18 @@ export const ManageCard = styled.li<ICard>`
   border-radius: 20px;
   width: 255px;
   height: 300px;
+  @media (max-width: 1200px) {
+    flex: 0 0 35%;
+    padding: 30px;
+  }
+  @media (max-width: 768px) {
+    flex: 0 0 45%;
+    height: 270px;
+    padding: 20px 30px;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+  }
 `;
 
 export const CardTitle = styled.span`
@@ -37,6 +64,12 @@ export const CardTitle = styled.span`
   font-size: 18px;
   //line-height: 26px;
   color: #5d3f92;
+  @media (max-width: 768px) {
+    margin: 20px 0;
+  }
+  @media (max-width: 576px) {
+    margin: 20px 0 10px;
+  }
 `;
 
 export const DescHolder = styled.ul`
@@ -75,11 +108,17 @@ interface IPurpleText {
   fs?: string;
 }
 
-export const PurpleText = styled.span<IPurpleText>`
+export const PurpleText = styled.a<IPurpleText>`
   width: 100%;
+  text-decoration: none;
   cursor: pointer;
   font-weight: 400;
   font-size: ${(props) => props.fs || "12px"};
   text-align: right;
   color: #873dc1;
+  margin-top: auto;
+  &:hover {
+    text-decoration: underline;
+    color: #873dc1;
+  }
 `;

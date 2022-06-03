@@ -25,6 +25,7 @@ import {
   OffersTd,
   OffersHeadTr,
   OffersText,
+  NameContainer,
 } from "./Menu.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -72,12 +73,14 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name NFT</ItemName>
-              <CollectionName>Name Collection...</CollectionName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+              <NameContainer>
+                <ItemName>Name NFT</ItemName>
+                <CollectionName>Name Collection...</CollectionName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -115,12 +118,14 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name NFT</ItemName>
-              <CollectionName>Name Collection...</CollectionName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+              <NameContainer>
+                <ItemName>Name NFT</ItemName>
+                <CollectionName>Name Collection...</CollectionName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -158,12 +163,14 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name NFT</ItemName>
-              <CollectionName>Name Collection...</CollectionName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+              <NameContainer>
+                <ItemName>Name NFT</ItemName>
+                <CollectionName>Name Collection...</CollectionName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -201,12 +208,14 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name NFT</ItemName>
-              <CollectionName>Name Collection...</CollectionName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+              <NameContainer>
+                <ItemName>Name NFT</ItemName>
+                <CollectionName>Name Collection...</CollectionName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>
@@ -244,12 +253,14 @@ const OffersMenu: React.FC = () => {
                   className="offers-item-image"
                 />
               </ItemIcon>
-              <ItemName>Name NFT</ItemName>
-              <CollectionName>Name Collection...</CollectionName>
-              <UNDText>
-                <ItemVerifyIco />
-                <UND>UND</UND>
-              </UNDText>
+              <NameContainer>
+                <ItemName>Name NFT</ItemName>
+                <CollectionName>Name Collection...</CollectionName>
+                <UNDText>
+                  <ItemVerifyIco />
+                  <UND>UND</UND>
+                </UNDText>
+              </NameContainer>
             </OffersTdText>
             <OffersTdText>
               <PriceTextW>

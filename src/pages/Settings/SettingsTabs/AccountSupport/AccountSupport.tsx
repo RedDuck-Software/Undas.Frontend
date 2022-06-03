@@ -79,10 +79,11 @@ const AccountSupport: React.FC = () => {
                 />
                 <AccountSupportCheckboxLabel htmlFor="notary">
                   I understand I must provide a sworn statement certified by a
+                  &nbsp;
                   <a href="#" className="accordion-text-link">
                     notary public
                   </a>
-                  to unlock my account
+                  &nbsp; to unlock my account
                 </AccountSupportCheckboxLabel>
               </CheckboxBlock>
               <AccountSupportButton>Lock account</AccountSupportButton>
