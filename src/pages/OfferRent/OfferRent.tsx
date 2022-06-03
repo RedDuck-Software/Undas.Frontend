@@ -6,8 +6,6 @@ import {
   BackText,
   OfferContainer,
   CollectionName,
-  ImageVerify,
-  ImageUND,
   ImageNFT,
   FirstCollum,
   SecondCollum,
@@ -43,11 +41,16 @@ import {
   TextDay,
   PriceContainer,
   EthPrice,
+  CheckboxLabelCollateral,
+  CheckboxInputCollateral,
+  ContainerCheckboxCollateral,
+  NFTInfoContainer,
 } from "./OfferRent.styles";
 
 import { Background, Container } from "../../globalStyles";
 
-import { verify, UND, cardNFT, down, info } from "./imports";
+import { cardNFT, down, info } from "./imports";
+
 
 const OfferRent: React.FC = () => {
   return (
@@ -61,6 +64,16 @@ const OfferRent: React.FC = () => {
           <FirstCollum>
             <NameRow>
               <TextPrice>Deposit</TextPrice>
+              <ContainerCheckboxCollateral>
+              <CheckboxInputCollateral
+                type="checkbox"
+                id="collateral"
+                className="custom-checkbox"
+              />
+              <CheckboxLabelCollateral htmlFor="collateral">
+                Offer NFT as Collateral
+              </CheckboxLabelCollateral>
+              </ContainerCheckboxCollateral>
             </NameRow>
             <PriceRow>
               <EthSelect>
@@ -117,7 +130,7 @@ const OfferRent: React.FC = () => {
                 <DollarPrice>258,25</DollarPrice>
               </PriceContainer>
             </NameRow>
-            <NameRow>
+            <NameRow className="margin-top-20">
               <TextOffer>Marketplace fee 3%</TextOffer>
               <UNDPrice>UND 2</UNDPrice>
             </NameRow>
@@ -131,11 +144,21 @@ const OfferRent: React.FC = () => {
                 Pay in {"\u00A0"}
                 <UNDLabel>UND</UNDLabel>
                 {"\u00A0"} with a 50% discount
-                <ImageInfo src={info} alt="info-image" />
-                <DollarPrice>258,25</DollarPrice>
+                <ImageInfo src={info} alt="info-image" className="margin-top" />
+                <DollarPrice className="margin-0">258,25</DollarPrice>
               </CheckboxLabel>
             </PayRow>
-            <AgreeRow>
+          </FirstCollum>
+          <SecondCollum>
+            <NameRow>
+              <CollectionName>Owner item</CollectionName>
+            </NameRow>
+              <NFTInfoContainer>
+                <ImageNFT src={cardNFT} alt="undas-image" />
+              </NFTInfoContainer>
+          </SecondCollum>
+
+          <AgreeRow>
               <CheckboxInputAgreement
                 type="checkbox"
                 id="agreement"
@@ -149,15 +172,6 @@ const OfferRent: React.FC = () => {
             <AgreeRowButton>
               <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
             </AgreeRowButton>
-          </FirstCollum>
-          <SecondCollum>
-            <NameRow>
-              <CollectionName>Collection Name</CollectionName>
-              <ImageVerify src={verify} alt="verify-image" />
-              <ImageUND src={UND} alt="undas-image" />
-            </NameRow>
-            <ImageNFT src={cardNFT} alt="undas-image" />
-          </SecondCollum>
         </OfferContainer>
       </Container>
     </Background>

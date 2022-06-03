@@ -24,6 +24,7 @@ import {
   TextInfo,
   ContainerCollection,
   ResultsSmallSize,
+  ContainerNFT,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -148,7 +149,7 @@ const CollectionPage: React.FC = () => {
         <Background>
           <AllNFTContainer>
             <ASideFilterCollection marginTop="208px" />
-            <Wrapper w="100%">
+            <ContainerNFT>
               <HeadWrapper>
                 <CollectionCard />
                 <InfoBox>
@@ -298,7 +299,7 @@ const CollectionPage: React.FC = () => {
                   })}
                 </>
               )}
-            </Wrapper>
+            </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>
         </Background>

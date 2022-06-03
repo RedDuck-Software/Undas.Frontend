@@ -106,11 +106,11 @@ export const OfferContainer = styled.div`
 `;
 
 export const CollectionName = styled.div`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   color: #232428;
 `;
 
@@ -172,6 +172,9 @@ export const NameRow = styled.div`
   }
   &.margin-top-30 {
     margin-top: 30px;
+  }
+  &.margin-top-20 {
+    margin-top: 20px;
   }
 `;
 
@@ -366,7 +369,7 @@ export const UNDPrice = styled.span`
   text-align: center;
   color: #873dc1;
   margin-left: auto;
-  margin-top: 30px;
+  margin-top: 6px;
 `;
 
 export const CheckboxInput = styled.input`
@@ -443,6 +446,9 @@ export const UNDLabel = styled.span`
 export const ImageInfo = styled.img`
   margin-left: 10px;
   padding-bottom: 10px;
+  &.margin-top {
+    margin-top: 6px;
+  }
 `;
 
 export const DollarPrice = styled.span`
@@ -454,8 +460,12 @@ export const DollarPrice = styled.span`
   text-align: right;
   color: #7c7c7c;
   margin-left: auto;
+  margin-top: 6px;
   &::before {
     content: "$";
+  }
+  &.margin-0 {
+    margin-top: 0px;
   }
 `;
 
@@ -573,6 +583,7 @@ export const ButtonMakeOffer = styled.button`
 export const AgreeRowButton = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
 `;
 
 export const InputDay = styled.input`
@@ -624,4 +635,80 @@ export const EthPrice = styled.span`
     content: url(${eth});
     margin-right: 5px;
   }
+`;
+
+export const CheckboxLabelCollateral = styled.label`
+    width: 100%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #232428;
+    justify-content: flex-end;
+  &:hover {
+    text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+    cursor: pointer;
+  }
+`;
+
+export const CheckboxInputCollateral = styled.input`
+  margin-right: 12px;
+  margin-top: 6px;
+  &.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  &.custom-checkbox + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    position: relative;
+  }
+  &.custom-checkbox + label::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #5d3f92;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    background-color: #ffffff;
+  }
+  &.custom-checkbox:checked + label::before {
+    background-color: #ffffff;
+  }
+  &.custom-checkbox:checked + label::after {
+    content: "";
+    width: 6px;
+    height: 8px;
+    border-bottom: 1px solid #5d3f92;
+    border-right: 1px solid #5d3f92;
+    transform: skew(-10deg) rotate(45deg);
+    position: absolute;
+    top: 6px;
+    left: 6px;
+  }
+  &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
+`;
+
+export const ContainerCheckboxCollateral = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+export const NFTInfoContainer = styled.div`
+  display: flex;
+  width: 400px;
+  height: 400px;
+  background: #FBF5FF;
+  border-radius: 10px;
 `;
