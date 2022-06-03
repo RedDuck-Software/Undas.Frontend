@@ -389,8 +389,8 @@ export const CheckboxInput = styled.input`
   &.custom-checkbox + label::before {
     content: "";
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     flex-grow: 0;
     border: 1px solid #5d3f92;
@@ -412,7 +412,7 @@ export const CheckboxInput = styled.input`
     border-right: 1px solid #5d3f92;
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
-    top: 6px;
+    top: 10px;
     left: 5px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
@@ -471,7 +471,8 @@ export const DollarPrice = styled.span`
 
 export const AgreeRow = styled.div`
   width: 100%;
-  display: block;
+  display: flex;
+  justify-content: center;
 `;
 
 export const PayRow = styled.div`
@@ -481,7 +482,7 @@ export const PayRow = styled.div`
   padding-bottom: 20px;
 `;
 
-export const AgreementLink = styled.div`
+export const AgreementLink = styled.span`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -516,7 +517,7 @@ export const CheckboxInputAgreement = styled.input`
     opacity: 0;
   }
   &.custom-checkbox + label {
-    display: inline-flex;
+    display: block;
     align-items: center;
     user-select: none;
     position: relative;
@@ -535,6 +536,7 @@ export const CheckboxInputAgreement = styled.input`
     background-position: center center;
     background-size: 50% 50%;
     background-color: #ffffff;
+    vertical-align: middle;
   }
   &.custom-checkbox:checked + label::before {
     background-color: #ffffff;
@@ -547,7 +549,7 @@ export const CheckboxInputAgreement = styled.input`
     border-right: 1px solid #5d3f92;
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
-    top: 3px;
+    top: 4px;
     left: 4px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
@@ -599,11 +601,11 @@ export const InputDay = styled.input`
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+  outline: none;
   color: #7c7c7c;
+  border: none;
   &:focus {
-    outline: none !important;
-    border: 3px solid #e6e6e6;
-    box-shadow: none;
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
   }
 `;
 
@@ -638,14 +640,14 @@ export const EthPrice = styled.span`
 `;
 
 export const CheckboxLabelCollateral = styled.label`
-    width: 100%;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    color: #232428;
-    justify-content: flex-end;
+  width: 100%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #232428;
+  justify-content: flex-end;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
@@ -669,8 +671,8 @@ export const CheckboxInputCollateral = styled.input`
   &.custom-checkbox + label::before {
     content: "";
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     flex-grow: 0;
     border: 1px solid #5d3f92;
@@ -693,7 +695,7 @@ export const CheckboxInputCollateral = styled.input`
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
     top: 6px;
-    left: 6px;
+    left: 5px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
@@ -711,4 +713,45 @@ export const NFTInfoContainer = styled.div`
   height: 400px;
   background: #FBF5FF;
   border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &.disable {
+    background: #C4C4C4;
+  }
+`;
+
+export const SelectedNFT = styled.div`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #232428;
+  margin-top: 30px;
+  margin-bottom: 20px;
+`;
+
+export const SelectedNFTCardBox = styled.div`
+  display: flex;
+  gap: 30px;
+  overflow-x: scroll;
+`;
+
+export const ImgDelete = styled.img`
+  height: 16px;
+  top: 10px;
+  position: absolute;
+  right: 0;
+`;
+
+export const AddNFT = styled.img`
+  height: 50px;
+  position: absolute;
+  top: 175px;
+`;
+
+export const CheckBoxCenter = styled.div`
+  display: flex;
 `;
