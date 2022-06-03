@@ -76,7 +76,6 @@ const NewNFT: React.FC = () => {
       </TitleWrap>
       <Swiper
         slidesPerView={1}
-        spaceBetween={30}
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -84,7 +83,7 @@ const NewNFT: React.FC = () => {
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 50,
           },
           1200: {
             slidesPerView: 3,

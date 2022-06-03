@@ -12,12 +12,16 @@ export const NFTWrap = styled.div`
   padding: 10px;
   @media (max-width: 1200px) {
     width: 100%;
+    height: 100%;
   }
   @media (max-width: 640px) {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
   }
-  @media (max-width: 360px) {
+  @media (max-width: 550px) {
+    width: 80%;
+  }
+  @media (max-width: 480px) {
     width: 100%;
   }
 `;
@@ -32,15 +36,22 @@ export const Image = styled.img`
   height: 300px;
   object-fit: cover;
   background-color: #fff;
+  @media (max-width: 992px) {
+    height: 250px;
+  }
+  @media (max-width: 768px) {
+    height: 180px;
+  }
+  @media (max-width: 640px) {
+    height: 250px;
+  }
 `;
 export const NFTAbout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  @media (max-width: 1200px) {
 
-  }
 `;
 export const AboutWrapper = styled(Wrapper)`
    @media (max-width: 1200px) {
