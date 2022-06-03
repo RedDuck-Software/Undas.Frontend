@@ -29,7 +29,7 @@ export const BackText = styled.div`
 `;
 
 export const TitleText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -170,7 +170,7 @@ export const NameRow = styled.div`
   &.margin-top {
     margin-top: 15px;
   }
-  &.margin-top-30{
+  &.margin-top-30 {
     margin-top: 30px;
   }
 `;
@@ -576,33 +576,33 @@ export const AgreeRowButton = styled.div`
 `;
 
 export const InputDay = styled.input`
-background: #FFFFFF;
-box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
-border-radius: 10px;
-width: 120px;
-height:36px;
-margin-left: 20px;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-color: #7C7C7C;
-&:focus {
-  outline: none !important;
-  border: 3px solid #e6e6e6;
-  box-shadow: none;
-}
+  background: #ffffff;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+  border-radius: 10px;
+  width: 120px;
+  height: 36px;
+  margin-left: 20px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #7c7c7c;
+  &:focus {
+    outline: none !important;
+    border: 3px solid #e6e6e6;
+    box-shadow: none;
+  }
 `;
 
 export const TextDay = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #7C7C7C;
+  color: #7c7c7c;
   margin-top: 6px;
 `;
 
@@ -612,15 +612,14 @@ export const PriceContainer = styled.div`
   flex-direction: column;
 `;
 
-
 export const EthPrice = styled.span`
-font-family: 'Lato';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-text-align: right;
-color: #5D3F92;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #5d3f92;
   &::before {
     content: url(${eth});
     margin-right: 5px;
