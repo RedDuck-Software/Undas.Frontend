@@ -1,27 +1,16 @@
 import styled from "styled-components";
+import { Wrapper } from "../../../CategoriesPage/Categories.styles";
 
-export const BtnNone = styled.button`
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-`;
 export const NFTWrap = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 380px;
+  height: 380px;
   cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
   background-color: #FBF5FF;
   padding: 10px;
-  @media (max-width: 1220px) {
-    width: 300px;
-  }
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 100%;
   }
   @media (max-width: 640px) {
@@ -40,7 +29,7 @@ export const ImageWrapper = styled.div`
 export const Image = styled.img`
   width: 100%;
   border-radius: 10px;
-  height: 320px;
+  height: 300px;
   object-fit: cover;
   background-color: #fff;
 `;
@@ -49,6 +38,20 @@ export const NFTAbout = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  @media (max-width: 1200px) {
+
+  }
+`;
+export const AboutWrapper = styled(Wrapper)`
+   @media (max-width: 1200px) {
+    flex-wrap: wrap;
+  }
+`;
+export const CollectionWrapper = styled(Wrapper)`
+  @media (max-width: 1200px) {
+    order: 2;
+    flex: 0 0 100%;
+  }
 `;
 export const Name = styled.span`
   font-weight: 400;
@@ -56,9 +59,17 @@ export const Name = styled.span`
   line-height: 20px;
   color: #232428;
   margin-right: 10px;
+  @media (max-width: 1200px) {
+    order: 1;
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+  }
 `;
-export const CollectionText = styled(Name)`
-  margin-right: 0;
+export const CollectionText = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232428;
 `;
 export const CreatorText = styled.span`
   font-weight: 400;
