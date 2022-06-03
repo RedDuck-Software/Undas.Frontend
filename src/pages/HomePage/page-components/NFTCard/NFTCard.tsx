@@ -5,14 +5,13 @@ import {
   Image,
   NFTAbout,
   Name,
-  BtnNone,
-  CollectionImageWrap,
+  CollectionText,
+  CreatorText,
+  CreatorLink,
+  ImageWrapper
 } from "./NFTCard.styles";
 
-import { ReactComponent as FavoriteIco } from "../../../../icons/NFT-favorite.svg";
-import CollectionPrev from "../../../../images/image-home/colleciton-small.png";
 import {
-  CollectionText,
   Platform,
   Wrapper,
 } from "../../../CategoriesPage/Categories.styles";
@@ -21,27 +20,22 @@ import { Verified } from "../../../CategoriesPage/imports";
 const NFTCard: React.FC<{ uri: string; name: string }> = ({ uri, name }) => {
   return (
     <NFTWrap>
-      <Image src={uri} alt="nft-image" />
       <NFTAbout>
-        <Wrapper disp="flex" justifyContent="space-between">
-          <Wrapper disp="flex" alignItems="center" gap="10px" marg="0 20px 0 0">
-            <Name>{name}</Name>
+        <Wrapper disp="flex" justifyContent="space-between" alignItems="center" marg="0 0 10px">
+          <Wrapper disp="flex" alignItems="center" gap="10px">
+            <CollectionText>Collection Name</CollectionText>
             <img src={Verified} alt="verified-ico" />
-            <Platform>UND</Platform>
+            <Platform col="#873DC1" fs="16px">UND</Platform>
           </Wrapper>
-          <BtnNone>
-            <FavoriteIco />
-          </BtnNone>
+          <Name>{name}</Name>
         </Wrapper>
-        <Wrapper disp="flex" gap="10px" alignItems="center">
-          <CollectionImageWrap>
-            <img src={CollectionPrev} alt="collection-prev" />
-          </CollectionImageWrap>
-          <CollectionText fs="18px">Collection</CollectionText>
-          <img src={Verified} alt="verified-ico" />
-          <Platform>UND</Platform>
-        </Wrapper>
+        <CreatorText>Created by
+          <CreatorLink href="#">Borya Borya</CreatorLink>
+        </CreatorText>
       </NFTAbout>
+      <ImageWrapper>
+        <Image src={uri} alt="nft-image" />
+      </ImageWrapper>
     </NFTWrap>
   );
 };

@@ -9,14 +9,15 @@ export const BtnNone = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
-
 export const NFTWrap = styled.div`
-  width: 350px;
-  height: 390px;
+  width: 400px;
+  height: 400px;
   cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  background-color: #FBF5FF;
+  padding: 10px;
   @media (max-width: 1220px) {
     width: 300px;
   }
@@ -31,39 +32,49 @@ export const NFTWrap = styled.div`
     width: 100%;
   }
 `;
-
-export const Image = styled.img`
-  position: absolute;
-  z-index: -1;
+export const ImageWrapper = styled.div`
   width: 100%;
-  height: 260px;
+  padding: 10px 30px;
+  overflow: hidden;
 `;
-
+export const Image = styled.img`
+  width: 100%;
+  border-radius: 10px;
+  height: 320px;
+  object-fit: cover;
+  background-color: #fff;
+`;
 export const NFTAbout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
   width: 100%;
-  height: 130px;
-  padding: 15px;
-  right: 0;
-  bottom: 0;
-  background: rgba(35, 36, 40, 0.5);
-  backdrop-filter: blur(50px);
 `;
-
 export const Name = styled.span`
-  font-family: "Jost";
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 26px;
-  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232428;
+  margin-right: 10px;
 `;
-
-export const CollectionImageWrap = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  overflow: hidden;
+export const CollectionText = styled(Name)`
+  margin-right: 0;
+`;
+export const CreatorText = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7C7C7C;
+`;
+export const CreatorLink = styled.a`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #873DC1;
+  text-decoration: none;
+  margin-left: 5px;
+  &:hover{
+    text-decoration: underline;
+    color: #873DC1;
+  }
 `;
