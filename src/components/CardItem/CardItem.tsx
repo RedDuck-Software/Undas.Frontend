@@ -17,6 +17,8 @@ interface CardItemProps {
 }
 
 const CardItem: React.FC<CardItemProps> = ({ image, name, price }) => {
+  console.log("ALL NFT")
+
   return (
     <CardItemContainer>
       <CardItemImage src={image} />

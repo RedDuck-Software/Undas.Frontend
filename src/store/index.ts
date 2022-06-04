@@ -49,7 +49,13 @@ export const useModal = (state: RootState) => {
 };
 
 export const useToken = (state: RootState) => {
+    
   return state.modal.tokenId;
+};
+
+export const usePrice = (state: RootState) => {
+    
+  return state.modal.priceInNum;
 };
 /*
 export type AppDispatch = typeof store.dispatch;

@@ -26,6 +26,7 @@ interface CommonProps {
   id: number;
   name: string;
   URI: string;
+  //priceInNum: number;
 }
 
 export interface ItemsProps extends CommonProps {
@@ -69,7 +70,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     if (!connector) {
       return;
     }
-
+  
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {
@@ -115,7 +116,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
       const id: number = tokenId.toNumber();
 
       if (canRentNFT) {
-        stakings.push({ premiumInNum, id, name, URI });
+        stakings.push({ id, name, URI, premiumInNum });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     }
@@ -210,6 +211,8 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
+  console.log("commonList")
+  console.log(commonList)
 
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
@@ -228,7 +231,7 @@ const APIURL =
 
 const tokensQuery = `
     query   {
-      listings(first: 5) {
+      listings {
         id
         token
         seller

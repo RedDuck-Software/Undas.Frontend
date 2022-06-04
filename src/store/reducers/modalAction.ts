@@ -8,10 +8,13 @@ export function closeModal() {
   return { type: CLOSE_MODAL };
 }
 
-export function setComponent(component: any, tokenId?: number) {
+export function setComponent(component: any, tokenId?: number, priceInNum?: number) {
+  console.log()
+  console.log("price in ",priceInNum)
+  
   switch (component) {
     case 'buy':
-      return { type: SET_COMPONENT_BUY, tokenId: tokenId };
+      return { type: SET_COMPONENT_BUY, tokenId: tokenId, priceInNum: priceInNum };
     default:
       return component;
   }

@@ -4,11 +4,14 @@ import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Context from "../../../../utils/Context";
-import { getListing } from "../../../../utils/getListing";
-import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
-import { isBuyableFunction } from "../../../../utils/isBuyable";
+// import { getListing } from "../../../../utils/getListing";
+// import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
+// import { isBuyableFunction } from "../../../../utils/isBuyable";
 import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
+import { createClient } from 'urql';
+import { ethers } from "ethers";
+
 
 const NewNFTContainer = styled.div`
   margin-top: 120px;
@@ -26,34 +29,34 @@ const NewNFTContainer = styled.div`
 
 const NewNFT: React.FC = () => {
   const { connector } = useContext(Context);
-  const items: { id: number; name: string; URI: string }[] = [];
+  const items: {priceInNum:number; id: number; name: string; URI: string }[] = [];
   const [list, setList] =
     useState<{ id: number; name: string; URI: string }[]>();
 
-  const getListings = async () => {
-    if (!connector) {
-      return;
-    }
-
-    const lastIndex = await getListingsLastIndex(connector);
-    if (lastIndex || lastIndex === 0) {
-      for (let i = 0; i < lastIndex?.toNumber(); i++) {
-        const CardProps = await getListing(i, connector);
-        const isBuyable = await isBuyableFunction(i, connector);
-
-        if (!CardProps) {
-          continue;
-        }
-        const { name, URI } = CardProps;
-        const { tokenId } = CardProps.tx;
-        if (isBuyable) {
-          items.push({ name, URI, id: +tokenId });
-        }
+    const getListings = async () => {
+      if (!connector) {
+        return;
       }
-
+    
+      console.log("dsadsadasdasdasd");
+      const tokens = await fetchData();
+      
+      tokens.map((nft:any)=>{
+       
+        if(nft.listingStatus == 'ACTIVE') { 
+      
+            const price = nft.price
+            const id = nft.tokenId
+            const name = nft.tokenName;
+            const URI = nft.tokenURI
+            const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+  
+            items.push({ priceInNum, id, name, URI });
+  
+          }
+        })
       return items;
-    } else return;
-  };
+    };
 
   async function getItemsData() {
     const response = await getListings();
@@ -117,5 +120,32 @@ const NewNFT: React.FC = () => {
     </NewNFTContainer>
   );
 };
+
+const APIURL =  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+    query   {
+      listings(first: 5) {
+        id
+        token
+        seller
+        tokenId
+        tokenURI
+        listingStatus
+        price
+        tokenDescription
+        tokenName    
+      }
+    }  
+`
+  const client = createClient({
+    url: APIURL
+  });
+
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    console.log(data.data.listings)
+    return data.data.listings
+  }
 
 export default NewNFT;

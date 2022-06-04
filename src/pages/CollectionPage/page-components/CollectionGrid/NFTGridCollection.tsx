@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext} from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -18,33 +18,35 @@ import {
   PriceItem,
   PriceInEth,
   TextSpan,
-} from "./NFTGridItem.styles";
+} from "./NFTGridCollection.styles";
 
-import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
-import { ReactComponent as LockIco } from "../../../icons/lock.svg";
-import { ReactComponent as PreviewIco } from "../../../icons/preview.svg";
-import {
-  Platform,
-  Wrapper,
-} from "../../../pages/CategoriesPage/Categories.styles";
-import { Verified } from "../../../pages/CategoriesPage/imports";
-import { setComponent } from "../../../store/reducers/modalAction";
+import { setComponent } from "../../../../store/reducers/modalAction";
+import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
+import { Verified } from "../../../CategoriesPage/imports";
+import { EthLogo, LockIco, PreviewIco } from "../../imports";
 
-interface NFTGridItemProps {
+// import { Marketplace__factory } from "../../../../typechain";
+// import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+// import { ethers } from "ethers";
+import Context from "../../../../utils/Context";
+
+interface NFTGridProps {
   tokenId: number;
   URI: string;
   name: string;
-  price?: number;
+  priceInNum?: number;
   premium?: number;
 }
 
-const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
+const NFTGridCollection: React.FC<NFTGridProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log("props")
+  const { connector } = useContext(Context);
+  console.log(connector)
+  // console.log('dsadsadas',props)
 
-  console.log("ALL NFT")
-  console.log(props)
-
+  
   return (
     <NFTWrap
       onClick={() => {
@@ -71,7 +73,12 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <BuyBtn
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(setComponent("buy", props.tokenId));
+              // console.log('event')
+              // console.log(props.tokenId)
+              console.log("dsads")
+              console.log(props.priceInNum)
+             
+              dispatch(setComponent("buy", props.tokenId, props.priceInNum));
             }}
           >
             Buy now
@@ -82,7 +89,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{props.price ?? "-"}</PriceInEth>
+              <PriceInEth>{props.priceInNum ?? "-"}</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
@@ -112,4 +119,4 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   );
 };
 
-export default NFTGridItem;
+export default NFTGridCollection;
