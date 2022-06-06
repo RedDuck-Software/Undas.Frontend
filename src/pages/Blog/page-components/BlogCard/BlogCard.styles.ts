@@ -6,12 +6,20 @@ export const CardWrap = styled.div`
     border-radius: 10px;
     border: 1px solid #5D3F92;
     height: 340px;
+    flex: 0 0 31%;
+    background-color: #fff;
+    transition: all 0.3s linear; 
+    &:hover{
+        box-shadow: rgb(135 61 193 / 50%) 0px 5px 15px;
+        cursor: pointer;
+    }
 `;
 export const BigCardWrap = styled(CardWrap)`
     flex-direction: row;
     grid-column-start: 1;
     grid-column-end: 4;
     max-height: 340px;
+    width: 100%;
 `;
 export const ImageWrap = styled.div`
     

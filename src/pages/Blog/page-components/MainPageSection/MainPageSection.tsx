@@ -14,14 +14,15 @@ interface MainPageSection {
     titleText: string;
     descriptText: string;
     blogCard: ReactNode;
+    blogLink: string;
 }
 
-const MainPageSection: React.FC<MainPageSection> = ({titleText, descriptText, blogCard}) => {
+const MainPageSection: React.FC<MainPageSection> = ({titleText, descriptText, blogCard, blogLink}) => {
   return <Wrap>
       <SectionTitle>{titleText}</SectionTitle>
       <DescriptWrap>
         <SectionDescription>{descriptText}</SectionDescription>
-        <ViewAllBtn>View All</ViewAllBtn>
+        <ViewAllBtn to={blogLink}>View All</ViewAllBtn>
       </DescriptWrap>
       <CardsWrap>
          {blogCard}
