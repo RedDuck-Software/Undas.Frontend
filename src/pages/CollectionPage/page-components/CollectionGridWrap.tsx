@@ -16,7 +16,7 @@ interface CollectionGridWrapperProps {
 const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   itemList,
 }) => {
-  console.log("itemList")
+  console.log("itemList11")
   console.log(itemList)
 
   return (
@@ -28,7 +28,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             tokenId={+item.id}
             URI={item.URI}
             name={item.name}
-            priceInNum={item.priceInNum}
+            price={item.priceInNum}
           />
         );
       })}

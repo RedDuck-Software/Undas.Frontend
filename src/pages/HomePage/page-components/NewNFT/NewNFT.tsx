@@ -37,10 +37,9 @@ const NewNFT: React.FC = () => {
       if (!connector) {
         return;
       }
-    
-      console.log("dsadsadasdasdasd");
+      console.log(list)
       const tokens = await fetchData();
-      
+      console.log(tokens)
       tokens.map((nft:any)=>{
        
         if(nft.listingStatus == 'ACTIVE') { 
@@ -104,15 +103,6 @@ const NewNFT: React.FC = () => {
               <SwiperSlide key={item.id}>
                 <NFTCard uri={item.URI} name={item.name} />
               </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
             </>
           );
         })}
@@ -125,7 +115,7 @@ const APIURL =  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft
 
 const tokensQuery = `
     query   {
-      listings(first: 5) {
+      listings{
         id
         token
         seller

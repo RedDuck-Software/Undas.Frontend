@@ -11,8 +11,8 @@ import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
 // import { getListing } from "../../../utils/getListing";
 // import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
-import { getStaking } from "../../../utils/getStaking";
-import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
+// import { getStaking } from "../../../utils/getStaking";
+// import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
 // import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
@@ -26,7 +26,6 @@ interface CommonProps {
   id: number;
   name: string;
   URI: string;
-  //priceInNum: number;
 }
 
 export interface ItemsProps extends CommonProps {
@@ -70,13 +69,13 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     if (!connector) {
       return;
     }
-  
+
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
-        const id = nft.tokenId;
+        const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
@@ -95,37 +94,28 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
       return;
     }
 
-    const lastIndex = await getStakingsLastIndex(connector);
-    if (!lastIndex) return;
-
-    for (let i = 0; i < lastIndex?.toNumber(); i++) {
-      const CardProps = await getStaking(i, connector);
-
-      let canRentNFT;
-      if (CardProps?.tx.tokenId._hex !== "0x00") {
-        canRentNFT = await canRentNFTFunction(i, connector);
-      }
-
-      if (!CardProps) {
-        continue;
-      }
-
-      const { premium, tokenId } = CardProps.tx;
-      const { name, URI } = CardProps;
-      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-      const id: number = tokenId.toNumber();
-
-      if (canRentNFT) {
-        stakings.push({ id, name, URI, premiumInNum });
+    const tokens = await fetchStakingData();
+    console.log('tokensStaking',tokens.stakingListings)
+    tokens.stakingListings.map((nft: any) => {
+      if (nft.stakingStatus == "ACTIVE") {
+        console.log('DASDSAD')
+        const price = nft.premiumWei;
+        const id = nft.id;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        console.log('1')
+        stakings.push({ id, name, URI,premiumInNum });
+        console.log('zxczczx',stakings)
         setAmountOfNFTs(amountOfNFTs + 1);
       }
-    }
-
+    });
     return stakings;
   };
 
   async function getListingsData() {
     const response = await getListings();
+    console.log('listing',response)
     if (response) {
       setList(response);
     }
@@ -133,11 +123,13 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   async function getStakingsData() {
     const response = await getStakings();
+    console.log("stakin22313gs",response)
+
     if (response) {
       setStakingsList(response);
     }
   }
-
+  console.log(stakingsList)
   useEffect(() => {
     if (!connector) {
       return console.log("loading");
@@ -147,6 +139,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     console.log("useEf");
     getListingsData();
     getStakingsData();
+    console.log("use efff")
   }, [connector]);
 
   const priceSort = async () => {
@@ -211,9 +204,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-  console.log("commonList")
-  console.log(commonList)
-
+  console.log('commonList',stakingsList)
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -231,7 +222,7 @@ const APIURL =
 
 const tokensQuery = `
     query   {
-      listings {
+      listings{
         id
         token
         seller
@@ -244,14 +235,38 @@ const tokensQuery = `
       }
     }  
 `;
+
+ const tokensStakingQuery =`
+ query  {
+  stakingListings{
+    id
+    seller
+    token
+    tokenId
+    tokenURI
+    stakingStatus
+    tokenName
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+  }
+}
+ `;
+
 const client = createClient({
   url: APIURL,
 });
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log(data.data.listings);
+  console.log('listing',data.data.listings);
   return data.data.listings;
 }
-
+async function fetchStakingData() {
+  const data = await client.query(tokensStakingQuery).toPromise();
+  console.log('staking1',data.data.stakingListings);
+  return data.data;
+}
 export default AllGridWrap;

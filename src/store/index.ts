@@ -57,6 +57,14 @@ export const usePrice = (state: RootState) => {
     
   return state.modal.priceInNum;
 };
+export const useUri = (state: RootState) => {
+    
+  return state.modal.tokenURI;
+};
+export const useName = (state: RootState) => {
+    
+  return state.modal.name;
+};
 /*
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
