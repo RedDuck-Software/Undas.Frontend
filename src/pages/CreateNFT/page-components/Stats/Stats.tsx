@@ -16,7 +16,7 @@ interface StatsProps {
   setStatList: Dispatch<SetStateAction<Stat[]>>;
 }
 
-const Stats: React.FC<StatsProps> = ({ statList }) => {
+const Stats: React.FC<StatsProps> = ({ statList, setStatList }) => {
   return (
     <CreateFormGroup>
       <ModalTitle>
@@ -26,7 +26,7 @@ const Stats: React.FC<StatsProps> = ({ statList }) => {
         <ModalBlockDescript>
           Numerical traits that just show as numbers
         </ModalBlockDescript>
-        <StatsModal />
+        <StatsModal setStatList={setStatList} />
       </ModalBlock>
       <WithPropertiesBlock>
         <StatList statList={statList} />

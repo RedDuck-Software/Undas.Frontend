@@ -1,3 +1,4 @@
+import { Complete } from "../../../pages/CreateNFT/types";
 import { CreateNFT } from "./types"
 
 let prevId = 0;
@@ -17,7 +18,7 @@ export function editProperty(propertyId: string | number, propertyType: string, 
     return {type: CreateNFT.editProperty, propertyId, propertyType, propertyName}
 }
 
-export function addLevel(levelName: string, levelComplete: string | number) {
+export function addLevel(levelName: string, levelComplete: Complete) {
     const id = prevId + 1;
     const action = {type: CreateNFT.addLevel, payload: {id: id, name: levelName, complete: levelComplete}}
     prevId = id;
@@ -28,13 +29,13 @@ export function removeLevel(levelId: string | number) {
     return {type: CreateNFT.removeLevel, payload: levelId};
 }
 
-export function editLevel(levelId: string | number, levelName: string, levelComplete: string | number) {
+export function editLevel(levelId: string | number, levelName: string, levelComplete: Complete) {
     return {type: CreateNFT.editLevel, levelId, levelName, levelComplete}
 }
 
-export function addStat(statType: string, statName: string) {
+export function addStat(statName: string, statComplete: Complete) {
     const id = prevId + 1;
-    const action = {type: CreateNFT.addStat, payload: {id: id, type: statType, name: statName}}
+    const action = {type: CreateNFT.addStat, payload: {id: id, name: statName, complete: statComplete}}
     prevId = id;
     return action;
 }
@@ -43,6 +44,6 @@ export function removeStat(statId: string | number) {
     return {type: CreateNFT.removeStat, payload: statId};
 }
 
-export function editStat(statId: string | number, statType: string, statName: string) {
-    return {type: CreateNFT.editStat, statId, statType, statName}
+export function editStat(statId: string | number, statName: string, statComplete: Complete) {
+    return {type: CreateNFT.editStat, statId, statName, statComplete}
 }

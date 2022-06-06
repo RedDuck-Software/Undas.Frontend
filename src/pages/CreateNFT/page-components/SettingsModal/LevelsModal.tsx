@@ -187,7 +187,7 @@ const LevelsModal: React.FC<LevelsModalProps> = ({ setLevelList }) => {
           {modalLevels.map((item: any) => {
             return (
               <ModalItem
-                key={`${item.name}-${item.complete}`}
+                key={`${item.name}-${item.complete}-level`}
                 nameValue={item.name}
                 completeValue={item.complete}
                 handleDelete={() => handleRemoveLevel(item.id)}

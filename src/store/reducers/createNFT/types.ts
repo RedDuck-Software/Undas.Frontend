@@ -10,7 +10,7 @@ export enum CreateNFT {
     // Stat
     addStat= "ADD_STAT",
     removeStat = "REMOVE_STAT",
-    editStat = "EDI_STAT",
+    editStat = "EDIT_STAT",
 }
 
 export type Item = {

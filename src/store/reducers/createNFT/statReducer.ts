@@ -14,8 +14,8 @@ export const statReducer = (state = initialState, action: any) => {
     case CreateNFT.removeStat:
       const newStats = [...state.stats.filter((item: Item) => item.id !== action.payload)]
       return {
-          ...state
-
+          ...state,
+          stats: newStats
       };
     case CreateNFT.editStat:
       const editedItem = {id: action.id, propertyType: action.propertyType, propertyName: action.propertyName}
