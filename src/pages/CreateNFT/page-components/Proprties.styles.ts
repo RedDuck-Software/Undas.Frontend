@@ -54,7 +54,7 @@ export const PropertiesElementItem = styled.span`
     flex: 0 0 100%;
   }
 `;
-export const CompleteWrap = styled.div<{ complete?: number }>`
+export const CompleteWrap = styled.div<{ complete?: number | string}>`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -76,12 +76,12 @@ export const CompleteWrap = styled.div<{ complete?: number }>`
     position: absolute;
     height: 100%;
     width: ${(props) =>
-      (props.complete === 0 && "") ||
-      (props.complete === 1 && "20%") ||
-      (props.complete === 2 && "40%") ||
-      (props.complete === 3 && "60%") ||
-      (props.complete === 4 && "80%") ||
-      (props.complete === 5 && "100%")};
+      (props.complete == 0 && "") ||
+      (props.complete == 1 && "20%") ||
+      (props.complete == 2 && "40%") ||
+      (props.complete == 3 && "60%") ||
+      (props.complete == 4 && "80%") ||
+      (props.complete == 5 && "100%")};
     background-color: #e2d1ff;
     z-index: 1;
   }

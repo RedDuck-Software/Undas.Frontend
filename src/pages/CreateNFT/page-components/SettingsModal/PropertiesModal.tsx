@@ -24,7 +24,6 @@ import {
 import "./styles.css";
 
 interface PropertiesModalProps {
-  propertyList: Property[];
   setPropertyList: Dispatch<SetStateAction<Property[]>>;
 }
 
@@ -100,7 +99,6 @@ const ModalItem: React.FC<ModalItemProps> = ({
 };
 
 const PropertiesModal: React.FC<PropertiesModalProps> = ({
-  //propertyList,
   setPropertyList,
 }) => {
   const dispatch = useDispatch();
@@ -141,12 +139,10 @@ const PropertiesModal: React.FC<PropertiesModalProps> = ({
 
   const handleAddMore = () => {
     dispatch(addProperty(type, name));
-    setType("");
-    setName("");
+    handleClearInput();
   };
 
   const handleRemoveProperty = (itemId: any) => {
-    console.log("deleted item with id: ", itemId);
     dispatch(removeProperty(itemId));
     setModalProperties(properties);
   };

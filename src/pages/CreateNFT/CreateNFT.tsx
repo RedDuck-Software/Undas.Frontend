@@ -13,26 +13,13 @@ import {
   AddImgButton,
   CreateTextArea,
   CreateSelect,
-  ModalTitle,
-  ModalBlockDescript,
-  ModalBlock,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
-  WithPropertiesBlock,
   CreateFormButton,
 } from "./CreateNFT.styles";
-import {
-  ImgIcon,
-  LevelsIco,
-  StatsIco,
-  UnlockableContentIco,
-  ExplicitContentIco,
-} from "./imports";
-import Levels from "./page-components/Levels";
-import LevelsModal from "./page-components/SettingsModal/LevelsModal";
-import StatsModal from "./page-components/SettingsModal/StatsModal";
-import Stats from "./page-components/Stats";
+import { ImgIcon, UnlockableContentIco, ExplicitContentIco } from "./imports";
+
 import Switcher from "./page-components/Switcher/Switcher";
 import { Background } from "../../globalStyles";
 import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
@@ -41,20 +28,22 @@ import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
 import { validationSchema } from "./validation";
-import { CreateNFTForm, Property } from "./types";
+import { CreateNFTForm, Level, Property, Stat } from "./types";
 import Properties from "./page-components/Properties/Properties";
 import {
-  //useLevels,
+  useLevels,
   useProperties,
-  //useStats,
+  useStats,
 } from "../../store/reducers/createNFT/helpers";
 import { useSelector } from "react-redux";
+import Levels from "./page-components/Levels/Levels";
+import Stats from "./page-components/Stats/Stats";
 //const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
 
 const CreateNFT: React.FC = () => {
-  const properties: any = useSelector(useProperties);
-  //const levels = useSelector(useLevels);
-  //const stats = useSelector(useStats);
+  const properties = useSelector(useProperties);
+  const levels = useSelector(useLevels);
+  const stats = useSelector(useStats);
 
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
@@ -66,6 +55,8 @@ const CreateNFT: React.FC = () => {
   const [description, setDescription] = useState("");
   //const [collection, setCollection] = useState<string>();
   const [propertyList, setPropertyList] = useState<Property[]>(properties);
+  const [levelList, setLevelList] = useState<Level[]>(levels);
+  const [statList, setStatList] = useState<Stat[]>(stats);
 
   //const [levelList, setLevelList] = useState(levels);
   //const [statList, setStatList] = useState(stats);
@@ -181,38 +172,14 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
+
             <Properties
               propertyList={propertyList}
               setPropertyList={setPropertyList}
             />
-            <CreateFormGroup>
-              <ModalTitle>
-                <LevelsIco /> Levels
-              </ModalTitle>
-              <ModalBlock>
-                <ModalBlockDescript>
-                  Numerical traits that show as a progress bar
-                </ModalBlockDescript>
-                <LevelsModal />
-              </ModalBlock>
-              <WithPropertiesBlock>
-                <Levels />
-              </WithPropertiesBlock>
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <ModalTitle>
-                <StatsIco /> Stats
-              </ModalTitle>
-              <ModalBlock>
-                <ModalBlockDescript>
-                  Numerical traits that just show as numbers
-                </ModalBlockDescript>
-                <StatsModal />
-              </ModalBlock>
-              <WithPropertiesBlock>
-                <Stats />
-              </WithPropertiesBlock>
-            </CreateFormGroup>
+            <Levels levelList={levelList} setLevelList={setLevelList} />
+            <Stats statList={statList} setStatList={setStatList} />
+
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
