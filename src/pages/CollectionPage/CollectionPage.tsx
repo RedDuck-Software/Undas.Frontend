@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import {
   Info,
@@ -68,6 +68,10 @@ import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Background } from "../../globalStyles";
+import { useMoralisWeb3Api } from "react-moralis";
+import Context from "../../utils/Context";
+import Moralis from "moralis/types";
+import { ethers } from "ethers";
 
 const testNFTList = [
   {
@@ -140,9 +144,14 @@ const testNFTList = [
     id: 11,
     URI: nft11,
     name: "Returne by ...",
-    priceInNum: 20,
+    priceInNum: 202222,
   },
 ];
+export interface ItemsProps {
+  id: number;
+  URI: string;
+  name: string;
+}
 
 const CollectionPage: React.FC = () => {
   const [active, setActive] = useState<any>({
@@ -150,6 +159,61 @@ const CollectionPage: React.FC = () => {
     event: false,
   });
 
+  const { connector } = useContext(Context);
+  const Web3Api = useMoralisWeb3Api();
+  // const [nfts, setNFTs] = useState<ItemsProps[]>([]);
+
+  async function fetchData() {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+    const signerPublicAddress = await signer.getAddress();
+
+    const data = await Web3Api.Web3API.account.getNFTs({
+      chain: "goerli",
+      address: signerPublicAddress,
+    });
+    return data.result;
+  }
+
+  const items: ItemsProps[] = [];
+
+  const [list, setList] = useState<ItemsProps[]>([]);
+
+  async function getNfts() {
+    const nfts = await fetchData();
+
+    if (!nfts) return;
+    nfts.map((nft: any) => {
+      const name = nft.name;
+      const URI = nft.token_uri;
+      const id = nft.token_id;
+      //query here
+      items.push({ id, URI, name });
+    });
+    return items;
+  }
+
+  async function getUserNft() {
+    const response = await getNfts();
+    console.log("adadas", response);
+
+    if (response) {
+      setList(response);
+    }
+  }
+
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
+
+    getUserNft();
+  }, [connector]);
   const { viewMode, viewButtonsRender } = useViewMode();
   return (
     <>
@@ -296,10 +360,10 @@ const CollectionPage: React.FC = () => {
                 <TextResult>8 results</TextResult>
               </ResultsSmallSize>
               {viewMode === ViewMode.grid ? (
-                <CollectionGridWrap itemList={testNFTList} />
+                <CollectionGridWrap itemList={list} />
               ) : (
                 <>
-                  {testNFTList.map((item) => {
+                  {list.map((item) => {
                     return (
                       <NFTListItem
                         key={item.id}

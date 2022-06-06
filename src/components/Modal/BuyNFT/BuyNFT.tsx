@@ -33,6 +33,18 @@ import { Marketplace__factory } from "../../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
 import { OnlyOne__factory } from "../../../typechain";
 
+// // const fetchNFTs = async () => {
+
+//
+
+// };
+
+// async function getNfts() {
+//   const option = {chain: 'goerli',address:'0x45434191f03528726CAfd4Eebe0Fc5D33Be27720'}
+//   const nfts = await Moralis.Web3.getNfts(option)
+//   console.log(nfts)
+// }
+
 const BuyNFT: React.FC = () => {
   const dispatch = useDispatch();
   const litsingId = useSelector(useToken);
@@ -44,11 +56,13 @@ const BuyNFT: React.FC = () => {
   console.log("token price", tokenPrice);
   console.log("tokenUri", tokenName);
   const { connector } = useContext(Context);
+
   async function buyNFT(tokenId: number, priceInNum?: number) {
     console.log("priceInNum" + priceInNum);
     console.log("tokenId" + tokenId);
     console.log("tokenUri", tokenUri);
-    console.log(connector);
+    console.log("connector", connector);
+
     if (!connector) return;
     if (priceInNum == undefined) {
       return;
@@ -58,11 +72,12 @@ const BuyNFT: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
-
+    console.log(await signer.getAddress());
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
 
+    // fetchNFTs()
     console.log("userBalance", userBalanceInWei);
     console.log("priceInNum", priceInNum);
 
@@ -94,17 +109,6 @@ const BuyNFT: React.FC = () => {
     console.log("tx", tx);
     await tx.wait();
   }
-
-  // const { connector } = useContext(Context);
-
-  /* const getShowBuy = async () => {
-    if (!connector) return;
-
-    const provider = new ethers.providers.Web3Prov
-    );
-    const signer = provider.getSigner(0);ider(
-      await connector.getProvider(),
-  }; */
 
   return (
     <WindowWrap>

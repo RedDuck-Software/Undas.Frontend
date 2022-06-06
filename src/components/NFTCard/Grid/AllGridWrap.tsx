@@ -104,9 +104,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        console.log("1");
+        console.log("111111");
+
         stakings.push({ id, name, URI, premiumInNum });
-        console.log("zxczczx", stakings);
+
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     });
@@ -204,7 +205,8 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-  console.log("commonList", stakingsList);
+  console.log(stackingFilter);
+  console.log("list Comon", commonList);
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (

@@ -12,6 +12,8 @@ import getTokenURI from "../../../../utils/getTokenURI";
 import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
+import { createClient } from "urql";
+import { ethers } from "ethers";
 
 const RentNFTContainer = styled.div`
   margin: 120px 0;
@@ -32,6 +34,29 @@ const RentNFT: React.FC = () => {
   const items: { URI: string; name: string; id: number }[] = [];
   const [list, setList] =
     useState<{ URI: string; name: string; id: number }[]>();
+
+  const getStakings = async () => {
+    if (!connector) {
+      return;
+    }
+
+    const tokens = await fetchStakingData();
+    console.log("tokensStaking", tokens.stakingListings);
+    tokens.stakingListings.map((nft: any) => {
+      if (nft.stakingStatus == "ACTIVE") {
+        console.log("DASDSAD");
+        const price = nft.premiumWei;
+        const id = nft.id;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        console.log("111111");
+
+        items.push({ URI, name, id });
+      }
+    });
+    return items;
+  };
 
   const getItems = async () => {
     if (!connector) {
@@ -61,7 +86,8 @@ const RentNFT: React.FC = () => {
     return items;
   };
   async function getItemsData() {
-    const response = await getItems();
+    const response = await getStakings();
+    console.log("list", list);
     setList(response);
   }
 
@@ -104,7 +130,7 @@ const RentNFT: React.FC = () => {
         navigation={true}
       >
         {list?.map((item) => {
-          console.log(list);
+          console.log("LIST", list);
           return (
             <>
               <SwiperSlide key={item.id}>
@@ -126,5 +152,37 @@ const RentNFT: React.FC = () => {
     </RentNFTContainer>
   );
 };
+
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensStakingQuery = `
+ query  {
+  stakingListings{
+    id
+    seller
+    token
+    tokenId
+    tokenURI
+    stakingStatus
+    tokenName
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+  }
+}
+ `;
+
+const client = createClient({
+  url: APIURL,
+});
+
+async function fetchStakingData() {
+  const data = await client.query(tokensStakingQuery).toPromise();
+  console.log("staking1", data.data.stakingListings);
+  return data.data;
+}
 
 export default RentNFT;
