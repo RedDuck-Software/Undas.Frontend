@@ -1,5 +1,11 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProperty,
+  removeProperty,
+} from "../../../../store/reducers/createNFT/createNFTActions";
+import { useProperties } from "../../../../store/reducers/createNFT/helpers";
 import { Property } from "../../types";
 
 import {
@@ -22,11 +28,31 @@ interface PropertiesModalProps {
   setPropertyList: Dispatch<SetStateAction<Property[]>>;
 }
 
-const InputGroup: React.FC = () => {
+interface InputGroupProps {
+  onChangeType: any;
+  onChangeName: any;
+  typeValue: string;
+  nameValue: string;
+  handleClearInput: () => void;
+}
+
+const InputGroup: React.FC<InputGroupProps> = ({
+  onChangeType,
+  onChangeName,
+  typeValue,
+  nameValue,
+  handleClearInput,
+}) => {
   return (
     <ModalInputGroup>
       <ModalLabel htmlFor="type">Type</ModalLabel>
-      <ModalInput type="text" id="type" placeholder="Example: Sex" />
+      <ModalInput
+        type="text"
+        id="type"
+        placeholder="Example: Sex"
+        onChange={onChangeType}
+        value={typeValue}
+      />
       <ModalLabelStraight htmlFor="name" className="margin-for-small">
         Name
       </ModalLabelStraight>
@@ -35,23 +61,96 @@ const InputGroup: React.FC = () => {
         id="name"
         placeholder="Example: Male"
         className="margin-for-small"
+        onChange={onChangeName}
+        value={nameValue}
       />
-      <InputButton />
+      <InputButton onClick={handleClearInput} />
     </ModalInputGroup>
   );
 };
 
-const PropertiesModal: React.FC<PropertiesModalProps> = ({ propertyList }) => {
+interface ModalItemProps {
+  typeValue: string;
+  nameValue: string;
+  handleDelete: () => void;
+}
+
+const ModalItem: React.FC<ModalItemProps> = ({
+  typeValue,
+  nameValue,
+  handleDelete,
+}) => {
+  return (
+    <ModalInputGroup>
+      <ModalLabel htmlFor="type">Type</ModalLabel>
+      <ModalInput type="text" id="type" value={typeValue} readOnly />
+      <ModalLabelStraight htmlFor="name" className="margin-for-small">
+        Name
+      </ModalLabelStraight>
+      <ModalInput
+        type="text"
+        id="name"
+        className="margin-for-small"
+        value={nameValue}
+        readOnly
+      />
+      <InputButton onClick={handleDelete} />
+    </ModalInputGroup>
+  );
+};
+
+const PropertiesModal: React.FC<PropertiesModalProps> = ({
+  //propertyList,
+  setPropertyList,
+}) => {
+  const dispatch = useDispatch();
+  const properties = useSelector(useProperties);
+  const [modalProperties, setModalProperties] =
+    useState<Property[]>(properties);
   const [show, setShow] = useState(false);
-  const [properties] = useState(propertyList);
-  const handleClose = () => setShow(false);
+  const [type, setType] = useState<string>("");
+  const [name, setName] = useState<string>("");
+
+  useEffect(() => {
+    setModalProperties(properties);
+  }, [properties]);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleSave = () => {
+    setShow(false);
+    setPropertyList(properties);
+  };
+
   const handleShow = () => setShow(true);
-  console.log(properties);
-  //const addPropertyHandler = () => {}
-  /* const [edited, setEdited] = useState<string>("");
-  const handlePropertyEdit = (event: any) => {
-    setEdited(event.target.value);
-  }; */
+
+  const handleType = (event: any) => {
+    setType(event.target.value);
+  };
+
+  const handleName = (event: any) => {
+    setName(event.target.value);
+  };
+
+  const handleClearInput = () => {
+    setType("");
+    setName("");
+  };
+
+  const handleAddMore = () => {
+    dispatch(addProperty(type, name));
+    setType("");
+    setName("");
+  };
+
+  const handleRemoveProperty = (itemId: any) => {
+    console.log("deleted item with id: ", itemId);
+    dispatch(removeProperty(itemId));
+    setModalProperties(properties);
+  };
+  console.log("properties modal: ", properties);
   return (
     <CreateModalWrap>
       <ModalButton onClick={handleShow}>+</ModalButton>
@@ -65,34 +164,29 @@ const PropertiesModal: React.FC<PropertiesModalProps> = ({ propertyList }) => {
             Properties show up underneath your item, are clickable, and can be
             filtered in your collection&#39;s sidebar
           </Descriprtion>
-          {properties.map((item: any) => {
+          {modalProperties.map((item: any) => {
             return (
-              <ModalInputGroup
+              <ModalItem
                 key={`${item.type}-${item.name}`}
-                data-name={item.name}
-              >
-                <ModalLabel htmlFor="type">Type</ModalLabel>
-                <ModalInput type="text" id="type" placeholder={item.type} />
-                <ModalLabelStraight htmlFor="name" className="margin-for-small">
-                  Name
-                </ModalLabelStraight>
-                <ModalInput
-                  type="text"
-                  id="name"
-                  placeholder={item.name}
-                  className="margin-for-small"
-                />
-                <InputButton />
-              </ModalInputGroup>
+                typeValue={item.type}
+                nameValue={item.name}
+                handleDelete={() => handleRemoveProperty(item.id)}
+              />
             );
           })}
-          <InputGroup />
+          <InputGroup
+            onChangeType={handleType}
+            onChangeName={handleName}
+            typeValue={type}
+            nameValue={name}
+            handleClearInput={handleClearInput}
+          />
         </Modal.Body>
         <Modal.Footer>
-          <CreateModalFormButton onClick={handleClose}>
+          <CreateModalFormButton onClick={handleAddMore}>
             Add More
           </CreateModalFormButton>
-          <CreateModalFormButton onClick={handleClose} className="colored-btn">
+          <CreateModalFormButton onClick={handleSave} className="colored-btn">
             Save
           </CreateModalFormButton>
         </Modal.Footer>

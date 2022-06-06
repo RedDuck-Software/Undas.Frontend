@@ -1,5 +1,20 @@
 export enum CreateNFT {
-    add = "ADD_PROPERTY",
-    remove = "REMOVE_PROPERTY",
-    edit = "EDIT_PROPERTY"
+    // Property
+    addProperty = "ADD_PROPERTY",
+    removeProperty = "REMOVE_PROPERTY",
+    editProperty = "EDIT_PROPERTY",
+    // Level
+    addLevel = "ADD_LEVEL",
+    removeLevel ="REMOVE_LEVEL",
+    editLevel = "EDIT_LEVEL",
+    // Stat
+    addStat= "ADD_STAT",
+    removeStat = "REMOVE_STAT",
+    editStat = "EDI_STAT",
+}
+
+export type Item = {
+    id: string | number,
+    type: string,
+    name: string
 }

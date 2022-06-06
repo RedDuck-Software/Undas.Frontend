@@ -12,6 +12,7 @@ import {
 import { PropertiesIco } from "../../imports";
 import PropertiesModal from "../SettingsModal/PropertiesModal";
 import { Property } from "../../types";
+//import { useDispatch } from "react-redux";
 
 interface PropertiesProps {
   propertyList: Property[];

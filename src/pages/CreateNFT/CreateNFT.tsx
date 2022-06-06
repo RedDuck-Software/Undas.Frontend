@@ -43,25 +43,32 @@ import Context from "../../utils/Context";
 import { validationSchema } from "./validation";
 import { CreateNFTForm, Property } from "./types";
 import Properties from "./page-components/Properties/Properties";
-const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
+import {
+  //useLevels,
+  useProperties,
+  //useStats,
+} from "../../store/reducers/createNFT/helpers";
+import { useSelector } from "react-redux";
+//const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
 
 const CreateNFT: React.FC = () => {
+  const properties: any = useSelector(useProperties);
+  //const levels = useSelector(useLevels);
+  //const stats = useSelector(useStats);
+
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  console.log(undasGeneralNFTAbi);
 
   //const [file, setFile] = useState<string>();
   const [name, setName] = useState("");
   const [externalLink, setExternalLink] = useState("");
   const [description, setDescription] = useState("");
   //const [collection, setCollection] = useState<string>();
-  const [propertyList, setPropertyList] = useState<Property[]>([
-    { type: "test1", name: "test-name1" },
-    { type: "test2", name: "test-name2" },
-    { type: "test3", name: "test-name3" },
-    { type: "test4", name: "test-name4" },
-  ]);
+  const [propertyList, setPropertyList] = useState<Property[]>(properties);
+
+  //const [levelList, setLevelList] = useState(levels);
+  //const [statList, setStatList] = useState(stats);
   const [supply, setSupply] = useState("");
   const [freezeMetadata, setFreezeMetadata] = useState("");
 
@@ -69,9 +76,6 @@ const CreateNFT: React.FC = () => {
   const { register, handleSubmit } = useForm<CreateNFTForm>(formOptions);
 
   const mintNFT = async () => {
-    console.log("bid");
-    console.log("connector" + connector);
-    console.log("acc" + account);
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -80,8 +84,6 @@ const CreateNFT: React.FC = () => {
     console.log(provider);
     const signer = provider.getSigner(0);
     console.log(signer);
-    // const SIGNER_ADDRESS = await signer.getAddress();
-    // console.log("signer addr" + SIGNER_ADDRESS);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
       "0x674002Df32E372E3D2E2CfC253471d0A5912fb9A", //goerli contract addr
@@ -94,6 +96,7 @@ const CreateNFT: React.FC = () => {
   const onSubmit = (formValues: any) => {
     alert(JSON.stringify(formValues));
   };
+
   return (
     <Background>
       <CreateSec>
