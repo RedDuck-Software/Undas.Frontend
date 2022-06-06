@@ -46,7 +46,14 @@ export const ModalInputGroup = styled.div`
     display: flex;
   }
   @media (max-width: 576px) {
-    display: none;
+    background: #ffffff;
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    border-radius: 10px;
+    padding: 15px 10px;
+    flex-wrap: wrap;
+    &.second-row {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -66,6 +73,12 @@ export const ModalLabel = styled.label`
   }
   @media (max-width: 768px) {
     padding: 10px 5px;
+  }
+  @media (max-width: 576px) {
+    padding: 10px 0;
+    text-align: left;
+    border: none;
+    width: 15%;
   }
 `;
 
@@ -95,8 +108,12 @@ export const ModalInput = styled.input`
   }
   @media (max-width: 576px) {
     border-radius: 5px;
+    width: 85%;
     &[type="number"] {
       width: 35%;
+    }
+    &.margin-for-small {
+      margin-top: 15px;
     }
   }
 `;
@@ -129,6 +146,9 @@ export const InputButton = styled.button`
   @media (max-width: 992px) {
     width: 8%;
   }
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 export const ModalLabelStraight = styled(ModalLabel)`
   border-radius: 0;
@@ -141,18 +161,27 @@ export const ModalLabelStraight = styled(ModalLabel)`
   @media (max-width: 768px) {
     padding: 10px 5px;
   }
+  @media (max-width: 576px) {
+    text-align: left;
+    padding: 10px 0;
+    width: 15%;
+    &.margin-for-small {
+      margin-top: 15px;
+    }
+    &.margin-for-of {
+      margin-top: 15px;
+      text-align: center;
+    }
+  }
 `;
-
 export const CreateModalFormButton = styled(CreateFormButton)`
   &.colored-btn {
     margin-right: 0;
+    color: #ffffff;
+    background: #873dc1;
+    }
   }
   @media (max-width: 992px) {
-    &.colored-btn {
-      color: #ffffff;
-      background: #873dc1;
-      border: 1px solid transparent;
-    }
     flex: 0 0 48%;
     margin-right: 4%;
     &.colored-btn {
@@ -167,70 +196,4 @@ export const CreateModalFormButton = styled(CreateFormButton)`
       margin-bottom: 30px;
     }
   }
-`;
-
-export const ModalInputGroupSmall = styled.div`
-  background: #ffffff;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-  border-radius: 10px;
-  padding: 15px 10px;
-  flex-wrap: wrap;
-  display: none;
-
-  @media (max-width: 576px) {
-    display: flex;
-    &.second-row {
-      margin-top: 15px;
-    }
-  }
-`;
-
-export const TextType = styled.div`
-  display: flex;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  align-self: center;
-  width: 15%;
-  &.of-text {
-    padding-left: 5%;
-  }
-`;
-
-export const ModalInputSmall = styled.input`
-  border: 1px solid rgba(124, 124, 124, 0.5);
-  outline: none;
-  padding: 10px 20px;
-  color: #232428;
-  font-size: 14px;
-  line-height: 17px;
-  background-color: #fbf5ff;
-  border-radius: 10px;
-  width: 85%;
-  &::placeholder {
-    color: #7c7c7c;
-  }
-  &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-  }
-  &[type="number"] {
-    width: 12%;
-  }
-  &.firt-row {
-    margin-bottom: 15px;
-  }
-
-  @media (max-width: 576px) {
-    border-radius: 5px;
-  }
-`;
-
-export const NumberInputGroup = styled.div`
-  display: flex;
-  margin-top: 15px;
-  justify-content: space-between;
-  width: 100%;
 `;

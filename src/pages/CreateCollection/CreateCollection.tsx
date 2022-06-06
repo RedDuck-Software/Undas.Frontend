@@ -23,7 +23,7 @@ import {
   ValidationBlock,
 } from "./CreateCollection.styles";
 import { ImgIcon, ExplicitContentIco } from "./imports";
-import { CreateSubmitForm, SelectItemType, ImageFile } from "./types";
+import { CreateCollectionForm, SelectItemType, ImageFile } from "./types";
 import { validationSchema } from "./validation";
 
 import {
@@ -108,7 +108,7 @@ const CreateCollection: React.FC = () => {
   const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, formState, handleSubmit, trigger } =
-    useForm<CreateSubmitForm>(formOptions);
+    useForm<CreateCollectionForm>(formOptions);
   const { errors } = formState;
   /* const bid = async () => {
     if (!connector || !account) return;

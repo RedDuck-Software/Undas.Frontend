@@ -9,6 +9,9 @@ const initialState = {
   open: false,
   currentComponent: '',
   tokenId: null,
+  priceInNum:null,
+  tokenURI:null,
+  name:null
 };
 
 export const modalReducer = (state = initialState, action: any) => {
@@ -29,6 +32,9 @@ export const modalReducer = (state = initialState, action: any) => {
         open: true,
         currentComponent: 'buy',
         tokenId: action.tokenId,
+        priceInNum:action.priceInNum,
+        tokenURI:action.tokenURI,
+        name:action.name
       };
     default:
       return state;

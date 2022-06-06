@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -23,25 +23,87 @@ import {
 
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
-import { useToken } from "../../../store";
+import { useName, usePrice, useToken, useUri } from "../../../store";
 import { closeModal } from "../../../store/reducers/modalAction";
 import { EthIco } from "../../ASideFilter/imports";
 import { NFTImg, UNDIco } from "../imports";
+import Context from "../../../utils/Context";
+import { ethers } from "ethers";
+import { Marketplace__factory } from "../../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
+import { OnlyOne__factory } from "../../../typechain";
 
 const BuyNFT: React.FC = () => {
   const dispatch = useDispatch();
-  const tokenId = useSelector(useToken);
-  console.log(tokenId);
+  const litsingId = useSelector(useToken);
+  const tokenPrice = useSelector(usePrice);
+  const tokenName = useSelector(useName);
+  const tokenUri = useSelector(useUri);
+
+  console.log("listing id:", litsingId);
+  console.log("token price", tokenPrice);
+  console.log("tokenUri", tokenName);
+  const { connector } = useContext(Context);
+  async function buyNFT(tokenId: number, priceInNum?: number) {
+    console.log("priceInNum" + priceInNum);
+    console.log("tokenId" + tokenId);
+    console.log("tokenUri", tokenUri);
+    console.log(connector);
+    if (!connector) return;
+    if (priceInNum == undefined) {
+      return;
+    }
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const userBalanceInWei = ethers.utils.formatUnits(
+      await signer.getBalance(),
+    );
+
+    console.log("userBalance", userBalanceInWei);
+    console.log("priceInNum", priceInNum);
+
+    if (+userBalanceInWei < priceInNum) {
+      alert("not enough funds");
+      return;
+    }
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+    const ApprovalTokenAmount = (priceInNum * 2) / 100;
+    console.log("approvalTokenAm", ApprovalTokenAmount);
+
+    const OnlyOneContract = OnlyOne__factory.connect(
+      "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
+      signer,
+    );
+
+    OnlyOneContract.approve(
+      "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
+      ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
+    );
+
+    const tx = await MarketplaceContract.buyToken(litsingId, {
+      value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
+    });
+    console.log("tx", tx);
+    await tx.wait();
+  }
 
   // const { connector } = useContext(Context);
 
   /* const getShowBuy = async () => {
     if (!connector) return;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+    const provider = new ethers.providers.Web3Prov
     );
-    const signer = provider.getSigner(0);
+    const signer = provider.getSigner(0);ider(
+      await connector.getProvider(),
   }; */
 
   return (
@@ -69,12 +131,12 @@ const BuyNFT: React.FC = () => {
           </ColoredText>
         </Wrapper>
         <ColoredText color="#873DC1" fw="400" fs="14px">
-          Name NFT
+          {tokenName}
         </ColoredText>
         <NFTWrap marg="15px 0 20px 0">
           <Wrapper disp="flex" gap="20px" alignItems="center">
             <ImageWrap>
-              <img src={NFTImg} alt="nft-image" />
+              <img src={tokenUri} alt="nft-image" />
             </ImageWrap>
             <span>Price NFT</span>
           </Wrapper>
@@ -86,7 +148,7 @@ const BuyNFT: React.FC = () => {
               justifyContent="flex-end"
             >
               <EthIco />
-              <span>40</span>
+              <span>{tokenPrice}</span>
             </Wrapper>
             <ColoredText fs="12px" fw="400" color="#7C7C7C">
               $123 278,00
@@ -138,7 +200,7 @@ const BuyNFT: React.FC = () => {
             >
               <EthIco />
               <ColoredText fs="18px" fw="500" color="#5D3F92">
-                40 + <UNDIco /> 2
+                {tokenPrice}+ <UNDIco /> 2
               </ColoredText>
             </Wrapper>
             <ColoredText fs="12px" fw="400" color="#7C7C7C">
@@ -163,7 +225,9 @@ const BuyNFT: React.FC = () => {
             </CheckboxLabel>
           </CheckboxBlock>
         </PrivacyPolicyBlock>
-        <ConfirmBtn>Confirm</ConfirmBtn>
+        <ConfirmBtn onClick={() => buyNFT(litsingId, tokenPrice)}>
+          Confirm
+        </ConfirmBtn>
       </CheckoutWrap>
     </WindowWrap>
   );
