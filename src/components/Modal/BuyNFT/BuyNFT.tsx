@@ -26,7 +26,7 @@ import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Ac
 import { useName, usePrice, useToken, useUri } from "../../../store";
 import { closeModal } from "../../../store/reducers/modalAction";
 import { EthIco } from "../../ASideFilter/imports";
-import { NFTImg, UNDIco } from "../imports";
+import { UNDIco } from "../imports";
 import Context from "../../../utils/Context";
 import { ethers } from "ethers";
 import { Marketplace__factory } from "../../../typechain";

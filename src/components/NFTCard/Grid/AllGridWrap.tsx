@@ -7,7 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 //import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
-import { canRentNFTFunction } from "../../../utils/canRentNFT";
+// import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
 // import { getListing } from "../../../utils/getListing";
 // import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
