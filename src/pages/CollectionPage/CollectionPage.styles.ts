@@ -383,9 +383,7 @@ export const TextInfo = styled.span`
   }
 `;
 
-export const ContainerCollection = styled.div`
-  
-`;
+export const ContainerCollection = styled.div``;
 
 export const ResultsSmallSize = styled.div`
   display: none;

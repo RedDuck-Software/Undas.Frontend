@@ -5,10 +5,12 @@ import { Wrap } from "./BusinessTips.styles";
 import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
 
 const BusinessTips: React.FC = () => {
-  return <Wrap>
+  return (
+    <Wrap>
       BusinessTips
       <BlogPageGrid />
-  </Wrap>;
+    </Wrap>
+  );
 };
 
 export default BusinessTips;
