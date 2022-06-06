@@ -5,14 +5,13 @@ import {
   OffersTitleWrap,
   InformationButton,
   DescriptionTextWrap,
-  ViewButton,
   OffersHeadWrap,
   OffersContentWrap,
   OffersContentText,
 } from "./Offers.styles";
 
 import { PageTitle } from "../../../../globalStyles";
-import { DescriptionText } from "../SettingsTabs.styles";
+import { DescriptionText, Button } from "../SettingsTabs.styles";
 
 const Offers: React.FC = () => {
   return (
@@ -27,7 +26,7 @@ const Offers: React.FC = () => {
             <InformationButton />
           </DescriptionTextWrap>
         </OffersTitleWrap>
-        <ViewButton>View my offers</ViewButton>
+        <Button>View my offers</Button>
       </OffersHeadWrap>
       <OffersContentWrap>
         <OffersContentText>No collections to manage offers</OffersContentText>

@@ -36,7 +36,9 @@ const Slider: React.FC = () => {
     >
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
+          <TextGet>
+            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
+          </TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>
@@ -54,7 +56,9 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
+          <TextGet>
+            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
+          </TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>
@@ -72,7 +76,9 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <UndasDiv>
-          <TextGet>Get passive income from your NFT with <TextUndas>UNDAS</TextUndas></TextGet>{" "}
+          <TextGet>
+            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
+          </TextGet>{" "}
           <TextStacking>
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </TextStacking>

@@ -245,7 +245,7 @@ const Navbar = () => {
               >
                 <ProfileIco />
               </StyledLink>
-              <DropdownMenu setWidth="155px" left="-3rem" top="2.10rem">
+              <DropdownMenu setWidth="155px" left="-3rem" top="2rem">
                 <MenuList to="/account">
                   <ProfileMenuIco />
                   Profile

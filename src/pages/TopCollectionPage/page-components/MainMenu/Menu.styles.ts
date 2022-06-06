@@ -30,16 +30,12 @@ export const OfferMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30px;
-  margin-right: 30px;
 
   @media (max-width: 768px) {
     margin-top: 30px;
   }
   @media (max-width: 576px) {
     margin-top: 20px;
-    margin-left: unset;
-    margin-right: unset;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -194,7 +190,6 @@ export const OffersTr = styled.tr`
 
   &:hover {
     filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
-    border-radius: 10px;
   }
 `;
 export const OfferFilterWrap = styled(ViewOption)`
@@ -293,7 +288,32 @@ export const ContainerTable = styled.div`
     margin-bottom: 40px;
   }
 `;
-
+export const OffersHeadTr = styled.tr`
+  &.offers-menu-head {
+    background-color: #fbf5ff;
+  }
+`;
+interface IOffersTd {
+  padd?: string;
+  textAlign?: string;
+}
+export const OffersTd = styled.td<IOffersTd>`
+  padding: ${(props) => props.padd || "10px 30px"};
+  text-align: ${(props) => props.textAlign || ""};
+  font-weight: 400;
+  font-size: 14px;
+  color: #7c7c7c;
+  &.first-column {
+    padding: 15px 0 15px 20px;
+    width: 3%;
+  }
+  @media (max-width: 992px) {
+    padding: 10px 10px 10px 20px;
+  }
+  @media (max-width: 576px) {
+    padding: 10px;
+  }
+`;
 export const NameContainer = styled.div`
   display: flex;
   flex-direction: column;

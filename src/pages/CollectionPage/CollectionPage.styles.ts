@@ -384,7 +384,7 @@ export const TextInfo = styled.span`
 `;
 
 export const ContainerCollection = styled.div`
-  margin-bottom: 40px;
+  
 `;
 
 export const ResultsSmallSize = styled.div`
@@ -402,4 +402,11 @@ export const ResultsSmallSize = styled.div`
   @media (max-width: 576px) {
     display: block;
   }
+`;
+
+export const ContainerNFT = styled.div`
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 40px;
 `;

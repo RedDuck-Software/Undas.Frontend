@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HomeContainer } from "./HomePage.styles"
+import { HomeContainer } from "./HomePage.styles";
 
 import { RentNFT } from "./page-components";
 import Info from "./page-components/Info/Info";
@@ -11,29 +11,31 @@ import Recommended from "./page-components/Recomended/Recommended";
 import Slider from "./page-components/Slider/Slider";
 import MobileHead from "./page-components/MobileHead/MobileHead";
 
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 
 const HomePage: React.FC = () => {
   return (
-    <HomeContainer>
-      <MobileHead />
-      <Slider />
-      <Promo />
-      <Info />
-      <Container>
-        <Recommended />
-        <RentNFT />
-        <ManageNFT />
-        <NewNFT />
-      </Container>
-      {/* <Background>
+    <Background>
+      <HomeContainer>
+        <MobileHead />
+        <Slider />
+        <Promo />
+        <Info />
+        <Container>
+          <Recommended />
+          <RentNFT />
+          <ManageNFT />
+          <NewNFT />
+        </Container>
+        {/* <Background>
         <InfoSection />
         <RentNFT />
         <BrowseCategory />
         <TopCollections />
         <TopBuyers />
       </Background>*/}
-    </HomeContainer>
+      </HomeContainer>
+    </Background>
   );
 };
 

@@ -1,32 +1,12 @@
 import Form from "react-bootstrap/Form";
 import styled from "styled-components";
 
-import { PageTitle } from "../../../../globalStyles";
-
 export const NotificationWrap = styled.div`
-  padding-bottom: 180px;
-  @media (max-width: 992px) {
-    padding-bottom: 80px;
-  }
-  @media (max-width: 576px) {
-    padding-bottom: 40px;
-  }
-`;
-export const NotificationPageTitle = styled(PageTitle)`
-  margin: 60px 0 10px;
-  @media (max-width: 992px) {
-    font-size: 32px;
-  }
-  @media (max-width: 768px) {
-    font-size: 24px;
-  }
-  @media (max-width: 576px) {
-    font-size: 20px;
-  }
+  padding-top: 30px;
 `;
 
 export const ItemsForm = styled(Form)`
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 export const FormItemWrapper = styled.div`
   padding: 20px 30px;
@@ -52,25 +32,5 @@ export const FormItemWrapper = styled.div`
     line-height: 22px;
     color: #232428;
     margin-left: 15px;
-  }
-`;
-export const Button = styled.button`
-  background: #ffffff;
-  border: 1px solid #873dc1;
-  border-radius: 10px;
-  color: #873dc1;
-  padding: 7px 37px;
-  margin-top: 40px;
-  transition: all 0.3s;
-  &:hover {
-    color: #ffffff;
-    background: #873dc1;
-    border: 1px solid transparent;
-  }
-  @media (max-width: 992px) {
-    width: 100%;
-    color: #ffffff;
-    background: #873dc1;
-    border: 1px solid transparent;
   }
 `;

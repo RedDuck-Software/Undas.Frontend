@@ -1,15 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { BlogWrap } from "./Blog.styles";
+import { BlogWrap, 
+  Text, 
+  TabsMenuWrap,
+  TabsMenu, 
+  Tab } from "./Blog.styles";
+  
+import MainBlog from "./page-components/MainBlog/MainBlog";
+import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
+import BusinessTips from "./page-components/BusinessTips/BusinessTips";
+import Inspiration from "./page-components/Inspiration/Inspiration";
+import News from "./page-components/News/News";
 
-import { Container, Background } from "../../globalStyles";
+import {
+  Container,
+  Background,
+  PageTitle,
+  ColoredText,
+} from "../../globalStyles";
 
 const Blog: React.FC = () => {
+  const [tab, setTab] = useState("main");
+
   return (
     <Background>
-      <Container>
-        <BlogWrap></BlogWrap>
-      </Container>
+      <BlogWrap>
+        <Container>
+          <PageTitle>
+            THE <ColoredText>UNDAS</ColoredText> BLOG
+          </PageTitle>
+          <Text>
+            Get advice about self-employment, starting a business, website tips,
+            web design, online stores, SEO, marketing, and more
+          </Text>
+        </Container>
+        <TabsMenuWrap>
+          <Container>
+            <TabsMenu>
+              <Tab
+                onClick={() => setTab("main")}
+                className={tab === "main" ? "active" : ""}
+              >
+                <span>Recent Posts</span>
+              </Tab>
+              <Tab
+                onClick={() => setTab("website-tips")}
+                className={tab === "website-tips" ? "active" : ""}
+              >
+                <span>Website Tips</span>
+              </Tab>
+              <Tab
+                onClick={() => setTab("business-tips")}
+                className={tab === "business-tips" ? "active" : ""}
+              >
+                <span>Business Tips</span>
+              </Tab>
+              <Tab
+                onClick={() => setTab("inspiration")}
+                className={tab === "inspiration" ? "active" : ""}
+              >
+                <span>Inspiration</span>
+              </Tab>
+              <Tab
+                onClick={() => setTab("news")}
+                className={tab === "news" ? "active" : ""}
+              >
+                <span>News</span>
+              </Tab>
+            </TabsMenu>
+          </Container>
+        </TabsMenuWrap>
+        <Container>
+        {tab === "main" && <MainBlog />}
+        {tab === "website-tips" && <WebsiteTips />}
+        {tab === "business-tips" && <BusinessTips />}
+        {tab === "inspiration" && <Inspiration />}
+        {tab === "news" && <News />}
+        </Container>
+      </BlogWrap>
     </Background>
   );
 };

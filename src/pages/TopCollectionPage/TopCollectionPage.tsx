@@ -6,7 +6,7 @@ import OffersMenu from "./page-components/MainMenu/OffersMenu";
 import { AccountContainer, StatisticsText } from "./TopCollectionPage.styles";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
-import { Container } from "../../globalStyles";
+import { Container, Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
@@ -62,19 +62,21 @@ const TopCollectionPage: React.FC = () => {
   }, [connector, account]);
 
   return (
-    <Container>
-      <Wrapper w="100%">
-        <AccountContainer>
-          <ASideFilter marginTop="140px" />
-          <Wrapper w="100%">
-            <Wrapper w="100%" marg="15px 0 0 0">
-              <StatisticsText>Top Collection</StatisticsText>
-              <OffersMenu />
+    <Background>
+      <Container>
+        <Wrapper w="100%">
+          <AccountContainer>
+            <ASideFilter marginTop="140px" />
+            <Wrapper w="100%">
+              <Wrapper w="100%" marg="15px 0 0 0">
+                <StatisticsText>Top Collection</StatisticsText>
+                <OffersMenu />
+              </Wrapper>
             </Wrapper>
-          </Wrapper>
-        </AccountContainer>
-      </Wrapper>
-    </Container>
+          </AccountContainer>
+        </Wrapper>
+      </Container>
+    </Background>
   );
 };
 

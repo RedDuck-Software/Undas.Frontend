@@ -79,7 +79,7 @@ const OffersMenu: React.FC = () => {
                 <UNDText>
                   <ItemVerifyIco />
                   <UND>UND</UND>
-              </UNDText>
+                </UNDText>
               </NameContainer>
             </OffersTdText>
             <OffersTdText>

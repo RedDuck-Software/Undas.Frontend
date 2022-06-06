@@ -7,9 +7,9 @@ export const PromoSlide = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 576px){
-        display: none;
-    }
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 
 export const SlideText = styled.span`

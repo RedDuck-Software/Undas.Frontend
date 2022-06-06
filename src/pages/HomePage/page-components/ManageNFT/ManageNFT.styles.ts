@@ -108,14 +108,17 @@ interface IPurpleText {
   fs?: string;
 }
 
-export const PurpleText = styled.span<IPurpleText>`
+export const PurpleText = styled.a<IPurpleText>`
   width: 100%;
+  text-decoration: none;
   cursor: pointer;
   font-weight: 400;
   font-size: ${(props) => props.fs || "12px"};
   text-align: right;
   color: #873dc1;
-  @media (max-width: 1200px) {
-    margin-top: auto;
+  margin-top: auto;
+  &:hover {
+    text-decoration: underline;
+    color: #873dc1;
   }
 `;

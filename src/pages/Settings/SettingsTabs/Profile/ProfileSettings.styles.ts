@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const ProfileWrap = styled.form`
-  padding: 30px 0 120px;
+  padding-top: 30px;
   @media (max-width: 1200px) {
     display: flex;
     flex-flow: column nowrap;
-  }
-  @media (max-width: 992px) {
-    padding-bottom: 60px;
   }
 `;
 
@@ -246,7 +243,6 @@ export const CheckboxInput = styled.input`
 export const CheckboxLabel = styled.label`
   width: 100%;
   &:hover {
-    text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
   }
 `;

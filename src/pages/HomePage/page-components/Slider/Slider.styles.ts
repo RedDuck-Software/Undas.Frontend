@@ -101,7 +101,7 @@ export const ExploreButton = styled.button`
   color: #ffffff;
   transition: all 0.3s linear;
   border: 1px solid #873dc1;
-  &:hover{
+  &:hover {
     color: #873dc1;
     background-color: #ffffff;
   }
@@ -122,7 +122,7 @@ export const CreateButton = styled.button`
   color: #873dc1;
   margin-top: 15px;
   transition: all 0.3s linear;
-  &:hover{
+  &:hover {
     color: #ffffff;
     background-color: #873dc1;
   }

@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 export const RecommendedContainer = styled.div`
   margin-top: 80px;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     margin-top: 60px;
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     margin-top: 40px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     margin-top: 20px;
     position: relative;
     padding-bottom: 50px;
@@ -33,18 +33,18 @@ export const Title = styled.h2`
     background: #873dc1;
     border-radius: 10px;
   }
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     font-size: 24px;
     line-height: 29px;
     &:before {
       width: 15px;
     }
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     font-size: 18px;
     line-height: 22px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     font-size: 14px;
     line-height: 17px;
   }
@@ -61,7 +61,7 @@ export const TitleWrap = styled.div`
 `;
 export const ViewAllBtn = styled.button`
   cursor: pointer;
-  background: rgba(135, 61, 193, 0);
+  background: #fff;
   border: 1px solid #873dc1;
   box-sizing: border-box;
   border-radius: 10px;
@@ -69,9 +69,10 @@ export const ViewAllBtn = styled.button`
   font-size: 14px;
   padding: 10px 32px;
   color: #873dc1;
-  transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.3s;
   &:hover {
-    background: rgba(135, 61, 193, 0.1);
+    background: #873dc1;
+    color: #fff;
   }
   @media (max-width: 576px) {
     position: absolute;

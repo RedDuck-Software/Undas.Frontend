@@ -42,7 +42,7 @@ export const ASideWrap = styled.div`
   //box-sizing: content-box;
   //width: 255px;
   height: auto;
-  background: rgba(251, 245, 255, 0.7);
+  background: rgb(251, 245, 255);
   box-shadow: inset 0 0 3px rgba(124, 124, 124, 0.5);
   margin-right: 15px;
   overflow: hidden;

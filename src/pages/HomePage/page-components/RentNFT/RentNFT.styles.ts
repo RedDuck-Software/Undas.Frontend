@@ -7,15 +7,15 @@ export const TitleInner = styled.div`
   align-items: center;
 `;
 export const TitleLink = styled.a`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: #873DC1;
+  color: #873dc1;
   margin-left: 20px;
-  &:hover{
-    color: #873DC1;
+  &:hover {
+    color: #873dc1;
     text-shadow: 0 0 1px;
   }
   @media (max-width: 768px) {

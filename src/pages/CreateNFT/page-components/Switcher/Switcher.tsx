@@ -7,7 +7,7 @@ interface ISwithcerProps {
   onClick: React.MouseEventHandler;
 }
 
-const Switcher: React.FC<ISwithcerProps> = ({onClick}) => {
+const Switcher: React.FC<ISwithcerProps> = ({ onClick }) => {
   return (
     <SwitcherWrap onClick={(event) => onClick(event)}>
       <Form>

@@ -21,3 +21,4 @@ export { default as TopCollectionPage } from "./TopCollectionPage/TopCollectionP
 export { default as Blog } from "./Blog/Blog";
 export { default as CreatorCardPage } from "./CreatorCardPage/CreatorCardPage";
 export { default as OfferSale } from "./OfferSale/OfferSale";
+export { default as OfferRent } from "./OfferRent/OfferRent";
