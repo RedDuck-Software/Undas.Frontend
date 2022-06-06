@@ -12,7 +12,6 @@ import {
   InputButton,
   ModalLabelStraight,
   CreateModalFormButton,
- 
 } from "./CreateModal.styles";
 
 import "./styles.css";
@@ -38,10 +37,24 @@ const StatsModal: React.FC = () => {
           <ModalInputGroup>
             <ModalLabel htmlFor="name">Name</ModalLabel>
             <ModalInput type="text" id="name" placeholder="strength" />
-            <ModalLabelStraight htmlFor="value" className="margin-for-small">Value</ModalLabelStraight>
-            <ModalInput type="number" id="value" placeholder="3" className="margin-for-small" />
-            <ModalLabelStraight htmlFor="of" className="margin-for-of">Of</ModalLabelStraight>
-            <ModalInput type="number" id="of" placeholder="5" className="margin-for-small" />
+            <ModalLabelStraight htmlFor="value" className="margin-for-small">
+              Value
+            </ModalLabelStraight>
+            <ModalInput
+              type="number"
+              id="value"
+              placeholder="3"
+              className="margin-for-small"
+            />
+            <ModalLabelStraight htmlFor="of" className="margin-for-of">
+              Of
+            </ModalLabelStraight>
+            <ModalInput
+              type="number"
+              id="of"
+              placeholder="5"
+              className="margin-for-small"
+            />
             <InputButton></InputButton>
           </ModalInputGroup>
         </Modal.Body>

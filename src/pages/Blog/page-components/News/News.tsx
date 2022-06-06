@@ -5,10 +5,12 @@ import { Wrap } from "./News.styles";
 import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
 
 const News: React.FC = () => {
-  return <Wrap>
+  return (
+    <Wrap>
       News
       <BlogPageGrid />
-  </Wrap>;
+    </Wrap>
+  );
 };
 
 export default News;

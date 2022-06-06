@@ -106,7 +106,7 @@ export const OfferContainer = styled.div`
 `;
 
 export const CollectionName = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -605,7 +605,7 @@ export const InputDay = styled.input`
   color: #7c7c7c;
   border: none;
   &:focus {
-    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
   }
 `;
 
@@ -641,7 +641,7 @@ export const EthPrice = styled.span`
 
 export const CheckboxLabelCollateral = styled.label`
   width: 100%;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -711,18 +711,18 @@ export const NFTInfoContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
-  background: #FBF5FF;
+  background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
   &.disable {
-    background: #C4C4C4;
+    background: #c4c4c4;
   }
 `;
 
 export const SelectedNFT = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

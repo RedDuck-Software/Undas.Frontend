@@ -9,6 +9,7 @@ import {
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import { createNFTReducer } from './reducers/createNFT/createNFTReducer';
 
 import { filterReducer } from './reducers/filterReducer';
 import { modalReducer } from './reducers/modalReducer';
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   filter: filterReducer,
   modal: modalReducer,
+  createNFT: createNFTReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

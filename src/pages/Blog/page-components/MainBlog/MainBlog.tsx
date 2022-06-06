@@ -4,10 +4,12 @@ import BlogMainGrid from "../BlogMainGrid/BlogMainGrid";
 import { Wrap } from "./MainBlog.styles";
 
 const MainBlog: React.FC = () => {
-  return <Wrap>
+  return (
+    <Wrap>
       MainBlog
       <BlogMainGrid />
-  </Wrap>;
+    </Wrap>
+  );
 };
 
 export default MainBlog;

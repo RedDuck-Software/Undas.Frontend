@@ -70,14 +70,14 @@ const OfferRent: React.FC = () => {
             <NameRow>
               <TextPrice>Deposit</TextPrice>
               <ContainerCheckboxCollateral>
-              <CheckboxInputCollateral
-                type="checkbox"
-                id="collateral"
-                className="custom-checkbox"
-              />
-              <CheckboxLabelCollateral htmlFor="collateral">
-                Offer NFT as Collateral
-              </CheckboxLabelCollateral>
+                <CheckboxInputCollateral
+                  type="checkbox"
+                  id="collateral"
+                  className="custom-checkbox"
+                />
+                <CheckboxLabelCollateral htmlFor="collateral">
+                  Offer NFT as Collateral
+                </CheckboxLabelCollateral>
               </ContainerCheckboxCollateral>
             </NameRow>
             <PriceRow>
@@ -158,29 +158,30 @@ const OfferRent: React.FC = () => {
             <NameRow>
               <CollectionName>Owner item</CollectionName>
             </NameRow>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-              </NFTInfoContainer>
+            <NFTInfoContainer>
+              <NFTCard uri="nft1" name="NFTCard" />
+            </NFTInfoContainer>
           </SecondCollum>
           <NameRow>
-          <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT><SelectedNFT>2</SelectedNFT>
+            <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
+            <SelectedNFT>2</SelectedNFT>
           </NameRow>
           <SelectedNFTCardBox>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />
-              <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
             </NFTInfoContainer>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />
-              <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
             </NFTInfoContainer>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />
-              <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
             </NFTInfoContainer>
             <NFTInfoContainer className="disable">
               <NFTCard uri="nft2" name="NFTCard2" />
-              <AddNFT  src={addNFT} alt="add-nft-image"/>
+              <AddNFT src={addNFT} alt="add-nft-image" />
             </NFTInfoContainer>
           </SelectedNFTCardBox>
           <AgreeRow>

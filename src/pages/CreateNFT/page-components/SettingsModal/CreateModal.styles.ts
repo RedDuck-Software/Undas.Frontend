@@ -46,7 +46,7 @@ export const ModalInputGroup = styled.div`
     display: flex;
   }
   @media (max-width: 576px) {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
     border-radius: 10px;
     padding: 15px 10px;
@@ -108,7 +108,7 @@ export const ModalInput = styled.input`
   }
   @media (max-width: 576px) {
     border-radius: 5px;
-      width: 85%;
+    width: 85%;
     &[type="number"] {
       width: 35%;
     }
@@ -116,7 +116,6 @@ export const ModalInput = styled.input`
       margin-top: 15px;
     }
   }
-  
 `;
 export const InputButton = styled.button`
   padding: 23px 20px 14px 40px;
@@ -198,4 +197,3 @@ export const CreateModalFormButton = styled(CreateFormButton)`
     }
   }
 `;
-
