@@ -24,7 +24,7 @@ const Recommended: React.FC = () => {
     <RecommendedContainer>
       <TitleWrap>
         <Title>Recommended Categories</Title>
-        <ViewAllBtn>View all</ViewAllBtn>
+        <ViewAllBtn to="/">View all</ViewAllBtn>
       </TitleWrap>
       <MobileInner>
         <CategoriesWrap>

@@ -31,7 +31,7 @@ import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
 
 interface NFTGridItemProps {
-  tokenId: number;
+  tokenId: number; //listingID
   URI: string;
   name: string;
   price?: number;
@@ -41,7 +41,7 @@ interface NFTGridItemProps {
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  // console.log('props22121',props)
   return (
     <NFTWrap
       onClick={() => {
@@ -68,7 +68,15 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <BuyBtn
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(setComponent("buy", props.tokenId));
+              dispatch(
+                setComponent(
+                  "buy",
+                  props.tokenId,
+                  props.price,
+                  props.URI,
+                  props.name,
+                ),
+              );
             }}
           >
             Buy now
@@ -93,14 +101,14 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <TextSpan>Top Offer</TextSpan>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3,00008</PriceInEth>
+              <PriceInEth>-</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <TextSpan>Last Sales</TextSpan>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>3</PriceInEth>
+              <PriceInEth>-</PriceInEth>
             </Wrapper>
           </PriceItem>
         </PriceList>

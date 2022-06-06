@@ -1,21 +1,39 @@
 import styled from "styled-components";
 
-export const Wrap = styled.div``;
-export const BigCardWrap = styled.div`
+export const CardWrap = styled.div`
     display: flex;
+    flex-direction: column;
     border-radius: 10px;
     border: 1px solid #5D3F92;
+    height: 340px;
+    flex: 0 0 31%;
+    background-color: #fff;
+    transition: all 0.3s linear; 
+    &:hover{
+        box-shadow: rgb(135 61 193 / 50%) 0px 5px 15px;
+        cursor: pointer;
+    }
+`;
+export const BigCardWrap = styled(CardWrap)`
+    flex-direction: row;
+    grid-column-start: 1;
+    grid-column-end: 4;
     max-height: 340px;
+    width: 100%;
 `;
 export const ImageWrap = styled.div`
-    width: 60%;
     
+`;
+export const BigImageWrap = styled(ImageWrap)`
+    width: 50%;
 `;
 export const Image = styled.img`
   width: 100%;
+  height: 100%;
   object-fit: cover;
   background-color: #fff;
-  @media (max-width: 992px) {
+  border-radius: 10px 10px 0 0;
+  /* @media (max-width: 992px) {
     height: 250px;
   }
   @media (max-width: 768px) {
@@ -23,40 +41,35 @@ export const Image = styled.img`
   }
   @media (max-width: 640px) {
     height: 250px;
-  }
+  } */
 `;
 export const BigImage = styled(Image)`
-    max-height: 100%;
     border-radius: 10px 0 0 10px;
 `;
 
 export const CardBody = styled.div`
-    padding: 30px 20px 50px;
+    padding: 20px;
+    flex-grow: 1;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 `;
 export const BigCardBody = styled(CardBody)`
-    width: 40%;
-    padding: 50px 30px 20px;
+    width: 50%;
+    padding: 30px;
+    gap: 20px;
 `;
-export const Name = styled.span`
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: #7C7C7C;
-    text-transform: uppercase;
-  @media (max-width: 1200px) {
-  }
-`;
-export const Title = styled.h2`
+
+export const CardTitle = styled.h2`
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: #5D3F92;
-    margin-top: 10px;
+    margin: 0;
 `;
-export const BigCardTitle = styled(Title)`
+export const BigCardTitle = styled(CardTitle)`
     font-size: 24px;
     line-height: 29px;
-    margin-top: 20px;
 `;
 export const BigCardTextWrap = styled.div`
      display: -webkit-box;
@@ -74,7 +87,6 @@ export const CardLink = styled.a`
     font-size: 14px;
     line-height: 17px;
     color: #873dc1;
-    margin-top: 2rem;
     text-align: right;
     text-decoration: none;
     &:hover {
@@ -85,4 +97,19 @@ export const CardLink = styled.a`
         font-size: 12px;
         line-height: 15px;
     }  
+`;
+export const CardFooter = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+`;
+export const Date = styled.span`
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #7C7C7C;
+    text-transform: uppercase;
+  @media (max-width: 1200px) {
+  }
 `;

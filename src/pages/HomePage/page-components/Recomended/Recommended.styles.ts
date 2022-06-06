@@ -59,7 +59,7 @@ export const TitleWrap = styled.div`
     margin-bottom: 20px;
   }
 `;
-export const ViewAllBtn = styled.button`
+export const ViewAllBtn = styled(Link)`
   cursor: pointer;
   background: #fff;
   border: 1px solid #873dc1;
@@ -70,6 +70,7 @@ export const ViewAllBtn = styled.button`
   padding: 10px 32px;
   color: #873dc1;
   transition: all ease-in-out 0.3s;
+  text-decoration: none;
   &:hover {
     background: #873dc1;
     color: #fff;
