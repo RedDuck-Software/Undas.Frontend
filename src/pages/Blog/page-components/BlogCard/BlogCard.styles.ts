@@ -5,6 +5,7 @@ export const CardWrap = styled.div`
     flex-direction: column;
     border-radius: 10px;
     border: 1px solid #5D3F92;
+    height: 340px;
 `;
 export const BigCardWrap = styled(CardWrap)`
     flex-direction: row;
