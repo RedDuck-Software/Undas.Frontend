@@ -196,7 +196,6 @@ export const HeadText = styled.span`
   font-size: 18px;
   line-height: 22px;
   color: #232428;
-  pading-bottom: 20px;
   padding-bottom: 20px;
   display: block;
 

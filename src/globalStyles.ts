@@ -193,4 +193,7 @@ export const FormButton = styled.button`
     }
   }
 `;
+export const ColoredText = styled.span`
+  color: #873DC1;
+`;
 export default GlobalStyle;
