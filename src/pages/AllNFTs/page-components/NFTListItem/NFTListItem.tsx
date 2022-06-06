@@ -25,7 +25,6 @@ interface NFTListItemProps {
 }
 
 const NFTListItem: React.FC<NFTListItemProps> = ({ name, URI }) => {
- 
   return (
     <>
       <RowLine>

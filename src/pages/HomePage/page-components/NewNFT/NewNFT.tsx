@@ -9,9 +9,8 @@ import Context from "../../../../utils/Context";
 // import { isBuyableFunction } from "../../../../utils/isBuyable";
 import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-import { createClient } from 'urql';
+import { createClient } from "urql";
 import { ethers } from "ethers";
-
 
 const NewNFTContainer = styled.div`
   margin-top: 120px;
@@ -29,33 +28,31 @@ const NewNFTContainer = styled.div`
 
 const NewNFT: React.FC = () => {
   const { connector } = useContext(Context);
-  const items: {priceInNum:number; id: number; name: string; URI: string }[] = [];
+  const items: { priceInNum: number; id: number; name: string; URI: string }[] =
+    [];
   const [list, setList] =
     useState<{ id: number; name: string; URI: string }[]>();
 
-    const getListings = async () => {
-      if (!connector) {
-        return;
+  const getListings = async () => {
+    if (!connector) {
+      return;
+    }
+    console.log(list);
+    const tokens = await fetchData();
+    console.log(tokens);
+    tokens.map((nft: any) => {
+      if (nft.listingStatus == "ACTIVE") {
+        const price = nft.price;
+        const id = nft.tokenId;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+
+        items.push({ priceInNum, id, name, URI });
       }
-      console.log(list)
-      const tokens = await fetchData();
-      console.log(tokens)
-      tokens.map((nft:any)=>{
-       
-        if(nft.listingStatus == 'ACTIVE') { 
-      
-            const price = nft.price
-            const id = nft.tokenId
-            const name = nft.tokenName;
-            const URI = nft.tokenURI
-            const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-  
-            items.push({ priceInNum, id, name, URI });
-  
-          }
-        })
-      return items;
-    };
+    });
+    return items;
+  };
 
   async function getItemsData() {
     const response = await getListings();
@@ -111,7 +108,8 @@ const NewNFT: React.FC = () => {
   );
 };
 
-const APIURL =  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
 const tokensQuery = `
     query   {
@@ -127,15 +125,15 @@ const tokensQuery = `
         tokenName    
       }
     }  
-`
-  const client = createClient({
-    url: APIURL
-  });
+`;
+const client = createClient({
+  url: APIURL,
+});
 
-  async function fetchData() {
-    const data = await client.query(tokensQuery).toPromise();
-    console.log(data.data.listings)
-    return data.data.listings
-  }
+async function fetchData() {
+  const data = await client.query(tokensQuery).toPromise();
+  console.log(data.data.listings);
+  return data.data.listings;
+}
 
 export default NewNFT;

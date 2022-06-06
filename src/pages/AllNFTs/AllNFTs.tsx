@@ -30,7 +30,7 @@ const AllNFTs: React.FC = () => {
   useEffect(() => {
     console.log(priceFilter);
   }, [active, priceFilter]);
-  console.log("all nfts")
+  console.log("all nfts");
 
   const { viewMode, viewButtonsRender } = useViewMode();
 

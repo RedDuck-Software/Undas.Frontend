@@ -44,4 +44,3 @@ const Properties: React.FC<PropertiesProps> = ({
 };
 
 export default Properties;
- 

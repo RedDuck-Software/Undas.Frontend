@@ -31,7 +31,7 @@ import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
 
 interface NFTGridItemProps {
-  tokenId: number;//listingID
+  tokenId: number; //listingID
   URI: string;
   name: string;
   price?: number;
@@ -68,7 +68,15 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <BuyBtn
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(setComponent("buy", props.tokenId,props.price,props.URI,props.name));
+              dispatch(
+                setComponent(
+                  "buy",
+                  props.tokenId,
+                  props.price,
+                  props.URI,
+                  props.name,
+                ),
+              );
             }}
           >
             Buy now

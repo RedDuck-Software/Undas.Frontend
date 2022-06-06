@@ -95,18 +95,18 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
 
     const tokens = await fetchStakingData();
-    console.log('tokensStaking',tokens.stakingListings)
+    console.log("tokensStaking", tokens.stakingListings);
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        console.log('DASDSAD')
+        console.log("DASDSAD");
         const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        console.log('1')
-        stakings.push({ id, name, URI,premiumInNum });
-        console.log('zxczczx',stakings)
+        console.log("1");
+        stakings.push({ id, name, URI, premiumInNum });
+        console.log("zxczczx", stakings);
         setAmountOfNFTs(amountOfNFTs + 1);
       }
     });
@@ -115,7 +115,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   async function getListingsData() {
     const response = await getListings();
-    console.log('listing',response)
+    console.log("listing", response);
     if (response) {
       setList(response);
     }
@@ -123,13 +123,13 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   async function getStakingsData() {
     const response = await getStakings();
-    console.log("stakin22313gs",response)
+    console.log("stakin22313gs", response);
 
     if (response) {
       setStakingsList(response);
     }
   }
-  console.log(stakingsList)
+  console.log(stakingsList);
   useEffect(() => {
     if (!connector) {
       return console.log("loading");
@@ -139,7 +139,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     console.log("useEf");
     getListingsData();
     getStakingsData();
-    console.log("use efff")
+    console.log("use efff");
   }, [connector]);
 
   const priceSort = async () => {
@@ -204,7 +204,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
     //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-  console.log('commonList',stakingsList)
+  console.log("commonList", stakingsList);
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -236,7 +236,7 @@ const tokensQuery = `
     }  
 `;
 
- const tokensStakingQuery =`
+const tokensStakingQuery = `
  query  {
   stakingListings{
     id
@@ -261,12 +261,12 @@ const client = createClient({
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log('listing',data.data.listings);
+  console.log("listing", data.data.listings);
   return data.data.listings;
 }
 async function fetchStakingData() {
   const data = await client.query(tokensStakingQuery).toPromise();
-  console.log('staking1',data.data.stakingListings);
+  console.log("staking1", data.data.stakingListings);
   return data.data;
 }
 export default AllGridWrap;

@@ -8,7 +8,7 @@ export const NFTWrap = styled.div`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  background-color: #FBF5FF;
+  background-color: #fbf5ff;
   padding: 10px;
   @media (max-width: 1200px) {
     width: 100%;
@@ -51,10 +51,9 @@ export const NFTAbout = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-
 `;
 export const AboutWrapper = styled(Wrapper)`
-   @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     flex-wrap: wrap;
   }
 `;
@@ -86,17 +85,17 @@ export const CreatorText = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #7C7C7C;
+  color: #7c7c7c;
 `;
 export const CreatorLink = styled.a`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #873DC1;
+  color: #873dc1;
   text-decoration: none;
   margin-left: 5px;
-  &:hover{
+  &:hover {
     text-decoration: underline;
-    color: #873DC1;
+    color: #873dc1;
   }
 `;

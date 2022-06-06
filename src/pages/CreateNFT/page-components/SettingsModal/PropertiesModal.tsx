@@ -27,8 +27,15 @@ const InputGroup: React.FC = () => {
     <ModalInputGroup>
       <ModalLabel htmlFor="type">Type</ModalLabel>
       <ModalInput type="text" id="type" placeholder="Example: Sex" />
-      <ModalLabelStraight htmlFor="name" className="margin-for-small">Name</ModalLabelStraight>
-      <ModalInput type="text" id="name" placeholder="Example: Male" className="margin-for-small"/>
+      <ModalLabelStraight htmlFor="name" className="margin-for-small">
+        Name
+      </ModalLabelStraight>
+      <ModalInput
+        type="text"
+        id="name"
+        placeholder="Example: Male"
+        className="margin-for-small"
+      />
       <InputButton />
     </ModalInputGroup>
   );
@@ -66,8 +73,15 @@ const PropertiesModal: React.FC<PropertiesModalProps> = ({ propertyList }) => {
               >
                 <ModalLabel htmlFor="type">Type</ModalLabel>
                 <ModalInput type="text" id="type" placeholder={item.type} />
-                <ModalLabelStraight htmlFor="name" className="margin-for-small">Name</ModalLabelStraight>
-                <ModalInput type="text" id="name" placeholder={item.name} className="margin-for-small"/>
+                <ModalLabelStraight htmlFor="name" className="margin-for-small">
+                  Name
+                </ModalLabelStraight>
+                <ModalInput
+                  type="text"
+                  id="name"
+                  placeholder={item.name}
+                  className="margin-for-small"
+                />
                 <InputButton />
               </ModalInputGroup>
             );
