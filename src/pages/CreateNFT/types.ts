@@ -3,7 +3,6 @@ export interface CreateNFTForm {
   externalLink: string;
   description: string;
   collection: string;
-  properties: Property[];
   supply: string;
   freezeMetadata: string;
 }

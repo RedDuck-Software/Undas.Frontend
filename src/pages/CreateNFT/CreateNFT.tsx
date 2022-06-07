@@ -92,7 +92,7 @@ const CreateNFT: React.FC = () => {
   const { register, formState, handleSubmit } =
     useForm<CreateNFTForm>(formOptions);
   const { errors } = formState;
-
+  console.log(errors);
   const mintNFT = async () => {
     if (!connector || !account) return;
 
@@ -110,6 +110,7 @@ const CreateNFT: React.FC = () => {
   };
 
   const onSubmit = () => {
+    console.log(errors);
     if (!errors) {
       mintNFT();
     }
@@ -213,8 +214,6 @@ const CreateNFT: React.FC = () => {
                 type="text"
                 id="name"
                 placeholder="NFT name"
-                maxLength={25}
-                required
                 {...register("name")}
                 value={name}
                 onChange={nameHandler}
