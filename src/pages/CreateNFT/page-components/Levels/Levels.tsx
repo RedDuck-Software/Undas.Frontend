@@ -26,7 +26,7 @@ const Levels: React.FC<LevelsProps> = ({ levelList, setLevelList }) => {
         <ModalBlockDescript>
           Numerical traits that show as a progress bar
         </ModalBlockDescript>
-        <LevelsModal setLevelList={setLevelList}/>
+        <LevelsModal setLevelList={setLevelList} />
       </ModalBlock>
       <WithPropertiesBlock>
         <LevelList levelList={levelList} />

@@ -44,14 +44,14 @@ import {
   AddNFT,
 } from "./OfferRent.styles";
 
-import { 
+import {
   TopLinkWrapper,
   TopLink,
-  BottomWrapper, 
-  CheckBoxWrapper, 
+  BottomWrapper,
+  CheckBoxWrapper,
   Button,
-  ItemAmount
- } from "../Rent/Rent.styles";
+  ItemAmount,
+} from "../Rent/Rent.styles";
 
 import { Background, Container } from "../../globalStyles";
 

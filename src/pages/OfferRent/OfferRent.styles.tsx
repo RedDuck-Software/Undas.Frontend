@@ -395,7 +395,7 @@ export const DollarPrice = styled.span`
 export const PayRow = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
   padding-bottom: 20px;
 `;
 export const AgreementLink = styled(Link)`
@@ -638,4 +638,3 @@ export const AddNFT = styled.img`
   position: absolute;
   top: 175px;
 `;
-

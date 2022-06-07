@@ -1,14 +1,15 @@
 import React from "react";
 
-import { CardWrap, 
+import {
+  CardWrap,
   ImageWrap,
   Image,
-  CardBody, 
+  CardBody,
   CardTitle,
   CardLink,
   CardFooter,
-  Date
- } from "./BlogCard.styles";
+  Date,
+} from "./BlogCard.styles";
 
 interface BlogCard {
   image: string;
@@ -16,19 +17,21 @@ interface BlogCard {
   date?: string;
 }
 
-const BlogCard: React.FC<BlogCard> = ({image, titleText, date}) => {
-  return <CardWrap>
-    <ImageWrap>
-      <Image src={image} alt="article-image" />
-    </ImageWrap>
-    <CardBody>
+const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {
+  return (
+    <CardWrap>
+      <ImageWrap>
+        <Image src={image} alt="article-image" />
+      </ImageWrap>
+      <CardBody>
         <CardTitle>{titleText}</CardTitle>
         <CardFooter>
-        <Date>{date}</Date>
-        <CardLink href="#">See more...</CardLink>
-      </CardFooter>
+          <Date>{date}</Date>
+          <CardLink href="#">See more...</CardLink>
+        </CardFooter>
       </CardBody>
-  </CardWrap>;
+    </CardWrap>
+  );
 };
 
 export default BlogCard;

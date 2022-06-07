@@ -54,7 +54,7 @@ export const PropertiesElementItem = styled.span`
     flex: 0 0 100%;
   }
 `;
-export const CompleteWrap = styled.div<{ complete?: number | string}>`
+export const CompleteWrap = styled.div<{ complete?: number | string }>`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
