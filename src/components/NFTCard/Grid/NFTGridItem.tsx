@@ -41,7 +41,8 @@ interface NFTGridItemProps {
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log('props22121',props)
+  // const stackingFilter = useSelector(useFilter);
+  // console.log(stackingFilter)
   return (
     <NFTWrap
       onClick={() => {
@@ -65,22 +66,41 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       <BuyingBlock>
         <LeftBlock>
           <TagName>Returne #{props.tokenId}</TagName>
-          <BuyBtn
-            onClick={(e) => {
-              e.stopPropagation();
-              dispatch(
-                setComponent(
-                  "buy",
-                  props.tokenId,
-                  props.price,
-                  props.URI,
-                  props.name,
-                ),
-              );
-            }}
-          >
-            Buy now
-          </BuyBtn>
+          {props.price ? (
+            <BuyBtn
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(
+                  setComponent(
+                    "buy",
+                    props.tokenId,
+                    props.price,
+                    props.URI,
+                    props.name,
+                  ),
+                );
+              }}
+            >
+              Buy now
+            </BuyBtn>
+          ) : (
+            <BuyBtn
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(
+                  setComponent(
+                    "buy",
+                    props.tokenId,
+                    props.price,
+                    props.URI,
+                    props.name,
+                  ),
+                );
+              }}
+            >
+              Rent now
+            </BuyBtn>
+          )}
         </LeftBlock>
         <PriceList>
           <PriceItem>
