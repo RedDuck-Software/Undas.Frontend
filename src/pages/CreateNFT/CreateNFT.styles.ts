@@ -26,15 +26,13 @@ export const CreateForm = styled.form`
     margin-left: 5px;
   }
 `;
+
 export const BlockDescript = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
-  margin-bottom: 10px;
-  &.required-fields {
-    margin-bottom: -10px;
-  }
+  margin-bottom: 0;
 `;
 
 export const CreateFormGroup = styled.div`
@@ -66,7 +64,8 @@ export const CreateLabel = styled.label`
     margin: 10px 0 5px;
   }
 `;
-export const AddImgButton = styled.button`
+
+export const AddImgButton = styled.label`
   width: 350px;
   height: 250px;
   border: 1px dashed #7c7c7c;
@@ -89,6 +88,57 @@ export const AddImgButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const AddFileBlock = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const NFTItemLabel = styled.label`
+  width: 350px;
+  height: 250px;
+  border: 1px dashed #7c7c7c;
+  box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: all 0.3s;
+  &:hover {
+    background: linear-gradient(
+        0deg,
+        rgba(124, 124, 124, 0.25),
+        rgba(124, 124, 124, 0.25)
+      ),
+      #ffffff;
+    cursor: pointer;
+  }
+`;
+
+export const NFTItemInput = styled.input.attrs({
+  type: "file",
+  accept: "image/*",
+})`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: none;
+`;
+
+export const NFTItemPreview = styled.img`
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: inherit;
+`;
+
 export const CreateInput = styled.input`
   border: 1px solid rgba(124, 124, 124, 0.5);
   outline: none;
@@ -106,6 +156,7 @@ export const CreateInput = styled.input`
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
 `;
+
 export const CreateTextArea = styled.textarea`
   background: #ffffff;
   border: 1px solid rgba(124, 124, 124, 0.5);
@@ -113,6 +164,7 @@ export const CreateTextArea = styled.textarea`
   border-radius: 10px;
   width: 100%;
   min-height: 80px;
+  margin-top: 10px;
   padding: 10px;
   font-size: 14px;
   &::placeholder {

@@ -52,6 +52,8 @@ const InputGroup: React.FC<InputGroupProps> = ({
         Value
       </ModalLabelStraight>
       <ModalInput
+        min={0}
+        max={5}
         type="number"
         id="value"
         placeholder="3"
@@ -67,6 +69,8 @@ const InputGroup: React.FC<InputGroupProps> = ({
         id="of"
         placeholder="5"
         className="margin-for-small"
+        value="5"
+        readOnly
       />
       <InputButton onClick={handleClearInput} />
     </ModalInputGroup>
@@ -111,7 +115,6 @@ const ModalItem: React.FC<ModalItemProps> = ({
       <ModalInput
         type="number"
         id="of"
-        placeholder="5"
         className="margin-for-small"
         value={5}
         readOnly
@@ -138,7 +141,10 @@ const StatsModal: React.FC<StatsModalProps> = ({ setStatList }) => {
     setModalStats(stats);
   }, [stats]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setStatList(stats);
+    setShow(false);
+  };
 
   const handleShow = () => setShow(true);
 

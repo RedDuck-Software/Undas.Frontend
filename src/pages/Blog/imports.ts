@@ -15,22 +15,21 @@ import News1 from "./assets/news-1.png";
 import News2 from "./assets/news-2.png";
 import News3 from "./assets/news-3.png";
 
-
 export {
-    BigImg,
-    SmImg1,
-    SmImg2,
-    SmImg3,
-    WebsiteTips1,
-    WebsiteTips2,
-    WebsiteTips3,
-    BusinessTips1,
-    BusinessTips2,
-    BusinessTips3,
-    Inspiration1,
-    Inspiration2,
-    Inspiration3,
-    News1,
-    News2,
-    News3
+  BigImg,
+  SmImg1,
+  SmImg2,
+  SmImg3,
+  WebsiteTips1,
+  WebsiteTips2,
+  WebsiteTips3,
+  BusinessTips1,
+  BusinessTips2,
+  BusinessTips3,
+  Inspiration1,
+  Inspiration2,
+  Inspiration3,
+  News1,
+  News2,
+  News3,
 };

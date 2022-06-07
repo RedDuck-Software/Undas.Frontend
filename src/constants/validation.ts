@@ -14,3 +14,5 @@ export const instagramRegex =
 
 export const discordRegex =
   /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/g;
+
+export const ipfsInfuraRegex = /((https?):\/\/)?ipfs\.infura\.io/;

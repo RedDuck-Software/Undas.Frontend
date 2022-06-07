@@ -30,9 +30,7 @@ const Properties: React.FC<PropertiesProps> = ({
         <ModalBlockDescript>
           Textual traits that show up as rectangles
         </ModalBlockDescript>
-        <PropertiesModal
-          setPropertyList={setPropertyList}
-        />
+        <PropertiesModal setPropertyList={setPropertyList} />
       </ModalBlock>
       <WithPropertiesBlock>
         <PropertyList propertyList={propertyList} />
