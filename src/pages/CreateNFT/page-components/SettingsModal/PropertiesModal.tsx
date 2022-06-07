@@ -114,6 +114,7 @@ const PropertiesModal: React.FC<PropertiesModalProps> = ({
   }, [properties]);
 
   const handleClose = () => {
+    setPropertyList(properties);
     setShow(false);
   };
 

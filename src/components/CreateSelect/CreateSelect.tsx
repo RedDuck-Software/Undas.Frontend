@@ -29,11 +29,14 @@ export const SelectItem: React.FC<{
 export const CreateSelect: React.FC<{
   itemList: ReactNode;
   item: SelectItemType;
-}> = ({ itemList, item }) => {
+  maxWidth?: string;
+  padding?: string;
+}> = ({ itemList, item, maxWidth, padding }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <SelectWrapper onClick={() => setIsOpen(!isOpen)}>
+    <SelectWrapper onClick={() => setIsOpen(!isOpen)} maxWidth={maxWidth}>
       <SelectedItemWrapper
+        padding={padding}
         isOpen={isOpen}
         tabIndex={0}
         style={

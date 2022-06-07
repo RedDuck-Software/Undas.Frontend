@@ -52,11 +52,10 @@ const InputGroup: React.FC<InputGroupProps> = ({
         Value
       </ModalLabelStraight>
       <ModalInput
-        min={0}
+        min={1}
         max={5}
         type="number"
         id="value"
-        placeholder="3"
         className="margin-for-small"
         value={completeValue}
         onChange={onChangeComplete}
@@ -103,7 +102,6 @@ const ModalItem: React.FC<ModalItemProps> = ({
       <ModalInput
         type="number"
         id="value"
-        placeholder="0"
         className="margin-for-small"
         value={completeValue}
         readOnly
@@ -114,8 +112,8 @@ const ModalItem: React.FC<ModalItemProps> = ({
       <ModalInput
         type="number"
         id="of"
-        placeholder="5"
         className="margin-for-small"
+        value="5"
         readOnly
       />
       <InputButton onClick={handleDelete} />
@@ -140,13 +138,16 @@ const LevelsModal: React.FC<LevelsModalProps> = ({ setLevelList }) => {
     setModalLevels(levels);
   }, [levels]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setLevelList(levels);
+  };
 
   const handleShow = () => setShow(true);
 
   const handleSave = () => {
-    setShow(false);
     setLevelList(levels);
+    setShow(false);
   };
 
   const handleName = (event: any) => {
