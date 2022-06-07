@@ -9,10 +9,7 @@ export function closeModal() {
 }
 
 export function setComponent(component: any, tokenId?: number, priceInNum?: number, tokenURI?: string, name?: string) {
-  console.log()
-  console.log("price in ",priceInNum)
-  console.log('name',name)
-  console.log('tokenURI',tokenURI)
+
   //todo:rent NFT EVENT 
   switch (component) {
     case 'buy':

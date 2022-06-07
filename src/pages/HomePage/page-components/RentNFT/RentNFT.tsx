@@ -41,16 +41,14 @@ const RentNFT: React.FC = () => {
     }
 
     const tokens = await fetchStakingData();
-    console.log("tokensStaking", tokens.stakingListings);
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        console.log("DASDSAD");
+
         const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        console.log("111111");
 
         items.push({ URI, name, id });
       }
@@ -87,7 +85,6 @@ const RentNFT: React.FC = () => {
   };
   async function getItemsData() {
     const response = await getStakings();
-    console.log("list", list);
     setList(response);
   }
 
@@ -130,7 +127,6 @@ const RentNFT: React.FC = () => {
         navigation={true}
       >
         {list?.map((item) => {
-          console.log("LIST", list);
           return (
             <>
               <SwiperSlide key={item.id}>
@@ -181,7 +177,6 @@ const client = createClient({
 
 async function fetchStakingData() {
   const data = await client.query(tokensStakingQuery).toPromise();
-  console.log("staking1", data.data.stakingListings);
   return data.data;
 }
 

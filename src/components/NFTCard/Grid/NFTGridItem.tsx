@@ -41,7 +41,6 @@ interface NFTGridItemProps {
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("NFTGridItem Props", props);
   // const stackingFilter = useSelector(useFilter);
   // console.log(stackingFilter)
   return (

@@ -42,7 +42,7 @@ import { OnlyOne__factory } from "../../../typechain";
 // async function getNfts() {
 //   const option = {chain: 'goerli',address:'0x45434191f03528726CAfd4Eebe0Fc5D33Be27720'}
 //   const nfts = await Moralis.Web3.getNfts(option)
-//   console.log(nfts)
+
 // }
 
 const BuyNFT: React.FC = () => {
@@ -52,16 +52,10 @@ const BuyNFT: React.FC = () => {
   const tokenName = useSelector(useName);
   const tokenUri = useSelector(useUri);
 
-  console.log("listing id:", litsingId);
-  console.log("token price", tokenPrice);
-  console.log("tokenUri", tokenName);
   const { connector } = useContext(Context);
 
   async function buyNFT(tokenId: number, priceInNum?: number) {
-    console.log("priceInNum" + priceInNum);
-    console.log("tokenId" + tokenId);
-    console.log("tokenUri", tokenUri);
-    console.log("connector", connector);
+
 
     if (!connector) return;
     if (priceInNum == undefined) {
@@ -72,14 +66,11 @@ const BuyNFT: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
-    console.log(await signer.getAddress());
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
 
-    // fetchNFTs()
-    console.log("userBalance", userBalanceInWei);
-    console.log("priceInNum", priceInNum);
+
 
     if (+userBalanceInWei < priceInNum) {
       alert("not enough funds");
@@ -91,7 +82,6 @@ const BuyNFT: React.FC = () => {
     );
 
     const ApprovalTokenAmount = (priceInNum * 2) / 100;
-    console.log("approvalTokenAm", ApprovalTokenAmount);
 
     const OnlyOneContract = OnlyOne__factory.connect(
       "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
@@ -106,7 +96,6 @@ const BuyNFT: React.FC = () => {
     const tx = await MarketplaceContract.buyToken(litsingId, {
       value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
     });
-    console.log("tx", tx);
     await tx.wait();
   }
 

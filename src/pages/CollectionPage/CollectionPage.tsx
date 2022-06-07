@@ -200,7 +200,6 @@ const CollectionPage: React.FC = () => {
 
   async function getUserNft() {
     const response = await getNfts();
-    console.log("adadas", response);
 
     if (response) {
       setList(response);
