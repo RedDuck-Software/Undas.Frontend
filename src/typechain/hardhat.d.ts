@@ -77,10 +77,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IUniswapV2Pair__factory>;
     getContractFactory(
-      name: "Marketplace",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Marketplace__factory>;
-    getContractFactory(
       name: "OnlyOne",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.OnlyOne__factory>;
