@@ -75,6 +75,7 @@ export const OfferContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  margin-top: 20px;
 `;
 export const ImageVerify = styled.img`
   margin-left: 10px;
@@ -622,6 +623,7 @@ export const SelectedNFTCardBox = styled.div`
   display: flex;
   gap: 30px;
   overflow-x: scroll;
+  padding-bottom: 10px;
 `;
 
 export const ImgDelete = styled.img`

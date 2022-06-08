@@ -31,6 +31,7 @@ export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
+  margin-top: 20px;
 `;
 export const LeftBlock = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ export const ContentItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(124, 124, 124, 0.25);
 `;
 export const ContentItemName = styled.div`
@@ -189,7 +190,7 @@ export const ItemAmount = styled.p`
   font-size: 16px;
   line-height: 20px;
   color: #232428;
-  margin: 20px 0;
+  margin-bottom: 20px;
 `;
 export const BottomWrapper = styled.div``;
 export const CheckBoxWrapper = styled.div`
