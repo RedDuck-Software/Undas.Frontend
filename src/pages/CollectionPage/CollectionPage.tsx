@@ -24,6 +24,7 @@ import {
   TextInfo,
   ContainerCollection,
   ResultsSmallSize,
+  ContainerNFT,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -31,7 +32,6 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
-
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
@@ -75,7 +75,6 @@ const CollectionPage: React.FC = () => {
 
   const { connector } = useContext(Context);
   const Web3Api = useMoralisWeb3Api();
-  // const [nfts, setNFTs] = useState<ItemsProps[]>([]);
 
   async function fetchData() {
     if (!connector) return;
@@ -137,7 +136,7 @@ const CollectionPage: React.FC = () => {
         <Background>
           <AllNFTContainer>
             <ASideFilterCollection marginTop="208px" />
-            <Wrapper w="100%">
+            <ContainerNFT>
               <HeadWrapper>
                 <CollectionCard />
                 <InfoBox>
@@ -287,7 +286,7 @@ const CollectionPage: React.FC = () => {
                   })}
                 </>
               )}
-            </Wrapper>
+            </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>
         </Background>

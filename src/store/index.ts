@@ -1,14 +1,15 @@
 import {
   combineReducers,
-  configureStore,
-  ThunkAction,
-  Action,
   applyMiddleware,
   createStore,
 } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import { levelReducer } from './reducers/createNFT/levelReducer';
+import { propertyReducer } from './reducers/createNFT/propertyReducer';
+import { statReducer } from './reducers/createNFT/statReducer';
+
 
 import { filterReducer } from './reducers/filterReducer';
 import { modalReducer } from './reducers/modalReducer';
@@ -24,6 +25,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
   filter: filterReducer,
   modal: modalReducer,
+  levels: levelReducer,
+  properties: propertyReducer,
+  stats: statReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   CreateSec,
@@ -10,29 +10,18 @@ import {
   CreateLabel,
   CreateInput,
   BlockDescript,
-  AddImgButton,
   CreateTextArea,
-  CreateSelect,
-  ModalTitle,
-  ModalBlockDescript,
-  ModalBlock,
   SwitcherBlock,
   SwitcherTitle,
   ButtonsBlock,
-  WithPropertiesBlock,
   CreateFormButton,
+  NFTItemLabel,
+  AddFileBlock,
+  NFTItemPreview,
+  NFTItemInput,
 } from "./CreateNFT.styles";
-import {
-  ImgIcon,
-  LevelsIco,
-  StatsIco,
-  UnlockableContentIco,
-  ExplicitContentIco,
-} from "./imports";
-import Levels from "./page-components/Levels";
-import LevelsModal from "./page-components/SettingsModal/LevelsModal";
-import StatsModal from "./page-components/SettingsModal/StatsModal";
-import Stats from "./page-components/Stats";
+import { ImgIcon, UnlockableContentIco, ExplicitContentIco } from "./imports";
+
 import Switcher from "./page-components/Switcher/Switcher";
 import { Background } from "../../globalStyles";
 import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
@@ -41,47 +30,76 @@ import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
 import { validationSchema } from "./validation";
-import { CreateNFTForm, Property } from "./types";
+import { CreateNFTForm, Level, Property, SelectItemType, Stat } from "./types";
 import Properties from "./page-components/Properties/Properties";
-const undasGeneralNFTAbi = UndasGeneralNFT__factory.abi;
+import {
+  useLevels,
+  useProperties,
+  useStats,
+} from "../../store/reducers/createNFT/helpers";
+import { useSelector } from "react-redux";
+import Levels from "./page-components/Levels/Levels";
+import Stats from "./page-components/Stats/Stats";
+import { CreateSelect, SelectItem } from "../../components";
+import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
+
+const SelectCollectionList: React.FC<{
+  setCollection: Dispatch<SetStateAction<SelectItemType>>;
+}> = ({ setCollection }) => {
+  return (
+    <>
+      <SelectItem setSelected={setCollection} label={"Single NFT"} />
+      <SelectItem setSelected={setCollection} label={"Returne"} />
+      <SelectItem setSelected={setCollection} label={"Azuki"} />
+      <SelectItem setSelected={setCollection} label={"Bored Ape Yacht Club."} />
+    </>
+  );
+};
 
 const CreateNFT: React.FC = () => {
+  const properties = useSelector(useProperties);
+  const levels = useSelector(useLevels);
+  const stats = useSelector(useStats);
+
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  console.log(undasGeneralNFTAbi);
 
-  //const [file, setFile] = useState<string>();
+  const [file, setFile] = useState<string>();
+  const [fileSizeError, setFileSizeError] = useState<{
+    message: string;
+    inputName: string;
+  }>();
   const [name, setName] = useState("");
   const [externalLink, setExternalLink] = useState("");
   const [description, setDescription] = useState("");
-  //const [collection, setCollection] = useState<string>();
-  const [propertyList, setPropertyList] = useState<Property[]>([
-    { type: "test1", name: "test-name1" },
-    { type: "test2", name: "test-name2" },
-    { type: "test3", name: "test-name3" },
-    { type: "test4", name: "test-name4" },
-  ]);
-  const [supply, setSupply] = useState("");
+  const [collection, setCollection] = useState<SelectItemType>({
+    label: "Select collection",
+    icon: "",
+  });
+  const [propertyList, setPropertyList] = useState<Property[]>(properties);
+  const [levelList, setLevelList] = useState<Level[]>(levels);
+  const [statList, setStatList] = useState<Stat[]>(stats);
+  const [isOnlockableContent, setIsOnlockableContent] =
+    useState<boolean>(false);
+  const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
+  const [supply, setSupply] = useState("1");
   const [freezeMetadata, setFreezeMetadata] = useState("");
 
-  const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, handleSubmit } = useForm<CreateNFTForm>(formOptions);
-
+  const formOptions: { resolver: any } = {
+    resolver: yupResolver(validationSchema),
+  };
+  const { register, formState, handleSubmit } =
+    useForm<CreateNFTForm>(formOptions);
+  const { errors } = formState;
+  console.log(errors);
   const mintNFT = async () => {
-    console.log("bid");
-    console.log("connector" + connector);
-    console.log("acc" + account);
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
-    console.log(provider);
     const signer = provider.getSigner(0);
-    console.log(signer);
-    // const SIGNER_ADDRESS = await signer.getAddress();
-    // console.log("signer addr" + SIGNER_ADDRESS);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
       "0x674002Df32E372E3D2E2CfC253471d0A5912fb9A", //goerli contract addr
@@ -91,9 +109,69 @@ const CreateNFT: React.FC = () => {
     NFTContract.safeMintGeneral(account, description, name, externalLink);
   };
 
-  const onSubmit = (formValues: any) => {
-    alert(JSON.stringify(formValues));
+  const onSubmit = () => {
+    console.log(errors);
+    if (!errors) {
+      mintNFT();
+    }
   };
+
+  const fileSizeValidation = (fileList: FileList, inputName: string) => {
+    const file = fileList[0];
+    if (file.size > 104857600) {
+      setFileSizeError({
+        message: `${inputName} is too large. Maximum file size is 3Mb.`,
+        inputName,
+      });
+      setFile("");
+      return true;
+    } else {
+      setFileSizeError({ message: "", inputName: "" });
+      return false;
+    }
+  };
+
+  const fileHandler = (event: React.FormEvent) => {
+    const fileList = (event.target as HTMLInputElement).files;
+    if (fileList) {
+      if (fileSizeValidation(fileList, "File")) {
+        return;
+      }
+      const file = URL.createObjectURL(fileList[0]);
+      setFile(file);
+    }
+  };
+  const nameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const externalLinkHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setExternalLink(event.target.value);
+  };
+
+  const descriptionHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setDescription(event.target.value);
+  };
+
+  const unlockacleHandler = () => {
+    setIsOnlockableContent(!isOnlockableContent);
+  };
+  const sensetiveHandler = () => {
+    setIsSensetiveContent(!isSensetiveContent);
+  };
+
+  const supplyHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSupply(event.target.value);
+  };
+
+  const freezeMetadataHandler = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setFreezeMetadata(event.target.value);
+  };
+
   return (
     <Background>
       <CreateSec>
@@ -114,9 +192,19 @@ const CreateNFT: React.FC = () => {
                 OGG, GLB, GLTF <br />
                 Max size: 100MB
               </BlockDescript>
-              <AddImgButton>
-                <img src={ImgIcon} alt="image-icon" />
-              </AddImgButton>
+              <AddFileBlock>
+                <NFTItemLabel htmlFor="NFT">
+                  {file ? (
+                    <NFTItemPreview src={file} />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </NFTItemLabel>
+                <NFTItemInput id="NFT" onChange={fileHandler} required />
+              </AddFileBlock>
+              {fileSizeError && fileSizeError.inputName === "File" && (
+                <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
@@ -125,13 +213,14 @@ const CreateNFT: React.FC = () => {
               <CreateInput
                 type="text"
                 id="name"
-                placeholder="Item name"
-                maxLength={25}
-                required
+                placeholder="NFT name"
                 {...register("name")}
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={nameHandler}
               />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="external-link">External link</CreateLabel>
@@ -142,12 +231,15 @@ const CreateNFT: React.FC = () => {
               </BlockDescript>
               <CreateInput
                 type="text"
-                id="external-link"
+                id="externalLink"
                 placeholder="https://yoursite.io/item/123"
                 {...register("externalLink")}
                 value={externalLink}
-                onChange={(e) => setExternalLink(e.target.value)}
+                onChange={externalLinkHandler}
               />
+              {errors.externalLink && (
+                <ValidationBlock>{errors.externalLink.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="description">Description</CreateLabel>
@@ -158,64 +250,45 @@ const CreateNFT: React.FC = () => {
               <CreateTextArea
                 placeholder="Provide a detailed description of your item"
                 id="description"
-                maxLength={500}
+                maxLength={1000}
                 {...register("description")}
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={descriptionHandler}
               />
+              {errors.description && (
+                <ValidationBlock>{errors.description.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup className="collection">
               <CreateLabel htmlFor="collection" className="collection-label">
                 Collection
               </CreateLabel>
-              <CreateSelect aria-label="" id="collection">
-                <option>Select collection</option>
-                <option value="1">OneOne</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </CreateSelect>
-              <BlockDescript>
+              <CreateSelect
+                maxWidth="350px"
+                padding="7px 20px"
+                itemList={
+                  <SelectCollectionList setCollection={setCollection} />
+                }
+                item={collection}
+              />
+              <BlockDescript style={{ marginLeft: "20px" }}>
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
+
             <Properties
               propertyList={propertyList}
               setPropertyList={setPropertyList}
             />
-            <CreateFormGroup>
-              <ModalTitle>
-                <LevelsIco /> Levels
-              </ModalTitle>
-              <ModalBlock>
-                <ModalBlockDescript>
-                  Numerical traits that show as a progress bar
-                </ModalBlockDescript>
-                <LevelsModal />
-              </ModalBlock>
-              <WithPropertiesBlock>
-                <Levels />
-              </WithPropertiesBlock>
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <ModalTitle>
-                <StatsIco /> Stats
-              </ModalTitle>
-              <ModalBlock>
-                <ModalBlockDescript>
-                  Numerical traits that just show as numbers
-                </ModalBlockDescript>
-                <StatsModal />
-              </ModalBlock>
-              <WithPropertiesBlock>
-                <Stats />
-              </WithPropertiesBlock>
-            </CreateFormGroup>
+            <Levels levelList={levelList} setLevelList={setLevelList} />
+            <Stats statList={statList} setStatList={setStatList} />
+
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
                   <UnlockableContentIco /> Unlockable Content
                 </SwitcherTitle>
-                <Switcher onClick={() => console.log("switch")} />
+                <Switcher onClick={unlockacleHandler} />
               </SwitcherBlock>
               <BlockDescript>
                 Include unlockable content that can only be revealed by the
@@ -227,7 +300,7 @@ const CreateNFT: React.FC = () => {
                 <SwitcherTitle>
                   <ExplicitContentIco /> Explicit & Sensitive Content
                 </SwitcherTitle>
-                <Switcher onClick={() => console.log("switch")} />
+                <Switcher onClick={sensetiveHandler} />
               </SwitcherBlock>
               <BlockDescript>
                 Set this item as explicit and sensitive content
@@ -239,13 +312,17 @@ const CreateNFT: React.FC = () => {
                 The number of items that can be minted. No gas cost to you!{" "}
               </BlockDescript>
               <CreateInput
-                type="text"
+                type="number"
                 id="supply"
+                min="1"
                 placeholder="1"
                 {...register("supply")}
                 value={supply}
-                onChange={(e) => setSupply(e.target.value)}
+                onChange={supplyHandler}
               />
+              {errors.supply && (
+                <ValidationBlock>{errors.supply.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="freeze-metadata">
@@ -254,24 +331,25 @@ const CreateNFT: React.FC = () => {
               <BlockDescript>
                 Freezing your metadata will allow you to permanently lock and
                 store all of this item&#39;s content in decentralized file
-                storage
+                storage.
               </BlockDescript>
               <CreateInput
                 type="text"
-                id="freeze-metadata"
+                id="freezeMetadata"
                 placeholder="To freeze your metadata, you must create your item first"
                 {...register("freezeMetadata")}
                 value={freezeMetadata}
-                onChange={(e) => setFreezeMetadata(e.target.value)}
+                onChange={freezeMetadataHandler}
               />
+              {errors.freezeMetadata && (
+                <ValidationBlock>
+                  {errors.freezeMetadata.message}
+                </ValidationBlock>
+              )}
             </CreateFormGroup>
             <ButtonsBlock>
               <FormButtonsWrap>
-                <CreateFormButton
-                  type="submit"
-                  className="left-btn"
-                  onClick={() => mintNFT()}
-                >
+                <CreateFormButton type="submit" className="left-btn">
                   Create
                 </CreateFormButton>
                 <CreateFormButton>Back</CreateFormButton>
