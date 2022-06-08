@@ -54,6 +54,11 @@ import {
   RentElement,
   RentalPeriod,
   RightSideBlock,
+  NotListed,
+  NotListedWrapper,
+  OwnerSettingsWrapper,
+  OwnerSettingsButton,
+  OwnerSettingsNavigation,
 } from "./NFTPage.styles";
 import Accordion from "./page-components/Accordion/Accordion";
 import About from "./page-components/Accordion/accordrion-components/About";
@@ -96,8 +101,9 @@ const NFTPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   // const [showPriceHistory] = useState(false);
   const [, setShowStaking] = useState(false);
-  const [, setShowBuy] = useState(false);
-  const [, setShowRent] = useState(false);
+  const [showBuy, setShowBuy] = useState(false);
+  const [showRent, setShowRent] = useState(false);
+  const [isOwner, setIsOwner] = useState(true);
 
   const getShowStaking = async () => {
     if (!connector) return;
@@ -141,7 +147,7 @@ const NFTPage: React.FC = () => {
     const address = await signer.getAddress();
     const owner = await NFTContract.owner();
     const ProductValue = await getListing(listingId, connector);
-
+    console.log("owner:", owner);
     if (!ProductValue) return;
 
     const { seller } = ProductValue.tx;
@@ -235,6 +241,24 @@ const NFTPage: React.FC = () => {
 
   return (
     <Background>
+      {!loading && isOwner && (
+        <OwnerSettingsWrapper>
+          <OwnerSettingsNavigation>
+          <OwnerSettingsButton>Edit</OwnerSettingsButton>
+            {showBuy || showRent ? (
+              <>
+                <OwnerSettingsButton isColored={true}>
+                  Cancel listing
+                </OwnerSettingsButton>
+              </>
+            ) : (
+              <OwnerSettingsButton isColored={true}>
+                Rent-sell
+              </OwnerSettingsButton>
+            )}
+          </OwnerSettingsNavigation>
+        </OwnerSettingsWrapper>
+      )}
       <NFTPageWrap>
         {loading ? (
           <ClipLoader
@@ -323,43 +347,54 @@ const NFTPage: React.FC = () => {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} />
+                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} />
                   </SaleBlock>
+
                   <SaleBlock>
                     <TopBar>
                       <RentIco />
                       Rent
                     </TopBar>
-                    <RentElement>
-                      <span>Deposit</span>
-                      <Wrapper disp="flex" alignItems="center">
-                        <EthIco />
-                        <PriceText>2,5</PriceText>
-                        <PriceInUSD>($18 465,32)</PriceInUSD>
-                      </Wrapper>
-                    </RentElement>
-                    <RentElement>
-                      <span>Price for 1 Day Rental</span>
-                      <Wrapper disp="flex" alignItems="center">
-                        <EthIco />
-                        <PriceText>0,005</PriceText>
-                        <PriceInUSD>($36,93)</PriceInUSD>
-                      </Wrapper>
-                    </RentElement>
-                    <RentElement>
-                      <span>Period</span>
-                      <RentalPeriod placeholder="7 for 90 days" />
-                    </RentElement>
-                    <RentElement h="76px">
-                      <InfoButton
-                        bg="#873DC1"
-                        flex="1 1 0"
-                        className="colored-btn"
-                      >
-                        Rent
-                      </InfoButton>
-                      <InfoButton fc="#873DC1">Make offer</InfoButton>
-                    </RentElement>
+                    {showRent === false && isOwner === true ? (
+                      <NotListedWrapper>
+                        <NotListed>Not listed for rent</NotListed>
+                      </NotListedWrapper>
+                    ) : (
+                      <>
+                        <RentElement>
+                          <span>Deposit</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>2,5</PriceText>
+                            <PriceInUSD>($18 465,32)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                          <span>Price for 1 Day Rental</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>0,005</PriceText>
+                            <PriceInUSD>($36,93)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                          <span>Period</span>
+                          <RentalPeriod placeholder="7 for 90 days" />
+                        </RentElement>
+                        <RentElement h="76px">
+                          <InfoButton
+                            bg="#873DC1"
+                            flex="1 1 0"
+                            className="colored-btn"
+                            disabled={isOwner}
+                            onClick={() => console.log("click rent")}
+                          >
+                            Rent
+                          </InfoButton>
+                          <InfoButton fc="#873DC1">Make offer</InfoButton>
+                        </RentElement>
+                      </>
+                    )}
                   </SaleBlock>
                 </Wrapper>
               </RightSideBlock>
@@ -367,7 +402,7 @@ const NFTPage: React.FC = () => {
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
               <Accordion name="Offers" ico={<OffersIco />}>
-                <Offers />
+                <Offers isOwner={isOwner} />
               </Accordion>
               <Accordion name="Staking" ico={<StakingIco />} und="UND">
                 <Staking />
@@ -399,12 +434,6 @@ const NFTPage: React.FC = () => {
               >
                 <Properties />
               </Accordion>
-              {/* <Wrapper
-                                disp="flex"
-                                flexDirection="column"
-                                w="50%"
-                                marg="0 0 0 auto"
-                            > */}
               <Accordion
                 name="Stats"
                 ico={<StatsIco />}
@@ -419,7 +448,6 @@ const NFTPage: React.FC = () => {
               >
                 <Levels complete={4} />
               </Accordion>
-              {/* </Wrapper> */}
             </Wrapper>
             <AdvertisingSlider />
           </>
