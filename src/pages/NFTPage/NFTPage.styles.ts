@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container } from "../../globalStyles";
 
 export const Background = styled.div`
-  background-color: #e2d1ff;
+  background-color: white;
 `;
 // Seller Menu
 export const SellerNavigation = styled.div`
@@ -363,6 +363,10 @@ export const InfoButton = styled.button<IButton>`
   }
   @media (max-width: 576px) {
     width: 50%;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 `;
 

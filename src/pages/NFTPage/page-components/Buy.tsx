@@ -16,7 +16,12 @@ import {
   PriceWrap,
 } from "../NFTPage.styles";
 
-const Buy: React.FC<{ id: number }> = ({ id }) => {
+interface BuyProps {
+  id: number;
+  isOwner?: boolean;
+}
+
+const Buy: React.FC<BuyProps> = ({ id, isOwner }) => {
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
@@ -117,6 +122,7 @@ const Buy: React.FC<{ id: number }> = ({ id }) => {
           bg="#873DC1"
           onClick={() => buyToken(id)}
           className="colored-btn"
+          disabled={isOwner}
         >
           Buy now
         </InfoButton>

@@ -15,17 +15,25 @@ import {
   DenyBTN,
 } from "../Accordion.styles";
 
-const Offers: React.FC = () => {
+interface OffersProps {
+  isOwner?: boolean;
+}
+
+const Offers: React.FC<OffersProps> = ({ isOwner }) => {
   return (
     <OffersWrap>
       <OffersHeadTr>
-        <OffersTd></OffersTd>
+        <OffersTd>Event</OffersTd>
         <OffersTd>Price</OffersTd>
         <OffersTd>Expiration</OffersTd>
         <OffersTd>From</OffersTd>
-        <OffersTd></OffersTd>
-        <OffersTd></OffersTd>
-        <OffersTd></OffersTd>
+        {false && (
+          <>
+            <OffersTd></OffersTd>
+            <OffersTd></OffersTd>
+            <OffersTd></OffersTd>
+          </>
+        )}
       </OffersHeadTr>
       <OffersTr>
         <OffersTdText>
@@ -41,15 +49,19 @@ const Offers: React.FC = () => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        <OffersTdText>
-          <AcceptBTN>Accept</AcceptBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <MakeOfferBTN>Make offer</MakeOfferBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <DenyBTN>Deny</DenyBTN>
-        </OffersTdText>
+        {isOwner && (
+          <>
+            <OffersTdText>
+              <AcceptBTN>Accept</AcceptBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <MakeOfferBTN>Make offer</MakeOfferBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <DenyBTN>Deny</DenyBTN>
+            </OffersTdText>
+          </>
+        )}
       </OffersTr>
       <OffersTr>
         <OffersTdText>
@@ -65,15 +77,19 @@ const Offers: React.FC = () => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        <OffersTdText>
-          <AcceptBTN>Accept</AcceptBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <MakeOfferBTN>Make offer</MakeOfferBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <DenyBTN>Deny</DenyBTN>
-        </OffersTdText>
+        {isOwner && (
+          <>
+            <OffersTdText>
+              <AcceptBTN>Accept</AcceptBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <MakeOfferBTN>Make offer</MakeOfferBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <DenyBTN>Deny</DenyBTN>
+            </OffersTdText>
+          </>
+        )}
       </OffersTr>
       <OffersTr>
         <OffersTdText>
@@ -89,15 +105,19 @@ const Offers: React.FC = () => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        <OffersTdText>
-          <AcceptBTN>Accept</AcceptBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <MakeOfferBTN>Make offer</MakeOfferBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <DenyBTN>Deny</DenyBTN>
-        </OffersTdText>
+        {isOwner && (
+          <>
+            <OffersTdText>
+              <AcceptBTN>Accept</AcceptBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <MakeOfferBTN>Make offer</MakeOfferBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <DenyBTN>Deny</DenyBTN>
+            </OffersTdText>
+          </>
+        )}
       </OffersTr>
       <OffersTr>
         <OffersTdText>
@@ -113,15 +133,19 @@ const Offers: React.FC = () => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        <OffersTdText>
-          <AcceptBTN>Accept</AcceptBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <MakeOfferBTN>Make offer</MakeOfferBTN>
-        </OffersTdText>
-        <OffersTdText>
-          <DenyBTN>Deny</DenyBTN>
-        </OffersTdText>
+        {isOwner && (
+          <>
+            <OffersTdText>
+              <AcceptBTN>Accept</AcceptBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <MakeOfferBTN>Make offer</MakeOfferBTN>
+            </OffersTdText>
+            <OffersTdText>
+              <DenyBTN>Deny</DenyBTN>
+            </OffersTdText>
+          </>
+        )}
       </OffersTr>
     </OffersWrap>
   );
