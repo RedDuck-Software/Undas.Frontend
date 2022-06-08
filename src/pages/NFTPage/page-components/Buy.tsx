@@ -14,14 +14,17 @@ import {
   ButtonWrap,
   InfoButton,
   PriceWrap,
+  NotListedWrapper,
+  NotListed,
 } from "../NFTPage.styles";
 
 interface BuyProps {
   id: number;
   isOwner?: boolean;
+  showBuy?: boolean;
 }
 
-const Buy: React.FC<BuyProps> = ({ id, isOwner }) => {
+const Buy: React.FC<BuyProps> = ({ id, isOwner, showBuy }) => {
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
@@ -105,30 +108,36 @@ const Buy: React.FC<BuyProps> = ({ id, isOwner }) => {
     getProductPrice();
   }, [connector, web3React]);
 
-  return seller === account || id < 0 ? (
-    <></>
-  ) : (
-    <BuyBar>
-      <span>Current price</span>
-      <Wrapper disp="flex" alignItems="center">
-        <PriceWrap>
-          <EthIco />
-          <PriceText>{price}</PriceText>
-          <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
-        </PriceWrap>
-      </Wrapper>
-      <ButtonWrap>
-        <InfoButton
-          bg="#873DC1"
-          onClick={() => buyToken(id)}
-          className="colored-btn"
-          disabled={isOwner}
-        >
-          Buy now
-        </InfoButton>
-        <InfoButton fc="#873DC1">Make offer</InfoButton>
-      </ButtonWrap>
-    </BuyBar>
+  return (
+    <>
+      {showBuy === false && isOwner === true ? (
+        <NotListedWrapper>
+          <NotListed>Not listed for sale</NotListed>
+        </NotListedWrapper>
+      ) : (
+        <BuyBar>
+          <span>Current price</span>
+          <Wrapper disp="flex" alignItems="center">
+            <PriceWrap>
+              <EthIco />
+              <PriceText>{price}</PriceText>
+              <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
+            </PriceWrap>
+          </Wrapper>
+          <ButtonWrap>
+            <InfoButton
+              bg="#873DC1"
+              onClick={() => buyToken(id)}
+              className="colored-btn"
+              disabled={isOwner}
+            >
+              Buy now
+            </InfoButton>
+            <InfoButton fc="#873DC1">Make offer</InfoButton>
+          </ButtonWrap>
+        </BuyBar>
+      )}
+    </>
   );
 };
 

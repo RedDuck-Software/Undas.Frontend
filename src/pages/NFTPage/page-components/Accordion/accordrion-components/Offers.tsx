@@ -27,7 +27,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
         <OffersTd>Price</OffersTd>
         <OffersTd>Expiration</OffersTd>
         <OffersTd>From</OffersTd>
-        {false && (
+        {isOwner === true && (
           <>
             <OffersTd></OffersTd>
             <OffersTd></OffersTd>
@@ -49,7 +49,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        {isOwner && (
+        {isOwner === true && (
           <>
             <OffersTdText>
               <AcceptBTN>Accept</AcceptBTN>
@@ -77,7 +77,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        {isOwner && (
+        {isOwner === true && (
           <>
             <OffersTdText>
               <AcceptBTN>Accept</AcceptBTN>
@@ -105,7 +105,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        {isOwner && (
+        {isOwner === true && (
           <>
             <OffersTdText>
               <AcceptBTN>Accept</AcceptBTN>
@@ -133,7 +133,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
         <OffersTdText>
           <OffersText color="#5D3F92">65BA4F</OffersText>
         </OffersTdText>
-        {isOwner && (
+        {isOwner === true && (
           <>
             <OffersTdText>
               <AcceptBTN>Accept</AcceptBTN>
