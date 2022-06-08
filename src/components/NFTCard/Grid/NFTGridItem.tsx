@@ -29,6 +29,8 @@ import {
 } from "../../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
+// import OfferRent from "../../../pages/OfferRent/OfferRent";
+// import Link from 'react-router-dom';
 
 interface NFTGridItemProps {
   tokenId: number; //listingID
@@ -36,13 +38,14 @@ interface NFTGridItemProps {
   name: string;
   price?: number;
   premium?: number;
+  colloteralWei?: number;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   // const stackingFilter = useSelector(useFilter);
-  // console.log(stackingFilter)
   return (
     <NFTWrap
       onClick={() => {
@@ -66,6 +69,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       <BuyingBlock>
         <LeftBlock>
           <TagName>Returne #{props.tokenId}</TagName>
+
           {props.price ? (
             <BuyBtn
               onClick={(e) => {
@@ -89,13 +93,15 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                 e.stopPropagation();
                 dispatch(
                   setComponent(
-                    "buy",
+                    //set
+                    "offer-rent",
                     props.tokenId,
                     props.price,
                     props.URI,
                     props.name,
                   ),
                 );
+                navigate(`/offer-rent`);
               }}
             >
               Rent now

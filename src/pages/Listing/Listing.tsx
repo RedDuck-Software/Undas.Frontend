@@ -58,6 +58,8 @@ const Listing: React.FC = () => {
       signer,
     );
 
+    console.log(MarketplaceContract);
+
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
       MARKETPLACE_ADDRESS,
@@ -69,16 +71,16 @@ const Listing: React.FC = () => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.bid(
-      NFTAddress,
-      tokenId,
-      ethers.utils.parseEther(price),
-      { value: ethers.utils.parseEther("0.1") },
-    );
-
-    await tx.wait().then(() => {
-      setShowModalWindow(false);
-    });
+    // const tx = await MarketplaceContract.bidExternal(
+    //   // NFTAddress,
+    //   // tokenId,
+    //   // ethers.utils.parseEther(price),
+    //   // { value: ethers.utils.parseEther("0.1") },
+    // );
+    setShowModalWindow(false);
+    // await tx.wait().then(() => {
+    //   setShowModalWindow(false);
+    // });
   };
 
   return (

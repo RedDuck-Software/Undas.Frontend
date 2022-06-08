@@ -7,20 +7,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 //import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
-// import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
-// import { getListing } from "../../../utils/getListing";
-// import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
-// import { getStaking } from "../../../utils/getStaking";
-// import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
-// import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
 import { createClient } from "urql";
-/* interface CardListProps {
-  newFilter?: boolean;
-  priceFilter?: { min: number; max: number };
-} */
 
 interface CommonProps {
   id: number;
@@ -33,6 +23,7 @@ export interface ItemsProps extends CommonProps {
 }
 export interface StakingsProps extends CommonProps {
   premiumInNum: number;
+  colloteralWei: number;
 }
 
 interface CommonListProps extends CommonProps {
@@ -54,12 +45,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   const [list, setList] = useState<ItemsProps[]>([]);
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>([]);
-  // const [filteredList, setFilteredList] = useState<ItemsProps[]>();
+
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage, setItemsPerPage] = useState(9);
-  // const [showList, setShowList] = useState('NFT to buy');
+
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
   console.log(connector);
@@ -95,15 +84,19 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
 
     const tokens = await fetchStakingData();
+
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
+        console.log(nft);
+
         const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        const colloteralWei = nft.colloteralWei;
 
-        stakings.push({ id, name, URI, premiumInNum });
+        stakings.push({ id, name, URI, premiumInNum, colloteralWei });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }
@@ -198,7 +191,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
       }
     }
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-
+  console.log("COMMON LIST ", commonList);
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (

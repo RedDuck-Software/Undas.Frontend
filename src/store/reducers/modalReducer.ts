@@ -3,6 +3,7 @@ import {
   OPEN_BUY_MODAL,
   OPEN_MODAL,
   SET_COMPONENT_BUY,
+  SET_COMPONENT_RENT
 } from '../saga/types';
 
 const initialState = {
@@ -35,6 +36,16 @@ export const modalReducer = (state = initialState, action: any) => {
         priceInNum:action.priceInNum,
         tokenURI:action.tokenURI,
         name:action.name
+      };
+      case SET_COMPONENT_RENT:
+      return {
+        ...state,
+        currentComponent: 'rent',
+        tokenId: action.tokenId,
+        premiumInNum:action.premiumInNum,
+        tokenURI:action.tokenURI,
+        name:action.name,
+        colloteral:action.colloteral
       };
     default:
       return state;
