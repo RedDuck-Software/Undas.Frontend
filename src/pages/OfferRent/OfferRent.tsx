@@ -2,7 +2,10 @@ import React from "react";
 
 import {
   TitleText,
+  Back,
+  BackText,
   OfferContainer,
+  CollectionName,
   FirstCollum,
   SecondCollum,
   NameRow,
@@ -26,10 +29,13 @@ import {
   UNDLabel,
   ImageInfo,
   DollarPrice,
+  AgreeRow,
   PayRow,
   AgreementLink,
   CheckboxLabelAgreement,
   CheckboxInputAgreement,
+  ButtonMakeOffer,
+  AgreeRowButton,
   InputDay,
   TextDay,
   PriceContainer,
@@ -42,16 +48,8 @@ import {
   SelectedNFTCardBox,
   ImgDelete,
   AddNFT,
+  CheckBoxCenter,
 } from "./OfferRent.styles";
-
-import {
-  TopLinkWrapper,
-  TopLink,
-  BottomWrapper,
-  CheckBoxWrapper,
-  Button,
-  ItemAmount,
-} from "../Rent/Rent.styles";
 
 import { Background, Container } from "../../globalStyles";
 
@@ -62,11 +60,9 @@ import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 const OfferRent: React.FC = () => {
   return (
     <Background>
-      <TopLinkWrapper>
-        <Container>
-          <TopLink to="/">Back</TopLink>
-        </Container>
-      </TopLinkWrapper>
+      <Back>
+        <BackText>Back</BackText>
+      </Back>
       <Container>
         <TitleText>Offer Rent</TitleText>
         <OfferContainer>
@@ -160,7 +156,7 @@ const OfferRent: React.FC = () => {
           </FirstCollum>
           <SecondCollum>
             <NameRow>
-              <ItemAmount>Owner item</ItemAmount>
+              <CollectionName>Owner item</CollectionName>
             </NameRow>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />
@@ -188,21 +184,23 @@ const OfferRent: React.FC = () => {
               <AddNFT src={addNFT} alt="add-nft-image" />
             </NFTInfoContainer>
           </SelectedNFTCardBox>
+          <AgreeRow>
+            <CheckBoxCenter>
+              <CheckboxInputAgreement
+                type="checkbox"
+                id="agreement"
+                className="custom-checkbox"
+              />
+              <CheckboxLabelAgreement htmlFor="agreement">
+                I agree to the platform {"\u00A0"}
+                <AgreementLink>agreement...</AgreementLink>
+              </CheckboxLabelAgreement>
+            </CheckBoxCenter>
+          </AgreeRow>
+          <AgreeRowButton>
+            <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
+          </AgreeRowButton>
         </OfferContainer>
-        <BottomWrapper>
-          <CheckBoxWrapper>
-            <CheckboxInputAgreement
-              type="checkbox"
-              id="agreement"
-              className="custom-checkbox"
-            />
-            <CheckboxLabelAgreement htmlFor="agreement">
-              I agree to the platform {"\u00A0"}
-              <AgreementLink to="/">agreement...</AgreementLink>
-            </CheckboxLabelAgreement>
-          </CheckBoxWrapper>
-          <Button>Make Offer</Button>
-        </BottomWrapper>
       </Container>
     </Background>
   );
