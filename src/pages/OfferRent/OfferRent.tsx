@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import {
   TitleText,
@@ -47,9 +47,81 @@ import {
 
 import { Background, Container } from "../../globalStyles";
 
-import { verify, UND, cardNFT, down, info } from "./imports";
+import { verify, UND, down, info } from "./imports";
+
+import { useSelector } from "react-redux";
+import { useName, useToken, useUri } from "../../store/";
+import Context from "../../utils/Context";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Marketplace__factory } from "../../typechain/factories/Marketplace__factory";
+// import { OnlyOne__factory } from "../../typechain";
+
+import { ethers } from "ethers";
+// import { cp } from "fs/promises";
 
 const OfferRent: React.FC = () => {
+  // const dispatch = useDispatch();
+  const litsingId = useSelector(useToken);
+  const tokenName = useSelector(useName);
+  const tokenUri = useSelector(useUri);
+  const { connector } = useContext(Context);
+
+  const [premium, setPremium] = useState(0);
+  const [colloteral, setColloteral] = useState(0);
+  const [isTokenFee, setIsTokenFee] = useState(false);
+
+  async function makeRentOffer() {
+    if (!connector) return;
+    // if (priceInNum == undefined) {
+    //   return;
+    // }
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+    const userBalanceInWei = ethers.utils.formatUnits(
+      await signer.getBalance(),
+    );
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    //TODO:NORMAL APPROVAL
+    // const ApprovalTokenAmount = (priceInNum * 2) / 100;
+
+    // const OnlyOneContract = OnlyOne__factory.connect(
+    //   "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
+    //   signer,
+    // );
+
+    // console.log(OnlyOneContract)
+    // OnlyOneContract.approve(
+    //   "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
+    //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
+    // );
+
+    console.log(colloteral + premium);
+    const amountToPay = colloteral + premium + (premium * 20) / 100;
+
+    console.log("amountToPay", amountToPay);
+    console.log("litsingId", litsingId);
+    console.log("dsadas", ethers.utils.parseEther("1"));
+    const tx = await MarketplaceContract.stakingOffer(
+      litsingId,
+      ethers.utils.parseUnits(colloteral.toString(), "ether"),
+      ethers.utils.parseUnits(premium.toString(), "ether"),
+      {
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+      },
+    );
+
+    await tx.wait();
+  }
+
+  console.log(tokenName, tokenUri, litsingId);
+
   return (
     <Background>
       <Back>
@@ -67,7 +139,11 @@ const OfferRent: React.FC = () => {
                 <EthText>ETH</EthText>
                 <ImageDown src={down} alt="down-image" />
               </EthSelect>
-              <AmmountInput type="text" placeholder="Amount" />
+              <AmmountInput
+                type="text"
+                placeholder="Amount"
+                onChange={(e) => setColloteral(+e.target.value)}
+              />
               <CostSelect>
                 <DollarText>0.00</DollarText>
               </CostSelect>
@@ -80,7 +156,11 @@ const OfferRent: React.FC = () => {
                 <EthText>ETH</EthText>
                 <ImageDown src={down} alt="down-image" />
               </EthSelect>
-              <AmmountInput type="text" placeholder="Amount" />
+              <AmmountInput
+                type="text"
+                placeholder="Amount"
+                onChange={(e) => setPremium(+e.target.value)}
+              />
               <CostSelect>
                 <DollarText>0.00</DollarText>
               </CostSelect>
@@ -127,7 +207,10 @@ const OfferRent: React.FC = () => {
                 id="purchases"
                 className="custom-checkbox"
               />
-              <CheckboxLabel htmlFor="purchases">
+              <CheckboxLabel
+                htmlFor="purchases"
+                onClick={() => setIsTokenFee((prevState) => !prevState)}
+              >
                 Pay in {"\u00A0"}
                 <UNDLabel>UND</UNDLabel>
                 {"\u00A0"} with a 50% discount
@@ -147,16 +230,18 @@ const OfferRent: React.FC = () => {
               </CheckboxLabelAgreement>
             </AgreeRow>
             <AgreeRowButton>
-              <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
+              <ButtonMakeOffer onClick={() => makeRentOffer()}>
+                Make Offer
+              </ButtonMakeOffer>
             </AgreeRowButton>
           </FirstCollum>
           <SecondCollum>
             <NameRow>
-              <CollectionName>Collection Name</CollectionName>
+              <CollectionName>{tokenName}</CollectionName>
               <ImageVerify src={verify} alt="verify-image" />
               <ImageUND src={UND} alt="undas-image" />
             </NameRow>
-            <ImageNFT src={cardNFT} alt="undas-image" />
+            <ImageNFT src={tokenUri} alt="undas-image" />
           </SecondCollum>
         </OfferContainer>
       </Container>

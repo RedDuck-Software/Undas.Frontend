@@ -9,6 +9,7 @@ type GridItem = {
   name: string;
   priceInNum?: number;
   premiumInNum?: number;
+  colloteralWei?: number;
 };
 interface CollectionGridWrapperProps {
   itemList: GridItem[];
@@ -17,7 +18,7 @@ interface CollectionGridWrapperProps {
 const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   itemList,
 }) => {
-
+  console.log("ITEMS LIST AL COLLECTION GRID WRAP", itemList);
 
   return (
     <GridLayout>
@@ -30,6 +31,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             name={item.name}
             price={item.priceInNum}
             premium={item.premiumInNum}
+            colloteralWei={item.colloteralWei}
           />
         );
       })}

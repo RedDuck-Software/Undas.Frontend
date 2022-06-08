@@ -1,4 +1,5 @@
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const OPEN_BUY_MODAL = "OPEN_BUY_MODAL";
 export const OPEN_MODAL = "OPEN_MODAL";
-export const SET_COMPONENT_BUY = "SET_COMPONENT_BUY";
+export const SET_COMPONENT_BUY = "SET_COMPONENT_BUY"; 
+export const SET_COMPONENT_RENT = "SET_COMPONENT_RENT";

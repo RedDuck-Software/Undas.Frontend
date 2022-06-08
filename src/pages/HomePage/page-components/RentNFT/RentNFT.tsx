@@ -4,11 +4,7 @@ import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./NFTHeroSlider.css";
-import { canRentNFTFunction } from "../../../../utils/canRentNFT";
 import Context from "../../../../utils/Context";
-import { getStaking } from "../../../../utils/getStaking";
-import { getStakingsLastIndex } from "../../../../utils/getStakingsLastIndex";
-import getTokenURI from "../../../../utils/getTokenURI";
 import NFTCard from "../NFTCard/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
@@ -43,46 +39,18 @@ const RentNFT: React.FC = () => {
     const tokens = await fetchStakingData();
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-
         const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-
+        console.log(premiumInNum);
         items.push({ URI, name, id });
       }
     });
     return items;
   };
 
-  const getItems = async () => {
-    if (!connector) {
-      return;
-    }
-
-    const lastIndex = await getStakingsLastIndex(connector);
-    if (!lastIndex) return;
-
-    for (let i = 0; i < +lastIndex; i++) {
-      const URI = await getTokenURI(i, connector);
-      const stakingdata = await getStaking(i, connector);
-      if (!stakingdata || !URI) {
-        continue;
-      }
-
-      const { tokenId } = stakingdata.tx;
-      const { name } = stakingdata;
-      let canRentNFT;
-      if (stakingdata.tx.tokenId._hex !== "0x00") {
-        canRentNFT = await canRentNFTFunction(i, connector);
-      }
-      if (canRentNFT) {
-        items.push({ URI, name, id: +tokenId });
-      }
-    }
-    return items;
-  };
   async function getItemsData() {
     const response = await getStakings();
     setList(response);

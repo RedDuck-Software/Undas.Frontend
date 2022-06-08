@@ -26,7 +26,7 @@ import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Ac
 import { useName, usePrice, useToken, useUri } from "../../../store";
 import { closeModal } from "../../../store/reducers/modalAction";
 import { EthIco } from "../../ASideFilter/imports";
-import { NFTImg, UNDIco } from "../imports";
+import { UNDIco } from "../imports";
 import Context from "../../../utils/Context";
 import { ethers } from "ethers";
 import { Marketplace__factory } from "../../../typechain";
@@ -55,8 +55,6 @@ const BuyNFT: React.FC = () => {
   const { connector } = useContext(Context);
 
   async function buyNFT(tokenId: number, priceInNum?: number) {
-
-
     if (!connector) return;
     if (priceInNum == undefined) {
       return;
@@ -70,7 +68,7 @@ const BuyNFT: React.FC = () => {
       await signer.getBalance(),
     );
 
-
+    console.log(priceInNum);
 
     if (+userBalanceInWei < priceInNum) {
       alert("not enough funds");

@@ -31,18 +31,7 @@ import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
-import nft0 from "../../images/temp-nft-examples/nft-exp-0.png";
-import nft1 from "../../images/temp-nft-examples/nft-exp-1.png";
-import nft10 from "../../images/temp-nft-examples/nft-exp-10.png";
-import nft11 from "../../images/temp-nft-examples/nft-exp-11.png";
-import nft2 from "../../images/temp-nft-examples/nft-exp-2.png";
-import nft3 from "../../images/temp-nft-examples/nft-exp-3.png";
-import nft4 from "../../images/temp-nft-examples/nft-exp-4.png";
-import nft5 from "../../images/temp-nft-examples/nft-exp-5.png";
-import nft6 from "../../images/temp-nft-examples/nft-exp-6.png";
-import nft7 from "../../images/temp-nft-examples/nft-exp-7.png";
-import nft8 from "../../images/temp-nft-examples/nft-exp-8.png";
-import nft9 from "../../images/temp-nft-examples/nft-exp-9.png";
+
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
@@ -70,83 +59,8 @@ import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Background } from "../../globalStyles";
 import { useMoralisWeb3Api } from "react-moralis";
 import Context from "../../utils/Context";
-import Moralis from "moralis/types";
 import { ethers } from "ethers";
 
-const testNFTList = [
-  {
-    id: 0,
-    URI: nft0,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 1,
-    URI: nft1,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 2,
-    URI: nft2,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 3,
-    URI: nft3,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 4,
-    URI: nft4,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 5,
-    URI: nft5,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 6,
-    URI: nft6,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 7,
-    URI: nft7,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 8,
-    URI: nft8,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 9,
-    URI: nft9,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 10,
-    URI: nft10,
-    name: "Returne by ...",
-    priceInNum: 20,
-  },
-  {
-    id: 11,
-    URI: nft11,
-    name: "Returne by ...",
-    priceInNum: 202222,
-  },
-];
 export interface ItemsProps {
   id: number;
   URI: string;
