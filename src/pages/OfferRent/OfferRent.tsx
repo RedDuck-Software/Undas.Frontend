@@ -59,7 +59,7 @@ import { useSelector } from "react-redux";
 import { useName, useToken, useUri } from "../../store/";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import { Marketplace__factory } from "../../typechain/factories/Marketplace__factory";
+import { Marketplace__factory } from "../../typechain";
 // import { OnlyOne__factory } from "../../typechain";
 
 import { ethers } from "ethers";
@@ -245,7 +245,7 @@ const OfferRent: React.FC = () => {
               <ItemAmount>Owner item</ItemAmount>
             </NameRow>
             <NFTInfoContainer>
-              <NFTCard uri="nft1" name="NFTCard" />
+              <NFTCard uri={tokenUri} name={tokenName} />
             </NFTInfoContainer>
           </SecondCollum>
           <NameRow>
@@ -283,7 +283,7 @@ const OfferRent: React.FC = () => {
               <AgreementLink to="/">agreement...</AgreementLink>
             </CheckboxLabelAgreement>
           </CheckBoxWrapper>
-          <Button>Make Offer</Button>
+          <Button onClick={() => makeRentOffer()}>Make Offer</Button>
         </BottomWrapper>
       </Container>
     </Background>
