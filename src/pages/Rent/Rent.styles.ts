@@ -38,14 +38,18 @@ export const LeftBlock = styled.div`
   flex: 0 1 60%;
   flex-direction: column;
 `;
-export const RightBlock = styled.div``;
+
 export const ContentItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
+  padding: 20px 0;
   border-bottom: 1px solid rgba(124, 124, 124, 0.25);
+  &:first-child{
+    padding-top: 0;
+  }
 `;
+export const RightBlock = styled.div``;
 export const ContentItemName = styled.div`
   font-weight: 400;
   font-size: 20px;
