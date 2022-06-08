@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { NFTWrap } from "../HomePage/page-components/NFTCard/NFTCard.styles";
 import { eth, offerTime } from "./imports";
 
 export const PageWrapper = styled.div`
@@ -603,9 +604,6 @@ export const NFTInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  &.disable {
-    background: #c4c4c4;
-  }
 `;
 
 export const SelectedNFT = styled.div`
@@ -633,8 +631,37 @@ export const ImgDelete = styled.img`
   right: 0;
 `;
 
-export const AddNFT = styled.img`
+export const AddNFTContainer = styled(NFTInfoContainer)`
+  padding: 65px 40px 15px;
+`;
+export const AddNFTCard = styled(NFTWrap)`
+  background-color: #c4c4c4;
+  padding: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+`;
+export const AddNFTButton = styled.button`
+  background-color: #c4c4c4;
+  border: none;
+  outline: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &:hover .add-btn {
+    box-shadow: 0px 0px 5px #7c7c7c;
+  }
+`;
+export const AddNFT = styled.div`
   height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
-  top: 175px;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  color: #7c7c7c;
+  font-size: 50px;
+  line-height: 50px;
+  transition: all 0.3s;
 `;

@@ -42,6 +42,9 @@ import {
   SelectedNFTCardBox,
   ImgDelete,
   AddNFT,
+  AddNFTCard,
+  AddNFTButton,
+  AddNFTContainer,
 } from "./OfferRent.styles";
 
 import {
@@ -55,7 +58,7 @@ import {
 
 import { Background, Container, PageTitle } from "../../globalStyles";
 
-import { down, info, deleteNFT, addNFT } from "./imports";
+import { down, info, deleteNFT } from "./imports";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
@@ -189,10 +192,13 @@ const OfferRent: React.FC = () => {
                 <NFTCard uri="nft1" name="NFTCard" />
                 <ImgDelete src={deleteNFT} alt="delete-nft-image" />
               </NFTInfoContainer>
-              <NFTInfoContainer className="disable">
-                <NFTCard uri="nft2" name="NFTCard2" />
-                <AddNFT src={addNFT} alt="add-nft-image" />
-              </NFTInfoContainer>
+              <AddNFTContainer>
+                <AddNFTCard>
+                  <AddNFTButton>
+                    <AddNFT className="add-btn">+</AddNFT>
+                  </AddNFTButton>
+                </AddNFTCard>
+              </AddNFTContainer>
             </SelectedNFTCardBox>
           </OfferContainer>
           <BottomWrapper>

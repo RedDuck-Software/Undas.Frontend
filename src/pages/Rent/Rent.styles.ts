@@ -191,8 +191,7 @@ export const ItemAmount = styled.p`
   color: #232428;
   margin: 20px 0;
 `;
-export const BottomWrapper = styled.div`
-`;
+export const BottomWrapper = styled.div``;
 export const CheckBoxWrapper = styled.div`
   display: flex;
 `;
