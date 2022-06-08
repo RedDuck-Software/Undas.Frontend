@@ -43,7 +43,6 @@ const RentNFT: React.FC = () => {
     const tokens = await fetchStakingData();
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-
         const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;

@@ -55,8 +55,6 @@ const BuyNFT: React.FC = () => {
   const { connector } = useContext(Context);
 
   async function buyNFT(tokenId: number, priceInNum?: number) {
-
-
     if (!connector) return;
     if (priceInNum == undefined) {
       return;
@@ -69,8 +67,6 @@ const BuyNFT: React.FC = () => {
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
-
-
 
     if (+userBalanceInWei < priceInNum) {
       alert("not enough funds");

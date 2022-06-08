@@ -9,7 +9,6 @@ import { CardList, Paggination } from "../../components";
 import { Background } from "../../globalStyles";
 
 const NewNFTs: React.FC = () => {
-  
   return (
     <Background>
       <NewNFTsContainer>
