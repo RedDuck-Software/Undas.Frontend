@@ -68,8 +68,6 @@ const BuyNFT: React.FC = () => {
       await signer.getBalance(),
     );
 
-    console.log(priceInNum);
-
     if (+userBalanceInWei < priceInNum) {
       alert("not enough funds");
       return;
@@ -87,7 +85,7 @@ const BuyNFT: React.FC = () => {
     );
 
     OnlyOneContract.approve(
-      "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
+      "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",  
       ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
     );
 
