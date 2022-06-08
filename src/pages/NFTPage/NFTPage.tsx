@@ -374,7 +374,7 @@ const NFTPage: React.FC = () => {
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
               <Accordion name="Offers" ico={<OffersIco />}>
-                <Offers isOwner={isOwner}/>
+                <Offers isOwner={isOwner} />
               </Accordion>
               <Accordion name="Staking" ico={<StakingIco />} und="UND">
                 <Staking />
