@@ -53,7 +53,7 @@ import { useSelector } from "react-redux";
 import { useName, useToken, useUri } from "../../store/";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import { Marketplace__factory } from "../../typechain/factories/Marketplace__factory";
+import { Marketplace__factory } from "../../typechain";
 // import { OnlyOne__factory } from "../../typechain";
 
 import { ethers } from "ethers";
@@ -69,7 +69,7 @@ const OfferRent: React.FC = () => {
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [isTokenFee, setIsTokenFee] = useState(false);
-
+  console.log(isTokenFee)
   async function makeRentOffer() {
     if (!connector) return;
     // if (priceInNum == undefined) {
@@ -83,24 +83,11 @@ const OfferRent: React.FC = () => {
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
-
+      console.log(userBalanceInWei)
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    //TODO:NORMAL APPROVAL
-    // const ApprovalTokenAmount = (priceInNum * 2) / 100;
-
-    // const OnlyOneContract = OnlyOne__factory.connect(
-    //   "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
-    //   signer,
-    // );
-
-    // console.log(OnlyOneContract)
-    // OnlyOneContract.approve(
-    //   "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
-    //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
-    // );
 
     console.log(colloteral + premium);
     const amountToPay = colloteral + premium + (premium * 20) / 100;
