@@ -16,14 +16,17 @@ interface CommonProps {
   id: number;
   name: string;
   URI: string;
+
 }
 
 export interface ItemsProps extends CommonProps {
   priceInNum: number;
+  listingId:number;
 }
 export interface StakingsProps extends CommonProps {
   premiumInNum: number;
   colloteralWei: number;
+  stakingId:number;
 }
 
 interface CommonListProps extends CommonProps {
@@ -61,14 +64,17 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {
+      
       if (nft.listingStatus == "ACTIVE") {
+        // console.log('listing ID',nft)
         const price = nft.price;
-        const id = nft.id;
+        const id = nft.tokenId;
+        const listingId = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-        items.push({ priceInNum, id, name, URI });
+        items.push({ priceInNum, id, name, URI, listingId });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }
@@ -86,15 +92,17 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
+        // console.log('staking ID',nft)
 
         const price = nft.premiumWei;
-        const id = nft.id;
+        const id = nft.tokenId;
         const name = nft.tokenName;
+        const stakingId = nft.id;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
         const colloteralWei = nft.colloteralWei;
 
-        stakings.push({ id, name, URI, premiumInNum, colloteralWei });
+        stakings.push({ id, name, URI, premiumInNum, colloteralWei, stakingId });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }
@@ -222,19 +230,19 @@ const tokensQuery = `
 
 const tokensStakingQuery = `
  query  {
-  stakingListings{
-    id
-    seller
-    token
-    tokenId
-    tokenURI
-    stakingStatus
-    tokenName
-    tokenName
-    tokenDescription
-    colloteralWei
-    premiumWei
-    deadlineUTC
+     stakingListings{
+        id
+        seller
+        token
+        tokenId
+        tokenURI
+        stakingStatus
+        tokenName
+        tokenName
+        tokenDescription
+        colloteralWei
+        premiumWei
+        deadlineUTC
   }
 }
  `;

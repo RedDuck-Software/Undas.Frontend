@@ -15,8 +15,9 @@ import {
   InfoButton,
   PriceWrap,
 } from "../NFTPage.styles";
+import { OnlyOne__factory } from "../../../typechain";
 
-const Buy: React.FC<{ id: number }> = ({ id }) => {
+const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
@@ -25,6 +26,9 @@ const Buy: React.FC<{ id: number }> = ({ id }) => {
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
+  
+  console.log('listing',id)
+  console.log('price1',price1)
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -45,27 +49,52 @@ const Buy: React.FC<{ id: number }> = ({ id }) => {
     return tx;
   };
 
-  const buyToken = async (itemId: number) => {
+  async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) return;
-
+    if (priceInNum == undefined) {
+      return;
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
+    const userBalanceInWei = ethers.utils.formatUnits(
+      await signer.getBalance(),
+    );
 
+    console.log(priceInNum);
+
+    if (+userBalanceInWei < priceInNum) {
+      alert("not enough funds");
+      return;
+    }
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
 
-    const tx = await MarketplaceContract.buyToken(itemId, {
-      value: ethers.utils.parseEther(price.toString()),
+    const ApprovalTokenAmount = (priceInNum * 2) / 100;
+
+    const OnlyOneContract = OnlyOne__factory.connect(
+      "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
+      signer,
+    );
+
+    OnlyOneContract.approve(
+      "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
+      ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
+    );
+
+    const tx = await MarketplaceContract.buyToken(tokenId, {
+      value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
     });
-
     await tx.wait();
-  };
+  }
 
+
+  
+  
   async function getEthPrice() {
     const API_URL =
       "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
@@ -115,7 +144,7 @@ const Buy: React.FC<{ id: number }> = ({ id }) => {
       <ButtonWrap>
         <InfoButton
           bg="#873DC1"
-          onClick={() => buyToken(id)}
+          onClick={() => buyToken(id,price1)}
           className="colored-btn"
         >
           Buy now

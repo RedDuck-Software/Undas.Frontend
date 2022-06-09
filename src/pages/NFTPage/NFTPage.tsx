@@ -78,35 +78,44 @@ import { getStaking } from "../../utils/getStaking";
 import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
-import {useSelector} from "react-redux";
-import { useName, usePrice, useToken, useUri,useColloteral,usePremium } from "../../store";
+import { createClient } from "urql";
+import Listing from "../Listing/Listing";
+
 
 const NFTPage: React.FC = () => {
-  const litsingId = useSelector(useToken);
-  const tokenPrice = useSelector(usePrice);
-  const tokenName = useSelector(useName);
-  const tokenUri = useSelector(useUri);
-  const Col = useSelector(useColloteral);
-  const Prem =useSelector(usePremium)
-  // console.log('col',Col,'prem',Prem)
+
   const override = css`
     display: block;
     margin: auto;
   `;
   const params = useParams();
+  
   const tokenId = params.id;
 
+    if(!tokenId){
+    console.log('NO TOKEN ID')
+    return <h2>ERROR</h2>
+  }
+  
   const { connector } = useContext(Context);
 
-  const [stakingId, setStakingId] = useState(0);
+  const [name, setName] = useState<string>();
+  const [tokenURI, setTokenURI] = useState<string>();
+  const [priceInNum, setPriceInNum] = useState(0);
+  const [colloteral, setColloteral] = useState(0);
+  const [premium, setPremium] = useState(0);
+  const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
-  const [, setTokenURI] = useState<string>();
+  const [stakingId, setStakingId] = useState(0);
+  const [owner,setOwner] = useState<string>();
   const [loading, setLoading] = useState(true);
-  // const [showPriceHistory] = useState(false);
-  const [, setShowStaking] = useState(false);
-  const [, setShowBuy] = useState(false);
-  const [, setShowRent] = useState(false);
 
+  // const [showPriceHistory] = useState(false);
+  const [, setShowStaking] = useState(true);
+  const [, setShowBuy] = useState(true);
+  const [, setShowRent] = useState(true);
+
+  console.log('LESTING AID',listingId)
   const getShowStaking = async () => {
     if (!connector) return;
 
@@ -186,60 +195,89 @@ const NFTPage: React.FC = () => {
       address !== owner &&
       maker !== "0x0000000000000000000000000000000000000000"
     ) {
-      setShowRent(true);
+      setShowRent(false );
     }
   }
-
-  async function getStakingId() {
-    setLoading(true);
-    if (!connector) return;
-
-    const stakingId = await getNFTStakingIds(
-      NFT_ADDRESS,
-      Number(tokenId),
-      connector,
-    );
-
-    if (stakingId) {
-      setStakingId(stakingId.value.toNumber());
-    }
-
-    await getShowStaking();
-    await getShowRent();
-
-    setLoading(false);
-  }
-
-  async function getListingId() {
-    setLoading(true);
-    if (!connector) return;
-
-    const listingId = await getNFTListingIds(
-      NFT_ADDRESS,
-      Number(tokenId),
-      connector,
-    );
-
-    if (listingId) {
-      setListingId(listingId.value.toNumber());
-    }
-    await getShowBuy();
-    setLoading(false);
-  }
-
-  const fetchTokenURI = async (tokenId: any) => {
-    if (!connector) return;
-    const uri = await getTokenURI(+tokenId, connector);
-    setTokenURI(uri);
-  };
 
   useEffect(() => {
     if (connector) {
-      fetchTokenURI(tokenId);
-      getStakingId();
-      getListingId();
+      getShowStaking()
+      getShowBuy()
+      getShowRent()
+      getTokenData();
     }
   }, [connector]);
+
+
+
+  const getTokenData = async () => {
+
+    const tokensQuery = await fetchData()
+      
+    if(tokensQuery.data.listings[0]){
+
+        setName(tokensQuery.data.listings[0].tokenName)
+        setTokenURI( tokensQuery.data.listings[0].tokenURI)
+        setPriceInNum(tokensQuery.data.listings[0].price) 
+        setDescription(tokensQuery.data.listings[0].tokenDescription) 
+        setListingId(tokensQuery.data.listings[0].id) 
+        setOwner(tokensQuery.data.listings[0].seller)
+
+          
+    }
+
+    if(tokensQuery.data.stakingListings[0]){
+
+        setName(tokensQuery.data.stakingListings[0].tokenName)
+        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
+        setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
+        setStakingId(tokensQuery.data.stakingListings[0].id) 
+        setOwner(tokensQuery.data.stakingListings[0].seller)
+        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
+        setPremium(tokensQuery.data.stakingListings[0].premium)
+         
+     }
+
+    setLoading(false);
+
+  }
+
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+{
+  listings(where:{tokenId:${params.id}}){
+    id
+ 		tokenId
+    tokenURI
+    price
+    tokenName
+    tokenDescription
+    seller
+  }
+  stakingListings(where:{tokenId:${params.id}}){
+    id
+    seller
+ 		tokenId
+    tokenURI
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+  }
+}
+ `;
+
+ const client = createClient({
+  url: APIURL,
+});
+
+async function fetchData() {
+  const data = await client.query(tokensQuery).toPromise();
+  return data;
+}
 
   return (
     <Background>
@@ -291,7 +329,7 @@ const NFTPage: React.FC = () => {
             </NavigationWrap>
             <MainInfoWrap>
               <ImageWrap>
-                <Image src={tokenUri} alt="nft-image" />
+                <Image src={tokenURI} alt="nft-image" />
                 <FavouriteCounter>
                   <FavouriteCounterIco />
                   <CounterNumber>10</CounterNumber>
@@ -331,7 +369,7 @@ const NFTPage: React.FC = () => {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} />
+                    <Buy id={+listingId} price1={+priceInNum}/>
                   </SaleBlock>
                   <SaleBlock>
                     <TopBar>
@@ -436,4 +474,5 @@ const NFTPage: React.FC = () => {
     </Background>
   );
 };
+
 export default NFTPage;

@@ -126,7 +126,7 @@ const App: React.FC = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/creator-card" element={<CreatorCardPage />} />
           <Route path="/offer-sale" element={<OfferSale />} />
-          <Route path="/offer-rent" element={<OfferRent />} />
+          <Route path="/offer-rent:id" element={<OfferRent />} />
           <Route path="/rent" element={<Rent />} />
         </Routes>
       </Context.Provider>

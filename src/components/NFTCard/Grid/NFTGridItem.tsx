@@ -29,6 +29,7 @@ import {
 } from "../../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
+import { NFTPage } from "../../../pages";
 // import OfferRent from "../../../pages/OfferRent/OfferRent";
 // import Link from 'react-router-dom';
 
@@ -39,44 +40,22 @@ interface NFTGridItemProps {
   price?: number;
   premium?: number;
   colloteralWei?: number;
+  stakingId?:number;
+  listingId?:number;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log('propsS',props)
   // const stackingFilter = useSelector(useFilter);
   return (
     <NFTWrap
       onClick={(e) => {
         navigate(`/nft/buy/${props.tokenId}`);  
-          e.stopPropagation();
-            {!props.premium?dispatch(
-              setComponent(
-                "additional-page-for-sale",
-                props.tokenId,
-                props.price,
-                props.URI,  
-                props.name, 
-              ),
-            ):dispatch(
-              setComponent(
-                "additional-page-for-rent",//comp
-                props.tokenId,//tkid
-                '',//pricenum
-                props.URI,
-                props.name,//
-                props.premium,             
-                props.colloteralWei,
-              ))}
-
-              //component: any, tokenId?: number,
-   //priceInNum?: any, tokenURI?: string, name?: string,premiumInNum?:number,colloteralWei?:string
-  //  return {type:SET_ADDITIONAL_PAGE_FOR_RENT, tokenId: tokenId, 
-  //premiumInNum: premiumInNum, tokenURI:tokenURI, name:name, colloteral:colloteral};
-
+        e.stopPropagation();
       }}
     >
+    
       <Info disp="flex" alignItems="center" gap="10px">
         <Name>{props.name}</Name>
         <img src={Verified} alt="verified-ico" />
@@ -110,7 +89,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                 );
               }}
             >
-              Buy now
+              Buy 
             </BuyBtn>
           ) : (
             <BuyBtn
@@ -126,10 +105,10 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                     props.name,
                   ),
                 );
-                navigate(`/offer-rent`);
+                navigate(`/offer-rent/${props.tokenId}`);
               }}
             >
-              Rent Offer
+              Rent 
             </BuyBtn>
           )}
         </LeftBlock>
