@@ -13,17 +13,17 @@ const BlogMainGrid: React.FC = () => {
       <BlogBigCard />
       <BlogCard
         image={SmImg1}
-        titleText={"Beginners Guide: What is a Website Domain Name?"}
+        titleText={"Lorem ipsum dolor sit, amet consectetur adipisicing elit."}
         date={"06.06.2022"}
       />
       <BlogCard
         image={SmImg2}
-        titleText={"How to Find the Best Domain for Your Website"}
+        titleText={"Lorem ipsum dolor sit, amet adipisicing elit."}
         date={"06.06.2022"}
       />
       <BlogCard
         image={SmImg3}
-        titleText={"9 Best Places to Upload Your Music Online for Free"}
+        titleText={"Lorem, amet consectetur adipisicing elit."}
         date={"05.06.2022"}
       />
     </Wrap>
