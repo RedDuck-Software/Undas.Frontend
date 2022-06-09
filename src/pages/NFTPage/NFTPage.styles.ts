@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container } from "../../globalStyles";
 
 export const Background = styled.div`
-  background-color: white;
+  background-color: #e2d1ff;
 `;
 // Seller Menu
 export const SellerNavigation = styled.div`
@@ -56,70 +56,6 @@ export const NFTPageWrap = styled(Container)`
   }
   ${Container}
 `;
-
-export const OwnerSettingsWrapper = styled.div`
-  box-shadow: inset 0px 0px 2px #7c7c7c;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-export const OwnerSettingsNavigation = styled.div`
-  width: 100%;
-  max-width: 80rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  & > *:first-child {
-    margin-right: 30px;
-  }
-  margin: 0 auto;
-  padding: 0.5rem 3rem;
-
-  @media (max-width: 876px) {
-    justify-content: center;
-  }
-
-  @media (max-width: 320px) {
-    padding: 0.5rem 1rem;
-    flex-direction: column;
-    & > *:first-child {
-      margin-right: 0;
-      margin-bottom: 1rem;
-    }
-  }
-`;
-
-export const OwnerSettingsButton = styled.button<{ isColored?: boolean }>`
-  color: ${({ isColored }) => (isColored ? "white" : "#873DC1")};
-  background-color: ${({ isColored }) => (isColored ? "#873DC1" : "white")};
-  max-width: 160px;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid #873dc1;
-  box-sizing: border-box;
-  border-radius: 10px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  font-size: 14px;
-  transition: all 0.3s linear;
-
-  &.colored-btn:hover {
-    background-color: #fff;
-    color: #873dc1;
-  }
-
-  &:hover {
-    background-color: #873dc1;
-    color: #fff;
-  }
-
-  @media (max-width: 876px) {
-    max-width: 100%;
-    justify-content: center;
-  }
-`;
-
 export const NavigationWrap = styled.div`
   margin: 80px 0 20px 0;
   display: flex;
@@ -338,28 +274,6 @@ export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
   color: #5d3f92;
   cursor: ${(props) => props.cursor || ""};
 `;
-
-export const NotListedWrapper = styled.li`
-  padding: 56px 200px;
-  font-size: 16px;
-  line-height: 20px;
-  color: #7c7c7c;
-  background: #fbf5ff;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
-  @media (max-width: 992px) {
-    flex-flow: row wrap;
-    align-items: center;
-  }
-  @media (max-width: 576px) {
-    padding: 20px 10px;
-  }
-`;
-
-export const NotListed = styled.p`
-  text-align: center;
-  margin-bottom: 0;
-`;
-
 export const BuyBar = styled.li`
   padding: 20px 28px;
   display: flex;
@@ -449,10 +363,6 @@ export const InfoButton = styled.button<IButton>`
   }
   @media (max-width: 576px) {
     width: 50%;
-  }
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
   }
 `;
 

@@ -3,9 +3,6 @@
 /.pnp
 .pnp.js
 
-# typechain
-/src/typechain
-
 # testing
 /coverage
 
@@ -27,3 +24,5 @@ yarn-error.log
 .idea/
 
 package-lock.json
+# typechain
+/src/typechain

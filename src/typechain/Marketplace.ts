@@ -24,10 +24,6 @@ export type ListingStruct = {
   price: BigNumberish;
   token: string;
   tokenId: BigNumberish;
-  startListingUTC: BigNumberish;
-  tokenPaymentsAmount: BigNumberish;
-  cashback: BigNumberish;
-  isTokenFee: boolean;
 };
 
 export type ListingStructOutput = [
@@ -35,21 +31,13 @@ export type ListingStructOutput = [
   string,
   BigNumber,
   string,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  boolean
+  BigNumber
 ] & {
   status: number;
   seller: string;
   price: BigNumber;
   token: string;
   tokenId: BigNumber;
-  startListingUTC: BigNumber;
-  tokenPaymentsAmount: BigNumber;
-  cashback: BigNumber;
-  isTokenFee: boolean;
 };
 
 export type StakingStruct = {
@@ -102,43 +90,31 @@ export interface MarketplaceInterface extends utils.Interface {
     "_listings(uint256)": FunctionFragment;
     "_listingsLastIndex()": FunctionFragment;
     "_stakings(uint256)": FunctionFragment;
-    "_stakingsExtension(uint256)": FunctionFragment;
     "_stakingsLastIndex()": FunctionFragment;
-    "acceptListingOffer(uint256,address)": FunctionFragment;
-    "acceptStakingOffer(uint256,address,bool)": FunctionFragment;
-    "bidAndStake(address,uint256,uint256,uint256,uint256,uint256,bool)": FunctionFragment;
-    "bidExternal(address,uint256,uint256,bool)": FunctionFragment;
+    "bid(address,uint256,uint256)": FunctionFragment;
     "buyToken(uint256)": FunctionFragment;
     "canRentNFT(uint256)": FunctionFragment;
     "cancel(uint256)": FunctionFragment;
-    "cancelListingOffer(uint256)": FunctionFragment;
     "claimCollateral(uint256)": FunctionFragment;
-    "claimTokensListing(uint256)": FunctionFragment;
-    "claimTokensRent(uint256)": FunctionFragment;
+    "claimTokens(uint256)": FunctionFragment;
     "dateOfNextPayment(uint256)": FunctionFragment;
-    "factory()": FunctionFragment;
-    "getContractBalance()": FunctionFragment;
     "getListing(uint256)": FunctionFragment;
     "getStaking(uint256)": FunctionFragment;
     "isBuyable(uint256)": FunctionFragment;
     "isCollateralClaimable(uint256)": FunctionFragment;
-    "listingOffer(uint256)": FunctionFragment;
     "maxCollateralEligibleForTokens()": FunctionFragment;
     "nftListingIds(address,uint256)": FunctionFragment;
     "nftStakingIds(address,uint256)": FunctionFragment;
-    "payPremium(uint256,bool)": FunctionFragment;
+    "payPremium(uint256)": FunctionFragment;
     "paymentsDue(uint256)": FunctionFragment;
     "platform()": FunctionFragment;
-    "quoteForStakingExternal(address,uint256,uint256,uint256,uint256,bool)": FunctionFragment;
-    "removeStakingOffer(uint256)": FunctionFragment;
-    "rentNFT(uint256,bool)": FunctionFragment;
-    "stakingOffer(uint256,uint256,uint256)": FunctionFragment;
+    "quoteForStaking(address,uint256,uint256,uint256,uint256)": FunctionFragment;
+    "rentNFT(uint256)": FunctionFragment;
     "stopRental(uint256)": FunctionFragment;
     "stopStaking(uint256)": FunctionFragment;
     "tokensDistributionAmount()": FunctionFragment;
     "tokensDistributionEnd()": FunctionFragment;
     "undasToken()": FunctionFragment;
-    "wETH()": FunctionFragment;
     "whiteListNFTToggle(address,bool)": FunctionFragment;
   };
 
@@ -163,36 +139,12 @@ export interface MarketplaceInterface extends utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "_stakingsExtension",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "_stakingsLastIndex",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "acceptListingOffer",
-    values: [BigNumberish, string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "acceptStakingOffer",
-    values: [BigNumberish, string, boolean]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "bidAndStake",
-    values: [
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      boolean
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "bidExternal",
-    values: [string, BigNumberish, BigNumberish, boolean]
+    functionFragment: "bid",
+    values: [string, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "buyToken",
@@ -207,29 +159,16 @@ export interface MarketplaceInterface extends utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "cancelListingOffer",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "claimCollateral",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "claimTokensListing",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "claimTokensRent",
+    functionFragment: "claimTokens",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "dateOfNextPayment",
     values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "factory", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "getContractBalance",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "getListing",
@@ -248,10 +187,6 @@ export interface MarketplaceInterface extends utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "listingOffer",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "maxCollateralEligibleForTokens",
     values?: undefined
   ): string;
@@ -265,7 +200,7 @@ export interface MarketplaceInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "payPremium",
-    values: [BigNumberish, boolean]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "paymentsDue",
@@ -273,27 +208,12 @@ export interface MarketplaceInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "platform", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "quoteForStakingExternal",
-    values: [
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      boolean
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeStakingOffer",
-    values: [BigNumberish]
+    functionFragment: "quoteForStaking",
+    values: [string, BigNumberish, BigNumberish, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "rentNFT",
-    values: [BigNumberish, boolean]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "stakingOffer",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "stopRental",
@@ -315,7 +235,6 @@ export interface MarketplaceInterface extends utils.Interface {
     functionFragment: "undasToken",
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "wETH", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "whiteListNFTToggle",
     values: [string, boolean]
@@ -336,55 +255,23 @@ export interface MarketplaceInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "_stakings", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "_stakingsExtension",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "_stakingsLastIndex",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "acceptListingOffer",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "acceptStakingOffer",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "bidAndStake",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "bidExternal",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "bid", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "buyToken", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "canRentNFT", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "cancel", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "cancelListingOffer",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "claimCollateral",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "claimTokensListing",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "claimTokensRent",
+    functionFragment: "claimTokens",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "dateOfNextPayment",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "factory", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getContractBalance",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "getListing", data: BytesLike): Result;
@@ -392,10 +279,6 @@ export interface MarketplaceInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "isBuyable", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isCollateralClaimable",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "listingOffer",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -417,18 +300,10 @@ export interface MarketplaceInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "platform", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "quoteForStakingExternal",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeStakingOffer",
+    functionFragment: "quoteForStaking",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "rentNFT", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "stakingOffer",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "stopRental", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "stopStaking",
@@ -443,7 +318,6 @@ export interface MarketplaceInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "undasToken", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "wETH", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "whiteListNFTToggle",
     data: BytesLike
@@ -454,26 +328,18 @@ export interface MarketplaceInterface extends utils.Interface {
     "FinishRentalForCollateral(uint256)": EventFragment;
     "FinishRentalForNFT(uint256)": EventFragment;
     "Listed(uint256,address,address,uint256,uint256)": EventFragment;
-    "ListingOffer(uint256,address,uint256)": EventFragment;
-    "ListingOfferCompleted(uint256,address)": EventFragment;
     "QuotedForStaking(uint256,address,address,uint256,uint256,uint256,uint256)": EventFragment;
     "Rental(uint256,address)": EventFragment;
     "Sale(uint256,address,address,uint256,uint256)": EventFragment;
-    "StakingOfferAccepted(uint256,address)": EventFragment;
-    "StakingOffered(uint256,address,uint256,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "CancelBid"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FinishRentalForCollateral"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FinishRentalForNFT"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Listed"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ListingOffer"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ListingOfferCompleted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "QuotedForStaking"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Rental"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Sale"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "StakingOfferAccepted"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "StakingOffered"): EventFragment;
 }
 
 export type CancelBidEvent = TypedEvent<
@@ -512,21 +378,6 @@ export type ListedEvent = TypedEvent<
 
 export type ListedEventFilter = TypedEventFilter<ListedEvent>;
 
-export type ListingOfferEvent = TypedEvent<
-  [BigNumber, string, BigNumber],
-  { listingId: BigNumber; buyer: string; amount: BigNumber }
->;
-
-export type ListingOfferEventFilter = TypedEventFilter<ListingOfferEvent>;
-
-export type ListingOfferCompletedEvent = TypedEvent<
-  [BigNumber, string],
-  { listingId: BigNumber; buyer: string }
->;
-
-export type ListingOfferCompletedEventFilter =
-  TypedEventFilter<ListingOfferCompletedEvent>;
-
 export type QuotedForStakingEvent = TypedEvent<
   [BigNumber, string, string, BigNumber, BigNumber, BigNumber, BigNumber],
   {
@@ -562,26 +413,6 @@ export type SaleEvent = TypedEvent<
 >;
 
 export type SaleEventFilter = TypedEventFilter<SaleEvent>;
-
-export type StakingOfferAcceptedEvent = TypedEvent<
-  [BigNumber, string],
-  { stakingId: BigNumber; taker: string }
->;
-
-export type StakingOfferAcceptedEventFilter =
-  TypedEventFilter<StakingOfferAcceptedEvent>;
-
-export type StakingOfferedEvent = TypedEvent<
-  [BigNumber, string, BigNumber, BigNumber],
-  {
-    stakingId: BigNumber;
-    taker: string;
-    collateral: BigNumber;
-    premium: BigNumber;
-  }
->;
-
-export type StakingOfferedEventFilter = TypedEventFilter<StakingOfferedEvent>;
 
 export interface Marketplace extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -623,26 +454,12 @@ export interface Marketplace extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
-      [
-        number,
-        string,
-        BigNumber,
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean
-      ] & {
+      [number, string, BigNumber, string, BigNumber] & {
         status: number;
         seller: string;
         price: BigNumber;
         token: string;
         tokenId: BigNumber;
-        startListingUTC: BigNumber;
-        tokenPaymentsAmount: BigNumber;
-        cashback: BigNumber;
-        isTokenFee: boolean;
       }
     >;
 
@@ -681,44 +498,12 @@ export interface Marketplace extends BaseContract {
       }
     >;
 
-    _stakingsExtension(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, boolean] & { cashback: BigNumber; isTokenFee: boolean }
-    >;
-
     _stakingsLastIndex(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    acceptListingOffer(
-      listingId: BigNumberish,
-      taker: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    acceptStakingOffer(
-      stakingId: BigNumberish,
-      taker: string,
-      isTokenFee: boolean,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    bidAndStake(
-      tokenContract: string,
-      tokenId: BigNumberish,
-      collateralWei: BigNumberish,
-      premiumWei: BigNumberish,
-      deadlineUTC: BigNumberish,
-      priceWei: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    bidExternal(
+    bid(
       tokenContract: string,
       tokenId: BigNumberish,
       priceWei: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -737,23 +522,13 @@ export interface Marketplace extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    cancelListingOffer(
-      listingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     claimCollateral(
       stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    claimTokensListing(
-      id: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    claimTokensRent(
-      id: BigNumberish,
+    claimTokens(
+      stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -761,10 +536,6 @@ export interface Marketplace extends BaseContract {
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[BigNumber] & { date: BigNumber }>;
-
-    factory(overrides?: CallOverrides): Promise<[string]>;
-
-    getContractBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     getListing(
       listingId: BigNumberish,
@@ -785,11 +556,6 @@ export interface Marketplace extends BaseContract {
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[boolean] & { status: boolean }>;
-
-    listingOffer(
-      listingId: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
 
     maxCollateralEligibleForTokens(
       overrides?: CallOverrides
@@ -813,7 +579,6 @@ export interface Marketplace extends BaseContract {
 
     payPremium(
       stakingId: BigNumberish,
-      isToken: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -824,31 +589,17 @@ export interface Marketplace extends BaseContract {
 
     platform(overrides?: CallOverrides): Promise<[string]>;
 
-    quoteForStakingExternal(
+    quoteForStaking(
       tokenContract: string,
       tokenId: BigNumberish,
       collateralWei: BigNumberish,
       premiumWei: BigNumberish,
       deadlineUTC: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    removeStakingOffer(
-      stakingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     rentNFT(
       stakingId: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    stakingOffer(
-      stakingId: BigNumberish,
-      _collateral: BigNumberish,
-      _premium: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -868,8 +619,6 @@ export interface Marketplace extends BaseContract {
 
     undasToken(overrides?: CallOverrides): Promise<[string]>;
 
-    wETH(overrides?: CallOverrides): Promise<[string]>;
-
     whiteListNFTToggle(
       nft: string,
       whitelist: boolean,
@@ -888,26 +637,12 @@ export interface Marketplace extends BaseContract {
     arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<
-    [
-      number,
-      string,
-      BigNumber,
-      string,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      boolean
-    ] & {
+    [number, string, BigNumber, string, BigNumber] & {
       status: number;
       seller: string;
       price: BigNumber;
       token: string;
       tokenId: BigNumber;
-      startListingUTC: BigNumber;
-      tokenPaymentsAmount: BigNumber;
-      cashback: BigNumber;
-      isTokenFee: boolean;
     }
   >;
 
@@ -946,44 +681,12 @@ export interface Marketplace extends BaseContract {
     }
   >;
 
-  _stakingsExtension(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, boolean] & { cashback: BigNumber; isTokenFee: boolean }
-  >;
-
   _stakingsLastIndex(overrides?: CallOverrides): Promise<BigNumber>;
 
-  acceptListingOffer(
-    listingId: BigNumberish,
-    taker: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  acceptStakingOffer(
-    stakingId: BigNumberish,
-    taker: string,
-    isTokenFee: boolean,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  bidAndStake(
-    tokenContract: string,
-    tokenId: BigNumberish,
-    collateralWei: BigNumberish,
-    premiumWei: BigNumberish,
-    deadlineUTC: BigNumberish,
-    priceWei: BigNumberish,
-    isTokenFee: boolean,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  bidExternal(
+  bid(
     tokenContract: string,
     tokenId: BigNumberish,
     priceWei: BigNumberish,
-    isTokenFee: boolean,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1002,23 +705,13 @@ export interface Marketplace extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  cancelListingOffer(
-    listingId: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   claimCollateral(
     stakingId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  claimTokensListing(
-    id: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  claimTokensRent(
-    id: BigNumberish,
+  claimTokens(
+    stakingId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1026,10 +719,6 @@ export interface Marketplace extends BaseContract {
     stakingId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
-
-  factory(overrides?: CallOverrides): Promise<string>;
-
-  getContractBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
   getListing(
     listingId: BigNumberish,
@@ -1051,11 +740,6 @@ export interface Marketplace extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  listingOffer(
-    listingId: BigNumberish,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   maxCollateralEligibleForTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
   nftListingIds(
@@ -1072,7 +756,6 @@ export interface Marketplace extends BaseContract {
 
   payPremium(
     stakingId: BigNumberish,
-    isToken: boolean,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1083,31 +766,17 @@ export interface Marketplace extends BaseContract {
 
   platform(overrides?: CallOverrides): Promise<string>;
 
-  quoteForStakingExternal(
+  quoteForStaking(
     tokenContract: string,
     tokenId: BigNumberish,
     collateralWei: BigNumberish,
     premiumWei: BigNumberish,
     deadlineUTC: BigNumberish,
-    isTokenFee: boolean,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  removeStakingOffer(
-    stakingId: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   rentNFT(
     stakingId: BigNumberish,
-    isTokenFee: boolean,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  stakingOffer(
-    stakingId: BigNumberish,
-    _collateral: BigNumberish,
-    _premium: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1127,8 +796,6 @@ export interface Marketplace extends BaseContract {
 
   undasToken(overrides?: CallOverrides): Promise<string>;
 
-  wETH(overrides?: CallOverrides): Promise<string>;
-
   whiteListNFTToggle(
     nft: string,
     whitelist: boolean,
@@ -1147,26 +814,12 @@ export interface Marketplace extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
-      [
-        number,
-        string,
-        BigNumber,
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean
-      ] & {
+      [number, string, BigNumber, string, BigNumber] & {
         status: number;
         seller: string;
         price: BigNumber;
         token: string;
         tokenId: BigNumber;
-        startListingUTC: BigNumber;
-        tokenPaymentsAmount: BigNumber;
-        cashback: BigNumber;
-        isTokenFee: boolean;
       }
     >;
 
@@ -1205,44 +858,12 @@ export interface Marketplace extends BaseContract {
       }
     >;
 
-    _stakingsExtension(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, boolean] & { cashback: BigNumber; isTokenFee: boolean }
-    >;
-
     _stakingsLastIndex(overrides?: CallOverrides): Promise<BigNumber>;
 
-    acceptListingOffer(
-      listingId: BigNumberish,
-      taker: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    acceptStakingOffer(
-      stakingId: BigNumberish,
-      taker: string,
-      isTokenFee: boolean,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    bidAndStake(
-      tokenContract: string,
-      tokenId: BigNumberish,
-      collateralWei: BigNumberish,
-      premiumWei: BigNumberish,
-      deadlineUTC: BigNumberish,
-      priceWei: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    bidExternal(
+    bid(
       tokenContract: string,
       tokenId: BigNumberish,
       priceWei: BigNumberish,
-      isTokenFee: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1255,31 +876,20 @@ export interface Marketplace extends BaseContract {
 
     cancel(listingId: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    cancelListingOffer(
-      listingId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     claimCollateral(
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    claimTokensListing(
-      id: BigNumberish,
+    claimTokens(
+      stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    claimTokensRent(id: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     dateOfNextPayment(
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    factory(overrides?: CallOverrides): Promise<string>;
-
-    getContractBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
     getListing(
       listingId: BigNumberish,
@@ -1300,11 +910,6 @@ export interface Marketplace extends BaseContract {
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
-
-    listingOffer(
-      listingId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     maxCollateralEligibleForTokens(
       overrides?: CallOverrides
@@ -1328,7 +933,6 @@ export interface Marketplace extends BaseContract {
 
     payPremium(
       stakingId: BigNumberish,
-      isToken: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1339,33 +943,16 @@ export interface Marketplace extends BaseContract {
 
     platform(overrides?: CallOverrides): Promise<string>;
 
-    quoteForStakingExternal(
+    quoteForStaking(
       tokenContract: string,
       tokenId: BigNumberish,
       collateralWei: BigNumberish,
       premiumWei: BigNumberish,
       deadlineUTC: BigNumberish,
-      isTokenFee: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    removeStakingOffer(
-      stakingId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    rentNFT(
-      stakingId: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    stakingOffer(
-      stakingId: BigNumberish,
-      _collateral: BigNumberish,
-      _premium: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    rentNFT(stakingId: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     stopRental(
       stakingId: BigNumberish,
@@ -1382,8 +969,6 @@ export interface Marketplace extends BaseContract {
     tokensDistributionEnd(overrides?: CallOverrides): Promise<BigNumber>;
 
     undasToken(overrides?: CallOverrides): Promise<string>;
-
-    wETH(overrides?: CallOverrides): Promise<string>;
 
     whiteListNFTToggle(
       nft: string,
@@ -1426,26 +1011,6 @@ export interface Marketplace extends BaseContract {
       price?: null
     ): ListedEventFilter;
 
-    "ListingOffer(uint256,address,uint256)"(
-      listingId?: null,
-      buyer?: null,
-      amount?: null
-    ): ListingOfferEventFilter;
-    ListingOffer(
-      listingId?: null,
-      buyer?: null,
-      amount?: null
-    ): ListingOfferEventFilter;
-
-    "ListingOfferCompleted(uint256,address)"(
-      listingId?: null,
-      buyer?: null
-    ): ListingOfferCompletedEventFilter;
-    ListingOfferCompleted(
-      listingId?: null,
-      buyer?: null
-    ): ListingOfferCompletedEventFilter;
-
     "QuotedForStaking(uint256,address,address,uint256,uint256,uint256,uint256)"(
       stakingId?: null,
       maker?: null,
@@ -1482,28 +1047,6 @@ export interface Marketplace extends BaseContract {
       tokenId?: null,
       price?: null
     ): SaleEventFilter;
-
-    "StakingOfferAccepted(uint256,address)"(
-      stakingId?: null,
-      taker?: null
-    ): StakingOfferAcceptedEventFilter;
-    StakingOfferAccepted(
-      stakingId?: null,
-      taker?: null
-    ): StakingOfferAcceptedEventFilter;
-
-    "StakingOffered(uint256,address,uint256,uint256)"(
-      stakingId?: null,
-      taker?: null,
-      collateral?: null,
-      premium?: null
-    ): StakingOfferedEventFilter;
-    StakingOffered(
-      stakingId?: null,
-      taker?: null,
-      collateral?: null,
-      premium?: null
-    ): StakingOfferedEventFilter;
   };
 
   estimateGas: {
@@ -1528,42 +1071,12 @@ export interface Marketplace extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    _stakingsExtension(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     _stakingsLastIndex(overrides?: CallOverrides): Promise<BigNumber>;
 
-    acceptListingOffer(
-      listingId: BigNumberish,
-      taker: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    acceptStakingOffer(
-      stakingId: BigNumberish,
-      taker: string,
-      isTokenFee: boolean,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    bidAndStake(
-      tokenContract: string,
-      tokenId: BigNumberish,
-      collateralWei: BigNumberish,
-      premiumWei: BigNumberish,
-      deadlineUTC: BigNumberish,
-      priceWei: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    bidExternal(
+    bid(
       tokenContract: string,
       tokenId: BigNumberish,
       priceWei: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1582,23 +1095,13 @@ export interface Marketplace extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    cancelListingOffer(
-      listingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     claimCollateral(
       stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    claimTokensListing(
-      id: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    claimTokensRent(
-      id: BigNumberish,
+    claimTokens(
+      stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1606,10 +1109,6 @@ export interface Marketplace extends BaseContract {
       stakingId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    factory(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getContractBalance(overrides?: CallOverrides): Promise<BigNumber>;
 
     getListing(
       listingId: BigNumberish,
@@ -1631,11 +1130,6 @@ export interface Marketplace extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    listingOffer(
-      listingId: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     maxCollateralEligibleForTokens(
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -1654,7 +1148,6 @@ export interface Marketplace extends BaseContract {
 
     payPremium(
       stakingId: BigNumberish,
-      isToken: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1665,31 +1158,17 @@ export interface Marketplace extends BaseContract {
 
     platform(overrides?: CallOverrides): Promise<BigNumber>;
 
-    quoteForStakingExternal(
+    quoteForStaking(
       tokenContract: string,
       tokenId: BigNumberish,
       collateralWei: BigNumberish,
       premiumWei: BigNumberish,
       deadlineUTC: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    removeStakingOffer(
-      stakingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     rentNFT(
       stakingId: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    stakingOffer(
-      stakingId: BigNumberish,
-      _collateral: BigNumberish,
-      _premium: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1708,8 +1187,6 @@ export interface Marketplace extends BaseContract {
     tokensDistributionEnd(overrides?: CallOverrides): Promise<BigNumber>;
 
     undasToken(overrides?: CallOverrides): Promise<BigNumber>;
-
-    wETH(overrides?: CallOverrides): Promise<BigNumber>;
 
     whiteListNFTToggle(
       nft: string,
@@ -1742,44 +1219,14 @@ export interface Marketplace extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    _stakingsExtension(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     _stakingsLastIndex(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    acceptListingOffer(
-      listingId: BigNumberish,
-      taker: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    acceptStakingOffer(
-      stakingId: BigNumberish,
-      taker: string,
-      isTokenFee: boolean,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    bidAndStake(
-      tokenContract: string,
-      tokenId: BigNumberish,
-      collateralWei: BigNumberish,
-      premiumWei: BigNumberish,
-      deadlineUTC: BigNumberish,
-      priceWei: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    bidExternal(
+    bid(
       tokenContract: string,
       tokenId: BigNumberish,
       priceWei: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1798,34 +1245,18 @@ export interface Marketplace extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    cancelListingOffer(
-      listingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     claimCollateral(
       stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    claimTokensListing(
-      id: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    claimTokensRent(
-      id: BigNumberish,
+    claimTokens(
+      stakingId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     dateOfNextPayment(
       stakingId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    factory(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getContractBalance(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1849,11 +1280,6 @@ export interface Marketplace extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    listingOffer(
-      listingId: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     maxCollateralEligibleForTokens(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -1872,7 +1298,6 @@ export interface Marketplace extends BaseContract {
 
     payPremium(
       stakingId: BigNumberish,
-      isToken: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1883,31 +1308,17 @@ export interface Marketplace extends BaseContract {
 
     platform(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    quoteForStakingExternal(
+    quoteForStaking(
       tokenContract: string,
       tokenId: BigNumberish,
       collateralWei: BigNumberish,
       premiumWei: BigNumberish,
       deadlineUTC: BigNumberish,
-      isTokenFee: boolean,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    removeStakingOffer(
-      stakingId: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     rentNFT(
       stakingId: BigNumberish,
-      isTokenFee: boolean,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    stakingOffer(
-      stakingId: BigNumberish,
-      _collateral: BigNumberish,
-      _premium: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1930,8 +1341,6 @@ export interface Marketplace extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     undasToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    wETH(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     whiteListNFTToggle(
       nft: string,

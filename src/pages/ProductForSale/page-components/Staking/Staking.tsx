@@ -38,8 +38,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const [price, setPrice] = useState("280");
   const [deadline, setDeadline] = useState("7");
   const [premium, setPremium] = useState("15");
-  console.log(deadline, premium);
-  console.log(intervalIntoTimeStamp);
+
   const quoteForStaking = async () => {
     if (!connector || !stakingOpen) return;
 
@@ -55,7 +54,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    console.log(MarketplaceContract);
+
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
       MARKETPLACE_ADDRESS,
@@ -67,15 +66,15 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       ).wait();
     }
 
-    // const tx = await MarketplaceContract.quoteForStaking(
-    //   NFT_ADDRESS,
-    //   itemId,
-    //   ethers.utils.parseEther(price.toString()),
-    //   ethers.utils.parseEther(premium.toString()),
-    //   intervalIntoTimeStamp(deadline),
-    //   { value: ethers.utils.parseEther("0.1") },
-    // );
-    // await tx.wait();
+    const tx = await MarketplaceContract.quoteForStaking(
+      NFT_ADDRESS,
+      itemId,
+      ethers.utils.parseEther(price.toString()),
+      ethers.utils.parseEther(premium.toString()),
+      intervalIntoTimeStamp(deadline),
+      { value: ethers.utils.parseEther("0.1") },
+    );
+    await tx.wait();
   };
 
   const stopStaking = async (stakingId: any) => {

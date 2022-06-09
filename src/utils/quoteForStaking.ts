@@ -14,7 +14,7 @@ export const quoteForStaking = async (
   connector: AbstractConnector,
 ) => {
   if (!connector) return;
-  console.log(intervalIntoTimeStamp);
+
   const provider = new ethers.providers.Web3Provider(
     await connector.getProvider(),
   );
@@ -27,7 +27,7 @@ export const quoteForStaking = async (
     MARKETPLACE_ADDRESS,
     signer,
   );
-  console.log(MarketplaceContract);
+
   const isApprovedForAll = await NFTContract.isApprovedForAll(
     SIGNER_ADDRESS,
     MARKETPLACE_ADDRESS,
@@ -40,14 +40,14 @@ export const quoteForStaking = async (
   }
 
   console.log("Item data" + NFT_ADDRESS, tokenId, price, premium, term);
-  // const tx = await MarketplaceContract.quoteForStaking(
-  //   NFT_ADDRESS,
-  //   tokenId,
-  //   ethers.utils.parseEther(price.toString()),
-  //   ethers.utils.parseEther(premium.toString()),
-  //   intervalIntoTimeStamp(term),
-  //   { value: ethers.utils.parseEther("0.1") },
-  // );
+  const tx = await MarketplaceContract.quoteForStaking(
+    NFT_ADDRESS,
+    tokenId,
+    ethers.utils.parseEther(price.toString()),
+    ethers.utils.parseEther(premium.toString()),
+    intervalIntoTimeStamp(term),
+    { value: ethers.utils.parseEther("0.1") },
+  );
 
-  // await tx.wait();
+  await tx.wait();
 };

@@ -29,8 +29,6 @@ import {
 } from "../../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../../pages/CategoriesPage/imports";
 import { setComponent } from "../../../store/reducers/modalAction";
-// import OfferRent from "../../../pages/OfferRent/OfferRent";
-// import Link from 'react-router-dom';
 
 interface NFTGridItemProps {
   tokenId: number; //listingID
@@ -38,43 +36,17 @@ interface NFTGridItemProps {
   name: string;
   price?: number;
   premium?: number;
-  colloteralWei?: number;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log('propsS',props)
   // const stackingFilter = useSelector(useFilter);
+  // console.log(stackingFilter)
   return (
     <NFTWrap
-      onClick={(e) => {
-        navigate(`/nft/buy/${props.tokenId}`);  
-          e.stopPropagation();
-            {!props.premium?dispatch(
-              setComponent(
-                "additional-page-for-sale",
-                props.tokenId,
-                props.price,
-                props.URI,  
-                props.name, 
-              ),
-            ):dispatch(
-              setComponent(
-                "additional-page-for-rent",//comp
-                props.tokenId,//tkid
-                '',//pricenum
-                props.URI,
-                props.name,//
-                props.premium,             
-                props.colloteralWei,
-              ))}
-
-              //component: any, tokenId?: number,
-   //priceInNum?: any, tokenURI?: string, name?: string,premiumInNum?:number,colloteralWei?:string
-  //  return {type:SET_ADDITIONAL_PAGE_FOR_RENT, tokenId: tokenId, 
-  //premiumInNum: premiumInNum, tokenURI:tokenURI, name:name, colloteral:colloteral};
-
+      onClick={() => {
+        navigate(`/nft/buy/${props.tokenId}`);
       }}
     >
       <Info disp="flex" alignItems="center" gap="10px">
@@ -94,7 +66,6 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       <BuyingBlock>
         <LeftBlock>
           <TagName>Returne #{props.tokenId}</TagName>
-
           {props.price ? (
             <BuyBtn
               onClick={(e) => {
@@ -118,18 +89,16 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                 e.stopPropagation();
                 dispatch(
                   setComponent(
-                    //set
-                    "offer-rent",
+                    "buy",
                     props.tokenId,
                     props.price,
                     props.URI,
                     props.name,
                   ),
                 );
-                navigate(`/offer-rent`);
               }}
             >
-              Rent Offer
+              Rent now
             </BuyBtn>
           )}
         </LeftBlock>

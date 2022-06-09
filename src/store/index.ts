@@ -61,30 +61,14 @@ export const usePrice = (state: RootState) => {
     
   return state.modal.priceInNum;
 };
-export const useName = (state: RootState) => {
-    
-  return state.modal.name;
-};
 export const useUri = (state: RootState) => {
     
   return state.modal.tokenURI;
 };
-export const useColloteral = (state: RootState) => {
+export const useName = (state: RootState) => {
     
-  return state.modal.colloteral;
+  return state.modal.name;
 };
-export const usePremium = (state: RootState) => {
-    
-  return state.modal.premium;
-};
-// export const useColloteral = (state: RootState) => {
-    
-//   return state.modal;
-// };
-// export const usePremium = (state: RootState) => {
-    
-//   return state.modal.;
-// };
 /*
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
