@@ -72,7 +72,6 @@ import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
-  // const dispatch = useDispatch();
   const litsingId = useSelector(useToken);
   const tokenName = useSelector(useName);
   const tokenUri = useSelector(useUri);
@@ -80,7 +79,6 @@ const OfferRent: React.FC = () => {
 
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
-  const [isTokenFee, setIsTokenFee] = useState(false);
 
   async function makeRentOffer() {
     if (!connector) return;
@@ -92,15 +90,12 @@ const OfferRent: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
-    const userBalanceInWei = ethers.utils.formatUnits(
-      await signer.getBalance(),
-    );
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    //TODO:NORMAL APPROVAL
+    // TODO: NORMAL APPROVAL
     // const ApprovalTokenAmount = (priceInNum * 2) / 100;
 
     // const OnlyOneContract = OnlyOne__factory.connect(
