@@ -736,7 +736,7 @@ export const SelectedNFT = styled.div`
 export const SelectedNFTCardBox = styled.div`
   display: flex;
   gap: 30px;
-  overflow-x: scroll;
+  overflow-x: auto;
 `;
 
 export const ImgDelete = styled.img`
