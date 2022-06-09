@@ -23,3 +23,4 @@ export { default as CreatorCardPage } from "./CreatorCardPage/CreatorCardPage";
 export { default as OfferSale } from "./OfferSale/OfferSale";
 export { default as OfferRent } from "./OfferRent/OfferRent";
 export { default as Rent } from "./Rent/Rent";
+export { default as Buy } from "./Buy/Buy";
