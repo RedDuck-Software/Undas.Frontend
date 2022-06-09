@@ -39,6 +39,7 @@ export const AccordionArrow = styled(Arrow)`
 export const OffersWrap = styled.table`
   width: 100%;
   border-collapse: collapse;
+
   @media (max-width: 822px) {
     display: block;
     max-width: fit-content;
@@ -56,10 +57,9 @@ export const OffersHeadTr = styled.tr`
 
 export const OffersTr = styled.tr`
   padding: 0 30px;
-  background: #fbf5ff;
   box-shadow: inset 0 0 1px #7c7c7c;
-  &.offers-menu-row {
-    background-color: #ffffff;
+  &:nth-child(2n) {
+    background-color: #fbf5ff;
   }
 `;
 

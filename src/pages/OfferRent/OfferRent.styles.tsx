@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { NFTWrap } from "../HomePage/page-components/NFTCard/NFTCard.styles";
 import { eth, offerTime } from "./imports";
 
-export const TitleText = styled.div`
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  color: #232428;
-  margin-top: 40px;
-  margin-bottom: 40px;
+export const PageWrapper = styled.div`
+  padding: 40px 0 120px;
+  @media (max-width: 992px) {
+    padding: 30px 0 80px;
+  }
+  @media (max-width: 768px) {
+    padding: 20px 0 60px;
+  }
+  @media (max-width: 576px) {
+    padding-bottom: 30px;
+  }
 `;
 export const TabsMenu = styled.ul`
   display: flex;
@@ -527,9 +532,6 @@ export const EthPrice = styled.span`
 `;
 
 export const CheckboxLabelCollateral = styled.label`
-  width: 100%;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -590,8 +592,7 @@ export const CheckboxInputCollateral = styled.input`
 `;
 
 export const ContainerCheckboxCollateral = styled.div`
-  display: flex;
-  margin-left: auto;
+  text-align: center;
 `;
 
 export const NFTInfoContainer = styled.div`
@@ -603,9 +604,6 @@ export const NFTInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  &.disable {
-    background: #c4c4c4;
-  }
 `;
 
 export const SelectedNFT = styled.div`
@@ -633,8 +631,37 @@ export const ImgDelete = styled.img`
   right: 0;
 `;
 
-export const AddNFT = styled.img`
+export const AddNFTContainer = styled(NFTInfoContainer)`
+  padding: 65px 40px 15px;
+`;
+export const AddNFTCard = styled(NFTWrap)`
+  background-color: #c4c4c4;
+  padding: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+`;
+export const AddNFTButton = styled.button`
+  background-color: #c4c4c4;
+  border: none;
+  outline: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &:hover .add-btn {
+    box-shadow: 0px 0px 5px #7c7c7c;
+  }
+`;
+export const AddNFT = styled.div`
   height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
   position: absolute;
-  top: 175px;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  color: #7c7c7c;
+  font-size: 50px;
+  line-height: 50px;
+  transition: all 0.3s;
 `;

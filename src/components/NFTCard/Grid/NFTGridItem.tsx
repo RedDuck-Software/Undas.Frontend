@@ -105,7 +105,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                     props.name,
                   ),
                 );
-                navigate(`/offer-rent/${props.tokenId}`);
+                navigate(`/offer-rent`);
               }}
             >
               Rent 

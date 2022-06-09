@@ -13,8 +13,6 @@ import {
   ContentItemPriceEth,
   ContentItemPriceUsd,
   ContentItemPriceUnd,
-  InputBlock,
-  RentalLable,
   CheckboxRow,
   CheckboxInput,
   CheckboxLabel,
@@ -26,7 +24,7 @@ import {
   ItemAmount,
   CheckBoxWrapper,
   Button,
-} from "./Rent.styles";
+} from "../Rent/Rent.styles";
 
 import {
   PageWrapper,
@@ -43,7 +41,6 @@ import { Background, Container, PageTitle } from "../../globalStyles";
 import { info } from "../OfferRent/imports";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
-import { RentalPeriod } from "../NFTPage/NFTPage.styles";
 
 const Rent: React.FC = () => {
   return (
@@ -59,35 +56,10 @@ const Rent: React.FC = () => {
           <ContentWrapper>
             <LeftBlock>
               <ContentItem>
-                <ContentItemName>Cost Day</ContentItemName>
-                <ContentItemPriceWrap>
-                  <ContentItemPriceEth>0,005</ContentItemPriceEth>
-                  <ContentItemPriceUsd>$36,93</ContentItemPriceUsd>
-                </ContentItemPriceWrap>
-              </ContentItem>
-              <ContentItem>
-                <ContentItemName>
-                  Deposit
-                  <ImageInfo src={info} alt="info-image" />
-                </ContentItemName>
+                <ContentItemName>Price NFT</ContentItemName>
                 <ContentItemPriceWrap>
                   <ContentItemPriceEth>40</ContentItemPriceEth>
                   <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
-                </ContentItemPriceWrap>
-              </ContentItem>
-              <ContentItem>
-                <ContentItemName>
-                  Rental price for
-                  <InputBlock>
-                    <RentalLable htmlFor="period">Select Period</RentalLable>
-                    <RentalPeriod id="period" placeholder="7 for 90 days" />
-                  </InputBlock>
-                  days
-                  <ImageInfo src={info} alt="info-image" />
-                </ContentItemName>
-                <ContentItemPriceWrap>
-                  <ContentItemPriceEth>0,035</ContentItemPriceEth>
-                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
@@ -153,7 +125,7 @@ const Rent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button>Rent</Button>
+            <Button>Buy Now</Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>

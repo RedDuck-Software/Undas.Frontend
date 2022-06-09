@@ -3,6 +3,9 @@ import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setComponent } from "../../store/reducers/modalAction";
 
 import {
   NFTImage,
@@ -54,6 +57,11 @@ import {
   RentElement,
   RentalPeriod,
   RightSideBlock,
+  NotListed,
+  NotListedWrapper,
+  OwnerSettingsWrapper,
+  OwnerSettingsButton,
+  OwnerSettingsNavigation,
 } from "./NFTPage.styles";
 import Accordion from "./page-components/Accordion/Accordion";
 import About from "./page-components/Accordion/accordrion-components/About";
@@ -66,6 +74,7 @@ import Properties from "./page-components/Accordion/accordrion-components/Proper
 import Staking from "./page-components/Accordion/accordrion-components/Staking";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
+// import Rent from "./page-components/Rent"
 
 import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
 import { UndasGeneralNFT__factory } from "../../typechain";
@@ -107,22 +116,42 @@ const NFTPage: React.FC = () => {
   const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
-  const [owner,setOwner] = useState<string>();
+  const [seller,setSeller] = useState<string>();
   const [loading, setLoading] = useState(true);
 
   // const [showPriceHistory] = useState(false);
   const [, setShowStaking] = useState(true);
-  const [, setShowBuy] = useState(true);
-  const [, setShowRent] = useState(true);
+  const [showBuy, setShowBuy] = useState(true);
+  const [showRent, setShowRent] = useState(true);
+  const [isOwner, setIsOwner] = useState(true);
 
-  console.log('LESTING AID',listingId)
-  const getShowStaking = async () => {
+  console.log('LESTING id',listingId)
+
+  const getOwner = async () => {
+
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
+      
+    
+    const signer = provider.getSigner(0);
+    console.log('here22')
 
+  } 
+
+  const getShowStaking = async () => {
+    if (!connector) return;
+
+    if(stakingId){
+      setShowStaking(true);
+    }
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+      
+    
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
@@ -135,67 +164,40 @@ const NFTPage: React.FC = () => {
     if (!ProductValue) return;
 
     const { maker } = ProductValue.tx;
-
+    console.log('own',seller)
+    console.log('sign',await signer.getAddress())
     if (
       address === owner &&
-      maker === "0x0000000000000000000000000000000000000000"
+      maker === seller
     ) {
-      setShowStaking(true);
+        console.log('dasdasds')
     }
   };
 
   const getShowBuy = async () => {
     if (!connector) return;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-
-    const signer = provider.getSigner(0);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-    const ProductValue = await getListing(listingId, connector);
-
-    if (!ProductValue) return;
-
-    const { seller } = ProductValue.tx;
-
-    if (
-      address === owner &&
-      seller === "0x0000000000000000000000000000000000000000"
-    ) {
+    console.log('listingID',listingId)
+    if(listingId){
+      console.log("truek")
       setShowBuy(true);
+    } else {
+      setShowBuy(false);
+
     }
   };
 
   async function getShowRent() {
     if (!connector) return;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+    console.log('stakingId',stakingId)
+    if(stakingId){
+      console.log("truek")
+      setShowRent(true);
+    } else {
+      console.log("false2")
+      setShowRent(false);
 
-    const signer = provider.getSigner(0);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-
-    const ProductValue = await getStaking(stakingId, connector);
-
-    if (!ProductValue) return;
-
-    const { maker } = ProductValue.tx;
-
-    if (
-      address !== owner &&
-      maker !== "0x0000000000000000000000000000000000000000"
-    ) {
-      setShowRent(false );
     }
   }
 
@@ -205,8 +207,9 @@ const NFTPage: React.FC = () => {
       getShowBuy()
       getShowRent()
       getTokenData();
+      getOwner()
     }
-  }, [connector]);
+  }, [connector,listingId,stakingId,seller]);
 
 
 
@@ -221,7 +224,7 @@ const NFTPage: React.FC = () => {
         setPriceInNum(tokensQuery.data.listings[0].price) 
         setDescription(tokensQuery.data.listings[0].tokenDescription) 
         setListingId(tokensQuery.data.listings[0].id) 
-        setOwner(tokensQuery.data.listings[0].seller)
+        setSeller(tokensQuery.data.listings[0].seller)
 
           
     }
@@ -232,7 +235,7 @@ const NFTPage: React.FC = () => {
         setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
         setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
         setStakingId(tokensQuery.data.stakingListings[0].id) 
-        setOwner(tokensQuery.data.stakingListings[0].seller)
+        setSeller(tokensQuery.data.stakingListings[0].seller)
         setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
         setPremium(tokensQuery.data.stakingListings[0].premium)
          
@@ -241,7 +244,8 @@ const NFTPage: React.FC = () => {
     setLoading(false);
 
   }
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
@@ -281,6 +285,24 @@ async function fetchData() {
 
   return (
     <Background>
+      {!loading && isOwner && (
+        <OwnerSettingsWrapper>
+          <OwnerSettingsNavigation>
+          <OwnerSettingsButton>Edit</OwnerSettingsButton>
+            {showBuy || showRent ? (
+              <>
+                <OwnerSettingsButton isColored={true}>
+                  Cancel listing
+                </OwnerSettingsButton>
+              </>
+            ) : (
+              <OwnerSettingsButton isColored={true}>
+                Rent-sell
+              </OwnerSettingsButton>
+            )}
+          </OwnerSettingsNavigation>
+        </OwnerSettingsWrapper>
+      )}
       <NFTPageWrap>
         {loading ? (
           <ClipLoader
@@ -369,43 +391,72 @@ async function fetchData() {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={+listingId} price1={+priceInNum}/>
+                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} />
                   </SaleBlock>
+
                   <SaleBlock>
                     <TopBar>
                       <RentIco />
                       Rent
                     </TopBar>
-                    <RentElement>
-                      <span>Deposit</span>
-                      <Wrapper disp="flex" alignItems="center">
-                        <EthIco />
-                        <PriceText>2,5</PriceText>
-                        <PriceInUSD>($18 465,32)</PriceInUSD>
-                      </Wrapper>
-                    </RentElement>
-                    <RentElement>
-                      <span>Price for 1 Day Rental</span>
-                      <Wrapper disp="flex" alignItems="center">
-                        <EthIco />
-                        <PriceText>0,005</PriceText>
-                        <PriceInUSD>($36,93)</PriceInUSD>
-                      </Wrapper>
-                    </RentElement>
-                    <RentElement>
-                      <span>Period</span>
-                      <RentalPeriod placeholder="7 for 90 days" />
-                    </RentElement>
-                    <RentElement h="76px">
-                      <InfoButton
-                        bg="#873DC1"
-                        flex="1 1 0"
-                        className="colored-btn"
-                      >
-                        Rent
-                      </InfoButton>
-                      <InfoButton fc="#873DC1">Make offer</InfoButton>
-                    </RentElement>
+                    
+                    {showRent === false && isOwner === true ? (
+                      <NotListedWrapper>
+                        <NotListed>Not listed for rent</NotListed>
+                      </NotListedWrapper>
+                    ) : (
+                      <>
+                        <RentElement>
+                          <span>Deposit</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>2,5</PriceText>
+                            <PriceInUSD>($18 465,32)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                          <span>Price for 1 Day Rental</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>0,005</PriceText>
+                            <PriceInUSD>($36,93)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement>
+                          <span>Period</span>
+                          <RentalPeriod placeholder="7 for 90 days" />
+                        </RentElement>
+                        <RentElement h="76px">
+                          <InfoButton
+                            bg="#873DC1"
+                            flex="1 1 0"
+                            className="colored-btn"
+                            // disabled={isOwner}
+                            onClick={() => console.log("click rent")}
+                            
+                          >
+                            Rent
+                          </InfoButton>
+                          <InfoButton fc="#873DC1"  
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              dispatch(
+                                setComponent(
+                                  //set
+                                  "offer-rent",
+                                  +tokenId,
+                                  priceInNum,
+                                  tokenURI,
+                                  name,
+                                ),
+                              );
+                              navigate(`/offer-rent`);
+                            }}
+                            >Make offer
+                         </InfoButton>
+                        </RentElement>
+                      </> 
+                    )}
                   </SaleBlock>
                 </Wrapper>
               </RightSideBlock>
@@ -413,7 +464,7 @@ async function fetchData() {
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
               <Accordion name="Offers" ico={<OffersIco />}>
-                <Offers />
+                <Offers isOwner={isOwner} />
               </Accordion>
               <Accordion name="Staking" ico={<StakingIco />} und="UND">
                 <Staking />
@@ -445,12 +496,6 @@ async function fetchData() {
               >
                 <Properties />
               </Accordion>
-              {/* <Wrapper
-                                disp="flex"
-                                flexDirection="column"
-                                w="50%"
-                                marg="0 0 0 auto"
-                            > */}
               <Accordion
                 name="Stats"
                 ico={<StatsIco />}
@@ -465,7 +510,6 @@ async function fetchData() {
               >
                 <Levels complete={4} />
               </Accordion>
-              {/* </Wrapper> */}
             </Wrapper>
             <AdvertisingSlider />
           </>

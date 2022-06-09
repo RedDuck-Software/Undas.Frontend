@@ -14,21 +14,30 @@ import {
   ButtonWrap,
   InfoButton,
   PriceWrap,
+  NotListedWrapper,
+  NotListed,
 } from "../NFTPage.styles";
 import { OnlyOne__factory } from "../../../typechain";
 
-const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
+interface BuyProps {
+  id: number;
+  isOwner?: boolean;
+  priceInNum:number;
+  showBuy?: boolean;
+}
+
+const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
   const account = web3React.account;
-
+  console.log(priceInNum)
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
   
   console.log('listing',id)
-  console.log('price1',price1)
+  // console.log('price1',price1)
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -62,10 +71,12 @@ const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
-
-    console.log(priceInNum);
-
-    if (+userBalanceInWei < priceInNum) {
+    const amount = ethers.utils.formatUnits(
+      priceInNum
+    );
+    console.log(amount);
+    console.log('user bal',userBalanceInWei)
+    if (+userBalanceInWei < +amount) {
       alert("not enough funds");
       return;
     }
@@ -74,7 +85,7 @@ const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
       signer,
     );
 
-    const ApprovalTokenAmount = (priceInNum * 2) / 100;
+    const ApprovalTokenAmount = (+amount * 2) / 100;
 
     const OnlyOneContract = OnlyOne__factory.connect(
       "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
@@ -87,13 +98,11 @@ const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
     );
 
     const tx = await MarketplaceContract.buyToken(tokenId, {
-      value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
+      value: ethers.utils.parseUnits(amount.toString(), "ether"),
     });
     await tx.wait();
   }
 
-
-  
   
   async function getEthPrice() {
     const API_URL =
@@ -129,29 +138,36 @@ const Buy: React.FC<{ id: number,price1: number }> = ({ id ,price1 }) => {
     getProductPrice();
   }, [connector, web3React]);
 
-  return seller === account || id < 0 ? (
-    <></>
-  ) : (
-    <BuyBar>
-      <span>Current price</span>
-      <Wrapper disp="flex" alignItems="center">
-        <PriceWrap>
-          <EthIco />
-          <PriceText>{price}</PriceText>
-          <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
-        </PriceWrap>
-      </Wrapper>
-      <ButtonWrap>
-        <InfoButton
-          bg="#873DC1"
-          onClick={() => buyToken(id,price1)}
-          className="colored-btn"
-        >
-          Buy now
-        </InfoButton>
-        <InfoButton fc="#873DC1">Make offer</InfoButton>
-      </ButtonWrap>
-    </BuyBar>
+  return (
+    <>
+      {showBuy === false && isOwner === true ? (
+        <NotListedWrapper>
+          <NotListed>Not listed for sale</NotListed>
+        </NotListedWrapper>
+      ) : (
+        <BuyBar>
+          <span>Current price</span>
+          <Wrapper disp="flex" alignItems="center">
+            <PriceWrap>
+              <EthIco />
+              <PriceText>{price}</PriceText>
+              <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
+            </PriceWrap>
+          </Wrapper>
+          <ButtonWrap>
+            <InfoButton
+              bg="#873DC1"
+              onClick={() => buyToken(id,priceInNum)}
+              className="colored-btn"
+              // disabled={isOwner}
+            >
+              Buy now
+            </InfoButton>
+            <InfoButton fc="#873DC1">Make offer</InfoButton>
+          </ButtonWrap>
+        </BuyBar>
+      )}
+    </>
   );
 };
 
