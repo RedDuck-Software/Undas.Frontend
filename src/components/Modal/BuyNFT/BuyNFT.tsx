@@ -68,6 +68,8 @@ const BuyNFT: React.FC = () => {
       await signer.getBalance(),
     );
 
+    console.log(priceInNum);
+
     if (+userBalanceInWei < priceInNum) {
       alert("not enough funds");
       return;
