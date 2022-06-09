@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# typechain
+/src/typechain
+
 # testing
 /coverage
 
