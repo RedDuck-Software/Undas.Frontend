@@ -49,32 +49,36 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   return (
     <NFTWrap
       onClick={(e) => {
-        navigate(`/nft/buy/${props.tokenId}`);  
-          e.stopPropagation();
-            {!props.premium?dispatch(
-              setComponent(
-                "additional-page-for-sale",
-                props.tokenId,
-                props.price,
-                props.URI,  
-                props.name, 
-              ),
-            ):dispatch(
-              setComponent(
-                "additional-page-for-rent",//comp
-                props.tokenId,//tkid
-                '',//pricenum
-                props.URI,
-                props.name,//
-                props.premium,             
-                props.colloteralWei,
-              ))}
+        navigate(`/nft/buy/${props.tokenId}`);
+        e.stopPropagation();
+        {
+          !props.premium
+            ? dispatch(
+                setComponent(
+                  "additional-page-for-sale",
+                  props.tokenId,
+                  props.price,
+                  props.URI,
+                  props.name,
+                ),
+              )
+            : dispatch(
+                setComponent(
+                  "additional-page-for-rent", //comp
+                  props.tokenId, //tkid
+                  "", //pricenum
+                  props.URI,
+                  props.name, //
+                  props.premium,
+                  props.colloteralWei,
+                ),
+              );
+        }
 
-              //component: any, tokenId?: number,
-   //priceInNum?: any, tokenURI?: string, name?: string,premiumInNum?:number,colloteralWei?:string
-  //  return {type:SET_ADDITIONAL_PAGE_FOR_RENT, tokenId: tokenId, 
-  //premiumInNum: premiumInNum, tokenURI:tokenURI, name:name, colloteral:colloteral};
-
+        //component: any, tokenId?: number,
+        //priceInNum?: any, tokenURI?: string, name?: string,premiumInNum?:number,colloteralWei?:string
+        //  return {type:SET_ADDITIONAL_PAGE_FOR_RENT, tokenId: tokenId,
+        //premiumInNum: premiumInNum, tokenURI:tokenURI, name:name, colloteral:colloteral};
       }}
     >
       <Info disp="flex" alignItems="center" gap="10px">

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { PageGridWrap } from "./BlogPageGrid.styles";
+
 import { BlogPost } from "../../types";
 import BlogCard from "../BlogCard/BlogCard";
 

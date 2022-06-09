@@ -1,7 +1,6 @@
 import React from "react";
-import BlogCard from "../BlogCard/BlogCard";
-import BlogMainGrid from "../BlogMainGrid/BlogMainGrid";
-import MainPageSection from "../MainPageSection/MainPageSection";
+
+import { Wrap } from "./MainBlog.styles";
 
 import {
   WebsiteTips1,
@@ -17,8 +16,9 @@ import {
   News2,
   News3,
 } from "../../imports";
-
-import { Wrap } from "./MainBlog.styles";
+import BlogCard from "../BlogCard/BlogCard";
+import BlogMainGrid from "../BlogMainGrid/BlogMainGrid";
+import MainPageSection from "../MainPageSection/MainPageSection";
 
 const WebsiteCards: React.FC = () => {
   return (
