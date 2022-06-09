@@ -31,7 +31,6 @@ export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  margin-top: 20px;
 `;
 export const LeftBlock = styled.div`
   display: flex;
@@ -194,7 +193,7 @@ export const ItemAmount = styled.p`
   font-size: 16px;
   line-height: 20px;
   color: #232428;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 export const BottomWrapper = styled.div``;
 export const CheckBoxWrapper = styled.div`

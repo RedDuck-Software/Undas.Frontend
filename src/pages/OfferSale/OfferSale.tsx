@@ -1,185 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
-  PageWrapper,
-  OfferContainer,
-  FirstCollum,
-  SecondCollum,
-  NameRow,
-  TextPrice,
-  PriceRow,
-  EthSelect,
-  EthText,
-  ImageDown,
-  AmmountInput,
-  CostSelect,
-  DollarText,
+  TitleText,
+  Back,
+  BackText,
+  TabsMenu,
+  Tab,
+  TabCastom,
   TextOffer,
-  DaySelect,
-  ImageDownOffer,
-  TimeSelect,
-  TextPmAm,
-  TextTime,
-  UNDPrice,
-  CheckboxInput,
-  CheckboxLabel,
-  UNDLabel,
-  ImageInfo,
-  DollarPrice,
-  PayRow,
-  AgreementLink,
-  CheckboxLabelAgreement,
-  CheckboxInputAgreement,
-  CheckboxLabelCollateral,
-  CheckboxInputCollateral,
-  ContainerCheckboxCollateral,
-  NFTInfoContainer,
-  SelectedNFT,
-  SelectedNFTCardBox,
-  ImgDelete,
-  AddNFT,
-  AddNFTCard,
-  AddNFTButton,
-  AddNFTContainer,
-} from "../OfferRent/OfferRent.styles";
+} from "./OfferSale.styles";
 
-import {
-  TopLinkWrapper,
-  TopLink,
-  BottomWrapper,
-  CheckBoxWrapper,
-  Button,
-  ItemAmount,
-} from "../Rent/Rent.styles";
-
-import { Background, Container, PageTitle } from "../../globalStyles";
-
-import { down, info, deleteNFT } from "../OfferRent/imports";
-
-import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import { Background, Container } from "../../globalStyles";
+import CastomOffer from "./page-components/CastomOffer/CastomOffer";
+import Offer from "./page-components/Offer/Offer";
 
 const OfferSale: React.FC = () => {
+  const [tab, setTab] = useState("offer");
   return (
     <Background>
-      <TopLinkWrapper>
-        <Container>
-          <TopLink to="/">Back</TopLink>
-        </Container>
-      </TopLinkWrapper>
+      <Back>
+        <BackText>Back</BackText>
+      </Back>
       <Container>
-        <PageWrapper>
-          <PageTitle>Offer for Sale</PageTitle>
-          <ContainerCheckboxCollateral>
-            <CheckboxInputCollateral
-              type="checkbox"
-              id="collateral"
-              className="custom-checkbox"
-            />
-            <CheckboxLabelCollateral htmlFor="collateral">
-              Custom Offer NFT
-            </CheckboxLabelCollateral>
-            <ImageInfo src={info} alt="info-image" />
-          </ContainerCheckboxCollateral>
-          <OfferContainer>
-            <FirstCollum>
-              <NameRow>
-                <TextPrice>Price</TextPrice>
-              </NameRow>
-              <PriceRow>
-                <EthSelect>
-                  <EthText>ETH</EthText>
-                  <ImageDown src={down} alt="down-image" />
-                </EthSelect>
-                <AmmountInput type="text" placeholder="Amount" />
-                <CostSelect>
-                  <DollarText>0.00</DollarText>
-                </CostSelect>
-              </PriceRow>
-              <NameRow className="margin-top">
-                <TextOffer>Offer Expiration</TextOffer>
-              </NameRow>
-              <PriceRow>
-                <DaySelect>
-                  3 day
-                  <ImageDownOffer src={down} alt="down-image" />
-                </DaySelect>
-                <TimeSelect>
-                  <TextTime>06 : 35</TextTime>
-                  <TextPmAm>PM</TextPmAm>
-                </TimeSelect>
-              </PriceRow>
-              <NameRow className="margin-top-20">
-                <TextOffer>Marketplace fee 3%</TextOffer>
-                <UNDPrice>UND 2</UNDPrice>
-              </NameRow>
-              <PayRow>
-                <CheckboxInput
-                  type="checkbox"
-                  id="purchases"
-                  className="custom-checkbox"
-                />
-                <CheckboxLabel htmlFor="purchases">
-                  Pay in {"\u00A0"}
-                  <UNDLabel>UND</UNDLabel>
-                  {"\u00A0"} with a 50% discount
-                  <ImageInfo
-                    src={info}
-                    alt="info-image"
-                    className="margin-top"
-                  />
-                </CheckboxLabel>
-                <DollarPrice className="margin-0">258,25</DollarPrice>
-              </PayRow>
-            </FirstCollum>
-            <SecondCollum>
-              <NameRow>
-                <ItemAmount>Owner item</ItemAmount>
-              </NameRow>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-              </NFTInfoContainer>
-            </SecondCollum>
-            <NameRow>
-              <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
-              <SelectedNFT>2</SelectedNFT>
-            </NameRow>
-            <SelectedNFTCardBox>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <AddNFTContainer>
-                <AddNFTCard>
-                  <AddNFTButton>
-                    <AddNFT className="add-btn">+</AddNFT>
-                  </AddNFTButton>
-                </AddNFTCard>
-              </AddNFTContainer>
-            </SelectedNFTCardBox>
-          </OfferContainer>
-          <BottomWrapper>
-            <CheckBoxWrapper>
-              <CheckboxInputAgreement
-                type="checkbox"
-                id="agreement"
-                className="custom-checkbox"
-              />
-              <CheckboxLabelAgreement htmlFor="agreement">
-                I agree to the platform {"\u00A0"}
-                <AgreementLink to="/">agreement...</AgreementLink>
-              </CheckboxLabelAgreement>
-            </CheckBoxWrapper>
-            <Button>Make Offer</Button>
-          </BottomWrapper>
-        </PageWrapper>
+        <TitleText>Offer for Sale</TitleText>
+        <TabsMenu>
+          <Tab
+            onClick={() => setTab("offer")}
+            className={tab === "offer" ? "active" : ""}
+          >
+            <TextOffer>Simple Offer</TextOffer>
+          </Tab>
+          <TabCastom
+            onClick={() => setTab("castom")}
+            className={tab === "castom" ? "active" : ""}
+          >
+            <TextOffer>Custom Offer</TextOffer>
+          </TabCastom>
+        </TabsMenu>
+        {tab === "offer" && <Offer />}
+        {tab === "castom" && <CastomOffer />}
       </Container>
     </Background>
   );
