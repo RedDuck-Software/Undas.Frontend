@@ -938,6 +938,14 @@ const isSuperArgs = (
   xs: MarketplaceConstructorParams
 ): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1;
 
+type MarketplaceConstructorParams =
+  | [signer?: Signer]
+  | ConstructorParameters<typeof ContractFactory>;
+
+const isSuperArgs = (
+  xs: MarketplaceConstructorParams
+): xs is ConstructorParameters<typeof ContractFactory> => xs.length > 1;
+
 export class Marketplace__factory extends ContractFactory {
   constructor(...args: MarketplaceConstructorParams) {
     if (isSuperArgs(args)) {

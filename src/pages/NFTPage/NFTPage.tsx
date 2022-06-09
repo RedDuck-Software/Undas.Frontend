@@ -83,13 +83,21 @@ import { getStaking } from "../../utils/getStaking";
 import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
+import {useSelector} from "react-redux";
+import { useName, usePrice, useToken, useUri,useColloteral,usePremium } from "../../store";
 
 const NFTPage: React.FC = () => {
+  const litsingId = useSelector(useToken);
+  const tokenPrice = useSelector(usePrice);
+  const tokenName = useSelector(useName);
+  const tokenUri = useSelector(useUri);
+  const Col = useSelector(useColloteral);
+  const Prem =useSelector(usePremium)
+  // console.log('col',Col,'prem',Prem)
   const override = css`
     display: block;
     margin: auto;
   `;
-
   const params = useParams();
   const tokenId = params.id;
 
@@ -307,7 +315,7 @@ const NFTPage: React.FC = () => {
             </NavigationWrap>
             <MainInfoWrap>
               <ImageWrap>
-                <Image src={NFTImage} alt="nft-image" />
+                <Image src={tokenUri} alt="nft-image" />
                 <FavouriteCounter>
                   <FavouriteCounterIco />
                   <CounterNumber>10</CounterNumber>

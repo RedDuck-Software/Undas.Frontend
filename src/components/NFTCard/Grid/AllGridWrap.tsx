@@ -50,8 +50,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>();
-
-  console.log(connector);
+  
   //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -87,7 +86,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        console.log(nft);
 
         const price = nft.premiumWei;
         const id = nft.id;
@@ -191,7 +189,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
       }
     }
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-  console.log("COMMON LIST ", commonList);
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (

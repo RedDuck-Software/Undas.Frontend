@@ -111,12 +111,8 @@ const OfferRent: React.FC = () => {
     //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
     // );
 
-    console.log(colloteral + premium);
     const amountToPay = colloteral + premium + (premium * 20) / 100;
 
-    console.log("amountToPay", amountToPay);
-    console.log("litsingId", litsingId);
-    console.log("dsadas", ethers.utils.parseEther("1"));
     const tx = await MarketplaceContract.stakingOffer(
       litsingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
@@ -129,7 +125,6 @@ const OfferRent: React.FC = () => {
     await tx.wait();
   }
 
-  console.log(tokenName, tokenUri, litsingId);
 
   return (
     <Background>
