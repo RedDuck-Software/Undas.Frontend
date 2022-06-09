@@ -81,7 +81,6 @@ const Sale: React.FC = () => {
             </CheckboxLabelCollateral>
             <ImageInfo src={info} alt="info-image" />
           </ContainerCheckboxCollateral>
-          <OfferContainer>
             <ContentWrapper>
               <LeftBlock>
                 <BlockWrap>
@@ -207,7 +206,6 @@ const Sale: React.FC = () => {
                 </AddNFTCard>
               </AddNFTContainer>
             </SelectedNFTCardBox>
-          </OfferContainer>
           <BottomWrapper>
             <CheckBoxWrapper>
               <CheckboxInputAgreement
