@@ -58,10 +58,10 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+    // const MarketplaceContract = Marketplace__factory.connect(
+    //   MARKETPLACE_ADDRESS,
+    //   signer,
+    // );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
@@ -74,26 +74,26 @@ const PutUpForSale: React.FC<{ itemId: string }> = ({ itemId }) => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.bid(
-      NFT_ADDRESS,
-      +itemId,
-      ethers.utils.parseEther(price),
-      {
-        value: ethers.utils.parseEther("0.1"),
-        gasLimit: 300000,
-      },
-    );
+    // const tx = await MarketplaceContract.bid(
+    //   NFT_ADDRESS,
+    //   +itemId,
+    //   ethers.utils.parseEther(price),
+    //   {
+    //     value: ethers.utils.parseEther("0.1"),
+    //     gasLimit: 300000,
+    //   },
+    // );
 
-    await tx.wait().then(
-      () => {
-        setIsBuyable(true);
-        toogleMenu();
-        toogleDropdown();
-      },
-      (error) => {
-        console.log(error);
-      },
-    );
+    // await tx.wait().then(
+    //   () => {
+    //     setIsBuyable(true);
+    //     toogleMenu();
+    //     toogleDropdown();
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    // );
   };
 
   const Cancel = async () => {
