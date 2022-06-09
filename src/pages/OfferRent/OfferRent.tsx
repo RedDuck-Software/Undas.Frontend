@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import {
   PageWrapper,
@@ -59,10 +59,70 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { down, info, deleteNFT } from "./imports";
+import { useSelector } from "react-redux";
+import { useName, useToken, useUri } from "../../store/";
+import Context from "../../utils/Context";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Marketplace__factory } from "../../typechain";
+// import { OnlyOne__factory } from "../../typechain";
+
+import { ethers } from "ethers";
+// import { cp } from "fs/promises";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
+  const litsingId = useSelector(useToken);
+  const tokenName = useSelector(useName);
+  const tokenUri = useSelector(useUri);
+  const { connector } = useContext(Context);
+
+  const [premium, setPremium] = useState(0);
+  const [colloteral, setColloteral] = useState(0);
+
+  async function makeRentOffer() {
+    if (!connector) return;
+    // if (priceInNum == undefined) {
+    //   return;
+    // }
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    // TODO: NORMAL APPROVAL
+    // const ApprovalTokenAmount = (priceInNum * 2) / 100;
+
+    // const OnlyOneContract = OnlyOne__factory.connect(
+    //   "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
+    //   signer,
+    // );
+
+    // console.log(OnlyOneContract)
+    // OnlyOneContract.approve(
+    //   "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
+    //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
+    // );
+
+    const amountToPay = colloteral + premium + (premium * 20) / 100;
+
+    const tx = await MarketplaceContract.stakingOffer(
+      litsingId,
+      ethers.utils.parseUnits(colloteral.toString(), "ether"),
+      ethers.utils.parseUnits(premium.toString(), "ether"),
+      {
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+      },
+    );
+
+    await tx.wait();
+  }
+
   return (
     <Background>
       <TopLinkWrapper>
@@ -94,7 +154,7 @@ const OfferRent: React.FC = () => {
                   <EthText>ETH</EthText>
                   <ImageDown src={down} alt="down-image" />
                 </EthSelect>
-                <AmmountInput type="text" placeholder="Amount" />
+                <AmmountInput type="number" placeholder="Amount" onChange={(e) => setColloteral(+e.target.value)}/>
                 <CostSelect>
                   <DollarText>0.00</DollarText>
                 </CostSelect>
@@ -107,7 +167,7 @@ const OfferRent: React.FC = () => {
                   <EthText>ETH</EthText>
                   <ImageDown src={down} alt="down-image" />
                 </EthSelect>
-                <AmmountInput type="text" placeholder="Amount" />
+                <AmmountInput type="number" placeholder="Amount" onChange={(e) => setPremium(+e.target.value)}/>
                 <CostSelect>
                   <DollarText>0.00</DollarText>
                 </CostSelect>
@@ -172,7 +232,7 @@ const OfferRent: React.FC = () => {
                 <ItemAmount>Owner item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
+                <NFTCard uri={tokenUri} name={tokenName} />
               </NFTInfoContainer>
             </SecondCollum>
             <NameRow>
@@ -213,7 +273,7 @@ const OfferRent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button>Make Offer</Button>
+            <Button onClick={makeRentOffer}>Make Offer</Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>
