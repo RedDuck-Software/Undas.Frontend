@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Wrap } from "./BusinessTips.styles";
-
 import { Text, BlogTitle } from "../../Blog.styles";
 import {
   SmImg1,
@@ -66,7 +64,7 @@ const BusinessTipsPosts: BlogPost[] = [
 
 const BusinessTips: React.FC = () => {
   return (
-    <Wrap>
+    <>
       <BlogTitle>Business Tips</BlogTitle>
       <Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
@@ -75,7 +73,7 @@ const BusinessTips: React.FC = () => {
         praesentium?
       </Text>
       <BlogPageGrid posts={BusinessTipsPosts} />
-    </Wrap>
+    </>
   );
 };
 

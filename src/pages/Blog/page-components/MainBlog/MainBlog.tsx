@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Wrap } from "./MainBlog.styles";
-
 import {
   WebsiteTips1,
   WebsiteTips2,
@@ -107,7 +105,7 @@ const NewsCards: React.FC = () => {
 
 const MainBlog: React.FC = () => {
   return (
-    <Wrap>
+    <>
       <BlogMainGrid />
       <MainPageSection
         titleText="Website Tips"
@@ -133,7 +131,7 @@ const MainBlog: React.FC = () => {
         blogCard={<NewsCards />}
         blogLink="#news"
       />
-    </Wrap>
+    </>
   );
 };
 
