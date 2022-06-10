@@ -18,6 +18,7 @@ import {
   NotListed,
 } from "../NFTPage.styles";
 import { OnlyOne__factory } from "../../../typechain";
+import { useParams } from "react-router-dom";
 
 interface BuyProps {
   id: number;
@@ -28,15 +29,13 @@ interface BuyProps {
 
 const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
   const { connector } = useContext(Context);
-
   const web3React = useWeb3React();
   const account = web3React.account;
   console.log(priceInNum)
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
-  
-  console.log('listing',id)
+
   // console.log('price1',price1)
 
   const getListing = async (itemId: number) => {
@@ -71,15 +70,18 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
+    console.log('price',price);
     const amount = ethers.utils.formatUnits(
       priceInNum
     );
-    console.log(amount);
+    console.log('amount',amount);
     console.log('user bal',userBalanceInWei)
-    if (+userBalanceInWei < +amount) {
-      alert("not enough funds");
-      return;
-    }
+    // if (+userBalanceInWei < +amount) {
+    //   alert("not enough funds");
+    //   return;
+    // }
+    console.log('priceInNum',priceInNum)
+    
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
@@ -96,7 +98,7 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
       "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
       ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
     );
-
+      console.log("amount",amount)
     const tx = await MarketplaceContract.buyToken(tokenId, {
       value: ethers.utils.parseUnits(amount.toString(), "ether"),
     });
@@ -150,7 +152,7 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
           <Wrapper disp="flex" alignItems="center">
             <PriceWrap>
               <EthIco />
-              <PriceText>{price}</PriceText>
+              <PriceText>{ethers.utils.formatUnits(priceInNum.toString(),'ether')}</PriceText>
               <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
             </PriceWrap>
           </Wrapper>

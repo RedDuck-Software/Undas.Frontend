@@ -131,7 +131,7 @@ const App: React.FC = () => {
           <Route path="/offer-rent" element={<OfferRent />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/buy" element={<Buy />} />
-          <Route path="/sale" element={<Sale />} />
+          <Route path="/nft/sale/:id" element={<Sale />} />
         </Routes>
       </Context.Provider>
     </MoralisProvider>

@@ -92,12 +92,12 @@ const CollectionPage: React.FC = () => {
     });
     return data.result;
   }
-
   const items: ItemsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>([]);
 
   async function getNfts() {
+ 
     const nfts = await fetchData();
 
     if (!nfts) return;
@@ -110,7 +110,7 @@ const CollectionPage: React.FC = () => {
     });
     return items;
   }
-
+  console.log('my collection',list)
   async function getUserNft() {
     const response = await getNfts();
 

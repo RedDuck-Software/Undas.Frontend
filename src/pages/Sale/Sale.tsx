@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useContext, useState,useEffect } from "react";
 
 import {
   BlockTitle,
@@ -53,10 +53,178 @@ import {
   Button,
   ItemAmount,
 } from "../Rent/Rent.styles";
-
+import { useParams } from "react-router-dom";
+import { OnlyOne__factory } from "../../typechain";
+import Context from "../../utils/Context";
+import { ethers } from "ethers";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { date } from "yup";
+import { createClient } from "urql";
 
 
 const Sale: React.FC = () => {
+  const {id}= useParams()
+  const { connector } = useContext(Context);
+
+  const [priceForSale,setPriceForSale] = useState(0)
+  const [colloteral,setColloteral] = useState(0)
+  const [premium,setPremium] = useState(0)
+  const [durationInDay,setDurationInDay] = useState(0)
+
+
+  async function sellToken() {
+    if (!connector) return;
+    if(!id) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+
+    const expectedValue = (priceForSale * 2) /100;
+
+    const formattedPrice =  ethers.utils.parseUnits(priceForSale.toString(), "ether")
+                                      //undsa contract  
+    const tx = await MarketplaceContract.bidExternal("0x674002Df32E372E3D2E2CfC253471d0A5912fb9A",id,
+    formattedPrice,
+    false,
+     {
+      value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
+    });
+    await tx.wait();
+  }
+
+  async function stakeToken() {
+    if (!connector) return;
+    if(!id) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    
+    const utcTimestamp = new Date().getTime();
+    
+    const deadlineUTC = (utcTimestamp + durationInDay *86400)
+    const formattedColloteral =  ethers.utils.parseUnits(colloteral.toString(), "ether")
+    const formattedPremium =  ethers.utils.parseUnits(premium.toString(), "ether")
+
+    const amountToPay = (colloteral*2)/100;
+
+    const tx = await MarketplaceContract.quoteForStakingExternal("0x674002Df32E372E3D2E2CfC253471d0A5912fb9A",id,
+    formattedColloteral,
+    formattedPremium,
+      deadlineUTC,
+      false,{
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+
+      }
+      )
+    await tx.wait();
+  }
+
+
+  const [name, setName] = useState<string>();
+  const [tokenURI, setTokenURI] = useState<string>();
+  const [priceInNum, setPriceInNum] = useState(0);
+
+  const [description, setDescription] = useState<string>();
+  const [listingId, setListingId] = useState(0);
+  const [stakingId, setStakingId] = useState(0);
+  const [seller,setSeller] = useState<string>();
+
+  useEffect(() => {
+    if (connector) {
+
+     getTokenData()
+    
+
+    }
+  }, [connector,listingId,stakingId,tokenURI]);
+
+  const getTokenData = async () => {
+
+    const tokensQuery = await fetchData()
+      
+    if(tokensQuery.data.listings[0]){
+
+        setName(tokensQuery.data.listings[0].tokenName)
+        setTokenURI( tokensQuery.data.listings[0].tokenURI)
+        setPriceInNum(tokensQuery.data.listings[0].price) 
+        setDescription(tokensQuery.data.listings[0].tokenDescription) 
+        setListingId(tokensQuery.data.listings[0].id) 
+        setSeller(tokensQuery.data.listings[0].seller)
+
+          
+    }
+    console.log(tokenURI)
+
+    if(tokensQuery.data.stakingListings[0]){
+        console.log('ZXCQ',tokensQuery.data.stakingListings[0].premium)
+        setName(tokensQuery.data.stakingListings[0].tokenName)
+        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
+        setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
+        setStakingId(tokensQuery.data.stakingListings[0].id) 
+        setSeller(tokensQuery.data.stakingListings[0].seller)
+        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
+        setPremium(tokensQuery.data.stakingListings[0].premiumWei)
+         
+     }
+     console.log('dasds')
+ 
+  }
+
+  const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const tokensQuery = `
+{
+  listings(where:{tokenId:${id}}){
+    id
+ 		tokenId
+    tokenURI
+    price
+    tokenName
+    tokenDescription
+    seller
+  }
+  stakingListings(where:{tokenId:${id}}){
+    id
+    seller
+ 		tokenId
+    tokenURI
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+  }
+}
+ `;
+
+ const client = createClient({
+  url: APIURL,
+});
+
+async function fetchData() {
+  const data = await client.query(tokensQuery).toPromise();
+  return data;
+}
+
   return (
     <Background>
       <TopLinkWrapper>
@@ -83,14 +251,14 @@ const Sale: React.FC = () => {
               <BlockWrap>
                 <BlockTitle>List item to sale</BlockTitle>
                 <NameRow>
-                  <TextPrice>Price</TextPrice>
+                  <TextPrice >Price</TextPrice>
                 </NameRow>
                 <PriceRow>
                   <EthSelect>
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="text" placeholder="Amount" />
+                  <AmmountInput type="number" placeholder="Amount" onChange={(e)=>setPriceForSale(+e.target.value)}/>
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -109,7 +277,7 @@ const Sale: React.FC = () => {
                     </ButtonsBlock>
                   </DurationRow>
                 </DurationWrap>
-                <BlockButton>Confirm</BlockButton>
+                <BlockButton onClick={()=>sellToken()}>Confirm</BlockButton>
               </BlockWrap>
               <BlockWrap>
                 <BlockTitle>List item to rent</BlockTitle>
@@ -124,7 +292,7 @@ const Sale: React.FC = () => {
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="text" placeholder="Amount" />
+                  <AmmountInput type="text" placeholder="Amount" onChange={(e)=>setColloteral(+e.target.value)} />
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -137,7 +305,7 @@ const Sale: React.FC = () => {
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="text" placeholder="Amount" />
+                  <AmmountInput type="text" placeholder="Amount" onChange={(e)=>setPremium(+e.target.value)} />
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -154,7 +322,7 @@ const Sale: React.FC = () => {
                   <TextPrice>Duration</TextPrice>
                   <DurationRow>
                     <TextDay>Day</TextDay>
-                    <InputDay placeholder="Custom date" />
+                    <InputDay placeholder="Custom date" onChange={(e)=>setDurationInDay(+e.target.value)}/>
                     <ButtonsBlock>
                       <DurationButton>7</DurationButton>
                       <DurationButton>30</DurationButton>
@@ -164,7 +332,7 @@ const Sale: React.FC = () => {
                     </ButtonsBlock>
                   </DurationRow>
                 </DurationWrap>
-                <BlockButton>Confirm</BlockButton>
+                <BlockButton onClick={()=>stakeToken()}>Confirm</BlockButton>
               </BlockWrap>
             </LeftBlock>
             <RightBlock>
@@ -172,7 +340,7 @@ const Sale: React.FC = () => {
                 <ItemAmount>NFT item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
+                {tokenURI && <NFTCard uri={tokenURI} name="NFTCard" />}
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
@@ -183,7 +351,7 @@ const Sale: React.FC = () => {
           <SelectedNFTCardBox>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />
-              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+              <ImgDelete src={tokenURI} alt="delete-nft-image" />
             </NFTInfoContainer>
             <NFTInfoContainer>
               <NFTCard uri="nft1" name="NFTCard" />

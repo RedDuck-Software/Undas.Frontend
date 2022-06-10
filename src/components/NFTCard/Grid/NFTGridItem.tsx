@@ -48,10 +48,11 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const stackingFilter = useSelector(useFilter);
+
   return (
     <NFTWrap
       onClick={(e) => {
-        navigate(`/nft/buy/${props.tokenId}`);  
+        navigate(`/nft/buy/${props.tokenId}`,{state:{...props}}); //
         e.stopPropagation();
       }}
     >
