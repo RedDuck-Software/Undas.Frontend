@@ -22,7 +22,7 @@ const BlogBigCard: React.FC = () => {
         <BigImage src={BigImg} alt="card-image" />
       </BigImageWrap>
       <BigCardBody>
-        <BigCardTitle>Smart Apps: Do Even More with Your Website!</BigCardTitle>
+        <BigCardTitle>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</BigCardTitle>
         <BigCardTextWrap>
           <BigCardText>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi iure

@@ -2,13 +2,78 @@ import React from "react";
 
 import { Wrap } from "./News.styles";
 
+import { Text, BlogTitle } from "../../Blog.styles";
+import {
+  SmImg1,
+  SmImg2,
+  SmImg3,
+  WebsiteTips1,
+  WebsiteTips2,
+  WebsiteTips3,
+  Inspiration1,
+  Inspiration2,
+} from "../../imports";
+import { BlogPost } from "../../types";
 import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
+
+const NewsPosts: BlogPost[] = [
+  {
+    image: WebsiteTips3,
+    titleText: "Lorem ipsum dolor, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: WebsiteTips1,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: Inspiration2,
+    titleText: "Lorem ipsum dolor sit, adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: SmImg2,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: WebsiteTips2,
+    titleText: "Lorem adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: Inspiration1,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: SmImg1,
+    titleText: "Lorem  sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: SmImg3,
+    titleText: "Lorem id, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: SmImg2,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+];
 
 const News: React.FC = () => {
   return (
     <Wrap>
-      News
-      <BlogPageGrid />
+      <BlogTitle>News</BlogTitle>
+      <Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+        perspiciatis modi fugit pariatur ex nulla ipsam, tempora deserunt
+        excepturi accusamus!
+      </Text>
+      <BlogPageGrid posts={NewsPosts} />
     </Wrap>
   );
 };
