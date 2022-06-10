@@ -56,6 +56,7 @@ import {
   ItemAmount,
 } from "../Rent/Rent.styles";
 
+import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { down, info, deleteNFT } from "./imports";
@@ -262,9 +263,7 @@ const OfferRent: React.FC = () => {
               </NFTInfoContainer>
               <AddNFTContainer>
                 <AddNFTCard>
-                  <AddNFTButton>
-                    <AddNFT className="add-btn">+</AddNFT>
-                  </AddNFTButton>
+                  <ModalsNFT />
                 </AddNFTCard>
               </AddNFTContainer>
             </SelectedNFTCardBox>
