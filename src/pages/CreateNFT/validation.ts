@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { customUrlName, ipfsInfuraRegex } from "../../constants/validation";
+import { urlRegex, ipfsInfuraRegex } from "../../constants/validation";
 
 export const validationSchema = yup.object().shape(
   {
@@ -13,7 +13,7 @@ export const validationSchema = yup.object().shape(
       .notRequired()
       .when("externalLink", {
         is: (value: string) => value?.length,
-        then: (rule) => rule.matches(customUrlName, "Enter correct url!"),
+        then: (rule) => rule.matches(urlRegex, "Enter correct url!"),
       }),
     description: yup.string().max(500, "You reached the limit!").notRequired(),
     supply: yup.number().notRequired(),
