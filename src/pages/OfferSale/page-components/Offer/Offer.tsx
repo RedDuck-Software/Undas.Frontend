@@ -3,17 +3,9 @@ import React from "react";
 import {
   OfferContainer,
   CollectionName,
-  ImageVerify,
-  ImageUND,
-  ImageNFT,
   FirstCollum,
   SecondCollum,
-  TextNameNFT,
-  ImageUNDItem,
-  ImageVerifyItem,
   NameRow,
-  TextCreator,
-  CreatorName,
   TextPrice,
   PriceRow,
   EthSelect,
@@ -41,31 +33,18 @@ import {
   CheckboxInputAgreement,
   ButtonMakeOffer,
   AgreeRowButton,
+  NFTInfoContainer,
+  CheckBoxCenter,
 } from "./Offer.styles";
 
-import { verify, UND, cardNFT, down, info } from "../../imports";
+import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
+
+import { down, info } from "../../imports";
 
 const Offer: React.FC = () => {
   return (
     <OfferContainer>
       <FirstCollum>
-        <NameRow>
-          <CollectionName>Collection Name</CollectionName>
-          <ImageVerify src={verify} alt="verify-image" />
-          <ImageUND src={UND} alt="undas-image" />
-        </NameRow>
-        <ImageNFT src={cardNFT} alt="undas-image" />
-      </FirstCollum>
-      <SecondCollum>
-        <NameRow>
-          <TextNameNFT>Name NFT</TextNameNFT>
-          <ImageVerifyItem src={verify} alt="verify-image" />
-          <ImageUNDItem src={UND} alt="undas-image" />
-        </NameRow>
-        <NameRow>
-          <TextCreator>creator by {"\u00A0"}</TextCreator>
-          <CreatorName>Boria Boria</CreatorName>
-        </NameRow>
         <NameRow>
           <TextPrice>Price</TextPrice>
         </NameRow>
@@ -79,7 +58,7 @@ const Offer: React.FC = () => {
             <DollarText>0.00</DollarText>
           </CostSelect>
         </PriceRow>
-        <NameRow>
+        <NameRow className="margin-top">
           <TextOffer>Offer Expiration</TextOffer>
         </NameRow>
         <PriceRow>
@@ -92,7 +71,7 @@ const Offer: React.FC = () => {
             <TextPmAm>PM</TextPmAm>
           </TimeSelect>
         </PriceRow>
-        <NameRow>
+        <NameRow className="margin-top-20">
           <TextOffer>Marketplace fee 3%</TextOffer>
           <UNDPrice>UND 2</UNDPrice>
         </NameRow>
@@ -106,11 +85,21 @@ const Offer: React.FC = () => {
             Pay in {"\u00A0"}
             <UNDLabel>UND</UNDLabel>
             {"\u00A0"} with a 50% discount
-            <ImageInfo src={info} alt="info-image" />
-            <DollarPrice>258,25</DollarPrice>
+            <ImageInfo src={info} alt="info-image" className="margin-top" />
           </CheckboxLabel>
+          <DollarPrice className="margin-0">258,25</DollarPrice>
         </PayRow>
-        <AgreeRow>
+      </FirstCollum>
+      <SecondCollum>
+        <NameRow>
+          <CollectionName>Owner item</CollectionName>
+        </NameRow>
+        <NFTInfoContainer>
+          <NFTCard uri="nft1" name="NFTCard" />
+        </NFTInfoContainer>
+      </SecondCollum>
+      <AgreeRow>
+        <CheckBoxCenter>
           <CheckboxInputAgreement
             type="checkbox"
             id="agreement"
@@ -120,12 +109,12 @@ const Offer: React.FC = () => {
             I agree to the platform {"\u00A0"}
             <AgreementLink>agreement...</AgreementLink>
           </CheckboxLabelAgreement>
-        </AgreeRow>
-        <AgreeRowButton>
-          <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
-        </AgreeRowButton>
-      </SecondCollum>
-    </OfferContainer>
+        </CheckBoxCenter>
+      </AgreeRow>
+      <AgreeRowButton>
+        <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
+      </AgreeRowButton>
+  </OfferContainer>
   );
 };
 
