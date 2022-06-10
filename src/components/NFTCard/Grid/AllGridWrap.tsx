@@ -53,7 +53,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>();
-  
+
   //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -92,8 +92,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        // console.log('staking ID',nft)
-
         const price = nft.premiumWei;
         const id = nft.tokenId;
         const name = nft.tokenName;

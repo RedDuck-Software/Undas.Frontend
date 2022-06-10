@@ -14,7 +14,7 @@ import {
 interface BlogCard {
   image: string;
   titleText: string;
-  date?: string;
+  date: string | number;
 }
 
 const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {

@@ -288,7 +288,7 @@ async function fetchData() {
       {!loading && isOwner && (
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
-          <OwnerSettingsButton>Edit</OwnerSettingsButton>
+            <OwnerSettingsButton>Edit</OwnerSettingsButton>
             {showBuy || showRent ? (
               <>
                 <OwnerSettingsButton isColored={true}>

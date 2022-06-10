@@ -141,7 +141,11 @@ const OfferRent: React.FC = () => {
                   <EthText>ETH</EthText>
                   <ImageDown src={down} alt="down-image" />
                 </EthSelect>
-                <AmmountInput type="number" placeholder="Amount" onChange={(e) => setColloteral(+e.target.value)}/>
+                <AmmountInput
+                  type="number"
+                  placeholder="Amount"
+                  onChange={(e) => setColloteral(+e.target.value)}
+                />
                 <CostSelect>
                   <DollarText>0.00</DollarText>
                 </CostSelect>
@@ -154,7 +158,11 @@ const OfferRent: React.FC = () => {
                   <EthText>ETH</EthText>
                   <ImageDown src={down} alt="down-image" />
                 </EthSelect>
-                <AmmountInput type="number" placeholder="Amount" onChange={(e) => setPremium(+e.target.value)}/>
+                <AmmountInput
+                  type="number"
+                  placeholder="Amount"
+                  onChange={(e) => setPremium(+e.target.value)}
+                />
                 <CostSelect>
                   <DollarText>0.00</DollarText>
                 </CostSelect>

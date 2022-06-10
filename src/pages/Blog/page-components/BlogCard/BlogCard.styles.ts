@@ -10,7 +10,7 @@ export const CardWrap = styled.div`
   background-color: #fff;
   transition: all 0.3s linear;
   &:hover {
-    box-shadow: rgb(135 61 193 / 50%) 0px 5px 15px;
+    box-shadow: rgb(135 61 193 / 50%) 0px 5px 10px;
     cursor: pointer;
   }
 `;
