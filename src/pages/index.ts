@@ -24,3 +24,4 @@ export { default as OfferSale } from "./OfferSale/OfferSale";
 export { default as OfferRent } from "./OfferRent/OfferRent";
 export { default as Rent } from "./Rent/Rent";
 export { default as Buy } from "./Buy/Buy";
+export { default as Sale } from "./Sale/Sale";

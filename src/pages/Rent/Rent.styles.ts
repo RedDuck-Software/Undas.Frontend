@@ -32,6 +32,7 @@ export const ContentWrapper = styled.div`
   justify-content: space-between;
   gap: 30px;
   margin-top: 20px;
+  width: 100%;
 `;
 export const LeftBlock = styled.div`
   display: flex;
