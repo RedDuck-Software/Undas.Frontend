@@ -26,3 +26,4 @@ export { default as Rent } from "./Rent/Rent";
 export { default as Buy } from "./Buy/Buy";
 export { default as Sale } from "./Sale/Sale";
 export { default as ArticlePage } from "./Blog/page-components/ArticlePage/ArticlePage";
+export { default as BlogThemeWrap } from "./Blog/page-components/BlogThemeWrap";

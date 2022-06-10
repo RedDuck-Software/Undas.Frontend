@@ -40,12 +40,17 @@ import {
   Buy,
   Sale,
   ArticlePage,
+  BlogThemeWrap,
 } from "./pages";
 import ActivityPage from "./pages/Activity/ActivityPage";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { ConnectorState } from "./types/ConnectorState";
 import Context from "./utils/Context";
+import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
+import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
+import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
+import News from "./pages/Blog/page-components/News/News";
 
 const App: React.FC = () => {
   const web3Current = useWeb3React();
@@ -134,6 +139,10 @@ const App: React.FC = () => {
           <Route path="/buy" element={<Buy />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/article" element={<ArticlePage />} />
+          <Route path="/blog/website-tips" element={<BlogThemeWrap blogComponent={<WebsiteTips />} />} />
+          <Route path="/blog/business-tips" element={<BlogThemeWrap blogComponent={<BusinessTips />} />} />
+          <Route path="/blog/inspiration" element={<BlogThemeWrap blogComponent={<Inspiration />} />} />
+          <Route path="/blog/news" element={<BlogThemeWrap blogComponent={<News />} />} />
         </Routes>
       </Context.Provider>
     </MoralisProvider>
