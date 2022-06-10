@@ -1,27 +1,27 @@
 import React from "react";
 
-import { Wrap } from "./BlogPageGrid.styles";
+import { PageGridWrap } from "./BlogPageGrid.styles";
 
+import { BlogPost } from "../../types";
 import BlogCard from "../BlogCard/BlogCard";
 
-import { SmImg1, SmImg2, SmImg3 } from "../../imports";
-
-const BlogPageGrid: React.FC = () => {
+interface BlogPageGridProps {
+  posts: BlogPost[];
+}
+const BlogPageGrid: React.FC<BlogPageGridProps> = ({ posts }) => {
   return (
-    <Wrap>
-      <BlogCard
-        image={SmImg1}
-        titleText={"Beginners Guide: What is a Website Domain Name?"}
-      />
-      <BlogCard
-        image={SmImg2}
-        titleText={"Beginners Guide: What is a Website Domain Name?"}
-      />
-      <BlogCard
-        image={SmImg3}
-        titleText={"Beginners Guide: What is a Website Domain Name?"}
-      />
-    </Wrap>
+    <PageGridWrap>
+      {posts.map((post: BlogPost) => {
+        return (
+          <BlogCard
+            key={`${post.image}-${post.date}`}
+            image={post.image}
+            titleText={post.titleText}
+            date={post.date}
+          />
+        );
+      })}
+    </PageGridWrap>
   );
 };
 

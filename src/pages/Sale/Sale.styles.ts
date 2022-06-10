@@ -12,8 +12,8 @@ export const BlockWrap = styled.div`
   border-bottom: 1px solid rgba(124, 124, 124, 0.25);
   padding-bottom: 30px;
   margin-bottom: 40px;
-  &:last-child{
-      margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 

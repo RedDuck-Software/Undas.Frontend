@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import { back, eth } from "../OfferRent/imports";
 
 export const TopLinkWrapper = styled.div`
@@ -46,7 +47,7 @@ export const ContentItem = styled.div`
   align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid rgba(124, 124, 124, 0.25);
-  &:first-child{
+  &:first-child {
     padding-top: 0;
   }
 `;

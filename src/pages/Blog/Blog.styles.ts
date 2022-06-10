@@ -16,12 +16,10 @@ export const Text = styled.p`
   margin: 0;
   padding: 0;
   width: 60%;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  color: #232428;
+  color: #7c7c7c;
 `;
 export const TabsMenuWrap = styled.div`
   background-color: #fff;
@@ -51,4 +49,9 @@ export const Tab = styled.li`
     border-bottom: 4px solid rgba(135, 61, 193, 0.5);
   }
 `;
-export const d = styled.div``;
+export const BlogTitle = styled.h2`
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+`;
