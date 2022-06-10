@@ -30,14 +30,14 @@ export const ImageNFT = styled.img`
 
 export const FirstCollum = styled.div`
   display: flex;
-  width: 30%;
+  width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
 `;
 
 export const SecondCollum = styled.div`
   display: flex;
-  width: 66%;
+  width: 36%;
   margin-left: 4%;
   flex-wrap: wrap;
   flex-direction: column;
@@ -97,14 +97,13 @@ export const TextPrice = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: #232428;
-  margin-top: 80px;
 `;
 
 export const PriceRow = styled.div`
   width: 100%;
   display: flex;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 15px;
 `;
 
 export const EthSelect = styled.div`
@@ -185,7 +184,7 @@ export const TextOffer = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: #232428;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 8px;
 `;
 
@@ -260,7 +259,7 @@ export const UNDPrice = styled.span`
   text-align: center;
   color: #873dc1;
   margin-left: auto;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const CheckboxInput = styled.input`
@@ -354,7 +353,8 @@ export const DollarPrice = styled.span`
 
 export const AgreeRow = styled.div`
   width: 100%;
-  display: block;
+  display: flex;
+  justify-content: center;
 `;
 
 export const PayRow = styled.div`
@@ -465,5 +465,76 @@ export const ButtonMakeOffer = styled.button`
 
 export const AgreeRowButton = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const TextDay = styled.div`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7c7c7c;
+  margin-top: 6px;
+`;
+
+export const PriceContainer = styled.div`
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  margin-top: 13px;
+`;
+
+export const InputDay = styled.input`
+  background: #ffffff;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+  border-radius: 10px;
+  width: 120px;
+  height: 36px;
+  margin-left: 20px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  outline: none;
+  color: #7c7c7c;
+  border: none;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
+  }
+`;
+
+export const EthPrice = styled.span`
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #5d3f92;
+  &::before {
+    content: url(${eth});
+    margin-right: 5px;
+  }
+`;
+
+export const NFTInfoContainer = styled.div`
+  display: flex;
+  width: 400px;
+  height: 400px;
+  background: #FBF5FF;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &.disable {
+    background: #C4C4C4;
+  }
+`;
+
+export const CheckBoxCenter = styled.div`
   display: flex;
 `;

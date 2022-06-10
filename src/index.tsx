@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import { MoralisProvider } from "react-moralis";
 
 import App from "./App";
 import { Footer, ScrollToTop } from "./components";
@@ -21,7 +22,12 @@ ReactDOM.render(
         <ScrollToTop />
         <GlobalStyle />
         <Web3ReactProvider getLibrary={getLibrary}>
-          <App />
+          <MoralisProvider
+            serverUrl="https://fo9angbkcmfo.usemoralis.com:2053/server"
+            appId="1x5Ujn58bCQo8HyIRbkJBpSeZX3lSfWIuh82Axd9"
+          >
+            <App />
+          </MoralisProvider>
         </Web3ReactProvider>
         <Footer />
       </Router>

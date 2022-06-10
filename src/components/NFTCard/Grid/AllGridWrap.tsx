@@ -7,20 +7,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 //import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
 import { useFilter } from "../../../store";
-import { canRentNFTFunction } from "../../../utils/canRentNFT";
 import Context from "../../../utils/Context";
-// import { getListing } from "../../../utils/getListing";
-// import { getListingsLastIndex } from "../../../utils/getListingsLastIndex";
-import { getStaking } from "../../../utils/getStaking";
-import { getStakingsLastIndex } from "../../../utils/getStakingsLastIndex";
-// import { isBuyableFunction } from "../../../utils/isBuyable";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
 import { createClient } from "urql";
-/* interface CardListProps {
-  newFilter?: boolean;
-  priceFilter?: { min: number; max: number };
-} */
 
 interface CommonProps {
   id: number;
@@ -33,6 +23,7 @@ export interface ItemsProps extends CommonProps {
 }
 export interface StakingsProps extends CommonProps {
   premiumInNum: number;
+  colloteralWei: number;
 }
 
 interface CommonListProps extends CommonProps {
@@ -54,15 +45,12 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   const [list, setList] = useState<ItemsProps[]>([]);
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>([]);
-  // const [filteredList, setFilteredList] = useState<ItemsProps[]>();
+
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage, setItemsPerPage] = useState(9);
-  // const [showList, setShowList] = useState('NFT to buy');
+
   const [commonList, setCommonList] = useState<CommonListProps[]>();
 
-  console.log(connector);
   //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -75,7 +63,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
-        const id = nft.tokenId;
+        const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
@@ -94,32 +82,22 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
       return;
     }
 
-    const lastIndex = await getStakingsLastIndex(connector);
-    if (!lastIndex) return;
+    const tokens = await fetchStakingData();
 
-    for (let i = 0; i < lastIndex?.toNumber(); i++) {
-      const CardProps = await getStaking(i, connector);
+    tokens.stakingListings.map((nft: any) => {
+      if (nft.stakingStatus == "ACTIVE") {
+        const price = nft.premiumWei;
+        const id = nft.id;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        const colloteralWei = nft.colloteralWei;
 
-      let canRentNFT;
-      if (CardProps?.tx.tokenId._hex !== "0x00") {
-        canRentNFT = await canRentNFTFunction(i, connector);
-      }
+        stakings.push({ id, name, URI, premiumInNum, colloteralWei });
 
-      if (!CardProps) {
-        continue;
-      }
-
-      const { premium, tokenId } = CardProps.tx;
-      const { name, URI } = CardProps;
-      const premiumInNum = Number(ethers.utils.formatUnits(premium, 18));
-      const id: number = tokenId.toNumber();
-
-      if (canRentNFT) {
-        stakings.push({ premiumInNum, id, name, URI });
         setAmountOfNFTs(amountOfNFTs + 1);
       }
-    }
-
+    });
     return stakings;
   };
 
@@ -132,11 +110,11 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   async function getStakingsData() {
     const response = await getStakings();
+
     if (response) {
       setStakingsList(response);
     }
   }
-
   useEffect(() => {
     if (!connector) {
       return console.log("loading");
@@ -146,6 +124,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     console.log("useEf");
     getListingsData();
     getStakingsData();
+    console.log("use efff");
   }, [connector]);
 
   const priceSort = async () => {
@@ -208,9 +187,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
         setCommonList(common);
       }
     }
-    //console.log("List", list);
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -228,7 +205,7 @@ const APIURL =
 
 const tokensQuery = `
     query   {
-      listings(first: 5) {
+      listings{
         id
         token
         seller
@@ -241,14 +218,36 @@ const tokensQuery = `
       }
     }  
 `;
+
+const tokensStakingQuery = `
+ query  {
+  stakingListings{
+    id
+    seller
+    token
+    tokenId
+    tokenURI
+    stakingStatus
+    tokenName
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+  }
+}
+ `;
+
 const client = createClient({
   url: APIURL,
 });
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log(data.data.listings);
   return data.data.listings;
 }
-
+async function fetchStakingData() {
+  const data = await client.query(tokensStakingQuery).toPromise();
+  return data.data;
+}
 export default AllGridWrap;

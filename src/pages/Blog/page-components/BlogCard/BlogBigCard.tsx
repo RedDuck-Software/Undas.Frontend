@@ -1,34 +1,43 @@
 import React from "react";
 
-import { BigCardWrap, 
-    ImageWrap, 
-    BigImage, 
-    Name, 
-    BigCardBody, 
-    BigCardTitle,
-    BigCardText,
-    BigCardTextWrap,
-    CardLink
- } from "./BlogCard.styles";
+import {
+  BigCardWrap,
+  BigImageWrap,
+  BigImage,
+  BigCardBody,
+  BigCardTitle,
+  BigCardText,
+  BigCardTextWrap,
+  CardLink,
+  CardFooter,
+  Date,
+} from "./BlogCard.styles";
 
-import{
-    BigImg
-} from "../../imports";
+import { BigImg } from "../../imports";
 
 const BlogBigCard: React.FC = () => {
-  return <BigCardWrap>
-      <ImageWrap>
+  return (
+    <BigCardWrap>
+      <BigImageWrap>
         <BigImage src={BigImg} alt="card-image" />
-      </ImageWrap>
+      </BigImageWrap>
       <BigCardBody>
-        <Name>NEWS</Name>
-        <BigCardTitle>Smart Apps: Do Even More with Your Website!</BigCardTitle>
+        <BigCardTitle>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</BigCardTitle>
         <BigCardTextWrap>
-            <BigCardText>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi iure dicta, deserunt at unde aperiam, ipsa fuga quis minus eveniet sapiente, esse perferendis facilis. Adipisci laborum vel veritatis fugiat doloribus?</BigCardText>
+          <BigCardText>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi iure
+            dicta, deserunt at unde aperiam, ipsa fuga quis minus eveniet
+            sapiente, esse perferendis facilis. Adipisci laborum vel veritatis
+            fugiat doloribus...
+          </BigCardText>
         </BigCardTextWrap>
-        <CardLink href="#">Learn more...</CardLink>
+        <CardFooter>
+          <Date>06.06.2022</Date>
+          <CardLink href="#">See more...</CardLink>
+        </CardFooter>
       </BigCardBody>
-  </BigCardWrap>;
+    </BigCardWrap>
+  );
 };
 
 export default BlogBigCard;

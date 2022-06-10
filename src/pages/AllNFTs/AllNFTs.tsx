@@ -13,7 +13,6 @@ import {
   FilterMenu,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
-
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import { ViewMode } from "../../types/viewMode";

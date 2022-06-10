@@ -1,14 +1,15 @@
 import {
   combineReducers,
-  configureStore,
-  ThunkAction,
-  Action,
   applyMiddleware,
   createStore,
 } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import { levelReducer } from './reducers/createNFT/levelReducer';
+import { propertyReducer } from './reducers/createNFT/propertyReducer';
+import { statReducer } from './reducers/createNFT/statReducer';
+
 
 import { filterReducer } from './reducers/filterReducer';
 import { modalReducer } from './reducers/modalReducer';
@@ -24,6 +25,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
   filter: filterReducer,
   modal: modalReducer,
+  levels: levelReducer,
+  properties: propertyReducer,
+  stats: statReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -49,8 +53,38 @@ export const useModal = (state: RootState) => {
 };
 
 export const useToken = (state: RootState) => {
+    
   return state.modal.tokenId;
 };
+
+export const usePrice = (state: RootState) => {
+    
+  return state.modal.priceInNum;
+};
+export const useName = (state: RootState) => {
+    
+  return state.modal.name;
+};
+export const useUri = (state: RootState) => {
+    
+  return state.modal.tokenURI;
+};
+export const useColloteral = (state: RootState) => {
+    
+  return state.modal.colloteral;
+};
+export const usePremium = (state: RootState) => {
+    
+  return state.modal.premium;
+};
+// export const useColloteral = (state: RootState) => {
+    
+//   return state.modal;
+// };
+// export const usePremium = (state: RootState) => {
+    
+//   return state.modal.;
+// };
 /*
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,

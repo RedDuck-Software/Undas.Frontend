@@ -12,7 +12,6 @@ import {
 import { PropertiesIco } from "../../imports";
 import PropertiesModal from "../SettingsModal/PropertiesModal";
 import { Property } from "../../types";
-
 interface PropertiesProps {
   propertyList: Property[];
   setPropertyList: Dispatch<SetStateAction<Property[]>>;
@@ -31,10 +30,7 @@ const Properties: React.FC<PropertiesProps> = ({
         <ModalBlockDescript>
           Textual traits that show up as rectangles
         </ModalBlockDescript>
-        <PropertiesModal
-          propertyList={propertyList}
-          setPropertyList={setPropertyList}
-        />
+        <PropertiesModal setPropertyList={setPropertyList} />
       </ModalBlock>
       <WithPropertiesBlock>
         <PropertyList propertyList={propertyList} />
@@ -44,4 +40,3 @@ const Properties: React.FC<PropertiesProps> = ({
 };
 
 export default Properties;
- 

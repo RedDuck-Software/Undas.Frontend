@@ -52,6 +52,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
+    console.log(itemId);
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -76,12 +77,12 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       ).wait();
     }
 
-    const tx = await MarketplaceContract.rentNFT(itemId, {
-      value: ethers.utils.parseEther((premium + collateral).toString()),
-    });
+    // const tx = await MarketplaceContract.rentNFT(itemId, {
+    //   value: ethers.utils.parseEther((premium + collateral).toString()),
+    // });
 
-    await tx.wait();
-
+    // await tx.wait();
+    console.log(MarketplaceContract);
     setPaymentsAmount(paymentsAmount + 1);
     setIsRented(true);
     setShowRentInfo(true);
@@ -92,17 +93,18 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
-    const signer = provider.getSigner(0);
+    // const signer = provider.getSigner(0);
+    console.log(provider);
+    console.log(itemId);
+    // const MarketplaceContract = Marketplace__factory.connect(
+    //   MARKETPLACE_ADDRESS,
+    //   signer,
+    // );
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
-
-    const tx = await MarketplaceContract.payPremium(itemId, {
-      value: ethers.utils.parseEther(premium.toString()),
-    });
-    await tx.wait();
+    // const tx = await MarketplaceContract.payPremium(itemId, {
+    //   value: ethers.utils.parseEther(premium.toString()),
+    // });
+    // await tx.wait();
 
     setPaymentsAmount(paymentsAmount + 1);
   };

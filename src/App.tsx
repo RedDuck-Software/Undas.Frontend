@@ -36,6 +36,9 @@ import {
   CreatorCardPage,
   OfferSale,
   OfferRent,
+  Rent,
+  Buy,
+  Sale,
 } from "./pages";
 import ActivityPage from "./pages/Activity/ActivityPage";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
@@ -126,6 +129,9 @@ const App: React.FC = () => {
           <Route path="/creator-card" element={<CreatorCardPage />} />
           <Route path="/offer-sale" element={<OfferSale />} />
           <Route path="/offer-rent" element={<OfferRent />} />
+          <Route path="/rent" element={<Rent />} />
+          <Route path="/buy" element={<Buy />} />
+          <Route path="/sale" element={<Sale />} />
         </Routes>
       </Context.Provider>
     </MoralisProvider>

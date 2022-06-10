@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
-import { BlogWrap, 
-  Text, 
-  TabsMenuWrap,
-  TabsMenu, 
-  Tab } from "./Blog.styles";
-  
+import { BlogWrap, Text, TabsMenuWrap, TabsMenu, Tab } from "./Blog.styles";
+
 import MainBlog from "./page-components/MainBlog/MainBlog";
 import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
 import BusinessTips from "./page-components/BusinessTips/BusinessTips";
@@ -71,11 +67,11 @@ const Blog: React.FC = () => {
           </Container>
         </TabsMenuWrap>
         <Container>
-        {tab === "main" && <MainBlog />}
-        {tab === "website-tips" && <WebsiteTips />}
-        {tab === "business-tips" && <BusinessTips />}
-        {tab === "inspiration" && <Inspiration />}
-        {tab === "news" && <News />}
+          {tab === "main" && <MainBlog />}
+          {tab === "website-tips" && <WebsiteTips />}
+          {tab === "business-tips" && <BusinessTips />}
+          {tab === "inspiration" && <Inspiration />}
+          {tab === "news" && <News />}
         </Container>
       </BlogWrap>
     </Background>

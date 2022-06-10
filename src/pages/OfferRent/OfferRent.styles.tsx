@@ -1,52 +1,26 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { eth, offerTime, back } from "./imports";
+import { NFTWrap } from "../HomePage/page-components/NFTCard/NFTCard.styles";
+import { eth, offerTime } from "./imports";
 
-export const Back = styled.div`
-  width: 100%;
-  height: 50px;
-  background: #fbf5ff;
-  box-shadow: inset 0px 0px 2px #7c7c7c;
-`;
-
-export const BackText = styled.div`
-  width: 100%;
-  max-width: 80rem;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #873dc1;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 14px 3rem;
-
-  &::before {
-    content: url(${back});
-    vertical-align: middle;
-    padding-right: 12px;
+export const PageWrapper = styled.div`
+  padding: 40px 0 120px;
+  @media (max-width: 992px) {
+    padding: 30px 0 80px;
+  }
+  @media (max-width: 768px) {
+    padding: 20px 0 60px;
+  }
+  @media (max-width: 576px) {
+    padding-bottom: 30px;
   }
 `;
-
-export const TitleText = styled.div`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  text-align: center;
-  color: #232428;
-  margin-top: 40px;
-  margin-bottom: 40px;
-`;
-
 export const TabsMenu = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   margin-bottom: 40px;
 `;
-
 export const Tab = styled.li`
   text-decoration: none;
   display: flex;
@@ -72,7 +46,6 @@ export const Tab = styled.li`
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   }
 `;
-
 export const TabCastom = styled.li`
   text-decoration: none;
   display: flex;
@@ -98,41 +71,27 @@ export const TabCastom = styled.li`
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   }
 `;
-
 export const OfferContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  margin-top: 20px;
 `;
-
-export const CollectionName = styled.div`
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  color: #232428;
-`;
-
 export const ImageVerify = styled.img`
   margin-left: 10px;
 `;
-
 export const ImageUND = styled.img`
   margin-left: 15px;
 `;
-
 export const ImageNFT = styled.img`
   margin-top: 30px;
 `;
-
 export const FirstCollum = styled.div`
   display: flex;
   width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
 `;
-
 export const SecondCollum = styled.div`
   display: flex;
   width: 36%;
@@ -140,7 +99,6 @@ export const SecondCollum = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 `;
-
 export const TextNameNFT = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -149,20 +107,17 @@ export const TextNameNFT = styled.div`
   line-height: 24px;
   color: #232428;
 `;
-
 export const ImageUNDItem = styled.img`
   margin-left: 10px;
   height: 17px;
   width: 27px;
   margin-top: 4px;
 `;
-
 export const ImageVerifyItem = styled.img`
   margin-left: 10px;
   height: 16px;
   margin-top: 4px;
 `;
-
 export const NameRow = styled.div`
   width: 100%;
   display: flex;
@@ -177,7 +132,6 @@ export const NameRow = styled.div`
     margin-top: 20px;
   }
 `;
-
 export const TextCreator = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -187,7 +141,6 @@ export const TextCreator = styled.div`
   color: #7c7c7c;
   margin-top: 10px;
 `;
-
 export const CreatorName = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -197,7 +150,6 @@ export const CreatorName = styled.div`
   color: #873dc1;
   margin-top: 10px;
 `;
-
 export const TextPrice = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -209,14 +161,12 @@ export const TextPrice = styled.div`
     margin-top: 20px;
   }
 `;
-
 export const PriceRow = styled.div`
   width: 100%;
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
 `;
-
 export const EthSelect = styled.div`
   width: 30%;
   background: #fbf5ff;
@@ -226,7 +176,6 @@ export const EthSelect = styled.div`
   height: 36px;
   padding-top: 5px;
 `;
-
 export const EthText = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -240,13 +189,11 @@ export const EthText = styled.span`
     margin-right: 10px;
   }
 `;
-
 export const ImageDown = styled.img`
   float: right;
   padding-right: 20px;
   padding-top: 9px;
 `;
-
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
@@ -255,13 +202,11 @@ export const AmmountInput = styled.input`
   border-width: 0px;
   border: none;
   outline: none;
-
   &:focus {
     box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
     border-color: rgb(135 61 193);
   }
 `;
-
 export const CostSelect = styled.div`
   width: 20%;
   background: #ffffff;
@@ -271,10 +216,7 @@ export const CostSelect = styled.div`
   height: 36px;
   padding-top: 5px;
 `;
-
 export const DollarText = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -287,7 +229,6 @@ export const DollarText = styled.span`
     margin-right: 10px;
   }
 `;
-
 export const TextOffer = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -297,7 +238,6 @@ export const TextOffer = styled.div`
   color: #232428;
   margin-bottom: 8px;
 `;
-
 export const DaySelect = styled.div`
   width: 40%;
   background: #fbf5ff;
@@ -314,13 +254,11 @@ export const DaySelect = styled.div`
   padding-left: 20px;
   padding-top: 9px;
 `;
-
 export const ImageDownOffer = styled.img`
   float: right;
   padding-right: 20px;
   padding-top: 7px;
 `;
-
 export const TimeSelect = styled.div`
   width: 60%;
   background: #ffffff;
@@ -330,7 +268,6 @@ export const TimeSelect = styled.div`
   height: 36px;
   padding-top: 5px;
 `;
-
 export const TextPmAm = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -343,7 +280,6 @@ export const TextPmAm = styled.span`
   padding-top: 4px;
   float: right;
 `;
-
 export const TextTime = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -359,7 +295,6 @@ export const TextTime = styled.span`
     padding-right: 10px;
   }
 `;
-
 export const UNDPrice = styled.span`
   font-family: "Jost";
   font-style: normal;
@@ -371,7 +306,6 @@ export const UNDPrice = styled.span`
   margin-left: auto;
   margin-top: 6px;
 `;
-
 export const CheckboxInput = styled.input`
   margin-right: 5px;
   margin-top: 8px;
@@ -419,7 +353,6 @@ export const CheckboxInput = styled.input`
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
 `;
-
 export const CheckboxLabel = styled.label`
   width: 100%;
   font-family: "Montserrat";
@@ -433,7 +366,6 @@ export const CheckboxLabel = styled.label`
     cursor: pointer;
   }
 `;
-
 export const UNDLabel = styled.span`
   font-family: "Jost";
   font-style: normal;
@@ -442,7 +374,6 @@ export const UNDLabel = styled.span`
   line-height: 23px;
   color: #873dc1;
 `;
-
 export const ImageInfo = styled.img`
   margin-left: 10px;
   padding-bottom: 10px;
@@ -450,7 +381,6 @@ export const ImageInfo = styled.img`
     margin-top: 6px;
   }
 `;
-
 export const DollarPrice = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -468,32 +398,27 @@ export const DollarPrice = styled.span`
     margin-top: 0px;
   }
 `;
-
-export const AgreeRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const PayRow = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 0.1px solid #7c7c7c;
+  border-bottom: 1px solid #e5e5e5;
   padding-bottom: 20px;
 `;
-
-export const AgreementLink = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
+export const AgreementLink = styled(Link)`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #873dc1;
+  text-decoration: none;
+  &:hover {
+    color: #873dc1;
+    text-decoration: underline;
+  }
 `;
 
 export const CheckboxLabelAgreement = styled.label`
-  width: 100%;
+  margin: 0 auto;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -556,38 +481,6 @@ export const CheckboxInputAgreement = styled.input`
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
 `;
-
-export const ButtonMakeOffer = styled.button`
-  width: 350px;
-  height: 36px;
-  background: #873dc1;
-  border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #ffffff;
-  border: none;
-  outline: none;
-  margin-top: 40px;
-  margin-bottom: 120px;
-  &:hover {
-    background: #ffffff;
-    color: #873dc1;
-    text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
-    cursor: pointer;
-    border: 1px solid #873dc1;
-  }
-`;
-
-export const AgreeRowButton = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const InputDay = styled.input`
   background: #ffffff;
   box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
@@ -605,7 +498,7 @@ export const InputDay = styled.input`
   color: #7c7c7c;
   border: none;
   &:focus {
-    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
   }
 `;
 
@@ -640,9 +533,6 @@ export const EthPrice = styled.span`
 `;
 
 export const CheckboxLabelCollateral = styled.label`
-  width: 100%;
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -703,26 +593,22 @@ export const CheckboxInputCollateral = styled.input`
 `;
 
 export const ContainerCheckboxCollateral = styled.div`
-  display: flex;
-  margin-left: auto;
+  text-align: center;
 `;
 
 export const NFTInfoContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
-  background: #FBF5FF;
+  background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
-  &.disable {
-    background: #C4C4C4;
-  }
 `;
 
 export const SelectedNFT = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -736,7 +622,7 @@ export const SelectedNFT = styled.div`
 export const SelectedNFTCardBox = styled.div`
   display: flex;
   gap: 30px;
-  overflow-x: scroll;
+  overflow-x: auto;
 `;
 
 export const ImgDelete = styled.img`
@@ -746,12 +632,37 @@ export const ImgDelete = styled.img`
   right: 0;
 `;
 
-export const AddNFT = styled.img`
-  height: 50px;
-  position: absolute;
-  top: 175px;
+export const AddNFTContainer = styled(NFTInfoContainer)`
+  padding: 65px 40px 15px;
 `;
-
-export const CheckBoxCenter = styled.div`
-  display: flex;
+export const AddNFTCard = styled(NFTWrap)`
+  background-color: #c4c4c4;
+  padding: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+`;
+export const AddNFTButton = styled.button`
+  background-color: #c4c4c4;
+  border: none;
+  outline: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &:hover .add-btn {
+    box-shadow: 0px 0px 5px #7c7c7c;
+  }
+`;
+export const AddNFT = styled.div`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  color: #7c7c7c;
+  font-size: 50px;
+  line-height: 50px;
+  transition: all 0.3s;
 `;

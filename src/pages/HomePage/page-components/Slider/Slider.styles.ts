@@ -102,8 +102,9 @@ export const ExploreButton = styled.button`
   transition: all 0.3s linear;
   border: 1px solid #873dc1;
   &:hover {
-    color: #873dc1;
-    background-color: #ffffff;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+    font-size: 16px;
   }
 `;
 export const CreateButton = styled.button`
@@ -123,8 +124,10 @@ export const CreateButton = styled.button`
   margin-top: 15px;
   transition: all 0.3s linear;
   &:hover {
-    color: #ffffff;
-    background-color: #873dc1;
+    box-shadow: 0 0 6px #000;
+    background-color: #fbf5ff;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+    font-size: 16px;
   }
 `;
 export const CollectionDiv = styled.div`

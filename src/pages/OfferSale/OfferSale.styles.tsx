@@ -35,7 +35,7 @@ export const TitleText = styled.div`
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
-  text-align: center;
+  text-align: left;
   color: #232428;
   margin-top: 40px;
   margin-bottom: 40px;

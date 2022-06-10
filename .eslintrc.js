@@ -34,8 +34,7 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
-    "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "react/prop-types": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "warn",
     "react/display-name": "off",
@@ -43,6 +42,6 @@ module.exports = {
   settings: {
     react: {
       version: "detect",
-    },
+    },  
   },
 };

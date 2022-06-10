@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.div<{
+  maxWidth?: string;
+}>`
   width: 100%;
-  max-width: 255px;
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "255px")};
 
   position: relative;
   display: flex;
@@ -11,7 +13,10 @@ export const SelectWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const SelectedItemWrapper = styled.div<{ isOpen?: boolean }>`
+export const SelectedItemWrapper = styled.div<{
+  isOpen?: boolean;
+  padding?: string;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +32,7 @@ export const SelectedItemWrapper = styled.div<{ isOpen?: boolean }>`
     isOpen,
   }) => (isOpen ? 0 : "10px")};
 
-  padding: 10px 20px;
+  padding: ${({ padding }) => (padding ? padding : "10px 20px")};
 
   color: #232428;
   font-size: 18px;
