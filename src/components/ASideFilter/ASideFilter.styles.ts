@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
+import { ReactComponent as SearchIco } from "../../icons/search.svg";
+
 export const ElementText = styled.span`
   margin-left: 10px;
   color: #7c7c7c;
   transition: all ease-in-out 0.15s;
 `;
 
-export const HolderElement = styled.li`
+export const HolderElement = styled.li<{ isActive?: boolean }>`
   position: relative;
   z-index: 1;
   width: 255px;
@@ -15,6 +17,8 @@ export const HolderElement = styled.li`
   display: flex;
   align-items: center;
   transition: all ease-in-out 0.15s;
+  border-radius: ${({ isActive }) =>
+    isActive ? "0 10px 0 0" : "0 10px 10px 0"};
   svg {
     path {
       transition: all ease-in-out 0.15s;
@@ -29,6 +33,14 @@ export const HolderElement = styled.li`
       fill: #5d3f92;
     }
   }
+  svg path {
+    fill: ${({ isActive }) => isActive && "#5d3f92"};
+  }
+
+  ${ElementText} {
+    color: ${({ isActive }) => isActive && "#232428"};
+  }
+
   &.active {
     box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
   }
@@ -68,7 +80,7 @@ export const Holder = styled.ul<IHolder>`
   list-style: none;
   background: #ffffff;
   box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
-  border-radius: 0px 10px 10px 0px;
+  //border-radius: 0px 10px 10px 0px;
   overflow: hidden;
 `;
 
@@ -100,11 +112,20 @@ export const AccordionArrow = styled(Arrow)`
     margin-top: 4px;
     transform: rotate(45deg);
   }
+  &.active-category {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
+  &.active-chains {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
   ${Arrow}
 `;
 
 interface IAccordionMenu {
   mh?: string;
+  backgroundColor?: string;
 }
 
 export const AccordionMenu = styled.ul<IAccordionMenu>`
@@ -113,11 +134,18 @@ export const AccordionMenu = styled.ul<IAccordionMenu>`
   transition: all ease-in-out 0.25s;
   overflow: hidden;
   max-height: 0;
+  background-color: ${({ backgroundColor }) => backgroundColor};
   &.active-status {
     max-height: ${(props) => props.mh || "146px"};
   }
   &.active-price {
     max-height: ${(props) => props.mh || "146px"};
+  }
+  &.active-category {
+    max-height: ${({ mh }) => mh || "146px"};
+  }
+  &.active-chains {
+    max-height: ${({ mh }) => mh || "146px"};
   }
 `;
 
@@ -247,4 +275,180 @@ export const ApplyBtn = styled.button`
   line-height: 17px;
   color: #873dc1;
   cursor: pointer;
+`;
+
+export const SearchInputWrapper = styled.div<{ maxWidth?: string }>`
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  max-width: ${({ maxWidth }) => maxWidth || "410px"};
+  width: 100%;
+  height: 36px;
+  background-color: #fff;
+  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  border: none;
+  @media (max-width: 1200px) {
+    order: 1;
+    flex: 0 0 100%;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+`;
+
+export const SearchInput = styled.input`
+  font-size: 18px;
+  line-height: 22px;
+  color: #7c7c7c;
+  border: transparent;
+  background: transparent;
+  padding-right: 0.5rem;
+  outline: none;
+  width: 100%;
+`;
+
+export const SearchInputIco = styled(SearchIco)`
+  margin-right: 10px;
+`;
+
+export const FilterCollectionItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 15px;
+  max-width: 255px;
+`;
+
+export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
+  margin-bottom: ${({ mb }) => (mb ? mb : "12px")};
+`;
+
+export const CheckboxInput = styled.input<{ mr?: string }>`
+  &.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  &.custom-checkbox + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    position: relative;
+  }
+  &.custom-checkbox + label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #5d3f92;
+    border-radius: 0.25em;
+    margin-right: ${({ mr }) => (mr ? mr : "0.5rem")};
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    background-color: #ffffff;
+  }
+  &.custom-checkbox:checked + label::before {
+    background-color: #ffffff;
+  }
+  &.custom-checkbox:checked + label::after {
+    content: "";
+    width: 6px;
+    height: 8px;
+    border-bottom: 1px solid #5d3f92;
+    border-right: 1px solid #5d3f92;
+    transform: skew(-10deg) rotate(45deg);
+    position: absolute;
+    top: 3px;
+    left: 5px;
+  }
+
+  &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
+    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+  }
+`;
+
+export const CheckboxLabel = styled.label`
+  display: -webkit-inline-flex;
+  &:hover {
+    text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
+  }
+`;
+
+export const FilterCollectionItemTitle = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  text-align: start;
+  margin-right: 45px;
+`;
+
+export const CollectionItemTitleIcon = styled.img`
+  margin-right: 5px;
+`;
+
+export const CollectionItemTitleName = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+export const CollectiomItemTitleVol = styled.span`
+  color: #7c7c7c;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 5px;
+`;
+
+export const CollectionItemVerifyWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: auto;
+`;
+
+export const CollectionItemVerify = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const CollectionItemVerifyIcon = styled.img`
+  margin-right: 5px;
+`;
+
+export const CollectionItemVerifyText = styled.span`
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  color: #873dc1;
+`;
+
+export const CollectionItemVerifyFloor = styled(CollectiomItemTitleVol)`
+  margin-top: 10px;
+`;
+
+export const FilterChainItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin: 20px 15px;
+`;
+
+export const ChainItemTitle = styled.div`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #232428;
+`;
+
+export const ChainItemIcon = styled.img`
+  margin-right: 10px;
 `;
