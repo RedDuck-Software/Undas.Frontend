@@ -83,8 +83,15 @@ import { getStaking } from "../../utils/getStaking";
 import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
-import {useSelector} from "react-redux";
-import { useName, usePrice, useToken, useUri,useColloteral,usePremium } from "../../store";
+import { useSelector } from "react-redux";
+import {
+  useName,
+  usePrice,
+  useToken,
+  useUri,
+  useColloteral,
+  usePremium,
+} from "../../store";
 
 const NFTPage: React.FC = () => {
   const litsingId = useSelector(useToken);
@@ -92,7 +99,7 @@ const NFTPage: React.FC = () => {
   const tokenName = useSelector(useName);
   const tokenUri = useSelector(useUri);
   const Col = useSelector(useColloteral);
-  const Prem =useSelector(usePremium)
+  const Prem = useSelector(usePremium);
   // console.log('col',Col,'prem',Prem)
   const override = css`
     display: block;
@@ -252,7 +259,7 @@ const NFTPage: React.FC = () => {
       {!loading && isOwner && (
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
-          <OwnerSettingsButton>Edit</OwnerSettingsButton>
+            <OwnerSettingsButton>Edit</OwnerSettingsButton>
             {showBuy || showRent ? (
               <>
                 <OwnerSettingsButton isColored={true}>
