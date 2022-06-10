@@ -27,7 +27,7 @@ const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {
         <CardTitle>{titleText}</CardTitle>
         <CardFooter>
           <Date>{date}</Date>
-          <CardLink href="#">See more...</CardLink>
+          <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </CardBody>
     </CardWrap>

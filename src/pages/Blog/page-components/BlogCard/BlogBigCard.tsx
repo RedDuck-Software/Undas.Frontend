@@ -22,7 +22,9 @@ const BlogBigCard: React.FC = () => {
         <BigImage src={BigImg} alt="card-image" />
       </BigImageWrap>
       <BigCardBody>
-        <BigCardTitle>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</BigCardTitle>
+        <BigCardTitle>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit!
+        </BigCardTitle>
         <BigCardTextWrap>
           <BigCardText>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi iure
@@ -33,7 +35,7 @@ const BlogBigCard: React.FC = () => {
         </BigCardTextWrap>
         <CardFooter>
           <Date>06.06.2022</Date>
-          <CardLink href="#">See more...</CardLink>
+          <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </BigCardBody>
     </BigCardWrap>
