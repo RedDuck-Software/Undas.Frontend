@@ -11,6 +11,7 @@ import {
   CardLink,
   CardFooter,
   Date,
+  Inner,
 } from "./BlogCard.styles";
 
 import { BigImg } from "../../imports";
@@ -19,6 +20,7 @@ const BlogBigCard: React.FC = () => {
   return (
     <BigCardWrap>
       <BigImageWrap>
+        <Inner />
         <BigImage src={BigImg} alt="card-image" />
       </BigImageWrap>
       <BigCardBody>
