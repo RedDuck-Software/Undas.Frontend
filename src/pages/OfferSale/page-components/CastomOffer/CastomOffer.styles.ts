@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-import { eth,
-  offerTime,
-} from "../../imports";
+import { eth, offerTime } from "../../imports";
 
 export const OwnerItemText = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -14,7 +12,7 @@ export const OwnerItemText = styled.div`
 `;
 
 export const NFTSelected = styled.div`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -27,13 +25,13 @@ export const NFTInfoContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
-  background: #FBF5FF;
+  background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
   &.disable {
-    background: #C4C4C4;
+    background: #c4c4c4;
   }
 `;
 
@@ -340,9 +338,9 @@ export const UNDPrice = styled.span`
 `;
 
 export const BuyContainer = styled.div`
-border-bottom: 0.1px solid #7c7c7c;
-padding-bottom: 10px;
-margin-bottom: 20px;
+  border-bottom: 0.1px solid #7c7c7c;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const AgreeRow = styled.div`

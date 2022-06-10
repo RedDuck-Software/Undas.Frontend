@@ -114,7 +114,7 @@ const Offer: React.FC = () => {
       <AgreeRowButton>
         <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
       </AgreeRowButton>
-  </OfferContainer>
+    </OfferContainer>
   );
 };
 

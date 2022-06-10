@@ -54,8 +54,6 @@ import {
   ItemAmount,
 } from "../Rent/Rent.styles";
 
-
-
 const Sale: React.FC = () => {
   return (
     <Background>

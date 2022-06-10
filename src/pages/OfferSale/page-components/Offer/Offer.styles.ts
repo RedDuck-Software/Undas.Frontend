@@ -503,7 +503,7 @@ export const InputDay = styled.input`
   color: #7c7c7c;
   border: none;
   &:focus {
-    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
   }
 `;
 
@@ -525,13 +525,13 @@ export const NFTInfoContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
-  background: #FBF5FF;
+  background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
   &.disable {
-    background: #C4C4C4;
+    background: #c4c4c4;
   }
 `;
 
