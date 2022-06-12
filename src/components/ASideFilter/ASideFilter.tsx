@@ -36,6 +36,10 @@ import {
   FilterChainItemWrapper,
   ChainItemIcon,
   ChainItemTitle,
+  FilterCategoryItemWrapper,
+  CategoryItemTitleIcon,
+  FilterCategoryItemTitle,
+  CheckboxInputWrapperCentered,
 } from "./ASideFilter.styles";
 import {
   FilterIco,
@@ -43,6 +47,7 @@ import {
   PriceIco,
   UsdIco,
   EthIco,
+  CategoriesIco,
   CollectionsIco,
   CollectionItemIco,
   VerifyIcon,
@@ -51,7 +56,34 @@ import {
 } from "./imports";
 
 import { filterAction } from "../../store/reducers/filterReducer";
+import { Category } from "../../types/category";
+import { getCategory } from "../../utils/getCategory";
 
+interface CategoryItemProps {
+  label: string;
+  icon: string;
+  setCategory?: any;
+}
+
+const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
+  return (
+    <FilterCategoryItemWrapper>
+      <CheckboxInputWrapperCentered>
+        <CheckboxInput
+          type="checkbox"
+          className="custom-checkbox"
+          id={label}
+          mr="15px"
+        />
+        <CheckboxLabel htmlFor={label} />
+      </CheckboxInputWrapperCentered>
+      <FilterCategoryItemTitle>
+        <CategoryItemTitleIcon src={icon} />
+        {label}
+      </FilterCategoryItemTitle>
+    </FilterCategoryItemWrapper>
+  );
+};
 interface FilterCollectionItemProps {
   collectionIcon?: string;
   collectionName: string;
@@ -69,8 +101,8 @@ const FilterCollectionItem: React.FC<FilterCollectionItemProps> = ({
   const [longName, setLongName] = useState<string>("");
 
   const handleCollectionName = (name: string, verify: boolean) => {
-    if (name.length > 8 && verify === true) {
-      const trunced = collectionName.slice(0, 7) + "...";
+    if (name.length > 9 && verify === true) {
+      const trunced = collectionName.slice(0, 8) + "...";
       setLongName(trunced);
       return;
     }
@@ -84,11 +116,12 @@ const FilterCollectionItem: React.FC<FilterCollectionItemProps> = ({
 
   return (
     <FilterCollectionItemWrapper>
-      <CheckboxInputWrapper>
+      <CheckboxInputWrapper mb="12px">
         <CheckboxInput
           type="checkbox"
           className="custom-checkbox"
           id={collectionName}
+          mr="15px"
         />
         <CheckboxLabel htmlFor={collectionName} />
       </CheckboxInputWrapper>
@@ -148,6 +181,7 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
     status: false,
     price: false,
     category: false,
+    collection: false,
     chain: false,
   });
   const [priceMenu, setPriceMenu] = useState<boolean>(false);
@@ -210,13 +244,11 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
 
   const handleCollectionSearch = (event: any) => {
     const pattern: string = event?.target.value;
-    console.log("pattern: ", pattern);
     const searchResult = collectionList.filter((collection) =>
       collection.collectionName
         .toLowerCase()
         .includes(pattern.toLocaleLowerCase()),
     );
-    console.log("searching result: ", searchResult);
     setFilteredCollectionList(searchResult);
   };
 
@@ -244,48 +276,6 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
           <Arrow />
         </HolderElement>
 
-        <HolderElement
-          onClick={() => {
-            if (!activeMenu.category) {
-              setActiveMenu({ category: true });
-              !active && setActive(true);
-            } else setActiveMenu({ category: false });
-          }}
-          isActive={activeMenu.category}
-        >
-          <CollectionsIco />
-          <ElementText>Collections</ElementText>
-          <AccordionArrow
-            className={(activeMenu.category && "active-category") || ""}
-          />
-        </HolderElement>
-        <AccordionMenu
-          backgroundColor="rgba(251, 245, 255, 0.7)"
-          mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
-          className={(activeMenu.category && "active-category") || ""}
-        >
-          <AccordionElement padd="20px 15px 0 15px">
-            <SearchInputWrapper>
-              <SearchInputIco />
-              <SearchInput
-                placeholder="Search"
-                onChange={handleCollectionSearch}
-              />
-            </SearchInputWrapper>
-          </AccordionElement>
-          <>
-            {filteredCollectionList.map((item: any) => {
-              return (
-                <FilterCollectionItem
-                  key={`${item.collectionName}-${item.collectionIcon}`}
-                  collectionName={item.collectionName}
-                  collectionIcon={item.collectionIcon}
-                  isVerified={item.isVerified}
-                />
-              );
-            })}
-          </>
-        </AccordionMenu>
         {!accountPage && (
           <>
             <HolderElement
@@ -407,6 +397,79 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
             </AccordionMenu>
           </>
         )}
+
+        <HolderElement
+          onClick={() => {
+            if (!activeMenu.category) {
+              setActiveMenu({ category: true });
+              !active && setActive(true);
+            } else setActiveMenu({ category: false });
+          }}
+          isActive={activeMenu.category}
+        >
+          <CategoriesIco />
+          <ElementText>Categories</ElementText>
+          <AccordionArrow
+            className={(activeMenu.category && "active-category") || ""}
+          />
+        </HolderElement>
+        <AccordionMenu
+          backgroundColor="rgba(251, 245, 255, 0.7)"
+          mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
+          className={(activeMenu.category && "active-category") || ""}
+        >
+          <CategoryItem {...getCategory(Category.allNFTs)} />
+          <CategoryItem {...getCategory(Category.new)} />
+          <CategoryItem {...getCategory(Category.artwork)} />
+          <CategoryItem {...getCategory(Category.sport)} />
+          <CategoryItem {...getCategory(Category.photography)} />
+          <CategoryItem {...getCategory(Category.metaverses)} />
+          <CategoryItem {...getCategory(Category.celebrity)} />
+          <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+        </AccordionMenu>
+
+        <HolderElement
+          onClick={() => {
+            if (!activeMenu.collection) {
+              setActiveMenu({ collection: true });
+              !active && setActive(true);
+            } else setActiveMenu({ collection: false });
+          }}
+          isActive={activeMenu.collection}
+        >
+          <CollectionsIco />
+          <ElementText>Collections</ElementText>
+          <AccordionArrow
+            className={(activeMenu.collection && "active-collection") || ""}
+          />
+        </HolderElement>
+        <AccordionMenu
+          backgroundColor="rgba(251, 245, 255, 0.7)"
+          mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
+          className={(activeMenu.collection && "active-collection") || ""}
+        >
+          <AccordionElement padd="20px 15px 0 15px">
+            <SearchInputWrapper>
+              <SearchInputIco />
+              <SearchInput
+                placeholder="Search"
+                onChange={handleCollectionSearch}
+              />
+            </SearchInputWrapper>
+          </AccordionElement>
+          <>
+            {filteredCollectionList.map((item: any) => {
+              return (
+                <FilterCollectionItem
+                  key={`${item.collectionName}-${item.collectionIcon}`}
+                  collectionName={item.collectionName}
+                  collectionIcon={item.collectionIcon}
+                  isVerified={item.isVerified}
+                />
+              );
+            })}
+          </>
+        </AccordionMenu>
 
         <HolderElement
           onClick={() => {

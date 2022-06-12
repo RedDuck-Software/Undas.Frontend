@@ -116,6 +116,10 @@ export const AccordionArrow = styled(Arrow)`
     margin-top: 4px;
     transform: rotate(45deg);
   }
+  &.active-collection {
+    margin-top: 4px;
+    transform: rotate(45deg);
+  }
   &.active-chains {
     margin-top: 4px;
     transform: rotate(45deg);
@@ -142,6 +146,9 @@ export const AccordionMenu = styled.ul<IAccordionMenu>`
     max-height: ${(props) => props.mh || "146px"};
   }
   &.active-category {
+    max-height: ${({ mh }) => mh || "146px"};
+  }
+  &.active-collection {
     max-height: ${({ mh }) => mh || "146px"};
   }
   &.active-chains {
@@ -311,16 +318,15 @@ export const SearchInputIco = styled(SearchIco)`
   margin-right: 10px;
 `;
 
-export const FilterCollectionItemWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin: 15px;
-  max-width: 255px;
-`;
-
 export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
   margin-bottom: ${({ mb }) => (mb ? mb : "12px")};
+`;
+
+export const CheckboxInputWrapperCentered = styled.div<{ mr?: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: ${({ mr }) => (mr ? mr : 0)};
 `;
 
 export const CheckboxInput = styled.input<{ mr?: string }>`
@@ -377,13 +383,44 @@ export const CheckboxLabel = styled.label`
   }
 `;
 
+export const FilterCategoryItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin: 15px;
+`;
+
+export const FilterCategoryItemTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  text-align: start;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+`;
+
+export const CategoryItemTitleIcon = styled.img`
+  margin-right: 10px;
+`;
+
+export const FilterCollectionItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 15px;
+  max-width: 255px;
+`;
+
 export const FilterCollectionItemTitle = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   text-align: start;
-  margin-right: 45px;
+  margin-right: 25px;
 `;
 
 export const CollectionItemTitleIcon = styled.img`

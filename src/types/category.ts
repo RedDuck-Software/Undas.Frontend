@@ -4,11 +4,14 @@ export interface ICategory {
 }
 
 export enum Category {
+    allNFTs,
+    new,
     artwork,
     sport,
     photography,
     metaverses,
     celebrity,
     rwaNFT,
+    rwaNFTLong,
 }
 
