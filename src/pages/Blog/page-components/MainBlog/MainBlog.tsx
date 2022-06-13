@@ -111,25 +111,25 @@ const MainBlog: React.FC = () => {
         titleText="Website Tips"
         descriptText="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt impedit rerum culpa id ea rem dignissimos."
         blogCard={<WebsiteCards />}
-        blogLink="#website-tips"
+        blogLink="/blog/website-tips"
       />
       <MainPageSection
         titleText="Business Tips"
         descriptText=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate repudiandae quidem sit earum amet veritatis, voluptates vel provident tenetur qui itaque nobis omnis! Hic accusantium odit quasi sed quia praesentium?"
         blogCard={<BusinessCards />}
-        blogLink="#business-tips"
+        blogLink="/blog/business-tips"
       />
       <MainPageSection
         titleText="Inspiration"
         descriptText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia cupiditate impedit tempora eos. Quam voluptates recusandae asperiores nesciunt, odit porro atque impedit soluta doloribus!"
         blogCard={<InspirationCards />}
-        blogLink="#inspiration"
+        blogLink="/blog/inspiration"
       />
       <MainPageSection
         titleText="News"
         descriptText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perspiciatis modi fugit pariatur ex nulla ipsam, tempora deserunt excepturi accusamus!"
         blogCard={<NewsCards />}
-        blogLink="#news"
+        blogLink="/blog/news"
       />
     </>
   );

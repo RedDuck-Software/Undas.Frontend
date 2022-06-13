@@ -6,7 +6,6 @@ import { SmImg1, SmImg2, SmImg3 } from "../../imports";
 import BlogBigCard from "../BlogCard/BlogBigCard";
 import BlogCard from "../BlogCard/BlogCard";
 
-
 const BlogMainGrid: React.FC = () => {
   return (
     <Wrap>
