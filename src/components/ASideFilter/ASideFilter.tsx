@@ -84,6 +84,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
     </FilterCategoryItemWrapper>
   );
 };
+
 interface FilterCollectionItemProps {
   collectionIcon?: string;
   collectionName: string;
@@ -398,35 +399,39 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
           </>
         )}
 
-        <HolderElement
-          onClick={() => {
-            if (!activeMenu.category) {
-              setActiveMenu({ category: true });
-              !active && setActive(true);
-            } else setActiveMenu({ category: false });
-          }}
-          isActive={activeMenu.category}
-        >
-          <CategoriesIco />
-          <ElementText>Categories</ElementText>
-          <AccordionArrow
-            className={(activeMenu.category && "active-category") || ""}
-          />
-        </HolderElement>
-        <AccordionMenu
-          backgroundColor="rgba(251, 245, 255, 0.7)"
-          mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
-          className={(activeMenu.category && "active-category") || ""}
-        >
-          <CategoryItem {...getCategory(Category.allNFTs)} />
-          <CategoryItem {...getCategory(Category.new)} />
-          <CategoryItem {...getCategory(Category.artwork)} />
-          <CategoryItem {...getCategory(Category.sport)} />
-          <CategoryItem {...getCategory(Category.photography)} />
-          <CategoryItem {...getCategory(Category.metaverses)} />
-          <CategoryItem {...getCategory(Category.celebrity)} />
-          <CategoryItem {...getCategory(Category.rwaNFTLong)} />
-        </AccordionMenu>
+        {!accountPage && (
+          <>
+            <HolderElement
+              onClick={() => {
+                if (!activeMenu.category) {
+                  setActiveMenu({ category: true });
+                  !active && setActive(true);
+                } else setActiveMenu({ category: false });
+              }}
+              isActive={activeMenu.category}
+            >
+              <CategoriesIco />
+              <ElementText>Categories</ElementText>
+              <AccordionArrow
+                className={(activeMenu.category && "active-category") || ""}
+              />
+            </HolderElement>
+            <AccordionMenu
+              backgroundColor="rgba(251, 245, 255, 0.7)"
+              mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
+              className={(activeMenu.category && "active-category") || ""}
+            >
+              <CategoryItem {...getCategory(Category.allNFTs)} />
+              <CategoryItem {...getCategory(Category.new)} />
+              <CategoryItem {...getCategory(Category.artwork)} />
+              <CategoryItem {...getCategory(Category.sport)} />
+              <CategoryItem {...getCategory(Category.photography)} />
+              <CategoryItem {...getCategory(Category.metaverses)} />
+              <CategoryItem {...getCategory(Category.celebrity)} />
+              <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+            </AccordionMenu>
+          </>
+        )}
 
         <HolderElement
           onClick={() => {
