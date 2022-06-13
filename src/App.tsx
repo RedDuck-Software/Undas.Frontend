@@ -139,10 +139,22 @@ const App: React.FC = () => {
           <Route path="/buy" element={<Buy />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/article" element={<ArticlePage />} />
-          <Route path="/blog/website-tips" element={<BlogThemeWrap blogComponent={<WebsiteTips />} />} />
-          <Route path="/blog/business-tips" element={<BlogThemeWrap blogComponent={<BusinessTips />} />} />
-          <Route path="/blog/inspiration" element={<BlogThemeWrap blogComponent={<Inspiration />} />} />
-          <Route path="/blog/news" element={<BlogThemeWrap blogComponent={<News />} />} />
+          <Route
+            path="/blog/website-tips"
+            element={<BlogThemeWrap blogComponent={<WebsiteTips />} />}
+          />
+          <Route
+            path="/blog/business-tips"
+            element={<BlogThemeWrap blogComponent={<BusinessTips />} />}
+          />
+          <Route
+            path="/blog/inspiration"
+            element={<BlogThemeWrap blogComponent={<Inspiration />} />}
+          />
+          <Route
+            path="/blog/news"
+            element={<BlogThemeWrap blogComponent={<News />} />}
+          />
         </Routes>
       </Context.Provider>
     </MoralisProvider>

@@ -24,5 +24,5 @@ export {
   FilterMobileIco,
   CollectionItemIco,
   VerifyIcon,
-  EthereumIcon
+  EthereumIcon,
 };

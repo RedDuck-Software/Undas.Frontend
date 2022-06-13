@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   PageWrapper,
@@ -41,10 +42,11 @@ import {
   SelectedNFT,
   SelectedNFTCardBox,
   ImgDelete,
-  AddNFT,
   AddNFTCard,
-  AddNFTButton,
   AddNFTContainer,
+  ButtonInfo,
+  OverlayPopUp,
+  FAQLink,
 } from "./OfferRent.styles";
 
 import {
@@ -143,7 +145,6 @@ const OfferRent: React.FC = () => {
             <CheckboxLabelCollateral htmlFor="collateral">
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
-            <ImageInfo src={info} alt="info-image" />
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
@@ -207,7 +208,20 @@ const OfferRent: React.FC = () => {
               </PriceRow>
               <NameRow className="margin-top-30">
                 <TextOffer>Marketplace commission</TextOffer>
-                <ImageInfo src={info} alt="info-image" />
+                <OverlayTrigger
+                  delay={{ show: 250, hide: 3000 }}
+                  placement="top"
+                  overlay={
+                    <OverlayPopUp>
+                      Speech bubble that will fall out when you click on the
+                      information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                    </OverlayPopUp>
+                  }
+                >
+                  <ButtonInfo>
+                    <ImageInfo src={info} alt="info-image" />
+                  </ButtonInfo>
+                </OverlayTrigger>
                 <PriceContainer>
                   <EthPrice>0,035</EthPrice>
                   <DollarPrice>258,25</DollarPrice>
@@ -227,11 +241,25 @@ const OfferRent: React.FC = () => {
                   Pay in {"\u00A0"}
                   <UNDLabel>UND</UNDLabel>
                   {"\u00A0"} with a 50% discount
-                  <ImageInfo
-                    src={info}
-                    alt="info-image"
-                    className="margin-top"
-                  />
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin-top"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
                 </CheckboxLabel>
                 <DollarPrice className="margin-0">258,25</DollarPrice>
               </PayRow>

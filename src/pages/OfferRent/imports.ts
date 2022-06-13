@@ -9,4 +9,15 @@ import verifyImage from "./assets/verify-image.svg";
 import nftImage from "./assets/nft-image.svg";
 import eth from "./assets/eth-image.svg";
 
-export { back, down, offerTime, info, deleteNFT, collectionType, collectionImage, verifyImage, nftImage, eth };
+export {
+  back,
+  down,
+  offerTime,
+  info,
+  deleteNFT,
+  collectionType,
+  collectionImage,
+  verifyImage,
+  nftImage,
+  eth,
+};
