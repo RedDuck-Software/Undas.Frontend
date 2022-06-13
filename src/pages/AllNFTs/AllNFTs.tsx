@@ -13,15 +13,16 @@ import {
   FilterMenu,
   MenuSearchWrap,
   SearchIco,
-  Input
+  Input,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
+
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import { Background } from "../../globalStyles";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
 
 const AllNFTs: React.FC = () => {
   const [results, setResults] = useState<any>();

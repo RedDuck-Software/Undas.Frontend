@@ -135,7 +135,7 @@ export const Filter = styled.ul`
   &.event-active {
     border-radius: 10px 10px 0 0;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;

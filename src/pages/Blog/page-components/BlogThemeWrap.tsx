@@ -1,9 +1,10 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+
 import { Container } from "../../../globalStyles";
 
 interface BlogTheme {
-    blogComponent: ReactNode;
+  blogComponent: ReactNode;
 }
 const Wrap = styled.div`
   padding: 80px 0 120px;
@@ -21,7 +22,7 @@ const Wrap = styled.div`
 const BlogThemeWrap: React.FC<BlogTheme> = ({ blogComponent }) => {
   return (
     <Wrap>
-        <Container>{blogComponent}</Container>
+      <Container>{blogComponent}</Container>
     </Wrap>
   );
 };

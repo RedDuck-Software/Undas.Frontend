@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
-import { ViewOption, ResultsTotal, SettingsBlock } from "../../../AllNFTs/AllNFTs.styles";
+import {
+  ViewOption,
+  ResultsTotal,
+  SettingsBlock,
+} from "../../../AllNFTs/AllNFTs.styles";
 import { EthBlack } from "../../imports";
 
 //Favorite
 
 export const FavouriteSettingsBlock = styled(SettingsBlock)`
- @media (max-width: 768px) {
+  @media (max-width: 768px) {
     flex: 0 0 100%;
   }
 `;

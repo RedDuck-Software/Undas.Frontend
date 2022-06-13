@@ -43,7 +43,6 @@ export const CardWrap = styled.div`
   &:hover ${Inner} {
     opacity: 0.3;
   }
-  
 `;
 export const BigCardWrap = styled(CardWrap)`
   flex-direction: row;

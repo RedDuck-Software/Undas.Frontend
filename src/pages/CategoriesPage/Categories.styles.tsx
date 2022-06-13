@@ -233,10 +233,10 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     margin-bottom: ${(props) => props.margBottomS};
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     margin-bottom: ${(props) => props.margBottomXS};
   }
 `;
