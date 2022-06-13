@@ -1,14 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
 
-import "./NFTModal.css";
-import { collectionImage,
+import { 
+  collectionImage,
   verifyImage,
   nftImage,
  } from "../../imports";
 import {
-  FormButton,
   MakeOfferText,
   ModalNftDiv,
   AddNFTButton,
@@ -46,6 +44,11 @@ import {
   EthPrice,
   DollarPrice,
   Add,
+  ModalHeader,
+  ModalBody,
+  ModalContainer,
+  ModalFooter,
+  FormButtonModal,
 } from "./ModalsNFT.styles";
 
 const ModalsNFT: React.FC = () => {
@@ -67,11 +70,11 @@ const ModalsNFT: React.FC = () => {
       <AddNFTButton onClick={handleShow}>
           <AddNFT className="add-btn">+</AddNFT>
       </AddNFTButton>
-      <Modal className="modal-select-nft" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <ModalContainer show={show} onHide={handleClose}>
+        <ModalHeader closeButton>
           <MakeOfferText>All NFTs</MakeOfferText>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalHeader>
+        <ModalBody>
          <RowFlex>
           <SelectedItem>NFTs Selected 10</SelectedItem>
           <MenuSearchWrap>
@@ -329,16 +332,16 @@ const ModalsNFT: React.FC = () => {
             </NFTCard>
           </NFTSelect>
          </RowFlex>
-        </Modal.Body>
-        <Modal.Footer>
-          <FormButton className="btn-apply" onClick={handleClose}>
+        </ModalBody>
+        <ModalFooter>
+          <FormButtonModal className="btn-apply" onClick={handleClose}>
             Apply
-          </FormButton>
-          <FormButton className="btn-clear" onClick={handleClose}>
+          </FormButtonModal>
+          <FormButtonModal className="btn-clear" onClick={handleClose}>
             Clear all
-          </FormButton>
-        </Modal.Footer>
-      </Modal>
+          </FormButtonModal>
+        </ModalFooter>
+      </ModalContainer>
     </ModalNftDiv>
   );
 };
