@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Wrap } from "./Inspiration.styles";
-
 import { Text, BlogTitle } from "../../Blog.styles";
 import {
   SmImg1,
@@ -76,7 +74,7 @@ const InspirationPosts: BlogPost[] = [
 
 const Inspiration: React.FC = () => {
   return (
-    <Wrap>
+    <>
       <BlogTitle>Inspiration</BlogTitle>
       <Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
@@ -84,7 +82,7 @@ const Inspiration: React.FC = () => {
         nesciunt, odit porro atque impedit soluta doloribus!
       </Text>
       <BlogPageGrid posts={InspirationPosts} />
-    </Wrap>
+    </>
   );
 };
 
