@@ -114,7 +114,7 @@ const AccountPage: React.FC = () => {
                   className={tab === "" ? "active" : ""}
                 >
                   <CreatedIco />
-                  <span>My NFT&apos;s</span>
+                  <span>My NFTs</span>
                   <SmallNumber>12</SmallNumber>
                 </Tab>
                 <Tab

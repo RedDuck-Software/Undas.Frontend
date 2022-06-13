@@ -41,6 +41,9 @@ export const OffersWrapTable = styled.table`
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
+  @media (max-width:576px) {
+    margin: 0;
+  }
 `;
 export const ItemIcon = styled.div`
   width: 50px;
