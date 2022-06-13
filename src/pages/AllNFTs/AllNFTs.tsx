@@ -37,9 +37,9 @@ const AllNFTs: React.FC = () => {
     <Background>
       <AllNFTContainer>
         <ASideFilter />
-        <Wrapper w="100%" marg="0 0 200px 0">
+        <Wrapper w="100%" marg="0 0 120px 0" margBottomS="80px" margBottomXS="40px">
           {/*rm marg after deploy*/}
-          <MenuWrap justifyContent="space-between">
+          <MenuWrap justifyContent="flex-start">
             <SettingsBlock>
               {viewButtonsRender}
               <Filter className={active.price && "price-active"}>

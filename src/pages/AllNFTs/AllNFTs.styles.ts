@@ -20,7 +20,7 @@ export const MenuWrap = styled.div<IMenuWrap>`
   margin: ${(props) => props.marg || "64px 0 20px"};
   flex-wrap: wrap;
   @media (max-width: 576px) {
-    margin-bottom: 0;
+    margin-top: 20px;
   }
 `;
 
@@ -77,6 +77,9 @@ export const SettingsBlock = styled.ul`
   @media (max-width: 768px) {
     flex: 0 0 100%;
   }
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
 `;
 export const ViewOption = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
@@ -117,6 +120,9 @@ export const Filter = styled.ul`
   }
   &.event-active {
     border-radius: 10px 10px 0 0;
+  }
+  @media (max-width:576px) {
+    width: 100%;
   }
 `;
 export const FilterItem = styled.li`
