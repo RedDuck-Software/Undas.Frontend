@@ -43,14 +43,15 @@ import {
   BlogThemeWrap,
 } from "./pages";
 import ActivityPage from "./pages/Activity/ActivityPage";
+import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
+import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
+import News from "./pages/Blog/page-components/News/News";
+import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { ConnectorState } from "./types/ConnectorState";
 import Context from "./utils/Context";
-import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
-import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
-import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
-import News from "./pages/Blog/page-components/News/News";
+
 
 const App: React.FC = () => {
   const web3Current = useWeb3React();

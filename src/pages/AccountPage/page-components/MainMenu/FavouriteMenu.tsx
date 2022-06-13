@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import {
+  FavouriteSettingsBlock,
   FavouriteButton,
   FavouriteSelect,
   FavouriteResultsTotal,
@@ -19,7 +20,6 @@ import {
   MenuSearchWrap,
   MenuWrap,
   SearchIco,
-  SettingsBlock,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
@@ -174,7 +174,7 @@ const FavouriteMenu: React.FC = () => {
   return (
     <FavouriteWrap>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
-        <SettingsBlock>
+        <FavouriteSettingsBlock>
           <FavouriteSelect>
             <FavouriteButton
               className={
@@ -196,7 +196,7 @@ const FavouriteMenu: React.FC = () => {
             </FavouriteButton>
           </FavouriteSelect>
           {favouriteType === FavouriteType.nft && viewButtonsRender}
-        </SettingsBlock>
+        </FavouriteSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
           <Input placeholder="Search" />

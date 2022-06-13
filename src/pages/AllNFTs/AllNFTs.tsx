@@ -11,14 +11,18 @@ import {
   FilterTitle,
   Arrow,
   FilterMenu,
+  MenuSearchWrap,
+  SearchIco,
+  Input,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
+
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import { Background } from "../../globalStyles";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
 
 const AllNFTs: React.FC = () => {
   const [results, setResults] = useState<any>();
@@ -37,7 +41,12 @@ const AllNFTs: React.FC = () => {
     <Background>
       <AllNFTContainer>
         <ASideFilter />
-        <Wrapper w="100%" marg="0 0 200px 0">
+        <Wrapper
+          w="100%"
+          marg="0 0 120px 0"
+          margBottomS="80px"
+          margBottomXS="40px"
+        >
           {/*rm marg after deploy*/}
           <MenuWrap justifyContent="space-between">
             <SettingsBlock>
@@ -99,7 +108,11 @@ const AllNFTs: React.FC = () => {
                 </FilterMenu>
               </Filter>
             </SettingsBlock>
-            <ResultsTotal>{results}</ResultsTotal>
+            <MenuSearchWrap mw="530px" marginLeft="0">
+              <SearchIco />
+              <Input placeholder="Search" />
+            </MenuSearchWrap>
+            <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
           {viewMode === ViewMode.grid ? (
             <AllGridWrap

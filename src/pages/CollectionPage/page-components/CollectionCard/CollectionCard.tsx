@@ -61,7 +61,7 @@ const CollectionCard: React.FC = () => {
         ...
       </DescriptionS>
       <CreatorWrapper>
-        <CollectionName>Borya Borya</CollectionName>
+        <CollectionName>Collection Name</CollectionName>
         <img src={Verified} alt="verified-ico" />
         <Platform>UND</Platform>
       </CreatorWrapper>
