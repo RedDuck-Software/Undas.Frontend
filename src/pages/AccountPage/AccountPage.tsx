@@ -103,10 +103,9 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "favourite" &&
-            tab !== "reward" &&
-            tab !== "referral" &&
-            tab !== "achievements" && <ASideFilter marginTop="140px" />}
+          {tab !== "reward" && tab !== "referral" && tab !== "achievements" && (
+            <ASideFilter marginTop="140px" accountPage />
+          )}
           <Wrapper w="100%" marg="0 0 40px 0">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>

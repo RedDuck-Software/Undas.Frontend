@@ -111,9 +111,7 @@ const CreateNFT: React.FC = () => {
 
   const onSubmit = () => {
     console.log(errors);
-    if (!errors) {
-      mintNFT();
-    }
+    mintNFT();
   };
 
   const fileSizeValidation = (fileList: FileList, inputName: string) => {
