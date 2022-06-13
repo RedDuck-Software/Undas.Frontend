@@ -250,7 +250,7 @@ export const Platform = styled.strong<IPlatform>`
   font-family: "Jost";
   font-weight: 600;
   font-size: ${(props) => props.fs || "12px"};
-  line-height: 17px;
+  line-height: 16px;
   color: ${(props) => props.col || "#CCB7F2"};
 `;
 

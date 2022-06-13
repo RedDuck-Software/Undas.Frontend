@@ -73,7 +73,7 @@ export const SocialWrap = styled.div`
 export const CollectionName = styled.h2`
   font-size: 36px;
   font-weight: 400;
-
+  margin: 0;
   @media (max-width: 1200px) {
     font-size: 18px;
   }
