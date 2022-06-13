@@ -1,0 +1,72 @@
+.modal-select-nft {
+  width: none;
+  margin: 2rem auto;
+  max-width: none;
+}
+
+.modal-dialog {
+  max-width: 730px;
+}
+
+.modal-content {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal-header {
+height: 70px;
+background: #FBF5FF;
+box-shadow: inset 0px 0px 1px #7C7C7C;
+border-radius: 20px 20px 0px 0px;
+}
+
+.btn-close {
+  padding-right: 27px !important;
+}
+
+.btn-apply {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #873DC1;
+}
+
+.btn-apply:hover {
+  color: #FFFFFF;
+  background: #873DC1;
+}
+
+.btn-clear {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #FF2A36;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FF2A36;
+}
+
+.btn-clear:hover {
+  color: #FFFFFF;
+  background: #FF2A36;
+}
+
+.modal-footer {
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
