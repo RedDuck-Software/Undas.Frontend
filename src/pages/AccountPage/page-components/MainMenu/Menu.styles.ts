@@ -99,6 +99,7 @@ export const OffersWrapTable = styled.table`
   position: relative;
   padding-top: 50px;
   margin-top: -40px;
+  background-color: #fff;
   @media (max-width: 992px) {
     max-width: fit-content;
     overflow-x: auto;
@@ -312,6 +313,7 @@ export const PriceTextETH = styled.span`
 export const SelectedFilters = styled.div`
   width: 100%;
   margin-top: 20px;
+  z-index: 2;
 `;
 export const Filter = styled.div`
   width: 180px;
@@ -319,8 +321,6 @@ export const Filter = styled.div`
   background: #fbf5ff;
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
