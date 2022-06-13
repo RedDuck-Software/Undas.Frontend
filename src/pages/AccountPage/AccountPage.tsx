@@ -114,8 +114,8 @@ const AccountPage: React.FC = () => {
                   className={tab === "" ? "active" : ""}
                 >
                   <CreatedIco />
-                  <span>Created</span>
-                  <SmallNumber>2</SmallNumber>
+                  <span>My NFT&apos;s</span>
+                  <SmallNumber>12</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("offers")}

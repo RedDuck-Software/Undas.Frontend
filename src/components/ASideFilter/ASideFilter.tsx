@@ -255,6 +255,7 @@ const ASideFilter: React.FC<{ marginTop?: string; accountPage?: boolean }> = ({
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
+
   return (
     <ASideWrap className={(active && "active") || ""}>
       <Holder marginTop={marginTop}>
