@@ -6,6 +6,9 @@ import { ReactComponent as FilterMobileIco } from "./icons/filter-mobile.svg";
 import { ReactComponent as PriceIco } from "./icons/price-ico.svg";
 import { ReactComponent as StatusIco } from "./icons/status-ico.svg";
 import { ReactComponent as UsdIco } from "./icons/usd.svg";
+import CollectionItemIco from "./icons/collection-item-ico.svg";
+import VerifyIcon from "../../icons/verify-ico.svg";
+import EthereumIcon from "../../icons/ethereum.svg";
 
 import { ReactComponent as EthIco } from "../../icons/eth-logo-nft.svg";
 
@@ -19,4 +22,7 @@ export {
   UsdIco,
   EthIco,
   FilterMobileIco,
+  CollectionItemIco,
+  VerifyIcon,
+  EthereumIcon
 };
