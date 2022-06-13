@@ -49,7 +49,7 @@ const Notifications: React.FC = () => {
           </DescriptionText>
         </FormItemWrapper>
       </ItemsForm>
-      <Button>Save</Button>
+      <Button className="left-btn">Save</Button>
     </NotificationWrap>
   );
 };

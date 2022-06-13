@@ -4,12 +4,10 @@ import styled from "styled-components";
 
 export const FaqTabsWrapper = styled.div`
   min-height: 550px;
-
   @media (max-width: 992px) {
     display: none;
   }
 `;
-
 export const TabButton = styled(Nav.Link)`
   background: #ffffff !important;
   box-shadow: 3px 3px 5px rgba(124, 124, 124, 0.25),
@@ -32,11 +30,8 @@ export const TabButton = styled(Nav.Link)`
     text-shadow: 0 0 1px rgba(135, 61, 193, 0.5);
   }
 `;
-
 export const TabText = styled.div``;
 export const ContentTitle = styled.h2`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
@@ -44,10 +39,7 @@ export const ContentTitle = styled.h2`
   margin-bottom: 30px;
   max-width: 300px;
 `;
-
 export const ContentText = styled.p`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 17px;
@@ -63,39 +55,42 @@ export const ContentText = styled.p`
   & span {
     color: #7c7c7c;
   }
-
   @media (max-width: 576px) {
     font-size: 14px;
   }
 `;
-
 export const UndasLink = styled.a`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #873dc1;
-  text-decoration-line: none;
+  text-decoration: none;
+  transition: all 0.3s;
+  &:hover{
+    color: #873dc1;
+    text-decoration: underline;
+    font-weight: 600;
+  }
 `;
-
 export const AddToWatchlistLink = styled.a`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  text-decoration-line: underline;
+  text-decoration: underline;
   color: #873dc1;
+  cursor: pointer;
+   transition: all 0.3s;
+  &:hover{
+    color: #873dc1;
+    font-weight: 600;
+  }
 `;
-
 export const AccordionWrap = styled.div`
   margin: 20px auto;
   background: #fbf5ff;
   box-shadow: 3px 5px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
 `;
-
 export const AccordionItem = styled(Accordion.Item)`
   background-color: #fbf5ff;
   border-radius: 10px !important;
@@ -137,7 +132,6 @@ export const AccordionItem = styled(Accordion.Item)`
     }
   }
 `;
-
 export const DescriptionText = styled.p`
   font-weight: 400;
   font-size: 14px;
@@ -153,20 +147,14 @@ export const DescriptionText = styled.p`
     line-height: 14px;
   }
 `;
-
 export const AccordionHeader = styled(Accordion.Header)`
   min-height: 60px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #5d3f92;
 `;
-
 export const AccordionBody = styled(Accordion.Body)`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -174,53 +162,39 @@ export const AccordionBody = styled(Accordion.Body)`
   background: #ffffff;
   border-radius: 10px;
 `;
-
 export const HeaderText = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #5d3f92;
   padding-top: 4px;
-
   @media (max-width: 576px) {
     font-size: 16px;
   }
 `;
-
 export const HeadText = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   color: #232428;
   padding-bottom: 20px;
   display: block;
-
   @media (max-width: 576px) {
     font-size: 16px;
   }
 `;
-
 export const AccordionContainer = styled.div`
   display: none;
-
   @media (max-width: 992px) {
     display: block;
   }
 `;
-
 export const PageFAQTitle = styled.h1`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
   color: #232428;
   margin: 60px 0 20px;
-
   @media (max-width: 992px) {
     margin: 40px 0 30px;
   }

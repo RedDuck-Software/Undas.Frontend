@@ -1,5 +1,6 @@
 import { Tabs, Tab } from "react-bootstrap";
 import styled from "styled-components";
+import { FormButton } from "../../../globalStyles";
 
 export const SettingsTabWrap = styled.div`
   .nav-tabs .nav-item.show .nav-link,
@@ -42,18 +43,8 @@ export const DesktopTabs = styled(Tabs)`
   }
 `;
 export const DesktopTab = styled(Tab)``;
-export const Button = styled.button`
-  background: #ffffff;
-  border: 1px solid #873dc1;
-  border-radius: 10px;
-  color: #873dc1;
-  padding: 7px 37px;
+export const Button = styled(FormButton)`
   margin-top: 40px;
-  transition: all 0.3s;
-  &:hover {
-    color: #ffffff;
-    background: #873dc1;
-  }
   @media (max-width: 992px) {
     width: 100%;
   }
