@@ -6,7 +6,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setComponent } from "../../store/reducers/modalAction";
-
 import {
   NFTImage,
   CartIco,
@@ -74,21 +73,11 @@ import Properties from "./page-components/Accordion/accordrion-components/Proper
 import Staking from "./page-components/Accordion/accordrion-components/Staking";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
-// import Rent from "./page-components/Rent"
-
 import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
-import { UndasGeneralNFT__factory } from "../../typechain";
-import { NFT_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
-import { getListing } from "../../utils/getListing";
-import { getNFTListingIds } from "../../utils/getNFTListingIds";
-import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
-import { getStaking } from "../../utils/getStaking";
-import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
 import { createClient } from "urql";
-import Listing from "../Listing/Listing";
 import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
@@ -101,14 +90,16 @@ const NFTPage: React.FC = () => {
   const params = useParams();
   
   const tokenId = params.id;
+  console.log('params',params)
 
-    if(!tokenId){
+  if(!tokenId){
     console.log('NO TOKEN ID')
     return <h2>ERROR</h2>
   }
   
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { connector } = useContext(Context);
-
   const [name, setName] = useState<string>();
   const [tokenURI, setTokenURI] = useState<string>();
   const [priceInNum, setPriceInNum] = useState(0);
@@ -119,21 +110,15 @@ const NFTPage: React.FC = () => {
   const [stakingId, setStakingId] = useState(0);
   const [seller,setSeller] = useState<string>();
   const [loading, setLoading] = useState(true);
-
-  // const [showPriceHistory] = useState(false);
-  const [, setShowStaking] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-  const [propsUri,setPropsUri]=useState('')
+  
   const state:any = useLocation()
-
+  console.log('state',state)
   const URI = state.state.URI
   const nameFromProps = state.state.name
-  console.log('URI',URI)
-  console.log('nameFromProps',nameFromProps)
-  console.log('LESTING id',listingId)
-  console.log(state)
+
   const getOwner = async () => {
 
     if (!connector) return;
@@ -142,69 +127,38 @@ const NFTPage: React.FC = () => {
       await connector.getProvider(),
     );
 
-  } 
-
-  const getShowStaking = async () => {
-    if (!connector) return;
-
-    if(stakingId){
-      setShowStaking(true);
-    }
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-      
-    
     const signer = provider.getSigner(0);
+    const singerAddress = await (await signer.getAddress()).toLowerCase();
 
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-
-    const ProductValue = await getStaking(stakingId, connector);
-
-    if (!ProductValue) return;
-
-    const { maker } = ProductValue.tx;
-    console.log('own',seller)
-    console.log('sign',await signer.getAddress())
-    if (
-      address === owner &&
-      maker === seller
-    ) {
-        console.log('dasdasds')
+    if(!seller){
+      setSeller(state.state.tokenOwner)
     }
-  };
+
+    if(singerAddress == seller){
+      console.log("OWNER")
+      setIsOwner(false);
+    }
+  }
 
   async function rentToken(stakingId: number, colloteralWei?: number,premium?: number) {
+
     if (!connector) return;
+
     if (colloteralWei == undefined) {
       return;
     }
     if (premium == undefined) {
       return;
     }
+    
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
-
     const signer = provider.getSigner(0);
-    const userBalanceInWei = ethers.utils.formatUnits(
-      await signer.getBalance(),
-    );
 
-    const amount = ethers.utils.formatUnits(
-      colloteralWei
-    );
-    console.log('amount',amount);
+
     console.log('colloteral ',colloteralWei);
     console.log('premium',premium);
-    // (messageValue == collateral + premium + (premium * _premiumFeePercentage / 100))
-    // if (+userBalanceInWei < +amount) {
-    //   alert("not enough funds");
-    //   return;
-    // }
     
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -212,9 +166,10 @@ const NFTPage: React.FC = () => {
     );
     const amountToPay = +colloteralWei + +premium + ((+premium*20)/100)
     const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
-    console.log('dsadas',formattedAmountToPay)
+        console.log(formattedAmountToPay)
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
+      gasPrice:20000
     });
     await tx.wait();
   }
@@ -222,9 +177,7 @@ const NFTPage: React.FC = () => {
   const getShowBuy = async () => {
     if (!connector) return;
 
-    console.log('listingID',listingId)
     if(listingId){
-      console.log("truek")
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -235,12 +188,9 @@ const NFTPage: React.FC = () => {
   async function getShowRent() {
     if (!connector) return;
 
-    console.log('stakingId',stakingId)
     if(stakingId){
-      console.log("truek")
       setShowRent(true);
     } else {
-      console.log("false2")
       setShowRent(false);
 
     }
@@ -248,33 +198,33 @@ const NFTPage: React.FC = () => {
 
   useEffect(() => {
     if (connector) {
-      getShowStaking()
       getShowBuy()
       getShowRent()
       getTokenData();
       getOwner()
+      console.log('useEf')
     }
-  }, [connector,listingId,stakingId,seller,premium,colloteral]);
+  }, [connector,listingId,stakingId,premium,colloteral,seller]);
 
 
 
   const getTokenData = async () => {
 
     const tokensQuery = await fetchData()
-      
-    if(tokensQuery.data.listings[0]){
-
+        console.log('tokensQuery.data.listings[0]',tokensQuery.data.listings[0])
+    if(tokensQuery.data.listings[0] && tokensQuery.data.listings[0].listingStatus == "ACTIVE"){
+        console.log('tokensQuery.data.listings[0].price',tokensQuery.data.listings[0].price)
         setName(tokensQuery.data.listings[0].tokenName)
         setTokenURI( tokensQuery.data.listings[0].tokenURI)
         setPriceInNum(tokensQuery.data.listings[0].price) 
         setDescription(tokensQuery.data.listings[0].tokenDescription) 
         setListingId(tokensQuery.data.listings[0].id) 
         setSeller(tokensQuery.data.listings[0].seller)
-
-          
+        setLoading(false)
+        return
     }
-
-    if(tokensQuery.data.stakingListings[0]){
+      console.log('tokensQuery.data.stakingListings[0]',tokensQuery.data.stakingListings[0])
+    if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
         console.log('ZXCQ',tokensQuery.data.stakingListings[0].premium)
         setName(tokensQuery.data.stakingListings[0].tokenName)
         setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
@@ -283,29 +233,33 @@ const NFTPage: React.FC = () => {
         setSeller(tokensQuery.data.stakingListings[0].seller)
         setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
         setPremium(tokensQuery.data.stakingListings[0].premiumWei)
-         
+        setLoading(false)
+        return
      }
+     
+
      setLoading(false)
-  
+
 
   }
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+console.log('params.id',params.id)
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
 const tokensQuery = `
 {
-  listings(where:{tokenId:${params.id}}){
+  listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
  		tokenId
     tokenURI
     price
     tokenName
+    token
     tokenDescription
     seller
+    listingStatus
   }
-  stakingListings(where:{tokenId:${params.id}}){
+  stakingListings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
     seller
  		tokenId
@@ -315,6 +269,7 @@ const tokensQuery = `
     colloteralWei
     premiumWei
     deadlineUTC
+    stakingStatus
   }
 }
  `;
@@ -325,12 +280,13 @@ const tokensQuery = `
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
+  console.log('DATA',data)
   return data;
 }
 
   return (
     <Background>
-      {!loading && isOwner && (
+      {!loading && !isOwner && (
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
             <OwnerSettingsButton>Edit</OwnerSettingsButton>
@@ -342,7 +298,7 @@ async function fetchData() {
               </>
            
               <OwnerSettingsButton isColored={true} onClick={(e) => {
-                navigate(`/nft/sale/${tokenId}`);  
+                navigate(`/nft/sale/${tokenId}`,{state:{...state}});  
                 e.stopPropagation();
                }}>
                 Rent-sell
@@ -439,7 +395,7 @@ async function fetchData() {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} />
+                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} tokenAddress={state.state.tokenAddress} tokenId={state.state.tokenId}/>
                   </SaleBlock>
 
                   <SaleBlock>
@@ -479,13 +435,13 @@ async function fetchData() {
                             bg="#873DC1"
                             flex="1 1 0"
                             className="colored-btn"
-                            // disabled={isOwner}
+                            disabled={!isOwner}
                             onClick={() => rentToken(stakingId,colloteral,premium)}
                             
                           >
                             Rent
                           </InfoButton>
-                          <InfoButton fc="#873DC1"  
+                          <InfoButton fc="#873DC1" disabled={!isOwner}
                             onClick={(e) => {
                               e.stopPropagation();
                               dispatch(

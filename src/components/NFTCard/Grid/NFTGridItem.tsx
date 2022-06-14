@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ethers } from "ethers";
 
 import {
   NFTWrap,
@@ -42,17 +43,19 @@ interface NFTGridItemProps {
   colloteralWei?: number;
   stakingId?:number;
   listingId?:number;
+  tokenAddress?:string;
+  tokenOwner?:string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const stackingFilter = useSelector(useFilter);
-
+  console.log('props for token address',props)
   return (
     <NFTWrap
       onClick={(e) => {
-        navigate(`/nft/buy/${props.tokenId}`,{state:{...props}}); //
+        navigate(`/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,{state:{...props}}); //
         e.stopPropagation();
       }}
     >
@@ -92,7 +95,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Buy 
             </BuyBtn>
-          ) : (
+          ) : props.premium ? (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
@@ -111,7 +114,27 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Rent 
             </BuyBtn>
-          )}
+          ):(
+            <BuyBtn
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(
+                  setComponent(
+                    //set
+                    "offer-rent",
+                    props.tokenId,
+                    props.price,
+                    props.URI,
+                    props.name,
+                  ),
+                );
+                navigate(`/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
+                e.stopPropagation();
+              }}
+            >
+              Sell
+            </BuyBtn>
+          ) }
         </LeftBlock>
         <PriceList>
           <PriceItem>
@@ -122,10 +145,10 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             </Wrapper>
           </PriceItem>
           <PriceItem>
-            <span>Rent</span>
+            <span>Collotral</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{props.premium ?? "-"}</PriceInEth>
+              <PriceInEth>{props.colloteralWei?ethers.utils.formatUnits(props.colloteralWei.toString(),'ether'): "-" }</PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>

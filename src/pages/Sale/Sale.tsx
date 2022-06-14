@@ -53,29 +53,40 @@ import {
   Button,
   ItemAmount,
 } from "../Rent/Rent.styles";
-import { useParams } from "react-router-dom";
+import { useParams,useLocation  } from "react-router-dom";
 import { OnlyOne__factory } from "../../typechain";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
 import { Marketplace__factory } from "../../typechain";
+import { UndasGeneralNFT__factory } from "../../typechain";
+
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+
+
 import { date } from "yup";
 import { createClient } from "urql";
 
 
 const Sale: React.FC = () => {
-  const {id}= useParams()
   const { connector } = useContext(Context);
-
   const [priceForSale,setPriceForSale] = useState(0)
   const [colloteral,setColloteral] = useState(0)
   const [premium,setPremium] = useState(0)
-  const [durationInDay,setDurationInDay] = useState(0)
+  const [durationInDay,setDurationInDay] = useState(1)
 
+  const state:any = useLocation()
 
+  const URI = state.state.state.URI
+  const nameFromProps = state.state.state.name
+  console.log('URI',URI)
+  console.log('nameFromProps',nameFromProps)
+  console.log('state',state.state.state)
+  const NFT_ADDRESS = state.state.state.tokenAddress;
+  const tokenId = state.state.state.tokenId
+  console.log(NFT_ADDRESS )
   async function sellToken() {
     if (!connector) return;
-    if(!id) return;
+    if(!tokenId) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -88,23 +99,33 @@ const Sale: React.FC = () => {
       signer,
     );
 
-
+    const NftContract = UndasGeneralNFT__factory.connect(
+      NFT_ADDRESS,
+      signer,
+    )
+      
+    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
+    console.log('approve');
+    console.log(tokenId);
+    await approve.wait()
     const expectedValue = (priceForSale * 2) /100;
 
     const formattedPrice =  ethers.utils.parseUnits(priceForSale.toString(), "ether")
-                                      //undsa contract  
-    const tx = await MarketplaceContract.bidExternal("0x674002Df32E372E3D2E2CfC253471d0A5912fb9A",id,
+    //undsa contract  
+    console.log(NFT_ADDRESS)
+    const tx = await MarketplaceContract.bidExternal(NFT_ADDRESS,tokenId,
     formattedPrice,
     false,
      {
       value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
     });
     await tx.wait();
+    console.log('dadas');
   }
 
   async function stakeToken() {
     if (!connector) return;
-    if(!id) return;
+    if(!tokenId) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -116,24 +137,32 @@ const Sale: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
+
+    const NftContract = UndasGeneralNFT__factory.connect(
+      NFT_ADDRESS,
+      signer,
+    )
+    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
     
     const utcTimestamp = new Date().getTime();
-    
-    const deadlineUTC = (utcTimestamp + durationInDay *86400)
+ 
+    const deadlineUTC = (utcTimestamp + durationInDay * 86400)
     const formattedColloteral =  ethers.utils.parseUnits(colloteral.toString(), "ether")
     const formattedPremium =  ethers.utils.parseUnits(premium.toString(), "ether")
 
     const amountToPay = (colloteral*2)/100;
-
-    const tx = await MarketplaceContract.quoteForStakingExternal("0x674002Df32E372E3D2E2CfC253471d0A5912fb9A",id,
+      console.log(NFT_ADDRESS)
+      console.log(tokenId)
+    const tx = await MarketplaceContract.quoteForStakingExternal(NFT_ADDRESS,tokenId,
     formattedColloteral,
     formattedPremium,
       deadlineUTC,
       false,{
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
-
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
       }
-      )
+    )
+    console.log(NFT_ADDRESS)
+
     await tx.wait();
   }
 
@@ -147,83 +176,7 @@ const Sale: React.FC = () => {
   const [stakingId, setStakingId] = useState(0);
   const [seller,setSeller] = useState<string>();
 
-  useEffect(() => {
-    if (connector) {
 
-     getTokenData()
-    
-
-    }
-  }, [connector,listingId,stakingId,tokenURI]);
-
-  const getTokenData = async () => {
-
-    const tokensQuery = await fetchData()
-      
-    if(tokensQuery.data.listings[0]){
-
-        setName(tokensQuery.data.listings[0].tokenName)
-        setTokenURI( tokensQuery.data.listings[0].tokenURI)
-        setPriceInNum(tokensQuery.data.listings[0].price) 
-        setDescription(tokensQuery.data.listings[0].tokenDescription) 
-        setListingId(tokensQuery.data.listings[0].id) 
-        setSeller(tokensQuery.data.listings[0].seller)
-
-          
-    }
-    console.log(tokenURI)
-
-    if(tokensQuery.data.stakingListings[0]){
-        console.log('ZXCQ',tokensQuery.data.stakingListings[0].premium)
-        setName(tokensQuery.data.stakingListings[0].tokenName)
-        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
-        setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
-        setStakingId(tokensQuery.data.stakingListings[0].id) 
-        setSeller(tokensQuery.data.stakingListings[0].seller)
-        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
-        setPremium(tokensQuery.data.stakingListings[0].premiumWei)
-         
-     }
-     console.log('dasds')
- 
-  }
-
-  const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-  const tokensQuery = `
-{
-  listings(where:{tokenId:${id}}){
-    id
- 		tokenId
-    tokenURI
-    price
-    tokenName
-    tokenDescription
-    seller
-  }
-  stakingListings(where:{tokenId:${id}}){
-    id
-    seller
- 		tokenId
-    tokenURI
-    tokenName
-    tokenDescription
-    colloteralWei
-    premiumWei
-    deadlineUTC
-  }
-}
- `;
-
- const client = createClient({
-  url: APIURL,
-});
-
-async function fetchData() {
-  const data = await client.query(tokensQuery).toPromise();
-  return data;
-}
 
   return (
     <Background>
@@ -340,7 +293,7 @@ async function fetchData() {
                 <ItemAmount>NFT item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                {tokenURI && <NFTCard uri={tokenURI} name="NFTCard" />}
+                {URI && <NFTCard uri={URI} name={nameFromProps} />}
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>

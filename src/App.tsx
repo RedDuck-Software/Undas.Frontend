@@ -101,8 +101,8 @@ const App: React.FC = () => {
           <Route path="/productforsale/:id" element={<ProductForSale />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/collection" element={<CollectionPage />} />
-          <Route path="/nft/buy/:id" element={<NFTPage />} />
-          <Route path="/nft/sell/:id" element={<NFTPageSell />} />
+          <Route path="/nft/buy/:address:id" element={<NFTPage />} />
+          <Route path="/nft/sell/:address:id" element={<NFTPageSell />} />
           <Route path="/activity" element={<ActivityPage />} />
           <Route path="/topcollection" element={<TopCollectionPage />} />
           <Route
@@ -127,7 +127,7 @@ const App: React.FC = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/creator-card" element={<CreatorCardPage />} />
-          <Route path="/offer-sale" element={<OfferSale />} />
+          <Route path="/offer-sale/:address:id" element={<OfferSale />} />
           <Route path="/offer-rent" element={<OfferRent />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/buy" element={<Buy />} />

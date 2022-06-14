@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Marketplace__factory } from "../../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
 import Context from "../../../utils/Context";
@@ -25,13 +25,16 @@ interface BuyProps {
   isOwner?: boolean;
   priceInNum:number;
   showBuy?: boolean;
+  tokenAddress?:string;
+  tokenId?:string;
 }
 
-const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
+const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress,tokenId }) => {
+  const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
   const account = web3React.account;
-  console.log(priceInNum)
+  console.log('priceInNum',priceInNum)
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
@@ -87,17 +90,6 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
       signer,
     );
 
-    const ApprovalTokenAmount = (+amount * 2) / 100;
-
-    const OnlyOneContract = OnlyOne__factory.connect(
-      "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
-      signer,
-    );
-
-    OnlyOneContract.approve(
-      "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
-      ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
-    );
       console.log("amount",amount)
     const tx = await MarketplaceContract.buyToken(tokenId, {
       value: ethers.utils.parseUnits(amount.toString(), "ether"),
@@ -139,6 +131,8 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
 
     getProductPrice();
   }, [connector, web3React]);
+  console.log("showBuy",showBuy)
+  console.log("isOwner",isOwner)
 
   return (
     <>
@@ -161,11 +155,15 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy }) => {
               bg="#873DC1"
               onClick={() => buyToken(id,priceInNum)}
               className="colored-btn"
-              // disabled={isOwner}
+              disabled={!isOwner}
             >
               Buy now
             </InfoButton>
-            <InfoButton fc="#873DC1">Make offer</InfoButton>
+            <InfoButton fc="#873DC1" disabled={!isOwner}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`);
+                            }}>Make offer</InfoButton>
           </ButtonWrap>
         </BuyBar>
       )}

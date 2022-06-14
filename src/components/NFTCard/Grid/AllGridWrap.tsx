@@ -16,7 +16,7 @@ interface CommonProps {
   id: number;
   name: string;
   URI: string;
-
+  tokenAddress?: string;
 }
 
 export interface ItemsProps extends CommonProps {
@@ -53,8 +53,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>();
-
-  //getting listing from the graph`s API
   const getListings = async () => {
     setAmountOfNFTs(0);
     if (!connector) {
@@ -64,17 +62,17 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {
-      
       if (nft.listingStatus == "ACTIVE") {
-        // console.log('listing ID',nft)
+        console.log('listing nft',nft)
         const price = nft.price;
         const id = nft.tokenId;
         const listingId = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+        const tokenAddress = nft.token
 
-        items.push({ priceInNum, id, name, URI, listingId });
+        items.push({ priceInNum, id, name, URI, listingId, tokenAddress });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }
@@ -92,6 +90,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
+        console.log('staking nft:',nft)
         const price = nft.premiumWei;
         const id = nft.tokenId;
         const name = nft.tokenName;
@@ -99,8 +98,8 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
         const colloteralWei = nft.colloteralWei;
-
-        stakings.push({ id, name, URI, premiumInNum, colloteralWei, stakingId });
+        const tokenAddress = nft.token
+        stakings.push({ id, name, URI, premiumInNum, colloteralWei, stakingId,tokenAddress });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }
@@ -126,12 +125,10 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     if (!connector) {
       return console.log("loading");
     }
-
+    
     setLoading(false);
-    console.log("useEf");
     getListingsData();
     getStakingsData();
-    console.log("use efff");
   }, [connector]);
 
   const priceSort = async () => {
@@ -169,14 +166,21 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
   };
 
   useEffect(() => {
+
+    console.log(list && !stakingsList)
     if (!list && !stakingsList) {
+      console.log('!list && !stakingsList')
       return;
     } else if (list && !stakingsList) {
+      console.log('list && !stakingsList',list)
       setCommonList(list);
     } else if (!list && stakingsList) {
+      console.log('!list && stakingsList',list)
       setCommonList(stakingsList);
     } else {
       if (stackingFilter.stacking) {
+        console.log('!list && stakingsList',list)
+
         setCommonList(stakingsList);
       } else {
         priceSort()
@@ -187,14 +191,15 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
           })
           .catch((e) => console.log(e));
         let common: (ItemsProps | StakingsProps)[] = [...list, ...stakingsList];
+        setCommonList(common);//!!  MB ADD TO 199
         common = common.filter(
           (value, index, self) =>
             index === self.findIndex((t) => t.id === value.id),
         );
-        setCommonList(common);
       }
     }
   }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
+  console.log('commonList',commonList)
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -207,6 +212,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     </>
   );
 };
+
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

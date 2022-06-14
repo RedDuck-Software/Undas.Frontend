@@ -12,6 +12,8 @@ type GridItem = {
   colloteralWei?: number;
   stakingId?:number;
   listingId?:number;
+  tokenAddress?:string;
+  tokenOwner?:string;
 };
 interface CollectionGridWrapperProps {
   itemList: GridItem[];
@@ -26,7 +28,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
       {itemList.map((item: GridItem) => {
         return (
           <NFTGridItem
-            key={item.id}
+            key={item.name + item.id + item.URI}
             tokenId={+item.id}
             URI={item.URI}
             name={item.name}
@@ -35,6 +37,8 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             colloteralWei={item.colloteralWei}
             stakingId = {item.stakingId}
             listingId = {item.listingId}
+            tokenAddress ={ item.tokenAddress}
+            tokenOwner = {item.tokenOwner}
           />
         );
       })}

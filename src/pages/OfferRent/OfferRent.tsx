@@ -75,10 +75,10 @@ const OfferRent: React.FC = () => {
   const tokenName = useSelector(useName);
   const tokenUri = useSelector(useUri);
   const { connector } = useContext(Context);
-
+  console.log('litsingId',litsingId,'tokenName',tokenName)
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
-
+  
   async function makeRentOffer() {
     if (!connector) return;
     // if (priceInNum == undefined) {
@@ -94,16 +94,20 @@ const OfferRent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-   
-    const amountToPay = colloteral + premium + (premium * 20) / 100;
+      console.log(litsingId)
+      console.log('col',colloteral)
+      console.log('prem', premium)
+
+      console.log((colloteral + premium))
+      console.log((premium * 20) / 100)
+    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(7);
       console.log(amountToPay)
     const tx = await MarketplaceContract.stakingOffer(
       litsingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
-        gasLimit:20
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
       },
     );
 
