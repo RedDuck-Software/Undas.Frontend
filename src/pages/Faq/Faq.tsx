@@ -55,8 +55,7 @@ const Faq: React.FC = () => {
                   <Tab.Pane eventKey="first">
                     <TabText>
                       <ContentTitle>
-                        To get started, navigate to any collection page on{" "}
-                        <UndasLink href="#">UNDAS</UndasLink>
+                        How can I add a collection to my watchlist?
                       </ContentTitle>
                       <ContentText>
                         To get started, navigate to any collection page on{" "}
@@ -65,7 +64,7 @@ const Faq: React.FC = () => {
                       <ContentText>
                         On the right side of the collection view, you&#39;ll see
                         a new button -{" "}
-                        <AddToWatchlistLink>
+                        <AddToWatchlistLink href="#">
                           Add to Watchlist
                         </AddToWatchlistLink>
                       </ContentText>
@@ -117,9 +116,6 @@ const Faq: React.FC = () => {
                 </AccordionHeader>
                 <AccordionBody>
                   <DescriptionText>
-                    <HeadText>
-                      How can I add a collection to my watchlist?
-                    </HeadText>
                     <ContentText>
                       To get started, navigate to any collection page on{" "}
                       <UndasLink href="#">UNDAS</UndasLink>

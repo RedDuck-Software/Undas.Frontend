@@ -171,19 +171,21 @@ export const FormButton = styled.button`
   padding: 7px 37px;
   margin-left: 25px;
   transition: all 0.3s;
-  &:hover {
-    color: #ffffff;
-    background: #873dc1;
-    border: 1px solid transparent;
-  }
-  @media (max-width: 992px) {
-    flex: 0 0 45%;
-    &.left-btn {
+  &.left-btn {
       border: 1px solid transparent;
       background: #873dc1;
       color: #fff;
       margin-left: 0;
+      &:hover {
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+      }
     }
+  &:hover {
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  @media (max-width: 992px) {
+    flex: 0 0 45%;
   }
   @media (max-width: 576px) {
     flex: 0 0 100%;
@@ -195,5 +197,39 @@ export const FormButton = styled.button`
 `;
 export const ColoredText = styled.span`
   color: #873dc1;
+`;
+export const PrimaryButton = styled.button`
+  background: #873dc1;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.3s linear;
+  border: 1px solid #873dc1;
+  &:hover {
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+    font-size: 16px;
+  }
+`;
+export const SecondaryButton = styled.button`
+  background: #ffffff;
+  border: 1px solid #873dc1;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #873dc1;
+  transition: all 0.3s linear;
+  &:hover {
+    box-shadow: 0 0 6px #000;
+    background-color: #fbf5ff;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+    font-size: 16px;
+  }
 `;
 export default GlobalStyle;

@@ -1,13 +1,18 @@
 import styled from "styled-components";
+import { Modal } from "react-bootstrap";
 
 import { ReactComponent as Search } from "../../../../pages/CollectionPage/assets/search.svg";
 
-import { collectionType, eth } from "../../imports";
+import { 
+  collectionType,
+  eth,
+ } from "../../imports";
 
 export const FormButton = styled.button`
   height: 36px;
   width: 250px;
 `;
+
 export const MakeOfferText = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -30,6 +35,7 @@ export const AddNFTButton = styled.button`
     box-shadow: 0px 0px 5px #7c7c7c;
   }
 `;
+
 export const AddNFT = styled.div`
   height: 50px;
   width: 50px;
@@ -43,24 +49,27 @@ export const AddNFT = styled.div`
   line-height: 50px;
   transition: all 0.3s;
 `;
+
 export const RowFlex = styled.div`
   display: flex;
   flex-wrap: wrap;
-  &.justify-content-end {
+  &.justify-content-end{
     justify-content: end;
     margin-top: 20px;
   }
 `;
+
 export const SelectedItem = styled.div`
   width: 40%;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   margin-top: 6px;
-  color: #7c7c7c;
+  color: #7C7C7C;
 `;
+
 export const SearchIco = styled(Search)`
   margin-right: 10px;
 `;
@@ -76,6 +85,7 @@ export const MenuSearchWrap = styled.div`
   border-radius: 10px;
   border: none;
 `;
+
 export const Input = styled.input`
   font-weight: 400;
   font-size: 12px;
@@ -85,6 +95,7 @@ export const Input = styled.input`
   outline: none;
   width: 100%;
 `;
+
 export const Filter = styled.ul`
   width: 20%;
   position: relative;
@@ -100,6 +111,7 @@ export const Filter = styled.ul`
     border-radius: 10px 10px 0 0;
   }
 `;
+
 export const FilterCollection = styled.ul`
   width: 38%;
   height: 36px;
@@ -117,6 +129,7 @@ export const FilterCollection = styled.ul`
     border-radius: 10px 10px 0 0;
   }
 `;
+
 export const FilterItem = styled.li`
   display: flex;
   justify-content: space-between;
@@ -126,14 +139,15 @@ export const FilterItem = styled.li`
 `;
 
 export const FilterTitle = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #5d3f92;
+  color: #5D3F92;
   padding-top: 2px;
 `;
+
 export const Arrow = styled.span`
   margin-top: 4px;
   border-top: 1px solid #5d3f92;
@@ -151,6 +165,7 @@ export const Arrow = styled.span`
     transform: rotate(-135deg);
   }
 `;
+
 export const FilterMenu = styled.ul`
   position: absolute;
   z-index: 2;
@@ -171,6 +186,7 @@ export const FilterMenu = styled.ul`
     opacity: 1;
   }
 `;
+
 interface IMenuItem {
   hover?: boolean;
 }
@@ -185,7 +201,7 @@ export const MenuItem = styled(FilterItem)<IMenuItem>`
 `;
 
 export const FilterTitleCollection = styled.span`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -197,6 +213,7 @@ export const FilterTitleCollection = styled.span`
     padding-right: 10px;
   }
 `;
+
 export const CheckboxInputAgreement = styled.input`
   &.custom-checkbox {
     position: absolute;
@@ -243,9 +260,10 @@ export const CheckboxInputAgreement = styled.input`
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
 `;
+
 export const CheckboxLabelAgreement = styled.label`
   width: 100%;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -262,13 +280,13 @@ export const CollectionImage = styled.img`
 `;
 
 export const UNDText = styled.span`
-  font-family: "Jost";
+  font-family: 'Jost';
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 17px;
   float: right;
-  color: #873dc1;
+  color: #873DC1;
   &.alight-left {
     margin-left: 5px;
     margin-right: 15px;
@@ -302,11 +320,11 @@ export const NFTCard = styled.div`
   display: flex;
   height: 100px;
   width: 49%;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
   border-radius: 10px;
   margin-top: 15px;
   &.selected {
-    background-color: #ebdfff;
+    background-color: #EBDFFF;
   }
 `;
 
@@ -316,12 +334,14 @@ export const FirstCollumNFT = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 `;
+
 export const SecondCollumNFT = styled.div`
   display: flex;
   width: 50%;
   flex-wrap: wrap;
   flex-direction: column;
 `;
+
 export const LastCollumNFT = styled.div`
   display: flex;
   width: 20%;
@@ -330,7 +350,7 @@ export const LastCollumNFT = styled.div`
   height: 100px;
   border-radius: 0px 10px 10px 0px;
   &:hover {
-    background-color: #f5efff;
+    background-color: #F5EFFF
   }
 `;
 
@@ -342,7 +362,7 @@ export const NFTImage = styled.img`
 `;
 
 export const PriceText = styled.div`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -353,12 +373,12 @@ export const PriceText = styled.div`
 `;
 
 export const CollectionNameNFT = styled.div`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #7c7c7c;
+  color: #7C7C7C;
   width: 100%;
   margin-top: 13px;
 `;
@@ -370,12 +390,12 @@ export const NameNFTBox = styled.div`
 `;
 
 export const NameNFTText = styled.div`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #873dc1;
+  color: #873DC1;
 `;
 
 export const TotalPriceBox = styled.div`
@@ -385,13 +405,13 @@ export const TotalPriceBox = styled.div`
 `;
 
 export const EthPrice = styled.div`
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   text-align: right;
-  color: #5d3f92;
+  color: #5D3F92;
   &::before {
     content: url(${eth});
     vertical-align: middle;
@@ -402,31 +422,102 @@ export const EthPrice = styled.div`
 export const DollarPrice = styled.div`
   margin-top: 2px;
   margin-left: 5px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   text-align: right;
-  color: #7c7c7c;
+  color: #7C7C7C;
   &::before {
-    content: "($";
+    content: '($';
   }
   &::after {
-    content: ")";
+    content: ')';
   }
 `;
 
 export const Add = styled.div`
-  font-size: 50px;
-  color: #7c7c7c;
-  margin-top: 10px;
-  &.minus {
-    font-size: 25px;
-    margin-top: 28px;
-  }
+font-size: 50px;
+color: #7C7C7C;
+margin-top: 10px;
+&.minus {
+  font-size: 25px;
+  margin-top: 28px;
+}
 `;
 
 export const ModalNftDiv = styled.div`
   display: inline;
+`;
+
+export const ModalHeader = styled(Modal.Header)`
+  height: 70px;
+  background: #FBF5FF;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  border-radius: 20px 20px 0px 0px;
+`;
+
+export const ModalBody = styled(Modal.Body)`
+`;
+
+export const ModalContainer = styled(Modal)`
+  margin: 2rem auto;
+  & .modal-dialog {
+    max-width: 730px;
+  }
+  & .modal-content {
+    border-radius: 20px 20px 20px 20px;
+    width: 750px;
+  }
+  & .btn-close {
+    padding-right: 27px !important;
+  }  
+`;
+
+export const ModalFooter = styled(Modal.Footer)`
+  align-items: center;
+  justify-content: center;
+  border: none;
+`;
+
+export const FormButtonModal = styled(FormButton)`
+&.btn-apply {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #873DC1;
+}
+&.btn-apply:hover {
+  color: #FFFFFF;
+  background: #873DC1;
+}
+&.btn-clear {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #FF2A36;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FF2A36;
+}
+&.btn-clear:hover {
+  color: #FFFFFF;
+  background: #FF2A36;
+}
 `;
