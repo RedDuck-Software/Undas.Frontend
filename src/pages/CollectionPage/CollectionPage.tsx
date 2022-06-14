@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
 
 import {
   Info,
@@ -15,6 +16,9 @@ import {
   TextInfo,
   ContainerCollection,
   ContainerNFT,
+  ContainerPopUp,
+  InputTextArea,
+  SendButton,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -120,6 +124,9 @@ const CollectionPage: React.FC = () => {
     getUserNft();
   }, [connector]);
   const { viewMode, viewButtonsRender } = useViewMode();
+
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
   return (
     <>
       <ContainerCollection>
@@ -157,7 +164,21 @@ const CollectionPage: React.FC = () => {
                       </Wrapper>
                     </InfoElement>
                   </Info>
-                  <AddToFav>Make a Complaint</AddToFav>
+                  <AddToFav ref={target} onClick={() => setShow(!show)}>
+                    Make a Complaint
+                  </AddToFav>
+                  <Overlay
+                    target={target.current}
+                    show={show}
+                    placement="bottom"
+                  >
+                    {
+                      <ContainerPopUp>
+                        <InputTextArea placeholder="Comment"></InputTextArea>
+                        <SendButton>Send</SendButton>
+                      </ContainerPopUp>
+                    }
+                  </Overlay>
                 </InfoBox>
                 <InfoBlock>
                   <ItemsOwners>

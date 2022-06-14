@@ -1,4 +1,5 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   OfferContainer,
@@ -35,6 +36,9 @@ import {
   AgreeRowButton,
   NFTInfoContainer,
   CheckBoxCenter,
+  ButtonInfo,
+  OverlayPopUp,
+  FAQLink,
 } from "./Offer.styles";
 
 import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
@@ -85,7 +89,20 @@ const Offer: React.FC = () => {
             Pay in {"\u00A0"}
             <UNDLabel>UND</UNDLabel>
             {"\u00A0"} with a 50% discount
-            <ImageInfo src={info} alt="info-image" className="margin-top" />
+            <OverlayTrigger
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </CheckboxLabel>
           <DollarPrice className="margin-0">258,25</DollarPrice>
         </PayRow>
