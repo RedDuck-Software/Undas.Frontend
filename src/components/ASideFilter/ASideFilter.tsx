@@ -93,25 +93,22 @@ interface FilterCollectionItemProps {
   vol?: number | string;
   isVerified: boolean;
   floor?: number | string;
-  handleCollectionChoose?: any;
 }
 
 const FilterCollectionItem: React.FC<FilterCollectionItemProps> = ({
   collectionIcon,
   collectionName,
   isVerified,
-  handleCollectionChoose,
 }) => {
+  const dispatch = useDispatch();
   const [longName, setLongName] = useState<string>("");
-
   const handleCollectionName = (name: string, verify: boolean) => {
     if (name.length > 9 && verify === true) {
       const trunced = collectionName.slice(0, 8) + "...";
       setLongName(trunced);
-      return;
+    } else {
+      setLongName(name);
     }
-
-    setLongName(name);
   };
 
   useEffect(() => {
@@ -128,7 +125,7 @@ const FilterCollectionItem: React.FC<FilterCollectionItemProps> = ({
             id={collectionName}
             mr="15px"
             onClick={() =>
-              handleCollectionChoose(collectionIcon, collectionName)
+              dispatch(addSelectedCollection(collectionIcon, collectionName))
             }
           />
           <CheckboxLabel htmlFor={collectionName} />
@@ -190,8 +187,6 @@ interface ASideFilterProps {
 const ASideFilter: React.FC<ASideFilterProps> = ({
   marginTop,
   accountPage,
-  selectedCollections,
-  setSelectedCollections,
 }) => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -238,7 +233,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
       isVerified: false,
     },
   ]);
-
   const [filteredCollectionList, setFilteredCollectionList] =
     useState(collectionList);
 
@@ -276,23 +270,9 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
     setFilteredCollectionList(searchResult);
   };
 
-  const handleCollectionChoose = (
-    collectionIcon: string,
-    collectionName: string,
-  ) => {
-    dispatch(addSelectedCollection(collectionIcon, collectionName));
-    console.log(setSelectedCollections, {
-      collectionIcon,
-      collectionName,
-    });
-    setSelectedCollections(...selectedCollections, {
-      collectionIcon,
-      collectionName,
-    });
-  };
-
   const newRef: any = useRef();
   const stakingRef: any = useRef();
+
   return (
     <>
       <ASideWrap
@@ -516,7 +496,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                     collectionName={item.collectionName}
                     collectionIcon={item.collectionIcon}
                     isVerified={item.isVerified}
-                    handleCollectionChoose={handleCollectionChoose}
                   />
                 );
               })}

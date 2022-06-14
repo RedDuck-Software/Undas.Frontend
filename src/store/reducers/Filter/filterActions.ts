@@ -1,7 +1,8 @@
 import { Filter } from "./types";
 
 export function addSelectedCollection(collectionIcon: string, collectionName: string) {
-    return {type: Filter.addCollection, payload: { collectionIcon, collectionName }};
+    const action = { type: Filter.addCollection, payload: { collectionIcon, collectionName } };
+    return action;
 }
 
 export function removeSelectedCollection(collectionName: string | number) {

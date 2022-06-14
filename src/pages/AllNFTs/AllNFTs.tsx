@@ -14,11 +14,14 @@ import {
   FilterMenu,
   SelectedCollectionsList,
   SelectedCollection,
+  SelectedCollectionIcon,
   RemoveSelectedCollection,
   SelectedCollectionsWrapper,
   MenuSearchWrap,
   SearchIco,
   Input,
+  RemoveSelectedCollectionLabel,
+  RemoveAllSelectedCollection,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
@@ -36,32 +39,45 @@ import { removeSelectedCollection } from "../../store/reducers/Filter/filterActi
 interface SelectedCollectionItemProps {
   icon?: string;
   label: string;
-  handleUnselect?: any;
 }
 
 const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
   icon,
   label,
-  handleUnselect,
 }) => {
+  const dispatch = useDispatch();
+  const handleUnselectCollection = (name: string) => {
+    const element: HTMLElement = document.getElementById(label)!;
+    element.click();
+    dispatch(removeSelectedCollection(name));
+  };
+  const [longName, setLongName] = useState<string>("");
+  const handleCollectionName = (name: string) => {
+    if (name.length > 9) {
+      const trunced = name.slice(0, 8) + "...";
+      setLongName(trunced);
+    } else {
+      setLongName(name);
+    }
+  };
+
+  useEffect(() => {
+    handleCollectionName(label);
+  }, []);
+
   return (
-    <SelectedCollection>
-      <img src={icon} />
-      {label}
-      <RemoveSelectedCollection
-        src={CloseIcon}
-        onClick={handleUnselect(label)}
-      />
+    <SelectedCollection onClick={() => handleUnselectCollection(label)}>
+      <SelectedCollectionIcon src={icon} />
+      {longName}
+      <RemoveSelectedCollection src={CloseIcon} />
     </SelectedCollection>
   );
 };
 
-
 const AllNFTs: React.FC = () => {
-  const dispatch = useDispatch();
   const selector = useSelector(useSelectedCollections);
   useEffect(() => {
-    console.log(selector);
+    setSelectedCollections(selector);
   }, [selector]);
 
   const [results, setResults] = useState<any>();
@@ -73,12 +89,9 @@ const AllNFTs: React.FC = () => {
   useEffect(() => {
     console.log(priceFilter);
   }, [active, priceFilter]);
-  const [selectedCollections, setSelectedCollections] = useState(selector);
-  const { viewMode, viewButtonsRender } = useViewMode();
 
-  const handleUnselectCollection = (name: string) => {
-    dispatch(removeSelectedCollection(name));
-  };
+  const [selectedCollections, setSelectedCollections] = useState<any>(selector);
+  const { viewMode, viewButtonsRender } = useViewMode();
 
   return (
     <Background>
@@ -155,10 +168,10 @@ const AllNFTs: React.FC = () => {
             </MenuSearchWrap>
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
-          <SelectedCollectionsWrapper>
-            <SelectedCollectionsList>
-              {selectedCollections &&
-                selectedCollections.map((item: any) => {
+          {selectedCollections.length > 0 && (
+            <SelectedCollectionsWrapper>
+              <SelectedCollectionsList>
+                {selectedCollections.map((item: any) => {
                   return (
                     <SelectedCollectionItem
                       key={`${item.collectionName}-${item.collectionIcon}`}
@@ -167,8 +180,12 @@ const AllNFTs: React.FC = () => {
                     />
                   );
                 })}
-            </SelectedCollectionsList>
-          </SelectedCollectionsWrapper>
+              </SelectedCollectionsList>
+              <RemoveAllSelectedCollection>
+                Clear all
+              </RemoveAllSelectedCollection>
+            </SelectedCollectionsWrapper>
+          )}
           {viewMode === ViewMode.grid ? (
             <AllGridWrap
               getResults={(amount: any) => setResults(amount)}

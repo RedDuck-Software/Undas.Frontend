@@ -1,6 +1,6 @@
 import { RootState } from "../.."
 
 export const useSelectedCollections = (state: RootState) => {
-    return (state.properties as any).selectedCollections;
+    return (state.selectedCollections as any).selectedCollections;
 }
 
