@@ -27,14 +27,15 @@ interface BuyProps {
   showBuy?: boolean;
   tokenAddress?:string;
   tokenId?:string;
+
 }
 
-const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress,tokenId }) => {
+const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress,tokenId}) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
   const account = web3React.account;
-  console.log('priceInNum',priceInNum)
+
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
@@ -131,8 +132,7 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress
 
     getProductPrice();
   }, [connector, web3React]);
-  console.log("showBuy",showBuy)
-  console.log("isOwner",isOwner)
+
 
   return (
     <>
@@ -159,11 +159,12 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress
             >
               Buy now
             </InfoButton>
-            <InfoButton fc="#873DC1" disabled={!isOwner}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`);
-                            }}>Make offer</InfoButton>
+            <InfoButton fc="#873DC1" 
+                disabled={!isOwner}
+                onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,{state:{tokenAddress,tokenId}});
+              }}>Make offer</InfoButton>
           </ButtonWrap>
         </BuyBar>
       )}

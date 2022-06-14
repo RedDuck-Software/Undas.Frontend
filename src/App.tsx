@@ -39,12 +39,19 @@ import {
   Rent,
   Buy,
   Sale,
+  ArticlePage,
+  BlogThemeWrap,
 } from "./pages";
 import ActivityPage from "./pages/Activity/ActivityPage";
+import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
+import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
+import News from "./pages/Blog/page-components/News/News";
+import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { ConnectorState } from "./types/ConnectorState";
 import Context from "./utils/Context";
+
 
 const App: React.FC = () => {
   const web3Current = useWeb3React();
@@ -128,10 +135,28 @@ const App: React.FC = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/creator-card" element={<CreatorCardPage />} />
           <Route path="/offer-sale/:address:id" element={<OfferSale />} />
-          <Route path="/offer-rent" element={<OfferRent />} />
+          <Route path="/offer-rent/:address:id" element={<OfferRent />} />
           <Route path="/rent" element={<Rent />} />
-          <Route path="/buy" element={<Buy />} />
+          <Route path="/buy/:address:id" element={<Buy />} />
           <Route path="/nft/sale/:id" element={<Sale />} />
+          <Route path="/sale" element={<Sale />} />
+          <Route path="/article" element={<ArticlePage />} />
+          <Route
+            path="/blog/website-tips"
+            element={<BlogThemeWrap blogComponent={<WebsiteTips />} />}
+          />
+          <Route
+            path="/blog/business-tips"
+            element={<BlogThemeWrap blogComponent={<BusinessTips />} />}
+          />
+          <Route
+            path="/blog/inspiration"
+            element={<BlogThemeWrap blogComponent={<Inspiration />} />}
+          />
+          <Route
+            path="/blog/news"
+            element={<BlogThemeWrap blogComponent={<News />} />}
+          />
         </Routes>
       </Context.Provider>
     </MoralisProvider>

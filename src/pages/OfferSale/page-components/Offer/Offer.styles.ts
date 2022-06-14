@@ -334,7 +334,7 @@ export const UNDLabel = styled.span`
 `;
 
 export const ImageInfo = styled.img`
-  margin-left: 10px;
+  margin-bottom: 3px;
 `;
 
 export const DollarPrice = styled.span`
@@ -503,7 +503,7 @@ export const InputDay = styled.input`
   color: #7c7c7c;
   border: none;
   &:focus {
-    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1)
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
   }
 `;
 
@@ -525,16 +525,63 @@ export const NFTInfoContainer = styled.div`
   display: flex;
   width: 400px;
   height: 400px;
-  background: #FBF5FF;
+  background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
   &.disable {
-    background: #C4C4C4;
+    background: #c4c4c4;
   }
 `;
 
 export const CheckBoxCenter = styled.div`
   display: flex;
+`;
+
+export const ButtonInfo = styled.button`
+  background-color: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+`;
+
+export const OverlayPopUp = styled.div`
+  width: 350px;
+  background: #ccb7f2;
+  padding: 10px 15px;
+  box-shadow: 0px 4px 4px rgb(124 124 124/25%);
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  margin-left: 11%;
+  position: absolute;
+  margin-left: 137px;
+  margin-bottom: 10px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 23px;
+    bottom: -20px;
+    border: 12px solid transparent;
+    border-left: 20px solid #ccb7f2;
+    transform: rotate(90deg);
+  }
+`;
+
+export const FAQLink = styled.a`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  &:hover {
+    color: #873dc1;
+  }
 `;

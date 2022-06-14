@@ -23,7 +23,6 @@ import {
 } from "./TabsNFT.styles";
 
 import { setComponent } from "../../../../store/reducers/modalAction";
-import ModalsNFT from "../ModalsNFT/ModalsNFT";
 
 const TabsNFT: React.FC = () => {
   const dispatch = useDispatch();
@@ -80,7 +79,7 @@ const TabsNFT: React.FC = () => {
         >
           Buy now
         </ButtonRent>
-        <ModalsNFT />
+        <ButtonOffer>Make offer</ButtonOffer>
         <RowDown>
           <DivDeposit>
             <DepositText>Price</DepositText>

@@ -213,7 +213,7 @@ export const ClearAll = styled.button`
   }
 `;
 export const ContainerTable = styled.div`
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   margin-bottom: 120px;
 

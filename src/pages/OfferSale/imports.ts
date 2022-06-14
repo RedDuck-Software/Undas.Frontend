@@ -9,4 +9,15 @@ import info from "./assets/info.svg";
 import addNFT from "./assets/add-nft.svg";
 import deleteNFT from "./assets/delete.svg";
 
-export { back, verify, UND, cardNFT, eth, down, offerTime, info, addNFT, deleteNFT };
+export {
+  back,
+  verify,
+  UND,
+  cardNFT,
+  eth,
+  down,
+  offerTime,
+  info,
+  addNFT,
+  deleteNFT,
+};

@@ -9,6 +9,7 @@ import {
   CardLink,
   CardFooter,
   Date,
+  Inner,
 } from "./BlogCard.styles";
 
 interface BlogCard {
@@ -21,13 +22,14 @@ const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {
   return (
     <CardWrap>
       <ImageWrap>
+        <Inner />
         <Image src={image} alt="article-image" />
       </ImageWrap>
       <CardBody>
         <CardTitle>{titleText}</CardTitle>
         <CardFooter>
           <Date>{date}</Date>
-          <CardLink href="#">See more...</CardLink>
+          <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </CardBody>
     </CardWrap>

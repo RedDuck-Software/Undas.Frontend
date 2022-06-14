@@ -5,8 +5,6 @@ export const AccountContainer = styled.div`
   width: 100%;
 `;
 export const StatisticsText = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;

@@ -82,15 +82,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(
-                  setComponent(
-                    "buy",
-                    props.tokenId,
-                    props.price,
-                    props.URI,
-                    props.name,
-                  ),
-                );
+                navigate(`/buy/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
+
               }}
             >
               Buy 
@@ -99,17 +92,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(
-                  setComponent(
-                    //set
-                    "offer-rent",
-                    props.tokenId,
-                    props.price,
-                    props.URI,
-                    props.name,
-                  ),
-                );
-                navigate(`/offer-rent`);
+
               }}
             >
               Rent 
@@ -118,16 +101,6 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(
-                  setComponent(
-                    //set
-                    "offer-rent",
-                    props.tokenId,
-                    props.price,
-                    props.URI,
-                    props.name,
-                  ),
-                );
                 navigate(`/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
                 e.stopPropagation();
               }}

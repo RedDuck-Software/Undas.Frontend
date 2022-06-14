@@ -211,9 +211,8 @@ const NFTPage: React.FC = () => {
   const getTokenData = async () => {
 
     const tokensQuery = await fetchData()
-        console.log('tokensQuery.data.listings[0]',tokensQuery.data.listings[0])
     if(tokensQuery.data.listings[0] && tokensQuery.data.listings[0].listingStatus == "ACTIVE"){
-        console.log('tokensQuery.data.listings[0].price',tokensQuery.data.listings[0].price)
+
         setName(tokensQuery.data.listings[0].tokenName)
         setTokenURI( tokensQuery.data.listings[0].tokenURI)
         setPriceInNum(tokensQuery.data.listings[0].price) 
@@ -221,11 +220,12 @@ const NFTPage: React.FC = () => {
         setListingId(tokensQuery.data.listings[0].id) 
         setSeller(tokensQuery.data.listings[0].seller)
         setLoading(false)
+
         return
     }
-      console.log('tokensQuery.data.stakingListings[0]',tokensQuery.data.stakingListings[0])
+
     if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
-        console.log('ZXCQ',tokensQuery.data.stakingListings[0].premium)
+
         setName(tokensQuery.data.stakingListings[0].tokenName)
         setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
         setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
@@ -234,6 +234,7 @@ const NFTPage: React.FC = () => {
         setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
         setPremium(tokensQuery.data.stakingListings[0].premiumWei)
         setLoading(false)
+
         return
      }
      
@@ -395,7 +396,7 @@ async function fetchData() {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} tokenAddress={state.state.tokenAddress} tokenId={state.state.tokenId}/>
+                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} tokenAddress={state.state.tokenAddress} tokenId={state.state.tokenId} />
                   </SaleBlock>
 
                   <SaleBlock>
@@ -444,17 +445,7 @@ async function fetchData() {
                           <InfoButton fc="#873DC1" disabled={!isOwner}
                             onClick={(e) => {
                               e.stopPropagation();
-                              dispatch(
-                                setComponent(
-                                  //set
-                                  "offer-rent",
-                                  +tokenId,
-                                  priceInNum,
-                                  tokenURI,
-                                  name,
-                                ),
-                              );
-                              navigate(`/offer-rent`);
+                              navigate(`/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,{state:{...state}});
                             }}
                             >Make offer
                          </InfoButton>

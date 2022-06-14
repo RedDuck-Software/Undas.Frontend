@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import { CollectionPrev } from "./imports";
 
+import { PrimaryButton, SecondaryButton } from "../../../../globalStyles";
+
 export const SliderImage = styled.img`
   width: 100%;
   height: 100%;
@@ -86,49 +88,14 @@ export const SliderButtonsBlock = styled.div`
     display: none;
   }
 `;
-export const ExploreButton = styled.button`
+export const ExploreButton = styled(PrimaryButton)`
   width: 215px;
   height: 36px;
-  background: #873dc1;
-  border-radius: 10px;
-  border: none;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #ffffff;
-  transition: all 0.3s linear;
-  border: 1px solid #873dc1;
-  &:hover {
-    box-shadow: 0 0 6px #000;
-    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
-    font-size: 16px;
-  }
 `;
-export const CreateButton = styled.button`
+export const CreateButton = styled(SecondaryButton)`
   width: 215px;
   height: 36px;
-  background: #ffffff;
-  border: 1px solid #873dc1;
-  box-sizing: border-box;
-  border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #873dc1;
   margin-top: 15px;
-  transition: all 0.3s linear;
-  &:hover {
-    box-shadow: 0 0 6px #000;
-    background-color: #fbf5ff;
-    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
-    font-size: 16px;
-  }
 `;
 export const CollectionDiv = styled.div`
   position: absolute;

@@ -1,4 +1,5 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   OwnerItemText,
@@ -38,42 +39,41 @@ import {
   CheckboxLabelAgreement,
   AgreeRowButton,
   ButtonMakeOffer,
+  ButtonInfo,
+  FAQLink,
+  OverlayPopUp,
 } from "./CastomOffer.styles";
 
-import {addNFT, 
-      down,
-      deleteNFT,
-      info,
-} from "../../imports";
+import { addNFT, down, deleteNFT, info } from "../../imports";
 
 import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
 
 const CastomOffer: React.FC = () => {
-  return(
+  return (
     <div>
-    <OwnerContainer>
-    <OwnerItemText>Owner Item</OwnerItemText>
-    <NFTSelected>NFT item’s selected 1</NFTSelected>
-    <SelectedNFTCardBox>
-      <NFTInfoContainer>
-        <NFTCard uri="nft1" name="NFTCard" />
-      </NFTInfoContainer>
-      <NFTInfoContainer className="disable">
-        <NFTCard uri="nft2" name="NFTCard2" />
-        <AddNFT  src={addNFT} alt="add-nft-image"/>
-      </NFTInfoContainer>
-    </SelectedNFTCardBox>
-    <TextPrice>Offer a surcharge to the owner</TextPrice>
-      <PriceRow>
-        <EthSelect>
-          <EthText>ETH</EthText>
-          <ImageDown src={down} alt="down-image" />
-        </EthSelect>
-        <AmmountInput type="text" placeholder="Amount" />
-        <CostSelect>
-          <DollarText>0.00</DollarText>
-        </CostSelect>
-      </PriceRow>
+      <OwnerContainer>
+        <OwnerItemText>Owner Item</OwnerItemText>
+        <NFTSelected>NFT item’s selected 1</NFTSelected>
+        <SelectedNFTCardBox>
+          <NFTInfoContainer>
+            <NFTCard uri="nft1" name="NFTCard" />
+          </NFTInfoContainer>
+          <NFTInfoContainer className="disable">
+            <NFTCard uri="nft2" name="NFTCard2" />
+            <AddNFT src={addNFT} alt="add-nft-image" />
+          </NFTInfoContainer>
+        </SelectedNFTCardBox>
+        <TextPrice>Offer a surcharge to the owner</TextPrice>
+        <PriceRow>
+          <EthSelect>
+            <EthText>ETH</EthText>
+            <ImageDown src={down} alt="down-image" />
+          </EthSelect>
+          <AmmountInput type="text" placeholder="Amount" />
+          <CostSelect>
+            <DollarText>0.00</DollarText>
+          </CostSelect>
+        </PriceRow>
       </OwnerContainer>
       <BuyContainer>
         <OwnerItemText>My Item</OwnerItemText>
@@ -81,19 +81,19 @@ const CastomOffer: React.FC = () => {
         <SelectedNFTCardBox className="margin-20">
           <NFTInfoContainer>
             <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
           </NFTInfoContainer>
           <NFTInfoContainer>
             <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
           </NFTInfoContainer>
           <NFTInfoContainer>
             <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image"/>
+            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
           </NFTInfoContainer>
           <NFTInfoContainer className="disable">
             <NFTCard uri="nft2" name="NFTCard2" />
-            <AddNFT  src={addNFT} alt="add-nft-image"/>
+            <AddNFT src={addNFT} alt="add-nft-image" />
           </NFTInfoContainer>
         </SelectedNFTCardBox>
         <TextPrice>Offer your surcharge</TextPrice>
@@ -132,7 +132,20 @@ const CastomOffer: React.FC = () => {
             Pay in {"\u00A0"}
             <UNDLabel>UND</UNDLabel>
             {"\u00A0"} with a 50% discount
-            <ImageInfo src={info} alt="info-image" className="margin-top" />
+            <OverlayTrigger
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </CheckboxLabel>
           <DollarPrice className="margin-0">258,25</DollarPrice>
         </PayRow>
@@ -154,7 +167,7 @@ const CastomOffer: React.FC = () => {
         <ButtonMakeOffer>Make Offer</ButtonMakeOffer>
       </AgreeRowButton>
     </div>
-  ); 
+  );
 };
 
 export default CastomOffer;

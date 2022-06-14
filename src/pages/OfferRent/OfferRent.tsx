@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   PageWrapper,
@@ -41,10 +42,11 @@ import {
   SelectedNFT,
   SelectedNFTCardBox,
   ImgDelete,
-  AddNFT,
   AddNFTCard,
-  AddNFTButton,
   AddNFTContainer,
+  ButtonInfo,
+  OverlayPopUp,
+  FAQLink,
 } from "./OfferRent.styles";
 
 import {
@@ -56,34 +58,32 @@ import {
   ItemAmount,
 } from "../Rent/Rent.styles";
 
+import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-
+import {useLocation } from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
-import { useSelector } from "react-redux";
-import { useName, useToken, useUri } from "../../store/";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-
-import { ethers, Signer } from "ethers";
+import { createClient } from "urql";
+import { ethers} from "ethers";
 
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
-  const litsingId = useSelector(useToken);
-  const tokenName = useSelector(useName);
-  const tokenUri = useSelector(useUri);
+
   const { connector } = useContext(Context);
-  console.log('litsingId',litsingId,'tokenName',tokenName)
+
+  const state:any = useLocation()
+
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
-  
+  const [listingId,setListingId] = useState('')
+
   async function makeRentOffer() {
     if (!connector) return;
-    // if (priceInNum == undefined) {
-    //   return;
-    // }
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -94,16 +94,11 @@ const OfferRent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-      console.log(litsingId)
-      console.log('col',colloteral)
-      console.log('prem', premium)
 
-      console.log((colloteral + premium))
-      console.log((premium * 20) / 100)
     const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(7);
-      console.log(amountToPay)
+
     const tx = await MarketplaceContract.stakingOffer(
-      litsingId,
+      listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
@@ -113,6 +108,50 @@ const OfferRent: React.FC = () => {
 
     await tx.wait();
   }
+
+  useEffect(() => {
+    if (connector) {
+      getTokenData()
+ 
+    }
+  }, [connector,listingId]);
+
+  const getTokenData = async () => {
+
+    const tokensQuery = await fetchData()
+
+    if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
+      setListingId(tokensQuery.data.stakingListings[0].id);
+     return;
+    }
+
+  }
+
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+{
+  stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
+    id
+ 		tokenId
+    tokenURI
+    tokenDescription
+    seller
+    stakingStatus
+  }
+}
+ `;
+ const client = createClient({
+  url: APIURL,
+});
+
+async function fetchData() {
+  
+  const data = await client.query(tokensQuery).toPromise();
+
+  return data;
+}
 
   return (
     <Background>
@@ -133,7 +172,6 @@ const OfferRent: React.FC = () => {
             <CheckboxLabelCollateral htmlFor="collateral">
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
-            <ImageInfo src={info} alt="info-image" />
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
@@ -197,7 +235,20 @@ const OfferRent: React.FC = () => {
               </PriceRow>
               <NameRow className="margin-top-30">
                 <TextOffer>Marketplace commission</TextOffer>
-                <ImageInfo src={info} alt="info-image" />
+                <OverlayTrigger
+                  delay={{ show: 250, hide: 3000 }}
+                  placement="top"
+                  overlay={
+                    <OverlayPopUp>
+                      Speech bubble that will fall out when you click on the
+                      information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                    </OverlayPopUp>
+                  }
+                >
+                  <ButtonInfo>
+                    <ImageInfo src={info} alt="info-image" />
+                  </ButtonInfo>
+                </OverlayTrigger>
                 <PriceContainer>
                   <EthPrice>0,035</EthPrice>
                   <DollarPrice>258,25</DollarPrice>
@@ -217,11 +268,25 @@ const OfferRent: React.FC = () => {
                   Pay in {"\u00A0"}
                   <UNDLabel>UND</UNDLabel>
                   {"\u00A0"} with a 50% discount
-                  <ImageInfo
-                    src={info}
-                    alt="info-image"
-                    className="margin-top"
-                  />
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin-top"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
                 </CheckboxLabel>
                 <DollarPrice className="margin-0">258,25</DollarPrice>
               </PayRow>
@@ -231,7 +296,7 @@ const OfferRent: React.FC = () => {
                 <ItemAmount>Owner item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri={tokenUri} name={tokenName} />
+                <NFTCard uri={state.state.state.URI} name={state.state.state.name} />
               </NFTInfoContainer>
             </SecondCollum>
             <NameRow>
@@ -253,9 +318,7 @@ const OfferRent: React.FC = () => {
               </NFTInfoContainer>
               <AddNFTContainer>
                 <AddNFTCard>
-                  <AddNFTButton>
-                    <AddNFT className="add-btn">+</AddNFT>
-                  </AddNFTButton>
+                  <ModalsNFT />
                 </AddNFTCard>
               </AddNFTContainer>
             </SelectedNFTCardBox>
