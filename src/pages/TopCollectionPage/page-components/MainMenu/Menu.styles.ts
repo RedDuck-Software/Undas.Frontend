@@ -205,6 +205,9 @@ export const FilterButton = styled(FavouriteButton)`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  &:hover {
+    background: #fbf5ff;
+  }
   &.offers-active {
     background-color: #edd2ff;
   }

@@ -39,6 +39,9 @@ export const FavouriteButton = styled.button`
   font-size: 18px;
   text-align: center;
   color: #5d3f92;
+  &:hover {
+    background-color: #fbf5ff;
+  }
   &.favourite-active {
     background-color: #edd2ff;
   }
@@ -89,6 +92,9 @@ export const FilterButton = styled(FavouriteButton)`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  &:hover {
+    background: #fbf5ff;
+  }
   &.offers-active {
     background-color: #edd2ff;
   }
@@ -212,39 +218,33 @@ export const AcceptBTN = styled.button`
   border-radius: 10px;
   width: 100px;
   height: 36px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ffffff;
-  border-color: #873dc1;
-
+  border: 1px solid #873dc1;
+  transition: all 0.3s;
   &:hover {
     color: #873dc1;
     background: #ffffff;
-    border: 1px solid #873dc1;
   }
 `;
 export const MakeOfferBTN = styled.button`
   width: 100px;
   height: 36px;
   box-sizing: border-box;
-  background: #ffffff;
+  background: #ebdfff;
   border: 1px solid #873dc1;
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #873dc1;
-
+  color: #232428;
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid #873dc1;
-    box-shadow: 0px 0px 10px #873dc1;
+    background: #ffffff;
   }
 `;
 export const DenyBTN = styled.button`
@@ -254,17 +254,15 @@ export const DenyBTN = styled.button`
   background: #ffffff;
   border: 1px solid #ff2a36;
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ff2a36;
-
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid #ff2a36;
-    box-shadow: 0px 0px 10px #ff2a36;
+    background-color: #ff2a36;
+    color: #ffffff;
   }
 `;
 export const CancelBtn = styled.button`
@@ -282,9 +280,10 @@ export const CancelBtn = styled.button`
   position: absolute;
   right: 2px;
   top: 2px;
-  transition: background-color 0.3s;
+  z-index: 2;
+  transition: all 0.3s;
   &:hover {
-    background-color: #edd2ff;
+    background-color: #fbf5ff;
   }
   @media (max-width: 576px) {
     width: 99%;

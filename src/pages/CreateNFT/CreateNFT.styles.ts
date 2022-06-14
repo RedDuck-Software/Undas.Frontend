@@ -140,7 +140,7 @@ export const NFTItemPreview = styled.img`
 `;
 
 export const CreateInput = styled.input`
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  border: none;
   outline: none;
   margin-top: 10px;
   border-radius: 10px;
@@ -149,17 +149,18 @@ export const CreateInput = styled.input`
   width: 100%;
   font-size: 14px;
   line-height: 17px;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   &::placeholder {
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 
 export const CreateTextArea = styled.textarea`
   background: #ffffff;
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  border: none;
   outline: none;
   border-radius: 10px;
   width: 100%;
@@ -167,11 +168,12 @@ export const CreateTextArea = styled.textarea`
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   &::placeholder {
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 export const CreateSelect = styled.select`
@@ -211,7 +213,7 @@ export const ModalBlockDescript = styled(BlockDescript)`
   margin: 0;
 `;
 export const SwitcherBlock = styled(ModalBlock)`
-  max-width: 350px;
+  max-width: 475px;
   margin: 20px 0 0;
 `;
 export const SwitcherTitle = styled(ModalTitle)`

@@ -3,6 +3,23 @@ import styled from "styled-components";
 import { ReactComponent as FavoriteIco } from "../../../icons/nftcard-favorite.svg";
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 
+export const Preview = styled.div`
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(35, 36, 40, 0.5);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  height: 36px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  transition: all 0.3s;
+  opacity: 0;
+`;
 export const NFTWrap = styled.div`
   cursor: pointer;
   width: 100%;
@@ -14,6 +31,9 @@ export const NFTWrap = styled.div`
   max-width: 420px;
   &:hover {
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
+  }
+  &:hover ${Preview} {
+    opacity: 1;
   }
   @media (max-width: 576px) {
     max-width: 100%;
@@ -37,7 +57,6 @@ export const Name = styled.span`
     font-size: 12px;
   }
 `;
-
 export const Favorite = styled(FavoriteIco)`
   cursor: pointer;
   margin-left: auto;
@@ -55,22 +74,6 @@ export const Image = styled.img`
   object-fit: cover;
   height: 100%;
 `;
-export const Preview = styled.div`
-  cursor: pointer;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  background: rgba(35, 36, 40, 0.5);
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-  height: 36px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #ffffff;
-`;
-
 export const BuyingBlock = styled.div`
   width: 100%;
   height: 100%;
@@ -102,7 +105,12 @@ export const BuyBtn = styled.button`
   background-color: #fff;
   border-radius: 2px 2px 2px 10px;
   border: none;
+  transition: all 0.3s;
   cursor: pointer;
+  &:hover{
+    background: #873dc1;
+    color: #fff;
+  }
   @media (max-width: 576px) {
     font-size: 12px;
     line-height: 15px;

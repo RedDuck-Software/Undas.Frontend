@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as SearchIco } from "../../icons/search.svg";
+import SearchIco from "../../icons/search.svg";
 
 export const ElementText = styled.span`
   margin-left: 10px;
@@ -282,19 +282,30 @@ export const ApplyBtn = styled.button`
   line-height: 17px;
   color: #873dc1;
   cursor: pointer;
+  transition: all 0.3s linear;
+  &:hover {
+    background-color: #873dc1;
+    color: #fff;
+  }
 `;
 
-export const SearchInputWrapper = styled.div<{ maxWidth?: string }>`
-  padding-left: 20px;
+export const SearchInputWrapper = styled.input<{ maxWidth?: string }>`
+  padding-left: 40px;
   display: flex;
   align-items: center;
   max-width: ${({ maxWidth }) => maxWidth || "410px"};
   width: 100%;
   height: 36px;
-  background-color: #fff;
-  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  background: #fff url(${SearchIco}) no-repeat 15px center;
+  box-shadow: inset 0px 0px 5px rgb(124 124 124 / 50%);
   border-radius: 10px;
   border: none;
+  outline: none;
+  font-size: 12px;
+  line-height: 15px;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135 61 193);
+  }
   @media (max-width: 1200px) {
     order: 1;
     flex: 0 0 100%;
@@ -302,22 +313,6 @@ export const SearchInputWrapper = styled.div<{ maxWidth?: string }>`
     max-width: 100%;
   }
 `;
-
-export const SearchInput = styled.input`
-  font-size: 18px;
-  line-height: 22px;
-  color: #7c7c7c;
-  border: transparent;
-  background: transparent;
-  padding-right: 0.5rem;
-  outline: none;
-  width: 100%;
-`;
-
-export const SearchInputIco = styled(SearchIco)`
-  margin-right: 10px;
-`;
-
 export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
   margin-bottom: ${({ mb }) => (mb ? mb : "12px")};
 `;

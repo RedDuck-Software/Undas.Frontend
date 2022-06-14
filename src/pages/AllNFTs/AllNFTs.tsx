@@ -12,8 +12,6 @@ import {
   Arrow,
   FilterMenu,
   MenuSearchWrap,
-  SearchIco,
-  Input,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
@@ -108,10 +106,7 @@ const AllNFTs: React.FC = () => {
                 </FilterMenu>
               </Filter>
             </SettingsBlock>
-            <MenuSearchWrap mw="530px" marginLeft="0">
-              <SearchIco />
-              <Input placeholder="Search" />
-            </MenuSearchWrap>
+            <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
           {viewMode === ViewMode.grid ? (

@@ -35,7 +35,7 @@ import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Background } from "../../globalStyles";
 
 const AccountPage: React.FC = () => {
-  const [tab, setTab] = useState("offers");
+  const [tab, setTab] = useState("");
   const { account, deactivate } = useWeb3React();
 
   const { connector } = useContext(Context);

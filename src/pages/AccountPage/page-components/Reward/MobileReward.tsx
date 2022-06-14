@@ -66,9 +66,7 @@ const MobileReward: React.FC = () => {
                   <Button>1</Button>
                   <Button className="active">7</Button>
                   <Button>30</Button>
-                  <Button>
-                    <IntervalInput type="text" placeholder="custom" />
-                  </Button>
+                  <IntervalInput type="text" placeholder="custom" />
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>
@@ -112,9 +110,7 @@ const MobileReward: React.FC = () => {
                   <Button>1</Button>
                   <Button className="active">7</Button>
                   <Button>30</Button>
-                  <Button>
-                    <IntervalInput type="text" placeholder="custom" />
-                  </Button>
+                  <IntervalInput type="text" placeholder="custom" />
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>
@@ -158,9 +154,7 @@ const MobileReward: React.FC = () => {
                   <Button>1</Button>
                   <Button className="active">7</Button>
                   <Button>30</Button>
-                  <Button>
-                    <IntervalInput type="text" placeholder="custom" />
-                  </Button>
+                  <IntervalInput type="text" placeholder="custom" />
                 </ButtonsBlock>
                 <span>x Days</span>
               </CentralBlockHead>

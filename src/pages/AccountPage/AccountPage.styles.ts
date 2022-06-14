@@ -55,6 +55,10 @@ export const Tab = styled.li`
   padding: 10px 20px;
   cursor: pointer;
   color: #232428;
+  transition: all 0.3s;
+  &:hover{
+    background: #fbf5ff;
+  }
   &.active {
     background: #fbf5ff;
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);

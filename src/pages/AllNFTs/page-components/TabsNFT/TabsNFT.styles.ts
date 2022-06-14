@@ -16,15 +16,14 @@ export const InputTypeYourBid = styled.input`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
   color: #873dc1;
-  padding-left: 10px;
-
+  padding-left: 20px;
+  outline: none;
+  box-shadow: inset 0px 0px 7px rgb(124, 124, 124, 0.5);
   &:focus {
-    outline: none !important;
-    border: 3px solid #873dc1;
-    box-shadow: 0 0 10px #719ece;
+    box-shadow: inset 0px 0px 7px rgb(135, 61, 193);
   }
 `;
 export const ReturneText = styled.span`
@@ -53,6 +52,10 @@ export const ButtonRent = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
+  &:hover{
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 75%);
+  }
 `;
 export const ButtonRentSale = styled.button`
   position: absolute;
@@ -69,6 +72,10 @@ export const ButtonRentSale = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
+  &:hover{
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 75%);
+  }
 `;
 export const ButtonOffer = styled.button`
   position: absolute;
@@ -85,6 +92,10 @@ export const ButtonOffer = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #873dc1;
+  &:hover{
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+  }
 `;
 export const ButtonBid = styled.button`
   position: absolute;
@@ -101,6 +112,10 @@ export const ButtonBid = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #873dc1;
+  &:hover{
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+  }
 `;
 export const SpanSale = styled.span`
   font-family: "Montserrat";

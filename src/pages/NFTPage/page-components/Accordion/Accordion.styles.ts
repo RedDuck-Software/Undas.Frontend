@@ -587,27 +587,23 @@ export const AcceptBTN = styled.button`
   border-radius: 10px;
   width: 100px;
   padding: 7px 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ffffff;
-  border-color: #873dc1;
-  outline: none;
-  border: none;
+  border: 1px solid #873dc1;
+  transition: all 0.3s;
   &:hover {
     color: #873dc1;
     background: #ffffff;
-    border: 1px solid #873dc1;
   }
 `;
 export const MakeOfferBTN = styled.button`
   width: 100px;
   padding: 7px 5px;
   box-sizing: border-box;
-  background: #ffffff;
+  background: #ebdfff;
   border: 1px solid #873dc1;
   border-radius: 10px;
   font-family: "Montserrat";
@@ -616,11 +612,10 @@ export const MakeOfferBTN = styled.button`
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #873dc1;
-
+  color: #232428;
+  transition: all 0.3s;
   &:hover {
-    background: #873dc1;
-    color: #ffffff;
+    background: #ffffff;
   }
 `;
 export const DenyBTN = styled.button`
@@ -637,9 +632,9 @@ export const DenyBTN = styled.button`
   line-height: 17px;
   text-align: center;
   color: #ff2a36;
-
+  transition: all 0.3s;
   &:hover {
-    background: #ff2a36;
+    background-color: #ff2a36;
     color: #ffffff;
   }
 `;
