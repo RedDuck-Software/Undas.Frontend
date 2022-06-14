@@ -20,7 +20,7 @@ import {
 } from "./ASideFilterCollection.styles";
 import { FilterIco, StatusIco, PriceIco, UsdIco, EthIco } from "./imports";
 
-import { filterAction } from "../../../../store/reducers/filterReducer";
+import { filterAction } from "../../../../store/reducers/stackingReducer";
 
 const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
   marginTop,

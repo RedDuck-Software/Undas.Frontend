@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   AllNFTContainer,
@@ -11,16 +12,54 @@ import {
   FilterTitle,
   Arrow,
   FilterMenu,
+  SelectedCollectionsList,
+  SelectedCollection,
+  RemoveSelectedCollection,
+  SelectedCollectionsWrapper,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
+
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
+import { Background } from "../../globalStyles";
+import { useSelectedCollections } from "../../store/reducers/Filter/helpers";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
+
+import { CloseIcon } from "./imports";
+import { removeSelectedCollection } from "../../store/reducers/Filter/filterActions";
+
+interface SelectedCollectionItemProps {
+  icon?: string;
+  label: string;
+  handleUnselect?: any;
+}
+
+const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
+  icon,
+  label,
+  handleUnselect,
+}) => {
+  return (
+    <SelectedCollection>
+      <img src={icon} />
+      {label}
+      <RemoveSelectedCollection
+        src={CloseIcon}
+        onClick={handleUnselect(label)}
+      />
+    </SelectedCollection>
+  );
+};
 
 const AllNFTs: React.FC = () => {
+  const dispatch = useDispatch();
+  const selector = useSelector(useSelectedCollections);
+  useEffect(() => {
+    console.log(selector);
+  }, [selector]);
+
   const [results, setResults] = useState<any>();
   const [priceFilter, setPriceFilter] = useState<string>("");
   const [active, setActive] = useState<any>({
@@ -30,13 +69,20 @@ const AllNFTs: React.FC = () => {
   useEffect(() => {
     console.log(priceFilter);
   }, [active, priceFilter]);
-
+  const [selectedCollections, setSelectedCollections] = useState(selector);
   const { viewMode, viewButtonsRender } = useViewMode();
+
+  const handleUnselectCollection = (name: string) => {
+    dispatch(removeSelectedCollection(name));
+  };
 
   return (
     <Background>
       <AllNFTContainer>
-        <ASideFilter />
+        <ASideFilter
+          selectedCollections={selectedCollections}
+          setSelectedCollections={setSelectedCollections}
+        />
         <Wrapper w="100%" marg="0 0 200px 0">
           {/*rm marg after deploy*/}
           <MenuWrap justifyContent="space-between">
@@ -101,6 +147,20 @@ const AllNFTs: React.FC = () => {
             </SettingsBlock>
             <ResultsTotal>{results}</ResultsTotal>
           </MenuWrap>
+          <SelectedCollectionsWrapper>
+            <SelectedCollectionsList>
+              {selectedCollections &&
+                selectedCollections.map((item: any) => {
+                  return (
+                    <SelectedCollectionItem
+                      key={`${item.collectionName}-${item.collectionIcon}`}
+                      label={item.collectionName}
+                      icon={item.collectionIcon}
+                    />
+                  );
+                })}
+            </SelectedCollectionsList>
+          </SelectedCollectionsWrapper>
           {viewMode === ViewMode.grid ? (
             <AllGridWrap
               getResults={(amount: any) => setResults(amount)}
@@ -116,138 +176,3 @@ const AllNFTs: React.FC = () => {
 };
 
 export default AllNFTs;
-
-/*
-import { CardList } from "../../components";
-
-import { Background } from "../../globalStyles";
-import { AllNFTsContainer } from "./AllNFTs.styles";
-import React, { useState } from "react";
-
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-
-import {
-  CollectionIcon,
-  EthereumIcon,
-  PolygonIcon,
-  KlaytnIcon,
-  AllNFTsIcon,
-  NewIcon,
-  ArtIcon,
-  SportIcon,
-  GirlsIcon,
-  FurnitureIcon,
-} from "./imports";
-
-import {
-  SideBarContainer,
-  SideBarFilter,
-  SideBarStatusTop,
-  SideBarStatusContent,
-  StatusButton,
-  SideBarPriceTop,
-  SideBarPriceContent,
-  ButtonsWrapper,
-  PriceButton,
-  PriceInput,
-  ApplyLink,
-  SideBarCollectionsTop,
-  SideBarCollectionsContent,
-  CollectionsSearchWrapper,
-  SearchIcon,
-  CollectionsFilter,
-  CollectionsList,
-  CollectionsListItem,
-  ItemImage,
-  ItemText,
-  SideBarChainsTop,
-  SideBarChainsContent,
-  ChainsList,
-  ChainsListItem,
-  SideBarCategoriesTop,
-  SideBarCategoriesContent,
-  CategoriesList,
-  CategoriesListItem,
-} from "./AllNFTs.styles";
-
-const AllNFTs = () => {
-  const [statusOpen, setStatusOpen] = useState(true);
-  const [priceOpen, setPriceOpen] = useState(true);
-  const [collectionsOpen, setCollectionsOpen] = useState(false);
-  const [chainsOpen, setChainsOpen] = useState(false);
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [selectedPriceFilterMin, setSelectedPriceFilterMin] = useState("0");
-  const [selectedPriceFilterMax, setSelectedPriceFilterMax] =
-    useState("1000000");
-
-  const toogleStatusView = () => {
-    setStatusOpen(!statusOpen);
-  };
-
-  const tooglePriceView = () => {
-    setPriceOpen(!priceOpen);
-  };
-
-  const toggleCollectionsView = () => {
-    setCollectionsOpen(!collectionsOpen);
-  };
-
-  const toggleChainsView = () => {
-    setChainsOpen(!chainsOpen);
-  };
-
-  const toggleCategoriesView = () => {
-    setCategoriesOpen(!categoriesOpen);
-  };
-
-  return (
-    <Background>
-      <AllNFTsContainer>
-        <SideBarContainer>
-          {priceOpen ? (
-            <>
-              <SideBarPriceTop opened onClick={tooglePriceView}>
-                Price <IoIosArrowUp />
-              </SideBarPriceTop>
-              <SideBarPriceContent>
-                <ButtonsWrapper>
-                  <PriceInput
-                    type="text"
-                    id="min"
-                    name="min"
-                    placeholder="Min"
-                    value={selectedPriceFilterMin}
-                    onChange={(e) => setSelectedPriceFilterMin(e.target.value)}
-                  />
-                  <span>-</span>
-                  <PriceInput
-                    type="text"
-                    id="max"
-                    name="max"
-                    placeholder="Max"
-                    value={selectedPriceFilterMax}
-                    onChange={(e) => setSelectedPriceFilterMax(e.target.value)}
-                  />
-                </ButtonsWrapper>
-              </SideBarPriceContent>
-            </>
-          ) : (
-            <SideBarPriceTop onClick={tooglePriceView}>
-              Price <IoIosArrowDown />
-            </SideBarPriceTop>
-          )}
-        </SideBarContainer>
-        <CardList
-          priceFilter={{
-            min: +selectedPriceFilterMin,
-            max: +selectedPriceFilterMax,
-          }}
-        />
-      </AllNFTsContainer>
-    </Background>
-  );
-};
-
-export default AllNFTs;
-*/
