@@ -224,9 +224,9 @@ const MainMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0">
           <SearchIco />
-          <Input />
+          <Input placeholder="Search" />
         </MenuSearchWrap>
-        <ResultsTotal>2</ResultsTotal>
+        <ResultsTotal>12 results</ResultsTotal>
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
         <CollectionGridWrap itemList={testNFTList} />

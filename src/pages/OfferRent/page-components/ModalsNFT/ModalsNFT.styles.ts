@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Modal } from "react-bootstrap";
 
 import { ReactComponent as Search } from "../../../../pages/CollectionPage/assets/search.svg";
 
@@ -11,6 +12,7 @@ export const FormButton = styled.button`
   height: 36px;
   width: 250px;
 `;
+
 export const MakeOfferText = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -33,6 +35,7 @@ export const AddNFTButton = styled.button`
     box-shadow: 0px 0px 5px #7c7c7c;
   }
 `;
+
 export const AddNFT = styled.div`
   height: 50px;
   width: 50px;
@@ -46,6 +49,7 @@ export const AddNFT = styled.div`
   line-height: 50px;
   transition: all 0.3s;
 `;
+
 export const RowFlex = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -54,6 +58,7 @@ export const RowFlex = styled.div`
     margin-top: 20px;
   }
 `;
+
 export const SelectedItem = styled.div`
   width: 40%;
   font-family: 'Montserrat';
@@ -64,6 +69,7 @@ export const SelectedItem = styled.div`
   margin-top: 6px;
   color: #7C7C7C;
 `;
+
 export const SearchIco = styled(Search)`
   margin-right: 10px;
 `;
@@ -79,6 +85,7 @@ export const MenuSearchWrap = styled.div`
   border-radius: 10px;
   border: none;
 `;
+
 export const Input = styled.input`
   font-weight: 400;
   font-size: 12px;
@@ -88,6 +95,7 @@ export const Input = styled.input`
   outline: none;
   width: 100%;
 `;
+
 export const Filter = styled.ul`
   width: 20%;
   position: relative;
@@ -103,6 +111,7 @@ export const Filter = styled.ul`
     border-radius: 10px 10px 0 0;
   }
 `;
+
 export const FilterCollection = styled.ul`
   width: 38%;
   height: 36px;
@@ -120,6 +129,7 @@ export const FilterCollection = styled.ul`
     border-radius: 10px 10px 0 0;
   }
 `;
+
 export const FilterItem = styled.li`
   display: flex;
   justify-content: space-between;
@@ -137,6 +147,7 @@ export const FilterTitle = styled.span`
   color: #5D3F92;
   padding-top: 2px;
 `;
+
 export const Arrow = styled.span`
   margin-top: 4px;
   border-top: 1px solid #5d3f92;
@@ -154,6 +165,7 @@ export const Arrow = styled.span`
     transform: rotate(-135deg);
   }
 `;
+
 export const FilterMenu = styled.ul`
   position: absolute;
   z-index: 2;
@@ -174,6 +186,7 @@ export const FilterMenu = styled.ul`
     opacity: 1;
   }
 `;
+
 interface IMenuItem {
   hover?: boolean;
 }
@@ -200,6 +213,7 @@ export const FilterTitleCollection = styled.span`
     padding-right: 10px;
   }
 `;
+
 export const CheckboxInputAgreement = styled.input`
   &.custom-checkbox {
     position: absolute;
@@ -246,14 +260,15 @@ export const CheckboxInputAgreement = styled.input`
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
 `;
+
 export const CheckboxLabelAgreement = styled.label`
-width: 100%;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-color: #000000;
+  width: 100%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
@@ -319,12 +334,14 @@ export const FirstCollumNFT = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 `;
+
 export const SecondCollumNFT = styled.div`
   display: flex;
   width: 50%;
   flex-wrap: wrap;
   flex-direction: column;
 `;
+
 export const LastCollumNFT = styled.div`
   display: flex;
   width: 20%;
@@ -431,5 +448,76 @@ margin-top: 10px;
 `;
 
 export const ModalNftDiv = styled.div`
-display: inline;
+  display: inline;
+`;
+
+export const ModalHeader = styled(Modal.Header)`
+  height: 70px;
+  background: #FBF5FF;
+  box-shadow: inset 0px 0px 1px #7C7C7C;
+  border-radius: 20px 20px 0px 0px;
+`;
+
+export const ModalBody = styled(Modal.Body)`
+`;
+
+export const ModalContainer = styled(Modal)`
+  margin: 2rem auto;
+  & .modal-dialog {
+    max-width: 730px;
+  }
+  & .modal-content {
+    border-radius: 20px 20px 20px 20px;
+    width: 750px;
+  }
+  & .btn-close {
+    padding-right: 27px !important;
+  }  
+`;
+
+export const ModalFooter = styled(Modal.Footer)`
+  align-items: center;
+  justify-content: center;
+  border: none;
+`;
+
+export const FormButtonModal = styled(FormButton)`
+&.btn-apply {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #873DC1;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #873DC1;
+}
+&.btn-apply:hover {
+  color: #FFFFFF;
+  background: #873DC1;
+}
+&.btn-clear {
+  width: 160px !important;
+  height: 36px !important;
+  background: #FFFFFF;
+  border: 1px solid #FF2A36;
+  border-radius: 10px;
+  margin-right: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FF2A36;
+}
+&.btn-clear:hover {
+  color: #FFFFFF;
+  background: #FF2A36;
+}
 `;

@@ -16,6 +16,9 @@ import {
   SelectedCollection,
   RemoveSelectedCollection,
   SelectedCollectionsWrapper,
+  MenuSearchWrap,
+  SearchIco,
+  Input,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
@@ -52,6 +55,7 @@ const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
     </SelectedCollection>
   );
 };
+
 
 const AllNFTs: React.FC = () => {
   const dispatch = useDispatch();
@@ -145,7 +149,11 @@ const AllNFTs: React.FC = () => {
                 </FilterMenu>
               </Filter>
             </SettingsBlock>
-            <ResultsTotal>{results}</ResultsTotal>
+            <MenuSearchWrap mw="530px" marginLeft="0">
+              <SearchIco />
+              <Input placeholder="Search" />
+            </MenuSearchWrap>
+            <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
           <SelectedCollectionsWrapper>
             <SelectedCollectionsList>

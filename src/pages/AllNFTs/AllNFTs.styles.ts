@@ -19,8 +19,9 @@ export const MenuWrap = styled.div<IMenuWrap>`
   align-items: center;
   margin: ${(props) => props.marg || "64px 0 20px"};
   flex-wrap: wrap;
+  gap: 20px;
   @media (max-width: 576px) {
-    margin-bottom: 0;
+    margin-top: 20px;
   }
 `;
 
@@ -35,7 +36,7 @@ export const MenuSearchWrap = styled.div<IMenuSearch>`
   display: flex;
   align-items: center;
   max-width: ${(props) => props.mw || "410px"};
-  width: 100%;
+  width: 33%;
   height: 36px;
   background-color: #fff;
   box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
@@ -46,6 +47,9 @@ export const MenuSearchWrap = styled.div<IMenuSearch>`
     flex: 0 0 100%;
     margin-bottom: 20px;
     max-width: 100%;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 0;
   }
 `;
 export const SearchIco = styled(Search)`
@@ -65,6 +69,15 @@ export const ResultsTotal = styled.span`
   font-size: 18px;
   line-height: 22px;
   color: #7c7c7c;
+  @media (max-width: 1200px) {
+    order: 3;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+    text-align: right;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 export const SettingsBlock = styled.ul`
   list-style: none;
@@ -72,9 +85,13 @@ export const SettingsBlock = styled.ul`
   gap: 15px;
   @media (max-width: 1200px) {
     order: 2;
-    flex: 0 0 80%;
+    flex: 0 0 70%;
   }
   @media (max-width: 768px) {
+    flex: 0 0 50%;
+  }
+  @media (max-width: 576px) {
+    flex-direction: column;
     flex: 0 0 100%;
   }
 `;
@@ -117,6 +134,9 @@ export const Filter = styled.ul`
   }
   &.event-active {
     border-radius: 10px 10px 0 0;
+  }
+  @media (max-width: 576px) {
+    width: 100%;
   }
 `;
 export const FilterItem = styled.li`
@@ -229,6 +249,7 @@ export const RemoveSelectedCollection = styled.img`
   margin-left: auto;
 `
 /* export const TabsMenu = styled.ul`
+export const TabsMenu = styled.ul`
   display: flex;
   margin-top: -57px;
   margin-bottom: 70px;
