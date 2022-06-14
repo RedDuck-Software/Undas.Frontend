@@ -201,7 +201,7 @@ export const ModalTitle = styled(CreateLabel)`
 `;
 
 export const ModalBlock = styled.div`
-  max-width: 400px;
+  max-width: 470px;
   display: flex;
   justify-content: space-between;
   align-items: center;
