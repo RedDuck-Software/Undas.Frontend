@@ -1,4 +1,5 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   BlockTitle,
@@ -41,6 +42,9 @@ import {
   AddNFTCard,
   AddNFTButton,
   AddNFTContainer,
+  OverlayPopUp,
+  ButtonInfo,
+  FAQLink,
 } from "../OfferRent/OfferRent.styles";
 import {
   LeftBlock,
@@ -74,7 +78,20 @@ const Sale: React.FC = () => {
             <CheckboxLabelCollateral htmlFor="collateral">
               Make a Bundle
             </CheckboxLabelCollateral>
-            <ImageInfo src={info} alt="info-image" />
+            <OverlayTrigger
+                delay={{ show: 250, hide: 3000 }}
+                placement="top"
+                overlay={
+                  <OverlayPopUp>
+                    Speech bubble that will fall out when you click on the
+                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                  </OverlayPopUp>
+                }
+              >
+                <ButtonInfo>
+                  <ImageInfo src={info} alt="info-image" className="margin-3"/>
+                </ButtonInfo>
+              </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <ContentWrapper>
             <LeftBlock>
@@ -114,7 +131,20 @@ const Sale: React.FC = () => {
                 <NameRow>
                   <TextPrice>
                     Deposit
-                    <ImageInfo src={info} alt="info-image" />
+                    <OverlayTrigger
+                      delay={{ show: 250, hide: 3000 }}
+                      placement="top"
+                      overlay={
+                        <OverlayPopUp>
+                          Speech bubble that will fall out when you click on the
+                          information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                        </OverlayPopUp>
+                      }
+                    >
+                      <ButtonInfo>
+                        <ImageInfo src={info} alt="info-image" className="margin"/>
+                      </ButtonInfo>
+                    </OverlayTrigger>
                   </TextPrice>
                 </NameRow>
                 <PriceRow>

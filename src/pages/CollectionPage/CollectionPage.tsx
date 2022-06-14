@@ -280,7 +280,6 @@ const CollectionPage: React.FC = () => {
                   </MenuSearchWrap>
                 </DisplayNone>
               </MenuWrapCollection>
-
               <SelectedFiltersCollection>
                 <FilterSelected>
                   <FilterImg src={filter} alt="filter-image" />

@@ -1,4 +1,5 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
   TopLinkWrapper,
@@ -34,6 +35,9 @@ import {
   CheckboxLabelAgreement,
   CheckboxInputAgreement,
   NFTInfoContainer,
+  OverlayPopUp,
+  FAQLink,
+  ButtonInfo,
 } from "../OfferRent/OfferRent.styles";
 
 import { Background, Container, PageTitle } from "../../globalStyles";
@@ -65,7 +69,20 @@ const Rent: React.FC = () => {
               <ContentItem>
                 <ContentItemName>
                   Marketplace commission
-                  <ImageInfo src={info} alt="info-image" />
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo src={info} alt="info-image" className="margin"/>
+                    </ButtonInfo>
+                  </OverlayTrigger>
                 </ContentItemName>
                 <ContentItemPriceWrap>
                   <ContentItemPriceEth>0,035</ContentItemPriceEth>
@@ -85,7 +102,20 @@ const Rent: React.FC = () => {
                       Pay in {"\u00A0"}
                       <UNDLabel>UND</UNDLabel>
                       {"\u00A0"} with a 50% discount
-                      <ImageInfo src={info} alt="info-image" />
+                      <OverlayTrigger
+                        delay={{ show: 250, hide: 3000 }}
+                        placement="top"
+                        overlay={
+                          <OverlayPopUp>
+                            Speech bubble that will fall out when you click on the
+                            information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                          </OverlayPopUp>
+                        }
+                      >
+                        <ButtonInfo>
+                          <ImageInfo src={info} alt="info-image" className="margin"/>
+                        </ButtonInfo>
+                      </OverlayTrigger>
                     </CheckboxLabel>
                   </CheckboxRow>
                 </ContentItemName>
