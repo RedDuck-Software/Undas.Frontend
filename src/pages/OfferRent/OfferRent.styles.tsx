@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { NFTWrap } from "../HomePage/page-components/NFTCard/NFTCard.styles";
 import { eth, offerTime } from "./imports";
+import { Swiper } from "swiper/react";
 
 export const PageWrapper = styled.div`
   padding: 40px 0 120px;
@@ -346,7 +347,7 @@ export const CheckboxInput = styled.input`
     border-right: 1px solid #5d3f92;
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 5px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
@@ -618,12 +619,6 @@ export const SelectedNFT = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SelectedNFTCardBox = styled.div`
-  display: flex;
-  gap: 30px;
-  overflow-x: auto;
-`;
-
 export const ImgDelete = styled.img`
   height: 16px;
   top: 10px;
@@ -641,30 +636,7 @@ export const AddNFTCard = styled(NFTWrap)`
   height: 300px;
   border-radius: 10px;
 `;
-export const AddNFTButton = styled.button`
-  background-color: #c4c4c4;
-  border: none;
-  outline: none;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  &:hover .add-btn {
-    box-shadow: 0px 0px 5px #7c7c7c;
-  }
-`;
-export const AddNFT = styled.div`
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
-  color: #7c7c7c;
-  font-size: 50px;
-  line-height: 50px;
-  transition: all 0.3s;
-`;
+
 export const ButtonInfo = styled.button`
   background-color: transparent;
   border: none;
@@ -709,5 +681,55 @@ export const FAQLink = styled.a`
   color: #232428;
   &:hover {
     color: #873dc1;
+  }
+`;
+
+export const SwiperNFT = styled(Swiper)`
+  &.swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: 0;
+    right: auto;
+    z-index: 999;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-left: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+    }
+  }
+  &.swiper-button-next {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: auto;
+    right: 0;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-right: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(-45deg);
+      margin-right: 6px;
+    }
   }
 `;

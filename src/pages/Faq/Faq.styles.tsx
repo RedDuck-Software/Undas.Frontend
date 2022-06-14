@@ -66,7 +66,7 @@ export const UndasLink = styled.a`
   color: #873dc1;
   text-decoration: none;
   transition: all 0.3s;
-  &:hover{
+  &:hover {
     color: #873dc1;
     text-decoration: underline;
     font-weight: 600;
@@ -79,8 +79,8 @@ export const AddToWatchlistLink = styled.a`
   text-decoration: underline;
   color: #873dc1;
   cursor: pointer;
-   transition: all 0.3s;
-  &:hover{
+  transition: all 0.3s;
+  &:hover {
     color: #873dc1;
     font-weight: 600;
   }

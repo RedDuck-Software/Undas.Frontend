@@ -483,13 +483,17 @@ export const RentalPeriod = styled.input`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  text-align: right;
+  text-align: left;
   padding: 10px 36px;
   background: #ffffff;
-  box-shadow: inset 0px 0px 2px #7c7c7c;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   border-radius: 10px;
   color: #7c7c7c;
   border: none;
+  outline: none;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
+  }
 `;
 
 export const SmallAccordionWrap = styled.div`

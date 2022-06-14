@@ -101,12 +101,15 @@ export const Filter = styled.ul`
   position: relative;
   cursor: pointer;
   background-color: #fff;
-  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
   border-radius: 7px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #7c7c7c;
+  &.sort-active {
+    border-radius: 10px 10px 0 0;
+  }
   &.sort-active {
     border-radius: 10px 10px 0 0;
   }
@@ -119,7 +122,7 @@ export const FilterCollection = styled.ul`
   position: relative;
   cursor: pointer;
   background-color: #fff;
-  box-shadow: 0 0 5px rgba(135, 61, 193, 0.25);
+  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
   border-radius: 8px;
   font-weight: 400;
   font-size: 14px;
@@ -454,7 +457,7 @@ export const ModalNftDiv = styled.div`
 export const ModalHeader = styled(Modal.Header)`
   height: 70px;
   background: #FBF5FF;
-  box-shadow: inset 0px 0px 1px #7C7C7C;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 20px 20px 0px 0px;
 `;
 
