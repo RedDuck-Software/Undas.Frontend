@@ -454,6 +454,7 @@ export const ButtonMakeOffer = styled.button`
   outline: none;
   margin-top: 40px;
   margin-bottom: 120px;
+  transition: all 0.3s linear;
   &:hover {
     background: #ffffff;
     color: #873dc1;

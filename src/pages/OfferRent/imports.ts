@@ -9,8 +9,6 @@ import nftImage from "./assets/nft-image.svg";
 import offerTime from "./assets/offer-time.svg";
 import verifyImage from "./assets/verify-image.svg";
 
-
-
 export {
   back,
   down,

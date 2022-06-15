@@ -484,7 +484,7 @@ export const RentalPeriod = styled.input`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  text-align: right;
+  text-align: left;
   padding: 10px 36px;
   background: #ffffff;
   box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);

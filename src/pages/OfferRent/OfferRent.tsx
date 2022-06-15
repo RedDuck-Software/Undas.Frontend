@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 
 import {
   PageWrapper,
@@ -40,13 +43,13 @@ import {
   ContainerCheckboxCollateral,
   NFTInfoContainer,
   SelectedNFT,
-  SelectedNFTCardBox,
   ImgDelete,
   AddNFTCard,
   AddNFTContainer,
   ButtonInfo,
   OverlayPopUp,
   FAQLink,
+  SwiperNFT,
 } from "./OfferRent.styles";
 
 import {
@@ -317,25 +320,50 @@ async function fetchData() {
               <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
               <SelectedNFT>2</SelectedNFT>
             </NameRow>
-            <SelectedNFTCardBox>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <AddNFTContainer>
-                <AddNFTCard>
-                  <ModalsNFT />
-                </AddNFTCard>
-              </AddNFTContainer>
-            </SelectedNFTCardBox>
+            <SwiperNFT
+              slidesPerView={1}
+              spaceBetween={30}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 50,
+                },
+                1200: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+              }}
+              className="rent-slider"
+              modules={[Navigation]}
+              loop={false}
+              navigation={true}
+            >
+              <>
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <AddNFTContainer>
+                    <AddNFTCard>
+                      <ModalsNFT />
+                    </AddNFTCard>
+                  </AddNFTContainer>
+                </SwiperSlide>
+              </>
+            </SwiperNFT>
           </OfferContainer>
           <BottomWrapper>
             <CheckBoxWrapper>

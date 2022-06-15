@@ -172,14 +172,14 @@ export const FormButton = styled.button`
   margin-left: 25px;
   transition: all 0.3s;
   &.left-btn {
-      border: 1px solid transparent;
-      background: #873dc1;
-      color: #fff;
-      margin-left: 0;
-      &:hover {
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
-      }
+    border: 1px solid transparent;
+    background: #873dc1;
+    color: #fff;
+    margin-left: 0;
+    &:hover {
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
     }
+  }
   &:hover {
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
