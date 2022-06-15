@@ -13,5 +13,11 @@ export const PageGridWrap = styled.div`
   }
   @media (max-width: 768px) {
     margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
