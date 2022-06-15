@@ -71,6 +71,7 @@ export const ViewAllBtn = styled(Link)`
   color: #873dc1;
   transition: all ease-in-out 0.3s;
   text-decoration: none;
+  text-align: center;
   &:hover {
     background: #873dc1;
     color: #fff;
