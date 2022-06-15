@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Marketplace__factory } from "../../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
 import Context from "../../../utils/Context";
@@ -17,22 +17,30 @@ import {
   NotListedWrapper,
   NotListed,
 } from "../NFTPage.styles";
+import { OnlyOne__factory } from "../../../typechain";
+import { useParams } from "react-router-dom";
 
 interface BuyProps {
   id: number;
   isOwner?: boolean;
+  priceInNum:number;
   showBuy?: boolean;
+  tokenAddress?:string;
+  tokenId?:string;
+
 }
 
-const Buy: React.FC<BuyProps> = ({ id, isOwner, showBuy }) => {
+const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress,tokenId}) => {
+  const navigate = useNavigate();
   const { connector } = useContext(Context);
-
   const web3React = useWeb3React();
   const account = web3React.account;
 
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
+
+  // console.log('price1',price1)
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -53,27 +61,44 @@ const Buy: React.FC<BuyProps> = ({ id, isOwner, showBuy }) => {
     return tx;
   };
 
-  const buyToken = async (itemId: number) => {
+  async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) return;
-
+    if (priceInNum == undefined) {
+      return;
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
-
+    const userBalanceInWei = ethers.utils.formatUnits(
+      await signer.getBalance(),
+    );
+    console.log('price',price);
+    const amount = ethers.utils.formatUnits(
+      priceInNum
+    );
+    console.log('amount',amount);
+    console.log('user bal',userBalanceInWei)
+    // if (+userBalanceInWei < +amount) {
+    //   alert("not enough funds");
+    //   return;
+    // }
+    console.log('priceInNum',priceInNum)
+    
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
 
-    const tx = await MarketplaceContract.buyToken(itemId, {
-      value: ethers.utils.parseEther(price.toString()),
+      console.log("amount",amount)
+    const tx = await MarketplaceContract.buyToken(tokenId, {
+      value: ethers.utils.parseUnits(amount.toString(), "ether"),
     });
-
     await tx.wait();
-  };
+  }
 
+  
   async function getEthPrice() {
     const API_URL =
       "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
@@ -108,6 +133,7 @@ const Buy: React.FC<BuyProps> = ({ id, isOwner, showBuy }) => {
     getProductPrice();
   }, [connector, web3React]);
 
+
   return (
     <>
       {showBuy === false && isOwner === true ? (
@@ -120,20 +146,25 @@ const Buy: React.FC<BuyProps> = ({ id, isOwner, showBuy }) => {
           <Wrapper disp="flex" alignItems="center">
             <PriceWrap>
               <EthIco />
-              <PriceText>{price}</PriceText>
+              <PriceText>{ethers.utils.formatUnits(priceInNum.toString(),'ether')}</PriceText>
               <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
             </PriceWrap>
           </Wrapper>
           <ButtonWrap>
             <InfoButton
               bg="#873DC1"
-              onClick={() => buyToken(id)}
+              onClick={() => buyToken(id,priceInNum)}
               className="colored-btn"
-              disabled={isOwner}
+              disabled={!isOwner}
             >
               Buy now
             </InfoButton>
-            <InfoButton fc="#873DC1">Make offer</InfoButton>
+            <InfoButton fc="#873DC1" 
+                disabled={!isOwner}
+                onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,{state:{tokenAddress,tokenId}});
+              }}>Make offer</InfoButton>
           </ButtonWrap>
         </BuyBar>
       )}

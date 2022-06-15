@@ -75,7 +75,7 @@ const NFTPageSell: React.FC = () => {
 
   const params = useParams();
   const tokenId = params.id;
-
+  console.log(tokenId)
   const { connector } = useContext(Context);
 
   const [stakingId, setStakingId] = useState(0);
@@ -83,9 +83,9 @@ const NFTPageSell: React.FC = () => {
   const [, setTokenURI] = useState<string>();
   const [loading, setLoading] = useState(true);
   // const [showPriceHistory] = useState(false);
-  const [, setShowStaking] = useState(false);
-  const [, setShowBuy] = useState(false);
-  const [, setShowRent] = useState(false);
+  const [, setShowStaking] = useState(true);
+  const [, setShowBuy] = useState(true);
+  const [, setShowRent] = useState(true);
 
   const getShowStaking = async () => {
     if (!connector) return;
@@ -114,7 +114,7 @@ const NFTPageSell: React.FC = () => {
       setShowStaking(true);
     }
   };
-
+  console.log('dasdasdasds')
   const getShowBuy = async () => {
     if (!connector) return;
 
@@ -288,7 +288,7 @@ const NFTPageSell: React.FC = () => {
                     <CartIco />
                     Sale
                   </TopBar>
-                  <Buy id={listingId} />
+                  {/* <Buy id={listingId} price1={2}/> */}
                 </SaleBlock>
                 <SaleBlock>
                   <TopBar>

@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -62,34 +63,30 @@ import {
 
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-
+import {useLocation } from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
-import { useSelector } from "react-redux";
-import { useName, useToken, useUri } from "../../store/";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-// import { OnlyOne__factory } from "../../typechain";
+import { createClient } from "urql";
+import { ethers} from "ethers";
 
-import { ethers } from "ethers";
-// import { cp } from "fs/promises";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
-  const litsingId = useSelector(useToken);
-  const tokenName = useSelector(useName);
-  const tokenUri = useSelector(useUri);
+
   const { connector } = useContext(Context);
+
+  const state:any = useLocation()
 
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
+  const [listingId,setListingId] = useState('')
 
   async function makeRentOffer() {
     if (!connector) return;
-    // if (priceInNum == undefined) {
-    //   return;
-    // }
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -100,33 +97,64 @@ const OfferRent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    // TODO: NORMAL APPROVAL
-    // const ApprovalTokenAmount = (priceInNum * 2) / 100;
 
-    // const OnlyOneContract = OnlyOne__factory.connect(
-    //   "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
-    //   signer,
-    // );
-
-    // console.log(OnlyOneContract)
-    // OnlyOneContract.approve(
-    //   "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
-    //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
-    // );
-
-    const amountToPay = colloteral + premium + (premium * 20) / 100;
+    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(7);
 
     const tx = await MarketplaceContract.stakingOffer(
-      litsingId,
+      listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
       },
     );
 
     await tx.wait();
   }
+
+  useEffect(() => {
+    if (connector) {
+      getTokenData()
+ 
+    }
+  }, [connector,listingId]);
+
+  const getTokenData = async () => {
+
+    const tokensQuery = await fetchData()
+
+    if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
+      setListingId(tokensQuery.data.stakingListings[0].id);
+     return;
+    }
+
+  }
+
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensQuery = `
+{
+  stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
+    id
+ 		tokenId
+    tokenURI
+    tokenDescription
+    seller
+    stakingStatus
+  }
+}
+ `;
+ const client = createClient({
+  url: APIURL,
+});
+
+async function fetchData() {
+  
+  const data = await client.query(tokensQuery).toPromise();
+
+  return data;
+}
 
   return (
     <Background>
@@ -147,6 +175,20 @@ const OfferRent: React.FC = () => {
             <CheckboxLabelCollateral htmlFor="collateral">
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
+            <OverlayTrigger
+                delay={{ show: 250, hide: 3000 }}
+                placement="top"
+                overlay={
+                  <OverlayPopUp>
+                    Speech bubble that will fall out when you click on the
+                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                  </OverlayPopUp>
+                }
+              >
+                <ButtonInfo>
+                  <ImageInfo src={info} alt="info-image"/>
+                </ButtonInfo>
+              </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
@@ -271,7 +313,7 @@ const OfferRent: React.FC = () => {
                 <ItemAmount>Owner item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri={tokenUri} name={tokenName} />
+                <NFTCard uri={state.state.state.URI} name={state.state.state.name} />
               </NFTInfoContainer>
             </SecondCollum>
             <NameRow>

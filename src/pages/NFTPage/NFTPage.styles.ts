@@ -73,6 +73,10 @@ export const OwnerSettingsNavigation = styled.div`
   & > *:first-child {
     margin-right: 30px;
   }
+  & > *:nth-child(2){
+    margin-right: 30px;
+  }
+
   margin: 0 auto;
   padding: 0.5rem 3rem;
 
