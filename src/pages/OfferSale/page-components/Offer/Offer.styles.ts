@@ -7,13 +7,26 @@ export const OfferContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  @media (max-width: 720px) {
+    flex-direction: column-reverse;
+  }
+`;
+
 export const CollectionName = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 24px;
   color: #232428;
+  margin-bottom: 15px;
+  @media (max-width: 768px) {
+    ffont-size: 14px;
+  }
 `;
 
 export const ImageVerify = styled.img`
@@ -33,6 +46,9 @@ export const FirstCollum = styled.div`
   width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 
 export const SecondCollum = styled.div`
@@ -41,6 +57,11 @@ export const SecondCollum = styled.div`
   margin-left: 4%;
   flex-wrap: wrap;
   flex-direction: column;
+
+  @media (max-width: 720px) {
+    width: 100%;
+    margin-left: unset;
+  }
 `;
 
 export const TextNameNFT = styled.div`
@@ -97,6 +118,13 @@ export const TextPrice = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: #232428;
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+  @media (max-width: 720px) {
+    font-size: 14px;
+    margin-top: 20px;
+  }
 `;
 
 export const PriceRow = styled.div`
@@ -104,16 +132,22 @@ export const PriceRow = styled.div`
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const EthSelect = styled.div`
   width: 30%;
   background: #fbf5ff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 10px 0px 0px 10px;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 
 export const EthText = styled.span`
@@ -139,26 +173,30 @@ export const ImageDown = styled.img`
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   padding-left: 25px;
-  border-width: 0px;
-  border: none;
   outline: none;
-
   &:focus {
     box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
     border-color: rgb(135 61 193);
+  }
+
+  @media (max-width: 992px) {
+    border-radius: 0px 0px 0px 10px;
   }
 `;
 
 export const CostSelect = styled.div`
   width: 20%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0 10px 10px 0;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+  @media (max-width: 992px) {
+    width: 50%;
+    border-radius: 0px 0px 10px 0px;
+  }
 `;
 
 export const DollarText = styled.span`
@@ -186,14 +224,19 @@ export const TextOffer = styled.div`
   color: #232428;
   margin-top: 20px;
   margin-bottom: 8px;
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const DaySelect = styled.div`
   width: 40%;
   background: #fbf5ff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 10px 0px 0px 10px;
-  border-width: 0px;
   height: 36px;
   font-family: "Montserrat";
   font-style: normal;
@@ -203,6 +246,10 @@ export const DaySelect = styled.div`
   color: #7c7c7c;
   padding-left: 20px;
   padding-top: 9px;
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 
 export const ImageDownOffer = styled.img`
@@ -214,11 +261,14 @@ export const ImageDownOffer = styled.img`
 export const TimeSelect = styled.div`
   width: 60%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0 10px 10px 0;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+  }
 `;
 
 export const TextPmAm = styled.span`
@@ -259,7 +309,19 @@ export const UNDPrice = styled.span`
   text-align: center;
   color: #873dc1;
   margin-left: auto;
-  margin-top: 20px;
+  margin-top: 23px;
+
+  &.small-size {
+    display: none;
+    margin-top: unset;
+    @media (max-width: 576px) {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 
 export const CheckboxInput = styled.input`
@@ -318,9 +380,14 @@ export const CheckboxLabel = styled.label`
   font-size: 16px;
   line-height: 20px;
   color: #7c7c7c;
+  position: relative;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
   }
 `;
 
@@ -331,6 +398,10 @@ export const UNDLabel = styled.span`
   font-size: 16px;
   line-height: 23px;
   color: #873dc1;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 
 export const ImageInfo = styled.img`
@@ -346,8 +417,17 @@ export const DollarPrice = styled.span`
   text-align: right;
   color: #7c7c7c;
   margin-left: auto;
+  margin-top: 8px;
   &::before {
     content: "$";
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 2px;
+    margin-left: 10px;
+    &.margin-0 {
+      display: none;
+    }
   }
 `;
 
@@ -362,6 +442,10 @@ export const PayRow = styled.div`
   display: flex;
   border-bottom: 0.1px solid #7c7c7c;
   padding-bottom: 20px;
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const AgreementLink = styled.div`
@@ -462,6 +546,11 @@ export const ButtonMakeOffer = styled.button`
     cursor: pointer;
     border: 1px solid #873dc1;
   }
+
+  @media (max-width: 992px) {
+    width: 100%;
+    margin-bottom: 80px;
+  }
 `;
 
 export const AgreeRowButton = styled.div`
@@ -534,6 +623,19 @@ export const NFTInfoContainer = styled.div`
   &.disable {
     background: #c4c4c4;
   }
+
+  @media (max-width: 992px) {
+    width: 310px;
+    height: 360px;
+  }
+  @media (max-width: 768px) {
+    width: 230px;
+    height: 280px;
+  }
+  @media (max-width: 720px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const CheckBoxCenter = styled.div`
@@ -563,7 +665,6 @@ export const OverlayPopUp = styled.div`
   position: absolute;
   margin-left: 137px;
   margin-bottom: 10px;
-
   &::after {
     content: "";
     position: absolute;
@@ -572,6 +673,20 @@ export const OverlayPopUp = styled.div`
     border: 12px solid transparent;
     border-left: 20px solid #ccb7f2;
     transform: rotate(90deg);
+  }
+
+  @media (max-width: 720px) {
+    height: auto;
+    margin-left: unset;
+    &::after {
+      left: 158px;
+    }
+  }
+  @media (max-width: 495px) {
+    width: 100%;
+    &::after {
+      left: 50%;
+    }
   }
 `;
 
