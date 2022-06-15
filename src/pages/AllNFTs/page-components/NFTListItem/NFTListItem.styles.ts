@@ -201,7 +201,7 @@ export const ColImg = styled(Col)`
   height: 200px;
   width: 15%;
   display: contents;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
   &:hover ${ImagePreview} {

@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams,useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -82,21 +82,20 @@ import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 const NFTPage: React.FC = () => {
-
   const override = css`
     display: block;
     margin: auto;
   `;
   const params = useParams();
-  
-  const tokenId = params.id;
-  console.log('params',params)
 
-  if(!tokenId){
-    console.log('NO TOKEN ID')
-    return <h2>ERROR</h2>
+  const tokenId = params.id;
+  console.log("params", params);
+
+  if (!tokenId) {
+    console.log("NO TOKEN ID");
+    return <h2>ERROR</h2>;
   }
-  
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { connector } = useContext(Context);
@@ -108,19 +107,18 @@ const NFTPage: React.FC = () => {
   const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
-  const [seller,setSeller] = useState<string>();
+  const [seller, setSeller] = useState<string>();
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-  
-  const state:any = useLocation()
-  console.log('state',state)
-  const URI = state.state.URI
-  const nameFromProps = state.state.name
+
+  const state: any = useLocation();
+  console.log("state", state);
+  const URI = state.state.URI;
+  const nameFromProps = state.state.name;
 
   const getOwner = async () => {
-
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -130,18 +128,21 @@ const NFTPage: React.FC = () => {
     const signer = provider.getSigner(0);
     const singerAddress = await (await signer.getAddress()).toLowerCase();
 
-    if(!seller){
-      setSeller(state.state.tokenOwner)
+    if (!seller) {
+      setSeller(state.state.tokenOwner);
     }
 
-    if(singerAddress == seller){
-      console.log("OWNER")
+    if (singerAddress == seller) {
+      console.log("OWNER");
       setIsOwner(false);
     }
-  }
+  };
 
-  async function rentToken(stakingId: number, colloteralWei?: number,premium?: number) {
-
+  async function rentToken(
+    stakingId: number,
+    colloteralWei?: number,
+    premium?: number,
+  ) {
     if (!connector) return;
 
     if (colloteralWei == undefined) {
@@ -150,26 +151,28 @@ const NFTPage: React.FC = () => {
     if (premium == undefined) {
       return;
     }
-    
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
 
+    console.log("colloteral ", colloteralWei);
+    console.log("premium", premium);
 
-    console.log('colloteral ',colloteralWei);
-    console.log('premium',premium);
-    
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    const amountToPay = +colloteralWei + +premium + ((+premium*20)/100)
-    const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
-        console.log(formattedAmountToPay)
+    const amountToPay = +colloteralWei + +premium + (+premium * 20) / 100;
+    const formattedAmountToPay = ethers.utils.formatUnits(
+      amountToPay.toString(),
+      "ether",
+    );
+    console.log(formattedAmountToPay);
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice:20000
+      gasPrice: 20000,
     });
     await tx.wait();
   }
@@ -177,77 +180,73 @@ const NFTPage: React.FC = () => {
   const getShowBuy = async () => {
     if (!connector) return;
 
-    if(listingId){
+    if (listingId) {
       setShowBuy(true);
     } else {
       setShowBuy(false);
-
     }
   };
 
   async function getShowRent() {
     if (!connector) return;
 
-    if(stakingId){
+    if (stakingId) {
       setShowRent(true);
     } else {
       setShowRent(false);
-
     }
   }
 
   useEffect(() => {
     if (connector) {
-      getShowBuy()
-      getShowRent()
+      getShowBuy();
+      getShowRent();
       getTokenData();
-      getOwner()
-      console.log('useEf')
+      getOwner();
+      console.log("useEf");
     }
-  }, [connector,listingId,stakingId,premium,colloteral,seller]);
-
-
+  }, [connector, listingId, stakingId, premium, colloteral, seller]);
 
   const getTokenData = async () => {
+    const tokensQuery = await fetchData();
+    if (
+      tokensQuery.data.listings[0] &&
+      tokensQuery.data.listings[0].listingStatus == "ACTIVE"
+    ) {
+      setName(tokensQuery.data.listings[0].tokenName);
+      setTokenURI(tokensQuery.data.listings[0].tokenURI);
+      setPriceInNum(tokensQuery.data.listings[0].price);
+      setDescription(tokensQuery.data.listings[0].tokenDescription);
+      setListingId(tokensQuery.data.listings[0].id);
+      setSeller(tokensQuery.data.listings[0].seller);
+      setLoading(false);
 
-    const tokensQuery = await fetchData()
-    if(tokensQuery.data.listings[0] && tokensQuery.data.listings[0].listingStatus == "ACTIVE"){
-
-        setName(tokensQuery.data.listings[0].tokenName)
-        setTokenURI( tokensQuery.data.listings[0].tokenURI)
-        setPriceInNum(tokensQuery.data.listings[0].price) 
-        setDescription(tokensQuery.data.listings[0].tokenDescription) 
-        setListingId(tokensQuery.data.listings[0].id) 
-        setSeller(tokensQuery.data.listings[0].seller)
-        setLoading(false)
-
-        return
+      return;
     }
 
-    if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
+    if (
+      tokensQuery.data.stakingListings[0] &&
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
+    ) {
+      setName(tokensQuery.data.stakingListings[0].tokenName);
+      setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
+      setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
+      setStakingId(tokensQuery.data.stakingListings[0].id);
+      setSeller(tokensQuery.data.stakingListings[0].seller);
+      setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
+      setPremium(tokensQuery.data.stakingListings[0].premiumWei);
+      setLoading(false);
 
-        setName(tokensQuery.data.stakingListings[0].tokenName)
-        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI)
-        setDescription(tokensQuery.data.stakingListings[0].tokenDescription) 
-        setStakingId(tokensQuery.data.stakingListings[0].id) 
-        setSeller(tokensQuery.data.stakingListings[0].seller)
-        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei)
-        setPremium(tokensQuery.data.stakingListings[0].premiumWei)
-        setLoading(false)
+      return;
+    }
 
-        return
-     }
-     
+    setLoading(false);
+  };
+  console.log("params.id", params.id);
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-     setLoading(false)
-
-
-  }
-console.log('params.id',params.id)
-const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-const tokensQuery = `
+  const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
@@ -275,15 +274,15 @@ const tokensQuery = `
 }
  `;
 
- const client = createClient({
-  url: APIURL,
-});
+  const client = createClient({
+    url: APIURL,
+  });
 
-async function fetchData() {
-  const data = await client.query(tokensQuery).toPromise();
-  console.log('DATA',data)
-  return data;
-}
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    console.log("DATA", data);
+    return data;
+  }
 
   return (
     <Background>
@@ -291,20 +290,22 @@ async function fetchData() {
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
             <OwnerSettingsButton>Edit</OwnerSettingsButton>
-           
-              <>
-                <OwnerSettingsButton isColored={true}>
-                  Cancel listing
-                </OwnerSettingsButton>
-              </>
-           
-              <OwnerSettingsButton isColored={true} onClick={(e) => {
-                navigate(`/nft/sale/${tokenId}`,{state:{...state}});  
-                e.stopPropagation();
-               }}>
-                Rent-sell
+
+            <>
+              <OwnerSettingsButton isColored={true}>
+                Cancel listing
               </OwnerSettingsButton>
-      
+            </>
+
+            <OwnerSettingsButton
+              isColored={true}
+              onClick={(e) => {
+                navigate(`/nft/sale/${tokenId}`, { state: { ...state } });
+                e.stopPropagation();
+              }}
+            >
+              Rent-sell
+            </OwnerSettingsButton>
           </OwnerSettingsNavigation>
         </OwnerSettingsWrapper>
       )}
@@ -321,7 +322,7 @@ async function fetchData() {
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameNft>{nameFromProps?nameFromProps:name}</NameNft>
+                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
                   <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
@@ -356,7 +357,7 @@ async function fetchData() {
             </NavigationWrap>
             <MainInfoWrap>
               <ImageWrap>
-                <Image src={URI?URI:tokenURI} alt="nft-image" />
+                <Image src={URI ? URI : tokenURI} alt="nft-image" />
                 <FavouriteCounter>
                   <FavouriteCounterIco />
                   <CounterNumber>10</CounterNumber>
@@ -396,7 +397,14 @@ async function fetchData() {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} priceInNum={priceInNum} tokenAddress={state.state.tokenAddress} tokenId={state.state.tokenId} />
+                    <Buy
+                      id={listingId}
+                      isOwner={isOwner}
+                      showBuy={showBuy}
+                      priceInNum={priceInNum}
+                      tokenAddress={state.state.tokenAddress}
+                      tokenId={state.state.tokenId}
+                    />
                   </SaleBlock>
 
                   <SaleBlock>
@@ -404,7 +412,7 @@ async function fetchData() {
                       <RentIco />
                       Rent
                     </TopBar>
-                    
+
                     {showRent === false && isOwner === true ? (
                       <NotListedWrapper>
                         <NotListed>Not listed for rent</NotListed>
@@ -415,7 +423,12 @@ async function fetchData() {
                           <span>Deposit</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
-                            <PriceText>{ethers.utils.formatUnits(colloteral.toString(),'ether')}</PriceText>
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                colloteral.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
                             <PriceInUSD>($18 465,32)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
@@ -423,7 +436,12 @@ async function fetchData() {
                           <span>Price for 1 Week Rental</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
-                            <PriceText>{ethers.utils.formatUnits(premium.toString(),'ether')}</PriceText>
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                premium.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
                             <PriceInUSD>($36,93)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
@@ -437,20 +455,27 @@ async function fetchData() {
                             flex="1 1 0"
                             className="colored-btn"
                             disabled={!isOwner}
-                            onClick={() => rentToken(stakingId,colloteral,premium)}
-                            
+                            onClick={() =>
+                              rentToken(stakingId, colloteral, premium)
+                            }
                           >
                             Rent
                           </InfoButton>
-                          <InfoButton fc="#873DC1" disabled={!isOwner}
+                          <InfoButton
+                            fc="#873DC1"
+                            disabled={!isOwner}
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate(`/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,{state:{...state}});
+                              navigate(
+                                `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                { state: { ...state } },
+                              );
                             }}
-                            >Make offer
-                         </InfoButton>
+                          >
+                            Make offer
+                          </InfoButton>
                         </RentElement>
-                      </> 
+                      </>
                     )}
                   </SaleBlock>
                 </Wrapper>

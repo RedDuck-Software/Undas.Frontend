@@ -23,14 +23,20 @@ import { useParams } from "react-router-dom";
 interface BuyProps {
   id: number;
   isOwner?: boolean;
-  priceInNum:number;
+  priceInNum: number;
   showBuy?: boolean;
-  tokenAddress?:string;
-  tokenId?:string;
-
+  tokenAddress?: string;
+  tokenId?: string;
 }
 
-const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress,tokenId}) => {
+const Buy: React.FC<BuyProps> = ({
+  id,
+  priceInNum,
+  isOwner,
+  showBuy,
+  tokenAddress,
+  tokenId,
+}) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
@@ -74,31 +80,28 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
-    console.log('price',price);
-    const amount = ethers.utils.formatUnits(
-      priceInNum
-    );
-    console.log('amount',amount);
-    console.log('user bal',userBalanceInWei)
+    console.log("price", price);
+    const amount = ethers.utils.formatUnits(priceInNum);
+    console.log("amount", amount);
+    console.log("user bal", userBalanceInWei);
     // if (+userBalanceInWei < +amount) {
     //   alert("not enough funds");
     //   return;
     // }
-    console.log('priceInNum',priceInNum)
-    
+    console.log("priceInNum", priceInNum);
+
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
 
-      console.log("amount",amount)
+    console.log("amount", amount);
     const tx = await MarketplaceContract.buyToken(tokenId, {
       value: ethers.utils.parseUnits(amount.toString(), "ether"),
     });
     await tx.wait();
   }
 
-  
   async function getEthPrice() {
     const API_URL =
       "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
@@ -133,7 +136,6 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress
     getProductPrice();
   }, [connector, web3React]);
 
-
   return (
     <>
       {showBuy === false && isOwner === true ? (
@@ -146,25 +148,34 @@ const Buy: React.FC<BuyProps> = ({ id, priceInNum, isOwner, showBuy,tokenAddress
           <Wrapper disp="flex" alignItems="center">
             <PriceWrap>
               <EthIco />
-              <PriceText>{ethers.utils.formatUnits(priceInNum.toString(),'ether')}</PriceText>
+              <PriceText>
+                {ethers.utils.formatUnits(priceInNum.toString(), "ether")}
+              </PriceText>
               <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
             </PriceWrap>
           </Wrapper>
           <ButtonWrap>
             <InfoButton
               bg="#873DC1"
-              onClick={() => buyToken(id,priceInNum)}
+              onClick={() => buyToken(id, priceInNum)}
               className="colored-btn"
               disabled={!isOwner}
             >
               Buy now
             </InfoButton>
-            <InfoButton fc="#873DC1" 
-                disabled={!isOwner}
-                onClick={(e) => {
+            <InfoButton
+              fc="#873DC1"
+              disabled={!isOwner}
+              onClick={(e) => {
                 e.stopPropagation();
-                navigate(`/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,{state:{tokenAddress,tokenId}});
-              }}>Make offer</InfoButton>
+                navigate(
+                  `/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,
+                  { state: { tokenAddress, tokenId } },
+                );
+              }}
+            >
+              Make offer
+            </InfoButton>
           </ButtonWrap>
         </BuyBar>
       )}

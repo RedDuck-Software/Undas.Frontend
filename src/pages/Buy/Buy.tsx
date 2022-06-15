@@ -1,6 +1,6 @@
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 
 import {
   TopLinkWrapper,
@@ -47,20 +47,19 @@ import { info } from "../OfferRent/imports";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
 import { createClient } from "urql";
-import { ethers} from "ethers";
+import { ethers } from "ethers";
 
 const Rent: React.FC = () => {
   const { connector } = useContext(Context);
-  const state:any = useLocation()
-  console.log(state.state.state)
+  const state: any = useLocation();
+  console.log(state.state.state);
 
   async function buyToken(tokenId: number, priceInNum?: number) {
-
     if (!connector) return;
     if (priceInNum == undefined) {
       return;
@@ -71,7 +70,6 @@ const Rent: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
-
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
@@ -98,7 +96,9 @@ const Rent: React.FC = () => {
               <ContentItem>
                 <ContentItemName>Price NFT</ContentItemName>
                 <ContentItemPriceWrap>
-                  <ContentItemPriceEth>{state.state.state.price}</ContentItemPriceEth>
+                  <ContentItemPriceEth>
+                    {state.state.state.price}
+                  </ContentItemPriceEth>
                   <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
@@ -111,12 +111,17 @@ const Rent: React.FC = () => {
                     overlay={
                       <OverlayPopUp>
                         Speech bubble that will fall out when you click on the
-                        information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
                       </OverlayPopUp>
                     }
                   >
                     <ButtonInfo>
-                      <ImageInfo src={info} alt="info-image" className="margin"/>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
@@ -143,13 +148,18 @@ const Rent: React.FC = () => {
                         placement="top"
                         overlay={
                           <OverlayPopUp>
-                            Speech bubble that will fall out when you click on the
-                            information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                            Speech bubble that will fall out when you click on
+                            the information on the icon{" "}
+                            <FAQLink href="/faq">FAQ</FAQLink>
                           </OverlayPopUp>
                         }
                       >
                         <ButtonInfo>
-                          <ImageInfo src={info} alt="info-image" className="margin"/>
+                          <ImageInfo
+                            src={info}
+                            alt="info-image"
+                            className="margin"
+                          />
                         </ButtonInfo>
                       </OverlayTrigger>
                     </CheckboxLabel>
@@ -175,7 +185,10 @@ const Rent: React.FC = () => {
             <RightBlock>
               <ItemAmount>Item</ItemAmount>
               <NFTInfoContainer>
-                <NFTCard uri={state.state.state.URI} name={state.state.state.name} />
+                <NFTCard
+                  uri={state.state.state.URI}
+                  name={state.state.state.name}
+                />
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
@@ -191,7 +204,13 @@ const Rent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button onClick={() => buyToken(state.state.state.listingId,state.state.state.price)}>Buy Now</Button>
+            <Button
+              onClick={() =>
+                buyToken(state.state.state.listingId, state.state.state.price)
+              }
+            >
+              Buy Now
+            </Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>
