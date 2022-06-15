@@ -256,12 +256,13 @@ export const InputGroup = styled.form`
 `;
 export const AdressInput = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
   padding: 10px 20px;
   border-radius: 10px;
   margin-right: 20px;
   box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+  background-color: #fff;
   &:focus {
     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
@@ -275,6 +276,12 @@ export const FakeInputItem = styled.div`
   font-size: 14px;
   line-height: 17px;
   color: #7c7c7c;
+  @media (max-width: 576px) {
+    max-width: 190px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
 export const CopyButton = styled.button`
   width: 30px;
@@ -282,6 +289,9 @@ export const CopyButton = styled.button`
   background-color: #fff;
   outline: none;
   margin-left: 30px;
+  @media (max-width: 576px) {
+    margin-left: 10px;
+  }
 `;
 
 export const FormButtonsWrap = styled.div`
