@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Swiper } from "swiper/react";
 
 export const BlockTitle = styled.h2`
   margin-bottom: 20px;
@@ -72,5 +73,54 @@ export const BlockButton = styled.button`
     bottom: 0;
     left: 0;
     width: 100%;
+  }
+`;
+export const SwiperNFT = styled(Swiper)`
+  &.swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: 0;
+    right: auto;
+    z-index: 999;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-left: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+    }
+  }
+  &.swiper-button-next {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: auto;
+    right: 0;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-right: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(-45deg);
+      margin-right: 6px;
+    }
   }
 `;
