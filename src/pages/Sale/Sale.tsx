@@ -1,4 +1,4 @@
-import React,{ useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -61,7 +61,7 @@ import {
 
 import ModalsNFT from "../OfferRent/page-components//ModalsNFT/ModalsNFT";
 
-import { useParams,useLocation  } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { OnlyOne__factory } from "../../typechain";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
@@ -70,30 +70,29 @@ import { UndasGeneralNFT__factory } from "../../typechain";
 
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
-
 import { date } from "yup";
 import { createClient } from "urql";
 
 const Sale: React.FC = () => {
   const { connector } = useContext(Context);
-  const [priceForSale,setPriceForSale] = useState(0)
-  const [colloteral,setColloteral] = useState(0)
-  const [premium,setPremium] = useState(0)
-  const [durationInDay,setDurationInDay] = useState(1)
+  const [priceForSale, setPriceForSale] = useState(0);
+  const [colloteral, setColloteral] = useState(0);
+  const [premium, setPremium] = useState(0);
+  const [durationInDay, setDurationInDay] = useState(1);
 
-  const state:any = useLocation()
+  const state: any = useLocation();
 
-  const URI = state.state.state.URI
-  const nameFromProps = state.state.state.name
-  console.log('URI',URI)
-  console.log('nameFromProps',nameFromProps)
-  console.log('state',state.state.state)
+  const URI = state.state.state.URI;
+  const nameFromProps = state.state.state.name;
+  console.log("URI", URI);
+  console.log("nameFromProps", nameFromProps);
+  console.log("state", state.state.state);
   const NFT_ADDRESS = state.state.state.tokenAddress;
-  const tokenId = state.state.state.tokenId
-  console.log(NFT_ADDRESS )
+  const tokenId = state.state.state.tokenId;
+  console.log(NFT_ADDRESS);
   async function sellToken() {
     if (!connector) return;
-    if(!tokenId) return;
+    if (!tokenId) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -106,33 +105,39 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(
-      NFT_ADDRESS,
-      signer,
-    )
-      
-    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-    console.log('approve');
-    console.log(tokenId);
-    await approve.wait()
-    const expectedValue = (priceForSale * 2) /100;
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
-    const formattedPrice =  ethers.utils.parseUnits(priceForSale.toString(), "ether")
-    //undsa contract  
-    console.log(NFT_ADDRESS)
-    const tx = await MarketplaceContract.bidExternal(NFT_ADDRESS,tokenId,
-    formattedPrice,
-    false,
-     {
-      value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-    });
+    const approve = await NftContract.setApprovalForAll(
+      MARKETPLACE_ADDRESS,
+      true,
+    );
+    console.log("approve");
+    console.log(tokenId);
+    await approve.wait();
+    const expectedValue = (priceForSale * 2) / 100;
+
+    const formattedPrice = ethers.utils.parseUnits(
+      priceForSale.toString(),
+      "ether",
+    );
+    //undsa contract
+    console.log(NFT_ADDRESS);
+    const tx = await MarketplaceContract.bidExternal(
+      NFT_ADDRESS,
+      tokenId,
+      formattedPrice,
+      false,
+      {
+        value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
+      },
+    );
     await tx.wait();
-    console.log('dadas');
+    console.log("dadas");
   }
 
   async function stakeToken() {
     if (!connector) return;
-    if(!tokenId) return;
+    if (!tokenId) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -145,34 +150,42 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(
-      NFT_ADDRESS,
-      signer,
-    )
-    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-    
-    const utcTimestamp = new Date().getTime();
- 
-    const deadlineUTC = (utcTimestamp + durationInDay * 86400)
-    const formattedColloteral =  ethers.utils.parseUnits(colloteral.toString(), "ether")
-    const formattedPremium =  ethers.utils.parseUnits(premium.toString(), "ether")
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    const approve = await NftContract.setApprovalForAll(
+      MARKETPLACE_ADDRESS,
+      true,
+    );
 
-    const amountToPay = (colloteral*2)/100;
-      console.log(NFT_ADDRESS)
-      console.log(tokenId)
-    const tx = await MarketplaceContract.quoteForStakingExternal(NFT_ADDRESS,tokenId,
-    formattedColloteral,
-    formattedPremium,
+    const utcTimestamp = new Date().getTime();
+
+    const deadlineUTC = utcTimestamp + durationInDay * 86400;
+    const formattedColloteral = ethers.utils.parseUnits(
+      colloteral.toString(),
+      "ether",
+    );
+    const formattedPremium = ethers.utils.parseUnits(
+      premium.toString(),
+      "ether",
+    );
+
+    const amountToPay = (colloteral * 2) / 100;
+    console.log(NFT_ADDRESS);
+    console.log(tokenId);
+    const tx = await MarketplaceContract.quoteForStakingExternal(
+      NFT_ADDRESS,
+      tokenId,
+      formattedColloteral,
+      formattedPremium,
       deadlineUTC,
-      false,{
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
-      }
-    )
-    console.log(NFT_ADDRESS)
+      false,
+      {
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+      },
+    );
+    console.log(NFT_ADDRESS);
 
     await tx.wait();
   }
-
 
   const [name, setName] = useState<string>();
   const [tokenURI, setTokenURI] = useState<string>();
@@ -181,9 +194,7 @@ const Sale: React.FC = () => {
   const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
-  const [seller,setSeller] = useState<string>();
-
-
+  const [seller, setSeller] = useState<string>();
 
   return (
     <Background>
@@ -205,33 +216,37 @@ const Sale: React.FC = () => {
               Make a Bundle
             </CheckboxLabelCollateral>
             <OverlayTrigger
-                delay={{ show: 250, hide: 3000 }}
-                placement="top"
-                overlay={
-                  <OverlayPopUp>
-                    Speech bubble that will fall out when you click on the
-                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
-                  </OverlayPopUp>
-                }
-              >
-                <ButtonInfo>
-                  <ImageInfo src={info} alt="info-image" className="margin-3"/>
-                </ButtonInfo>
-              </OverlayTrigger>
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" className="margin-3" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <ContentWrapper>
             <LeftBlock>
               <BlockWrap>
                 <BlockTitle>List item to sale</BlockTitle>
                 <NameRow>
-                  <TextPrice >Price</TextPrice>
+                  <TextPrice>Price</TextPrice>
                 </NameRow>
                 <PriceRow>
                   <EthSelect>
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="number" placeholder="Amount" onChange={(e)=>setPriceForSale(+e.target.value)}/>
+                  <AmmountInput
+                    type="number"
+                    placeholder="Amount"
+                    onChange={(e) => setPriceForSale(+e.target.value)}
+                  />
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -250,7 +265,7 @@ const Sale: React.FC = () => {
                     </ButtonsBlock>
                   </DurationRow>
                 </DurationWrap>
-                <BlockButton onClick={()=>sellToken()}>Confirm</BlockButton>
+                <BlockButton onClick={() => sellToken()}>Confirm</BlockButton>
               </BlockWrap>
               <BlockWrap>
                 <BlockTitle>List item to rent</BlockTitle>
@@ -263,12 +278,17 @@ const Sale: React.FC = () => {
                       overlay={
                         <OverlayPopUp>
                           Speech bubble that will fall out when you click on the
-                          information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                          information on the icon{" "}
+                          <FAQLink href="/faq">FAQ</FAQLink>
                         </OverlayPopUp>
                       }
                     >
                       <ButtonInfo>
-                        <ImageInfo src={info} alt="info-image" className="margin"/>
+                        <ImageInfo
+                          src={info}
+                          alt="info-image"
+                          className="margin"
+                        />
                       </ButtonInfo>
                     </OverlayTrigger>
                   </TextPrice>
@@ -278,7 +298,11 @@ const Sale: React.FC = () => {
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="text" placeholder="Amount" onChange={(e)=>setColloteral(+e.target.value)} />
+                  <AmmountInput
+                    type="text"
+                    placeholder="Amount"
+                    onChange={(e) => setColloteral(+e.target.value)}
+                  />
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -291,7 +315,11 @@ const Sale: React.FC = () => {
                     <EthText>ETH</EthText>
                     <ImageDown src={down} alt="down-image" />
                   </EthSelect>
-                  <AmmountInput type="text" placeholder="Amount" onChange={(e)=>setPremium(+e.target.value)} />
+                  <AmmountInput
+                    type="text"
+                    placeholder="Amount"
+                    onChange={(e) => setPremium(+e.target.value)}
+                  />
                   <CostSelect>
                     <DollarText>0.00</DollarText>
                   </CostSelect>
@@ -308,7 +336,10 @@ const Sale: React.FC = () => {
                   <TextPrice>Duration</TextPrice>
                   <DurationRow>
                     <TextDay>Day</TextDay>
-                    <InputDay placeholder="Custom date" onChange={(e)=>setDurationInDay(+e.target.value)}/>
+                    <InputDay
+                      placeholder="Custom date"
+                      onChange={(e) => setDurationInDay(+e.target.value)}
+                    />
                     <ButtonsBlock>
                       <DurationButton>7</DurationButton>
                       <DurationButton>30</DurationButton>
@@ -318,7 +349,7 @@ const Sale: React.FC = () => {
                     </ButtonsBlock>
                   </DurationRow>
                 </DurationWrap>
-                <BlockButton onClick={()=>stakeToken()}>Confirm</BlockButton>
+                <BlockButton onClick={() => stakeToken()}>Confirm</BlockButton>
               </BlockWrap>
             </LeftBlock>
             <RightBlock>

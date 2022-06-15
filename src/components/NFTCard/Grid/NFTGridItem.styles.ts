@@ -107,7 +107,7 @@ export const BuyBtn = styled.button`
   border: none;
   transition: all 0.3s;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background: #873dc1;
     color: #fff;
   }

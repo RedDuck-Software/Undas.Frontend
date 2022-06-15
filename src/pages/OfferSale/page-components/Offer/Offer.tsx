@@ -1,6 +1,6 @@
-import React,{useContext, useEffect,useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { useParams,useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import {
   OfferContainer,
@@ -54,18 +54,17 @@ import { createClient } from "urql";
 const Offer: React.FC = () => {
   const { connector } = useContext(Context);
 
-  const state:any = useLocation()
-  
+  const state: any = useLocation();
+
   const [tokenName, setTokenName] = useState<string>();
   const [tokenURI, setTokenURI] = useState<string>();
-  const [listingId,setListingId] = useState<string>();
-  const [offeredPrice,setOfferedPrice] = useState<string>();
+  const [listingId, setListingId] = useState<string>();
+  const [offeredPrice, setOfferedPrice] = useState<string>();
 
   async function makeSaleOffer() {
-
-    if (!connector) return alert('no connector');
-    if(!offeredPrice) return alert('no offeredPrice');
-    if(listingId==undefined) return alert('!listingid');
+    if (!connector) return alert("no connector");
+    if (!offeredPrice) return alert("no offeredPrice");
+    if (listingId == undefined) return alert("!listingid");
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -77,41 +76,37 @@ const Offer: React.FC = () => {
       signer,
     );
 
-      const tx = await MarketplaceContract.listingOffer(
-        listingId,
-        {
-          value: ethers.utils.parseUnits(offeredPrice.toString(), "ether")
-        },
-      );
+    const tx = await MarketplaceContract.listingOffer(listingId, {
+      value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
+    });
 
-      await tx.wait();
+    await tx.wait();
   }
   useEffect(() => {
     if (connector) {
-      getTokenData()
- 
+      getTokenData();
     }
-  }, [connector,listingId]);
+  }, [connector, listingId]);
 
   const getTokenData = async () => {
+    const tokensQuery = await fetchData();
 
-    const tokensQuery = await fetchData()
-
-    if(tokensQuery.data.listings[0] && tokensQuery.data.listings[0].listingStatus == "ACTIVE"){
+    if (
+      tokensQuery.data.listings[0] &&
+      tokensQuery.data.listings[0].listingStatus == "ACTIVE"
+    ) {
       setTokenName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setListingId(tokensQuery.data.listings[0].id);
 
-     return
+      return;
     }
+  };
 
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-  }
-
-const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-const tokensQuery = `
+  const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
@@ -126,15 +121,15 @@ const tokensQuery = `
   }
 }
  `;
- const client = createClient({
-  url: APIURL,
-});
+  const client = createClient({
+    url: APIURL,
+  });
 
-async function fetchData() {
-  const data = await client.query(tokensQuery).toPromise();
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
 
-  return data;
-}
+    return data;
+  }
 
   return (
     <OfferContainer>
@@ -147,7 +142,11 @@ async function fetchData() {
             <EthText>ETH</EthText>
             <ImageDown src={down} alt="down-image" />
           </EthSelect>
-          <AmmountInput type="number" placeholder="Amount" onChange={(e)=>setOfferedPrice(e.target.value)}/>
+          <AmmountInput
+            type="number"
+            placeholder="Amount"
+            onChange={(e) => setOfferedPrice(e.target.value)}
+          />
           <CostSelect>
             <DollarText>0.00</DollarText>
           </CostSelect>
@@ -202,7 +201,10 @@ async function fetchData() {
           <CollectionName>Owner item</CollectionName>
         </NameRow>
         <NFTInfoContainer>
-          <NFTCard uri={tokenURI?tokenURI:'loading...'} name={tokenName?tokenName:'loading...'} />
+          <NFTCard
+            uri={tokenURI ? tokenURI : "loading..."}
+            name={tokenName ? tokenName : "loading..."}
+          />
         </NFTInfoContainer>
       </SecondCollum>
       <AgreeRow>

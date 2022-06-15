@@ -56,7 +56,7 @@ export const Tab = styled.li`
   cursor: pointer;
   color: #232428;
   transition: all 0.3s;
-  &:hover{
+  &:hover {
     background: #fbf5ff;
   }
   &.active {
