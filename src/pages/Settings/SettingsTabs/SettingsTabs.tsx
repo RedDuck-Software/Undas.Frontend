@@ -20,7 +20,6 @@ import {
   TabsText,
 } from "./SettingsTabs.styles";
 
-
 const SettingsTabs: React.FC = () => {
   return (
     <>

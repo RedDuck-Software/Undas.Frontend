@@ -46,14 +46,14 @@ export const CardWrap = styled.div`
   @media (max-width: 768px) {
     height: 300px;
     flex: 0 0 50%;
-    &:last-child{
+    &:last-child {
       display: none;
     }
   }
   @media (max-width: 576px) {
     height: 370px;
     flex: 0 0 100%;
-    &:nth-child(2){
+    &:nth-child(2) {
       display: none;
     }
   }

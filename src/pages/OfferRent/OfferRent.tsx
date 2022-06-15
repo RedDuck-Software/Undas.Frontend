@@ -63,26 +63,24 @@ import {
 
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
 import { createClient } from "urql";
-import { ethers} from "ethers";
-
+import { ethers } from "ethers";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
-
   const { connector } = useContext(Context);
 
-  const state:any = useLocation()
+  const state: any = useLocation();
 
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
-  const [listingId,setListingId] = useState('')
+  const [listingId, setListingId] = useState("");
 
   async function makeRentOffer() {
     if (!connector) return;
@@ -98,14 +96,16 @@ const OfferRent: React.FC = () => {
       signer,
     );
 
-    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(7);
+    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
+      7,
+    );
 
     const tx = await MarketplaceContract.stakingOffer(
       listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
+        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
 
@@ -114,26 +114,26 @@ const OfferRent: React.FC = () => {
 
   useEffect(() => {
     if (connector) {
-      getTokenData()
- 
+      getTokenData();
     }
-  }, [connector,listingId]);
+  }, [connector, listingId]);
 
   const getTokenData = async () => {
+    const tokensQuery = await fetchData();
 
-    const tokensQuery = await fetchData()
-
-    if(tokensQuery.data.stakingListings[0] && tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"){
+    if (
+      tokensQuery.data.stakingListings[0] &&
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
+    ) {
       setListingId(tokensQuery.data.stakingListings[0].id);
-     return;
+      return;
     }
+  };
 
-  }
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-const tokensQuery = `
+  const tokensQuery = `
 {
   stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
     id
@@ -145,16 +145,15 @@ const tokensQuery = `
   }
 }
  `;
- const client = createClient({
-  url: APIURL,
-});
+  const client = createClient({
+    url: APIURL,
+  });
 
-async function fetchData() {
-  
-  const data = await client.query(tokensQuery).toPromise();
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
 
-  return data;
-}
+    return data;
+  }
 
   return (
     <Background>
@@ -176,19 +175,19 @@ async function fetchData() {
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
             <OverlayTrigger
-                delay={{ show: 250, hide: 3000 }}
-                placement="top"
-                overlay={
-                  <OverlayPopUp>
-                    Speech bubble that will fall out when you click on the
-                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
-                  </OverlayPopUp>
-                }
-              >
-                <ButtonInfo>
-                  <ImageInfo src={info} alt="info-image"/>
-                </ButtonInfo>
-              </OverlayTrigger>
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
@@ -313,7 +312,10 @@ async function fetchData() {
                 <ItemAmount>Owner item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri={state.state.state.URI} name={state.state.state.name} />
+                <NFTCard
+                  uri={state.state.state.URI}
+                  name={state.state.state.name}
+                />
               </NFTInfoContainer>
             </SecondCollum>
             <NameRow>

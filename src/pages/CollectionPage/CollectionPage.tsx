@@ -60,8 +60,8 @@ export interface ItemsProps {
   id: number;
   URI: string;
   name: string;
-  tokenAddress:string;
-  tokenOwner?:string;
+  tokenAddress: string;
+  tokenOwner?: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -82,14 +82,12 @@ const CollectionPage: React.FC = () => {
 
     const signer = provider.getSigner(0);
     const signerPublicAddress = await signer.getAddress();
-    
-
 
     const data = await Web3Api.Web3API.account.getNFTs({
       chain: "goerli",
       address: signerPublicAddress,
     });
-    console.log('data',data)
+    console.log("data", data);
     return data.result;
   }
   const items: ItemsProps[] = [];
@@ -97,7 +95,6 @@ const CollectionPage: React.FC = () => {
   const [list, setList] = useState<ItemsProps[]>([]);
 
   async function getNfts() {
- 
     const nfts = await fetchData();
 
     if (!nfts) return;
@@ -108,11 +105,11 @@ const CollectionPage: React.FC = () => {
       const tokenAddress = nft.token_address;
       const tokenOwner = nft.owner_of;
       //query here
-      items.push({ id, URI, name,tokenAddress,tokenOwner });
+      items.push({ id, URI, name, tokenAddress, tokenOwner });
     });
     return items;
   }
-  console.log('my collection',list)
+  console.log("my collection", list);
   async function getUserNft() {
     const response = await getNfts();
 
