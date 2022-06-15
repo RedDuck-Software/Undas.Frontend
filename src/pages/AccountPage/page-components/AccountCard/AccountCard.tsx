@@ -46,7 +46,6 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <span>&#34;Return&#34; is a meditation o...</span>
           <GrayText>Was a long time ago</GrayText>
         </Wrapper>
-        <VerifiedIco />
       </Wrapper>
       <Wrapper
         disp="flex"

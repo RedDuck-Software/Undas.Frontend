@@ -70,12 +70,11 @@ export const CollectionLogoLabel = styled.label`
   &:hover {
     background: linear-gradient(
         0deg,
-        rgba(124, 124, 124, 0.5),
-        rgba(124, 124, 124, 0.5)
+        rgba(124, 124, 124, 0.25),
+        rgba(124, 124, 124, 0.25)
       ),
       #ffffff;
     cursor: pointer;
-    opacity: 0.8;
   }
   /* &:hover + ${ClearImageInput} {
     display: flex;
@@ -122,7 +121,7 @@ export const InputList = styled.ul``;
 
 export const InputItem = styled.input`
   display: block;
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  border: none;
   outline: none;
   margin-top: 10px;
   border-radius: 10px;
@@ -131,11 +130,12 @@ export const InputItem = styled.input`
   position: relative;
   width: 100%;
   font-size: 14px;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   &::placeholder {
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 export const CategoryGroup = styled.div`

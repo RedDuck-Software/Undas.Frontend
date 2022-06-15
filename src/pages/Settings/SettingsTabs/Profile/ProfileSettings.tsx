@@ -26,6 +26,7 @@ import {
   BottomBlock,
   InputGroup,
   AdressInput,
+  FakeInputItem,
   CopyButton,
 } from "./ProfileSettings.styles";
 
@@ -117,11 +118,8 @@ const ProfileSettings = () => {
       <BottomBlock>
         <BlockTitle>Wallet Address</BlockTitle>
         <InputGroup>
-          <AdressInput className="parent">
-            <InputItem
-              placeholder="0x5d46cb693bd0d1585d1de9823cb6b488281cc99c"
-              className="adress-input"
-            />
+          <AdressInput tabIndex={0}>
+            <FakeInputItem>0x5d46cb693bd0d1585d1de9823cb6b488281cc99c</FakeInputItem>
             <CopyButton className="copy-btn" />
           </AdressInput>
           <FormButtonsWrap>

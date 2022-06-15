@@ -69,6 +69,10 @@ export const Name = styled.span`
   line-height: 20px;
   color: #232428;
   margin-right: 10px;
+  max-width: 140px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   @media (max-width: 1200px) {
     order: 1;
     flex: 0 0 100%;
@@ -80,6 +84,10 @@ export const CollectionText = styled.span`
   font-size: 16px;
   line-height: 20px;
   color: #232428;
+  max-width: 135px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 export const CreatorText = styled.span`
   font-weight: 400;

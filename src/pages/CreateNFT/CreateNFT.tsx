@@ -296,7 +296,7 @@ const CreateNFT: React.FC = () => {
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
-                  <ExplicitContentIco /> Explicit & Sensitive Content
+                  <ExplicitContentIco /> Explicit &amp; Sensitive Content
                 </SwitcherTitle>
                 <Switcher onClick={sensetiveHandler} />
               </SwitcherBlock>

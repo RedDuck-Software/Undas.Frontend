@@ -71,27 +71,25 @@ export const MakeComplaint = styled.button`
   cursor: pointer;
 `;
 export const AddToFav = styled.button`
-  margin-top: 52px;
   background-color: #fff;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   font-weight: 400;
   font-size: 18px;
   color: #873dc1;
   padding: 6px 18px;
-  border: none;
+  border: 1px solid #873dc1;
   margin-top: 44px;
   max-height: 36px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 18px;
-  max-height: 36px;
-  cursor: pointer;
   align-self: end;
   min-width: 200px;
+  transition: all 0.3s;
   &:hover {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
+    cursor: pointer;
+    background: #873dc1;
+    color: #fff;
   }
   @media (max-width: 1200px) {
     display: none;

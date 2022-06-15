@@ -107,15 +107,12 @@ export const OwnerSettingsButton = styled.button<{ isColored?: boolean }>`
   padding-bottom: 7px;
   font-size: 14px;
   transition: all 0.3s linear;
-
-  &.colored-btn:hover {
-    background-color: #fff;
-    color: #873dc1;
-  }
-
   &:hover {
-    background-color: #873dc1;
-    color: #fff;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  &.colored-btn:hover {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
 
   @media (max-width: 876px) {
@@ -496,7 +493,7 @@ export const RentalPeriod = styled.input`
   border: none;
   outline: none;
   &:focus {
-    box-shadow: inset 0px 0px 5px rgba(135, 61, 193, 1);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 

@@ -42,9 +42,7 @@ const RewardMenu: React.FC = () => {
               <Button>1</Button>
               <Button className="active">7</Button>
               <Button>30</Button>
-              <Button>
-                <IntervalInput type="text" placeholder="custom" />
-              </Button>
+              <IntervalInput type="text" placeholder="custom" />
             </ButtonsBlock>
           </HeadWrap>
           <ContentTableWrap>
@@ -85,9 +83,7 @@ const RewardMenu: React.FC = () => {
             <Button>1</Button>
             <Button className="active">7</Button>
             <Button>30</Button>
-            <Button>
-              <IntervalInput type="text" placeholder="custom" />
-            </Button>
+            <IntervalInput type="text" placeholder="custom" />
           </ButtonsBlock>
           <ContentTableWrap className="central-table">
             <ImageBlock>
@@ -127,9 +123,7 @@ const RewardMenu: React.FC = () => {
             <Button>1</Button>
             <Button className="active">7</Button>
             <Button>30</Button>
-            <Button>
-              <IntervalInput type="text" placeholder="custom" />
-            </Button>
+            <IntervalInput type="text" placeholder="custom" />
           </ButtonsBlock>
           <ContentTableWrap>
             <ImageBlock>

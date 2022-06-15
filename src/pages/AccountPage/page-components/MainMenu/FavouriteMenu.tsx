@@ -16,10 +16,8 @@ import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
 import {
-  Input,
   MenuSearchWrap,
   MenuWrap,
-  SearchIco,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
@@ -197,10 +195,7 @@ const FavouriteMenu: React.FC = () => {
           </FavouriteSelect>
           {favouriteType === FavouriteType.nft && viewButtonsRender}
         </FavouriteSettingsBlock>
-        <MenuSearchWrap mw="530px" marginLeft="0">
-          <SearchIco />
-          <Input placeholder="Search" />
-        </MenuSearchWrap>
+        <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
       </MenuWrap>
 

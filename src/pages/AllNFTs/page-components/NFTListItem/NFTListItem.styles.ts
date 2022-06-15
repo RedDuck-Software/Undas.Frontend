@@ -186,6 +186,8 @@ export const ImagePreview = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  opacity: 0;
+  transition: all 0.3s;
 `;
 export const ImgNFT = styled.img`
   width: 180px;
@@ -199,4 +201,10 @@ export const ColImg = styled(Col)`
   height: 200px;
   width: 15%;
   display: contents;
+  &:hover{
+    cursor: pointer;
+  }
+  &:hover ${ImagePreview} {
+    opacity: 1;
+  }
 `;

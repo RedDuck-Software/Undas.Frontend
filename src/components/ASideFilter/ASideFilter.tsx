@@ -17,8 +17,6 @@ import {
   PriceElement,
   ApplyBtn,
   PriceVariations,
-  SearchInput,
-  SearchInputIco,
   SearchInputWrapper,
   FilterCollectionItemWrapper,
   CheckboxInputWrapper,
@@ -480,13 +478,10 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
             className={(activeMenu.collection && "active-collection") || ""}
           >
             <AccordionElement padd="20px 15px 0 15px">
-              <SearchInputWrapper>
-                <SearchInputIco />
-                <SearchInput
-                  placeholder="Search"
-                  onChange={handleCollectionSearch}
-                />
-              </SearchInputWrapper>
+              <SearchInputWrapper
+                placeholder="Search"
+                onChange={handleCollectionSearch}
+              />
             </AccordionElement>
             <>
               {filteredCollectionList.map((item: any) => {

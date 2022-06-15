@@ -46,8 +46,6 @@ import {
   SettingsBlock,
   MenuItem,
   MenuSearchWrap,
-  SearchIco,
-  Input,
   ResultsTotal,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
@@ -262,10 +260,11 @@ const CollectionPage: React.FC = () => {
                     </FilterMenu>
                   </Filter>
                 </SettingsBlock>
-                <MenuSearchWrap mw="530px" marginLeft="0">
-                  <SearchIco />
-                  <Input placeholder="Search" />
-                </MenuSearchWrap>
+                <MenuSearchWrap
+                  mw="530px"
+                  marginLeft="0"
+                  placeholder="Search"
+                />
                 <ResultsTotal>12 results</ResultsTotal>
               </MenuWrap>
               <SelectedFiltersCollection>

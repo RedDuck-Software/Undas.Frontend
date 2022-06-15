@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { Container } from "../../globalStyles";
-import { ReactComponent as Search } from "../../pages/CollectionPage/assets/search.svg";
+import Search from "../../pages/CollectionPage/assets/search.svg";
 
 export const AllNFTContainer = styled(Container)`
   display: flex;
@@ -29,19 +29,24 @@ interface IMenuSearch {
   mw?: string;
   marginLeft?: string;
 }
-
-export const MenuSearchWrap = styled.div<IMenuSearch>`
+export const MenuSearchWrap = styled.input<IMenuSearch>`
   margin-left: ${(props) => props.marginLeft || "30px"};
-  padding-left: 20px;
+  padding-left: 50px;
   display: flex;
   align-items: center;
   max-width: ${(props) => props.mw || "410px"};
   width: 33%;
   height: 36px;
-  background-color: #fff;
-  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  box-shadow: inset 0px 0px 5px rgb(124, 124, 124, 0.5);
   border-radius: 10px;
   border: none;
+  outline: none;
+  font-size: 12px;
+  line-height: 15px;
+  background: #fff url(${Search}) no-repeat 20px center;
+  &:focus {
+     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
   @media (max-width: 1200px) {
     order: 1;
     flex: 0 0 100%;
@@ -51,18 +56,6 @@ export const MenuSearchWrap = styled.div<IMenuSearch>`
   @media (max-width: 768px) {
     margin-bottom: 0;
   }
-`;
-export const SearchIco = styled(Search)`
-  margin-right: 10px;
-`;
-export const Input = styled.input`
-  font-weight: 400;
-  font-size: 12px;
-  border: transparent;
-  background: transparent;
-  padding-right: 0.5rem;
-  outline: none;
-  width: 100%;
 `;
 export const ResultsTotal = styled.span`
   font-weight: 400;
@@ -113,6 +106,9 @@ export const ViewButton = styled.button`
   height: 36px;
   border: none;
   box-sizing: border-box;
+  &:hover{
+    background: #fbf5ff;
+  }
   &.grid-active {
     background-color: #edd2ff;
   }
@@ -145,6 +141,9 @@ export const FilterItem = styled.li`
   align-items: center;
   padding: 10px;
   transition: all ease-in-out 0.15s;
+  &:hover{
+    background: #fbf5ff;
+  }
 `;
 
 interface IMenuItem {
@@ -251,28 +250,12 @@ export const SelectedCollection = styled.div`
 export const SelectedCollectionIcon = styled.img`
   margin-right: 5px;
 `;
-
-export const RemoveSelectedCollectionLabel = styled.label``;
-
 export const RemoveSelectedCollection = styled.img`
   margin-left: auto;
 `;
-
 export const RemoveAllSelectedCollection = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #5d3f92;
 `;
-
-/* export const TabsMenu = styled.ul`
-export const TabsMenu = styled.ul`
-  display: flex;
-  margin-top: -57px;
-  margin-bottom: 70px;
-  border-radius: 10px;
-`;
-export const Tab = styled.li`
-  border-radius: 10px;
-`;
- */

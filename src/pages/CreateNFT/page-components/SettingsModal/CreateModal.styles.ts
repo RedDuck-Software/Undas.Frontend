@@ -94,7 +94,7 @@ export const ModalInput = styled.input`
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
   &[type="number"] {
     width: 12%;
