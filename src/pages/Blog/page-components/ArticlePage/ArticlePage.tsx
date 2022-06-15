@@ -11,6 +11,7 @@ import {
   ArticleText,
   RelatedArticles,
   Text,
+  RelatedButton,
 } from "./ArticlePage.styles";
 
 import { Background, Container } from "../../../../globalStyles";
@@ -102,6 +103,7 @@ const ArticlePage: React.FC = () => {
               <CardsSection />
             </CardsWrap>
           </RelatedArticles>
+          <RelatedButton to="/blog">go to blog</RelatedButton>
         </ArticleWrap>
       </Container>
     </Background>
