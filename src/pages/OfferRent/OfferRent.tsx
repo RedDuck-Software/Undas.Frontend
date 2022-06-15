@@ -172,6 +172,20 @@ async function fetchData() {
             <CheckboxLabelCollateral htmlFor="collateral">
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
+            <OverlayTrigger
+                delay={{ show: 250, hide: 3000 }}
+                placement="top"
+                overlay={
+                  <OverlayPopUp>
+                    Speech bubble that will fall out when you click on the
+                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                  </OverlayPopUp>
+                }
+              >
+                <ButtonInfo>
+                  <ImageInfo src={info} alt="info-image"/>
+                </ButtonInfo>
+              </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
