@@ -221,4 +221,3 @@ export const SendButton = styled.button`
     border: 1px solid #873dc1;
   }
 `;
-

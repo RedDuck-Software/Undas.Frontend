@@ -41,25 +41,27 @@ interface NFTGridItemProps {
   price?: number;
   premium?: number;
   colloteralWei?: number;
-  stakingId?:number;
-  listingId?:number;
-  tokenAddress?:string;
-  tokenOwner?:string;
+  stakingId?: number;
+  listingId?: number;
+  tokenAddress?: string;
+  tokenOwner?: string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const stackingFilter = useSelector(useFilter);
-  console.log('props for token address',props)
+  console.log("props for token address", props);
   return (
     <NFTWrap
       onClick={(e) => {
-        navigate(`/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,{state:{...props}}); //
+        navigate(
+          `/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,
+          { state: { ...props } },
+        ); //
         e.stopPropagation();
       }}
     >
-    
       <Info disp="flex" alignItems="center" gap="10px">
         <Name>{props.name}</Name>
         <img src={Verified} alt="verified-ico" />
@@ -82,32 +84,36 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-                navigate(`/buy/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
-
+                navigate(
+                  `/buy/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
+                  { state: { state: { ...props } } },
+                );
               }}
             >
-              Buy 
+              Buy
             </BuyBtn>
           ) : props.premium ? (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-
               }}
             >
-              Rent 
+              Rent
             </BuyBtn>
-          ):(
+          ) : (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
-                navigate(`/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
+                navigate(
+                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
+                  { state: { state: { ...props } } },
+                );
                 e.stopPropagation();
               }}
             >
               Sell
             </BuyBtn>
-          ) }
+          )}
         </LeftBlock>
         <PriceList>
           <PriceItem>
@@ -121,7 +127,14 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <span>Collotral</span>
             <Wrapper disp="flex" gap="6px">
               <EthLogo />
-              <PriceInEth>{props.colloteralWei?ethers.utils.formatUnits(props.colloteralWei.toString(),'ether'): "-" }</PriceInEth>
+              <PriceInEth>
+                {props.colloteralWei
+                  ? ethers.utils.formatUnits(
+                      props.colloteralWei.toString(),
+                      "ether",
+                    )
+                  : "-"}
+              </PriceInEth>
             </Wrapper>
           </PriceItem>
           <PriceItem>

@@ -43,7 +43,7 @@ export const SelectedItemWrapper = styled.div<{
 
   &:hover,
   &:focus-visible {
-     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 

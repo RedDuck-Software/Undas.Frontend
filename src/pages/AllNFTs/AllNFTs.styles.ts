@@ -45,7 +45,7 @@ export const MenuSearchWrap = styled.input<IMenuSearch>`
   line-height: 15px;
   background: #fff url(${Search}) no-repeat 20px center;
   &:focus {
-     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
   @media (max-width: 1200px) {
     order: 1;
@@ -106,7 +106,7 @@ export const ViewButton = styled.button`
   height: 36px;
   border: none;
   box-sizing: border-box;
-  &:hover{
+  &:hover {
     background: #fbf5ff;
   }
   &.grid-active {
@@ -141,7 +141,7 @@ export const FilterItem = styled.li`
   align-items: center;
   padding: 10px;
   transition: all ease-in-out 0.15s;
-  &:hover{
+  &:hover {
     background: #fbf5ff;
   }
 `;

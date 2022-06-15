@@ -52,7 +52,7 @@ export const ButtonRent = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
-  &:hover{
+  &:hover {
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 75%);
   }
@@ -72,7 +72,7 @@ export const ButtonRentSale = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
-  &:hover{
+  &:hover {
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 75%);
   }
@@ -92,7 +92,7 @@ export const ButtonOffer = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #873dc1;
-  &:hover{
+  &:hover {
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
   }
@@ -112,7 +112,7 @@ export const ButtonBid = styled.button`
   font-size: 14px;
   line-height: 17px;
   color: #873dc1;
-  &:hover{
+  &:hover {
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
   }

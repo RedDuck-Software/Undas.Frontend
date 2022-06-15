@@ -78,12 +78,17 @@ const Rent: React.FC = () => {
                     overlay={
                       <OverlayPopUp>
                         Speech bubble that will fall out when you click on the
-                        information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
                       </OverlayPopUp>
                     }
                   >
                     <ButtonInfo>
-                      <ImageInfo src={info} alt="info-image" className="margin"/>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
@@ -106,12 +111,17 @@ const Rent: React.FC = () => {
                     overlay={
                       <OverlayPopUp>
                         Speech bubble that will fall out when you click on the
-                        information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
                       </OverlayPopUp>
                     }
                   >
                     <ButtonInfo>
-                      <ImageInfo src={info} alt="info-image" className="margin"/>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
@@ -129,12 +139,17 @@ const Rent: React.FC = () => {
                     overlay={
                       <OverlayPopUp>
                         Speech bubble that will fall out when you click on the
-                        information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
                       </OverlayPopUp>
                     }
                   >
                     <ButtonInfo>
-                      <ImageInfo src={info} alt="info-image" className="margin"/>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
@@ -161,13 +176,18 @@ const Rent: React.FC = () => {
                         placement="top"
                         overlay={
                           <OverlayPopUp>
-                            Speech bubble that will fall out when you click on the
-                            information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                            Speech bubble that will fall out when you click on
+                            the information on the icon{" "}
+                            <FAQLink href="/faq">FAQ</FAQLink>
                           </OverlayPopUp>
                         }
                       >
                         <ButtonInfo>
-                          <ImageInfo src={info} alt="info-image" className="margin"/>
+                          <ImageInfo
+                            src={info}
+                            alt="info-image"
+                            className="margin"
+                          />
                         </ButtonInfo>
                       </OverlayTrigger>
                     </CheckboxLabel>

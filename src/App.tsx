@@ -52,7 +52,6 @@ import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { ConnectorState } from "./types/ConnectorState";
 import Context from "./utils/Context";
 
-
 const App: React.FC = () => {
   const web3Current = useWeb3React();
   const connectorName = localStorage.getItem("connector");

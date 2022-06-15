@@ -15,10 +15,7 @@ import { FavouriteType } from "./types";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
-import {
-  MenuSearchWrap,
-  MenuWrap,
-} from "../../../AllNFTs/AllNFTs.styles";
+import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";

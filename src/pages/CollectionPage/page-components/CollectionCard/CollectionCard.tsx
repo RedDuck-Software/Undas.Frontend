@@ -77,11 +77,7 @@ const CollectionCard: React.FC = () => {
       <MakeComplaint ref={target} onClick={() => setShow(!show)}>
         Make a Complaint
       </MakeComplaint>
-      <Overlay
-        target={target.current}
-        show={show}
-        placement="bottom"
-      >
+      <Overlay target={target.current} show={show} placement="bottom">
         {
           <ContainerPopUp>
             <InputTextArea placeholder="Comment"></InputTextArea>
