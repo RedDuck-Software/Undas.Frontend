@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export const levelReducer = (state = initialState, action: any) => {
-    switch (action.type) {
+    switch (action.type) {  
       case CreateNFT.addLevel:
         return {
           ...state,

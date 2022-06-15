@@ -46,13 +46,9 @@ export const HolderElement = styled.li<{ isActive?: boolean }>`
   }
 `;
 
-export const ASideWrap = styled.div`
+export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
   min-width: 30px;
   max-width: 30px;
-  //max-width: 255px;
-  //max-width: 255px;
-  //box-sizing: content-box;
-  //width: 255px;
   height: auto;
   background: rgb(251, 245, 255);
   box-shadow: inset 0 0 3px rgba(124, 124, 124, 0.5);
@@ -67,13 +63,24 @@ export const ASideWrap = styled.div`
     }
   }
   @media (max-width: 992px) {
-    display: none;
+    display: ${({ isOpenMobile }) => (isOpenMobile ? "block" : "none")};
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 `;
 
 interface IHolder {
   marginTop?: string;
 }
+
 export const Holder = styled.ul<IHolder>`
   width: 100%;
   margin-top: ${(props) => props.marginTop || "60px"};
@@ -377,7 +384,7 @@ export const CheckboxInput = styled.input<{ mr?: string }>`
 `;
 
 export const CheckboxLabel = styled.label`
-  display: -webkit-inline-flex;
+  display: block;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
   }
