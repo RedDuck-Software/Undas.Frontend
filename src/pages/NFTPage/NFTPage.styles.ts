@@ -441,12 +441,12 @@ export const InfoButton = styled.button<IButton>`
   flex: ${(props) => props.flex || ""};
   transition: all 0.3s linear;
   &.colored-btn:hover {
-    background-color: #fff;
-    color: #873dc1;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
   &:hover {
-    background-color: #873dc1;
-    color: #fff;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
   }
   @media (max-width: 576px) {
     width: 50%;
