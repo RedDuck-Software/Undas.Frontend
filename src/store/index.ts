@@ -1,3 +1,4 @@
+
 import {
   combineReducers,
   applyMiddleware,
@@ -9,9 +10,8 @@ import createSagaMiddleware from 'redux-saga';
 import { levelReducer } from './reducers/createNFT/levelReducer';
 import { propertyReducer } from './reducers/createNFT/propertyReducer';
 import { statReducer } from './reducers/createNFT/statReducer';
-
-
-import { filterReducer } from './reducers/filterReducer';
+import { filterReducer } from './reducers/stackingReducer';
+import { selectedCollectionsReducer } from './reducers/Filter/selectedCollectionsReducer';
 import { modalReducer } from './reducers/modalReducer';
 import { rootSaga } from './saga/rootSaga';
 
@@ -28,6 +28,7 @@ const rootReducer = combineReducers({
   levels: levelReducer,
   properties: propertyReducer,
   stats: statReducer,
+  selectedCollections: selectedCollectionsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -67,7 +67,6 @@ const CardList: React.FC<CardListProps> = ({ newFilter, priceFilter }) => {
       return;
     }
 
-    console.log("dsadsadasdasdasd");
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {

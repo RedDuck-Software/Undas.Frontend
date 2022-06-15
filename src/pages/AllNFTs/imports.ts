@@ -10,6 +10,7 @@ import KlaytnIcon from "../../icons/klaytn.png";
 import PolygonIcon from "../../icons/polygon.png";
 import SportIcon from "../../icons/sport.png";
 import NewIcon from "../../icons/star.png";
+import CloseIcon from "../../icons/close.svg";
 
 export {
   CollectionIcon,
@@ -24,4 +25,5 @@ export {
   FurnitureIcon,
   GridIco,
   ListIco,
+  CloseIcon,
 };

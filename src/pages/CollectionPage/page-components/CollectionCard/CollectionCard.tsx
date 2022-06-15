@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
 
 import {
   CardWrap,
@@ -13,6 +14,9 @@ import {
   ImgCollection,
   DescriptionS,
   CreatorWrapper,
+  ContainerPopUp,
+  InputTextArea,
+  SendButton,
 } from "./CollectionCard.styles";
 
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
@@ -28,6 +32,8 @@ import {
 } from "../../imports";
 
 const CollectionCard: React.FC = () => {
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
   return (
     <CardWrap>
       <Wrapper disp="flex" gap="20px">
@@ -68,7 +74,21 @@ const CollectionCard: React.FC = () => {
       <Creator>
         Creator <PurpleText>Borya Borya</PurpleText>
       </Creator>
-      <MakeComplaint>Make a Complaint</MakeComplaint>
+      <MakeComplaint ref={target} onClick={() => setShow(!show)}>
+        Make a Complaint
+      </MakeComplaint>
+      <Overlay
+        target={target.current}
+        show={show}
+        placement="bottom"
+      >
+        {
+          <ContainerPopUp>
+            <InputTextArea placeholder="Comment"></InputTextArea>
+            <SendButton>Send</SendButton>
+          </ContainerPopUp>
+        }
+      </Overlay>
     </CardWrap>
   );
 };

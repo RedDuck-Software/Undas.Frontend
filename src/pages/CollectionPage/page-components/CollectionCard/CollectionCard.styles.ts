@@ -96,6 +96,9 @@ export const MakeComplaint = styled.button`
   max-height: 36px;
   cursor: pointer;
   display: none;
+  &:hover {
+    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
+  }
   @media (max-width: 1200px) {
     display: inline-block;
   }
@@ -141,3 +144,81 @@ export const CreatorWrapper = styled.div`
     margin: 10px 0 0 0;
   }
 `;
+
+export const ContainerPopUp = styled.div`
+  height: 160px;
+  width: 350px;
+  background: #ffffff;
+  border: 1px solid #7c7c7c;
+  transform: matrix(1, 0, 0, -1, 0, 0);
+  margin-left: -75px;
+  margin-top: 11px;
+  border-radius: 10px;
+  z-index: 10;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 270px;
+    top: -20px;
+    border: 10px solid transparent;
+    border-top: 10px solid #7c7c7c;
+    transform: rotate(180deg);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 270px;
+    top: -20px;
+    border: 10px solid transparent;
+    border-top: 10px solid #7c7c7c;
+    transform: rotate(180deg);
+  }
+  &::after {
+    border-top: 10px solid white;
+    top: -18.5px;
+  }
+`;
+
+export const InputTextArea = styled.textarea`
+  width: 320px;
+  border: none;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 90px;
+  resize: none;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  &:focus {
+    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
+    border: none;
+    outline: none;
+  }
+`;
+
+export const SendButton = styled.button`
+  width: 90px;
+  height: 36px;
+  background: #873dc1;
+  border-radius: 5px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-right: 15px;
+  float: right;
+  border: none;
+  &:hover {
+    color: #873dc1;
+    background: #ffffff;
+    border: 1px solid #873dc1;
+  }
+`;
+

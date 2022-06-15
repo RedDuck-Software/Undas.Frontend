@@ -379,6 +379,12 @@ export const ImageInfo = styled.img`
   &.margin-top {
     padding-bottom: 4px;
   }
+  &.margin {
+    margin-top: 8px;
+  }
+  &.margin-3 {
+    margin-top: 4px;
+  }
 `;
 export const DollarPrice = styled.span`
   font-family: "Montserrat";
