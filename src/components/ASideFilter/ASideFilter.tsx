@@ -57,31 +57,37 @@ import { filterAction } from "../../store/reducers/stackingReducer";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
-import { addSelectedCollection } from "../../store/reducers/Filter/filterActions";
+import { addSelectedCategory, addSelectedCollection } from "../../store/reducers/Filter/filterActions";
 
 interface CategoryItemProps {
   label: string;
   icon: string;
-  setCategory?: any;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
+  const dispatch = useDispatch();
+
   return (
-    <FilterCategoryItemWrapper>
-      <CheckboxInputWrapperCentered>
-        <CheckboxInput
-          type="checkbox"
-          className="custom-checkbox"
-          id={label}
-          mr="15px"
-        />
-        <CheckboxLabel htmlFor={label} />
-      </CheckboxInputWrapperCentered>
-      <FilterCategoryItemTitle>
-        <CategoryItemTitleIcon src={icon} />
-        {label}
-      </FilterCategoryItemTitle>
-    </FilterCategoryItemWrapper>
+    <CheckboxLabel htmlFor={label}>
+      <FilterCategoryItemWrapper>
+        <CheckboxInputWrapperCentered>
+          <CheckboxInput
+            type="checkbox"
+            className="custom-checkbox"
+            id={label}
+            mr="15px"
+            onClick={() =>
+              dispatch(addSelectedCategory(icon, label))
+            }
+          />
+          <CheckboxLabel htmlFor={label} />
+        </CheckboxInputWrapperCentered>
+        <FilterCategoryItemTitle>
+          <CategoryItemTitleIcon src={icon} />
+          {label}
+        </FilterCategoryItemTitle>
+      </FilterCategoryItemWrapper>
+    </CheckboxLabel>
   );
 };
 

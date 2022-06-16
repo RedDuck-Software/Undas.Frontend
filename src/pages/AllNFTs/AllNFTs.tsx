@@ -25,20 +25,26 @@ import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import { Background } from "../../globalStyles";
-import { useSelectedCollections } from "../../store/reducers/Filter/helpers";
+import {
+  useSelectedCollections,
+  useSelectedCategories,
+} from "../../store/reducers/Filter/helpers";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 import { CloseIcon } from "./imports";
-import { removeSelectedCollection } from "../../store/reducers/Filter/filterActions";
+import {
+  clearAll,
+  removeSelectedCollection,
+} from "../../store/reducers/Filter/filterActions";
 
 interface SelectedCollectionItemProps {
   icon?: string;
   label: string;
 }
 
-const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
+const SelectedItem: React.FC<SelectedCollectionItemProps> = ({
   icon,
   label,
 }) => {
@@ -50,7 +56,7 @@ const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
   };
   const [longName, setLongName] = useState<string>("");
   const handleCollectionName = (name: string) => {
-    if (name.length > 9) {
+    if (name && name.length > 9) {
       const trunced = name.slice(0, 8) + "...";
       setLongName(trunced);
     } else {
@@ -72,31 +78,53 @@ const SelectedCollectionItem: React.FC<SelectedCollectionItemProps> = ({
 };
 
 const AllNFTs: React.FC = () => {
-  const selector = useSelector(useSelectedCollections);
-  useEffect(() => {
-    setSelectedCollections(selector);
-  }, [selector]);
-
+  const dispatch = useDispatch();
+  const collections = useSelector(useSelectedCollections);
+  const categories = useSelector(useSelectedCategories);
   const [results, setResults] = useState<any>();
   const [priceFilter, setPriceFilter] = useState<string>("");
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
+
   useEffect(() => {
     console.log(priceFilter);
   }, [active, priceFilter]);
 
-  const [selectedCollections, setSelectedCollections] = useState<any>(selector);
+  const [selectedCollections, setSelectedCollections] =
+    useState<any>(collections);
+  const [selectedCategories, setSelectedCategories] = useState<any>(categories);
+
   const { viewMode, viewButtonsRender } = useViewMode();
+
+  useEffect(() => {
+    setSelectedCollections(collections);
+  }, [collections]);
+
+  useEffect(() => {
+    setSelectedCategories(categories);
+  }, [categories]);
+
+  const handleClearAll = () => {
+    const all = [...selectedCollections, ...selectedCategories];
+    selectedCollections.forEach((item: any) => {
+      const element: HTMLElement = document.getElementById(
+        item.collectionName,
+      )!;
+      element.click();
+    });
+    selectedCategories.forEach((item: any) => {
+      const element: HTMLElement = document.getElementById(item.categoryName)!;
+      element.click();
+    });
+    dispatch(clearAll());
+  };
 
   return (
     <Background>
       <AllNFTContainer>
-        <ASideFilter
-          selectedCollections={selectedCollections}
-          setSelectedCollections={setSelectedCollections}
-        />
+        <ASideFilter />
         <Wrapper w="100%" marg="0 0 200px 0">
           {/*rm marg after deploy*/}
           <MenuWrap justifyContent="space-between">
@@ -162,24 +190,34 @@ const AllNFTs: React.FC = () => {
             <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
-          {selectedCollections.length > 0 && (
+          {selectedCollections.length > 0 || selectedCategories.length > 0 ? (
             <SelectedCollectionsWrapper>
               <SelectedCollectionsList>
                 {selectedCollections.map((item: any) => {
                   return (
-                    <SelectedCollectionItem
+                    <SelectedItem
                       key={`${item.collectionName}-${item.collectionIcon}`}
                       label={item.collectionName}
                       icon={item.collectionIcon}
                     />
                   );
                 })}
+                {selectedCategories.map((item: any) => {
+                  return (
+                    <SelectedItem
+                      key={`${item.categoryName}-${item.categoryIcon}`}
+                      label={item.categoryName}
+                      icon={item.categoryIcon}
+                    />
+                  );
+                })}
               </SelectedCollectionsList>
-              <RemoveAllSelectedCollection>
+              <RemoveAllSelectedCollection onClick={handleClearAll}>
                 Clear all
               </RemoveAllSelectedCollection>
             </SelectedCollectionsWrapper>
-          )}
+          ) : null}
+
           {viewMode === ViewMode.grid ? (
             <AllGridWrap
               getResults={(amount: any) => setResults(amount)}

@@ -9,6 +9,15 @@ export function removeSelectedCollection(collectionName: string | number) {
     return { type: Filter.removeCollection, payload: collectionName };
 }
 
-export function removeAllSelectedCollections() {
-    return { type: Filter.removeAllCollection };
+export function addSelectedCategory(categoryIcon: string, categoryName: string) {
+    const action = {type: Filter.addCategory, payload: { categoryIcon, categoryName } };
+    return action;
+}
+
+export function removeSelectedCategory(categoryName: string | number) {
+    return { type: Filter.removeCategory, payload: categoryName };
+}
+
+export function clearAll() {
+    return { type: Filter.clearAll };
 }
