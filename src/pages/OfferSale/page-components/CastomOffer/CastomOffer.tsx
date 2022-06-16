@@ -1,11 +1,11 @@
 import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 
 import {
   OwnerItemText,
   NFTSelected,
-  NFTInfoContainer,
-  AddNFT,
-  SelectedNFTCardBox,
   TextPrice,
   EthSelect,
   PriceRow,
@@ -38,27 +38,71 @@ import {
   CheckboxLabelAgreement,
   AgreeRowButton,
   ButtonMakeOffer,
+  ButtonInfo,
+  FAQLink,
+  OverlayPopUp,
+  AddNFTContainer,
+  AddNFTCard,
+  SwiperNFT,
 } from "./CastomOffer.styles";
 
-import { addNFT, down, deleteNFT, info } from "../../imports";
+import { down, deleteNFT, info } from "../../imports";
 
 import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
+import ModalsNFT from "../../../OfferRent/page-components//ModalsNFT/ModalsNFT";
 
 const CastomOffer: React.FC = () => {
   return (
     <div>
       <OwnerContainer>
         <OwnerItemText>Owner Item</OwnerItemText>
-        <NFTSelected>NFT item’s selected 1</NFTSelected>
-        <SelectedNFTCardBox>
-          <NFTInfoContainer>
-            <NFTCard uri="nft1" name="NFTCard" />
-          </NFTInfoContainer>
-          <NFTInfoContainer className="disable">
-            <NFTCard uri="nft2" name="NFTCard2" />
-            <AddNFT src={addNFT} alt="add-nft-image" />
-          </NFTInfoContainer>
-        </SelectedNFTCardBox>
+        <NFTSelected className="margin-bottom">
+          NFT item’s selected 1
+        </NFTSelected>
+        <SwiperNFT
+          slidesPerView={1}
+          spaceBetween={30}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          }}
+          className="rent-slider"
+          modules={[Navigation]}
+          loop={false}
+          navigation={true}
+        >
+          <>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AddNFTContainer>
+                <AddNFTCard>
+                  <ModalsNFT />
+                </AddNFTCard>
+              </AddNFTContainer>
+            </SwiperSlide>
+          </>
+        </SwiperNFT>
         <TextPrice>Offer a surcharge to the owner</TextPrice>
         <PriceRow>
           <EthSelect>
@@ -73,25 +117,53 @@ const CastomOffer: React.FC = () => {
       </OwnerContainer>
       <BuyContainer>
         <OwnerItemText>My Item</OwnerItemText>
-        <NFTSelected>NFT item’s selected 2</NFTSelected>
-        <SelectedNFTCardBox className="margin-20">
-          <NFTInfoContainer>
-            <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-          </NFTInfoContainer>
-          <NFTInfoContainer>
-            <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-          </NFTInfoContainer>
-          <NFTInfoContainer>
-            <NFTCard uri="nft1" name="NFTCard" />
-            <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-          </NFTInfoContainer>
-          <NFTInfoContainer className="disable">
-            <NFTCard uri="nft2" name="NFTCard2" />
-            <AddNFT src={addNFT} alt="add-nft-image" />
-          </NFTInfoContainer>
-        </SelectedNFTCardBox>
+        <NFTSelected className="margin-bottom">
+          NFT item’s selected 2
+        </NFTSelected>
+        <SwiperNFT
+          slidesPerView={1}
+          spaceBetween={30}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          }}
+          className="rent-slider"
+          modules={[Navigation]}
+          loop={false}
+          navigation={true}
+        >
+          <>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NFTCard uri="nft1" name="NFTCard" />
+              <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <AddNFTContainer>
+                <AddNFTCard>
+                  <ModalsNFT />
+                </AddNFTCard>
+              </AddNFTContainer>
+            </SwiperSlide>
+          </>
+        </SwiperNFT>
         <TextPrice>Offer your surcharge</TextPrice>
         <PriceRow>
           <EthSelect>
@@ -128,7 +200,20 @@ const CastomOffer: React.FC = () => {
             Pay in {"\u00A0"}
             <UNDLabel>UND</UNDLabel>
             {"\u00A0"} with a 50% discount
-            <ImageInfo src={info} alt="info-image" className="margin-top" />
+            <OverlayTrigger
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </CheckboxLabel>
           <DollarPrice className="margin-0">258,25</DollarPrice>
         </PayRow>

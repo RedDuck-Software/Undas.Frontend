@@ -1,4 +1,6 @@
-import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+
+import React, { useContext } from "react";
 
 import {
   TopLinkWrapper,
@@ -34,15 +36,51 @@ import {
   CheckboxLabelAgreement,
   CheckboxInputAgreement,
   NFTInfoContainer,
+  OverlayPopUp,
+  FAQLink,
+  ButtonInfo,
 } from "../OfferRent/OfferRent.styles";
 
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import { useLocation } from "react-router-dom";
+import Context from "../../utils/Context";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Marketplace__factory } from "../../typechain";
+import { createClient } from "urql";
+import { ethers } from "ethers";
 
 const Rent: React.FC = () => {
+  const { connector } = useContext(Context);
+  const state: any = useLocation();
+  console.log(state.state.state);
+
+  async function buyToken(tokenId: number, priceInNum?: number) {
+    if (!connector) return;
+    if (priceInNum == undefined) {
+      return;
+    }
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+    const tx = await MarketplaceContract.buyToken(tokenId, {
+      value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
+    });
+    await tx.wait();
+  }
   return (
     <Background>
       <TopLinkWrapper>
@@ -58,14 +96,34 @@ const Rent: React.FC = () => {
               <ContentItem>
                 <ContentItemName>Price NFT</ContentItemName>
                 <ContentItemPriceWrap>
-                  <ContentItemPriceEth>40</ContentItemPriceEth>
+                  <ContentItemPriceEth>
+                    {state.state.state.price}
+                  </ContentItemPriceEth>
                   <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
                 <ContentItemName>
                   Marketplace commission
-                  <ImageInfo src={info} alt="info-image" />
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
                 </ContentItemName>
                 <ContentItemPriceWrap>
                   <ContentItemPriceEth>0,035</ContentItemPriceEth>
@@ -85,7 +143,25 @@ const Rent: React.FC = () => {
                       Pay in {"\u00A0"}
                       <UNDLabel>UND</UNDLabel>
                       {"\u00A0"} with a 50% discount
-                      <ImageInfo src={info} alt="info-image" />
+                      <OverlayTrigger
+                        delay={{ show: 250, hide: 3000 }}
+                        placement="top"
+                        overlay={
+                          <OverlayPopUp>
+                            Speech bubble that will fall out when you click on
+                            the information on the icon{" "}
+                            <FAQLink href="/faq">FAQ</FAQLink>
+                          </OverlayPopUp>
+                        }
+                      >
+                        <ButtonInfo>
+                          <ImageInfo
+                            src={info}
+                            alt="info-image"
+                            className="margin"
+                          />
+                        </ButtonInfo>
+                      </OverlayTrigger>
                     </CheckboxLabel>
                   </CheckboxRow>
                 </ContentItemName>
@@ -98,7 +174,7 @@ const Rent: React.FC = () => {
                 <Total>Total</Total>
                 <ContentItemPriceWrap>
                   <TotalPrice>
-                    <TotalPriceEth>40</TotalPriceEth>
+                    <TotalPriceEth>{state.state.state.price}</TotalPriceEth>
                     <Plus>+</Plus>
                     <TotalPriceUnd>2</TotalPriceUnd>
                   </TotalPrice>
@@ -109,7 +185,10 @@ const Rent: React.FC = () => {
             <RightBlock>
               <ItemAmount>Item</ItemAmount>
               <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
+                <NFTCard
+                  uri={state.state.state.URI}
+                  name={state.state.state.name}
+                />
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
@@ -125,7 +204,13 @@ const Rent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button>Buy Now</Button>
+            <Button
+              onClick={() =>
+                buyToken(state.state.state.listingId, state.state.state.price)
+              }
+            >
+              Buy Now
+            </Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>

@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 import FavouriteTable from "./FavouriteTable/FavouriteTable";
 import {
+  FavouriteSettingsBlock,
   FavouriteButton,
   FavouriteSelect,
   FavouriteResultsTotal,
@@ -14,13 +15,7 @@ import { FavouriteType } from "./types";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
-import {
-  Input,
-  MenuSearchWrap,
-  MenuWrap,
-  SearchIco,
-  SettingsBlock,
-} from "../../../AllNFTs/AllNFTs.styles";
+import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { FavouriteWrap } from "../../AccountPage.styles";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
@@ -174,7 +169,7 @@ const FavouriteMenu: React.FC = () => {
   return (
     <FavouriteWrap>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
-        <SettingsBlock>
+        <FavouriteSettingsBlock>
           <FavouriteSelect>
             <FavouriteButton
               className={
@@ -196,11 +191,8 @@ const FavouriteMenu: React.FC = () => {
             </FavouriteButton>
           </FavouriteSelect>
           {favouriteType === FavouriteType.nft && viewButtonsRender}
-        </SettingsBlock>
-        <MenuSearchWrap mw="530px" marginLeft="0">
-          <SearchIco />
-          <Input placeholder="Search" />
-        </MenuSearchWrap>
+        </FavouriteSettingsBlock>
+        <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
       </MenuWrap>
 

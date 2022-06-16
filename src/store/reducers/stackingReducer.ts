@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const filterReducer = (state = initialState, action: any) => {
-  console.log(state);
   switch (action.type) {
     case TOGGLE_STACKING:
       return {
@@ -17,7 +16,6 @@ export const filterReducer = (state = initialState, action: any) => {
 };
 
 export const toggleStacking = (stacking: boolean) => {
-  console.log(stacking);
   return (stacking = !stacking);
 };
 

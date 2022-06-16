@@ -34,9 +34,27 @@ export const ButtonsBlock = styled.div`
 export const IntervalInput = styled.input`
   border: none;
   outline: none;
-  width: 55px;
+  width: 85px;
+  padding: 10px 15px;
+  background: #ffffff;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
+  margin-left: 20px;
+  min-width: 40px;
+  &:hover {
+    background: #fbf5ff;
+    box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  }
+  &.active {
+    background: #fbf5ff;
+  }
   &:focus {
     background-color: #fbf5ff;
+  }
+  @media (max-width: 576px) {
+    margin-left: 10px;
+    padding: 10px;
+    width: 75px;
   }
 `;
 

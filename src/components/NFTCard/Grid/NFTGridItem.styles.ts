@@ -3,6 +3,23 @@ import styled from "styled-components";
 import { ReactComponent as FavoriteIco } from "../../../icons/nftcard-favorite.svg";
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 
+export const Preview = styled.div`
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(35, 36, 40, 0.5);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  height: 36px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  transition: all 0.3s;
+  opacity: 0;
+`;
 export const NFTWrap = styled.div`
   cursor: pointer;
   width: 100%;
@@ -11,28 +28,35 @@ export const NFTWrap = styled.div`
   overflow: hidden;
   border: 1px solid rgba(124, 124, 124, 0.25);
   transition: all 0.3s;
+  max-width: 420px;
   &:hover {
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
   }
-  /* filter: drop-shadow(0px 5px 15px rgba(135, 61, 193, 0.5)); */
-
-  @media (max-width: 650px) {
-    max-width: 240px;
+  &:hover ${Preview} {
+    opacity: 1;
+  }
+  @media (max-width: 576px) {
+    max-width: 100%;
   }
 `;
 
 export const Info = styled(Wrapper)`
   background-color: #fff;
   height: 40px;
-  padding: 0 15px;
+  padding: 0 10px;
+  @media (max-width: 768px) {
+    padding: 0 5px;
+  }
   ${Wrapper}
 `;
 export const Name = styled.span`
   font-weight: 400;
   font-size: 14px;
   color: #232428;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
-
 export const Favorite = styled(FavoriteIco)`
   cursor: pointer;
   margin-left: auto;
@@ -50,22 +74,6 @@ export const Image = styled.img`
   object-fit: cover;
   height: 100%;
 `;
-export const Preview = styled.div`
-  cursor: pointer;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  background: rgba(35, 36, 40, 0.5);
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-  height: 36px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #ffffff;
-`;
-
 export const BuyingBlock = styled.div`
   width: 100%;
   height: 100%;
@@ -92,21 +100,27 @@ export const BuyBtn = styled.button`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  padding: 10px 28px;
+  padding: 10px;
   color: #873dc1;
   background-color: #fff;
   border-radius: 2px 2px 2px 10px;
   border: none;
+  transition: all 0.3s;
   cursor: pointer;
+  &:hover {
+    background: #873dc1;
+    color: #fff;
+  }
+  @media (max-width: 576px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
 
 export const TagName = styled.span`
-  padding: 14px 0px 14px 0px;
-  @media (max-width: 649px) {
-    padding: 6px 0px 6px 0px;
-  }
+  padding: 13px 0;
   @media (max-width: 576px) {
-    padding: 14px 0px 14px 0px;
+    padding: 14px 0;
   }
 `;
 

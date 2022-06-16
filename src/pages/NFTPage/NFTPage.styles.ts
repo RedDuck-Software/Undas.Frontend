@@ -73,6 +73,10 @@ export const OwnerSettingsNavigation = styled.div`
   & > *:first-child {
     margin-right: 30px;
   }
+  & > *:nth-child(2) {
+    margin-right: 30px;
+  }
+
   margin: 0 auto;
   padding: 0.5rem 3rem;
 
@@ -103,15 +107,12 @@ export const OwnerSettingsButton = styled.button<{ isColored?: boolean }>`
   padding-bottom: 7px;
   font-size: 14px;
   transition: all 0.3s linear;
-
-  &.colored-btn:hover {
-    background-color: #fff;
-    color: #873dc1;
-  }
-
   &:hover {
-    background-color: #873dc1;
-    color: #fff;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  &.colored-btn:hover {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
 
   @media (max-width: 876px) {
@@ -440,12 +441,12 @@ export const InfoButton = styled.button<IButton>`
   flex: ${(props) => props.flex || ""};
   transition: all 0.3s linear;
   &.colored-btn:hover {
-    background-color: #fff;
-    color: #873dc1;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
   &:hover {
-    background-color: #873dc1;
-    color: #fff;
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
   }
   @media (max-width: 576px) {
     width: 50%;
@@ -483,13 +484,17 @@ export const RentalPeriod = styled.input`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  text-align: right;
+  text-align: left;
   padding: 10px 36px;
   background: #ffffff;
-  box-shadow: inset 0px 0px 2px #7c7c7c;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   border-radius: 10px;
   color: #7c7c7c;
   border: none;
+  outline: none;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
 `;
 
 export const SmallAccordionWrap = styled.div`

@@ -102,7 +102,7 @@ const CreateNFT: React.FC = () => {
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x674002Df32E372E3D2E2CfC253471d0A5912fb9A", //goerli contract addr
+      "0x08eC8Fe503218573e28899B08C9Fa0316b5Ef8d3", //goerli contract addr
       signer,
     );
 
@@ -296,7 +296,7 @@ const CreateNFT: React.FC = () => {
             <CreateFormGroup>
               <SwitcherBlock>
                 <SwitcherTitle>
-                  <ExplicitContentIco /> Explicit & Sensitive Content
+                  <ExplicitContentIco /> Explicit &amp; Sensitive Content
                 </SwitcherTitle>
                 <Switcher onClick={sensetiveHandler} />
               </SwitcherBlock>

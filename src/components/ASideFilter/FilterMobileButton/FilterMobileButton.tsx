@@ -4,10 +4,10 @@ import { FixedButon } from "./FilterMobileButton.styles";
 
 import { FilterMobileIco } from "../imports";
 
-const FilterMobileButton: React.FC = () => {
+const FilterMobileButton: React.FC<{ onClick?: any }> = ({ onClick }) => {
   return (
     <>
-      <FixedButon>
+      <FixedButon onClick={onClick}>
         <FilterMobileIco />
         <span>Filter</span>
       </FixedButon>

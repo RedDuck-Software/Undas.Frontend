@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
-import { ViewOption, ResultsTotal } from "../../../AllNFTs/AllNFTs.styles";
+import {
+  ViewOption,
+  ResultsTotal,
+  SettingsBlock,
+} from "../../../AllNFTs/AllNFTs.styles";
 import { EthBlack } from "../../imports";
 
 //Favorite
+
+export const FavouriteSettingsBlock = styled(SettingsBlock)`
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+  }
+`;
 export const FavouriteSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
@@ -29,6 +39,9 @@ export const FavouriteButton = styled.button`
   font-size: 18px;
   text-align: center;
   color: #5d3f92;
+  &:hover {
+    background-color: #fbf5ff;
+  }
   &.favourite-active {
     background-color: #edd2ff;
   }
@@ -50,8 +63,6 @@ export const FavouriteResultsTotal = styled(ResultsTotal)`
   }
   @media (max-width: 768px) {
     flex: 0 0 100%;
-    text-align: left;
-    margin-top: 20px;
   }
   @media (max-width: 576px) {
     font-size: 14px;
@@ -81,6 +92,9 @@ export const FilterButton = styled(FavouriteButton)`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  &:hover {
+    background: #fbf5ff;
+  }
   &.offers-active {
     background-color: #edd2ff;
   }
@@ -99,6 +113,7 @@ export const OffersWrapTable = styled.table`
   position: relative;
   padding-top: 50px;
   margin-top: -40px;
+  background-color: #fff;
   @media (max-width: 992px) {
     max-width: fit-content;
     overflow-x: auto;
@@ -203,39 +218,33 @@ export const AcceptBTN = styled.button`
   border-radius: 10px;
   width: 100px;
   height: 36px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ffffff;
-  border-color: #873dc1;
-
+  border: 1px solid #873dc1;
+  transition: all 0.3s;
   &:hover {
     color: #873dc1;
     background: #ffffff;
-    border: 1px solid #873dc1;
   }
 `;
 export const MakeOfferBTN = styled.button`
   width: 100px;
   height: 36px;
   box-sizing: border-box;
-  background: #ffffff;
+  background: #ebdfff;
   border: 1px solid #873dc1;
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #873dc1;
-
+  color: #232428;
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid #873dc1;
-    box-shadow: 0px 0px 10px #873dc1;
+    background: #ffffff;
   }
 `;
 export const DenyBTN = styled.button`
@@ -245,17 +254,15 @@ export const DenyBTN = styled.button`
   background: #ffffff;
   border: 1px solid #ff2a36;
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ff2a36;
-
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid #ff2a36;
-    box-shadow: 0px 0px 10px #ff2a36;
+    background-color: #ff2a36;
+    color: #ffffff;
   }
 `;
 export const CancelBtn = styled.button`
@@ -273,9 +280,10 @@ export const CancelBtn = styled.button`
   position: absolute;
   right: 2px;
   top: 2px;
-  transition: background-color 0.3s;
+  z-index: 2;
+  transition: all 0.3s;
   &:hover {
-    background-color: #edd2ff;
+    background-color: #fbf5ff;
   }
   @media (max-width: 576px) {
     width: 99%;
@@ -312,6 +320,7 @@ export const PriceTextETH = styled.span`
 export const SelectedFilters = styled.div`
   width: 100%;
   margin-top: 20px;
+  z-index: 2;
 `;
 export const Filter = styled.div`
   width: 180px;
@@ -319,8 +328,6 @@ export const Filter = styled.div`
   background: #fbf5ff;
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

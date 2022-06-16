@@ -1,9 +1,11 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setComponent } from "../../store/reducers/modalAction";
 import {
   NFTImage,
   CartIco,
@@ -71,56 +73,52 @@ import Properties from "./page-components/Accordion/accordrion-components/Proper
 import Staking from "./page-components/Accordion/accordrion-components/Staking";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
-
 import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
-import { UndasGeneralNFT__factory } from "../../typechain";
-import { NFT_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
-import { getListing } from "../../utils/getListing";
-import { getNFTListingIds } from "../../utils/getNFTListingIds";
-import { getNFTStakingIds } from "../../utils/getNFTStakingIds";
-import { getStaking } from "../../utils/getStaking";
-import getTokenURI from "../../utils/getTokenURI";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
-import { useSelector } from "react-redux";
-import {
-  useName,
-  usePrice,
-  useToken,
-  useUri,
-  useColloteral,
-  usePremium,
-} from "../../store";
+import { createClient } from "urql";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 const NFTPage: React.FC = () => {
-  const litsingId = useSelector(useToken);
-  const tokenPrice = useSelector(usePrice);
-  const tokenName = useSelector(useName);
-  const tokenUri = useSelector(useUri);
-  const Col = useSelector(useColloteral);
-  const Prem = useSelector(usePremium);
-  // console.log('col',Col,'prem',Prem)
   const override = css`
     display: block;
     margin: auto;
   `;
   const params = useParams();
+
   const tokenId = params.id;
+  console.log("params", params);
 
+  if (!tokenId) {
+    console.log("NO TOKEN ID");
+    return <h2>ERROR</h2>;
+  }
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { connector } = useContext(Context);
-
-  const [stakingId, setStakingId] = useState(0);
+  const [name, setName] = useState<string>();
+  const [tokenURI, setTokenURI] = useState<string>();
+  const [priceInNum, setPriceInNum] = useState(0);
+  const [colloteral, setColloteral] = useState(0);
+  const [premium, setPremium] = useState(0);
+  const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
-  const [, setTokenURI] = useState<string>();
+  const [stakingId, setStakingId] = useState(0);
+  const [seller, setSeller] = useState<string>();
   const [loading, setLoading] = useState(true);
-  // const [showPriceHistory] = useState(false);
-  const [, setShowStaking] = useState(false);
-  const [showBuy, setShowBuy] = useState(false);
-  const [showRent, setShowRent] = useState(false);
+  const [showBuy, setShowBuy] = useState(true);
+  const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
 
-  const getShowStaking = async () => {
+  const state: any = useLocation();
+  console.log("state", state);
+  const URI = state.state.URI;
+  const nameFromProps = state.state.name;
+
+  const getOwner = async () => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -128,149 +126,186 @@ const NFTPage: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
+    const singerAddress = await (await signer.getAddress()).toLowerCase();
 
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    if (!seller) {
+      setSeller(state.state.tokenOwner);
+    }
 
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-
-    const ProductValue = await getStaking(stakingId, connector);
-
-    if (!ProductValue) return;
-
-    const { maker } = ProductValue.tx;
-
-    if (
-      address === owner &&
-      maker === "0x0000000000000000000000000000000000000000"
-    ) {
-      setShowStaking(true);
+    if (singerAddress == seller) {
+      console.log("OWNER");
+      setIsOwner(false);
     }
   };
+
+  async function rentToken(
+    stakingId: number,
+    colloteralWei?: number,
+    premium?: number,
+  ) {
+    if (!connector) return;
+
+    if (colloteralWei == undefined) {
+      return;
+    }
+    if (premium == undefined) {
+      return;
+    }
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+    const signer = provider.getSigner(0);
+
+    console.log("colloteral ", colloteralWei);
+    console.log("premium", premium);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    const amountToPay = +colloteralWei + +premium + (+premium * 20) / 100;
+    const formattedAmountToPay = ethers.utils.formatUnits(
+      amountToPay.toString(),
+      "ether",
+    );
+    console.log(formattedAmountToPay);
+    const tx = await MarketplaceContract.rentNFT(stakingId, false, {
+      value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
+      gasPrice: 20000,
+    });
+    await tx.wait();
+  }
 
   const getShowBuy = async () => {
     if (!connector) return;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-
-    const signer = provider.getSigner(0);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-    const ProductValue = await getListing(listingId, connector);
-    console.log("owner:", owner);
-    if (!ProductValue) return;
-
-    const { seller } = ProductValue.tx;
-
-    if (
-      address === owner &&
-      seller === "0x0000000000000000000000000000000000000000"
-    ) {
+    if (listingId) {
       setShowBuy(true);
+    } else {
+      setShowBuy(false);
     }
   };
 
   async function getShowRent() {
     if (!connector) return;
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-
-    const signer = provider.getSigner(0);
-
-    const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const address = await signer.getAddress();
-    const owner = await NFTContract.owner();
-
-    const ProductValue = await getStaking(stakingId, connector);
-
-    if (!ProductValue) return;
-
-    const { maker } = ProductValue.tx;
-
-    if (
-      address !== owner &&
-      maker !== "0x0000000000000000000000000000000000000000"
-    ) {
-      setShowRent(true);
-    }
-  }
-
-  async function getStakingId() {
-    setLoading(true);
-    if (!connector) return;
-
-    const stakingId = await getNFTStakingIds(
-      NFT_ADDRESS,
-      Number(tokenId),
-      connector,
-    );
-
     if (stakingId) {
-      setStakingId(stakingId.value.toNumber());
+      setShowRent(true);
+    } else {
+      setShowRent(false);
     }
-
-    await getShowStaking();
-    await getShowRent();
-
-    setLoading(false);
   }
-
-  async function getListingId() {
-    setLoading(true);
-    if (!connector) return;
-
-    const listingId = await getNFTListingIds(
-      NFT_ADDRESS,
-      Number(tokenId),
-      connector,
-    );
-
-    if (listingId) {
-      setListingId(listingId.value.toNumber());
-    }
-    await getShowBuy();
-    setLoading(false);
-  }
-
-  const fetchTokenURI = async (tokenId: any) => {
-    if (!connector) return;
-    const uri = await getTokenURI(+tokenId, connector);
-    setTokenURI(uri);
-  };
 
   useEffect(() => {
     if (connector) {
-      fetchTokenURI(tokenId);
-      getStakingId();
-      getListingId();
+      getShowBuy();
+      getShowRent();
+      getTokenData();
+      getOwner();
+      console.log("useEf");
     }
-  }, [connector]);
+  }, [connector, listingId, stakingId, premium, colloteral, seller]);
+
+  const getTokenData = async () => {
+    const tokensQuery = await fetchData();
+    if (
+      tokensQuery.data.listings[0] &&
+      tokensQuery.data.listings[0].listingStatus == "ACTIVE"
+    ) {
+      setName(tokensQuery.data.listings[0].tokenName);
+      setTokenURI(tokensQuery.data.listings[0].tokenURI);
+      setPriceInNum(tokensQuery.data.listings[0].price);
+      setDescription(tokensQuery.data.listings[0].tokenDescription);
+      setListingId(tokensQuery.data.listings[0].id);
+      setSeller(tokensQuery.data.listings[0].seller);
+      setLoading(false);
+
+      return;
+    }
+
+    if (
+      tokensQuery.data.stakingListings[0] &&
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
+    ) {
+      setName(tokensQuery.data.stakingListings[0].tokenName);
+      setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
+      setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
+      setStakingId(tokensQuery.data.stakingListings[0].id);
+      setSeller(tokensQuery.data.stakingListings[0].seller);
+      setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
+      setPremium(tokensQuery.data.stakingListings[0].premiumWei);
+      setLoading(false);
+
+      return;
+    }
+
+    setLoading(false);
+  };
+  console.log("params.id", params.id);
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const tokensQuery = `
+{
+  listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
+    id
+ 		tokenId
+    tokenURI
+    price
+    tokenName
+    token
+    tokenDescription
+    seller
+    listingStatus
+  }
+  stakingListings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
+    id
+    seller
+ 		tokenId
+    tokenURI
+    tokenName
+    tokenDescription
+    colloteralWei
+    premiumWei
+    deadlineUTC
+    stakingStatus
+  }
+}
+ `;
+
+  const client = createClient({
+    url: APIURL,
+  });
+
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    console.log("DATA", data);
+    return data;
+  }
 
   return (
     <Background>
-      {!loading && isOwner && (
+      {!loading && !isOwner && (
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
             <OwnerSettingsButton>Edit</OwnerSettingsButton>
-            {showBuy || showRent ? (
-              <>
-                <OwnerSettingsButton isColored={true}>
-                  Cancel listing
-                </OwnerSettingsButton>
-              </>
-            ) : (
+
+            <>
               <OwnerSettingsButton isColored={true}>
-                Rent-sell
+                Cancel listing
               </OwnerSettingsButton>
-            )}
+            </>
+
+            <OwnerSettingsButton
+              isColored={true}
+              onClick={(e) => {
+                navigate(`/nft/sale/${tokenId}`, { state: { ...state } });
+                e.stopPropagation();
+              }}
+            >
+              Rent-sell
+            </OwnerSettingsButton>
           </OwnerSettingsNavigation>
         </OwnerSettingsWrapper>
       )}
@@ -287,7 +322,7 @@ const NFTPage: React.FC = () => {
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameNft>Name NFT</NameNft>
+                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
                   <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
@@ -322,7 +357,7 @@ const NFTPage: React.FC = () => {
             </NavigationWrap>
             <MainInfoWrap>
               <ImageWrap>
-                <Image src={tokenUri} alt="nft-image" />
+                <Image src={URI ? URI : tokenURI} alt="nft-image" />
                 <FavouriteCounter>
                   <FavouriteCounterIco />
                   <CounterNumber>10</CounterNumber>
@@ -362,7 +397,14 @@ const NFTPage: React.FC = () => {
                       <CartIco />
                       Sale
                     </TopBar>
-                    <Buy id={listingId} isOwner={isOwner} showBuy={showBuy} />
+                    <Buy
+                      id={listingId}
+                      isOwner={isOwner}
+                      showBuy={showBuy}
+                      priceInNum={priceInNum}
+                      tokenAddress={state.state.tokenAddress}
+                      tokenId={state.state.tokenId}
+                    />
                   </SaleBlock>
 
                   <SaleBlock>
@@ -370,6 +412,7 @@ const NFTPage: React.FC = () => {
                       <RentIco />
                       Rent
                     </TopBar>
+
                     {showRent === false && isOwner === true ? (
                       <NotListedWrapper>
                         <NotListed>Not listed for rent</NotListed>
@@ -380,15 +423,25 @@ const NFTPage: React.FC = () => {
                           <span>Deposit</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
-                            <PriceText>2,5</PriceText>
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                colloteral.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
                             <PriceInUSD>($18 465,32)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
                         <RentElement>
-                          <span>Price for 1 Day Rental</span>
+                          <span>Price for 1 Week Rental</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
-                            <PriceText>0,005</PriceText>
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                premium.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
                             <PriceInUSD>($36,93)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
@@ -401,12 +454,26 @@ const NFTPage: React.FC = () => {
                             bg="#873DC1"
                             flex="1 1 0"
                             className="colored-btn"
-                            disabled={isOwner}
-                            onClick={() => console.log("click rent")}
+                            disabled={!isOwner}
+                            onClick={() =>
+                              rentToken(stakingId, colloteral, premium)
+                            }
                           >
                             Rent
                           </InfoButton>
-                          <InfoButton fc="#873DC1">Make offer</InfoButton>
+                          <InfoButton
+                            fc="#873DC1"
+                            disabled={!isOwner}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(
+                                `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                { state: { ...state } },
+                              );
+                            }}
+                          >
+                            Make offer
+                          </InfoButton>
                         </RentElement>
                       </>
                     )}
@@ -471,4 +538,5 @@ const NFTPage: React.FC = () => {
     </Background>
   );
 };
+
 export default NFTPage;

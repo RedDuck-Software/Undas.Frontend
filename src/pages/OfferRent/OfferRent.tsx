@@ -1,4 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
 
 import {
   PageWrapper,
@@ -39,12 +43,13 @@ import {
   ContainerCheckboxCollateral,
   NFTInfoContainer,
   SelectedNFT,
-  SelectedNFTCardBox,
   ImgDelete,
-  AddNFT,
   AddNFTCard,
-  AddNFTButton,
   AddNFTContainer,
+  ButtonInfo,
+  OverlayPopUp,
+  FAQLink,
+  SwiperNFT,
 } from "./OfferRent.styles";
 
 import {
@@ -58,34 +63,30 @@ import {
 
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-
+import { useLocation } from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
-import { useSelector } from "react-redux";
-import { useName, useToken, useUri } from "../../store/";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-// import { OnlyOne__factory } from "../../typechain";
-
+import { createClient } from "urql";
 import { ethers } from "ethers";
-// import { cp } from "fs/promises";
 
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
-  const litsingId = useSelector(useToken);
-  const tokenName = useSelector(useName);
-  const tokenUri = useSelector(useUri);
   const { connector } = useContext(Context);
+
+  const state: any = useLocation();
 
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
+  const [listingId, setListingId] = useState("");
+  
+  const [isNFTCollateral, setIsNFTCollateral] = useState(false);
 
   async function makeRentOffer() {
     if (!connector) return;
-    // if (priceInNum == undefined) {
-    //   return;
-    // }
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -96,24 +97,13 @@ const OfferRent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    // TODO: NORMAL APPROVAL
-    // const ApprovalTokenAmount = (priceInNum * 2) / 100;
 
-    // const OnlyOneContract = OnlyOne__factory.connect(
-    //   "0x2DC8B77b750657Bf3480b20693Bc4Dc0dce45105",
-    //   signer,
-    // );
-
-    // console.log(OnlyOneContract)
-    // OnlyOneContract.approve(
-    //   "0x54FAf9EE113f2cd8D921D46C47c3A67a26E3A77F",
-    //   ethers.utils.parseUnits(ApprovalTokenAmount.toString(), 18),
-    // );
-
-    const amountToPay = colloteral + premium + (premium * 20) / 100;
+    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
+      7,
+    );
 
     const tx = await MarketplaceContract.stakingOffer(
-      litsingId,
+      listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
@@ -123,6 +113,53 @@ const OfferRent: React.FC = () => {
 
     await tx.wait();
   }
+
+  useEffect(() => {
+    if (connector) {
+      getTokenData();
+    }
+  }, [connector, listingId]);
+
+  const getTokenData = async () => {
+    const tokensQuery = await fetchData();
+
+    if (
+      tokensQuery.data.stakingListings[0] &&
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
+    ) {
+      setListingId(tokensQuery.data.stakingListings[0].id);
+      return;
+    }
+  };
+
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const tokensQuery = `
+    {
+      stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
+        id
+        tokenId
+        tokenURI
+        tokenDescription
+        seller
+        stakingStatus
+      }
+    }
+ `;
+  const client = createClient({
+    url: APIURL,
+  });
+
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+
+    return data;
+  }
+
+  const handleNFTCollateralMode = () => {
+    setIsNFTCollateral(!isNFTCollateral);
+  };
 
   return (
     <Background>
@@ -140,10 +177,26 @@ const OfferRent: React.FC = () => {
               id="collateral"
               className="custom-checkbox"
             />
-            <CheckboxLabelCollateral htmlFor="collateral">
+            <CheckboxLabelCollateral
+              htmlFor="collateral"
+              onClick={handleNFTCollateralMode}
+            >
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
-            <ImageInfo src={info} alt="info-image" />
+            <OverlayTrigger
+              delay={{ show: 250, hide: 3000 }}
+              placement="top"
+              overlay={
+                <OverlayPopUp>
+                  Speech bubble that will fall out when you click on the
+                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                </OverlayPopUp>
+              }
+            >
+              <ButtonInfo>
+                <ImageInfo src={info} alt="info-image" />
+              </ButtonInfo>
+            </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <OfferContainer>
             <FirstCollum>
@@ -207,7 +260,20 @@ const OfferRent: React.FC = () => {
               </PriceRow>
               <NameRow className="margin-top-30">
                 <TextOffer>Marketplace commission</TextOffer>
-                <ImageInfo src={info} alt="info-image" />
+                <OverlayTrigger
+                  delay={{ show: 250, hide: 3000 }}
+                  placement="top"
+                  overlay={
+                    <OverlayPopUp>
+                      Speech bubble that will fall out when you click on the
+                      information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                    </OverlayPopUp>
+                  }
+                >
+                  <ButtonInfo>
+                    <ImageInfo src={info} alt="info-image" />
+                  </ButtonInfo>
+                </OverlayTrigger>
                 <PriceContainer>
                   <EthPrice>0,035</EthPrice>
                   <DollarPrice>258,25</DollarPrice>
@@ -227,11 +293,25 @@ const OfferRent: React.FC = () => {
                   Pay in {"\u00A0"}
                   <UNDLabel>UND</UNDLabel>
                   {"\u00A0"} with a 50% discount
-                  <ImageInfo
-                    src={info}
-                    alt="info-image"
-                    className="margin-top"
-                  />
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin-top"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
                 </CheckboxLabel>
                 <DollarPrice className="margin-0">258,25</DollarPrice>
               </PayRow>
@@ -241,32 +321,63 @@ const OfferRent: React.FC = () => {
                 <ItemAmount>Owner item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                <NFTCard uri={tokenUri} name={tokenName} />
+                <NFTCard
+                  uri={state.state.state.URI}
+                  name={state.state.state.name}
+                />
               </NFTInfoContainer>
             </SecondCollum>
-            <NameRow>
-              <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
-              <SelectedNFT>2</SelectedNFT>
-            </NameRow>
-            <SelectedNFTCardBox>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </NFTInfoContainer>
-              <AddNFTContainer>
-                <AddNFTCard>
-                  <ModalsNFT />
-                </AddNFTCard>
-              </AddNFTContainer>
-            </SelectedNFTCardBox>
+            {isNFTCollateral && (
+              <>
+                <NameRow>
+                  <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
+                  <SelectedNFT>2</SelectedNFT>
+                </NameRow>
+
+                <SwiperNFT
+                  slidesPerView={1}
+                  spaceBetween={30}
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 50,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 20,
+                    },
+                  }}
+                  className="rent-slider"
+                  modules={[Navigation]}
+                  loop={false}
+                  navigation={true}
+                >
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <AddNFTContainer>
+                      <AddNFTCard>
+                        <ModalsNFT />
+                      </AddNFTCard>
+                    </AddNFTContainer>
+                  </SwiperSlide>
+                </SwiperNFT>
+              </>
+            )}
           </OfferContainer>
           <BottomWrapper>
             <CheckBoxWrapper>

@@ -73,13 +73,13 @@ const NavBarMobile = ({ open }) => {
               <MobileFavoriteIco />
             </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Favorite">
-              <HeaderDropdownItem href="#">
+              <HeaderDropdownItem href="account">
                 <AllNFTsIcon />
-                Something
+                Favourite NFTs
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="#">
+              <HeaderDropdownItem href="account">
                 <AllNFTsIcon />
-                Something
+                Favourite Collections
               </HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>

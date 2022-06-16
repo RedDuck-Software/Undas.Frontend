@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { NFTWrap } from "../../../HomePage/page-components/NFTCard/NFTCard.styles";
+import { Swiper } from "swiper/react";
 
 import { eth, offerTime } from "../../imports";
 
@@ -19,6 +21,9 @@ export const NFTSelected = styled.div`
   line-height: 20px;
   color: #232428;
   margin-top: 20px;
+  &.margin-bottom {
+    margin-bottom: 15px;
+  }
 `;
 
 export const NFTInfoContainer = styled.div`
@@ -302,7 +307,7 @@ export const UNDLabel = styled.span`
 `;
 
 export const ImageInfo = styled.img`
-  margin-left: 10px;
+  margin-bottom: 3px;
 `;
 
 export const DollarPrice = styled.span`
@@ -417,6 +422,7 @@ export const ButtonMakeOffer = styled.button`
   outline: none;
   margin-top: 40px;
   margin-bottom: 120px;
+  transition: all 0.3s linear;
   &:hover {
     background: #ffffff;
     color: #873dc1;
@@ -455,5 +461,114 @@ export const CheckboxLabelAgreement = styled.label`
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
+  }
+`;
+
+export const ButtonInfo = styled.button`
+  background-color: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+`;
+
+export const OverlayPopUp = styled.div`
+  width: 350px;
+  background: #ccb7f2;
+  padding: 10px 15px;
+  box-shadow: 0px 4px 4px rgb(124 124 124/25%);
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  margin-left: 11%;
+  position: absolute;
+  margin-left: 137px;
+  margin-bottom: 10px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 23px;
+    bottom: -20px;
+    border: 12px solid transparent;
+    border-left: 20px solid #ccb7f2;
+    transform: rotate(90deg);
+  }
+`;
+
+export const FAQLink = styled.a`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #232428;
+  &:hover {
+    color: #873dc1;
+  }
+`;
+
+export const AddNFTContainer = styled(NFTInfoContainer)`
+  padding: 65px 40px 15px;
+`;
+
+export const AddNFTCard = styled(NFTWrap)`
+  background-color: #c4c4c4;
+  padding: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+`;
+
+export const SwiperNFT = styled(Swiper)`
+  &.swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: 0;
+    right: auto;
+    z-index: 999;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-left: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+      margin-left: 4px;
+    }
+  }
+  &.swiper-button-next {
+    width: 36px;
+    height: 36px;
+    transition: all ease-in-out 0.15s;
+    background: #fff;
+    border: 1px solid #7c7c7c;
+    box-sizing: border-box;
+    border-radius: 10px;
+    left: auto;
+    right: 0;
+    &:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    &::after {
+      content: "";
+      border-bottom: 1px solid #7c7c7c;
+      border-right: 1px solid #7c7c7c;
+      width: 16px;
+      height: 16px;
+      transform: rotate(-45deg);
+      margin-right: 6px;
+    }
   }
 `;

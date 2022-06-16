@@ -214,6 +214,8 @@ interface IWrapper {
   bg?: string;
   w?: string;
   curs?: string;
+  margBottomS?: string;
+  margBottomXS?: string;
 }
 
 export const Wrapper = styled.div<IWrapper>`
@@ -231,6 +233,12 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
+  @media (max-width: 768px) {
+    margin-bottom: ${(props) => props.margBottomS};
+  }
+  @media (max-width: 576px) {
+    margin-bottom: ${(props) => props.margBottomXS};
+  }
 `;
 
 interface IPlatform {
@@ -242,7 +250,7 @@ export const Platform = styled.strong<IPlatform>`
   font-family: "Jost";
   font-weight: 600;
   font-size: ${(props) => props.fs || "12px"};
-  line-height: 17px;
+  line-height: 16px;
   color: ${(props) => props.col || "#CCB7F2"};
 `;
 

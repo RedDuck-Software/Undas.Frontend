@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { Container } from "../../globalStyles";
-import { ReactComponent as Search } from "../../pages/CollectionPage/assets/search.svg";
+import Search from "../../pages/CollectionPage/assets/search.svg";
 
 export const AllNFTContainer = styled(Container)`
   display: flex;
@@ -19,8 +19,9 @@ export const MenuWrap = styled.div<IMenuWrap>`
   align-items: center;
   margin: ${(props) => props.marg || "64px 0 20px"};
   flex-wrap: wrap;
+  gap: 20px;
   @media (max-width: 576px) {
-    margin-bottom: 0;
+    margin-top: 20px;
   }
 `;
 
@@ -28,43 +29,48 @@ interface IMenuSearch {
   mw?: string;
   marginLeft?: string;
 }
-
-export const MenuSearchWrap = styled.div<IMenuSearch>`
+export const MenuSearchWrap = styled.input<IMenuSearch>`
   margin-left: ${(props) => props.marginLeft || "30px"};
-  padding-left: 20px;
+  padding-left: 50px;
   display: flex;
   align-items: center;
   max-width: ${(props) => props.mw || "410px"};
-  width: 100%;
+  width: 33%;
   height: 36px;
-  background-color: #fff;
-  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  box-shadow: inset 0px 0px 5px rgb(124, 124, 124, 0.5);
   border-radius: 10px;
   border: none;
+  outline: none;
+  font-size: 12px;
+  line-height: 15px;
+  background: #fff url(${Search}) no-repeat 20px center;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
   @media (max-width: 1200px) {
     order: 1;
     flex: 0 0 100%;
     margin-bottom: 20px;
     max-width: 100%;
   }
-`;
-export const SearchIco = styled(Search)`
-  margin-right: 10px;
-`;
-export const Input = styled.input`
-  font-weight: 400;
-  font-size: 12px;
-  border: transparent;
-  background: transparent;
-  padding-right: 0.5rem;
-  outline: none;
-  width: 100%;
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 export const ResultsTotal = styled.span`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #7c7c7c;
+  @media (max-width: 1200px) {
+    order: 3;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+    text-align: right;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 export const SettingsBlock = styled.ul`
   list-style: none;
@@ -72,9 +78,13 @@ export const SettingsBlock = styled.ul`
   gap: 15px;
   @media (max-width: 1200px) {
     order: 2;
-    flex: 0 0 80%;
+    flex: 0 0 70%;
   }
   @media (max-width: 768px) {
+    flex: 0 0 50%;
+  }
+  @media (max-width: 576px) {
+    flex-direction: column;
     flex: 0 0 100%;
   }
 `;
@@ -96,6 +106,9 @@ export const ViewButton = styled.button`
   height: 36px;
   border: none;
   box-sizing: border-box;
+  &:hover {
+    background: #fbf5ff;
+  }
   &.grid-active {
     background-color: #edd2ff;
   }
@@ -118,6 +131,9 @@ export const Filter = styled.ul`
   &.event-active {
     border-radius: 10px 10px 0 0;
   }
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 export const FilterItem = styled.li`
   display: flex;
@@ -125,6 +141,9 @@ export const FilterItem = styled.li`
   align-items: center;
   padding: 10px;
   transition: all ease-in-out 0.15s;
+  &:hover {
+    background: #fbf5ff;
+  }
 `;
 
 interface IMenuItem {
@@ -186,18 +205,8 @@ export const FilterTitle = styled.span`
   color: #5d3f92;
 `;
 export const SettingsElement = styled.li``;
+
 export const GridLayout = styled.div`
-  /*display: grid;
-  grid-template-rows: auto;
-  //grid-auto-columns: 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  //grid-template-rows: 1fr 1fr 1fr 1fr;
-  width: 100%;
-  justify-content: space-between;*/
-  /*display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 30px 0;*/
   display: grid;
   grid-gap: 30px 15px;
   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
@@ -210,442 +219,43 @@ export const GridLayout = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   }
 `;
-export const TabsMenu = styled.ul`
+
+export const SelectedCollectionsWrapper = styled.div`
   display: flex;
-  margin-top: -57px;
-  margin-bottom: 70px;
-  border-radius: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 `;
-export const Tab = styled.li`
-  border-radius: 10px;
-`;
-/*
-import { Container } from "../../globalStyles";
 
-import { ReactComponent as Search } from "../../icons/search.svg";
-import CheckMark from "../../icons/check-mark.svg";
-
-interface SideBarProps {
-  closed?: boolean;
-  opened?: boolean;
-  checkbox?: boolean;
-}
-
-export const AllNFTsContainer = styled(Container)`
+export const SelectedCollectionsList = styled.div`
   display: flex;
-  padding-top: 3.125rem;
-
-  ${Container};
-`;
-export const AllNFTsPagginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 2rem 0 4rem;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
-export const SideBarContainer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 1059px) {
-    min-width: 25vw;
-  }
-
-  @media (max-width: 849px) {
-    position: absolute;
-    z-index: 2;
-    width: 30vw;
-  }
-
-  @media (max-width: 649px) {
-    width: 40.5vw;
-  }
-`;
-
-export const SideBarFilter = styled.div`
+export const SelectedCollection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  font-size: 1rem;
-  background: #ffffff;
-  border: 1px solid #5d3f92;
-  border-radius: 5px 5px 0px 0px;
-  min-height: 40px;
-  padding: 0 20px;
-  cursor: pointer;
-
-  @media (max-width: 389px) {
-    padding: 0 10px;
-    font-size: 0.85rem;
-  }
+  padding: 6px 15px;
+  width: 160px;
+  max-height: 36px;
+  height: 100%;
+  margin-right: 15px;
+  background: #fbf5ff;
+  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
+  border-radius: 10px;
 `;
 
-export const SideBarStatusTop = styled(SideBarFilter)<SideBarProps>`
-  border-top: none;
-  ${({ closed }) => (closed ? `` : `border-bottom: none;`)}
-  border-radius: 0;
-
-  ${SideBarFilter};
+export const SelectedCollectionIcon = styled.img`
+  margin-right: 5px;
 `;
-
-export const SideBarStatusContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  background: rgba(251, 245, 255, 0.7);
-  border: 1px solid #5d3f92;
-  padding: 1.4rem;
-
-  @media (max-width: 891px) {
-    padding: 1rem;
-  }
-
-  @media (max-width: 849px) {
-    background: rgb(251, 245, 255);
-  }
-
-  @media (max-width: 524px) {
-    flex-direction: column;
-
-    button {
-      margin-top: 5%;
-    }
-  }
-
-  @media (max-width: 459px) {
-    font-size: 0.85rem;
-  }
-
-  @media (max-width: 499px) {
-    padding: 6%;
-  }
+export const RemoveSelectedCollection = styled.img`
+  margin-left: auto;
 `;
-
-export const StatusButton = styled.button`
-  display: flex;
-  flex-basis: calc(50% - 8px);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  background: #ffffff;
-  border: 1px solid #893ac2;
-  box-shadow: inset 0px 4px 4px rgba(93, 63, 146, 0.31);
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background: #f5f5f5;
-  }
-
-  &:nth-child(1) {
-    margin: 0 1rem 0.5rem 0;
-  }
-
-  &:nth-child(2) {
-    margin-bottom: 0.5rem;
-  }
-
-  &:nth-child(3) {
-    margin-right: 1rem;
-  }
-
-  @media (max-width: 524px) {
-    &:nth-child(1) {
-      margin: 0;
-    }
-
-    &:nth-child(2) {
-      margin-bottom: 0;
-    }
-
-    &:nth-child(3) {
-      margin-right: 0;
-    }
-  }
+export const RemoveAllSelectedCollection = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #5d3f92;
 `;
-
-export const SideBarPriceTop = styled(SideBarFilter)<SideBarProps>`
-  ${({ opened }) => (opened ? `border-bottom: none;` : ``)}
-  border-radius: 0;
-
-  ${SideBarFilter};
-`;
-
-export const SideBarPriceContent = styled(SideBarStatusContent)`
-  flex-direction: column;
-
-  ${SideBarStatusContent}
-`;
-
-export const ButtonsWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-
-  margin-bottom: 0.5rem;
-
-  &:nth-child(2n) {
-    span {
-      padding: 0 1rem;
-
-      @media (max-width: 499px) {
-        font-size: 0.8rem;
-        padding: 0 8%;
-      }
-    }
-  }
-`;
-
-export const PriceButton = styled.button`
-  width: 48%;
-  padding: 0.5rem 1rem;
-
-  background: #ffffff;
-  border: 1px solid #893ac2;
-  box-shadow: inset 0px 4px 4px rgba(93, 63, 146, 0.31);
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:nth-child(1n) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    text-align: start;
-    width: 100%;
-  }
-
-  @media (max-width: 499px) {
-    font-size: 0.75rem;
-    padding: 4% 8%;
-  }
-`;
-
-export const PriceInput = styled.input`
-  width: 48%;
-  padding: 0.5rem 1rem;
-
-  background: #ffffff;
-  border: 1px solid #893ac2;
-  box-shadow: inset 0px 4px 4px rgba(93, 63, 146, 0.31);
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  outline: none;
-
-  &::placeholder {
-    color: #000000;
-  }
-
-  &:focus::placeholder {
-    color: transparent;
-  }
-
-  @media (max-width: 499px) {
-    font-size: 0.75rem;
-    width: 40%;
-    padding: 4% 2%;
-  }
-
-  @media (max-width: 375px) {
-    font-size: 0.7rem;
-    width: 50%;
-    padding: 4% 2%;
-  }
-`;
-
-export const ApplyLink = styled.span`
-  margin: 0.5rem auto;
-
-  font-size: 1rem;
-  color: #7c7c7c;
-  cursor: pointer;
-
-  @media (max-width: 499px) {
-    font-size: 0.8rem;
-  }
-`;
-
-export const SideBarCollectionsTop = styled(SideBarFilter)<SideBarProps>`
-  border-top: none;
-  ${({ opened }) => (opened ? `border-bottom: none;` : ``)}
-  border-radius: 0;
-
-  ${SideBarFilter};
-`;
-
-export const SideBarCollectionsContent = styled(SideBarStatusContent)`
-  ${SideBarStatusContent};
-`;
-
-export const CollectionsSearchWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  border: 1px solid #893ac2;
-  background: #ffffff;
-  box-shadow: inset 0px 4px 4px rgba(93, 63, 146, 0.31);
-  border-radius: 8px;
-  width: 100%;
-`;
-
-export const SearchIcon = styled(Search)`
-  margin: 0.625rem 0rem 0.625rem 1rem;
-`;
-
-export const CollectionsFilter = styled.input`
-  border: transparent;
-  background: transparent;
-  outline: none;
-  padding: 0.6rem;
-
-  &::placeholder {
-    color: #7c7c7c;
-  }
-
-  &:focus::placeholder {
-    color: transparent;
-  }
-`;
-
-export const CollectionsList = styled.ul`
-  padding: 1rem 0 0;
-  list-style-type: none;
-`;
-
-export const ItemImage = styled.img`
-  max-width: 30px;
-  max-height: 30px;
-
-  @media (max-width: 459px) {
-    max-width: 25px;
-    max-height: 25px;
-  }
-
-  @media (max-width: 389px) {
-    max-width: 22px;
-    max-height: 22px;
-  }
-`;
-
-export const CollectionsListItem = styled.li`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-
-  padding: 0.5rem 0;
-
-  &:hover ${ItemImage} {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 389px) {
-    span {
-      font-size: 0.85rem;
-      padding-left: 0.25rem;
-    }
-  }
-`;
-
-export const ItemText = styled.span<SideBarProps>`
-  padding-left: 0.6rem;
-
-  ${({ checkbox }) =>
-    checkbox
-      ? `&:after {
-          content: '';
-          display: inline-block;
-          height: 16px;
-          width: 14px;
-          background-size: 16px 14px;
-          background-image: url(${CheckMark});
-          background-repeat: no-repeat;
-          position: relative;
-          top: 4px;
-          left: 6px;
-  }`
-      : ``}
-
-  @media (max-width: 499px) {
-    &:after {
-      height: 12px;
-      width: 12px;
-      background-size: 12px 12px;
-      top: 1px;
-    }
-  }
-
-  @media (max-width: 336px) {
-    &:after {
-      height: 10px;
-      width: 10px;
-      background-size: 10px 10px;
-      left: 3px;
-      top: 0px;
-    }
-  }
-`;
-
-export const SideBarChainsTop = styled(SideBarFilter)<SideBarProps>`
-  border-top: none;
-  ${({ opened }) => (opened ? `border-bottom: none;` : ``)}
-  border-radius: 0;
-
-  ${SideBarFilter};
-`;
-
-export const SideBarChainsContent = styled(SideBarStatusContent)`
-  padding: 1rem 1.4rem;
-
-  @media (max-width: 389px) {
-    padding: 8% 6%;
-  }
-
-  ${SideBarStatusContent};
-`;
-
-export const ChainsList = styled(CollectionsList)`
-  padding: 0;
-
-  ${CollectionsList};
-`;
-
-export const ChainsListItem = styled(CollectionsListItem)`
-  ${CollectionsListItem};
-`;
-
-export const SideBarCategoriesTop = styled(SideBarFilter)<SideBarProps>`
-  border-top: none;
-  ${({ opened }) => (opened ? `border-bottom: none;` : ``)}
-  border-radius: 0;
-
-  ${SideBarFilter};
-`;
-
-export const SideBarCategoriesContent = styled(SideBarStatusContent)`
-  padding: 1rem 1.4rem;
-
-  @media (max-width: 389px) {
-    padding: 8% 6%;
-  }
-
-  ${SideBarStatusContent};
-`;
-
-export const CategoriesList = styled(CollectionsList)`
-  padding: 0;
-
-  ${CollectionsList};
-`;
-
-export const CategoriesListItem = styled(CollectionsListItem)`
-  ${CollectionsListItem};
-  }
-`;
-*/

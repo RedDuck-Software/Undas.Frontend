@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
+import { PrimaryButton, SecondaryButton } from "../../../../globalStyles";
 import {
   UndasDiv,
   TextGet,
   TextUndas,
   TextStacking,
   SliderButtonsBlock,
-  ExploreButton,
-  CreateButton,
 } from "../Slider/Slider.styles";
 
 export const MobileHeadWrap = styled(UndasDiv)`
@@ -70,20 +69,20 @@ export const MobileSliderButtonsBlock = styled(SliderButtonsBlock)`
     gap: 15px;
   }
 `;
-export const MobileExploreButton = styled(ExploreButton)`
+export const MobileExploreButton = styled(PrimaryButton)`
   flex: 0 0 45%;
+  padding: 10px;
   @media (max-width: 576px) {
     flex: 0 0 100%;
-    padding: 10px;
     width: 100%;
   }
 `;
-export const MobileCreateButton = styled(CreateButton)`
+export const MobileCreateButton = styled(SecondaryButton)`
   margin: 0;
   flex: 0 0 45%;
+  padding: 10px;
   @media (max-width: 576px) {
     flex: 0 0 100%;
-    padding: 10px;
     width: 100%;
   }
 `;

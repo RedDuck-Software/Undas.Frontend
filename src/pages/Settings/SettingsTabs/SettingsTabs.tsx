@@ -2,139 +2,86 @@ import React from "react";
 
 import AccountSupport from "./AccountSupport/AccountSupport";
 import Earnings from "./Earnings/Earnings";
+import {
+  ProfileIcon,
+  NotficationsIcon,
+  OffersIcon,
+  SupportIcon,
+  EarningsIcon,
+} from "./imports";
 import Notifications from "./Notifications/Notifications";
 import Offers from "./Offers/Offers";
 import ProfileSettings from "./Profile/ProfileSettings";
 import {
   SettingsTabWrap,
-  DesktopTabs,
-  DesktopTab,
-  MobileTabs,
-  MobileTab,
-  MobileSettingsTabWrap,
+  SettingTabs,
+  SettingsTab,
+  TabWrap,
+  TabsText,
 } from "./SettingsTabs.styles";
-import "./settings-tabs.css";
 
 const SettingsTabs: React.FC = () => {
   return (
     <>
       <SettingsTabWrap className="settings-tab-wrap">
-        <DesktopTabs
-          defaultActiveKey="profile"
-          id="settings-tab"
-          className="mb-3"
-        >
-          <DesktopTab
+        <SettingTabs>
+          <SettingsTab
             eventKey="profile"
             title={
-              <span>
-                <i className="profile-icon tab-icon" />
-                Profile
-              </span>
+              <TabWrap>
+                <ProfileIcon />
+                <TabsText>Profile</TabsText>
+              </TabWrap>
             }
           >
             <ProfileSettings />
-          </DesktopTab>
-          <DesktopTab
+          </SettingsTab>
+          <SettingsTab
             eventKey="notifications"
             title={
-              <span>
-                <i className="notifications-icon tab-icon" />
-                Notifications
-              </span>
+              <TabWrap>
+                <NotficationsIcon />
+                <TabsText>Notifications</TabsText>
+              </TabWrap>
             }
           >
             <Notifications />
-          </DesktopTab>
-          <DesktopTab
+          </SettingsTab>
+          <SettingsTab
             eventKey="offers"
             title={
-              <span>
-                <i className="offers-icon tab-icon" />
-                Offers
-              </span>
+              <TabWrap>
+                <OffersIcon />
+                <TabsText>Offers</TabsText>
+              </TabWrap>
             }
           >
             <Offers />
-          </DesktopTab>
-          <DesktopTab
+          </SettingsTab>
+          <SettingsTab
             eventKey="account-support"
             title={
-              <span>
-                <i className="support-icon tab-icon" />
-                Account Support
-              </span>
+              <TabWrap>
+                <SupportIcon />
+                <TabsText>Account Support</TabsText>
+              </TabWrap>
             }
           >
             <AccountSupport />
-          </DesktopTab>
-          <DesktopTab
+          </SettingsTab>
+          <SettingsTab
             eventKey="earnings"
             title={
-              <span>
-                <i className="earnings-icon tab-icon" />
-                Earnings
-              </span>
+              <TabWrap>
+                <EarningsIcon />
+                <TabsText>Earnings</TabsText>
+              </TabWrap>
             }
           >
             <Earnings />
-          </DesktopTab>
-        </DesktopTabs>
+          </SettingsTab>
+        </SettingTabs>
       </SettingsTabWrap>
-      <MobileSettingsTabWrap>
-        <MobileTabs defaultActiveKey="profile" id="mobile-settings-tab">
-          <MobileTab
-            eventKey="profile"
-            title={
-              <span>
-                <i className="profile-icon tab-icon mobile-tab-icon" />
-              </span>
-            }
-          >
-            <ProfileSettings />
-          </MobileTab>
-          <MobileTab
-            eventKey="notifications"
-            title={
-              <span>
-                <i className="notifications-icon tab-icon mobile-tab-icon" />
-              </span>
-            }
-          >
-            <Notifications />
-          </MobileTab>
-          <MobileTab
-            eventKey="offers"
-            title={
-              <span>
-                <i className="offers-icon tab-icon mobile-tab-icon" />
-              </span>
-            }
-          >
-            <Offers />
-          </MobileTab>
-          <MobileTab
-            eventKey="account-support"
-            title={
-              <span>
-                <i className="support-icon tab-icon mobile-tab-icon" />
-              </span>
-            }
-          >
-            <AccountSupport />
-          </MobileTab>
-          <MobileTab
-            eventKey="earnings"
-            title={
-              <span>
-                <i className="earnings-icon tab-icon mobile-tab-icon" />
-              </span>
-            }
-          >
-            <Earnings />
-          </MobileTab>
-        </MobileTabs>
-      </MobileSettingsTabWrap>
     </>
   );
 };

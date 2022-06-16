@@ -43,7 +43,23 @@ export const CardWrap = styled.div`
   &:hover ${Inner} {
     opacity: 0.3;
   }
-  
+  @media (max-width: 768px) {
+    height: 300px;
+    flex: 0 0 50%;
+    &:last-child {
+      display: none;
+    }
+  }
+  @media (max-width: 576px) {
+    height: 370px;
+    flex: 0 0 100%;
+    &:nth-child(2) {
+      display: none;
+    }
+  }
+  @media (max-width: 400px) {
+    height: 50%;
+  }
 `;
 export const BigCardWrap = styled(CardWrap)`
   flex-direction: row;
@@ -51,6 +67,12 @@ export const BigCardWrap = styled(CardWrap)`
   grid-column-end: 4;
   max-height: 340px;
   width: 100%;
+  @media (max-width: 768px) {
+    grid-column-end: 3;
+  }
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 export const ImageWrap = styled.div`
   border-radius: 10px 10px 0 0;
@@ -84,10 +106,22 @@ export const CardTitle = styled.h2`
   line-height: 24px;
   color: #5d3f92;
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 export const BigCardTitle = styled(CardTitle)`
   font-size: 24px;
   line-height: 29px;
+  @media (max-width: 992px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 export const BigCardTextWrap = styled.div`
   display: -webkit-box;
@@ -98,6 +132,16 @@ export const BigCardTextWrap = styled.div`
 `;
 export const BigCardText = styled.p`
   margin: 0;
+  font-size: 20px;
+  line-height: 27px;
+  @media (max-width: 992px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 export const CardLink = styled.a`
   display: block;

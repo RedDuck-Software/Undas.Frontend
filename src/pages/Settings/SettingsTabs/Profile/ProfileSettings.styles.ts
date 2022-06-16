@@ -7,18 +7,15 @@ export const ProfileWrap = styled.form`
     flex-flow: column nowrap;
   }
 `;
-
 export const BannerWrap = styled.div`
   @media (max-width: 992px) {
     order: 2;
   }
 `;
-
 export const BannerTitleWrap = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export const BlockDescript = styled.span`
   font-weight: 400;
   font-size: 12px;
@@ -27,7 +24,6 @@ export const BlockDescript = styled.span`
   margin-left: 10px;
   margin-bottom: 10px;
 `;
-
 export const BlockTitle = styled.h2`
   display: inline-flex;
   font-weight: 400;
@@ -36,14 +32,13 @@ export const BlockTitle = styled.h2`
   color: #232428;
   margin-bottom: 10px;
 `;
-
 export const AddBannerImgButton = styled.div`
   width: 100%;
   height: 80px;
   border: 1px dashed #7c7c7c;
   box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
-  background-color: rgba(124, 124, 124, 0.25);
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,11 +46,15 @@ export const AddBannerImgButton = styled.div`
   margin-bottom: 30px;
   transition: all 0.3s;
   &:hover {
-    background-color: rgba(124, 124, 124, 0.5);
+    background: linear-gradient(
+        0deg,
+        rgba(124, 124, 124, 0.25),
+        rgba(124, 124, 124, 0.25)
+      ),
+      #ffffff;
     cursor: pointer;
   }
 `;
-
 export const MiddleBlockWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -67,7 +66,6 @@ export const MiddleBlockWrap = styled.div`
     order: 3;
   }
 `;
-
 export const ProfileImageWrap = styled.div`
   flex: 0 0 32%;
   margin-right: 30px;
@@ -76,33 +74,34 @@ export const ProfileImageWrap = styled.div`
     margin-bottom: 20px;
   }
 `;
-
 export const ProfileImageInner = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
-
 export const AddProfileImgButton = styled.div`
   width: 80px;
   height: 80px;
   box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.25);
-  background-color: rgba(124, 124, 124, 0.25);
+  background: #ffffff;
   border-radius: 10px;
   border: 1px dashed #7c7c7c;
   transition: all 0.3s;
   &:hover {
-    background-color: rgba(124, 124, 124, 0.5);
+    background: linear-gradient(
+        0deg,
+        rgba(124, 124, 124, 0.25),
+        rgba(124, 124, 124, 0.25)
+      ),
+      #ffffff;
     cursor: pointer;
   }
 `;
-
 export const DescriptInner = styled.div`
   & span {
     display: block;
   }
 `;
-
 export const LinksWrap = styled.div`
   flex: 0 0 32%;
   margin-right: 30px;
@@ -110,12 +109,10 @@ export const LinksWrap = styled.div`
     flex: 0 0 100%;
   }
 `;
-
 export const InputList = styled.ul``;
-
 export const InputItem = styled.input`
   display: block;
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  border: none;
   outline: none;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -124,14 +121,14 @@ export const InputItem = styled.input`
   position: relative;
   width: 100%;
   font-size: 14px;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   &::placeholder {
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
-
 export const InformationWrap = styled.div`
   flex: 0 0 32%;
   margin-right: 30px;
@@ -143,24 +140,23 @@ export const InformationWrap = styled.div`
     margin: 10px 0;
   }
 `;
-
 export const InformationTextArea = styled.textarea`
   background: #ffffff;
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  border: none;
   outline: none;
   border-radius: 10px;
   width: 100%;
   min-height: 80px;
   padding: 10px;
   font-size: 14px;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   &::placeholder {
     color: #7c7c7c;
   }
   &:focus {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
-
 export const RequiredFieldsWrap = styled.div`
   max-width: 350px;
   margin-top: -90px;
@@ -179,18 +175,15 @@ export const RequiredFieldsWrap = styled.div`
     order: 1;
   }
 `;
-
 export const RequiredField = styled.div`
   margin-bottom: 20px;
 `;
-
 export const CheckboxBlock = styled.form`
   max-width: 500px;
   @media (max-width: 992px) {
     order: 4;
   }
 `;
-
 export const CheckboxInput = styled.input`
   margin-right: 5px;
 
@@ -234,7 +227,6 @@ export const CheckboxInput = styled.input`
     top: 6px;
     left: 5px;
   }
-
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
     box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
   }
@@ -262,45 +254,44 @@ export const InputGroup = styled.form`
     flex-wrap: wrap;
   }
 `;
-
 export const AdressInput = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
+  padding: 10px 20px;
   border-radius: 10px;
   margin-right: 20px;
-  &:focus-within {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
-  }
-  & .adress-input {
-    border-right: none;
-    border-radius: 10px 0 0 10px;
-    margin-bottom: 0;
-    width: 380px;
-    padding-right: 0;
-    text-overflow: ellipsis;
-    &:focus {
-      box-shadow: none;
-    }
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+  background-color: #fff;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
   @media (max-width: 992px) {
     flex: 0 0 100%;
     margin-bottom: 40px;
-    & .adress-input {
-      width: 100%;
-    }
   }
 `;
-
+export const FakeInputItem = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7c7c7c;
+  @media (max-width: 576px) {
+    max-width: 190px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
 export const CopyButton = styled.button`
-  width: 70px;
-  border-left: none;
-  border-top: 1px solid rgba(124, 124, 124, 0.5);
-  border-bottom: 1px solid rgba(124, 124, 124, 0.5);
-  border-right: 1px solid rgba(124, 124, 124, 0.5);
-  border-radius: 0 10px 10px 0;
+  width: 30px;
+  border: none;
   background-color: #fff;
   outline: none;
+  margin-left: 30px;
+  @media (max-width: 576px) {
+    margin-left: 10px;
+  }
 `;
 
 export const FormButtonsWrap = styled.div`

@@ -35,7 +35,7 @@ import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Background } from "../../globalStyles";
 
 const AccountPage: React.FC = () => {
-  const [tab, setTab] = useState("offers");
+  const [tab, setTab] = useState("");
   const { account, deactivate } = useWeb3React();
 
   const { connector } = useContext(Context);
@@ -114,7 +114,7 @@ const AccountPage: React.FC = () => {
                   className={tab === "" ? "active" : ""}
                 >
                   <CreatedIco />
-                  <span>My NFT&apos;s</span>
+                  <span>My NFTs</span>
                   <SmallNumber>12</SmallNumber>
                 </Tab>
                 <Tab
@@ -162,7 +162,9 @@ const AccountPage: React.FC = () => {
             {tab === "referral" && <Referral />}
             {tab === "achievements" && <Achievements />}
           </Wrapper>
-          {tab == "" || tab == "offers" ? <FilterMobileButton /> : null}
+          {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
+            <FilterMobileButton />
+          ) : null} */}
         </AccountContainer>
       </Background>
     </AccountWrapper>

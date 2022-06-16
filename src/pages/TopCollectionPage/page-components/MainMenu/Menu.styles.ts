@@ -205,6 +205,9 @@ export const FilterButton = styled(FavouriteButton)`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  &:hover {
+    background: #fbf5ff;
+  }
   &.offers-active {
     background-color: #edd2ff;
   }
@@ -274,7 +277,7 @@ export const TextButton = styled.div`
   width: 100%;
 `;
 export const ContainerTable = styled.div`
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   margin-bottom: 120px;
 

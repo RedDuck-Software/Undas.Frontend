@@ -24,9 +24,9 @@ export const SelectedItemWrapper = styled.div<{
 
   width: inherit;
   max-width: inherit;
-
+  border: none;
   outline: none;
-  border: 1px solid rgba(124, 124, 124, 0.5);
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   // prettier-ignore
   border-radius: 10px 10px ${({ isOpen }) => (isOpen ? 0 : "10px")} ${({
     isOpen,
@@ -43,7 +43,7 @@ export const SelectedItemWrapper = styled.div<{
 
   &:hover,
   &:focus-visible {
-    box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.5);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 `;
 

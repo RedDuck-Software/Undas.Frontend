@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
 
 import {
   Info,
@@ -6,25 +7,18 @@ import {
   Amount,
   AddToFav,
   InfoBox,
-  ViewOptionCollection,
-  MenuSearchWrapSmall,
-  DisplayNone,
-  SettingsBlockCollection,
-  FilterNewly,
-  Results,
-  TextResult,
-  MenuWrapCollection,
   FilterSelected,
   SelectedFiltersCollection,
-  FilterPrice,
   HeadWrapper,
   InfoBlock,
   ItemsOwners,
   InfoSmallBorder,
   TextInfo,
   ContainerCollection,
-  ResultsSmallSize,
   ContainerNFT,
+  ContainerPopUp,
+  InputTextArea,
+  SendButton,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
@@ -44,14 +38,15 @@ import {
 import {
   AllNFTContainer,
   Arrow,
+  Filter,
   FilterItem,
   FilterMenu,
   FilterTitle,
+  MenuWrap,
+  SettingsBlock,
   MenuItem,
   MenuSearchWrap,
-  SearchIco,
-  Input,
-  SettingsElement,
+  ResultsTotal,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
@@ -65,6 +60,8 @@ export interface ItemsProps {
   id: number;
   URI: string;
   name: string;
+  tokenAddress: string;
+  tokenOwner?: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -90,9 +87,9 @@ const CollectionPage: React.FC = () => {
       chain: "goerli",
       address: signerPublicAddress,
     });
+    console.log("data", data);
     return data.result;
   }
-
   const items: ItemsProps[] = [];
 
   const [list, setList] = useState<ItemsProps[]>([]);
@@ -105,12 +102,14 @@ const CollectionPage: React.FC = () => {
       const name = nft.name;
       const URI = nft.token_uri;
       const id = nft.token_id;
+      const tokenAddress = nft.token_address;
+      const tokenOwner = nft.owner_of;
       //query here
-      items.push({ id, URI, name });
+      items.push({ id, URI, name, tokenAddress, tokenOwner });
     });
     return items;
   }
-
+  console.log("my collection", list);
   async function getUserNft() {
     const response = await getNfts();
 
@@ -127,6 +126,9 @@ const CollectionPage: React.FC = () => {
     getUserNft();
   }, [connector]);
   const { viewMode, viewButtonsRender } = useViewMode();
+
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
   return (
     <>
       <ContainerCollection>
@@ -164,7 +166,21 @@ const CollectionPage: React.FC = () => {
                       </Wrapper>
                     </InfoElement>
                   </Info>
-                  <AddToFav>Make a Complaint</AddToFav>
+                  <AddToFav ref={target} onClick={() => setShow(!show)}>
+                    Make a Complaint
+                  </AddToFav>
+                  <Overlay
+                    target={target.current}
+                    show={show}
+                    placement="bottom"
+                  >
+                    {
+                      <ContainerPopUp>
+                        <InputTextArea placeholder="Comment"></InputTextArea>
+                        <SendButton>Send</SendButton>
+                      </ContainerPopUp>
+                    }
+                  </Overlay>
                 </InfoBox>
                 <InfoBlock>
                   <ItemsOwners>
@@ -191,18 +207,10 @@ const CollectionPage: React.FC = () => {
                   </ItemsOwners>
                 </InfoSmallBorder>
               </HeadWrapper>
-              <MenuSearchWrapSmall>
-                <SearchIco />
-                <Input placeholder="Search" />
-              </MenuSearchWrapSmall>
-              <MenuWrapCollection marg="40px 0 20px 0">
-                <SettingsBlockCollection>
-                  <SettingsElement>
-                    <ViewOptionCollection>
-                      {viewButtonsRender}
-                    </ViewOptionCollection>
-                  </SettingsElement>
-                  <FilterPrice className={active.price && "price-active"}>
+              <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
+                <SettingsBlock>
+                  <>{viewButtonsRender}</>
+                  <Filter className={active.price && "price-active"}>
                     <FilterItem
                       onClick={() => {
                         if (!active.price) {
@@ -221,8 +229,8 @@ const CollectionPage: React.FC = () => {
                         <span>Price: High to Low</span>
                       </MenuItem>
                     </FilterMenu>
-                  </FilterPrice>
-                  <FilterNewly className={active.event && "event-active"}>
+                  </Filter>
+                  <Filter className={active.event && "event-active"}>
                     <FilterItem
                       onClick={() => {
                         if (!active.event) {
@@ -247,19 +255,15 @@ const CollectionPage: React.FC = () => {
                         <span>Recently Staking</span>
                       </MenuItem>
                     </FilterMenu>
-                  </FilterNewly>
-                  <Results>
-                    <TextResult>8 results</TextResult>
-                  </Results>
-                </SettingsBlockCollection>
-                <DisplayNone>
-                  <MenuSearchWrap>
-                    <SearchIco />
-                    <Input placeholder="Search" />
-                  </MenuSearchWrap>
-                </DisplayNone>
-              </MenuWrapCollection>
-
+                  </Filter>
+                </SettingsBlock>
+                <MenuSearchWrap
+                  mw="530px"
+                  marginLeft="0"
+                  placeholder="Search"
+                />
+                <ResultsTotal>12 results</ResultsTotal>
+              </MenuWrap>
               <SelectedFiltersCollection>
                 <FilterSelected>
                   <FilterImg src={filter} alt="filter-image" />
@@ -268,9 +272,6 @@ const CollectionPage: React.FC = () => {
                 </FilterSelected>
                 <ClearAll>Clear All</ClearAll>
               </SelectedFiltersCollection>
-              <ResultsSmallSize>
-                <TextResult>8 results</TextResult>
-              </ResultsSmallSize>
               {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
