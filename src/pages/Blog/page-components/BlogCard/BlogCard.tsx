@@ -20,7 +20,7 @@ interface BlogCard {
 
 const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {
   return (
-    <CardWrap>
+    <CardWrap to="/article">
       <ImageWrap>
         <Inner />
         <Image src={image} alt="article-image" />

@@ -18,7 +18,7 @@ import { BigImg } from "../../imports";
 
 const BlogBigCard: React.FC = () => {
   return (
-    <BigCardWrap>
+    <BigCardWrap to="/article">
       <BigImageWrap>
         <Inner />
         <BigImage src={BigImg} alt="card-image" />
