@@ -4,7 +4,7 @@ const initialState = {
   stacking: false,
 };
 
-export const filterReducer = (state = initialState, action: any) => {
+export const stackingReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case TOGGLE_STACKING:
       return {
