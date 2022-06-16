@@ -81,6 +81,8 @@ const OfferRent: React.FC = () => {
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [listingId, setListingId] = useState("");
+  
+  const [isNFTCollateral, setIsNFTCollateral] = useState(false);
 
   async function makeRentOffer() {
     if (!connector) return;
@@ -134,16 +136,16 @@ const OfferRent: React.FC = () => {
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
-{
-  stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
-    id
- 		tokenId
-    tokenURI
-    tokenDescription
-    seller
-    stakingStatus
-  }
-}
+    {
+      stakingListings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
+        id
+        tokenId
+        tokenURI
+        tokenDescription
+        seller
+        stakingStatus
+      }
+    }
  `;
   const client = createClient({
     url: APIURL,
@@ -154,6 +156,10 @@ const OfferRent: React.FC = () => {
 
     return data;
   }
+
+  const handleNFTCollateralMode = () => {
+    setIsNFTCollateral(!isNFTCollateral);
+  };
 
   return (
     <Background>
@@ -171,7 +177,10 @@ const OfferRent: React.FC = () => {
               id="collateral"
               className="custom-checkbox"
             />
-            <CheckboxLabelCollateral htmlFor="collateral">
+            <CheckboxLabelCollateral
+              htmlFor="collateral"
+              onClick={handleNFTCollateralMode}
+            >
               Offer NFT as Collateral
             </CheckboxLabelCollateral>
             <OverlayTrigger
@@ -318,54 +327,57 @@ const OfferRent: React.FC = () => {
                 />
               </NFTInfoContainer>
             </SecondCollum>
-            <NameRow>
-              <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
-              <SelectedNFT>2</SelectedNFT>
-            </NameRow>
-            <SwiperNFT
-              slidesPerView={1}
-              spaceBetween={30}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 50,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
-              }}
-              className="rent-slider"
-              modules={[Navigation]}
-              loop={false}
-              navigation={true}
-            >
+            {isNFTCollateral && (
               <>
-                <SwiperSlide>
-                  <NFTCard uri="nft1" name="NFTCard" />
-                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <NFTCard uri="nft1" name="NFTCard" />
-                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <NFTCard uri="nft1" name="NFTCard" />
-                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <AddNFTContainer>
-                    <AddNFTCard>
-                      <ModalsNFT />
-                    </AddNFTCard>
-                  </AddNFTContainer>
-                </SwiperSlide>
+                <NameRow>
+                  <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
+                  <SelectedNFT>2</SelectedNFT>
+                </NameRow>
+
+                <SwiperNFT
+                  slidesPerView={1}
+                  spaceBetween={30}
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 50,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 20,
+                    },
+                  }}
+                  className="rent-slider"
+                  modules={[Navigation]}
+                  loop={false}
+                  navigation={true}
+                >
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <NFTCard uri="nft1" name="NFTCard" />
+                    <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <AddNFTContainer>
+                      <AddNFTCard>
+                        <ModalsNFT />
+                      </AddNFTCard>
+                    </AddNFTContainer>
+                  </SwiperSlide>
+                </SwiperNFT>
               </>
-            </SwiperNFT>
+            )}
           </OfferContainer>
           <BottomWrapper>
             <CheckBoxWrapper>
