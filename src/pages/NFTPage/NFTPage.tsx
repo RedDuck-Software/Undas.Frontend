@@ -86,18 +86,8 @@ const NFTPage: React.FC = () => {
     display: block;
     margin: auto;
   `;
-  const params = useParams();
-
-  const tokenId = params.id;
-  console.log("params", params);
-
-  if (!tokenId) {
-    console.log("NO TOKEN ID");
-    return <h2>ERROR</h2>;
-  }
-
+  
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { connector } = useContext(Context);
   const [name, setName] = useState<string>();
   const [tokenURI, setTokenURI] = useState<string>();
@@ -112,11 +102,15 @@ const NFTPage: React.FC = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
+  
+  const state:any = useLocation()
+  console.log('state',state)
 
-  const state: any = useLocation();
-  console.log("state", state);
-  const URI = state.state.URI;
-  const nameFromProps = state.state.name;
+  const URI = state.state.URI
+  const nameFromProps = state.state.name
+  const tokenId = state.state.tokenId
+  
+
 
   const getOwner = async () => {
     if (!connector) return;
@@ -156,20 +150,14 @@ const NFTPage: React.FC = () => {
       await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
-
-    console.log("colloteral ", colloteralWei);
-    console.log("premium", premium);
-
+    
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    const amountToPay = +colloteralWei + +premium + (+premium * 20) / 100;
-    const formattedAmountToPay = ethers.utils.formatUnits(
-      amountToPay.toString(),
-      "ether",
-    );
-    console.log(formattedAmountToPay);
+    const amountToPay = +colloteralWei + +premium + ((+premium*20)/100)
+
+    const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
       gasPrice: 20000,
@@ -240,11 +228,10 @@ const NFTPage: React.FC = () => {
       return;
     }
 
-    setLoading(false);
-  };
-  console.log("params.id", params.id);
-  const APIURL =
-    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+  }
+  
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
 {
@@ -539,4 +526,4 @@ const NFTPage: React.FC = () => {
   );
 };
 
-export default NFTPage;
+export default NFTPage

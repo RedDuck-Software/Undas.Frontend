@@ -48,7 +48,6 @@ interface NFTGridItemProps {
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   // const stackingFilter = useSelector(useFilter);
   console.log("props for token address", props);
@@ -96,6 +95,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
+                navigate(`/rent/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
+
               }}
             >
               Rent

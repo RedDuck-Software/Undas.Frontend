@@ -82,14 +82,11 @@ const Sale: React.FC = () => {
 
   const state: any = useLocation();
 
-  const URI = state.state.state.URI;
-  const nameFromProps = state.state.state.name;
-  console.log("URI", URI);
-  console.log("nameFromProps", nameFromProps);
-  console.log("state", state.state.state);
+  const URI = state.state.state.URI
+  const nameFromProps = state.state.state.name
   const NFT_ADDRESS = state.state.state.tokenAddress;
-  const tokenId = state.state.state.tokenId;
-  console.log(NFT_ADDRESS);
+  const tokenId = state.state.state.tokenId
+
   async function sellToken() {
     if (!connector) return;
     if (!tokenId) return;
@@ -105,34 +102,26 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const approve = await NftContract.setApprovalForAll(
-      MARKETPLACE_ADDRESS,
-      true,
-    );
-    console.log("approve");
-    console.log(tokenId);
-    await approve.wait();
-    const expectedValue = (priceForSale * 2) / 100;
-
-    const formattedPrice = ethers.utils.parseUnits(
-      priceForSale.toString(),
-      "ether",
-    );
-    //undsa contract
-    console.log(NFT_ADDRESS);
-    const tx = await MarketplaceContract.bidExternal(
+    const NftContract = UndasGeneralNFT__factory.connect(
       NFT_ADDRESS,
-      tokenId,
-      formattedPrice,
-      false,
-      {
-        value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-      },
-    );
+      signer,
+    )
+      
+    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
+
+    await approve.wait()
+    const expectedValue = (priceForSale * 2) /100;
+
+    const formattedPrice =  ethers.utils.parseUnits(priceForSale.toString(), "ether")
+    //undsa contract  
+    const tx = await MarketplaceContract.bidExternal(NFT_ADDRESS,tokenId,
+    formattedPrice,
+    false,
+     {
+      value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
+    });
     await tx.wait();
-    console.log("dadas");
+
   }
 
   async function stakeToken() {
@@ -150,11 +139,13 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-    const approve = await NftContract.setApprovalForAll(
-      MARKETPLACE_ADDRESS,
-      true,
-    );
+    const NftContract = UndasGeneralNFT__factory.connect(
+      NFT_ADDRESS,
+      signer,
+    )
+
+    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
+    await approve.wait()
 
     const utcTimestamp = new Date().getTime();
 
@@ -182,19 +173,11 @@ const Sale: React.FC = () => {
         value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
-    console.log(NFT_ADDRESS);
+
 
     await tx.wait();
   }
 
-  const [name, setName] = useState<string>();
-  const [tokenURI, setTokenURI] = useState<string>();
-  const [priceInNum, setPriceInNum] = useState(0);
-
-  const [description, setDescription] = useState<string>();
-  const [listingId, setListingId] = useState(0);
-  const [stakingId, setStakingId] = useState(0);
-  const [seller, setSeller] = useState<string>();
 
   return (
     <Background>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
 
 import {
   OfferMenuWrap,
@@ -41,9 +41,122 @@ import {
   filter,
   close,
 } from "../../imports";
+import { createClient } from "urql";
+import Context from "../../../../utils/Context";
+import { ethers } from "ethers";
+import { string } from "yup";
+
+interface CommonProps {
+  tokenId: number;
+  tokenName: string;
+  tokenURI: string;
+  tokenAddress?: string;
+  owner:string;
+}
+
+export interface BuyingOfferProps extends CommonProps {
+  offeredPriceInNum: number;
+  listingId:number;
+}
+export interface RentingOfferProps extends CommonProps {
+  offeredPremiumInNum: number;
+  offeredColloteralWei: number;
+  stakingId:number;
+}
 
 const OffersMenu: React.FC = () => {
   const [offerType, setOfferType] = useState(OfferType.resaived);
+  const { connector } = useContext(Context);
+  const stakings: RentingOfferProps[] = [];
+  const [rentingOffersList, setRentingOffersList] = useState<RentingOfferProps[]>([]);
+  const [owner, setOwner] = useState('');
+  
+  const getOwner = async () => {
+
+      if (!connector) return;
+  
+      const provider = new ethers.providers.Web3Provider(
+        await connector.getProvider(),
+      );
+  
+      const signer = provider.getSigner(0);
+      const singerAddress = await signer.getAddress();
+      
+      setOwner(singerAddress)
+
+  }
+
+  const getStakings = async () => { 
+    if (!connector) {
+      return;
+  }
+    const offers = await fetchStakingData();
+    console.log('stakingOffers',offers)
+
+    offers.stakingOffers.map((offer: any) => {
+
+    const tokenId = offer.tokenId;
+    const tokenName = offer.tokenName;
+    const stakingId = offer.id;
+    const tokenURI = offer.tokenURI;
+    const offeredColloteralWei = Number(ethers.utils.formatUnits(offer.newOfferedColloteral, 18));
+    const offeredPremiumInNum = Number(ethers.utils.formatUnits(offer.newOfferedPremiumWei, 18));
+    const tokenAddress = offer.tokenAdress
+    const owner = offer.owner
+
+    stakings.push({ tokenId, tokenName, tokenURI, tokenAddress, owner, offeredColloteralWei,offeredPremiumInNum,stakingId });
+
+    });
+    return stakings;
+  };
+
+const APIURL =
+  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+const tokensStakingQuery = `
+ query  {
+  stakingOffers(where:{owner:"${owner}"}) {
+      id
+      newOfferedColloteral
+      newOfferedPremiumWei
+      tokenId
+      tokenName
+      tokenURI
+      taker
+      owner
+      tokenAdress
+  }
+}
+ `;
+
+const client = createClient({
+  url: APIURL,
+}); 
+
+async function fetchStakingData() {
+  const data = await client.query(tokensStakingQuery).toPromise();
+  console.log(data)
+  return data.data;
+}
+
+useEffect(() => {
+  if (!connector) {
+    return console.log("loading");
+  }
+
+   getOwner();
+   getStakingsData();
+   
+}, [connector,owner]);
+
+async function getStakingsData() {
+  const response = await getStakings();
+  console.log('response',response)
+  if (response) {
+    setRentingOffersList(response);
+  }
+}
+console.log('rentingOffersList',rentingOffersList)
   return (
     <OfferMenuWrap>
       <OfferFilterWrap>
@@ -52,7 +165,7 @@ const OffersMenu: React.FC = () => {
           onClick={() => setOfferType(OfferType.resaived)}
         >
           <OffResaivedIco />
-          Offers Resaived
+          Offers Received
         </FilterButton>
         <FilterButton
           className={offerType === OfferType.made ? "offers-active" : ""}
@@ -72,6 +185,7 @@ const OffersMenu: React.FC = () => {
       </SelectedFilters>
       <OffersWrapTable>
         {offerType === OfferType.resaived && (
+          
           <>
             <OffersHeadTr className="offers-menu-head">
               <OffersTdText className="first-column"></OffersTdText>
@@ -83,7 +197,8 @@ const OffersMenu: React.FC = () => {
               <OffersTdText></OffersTdText>
               <OffersTdText></OffersTdText>
             </OffersHeadTr>
-            <OffersTr className="offers-menu-row">
+           {rentingOffersList.map((i)=>{
+              return <OffersTr className="offers-menu-row" key={i.tokenURI}>
               <OffersTdText className="first-column">
                 <HandShakeIco />
                 <OffersTooltipWrap className="offers-tooltip">
@@ -93,23 +208,23 @@ const OffersMenu: React.FC = () => {
               <OffersTdText className="offers-table-item">
                 <ItemIcon>
                   <img
-                    src={ItemImg}
+                    src={i.tokenURI}
                     alt="item image"
                     className="offers-item-image"
                   />
                 </ItemIcon>
-                <ItemName>Name</ItemName>
+                <ItemName>{i.tokenName}</ItemName>
                 <ItemVerifyIco />
               </OffersTdText>
               <OffersTdText>
-                <PriceTextETH>1,2</PriceTextETH>
+                <PriceTextETH>{i.offeredColloteralWei}/{i.offeredPremiumInNum}</PriceTextETH>
                 <WethText>WETH</WethText>
               </OffersTdText>
               <OffersTdText>
                 <OffersText>In 20 hours</OffersText>
               </OffersTdText>
               <OffersTdText>
-                <OffersText color="#5D3F92">65BA4F</OffersText>
+                <OffersText color="#5D3F92">{i.tokenAddress}</OffersText>
               </OffersTdText>
               <OffersTdButton>
                 <AcceptBTN>Accept</AcceptBTN>
@@ -121,11 +236,12 @@ const OffersMenu: React.FC = () => {
                 <DenyBTN>Deny</DenyBTN>
               </OffersTdButton>
             </OffersTr>
+           })}
             <OffersTr className="offers-menu-row">
               <OffersTdText className="first-column">
                 <CartIco />
                 <OffersTooltipWrap className="offers-tooltip">
-                  <OffersTooltip>Rent</OffersTooltip>
+                  <OffersTooltip>Buy</OffersTooltip>
                 </OffersTooltipWrap>
               </OffersTdText>
               <OffersTdText className="offers-table-item">

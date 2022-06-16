@@ -32,81 +32,16 @@ import {
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import { ethers } from "ethers";
+import { useMoralisWeb3Api } from "react-moralis";
 
-const testNFTList = [
-  {
-    id: 0,
-    URI: nft0,
-    name: "Returne by ...",
-    priceInNum: 25,
-  },
-  {
-    id: 1,
-    URI: nft1,
-    name: "Returne by ...",
-    priceInNum: 16,
-  },
-  {
-    id: 2,
-    URI: nft2,
-    name: "Returne by ...",
-    priceInNum: 30,
-  },
-  {
-    id: 3,
-    URI: nft3,
-    name: "Returne by ...",
-    priceInNum: 220,
-  },
-  {
-    id: 4,
-    URI: nft4,
-    name: "Returne by ...",
-    priceInNum: 1,
-  },
-  {
-    id: 5,
-    URI: nft5,
-    name: "Returne by ...",
-    priceInNum: 13,
-  },
-  {
-    id: 6,
-    URI: nft6,
-    name: "Returne by ...",
-    priceInNum: 0.75,
-  },
-  {
-    id: 7,
-    URI: nft7,
-    name: "Returne by ...",
-    priceInNum: 14,
-  },
-  {
-    id: 8,
-    URI: nft8,
-    name: "Returne by ...",
-    priceInNum: 27,
-  },
-  {
-    id: 9,
-    URI: nft9,
-    name: "Returne by ...",
-    priceInNum: 29,
-  },
-  {
-    id: 10,
-    URI: nft10,
-    name: "Returne by ...",
-    priceInNum: 45,
-  },
-  {
-    id: 11,
-    URI: nft11,
-    name: "Returne by ...",
-    priceInNum: 67,
-  },
-];
+export interface ItemsProps {
+  id: number;
+  URI: string;
+  name: string;
+  tokenAddress:string;
+  tokenOwner?:string;
+}
 
 const MainMenu: React.FC = () => {
   const [active, setActive] = useState<any>({
@@ -119,55 +54,65 @@ const MainMenu: React.FC = () => {
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
 
-  const [, setNFTList] = useState<
-    {
-      token_address: string;
-      token_id: string;
-      contract_type: string;
-      owner_of: string;
-      block_number: string;
-      block_number_minted: string;
-      token_uri?: string | undefined;
-      metadata?: string | undefined;
-      synced_at?: string | undefined;
-      amount?: string | undefined;
-      name: string;
-      symbol: string;
-    }[]
-  >();
+  const Web3Api = useMoralisWeb3Api();
 
-  const getNFTList = async () => {
-    if (!connector || !account) return;
-    const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: "goerli",
-      address: account,
-    });
-    return listOfNFTS;
-  };
+  async function fetchData() {
+    if (!connector) return;
 
-  const getListData = async () => {
-    const response = await getNFTList();
-    if (!response?.result) return;
-
-    // deleting duplicates because of moralis bug (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
-    response.result = response.result.filter(
-      (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
     );
-    setNFTList(response.result);
-  };
 
-  useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
+    const signer = provider.getSigner(0);
+    const signerPublicAddress = await signer.getAddress();
+    
+
+
+    const data = await Web3Api.Web3API.account.getNFTs({
+      chain: "goerli",
+      address: signerPublicAddress,
+    });
+    console.log('data',data)
+    return data.result;
+  }
+  const items: ItemsProps[] = [];
+  const [list, setList] = useState<ItemsProps[]>([]);
+
+  async function getNfts() {
+ 
+    const nfts = await fetchData();
+
+    if (!nfts) return;
+    nfts.map((nft: any) => {
+      const name = nft.name;
+      const URI = nft.token_uri;
+      const id = nft.token_id;
+      const tokenAddress = nft.token_address;
+      const tokenOwner = nft.owner_of;
+      //query here
+      console.log(nft)
+      items.push({ id, URI, name,tokenAddress,tokenOwner });
+    });
+    return items;
+  }
+  console.log('my collection',list)
+  async function getUserNft() {
+    const response = await getNfts();
+
+    if (response) {
+      setList(response);
     }
-    getListData();
-  }, [connector, account]);
-
+  }
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
+  useEffect(() => {
+    if (!connector) {
+      return console.log("loading");
+    }
 
+    getUserNft();
+  }, [connector]);
   return (
     <div>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
@@ -224,12 +169,20 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>12 results</ResultsTotal>
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
-        <CollectionGridWrap itemList={testNFTList} />
-      ) : (
-        testNFTList?.map((item) => {
-          return <NFTListItem key={item.id} name={item.name} URI={item.URI} />;
-        })
-      )}
+                <CollectionGridWrap itemList={list} />
+              ) : (
+                <>
+                  {list.map((item) => {
+                    return (
+                      <NFTListItem
+                        key={item.id}
+                        name={item.name}
+                        URI={item.URI}
+                      />
+                    );
+                  })}
+                </>
+              )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
@@ -45,11 +45,56 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-
+import { useLocation  } from "react-router-dom";
+import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 import { RentalPeriod } from "../NFTPage/NFTPage.styles";
+import Context from "../../utils/Context";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 const Rent: React.FC = () => {
+  const state:any = useLocation()
+  const { connector } = useContext(Context);
+
+  const URI = state.state.state.URI
+  const nameFrom = state.state.state.name
+  const colloteral = ethers.utils.formatUnits(state.state.state.colloteralWei.toString())
+  const premium = state.state.state.premium
+  const stakingId = state.state.state.stakingId
+
+  async function rentToken(stakingId: number, colloteralWei?: number,premium?: number) {
+
+    if (!connector) return;
+
+    if (colloteralWei == undefined) {
+      return;
+    }
+    if (premium == undefined) {
+      return;
+    }
+    
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+    
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    //todo in wei
+    const amountToPay = (+colloteralWei + +premium + ((+premium*20)/100)).toFixed(7)
+      console.log(amountToPay)
+    const tx = await MarketplaceContract.rentNFT(stakingId, false, {
+      value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
+    });
+
+    await tx.wait();
+  }
+
+
   return (
     <Background>
       <TopLinkWrapper>
@@ -65,7 +110,7 @@ const Rent: React.FC = () => {
               <ContentItem>
                 <ContentItemName>Cost Day</ContentItemName>
                 <ContentItemPriceWrap>
-                  <ContentItemPriceEth>0,005</ContentItemPriceEth>
+                  <ContentItemPriceEth>{premium}</ContentItemPriceEth>
                   <ContentItemPriceUsd>$36,93</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
@@ -93,7 +138,7 @@ const Rent: React.FC = () => {
                   </OverlayTrigger>
                 </ContentItemName>
                 <ContentItemPriceWrap>
-                  <ContentItemPriceEth>40</ContentItemPriceEth>
+                  <ContentItemPriceEth>{colloteral}</ContentItemPriceEth>
                   <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
@@ -202,7 +247,8 @@ const Rent: React.FC = () => {
                 <Total>Total</Total>
                 <ContentItemPriceWrap>
                   <TotalPrice>
-                    <TotalPriceEth>40</TotalPriceEth>
+                      {/* ультра костыль чтобы законтрить 0.2+0.1 todo:сделать номарльно */}
+                    <TotalPriceEth>{(+premium*100000 + +colloteral*100000)/100000}</TotalPriceEth>
                     <Plus>+</Plus>
                     <TotalPriceUnd>2</TotalPriceUnd>
                   </TotalPrice>
@@ -213,7 +259,7 @@ const Rent: React.FC = () => {
             <RightBlock>
               <ItemAmount>Item</ItemAmount>
               <NFTInfoContainer>
-                <NFTCard uri="nft1" name="NFTCard" />
+                <NFTCard uri={URI} name={nameFrom} />
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
@@ -229,7 +275,7 @@ const Rent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button>Rent</Button>
+            <Button onClick={() => rentToken(stakingId,+colloteral,premium)}>Rent</Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>

@@ -73,58 +73,6 @@ const CollectionPage: React.FC = () => {
   const { connector } = useContext(Context);
   const Web3Api = useMoralisWeb3Api();
 
-  async function fetchData() {
-    if (!connector) return;
-
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-
-    const signer = provider.getSigner(0);
-    const signerPublicAddress = await signer.getAddress();
-
-    const data = await Web3Api.Web3API.account.getNFTs({
-      chain: "goerli",
-      address: signerPublicAddress,
-    });
-    console.log("data", data);
-    return data.result;
-  }
-  const items: ItemsProps[] = [];
-
-  const [list, setList] = useState<ItemsProps[]>([]);
-
-  async function getNfts() {
-    const nfts = await fetchData();
-
-    if (!nfts) return;
-    nfts.map((nft: any) => {
-      const name = nft.name;
-      const URI = nft.token_uri;
-      const id = nft.token_id;
-      const tokenAddress = nft.token_address;
-      const tokenOwner = nft.owner_of;
-      //query here
-      items.push({ id, URI, name, tokenAddress, tokenOwner });
-    });
-    return items;
-  }
-  console.log("my collection", list);
-  async function getUserNft() {
-    const response = await getNfts();
-
-    if (response) {
-      setList(response);
-    }
-  }
-
-  useEffect(() => {
-    if (!connector) {
-      return console.log("loading");
-    }
-
-    getUserNft();
-  }, [connector]);
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const [show, setShow] = useState(false);
@@ -272,7 +220,7 @@ const CollectionPage: React.FC = () => {
                 </FilterSelected>
                 <ClearAll>Clear All</ClearAll>
               </SelectedFiltersCollection>
-              {viewMode === ViewMode.grid ? (
+              {/* {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
                 <>
@@ -286,7 +234,7 @@ const CollectionPage: React.FC = () => {
                     );
                   })}
                 </>
-              )}
+              )} */}
             </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>

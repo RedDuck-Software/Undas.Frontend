@@ -44,20 +44,16 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-import { createClient } from "urql";
-import { ethers } from "ethers";
+import { ethers} from "ethers";
 
 const Rent: React.FC = () => {
   const { connector } = useContext(Context);
-  const state: any = useLocation();
-  console.log(state.state.state);
+  const state:any = useLocation()
 
   async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) return;
