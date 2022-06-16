@@ -109,7 +109,9 @@ const AllNFTs: React.FC = () => {
   const handleClearAll = () => {
     const all = [...selectedCollections, ...selectedCategories];
     selectedCollections.forEach((item: any) => {
-      const element: HTMLElement = document.getElementById(item.collectionName)!;
+      const element: HTMLElement = document.getElementById(
+        item.collectionName,
+      )!;
       element.click();
     });
     selectedCategories.forEach((item: any) => {
@@ -188,7 +190,7 @@ const AllNFTs: React.FC = () => {
             <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
-          {selectedCollections.length > 0 && (
+          {selectedCollections.length > 0 || selectedCategories.length > 0 ? (
             <SelectedCollectionsWrapper>
               <SelectedCollectionsList>
                 {selectedCollections.map((item: any) => {
@@ -200,22 +202,22 @@ const AllNFTs: React.FC = () => {
                     />
                   );
                 })}
+                {selectedCategories.map((item: any) => {
+                  return (
+                    <SelectedItem
+                      key={`${item.categoryName}-${item.categoryIcon}`}
+                      label={item.categoryName}
+                      icon={item.categoryIcon}
+                    />
+                  );
+                })}
               </SelectedCollectionsList>
               <RemoveAllSelectedCollection onClick={handleClearAll}>
                 Clear all
               </RemoveAllSelectedCollection>
             </SelectedCollectionsWrapper>
-          )}
-          {selectedCategories.length > 0 &&
-            selectedCategories.map((item: any) => {
-              return (
-                <SelectedItem
-                  key={`${item.categoryName}-${item.categoryIcon}`}
-                  label={item.categoryName}
-                  icon={item.categoryIcon}
-                />
-              );
-            })}
+          ) : null}
+
           {viewMode === ViewMode.grid ? (
             <AllGridWrap
               getResults={(amount: any) => setResults(amount)}
