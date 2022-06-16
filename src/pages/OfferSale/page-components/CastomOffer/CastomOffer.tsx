@@ -201,7 +201,7 @@ const CastomOffer: React.FC = () => {
             <UNDLabel>UND</UNDLabel>
             {"\u00A0"} with a 50% discount
             <OverlayTrigger
-              delay={{ show: 250, hide: 3000 }}
+              delay={{ show: 250, hide: 30000 }}
               placement="top"
               overlay={
                 <OverlayPopUp>
@@ -216,6 +216,9 @@ const CastomOffer: React.FC = () => {
             </OverlayTrigger>
           </CheckboxLabel>
           <DollarPrice className="margin-0">258,25</DollarPrice>
+          <UNDPrice className="small-size">
+            UND 2 <DollarPrice>258,25</DollarPrice>
+          </UNDPrice>
         </PayRow>
       </BuyContainer>
       <AgreeRow>

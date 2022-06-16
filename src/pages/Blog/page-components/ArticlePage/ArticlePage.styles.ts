@@ -55,7 +55,7 @@ export const ArticleDescription = styled.ul`
 `;
 export const ArticleDescriptionItem = styled.li`
   @media (max-width: 576px) {
-    &:first-child{
+    &:first-child {
       flex: 0 0 100%;
     }
   }

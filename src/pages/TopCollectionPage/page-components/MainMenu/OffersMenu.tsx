@@ -56,7 +56,7 @@ const OffersMenu: React.FC = () => {
         <OffersWrapTable>
           <OffersHeadTr className="offers-menu-head">
             <OffersTd className="first-column"></OffersTd>
-            <OffersTd>Item</OffersTd>
+            <OffersTd>Collection</OffersTd>
             <OffersTd>
               <PriceTextW>Floor Price</PriceTextW>
             </OffersTd>
