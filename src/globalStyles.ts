@@ -4,6 +4,7 @@ import LRBackground from "./images/LRBackground.png";
 import LRBackground2 from "./images/LRBackground.png";
 import RBackground from "./images/RBackground.png";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 interface GlobalStylesProps {
   violet?: boolean;
@@ -198,7 +199,11 @@ export const FormButton = styled.button`
 export const ColoredText = styled.span`
   color: #873dc1;
 `;
-export const PrimaryButton = styled.button`
+export const PrimaryButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: #873dc1;
   border-radius: 10px;
   font-weight: 400;
@@ -208,13 +213,19 @@ export const PrimaryButton = styled.button`
   color: #ffffff;
   transition: all 0.3s linear;
   border: 1px solid #873dc1;
+  vertical-align: middle;
   &:hover {
+    color: #ffffff;
     box-shadow: 0 0 6px #000;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
     font-size: 16px;
   }
 `;
-export const SecondaryButton = styled.button`
+export const SecondaryButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: #ffffff;
   border: 1px solid #873dc1;
   box-sizing: border-box;
@@ -226,6 +237,7 @@ export const SecondaryButton = styled.button`
   color: #873dc1;
   transition: all 0.3s linear;
   &:hover {
+    color: #873dc1;
     box-shadow: 0 0 6px #000;
     background-color: #fbf5ff;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
