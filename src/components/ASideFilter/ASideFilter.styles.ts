@@ -534,7 +534,7 @@ export const MobileListWrap = styled.div`
     padding-left: 5rem;
     padding-right: 5rem;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     padding-left: 1rem;
     padding-right: 1rem;
   }
