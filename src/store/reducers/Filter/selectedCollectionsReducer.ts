@@ -1,7 +1,4 @@
 import { Filter, Collection } from "./types";
-//import CollectionItemIco from "../../../icons/all-nfts.svg";
-// /../../components/ASideFilter/icons/collection-item-ico.svg
-
 
 const initialState = {
   selectedCollections: [],
@@ -17,6 +14,7 @@ export const selectedCollectionsReducer = (state: any = initialState, action: an
             }
         }
         const newState = [...state.selectedCollections, action.payload]
+        console.log('ADDING COLLECTION');
         return {
           ...state,
           selectedCollections: newState
@@ -27,7 +25,7 @@ export const selectedCollectionsReducer = (state: any = initialState, action: an
             ...state,
             selectedCollections: newSelectedCollections
         };
-      case Filter.removeAllCollection:
+      case Filter.clearAll:
         return {
             ...state,
             selectedCollections: []
