@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Wrap } from "./WebsiteTips.styles";
-
 import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
 import { Text, BlogTitle } from "../../Blog.styles";
 import { BlogPost } from "../../types";
@@ -61,14 +59,14 @@ const WebsiteTipsPosts: BlogPost[] = [
 
 const WebsiteTips: React.FC = () => {
   return (
-    <Wrap>
+    <>
       <BlogTitle>Website Tips</BlogTitle>
       <Text>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt
         impedit rerum culpa id ea rem dignissimos.
       </Text>
       <BlogPageGrid posts={WebsiteTipsPosts} />
-    </Wrap>
+    </>
   );
 };
 

@@ -81,6 +81,7 @@ const OfferRent: React.FC = () => {
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [listingId, setListingId] = useState("");
+  
   const [isNFTCollateral, setIsNFTCollateral] = useState(false);
 
   async function makeRentOffer() {
