@@ -15,13 +15,12 @@ export const BackText = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   color: #873dc1;
   max-width: 80rem;
   margin: 0 auto;
   padding: 14px 3rem;
-
   &::before {
     content: url(${back});
     vertical-align: middle;
@@ -33,12 +32,20 @@ export const TitleText = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 44px;
   text-align: left;
   color: #232428;
   margin-top: 40px;
   margin-bottom: 40px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media (max-width: 576px) {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const TabsMenu = styled.ul`
@@ -72,6 +79,13 @@ export const Tab = styled.li`
     background: #fbf5ff;
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   }
+  @media (max-width: 768px) {
+    width: 50%;
+    max-width: unset;
+  }
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 
 export const TabCastom = styled.li`
@@ -97,6 +111,14 @@ export const TabCastom = styled.li`
   &.active {
     background: #fbf5ff;
     box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    width: 50%;
+    max-width: unset;
+  }
+  @media (max-width: 576px) {
+    font-size: 14px;
   }
 `;
 

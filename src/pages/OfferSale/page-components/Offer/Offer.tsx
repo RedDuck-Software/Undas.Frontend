@@ -40,6 +40,7 @@ import {
   ButtonInfo,
   OverlayPopUp,
   FAQLink,
+  Container,
 } from "./Offer.styles";
 
 import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
@@ -133,80 +134,85 @@ const Offer: React.FC = () => {
 
   return (
     <OfferContainer>
-      <FirstCollum>
-        <NameRow>
-          <TextPrice>Price</TextPrice>
-        </NameRow>
-        <PriceRow>
-          <EthSelect>
-            <EthText>ETH</EthText>
-            <ImageDown src={down} alt="down-image" />
-          </EthSelect>
-          <AmmountInput
-            type="number"
-            placeholder="Amount"
-            onChange={(e) => setOfferedPrice(e.target.value)}
-          />
-          <CostSelect>
-            <DollarText>0.00</DollarText>
-          </CostSelect>
-        </PriceRow>
-        <NameRow className="margin-top">
-          <TextOffer>Offer Expiration</TextOffer>
-        </NameRow>
-        <PriceRow>
-          <DaySelect>
-            3 day
-            <ImageDownOffer src={down} alt="down-image" />
-          </DaySelect>
-          <TimeSelect>
-            <TextTime>06 : 35</TextTime>
-            <TextPmAm>PM</TextPmAm>
-          </TimeSelect>
-        </PriceRow>
-        <NameRow className="margin-top-20">
-          <TextOffer>Marketplace fee 3%</TextOffer>
-          <UNDPrice>UND 2</UNDPrice>
-        </NameRow>
-        <PayRow>
-          <CheckboxInput
-            type="checkbox"
-            id="purchases"
-            className="custom-checkbox"
-          />
-          <CheckboxLabel htmlFor="purchases">
-            Pay in {"\u00A0"}
-            <UNDLabel>UND</UNDLabel>
-            {"\u00A0"} with a 50% discount
-            <OverlayTrigger
-              delay={{ show: 250, hide: 3000 }}
-              placement="top"
-              overlay={
-                <OverlayPopUp>
-                  Speech bubble that will fall out when you click on the
-                  information on the icon <FAQLink href="/faq">FAQ</FAQLink>
-                </OverlayPopUp>
-              }
-            >
-              <ButtonInfo>
-                <ImageInfo src={info} alt="info-image" />
-              </ButtonInfo>
-            </OverlayTrigger>
-          </CheckboxLabel>
-          <DollarPrice className="margin-0">258,25</DollarPrice>
-        </PayRow>
-      </FirstCollum>
-      <SecondCollum>
-        <NameRow>
-          <CollectionName>Owner item</CollectionName>
-        </NameRow>
-        <NFTInfoContainer>
-          <NFTCard
-            uri={tokenURI ? tokenURI : "loading..."}
-            name={tokenName ? tokenName : "loading..."}
-          />
-        </NFTInfoContainer>
-      </SecondCollum>
+      <Container>
+        <FirstCollum>
+          <NameRow>
+            <TextPrice>Price</TextPrice>
+          </NameRow>
+          <PriceRow>
+            <EthSelect>
+              <EthText>ETH</EthText>
+              <ImageDown src={down} alt="down-image" />
+            </EthSelect>
+            <AmmountInput
+              type="number"
+              placeholder="Amount"
+              onChange={(e) => setOfferedPrice(e.target.value)}
+            />
+            <CostSelect>
+              <DollarText>0.00</DollarText>
+            </CostSelect>
+          </PriceRow>
+          <NameRow className="margin-top">
+            <TextOffer>Offer Expiration</TextOffer>
+          </NameRow>
+          <PriceRow>
+            <DaySelect>
+              3 day
+              <ImageDownOffer src={down} alt="down-image" />
+            </DaySelect>
+            <TimeSelect>
+              <TextTime>06 : 35</TextTime>
+              <TextPmAm>PM</TextPmAm>
+            </TimeSelect>
+          </PriceRow>
+          <NameRow className="margin-top-20">
+            <TextOffer>Marketplace fee 3%</TextOffer>
+            <UNDPrice>UND 2</UNDPrice>
+          </NameRow>
+          <PayRow>
+            <CheckboxInput
+              type="checkbox"
+              id="purchases"
+              className="custom-checkbox"
+            />
+            <CheckboxLabel htmlFor="purchases">
+              Pay in {"\u00A0"}
+              <UNDLabel>UND</UNDLabel>
+              {"\u00A0"} with a 50% discount
+              <OverlayTrigger
+                delay={{ show: 250, hide: 3000 }}
+                placement="top"
+                overlay={
+                  <OverlayPopUp>
+                    Speech bubble that will fall out when you click on the
+                    information on the icon <FAQLink href="/faq">FAQ</FAQLink>
+                  </OverlayPopUp>
+                }
+              >
+                <ButtonInfo>
+                  <ImageInfo src={info} alt="info-image" />
+                </ButtonInfo>
+              </OverlayTrigger>
+            </CheckboxLabel>
+            <DollarPrice className="margin-0">258,25</DollarPrice>
+            <UNDPrice className="small-size">
+              UND 2 <DollarPrice>258,25</DollarPrice>
+            </UNDPrice>
+          </PayRow>
+        </FirstCollum>
+        <SecondCollum>
+          <NameRow>
+            <CollectionName>Owner item</CollectionName>
+          </NameRow>
+          <NFTInfoContainer>
+            <NFTCard
+              uri={tokenURI ? tokenURI : "loading..."}
+              name={tokenName ? tokenName : "loading..."}
+            />
+          </NFTInfoContainer>
+        </SecondCollum>
+      </Container>
       <AgreeRow>
         <CheckBoxCenter>
           <CheckboxInputAgreement

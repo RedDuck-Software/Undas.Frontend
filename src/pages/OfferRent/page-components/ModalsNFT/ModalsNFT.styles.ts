@@ -81,6 +81,9 @@ export const MenuSearchWrap = styled.div`
   box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
   border-radius: 10px;
   border: none;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
 `;
 
 export const Input = styled.input`
@@ -495,6 +498,7 @@ export const FormButtonModal = styled(FormButton)`
     line-height: 17px;
     text-align: center;
     color: #873dc1;
+    transition: all 0.3s;
   }
   &.btn-apply:hover {
     color: #ffffff;
@@ -514,6 +518,7 @@ export const FormButtonModal = styled(FormButton)`
     line-height: 17px;
     text-align: center;
     color: #ff2a36;
+    transition: all 0.3s;
   }
   &.btn-clear:hover {
     color: #ffffff;
