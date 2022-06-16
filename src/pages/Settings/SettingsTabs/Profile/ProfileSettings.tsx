@@ -33,7 +33,7 @@ import {
 import { FormButtonsWrap, FormButton } from "../../../../globalStyles";
 import "./profile.css";
 
-const ProfileSettings = () => {
+const ProfileSettings: React.FC = () => {
   return (
     <ProfileWrap>
       <BannerWrap>

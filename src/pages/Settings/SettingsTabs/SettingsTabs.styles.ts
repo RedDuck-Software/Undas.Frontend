@@ -1,5 +1,6 @@
 import { Tabs, Tab } from "react-bootstrap";
 import styled from "styled-components";
+
 import { FormButton } from "../../../globalStyles";
 
 export const SettingsTabWrap = styled.div`
@@ -20,6 +21,9 @@ export const SettingsTabWrap = styled.div`
   li:first-child .nav-link.active {
     border-radius: 0 0 0 10px;
   }
+  li:last-child .nav-link.active {
+    border-radius: 0 0 10px 0;
+  }
   .nav-tabs .nav-link:focus,
   .nav-tabs .nav-link:hover {
     border: 1px solid transparent;
@@ -30,84 +34,53 @@ export const SettingsTabWrap = styled.div`
   .nav-tabs .nav-link.active:hover {
     border-bottom: 4px solid rgba(135, 61, 193, 0.5);
   }
+  .nav-tabs .nav-link:focus svg path,
+  .nav-tabs .nav-link:hover svg path,
+  .nav-tabs .nav-link.active svg path {
+    fill: #873dc1;
+  }
+  @media (max-width: 825px) {
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link {
+      width: 100%;
+    }
+  }
+`;
+export const TabWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const TabsText = styled.span`
+  margin-left: 10px;
   @media (max-width: 825px) {
     display: none;
   }
 `;
-export const DesktopTabs = styled(Tabs)`
+export const SettingTabs = styled(Tabs)`
   .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     color: #873dc1;
     border: 1px solid transparent;
     border-bottom: 4px solid rgba(135, 61, 193, 0.5);
   }
+  @media (max-width: 825px) {
+    display: flex;
+    justify-content: space-around;
+    & li {
+      width: 20%;
+    }
+  }
 `;
-export const DesktopTab = styled(Tab)``;
+export const SettingsTab = styled(Tab)`
+  @media (max-width: 825px) {
+    width: 100%;
+  }
+`;
 export const Button = styled(FormButton)`
   margin-top: 40px;
   @media (max-width: 992px) {
     width: 100%;
-  }
-`;
-
-export const MobileSettingsTabWrap = styled.div`
-  display: none;
-  .nav-tabs > li {
-    width: 20%;
-  }
-  .nav-tabs .nav-item.show .nav-link,
-  .nav-tabs .nav-link {
-    color: #7c7c7c;
-    width: 100%;
-  }
-  .nav-tabs {
-    background: #fbf5ff;
-    box-shadow: 0px 4px 4px rgba(124, 124, 124, 0.5);
-    border-radius: 0px 0px 10px 10px;
-  }
-  .nav-tabs .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    border: 1px solid transparent;
-    border-bottom: 4px solid rgba(135, 61, 193, 0.5);
-  }
-  .nav-tabs .nav-link:focus,
-  .nav-tabs .nav-link:hover {
-    border: 1px solid transparent;
-    outline: none;
-    color: #873dc1;
-  }
-  .nav-tabs .nav-link:focus,
-  .nav-tabs .nav-link.active:hover {
-    border-bottom: 4px solid rgba(135, 61, 193, 0.5);
-  }
-  li:first-child .nav-link.active {
-    border-radius: 0 0 0 10px;
-  }
-  li:last-child .nav-link.active {
-    border-radius: 0 0 10px 0;
-  }
-  @media (max-width: 825px) {
-    display: block;
-  }
-`;
-export const MobileTabs = styled(DesktopTabs)`
-  display: none;
-  @media (max-width: 825px) {
-    display: flex;
-    justify-content: space-around;
-    .nav-tabs .nav-item.show .nav-link,
-    .nav-tabs .nav-link.active {
-      color: #873dc1;
-      border: 1px solid transparent;
-      border-bottom: 4px solid rgba(135, 61, 193, 0.5);
-    }
-  }
-`;
-
-export const MobileTab = styled(DesktopTab)`
-  display: none;
-  @media (max-width: 825px) {
-    display: flex;
   }
 `;
 export const DescriptionText = styled.p`

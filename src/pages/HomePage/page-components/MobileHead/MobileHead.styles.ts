@@ -71,18 +71,18 @@ export const MobileSliderButtonsBlock = styled(SliderButtonsBlock)`
 `;
 export const MobileExploreButton = styled(PrimaryButton)`
   flex: 0 0 45%;
+  padding: 10px;
   @media (max-width: 576px) {
     flex: 0 0 100%;
-    padding: 10px;
     width: 100%;
   }
 `;
 export const MobileCreateButton = styled(SecondaryButton)`
   margin: 0;
   flex: 0 0 45%;
+  padding: 10px;
   @media (max-width: 576px) {
     flex: 0 0 100%;
-    padding: 10px;
     width: 100%;
   }
 `;
