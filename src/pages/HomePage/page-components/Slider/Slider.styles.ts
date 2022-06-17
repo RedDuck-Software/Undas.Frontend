@@ -71,7 +71,10 @@ export const SliderButtonsBlock = styled.div`
   position: absolute;
   width: 255px;
   height: 130px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 4px 4px 4px rgb(35 36 40 / 50%);
   backdrop-filter: blur(30px);
@@ -83,7 +86,6 @@ export const SliderButtonsBlock = styled.div`
   box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
   left: 160px;
   top: 240px;
-  padding-top: 20px;
   @media (max-width: 1200px) {
     display: none;
   }

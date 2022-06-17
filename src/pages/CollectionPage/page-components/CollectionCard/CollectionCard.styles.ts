@@ -56,7 +56,8 @@ export const SocialWrap = styled.div`
   svg {
     cursor: pointer;
   }
-  & svg:hover path {
+
+  & svg:hover path{
     fill: #873dc1;
   }
   @media (max-width: 1200px) {

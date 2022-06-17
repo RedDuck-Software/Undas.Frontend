@@ -55,6 +55,7 @@ export const MobileTextStacking = styled(TextStacking)`
 `;
 export const MobileSliderButtonsBlock = styled(SliderButtonsBlock)`
   display: flex;
+  flex-direction: row;
   position: static;
   width: 100%;
   border-radius: 0;

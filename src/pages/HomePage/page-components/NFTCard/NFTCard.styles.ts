@@ -77,6 +77,7 @@ export const Name = styled.span`
     order: 1;
     flex: 0 0 100%;
     margin-bottom: 10px;
+    max-width: 100%;
   }
 `;
 export const CollectionText = styled.span`
@@ -88,6 +89,9 @@ export const CollectionText = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  @media (max-width: 1200px) {
+    max-width: 250px;
+  }
 `;
 export const CreatorText = styled.span`
   font-weight: 400;

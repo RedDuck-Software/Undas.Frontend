@@ -4,7 +4,7 @@ import violetLine from "../../../../icons/violet-line.svg";
 
 export const TitleInner = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 `;
 export const TitleLink = styled.a`
   font-family: "Montserrat";
@@ -14,9 +14,12 @@ export const TitleLink = styled.a`
   line-height: 22px;
   color: #873dc1;
   margin-left: 20px;
+  text-decoration: none;
+  padding-bottom: 5px;
   &:hover {
     color: #873dc1;
     text-shadow: 0 0 1px;
+    text-decoration: underline;
   }
   @media (max-width: 768px) {
     font-size: 14px;
