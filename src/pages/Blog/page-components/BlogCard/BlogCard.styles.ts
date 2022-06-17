@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Inner = styled.div`
@@ -17,17 +18,8 @@ export const Image = styled.img`
   object-fit: cover;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
-  /* @media (max-width: 992px) {
-    height: 250px;
-  }
-  @media (max-width: 768px) {
-    height: 180px;
-  }
-  @media (max-width: 640px) {
-    height: 250px;
-  } */
 `;
-export const CardWrap = styled.div`
+export const CardWrap = styled(Link)`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -36,6 +28,7 @@ export const CardWrap = styled.div`
   flex: 0 0 31%;
   background-color: #fff;
   transition: all 0.3s linear;
+  text-decoration: none;
   &:hover {
     box-shadow: rgb(135 61 193 / 50%) 0px 5px 10px;
     cursor: pointer;
@@ -134,6 +127,7 @@ export const BigCardText = styled.p`
   margin: 0;
   font-size: 20px;
   line-height: 27px;
+  color: #232428;
   @media (max-width: 992px) {
     font-size: 16px;
     line-height: 22px;

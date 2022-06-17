@@ -250,7 +250,7 @@ const Navbar = () => {
                   <ProfileMenuIco />
                   Profile
                 </MenuList>
-                <MenuList to="/collection">
+                <MenuList to="/account">
                   <MyCollectionIco />
                   My Collections
                 </MenuList>

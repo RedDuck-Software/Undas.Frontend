@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ManageNFTContainer = styled.div`
@@ -108,7 +109,7 @@ interface IPurpleText {
   fs?: string;
 }
 
-export const PurpleText = styled.a<IPurpleText>`
+export const PurpleText = styled(Link)<IPurpleText>`
   width: 100%;
   text-decoration: none;
   cursor: pointer;

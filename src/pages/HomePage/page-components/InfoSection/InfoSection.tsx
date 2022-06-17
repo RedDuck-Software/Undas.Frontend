@@ -34,10 +34,10 @@ const InfoSection: React.FC = () => {
               <Tagline icon>f the new generation</Tagline>
             </TextWrapper>
             <ButtonsWrapper>
-              <Link to="/assets">
+              <Link to="/all">
                 <Button violet>Explore</Button>
               </Link>
-              <Link to="/create">
+              <Link to="/create-nft">
                 <Button>Create</Button>
               </Link>
             </ButtonsWrapper>
