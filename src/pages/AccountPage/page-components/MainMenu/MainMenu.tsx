@@ -2,19 +2,6 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
-
-import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
-import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
-import nft10 from "../../../../images/temp-nft-examples/nft-exp-10.png";
-import nft11 from "../../../../images/temp-nft-examples/nft-exp-11.png";
-import nft2 from "../../../../images/temp-nft-examples/nft-exp-2.png";
-import nft3 from "../../../../images/temp-nft-examples/nft-exp-3.png";
-import nft4 from "../../../../images/temp-nft-examples/nft-exp-4.png";
-import nft5 from "../../../../images/temp-nft-examples/nft-exp-5.png";
-import nft6 from "../../../../images/temp-nft-examples/nft-exp-6.png";
-import nft7 from "../../../../images/temp-nft-examples/nft-exp-7.png";
-import nft8 from "../../../../images/temp-nft-examples/nft-exp-8.png";
-import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
@@ -65,8 +52,6 @@ const MainMenu: React.FC = () => {
 
     const signer = provider.getSigner(0);
     const signerPublicAddress = await signer.getAddress();
-    
-
 
     const data = await Web3Api.Web3API.account.getNFTs({
       chain: "goerli",
@@ -89,7 +74,7 @@ const MainMenu: React.FC = () => {
       const id = nft.token_id;
       const tokenAddress = nft.token_address;
       const tokenOwner = nft.owner_of;
-      //query here
+
       console.log(nft)
       items.push({ id, URI, name,tokenAddress,tokenOwner });
     });
@@ -166,7 +151,7 @@ const MainMenu: React.FC = () => {
           </Filter>
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <ResultsTotal>12 results</ResultsTotal>
+        <ResultsTotal>{list.length}</ResultsTotal>
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />

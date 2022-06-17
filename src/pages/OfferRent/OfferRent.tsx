@@ -101,7 +101,7 @@ const OfferRent: React.FC = () => {
     const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
       7,
     );
-
+    console.log('amountToPay',amountToPay)
     const tx = await MarketplaceContract.stakingOffer(
       listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
@@ -110,7 +110,7 @@ const OfferRent: React.FC = () => {
         value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
-
+  
     await tx.wait();
   }
 
