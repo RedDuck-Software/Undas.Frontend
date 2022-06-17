@@ -135,7 +135,7 @@ const App: React.FC = () => {
           <Route path="/creator-card" element={<CreatorCardPage />} />
           <Route path="/offer-sale/:address:id" element={<OfferSale />} />
           <Route path="/offer-rent/:address:id" element={<OfferRent />} />
-          <Route path="/rent" element={<Rent />} />
+          <Route path="/rent/:address:id" element={<Rent />} />
           <Route path="/buy/:address:id" element={<Buy />} />
           <Route path="/nft/sale/:id" element={<Sale />} />
           <Route path="/sale" element={<Sale />} />
