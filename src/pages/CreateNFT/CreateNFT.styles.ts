@@ -33,6 +33,10 @@ export const BlockDescript = styled.p`
   line-height: 15px;
   color: #7c7c7c;
   margin-bottom: 0;
+  @media (min-width: 1700px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 
 export const CreateFormGroup = styled.div`
@@ -62,6 +66,10 @@ export const CreateLabel = styled.label`
     font-size: 16px;
     line-height: 19px;
     margin: 10px 0 5px;
+  }
+  @media (min-width: 1700px) {
+    font-size: 24px;
+    line-height: 30px;
   }
 `;
 

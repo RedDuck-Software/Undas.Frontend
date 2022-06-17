@@ -29,7 +29,6 @@ import {
   StakingIco,
 } from "./imports";
 import {
-  Background,
   NFTPageWrap,
   NavigationWrap,
   NameInner,
@@ -80,6 +79,7 @@ import { Verified } from "../CategoriesPage/imports";
 import { createClient } from "urql";
 import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Background } from "../../globalStyles";
 
 const NFTPage: React.FC = () => {
   const override = css`
@@ -326,7 +326,7 @@ const NFTPage: React.FC = () => {
                   <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
-                  <Platform col="#873DC1" fs="36px" fsxs="24px">
+                  <Platform col="#873DC1" fs="36px" fsxs="20px">
                     UND
                   </Platform>
                 </Name>

@@ -62,6 +62,9 @@ export const MessageBlock = styled.div`
   @media (max-width: 992px) {
     width: 100%;
   }
+  @media (min-width: 1700px) {
+    width: 70%;
+  }
 `;
 
 export const Image = styled.img`
@@ -74,6 +77,10 @@ export const MessageText = styled.p`
   font-size: 14px;
   line-height: 17px;
   color: #232428;
+  @media (min-width: 1700px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 export const AccountSupportSelect = styled.select`
   background: #ffffff;

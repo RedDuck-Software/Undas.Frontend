@@ -125,12 +125,12 @@ const Rent: React.FC = () => {
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="column">
                   <ContentItemPriceEth>0,035</ContentItemPriceEth>
                   <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
-              <ContentItem>
+              <ContentItem className="wrap">
                 <ContentItemName>
                   Marketplace fee 3%
                   <CheckboxRow>
@@ -165,14 +165,16 @@ const Rent: React.FC = () => {
                     </CheckboxLabel>
                   </CheckboxRow>
                 </ContentItemName>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="fee">
                   <ContentItemPriceUnd>2</ContentItemPriceUnd>
-                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
+                  <ContentItemPriceUsd className="margin-3">
+                    $258,25
+                  </ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
                 <Total>Total</Total>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="column">
                   <TotalPrice>
                     <TotalPriceEth>{state.state.state.price}</TotalPriceEth>
                     <Plus>+</Plus>

@@ -56,6 +56,10 @@ export const TabsText = styled.span`
   @media (max-width: 825px) {
     display: none;
   }
+  @media (min-width: 1700px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 export const SettingTabs = styled(Tabs)`
   .nav-tabs .nav-item.show .nav-link,
@@ -96,5 +100,9 @@ export const DescriptionText = styled.p`
   @media (max-width: 576px) {
     font-size: 12px;
     line-height: 14px;
+  }
+  @media (min-width: 1700px) {
+    font-size: 18px;
+    line-height: 24px;
   }
 `;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Banner = styled.div`
@@ -98,7 +99,7 @@ export const ContactText = styled.div`
   color: #7c7c7c;
 `;
 
-export const CollectionCard = styled.div`
+export const CollectionCard = styled(Link)`
   margin: 20px 0;
   position: relative;
   cursor: pointer;
@@ -110,7 +111,7 @@ export const CollectionCard = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: space-between;
-
+  text-decoration: none;
   @media (max-width: 1200px) {
     height: 180px;
     padding: 0px;

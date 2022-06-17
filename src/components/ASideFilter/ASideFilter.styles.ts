@@ -44,6 +44,16 @@ export const HolderElement = styled.li<{ isActive?: boolean }>`
   &.active {
     box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
   }
+  @media (max-width: 992px) {
+    width: 100%;
+    padding: 10px 3rem;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.5);
+  }
+  @media (max-width: 576px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
@@ -64,7 +74,7 @@ export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
   }
   @media (max-width: 992px) {
     display: ${({ isOpenMobile }) => (isOpenMobile ? "block" : "none")};
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -74,6 +84,8 @@ export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
     height: 100%;
     max-width: 100%;
     max-height: 100%;
+    background: rgba(251, 245, 255, 0.5);
+    backdrop-filter: blur(10px);
   }
 `;
 
@@ -89,6 +101,9 @@ export const Holder = styled.ul<IHolder>`
   box-shadow: 0px 0px 2px rgba(135, 61, 193, 0.25);
   //border-radius: 0px 10px 10px 0px;
   overflow: hidden;
+  @media (max-width: 992px) {
+    background: rgba(251, 245, 255, 0.5);
+  }
 `;
 
 export const Arrow = styled.span`
@@ -184,6 +199,16 @@ export const AccordionElement = styled.li<IAccElement>`
   background-color: #fcf8ff;
   border-top: 1px solid #dcd9de;
   margin-top: -1px;
+  @media (max-width: 992px) {
+    border-radius: 0;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    background: transparent;
+  }
+  @media (max-width: 576px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 //Toggle switch
@@ -197,6 +222,8 @@ export const SliderRound = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: #7c7c7c;
+  border-radius: 10px;
   &:before {
     margin: 3px 0 0 3px;
     position: absolute;
@@ -208,15 +235,12 @@ export const SliderRound = styled.span`
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  // background-color: #ccc;
 `;
 
 export const Switch = styled.label`
   position: relative;
   width: 22px;
   height: 12px;
-  background-color: #7c7c7c;
-  border-radius: 10px;
 `;
 
 export const InputSwitch = styled.input`
@@ -228,16 +252,18 @@ export const InputSwitch = styled.input`
     -webkit-transform: translateX(4px);
     -ms-transform: translateX(10px);
     transform: translateX(10px);
+  }
+  &:checked + ${SliderRound} {
     background: #873dc1;
   }
 `;
-
 export const PriceSelect = styled.ul`
   width: 218px;
   position: absolute;
+  top: 100%;
+  left: 0;
   opacity: 0;
   visibility: hidden;
-  margin-top: 35px;
   transition: all ease-in-out 0.15s;
   border-radius: 0 0 10px 10px;
   overflow: hidden;
@@ -245,6 +271,9 @@ export const PriceSelect = styled.ul`
   &.price-menu-active {
     opacity: 1;
     visibility: visible;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
   }
 `;
 
@@ -263,8 +292,12 @@ export const PriceElement = styled.li`
   border-radius: 10px;
   box-shadow: inset 0px 0px 1px #7c7c7c;
   transition: all ease-in-out 0.15s;
+  position: relative;
   &.price-menu-active {
     border-radius: 10px 10px 0 0;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
   }
 `;
 export const PriceVariations = styled(PriceElement)`
@@ -294,8 +327,10 @@ export const ApplyBtn = styled.button`
     background-color: #873dc1;
     color: #fff;
   }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
 `;
-
 export const SearchInputWrapper = styled.input<{ maxWidth?: string }>`
   padding-left: 40px;
   display: flex;
@@ -318,6 +353,9 @@ export const SearchInputWrapper = styled.input<{ maxWidth?: string }>`
     flex: 0 0 100%;
     margin-bottom: 20px;
     max-width: 100%;
+  }
+  @media (max-width: 992px) {
+    margin-bottom: 10px;
   }
 `;
 export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
@@ -490,4 +528,14 @@ export const ChainItemTitle = styled.div`
 
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
+`;
+export const MobileListWrap = styled.div`
+  @media (max-width: 992px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  @media (max-width: 576px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;

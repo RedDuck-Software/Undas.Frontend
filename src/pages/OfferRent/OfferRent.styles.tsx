@@ -92,6 +92,10 @@ export const FirstCollum = styled.div`
   width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 export const SecondCollum = styled.div`
   display: flex;
@@ -99,6 +103,10 @@ export const SecondCollum = styled.div`
   margin-left: 4%;
   flex-wrap: wrap;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 export const TextNameNFT = styled.div`
   font-family: "Montserrat";
@@ -132,6 +140,12 @@ export const NameRow = styled.div`
   &.margin-top-20 {
     margin-top: 20px;
   }
+
+  @media (max-width: 768px) {
+    &.margin-top-20 {
+      margin-top: unset;
+    }
+  }
 `;
 export const TextCreator = styled.div`
   font-family: "Montserrat";
@@ -161,21 +175,37 @@ export const TextPrice = styled.div`
   &.сost-per-day {
     margin-top: 20px;
   }
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-top: 20px;
+  }
 `;
 export const PriceRow = styled.div`
   width: 100%;
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
+
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+  }
 `;
 export const EthSelect = styled.div`
   width: 30%;
   background: #fbf5ff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 10px 0px 0px 10px;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 export const EthText = styled.span`
   font-family: "Montserrat";
@@ -198,24 +228,30 @@ export const ImageDown = styled.img`
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   padding-left: 25px;
-  border-width: 0px;
-  border: none;
   outline: none;
   &:focus {
     box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
     border-color: rgb(135 61 193);
   }
+
+  @media (max-width: 992px) {
+    border-radius: 0px 0px 0px 10px;
+  }
 `;
 export const CostSelect = styled.div`
   width: 20%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0 10px 10px 0;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+
+  @media (max-width: 992px) {
+    width: 50%;
+    border-radius: 0px 0px 10px 0px;
+  }
 `;
 export const DollarText = styled.span`
   font-weight: 400;
@@ -238,13 +274,23 @@ export const TextOffer = styled.div`
   line-height: 24px;
   color: #232428;
   margin-bottom: 8px;
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-top: 20px;
+    &.no-margin {
+      margin-top: unset;
+    }
+  }
 `;
 export const DaySelect = styled.div`
   width: 40%;
   background: #fbf5ff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 10px 0px 0px 10px;
-  border-width: 0px;
   height: 36px;
   font-family: "Montserrat";
   font-style: normal;
@@ -254,6 +300,11 @@ export const DaySelect = styled.div`
   color: #7c7c7c;
   padding-left: 20px;
   padding-top: 9px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 export const ImageDownOffer = styled.img`
   float: right;
@@ -263,11 +314,15 @@ export const ImageDownOffer = styled.img`
 export const TimeSelect = styled.div`
   width: 60%;
   background: #ffffff;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0 10px 10px 0;
-  border-width: 0px;
   height: 36px;
   padding-top: 5px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+  }
 `;
 export const TextPmAm = styled.span`
   font-family: "Montserrat";
@@ -306,6 +361,23 @@ export const UNDPrice = styled.span`
   color: #873dc1;
   margin-left: auto;
   margin-top: 6px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  &.small-size {
+    display: none;
+    margin-top: unset;
+    @media (max-width: 576px) {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 export const CheckboxInput = styled.input`
   margin-right: 5px;
@@ -366,6 +438,10 @@ export const CheckboxLabel = styled.label`
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 export const UNDLabel = styled.span`
   font-family: "Jost";
@@ -374,6 +450,10 @@ export const UNDLabel = styled.span`
   font-size: 16px;
   line-height: 23px;
   color: #873dc1;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
 `;
 export const ImageInfo = styled.img`
   padding-bottom: 10px;
@@ -400,8 +480,18 @@ export const DollarPrice = styled.span`
   &::before {
     content: "$";
   }
-  &.margin-0 {
-    margin-top: 0px;
+
+  @media (max-width: 768px) {
+    &.margin-0 {
+      margin-top: 8px;
+    }
+  }
+  @media (max-width: 576px) {
+    margin-top: 2px;
+    margin-left: 10px;
+    &.margin-0 {
+      display: none;
+    }
   }
 `;
 export const PayRow = styled.div`
@@ -409,6 +499,10 @@ export const PayRow = styled.div`
   display: flex;
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 20px;
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
 export const AgreementLink = styled(Link)`
   font-weight: 400;
@@ -548,6 +642,10 @@ export const CheckboxLabelCollateral = styled.label`
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const CheckboxInputCollateral = styled.input`
@@ -600,6 +698,10 @@ export const CheckboxInputCollateral = styled.input`
 
 export const ContainerCheckboxCollateral = styled.div`
   text-align: center;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 
 export const NFTInfoContainer = styled.div`
@@ -611,6 +713,26 @@ export const NFTInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+  @media (max-width: 640px) {
+    width: 70%;
+    margin: 0 auto;
+    &.max-width {
+      width: 100%;
+    }
+  }
+  @media (max-width: 550px) {
+    width: 80%;
+    &.max-width {
+      width: 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const SelectedNFT = styled.div`
@@ -623,6 +745,10 @@ export const SelectedNFT = styled.div`
   color: #232428;
   margin-top: 30px;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const ImgDelete = styled.img`
@@ -675,6 +801,19 @@ export const OverlayPopUp = styled.div`
     border: 12px solid transparent;
     border-left: 20px solid #ccb7f2;
     transform: rotate(90deg);
+  }
+
+  @media (max-width: 992px) {
+    margin-left: unset;
+    &::after {
+      left: 160px;
+    }
+  }
+  @media (max-width: 576px) {
+    width: 95%;
+    &::after {
+      left: 45%;
+    }
   }
 `;
 
@@ -737,5 +876,14 @@ export const SwiperNFT = styled(Swiper)`
       transform: rotate(-45deg);
       margin-right: 6px;
     }
+  }
+`;
+
+export const ContainerCollum = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
   }
 `;

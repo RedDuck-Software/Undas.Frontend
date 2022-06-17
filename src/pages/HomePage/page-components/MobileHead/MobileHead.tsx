@@ -25,8 +25,8 @@ const MobileHead: React.FC = () => {
             Stacking, Renting, Creating, Trading and Exchanging NFT
           </MobileTextStacking>
           <MobileSliderButtonsBlock>
-            <MobileExploreButton>Explore</MobileExploreButton>
-            <MobileCreateButton>Create</MobileCreateButton>
+            <MobileExploreButton to="/all">Explore</MobileExploreButton>
+            <MobileCreateButton to="/create-nft">Create</MobileCreateButton>
           </MobileSliderButtonsBlock>
         </MobileHeadWrap>
       </Container>

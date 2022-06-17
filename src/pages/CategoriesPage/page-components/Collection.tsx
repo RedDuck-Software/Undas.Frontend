@@ -24,7 +24,7 @@ import {
 
 const Collection: React.FC = () => {
   return (
-    <CollectionCard>
+    <CollectionCard to="/collection">
       <CollectionBackground src={CollectionBG} alt="collection-bg" />
       <AuthorWrap>
         <CollectionPicWrap>

@@ -1,12 +1,16 @@
-export const TOGGLE_STACKING = 'TOGGLE_STACKING';
-
+import { Filter } from "./types";
+/**
+ * REFACTOR NAMINGS TO RENT
+ * IT'S NOT A STAKING
+ * IT'S A RENT
+ */
 const initialState = {
   stacking: false,
 };
 
 export const stackingReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case TOGGLE_STACKING:
+    case Filter.staking:
       return {
         stacking: action.payload,
       };
@@ -19,7 +23,3 @@ export const toggleStacking = (stacking: boolean) => {
   return (stacking = !stacking);
 };
 
-export const filterAction = (stacking: boolean) => ({
-  type: TOGGLE_STACKING,
-  payload: stacking,
-});

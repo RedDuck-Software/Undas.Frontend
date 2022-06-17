@@ -38,6 +38,7 @@ import {
   CategoryItemTitleIcon,
   FilterCategoryItemTitle,
   CheckboxInputWrapperCentered,
+  MobileListWrap,
 } from "./ASideFilter.styles";
 import {
   FilterIco,
@@ -53,11 +54,18 @@ import {
   EthereumIcon,
 } from "./imports";
 
-import { filterAction } from "../../store/reducers/stackingReducer";
+import {
+  buyAction,
+  hasOffersAction,
+  rentAction,
+} from "../../store/reducers/Filter/filterActions";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
-import { addSelectedCategory, addSelectedCollection } from "../../store/reducers/Filter/filterActions";
+import {
+  addSelectedCategory,
+  addSelectedCollection,
+} from "../../store/reducers/Filter/filterActions";
 
 interface CategoryItemProps {
   label: string;
@@ -76,9 +84,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
             className="custom-checkbox"
             id={label}
             mr="15px"
-            onClick={() =>
-              dispatch(addSelectedCategory(icon, label))
-            }
+            onClick={() => dispatch(addSelectedCategory(icon, label))}
           />
           <CheckboxLabel htmlFor={label} />
         </CheckboxInputWrapperCentered>
@@ -276,7 +282,8 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
-
+  const buyingRef: any = useRef();
+  const hasOffersRef: any = useRef();
   return (
     <>
       <ASideWrap
@@ -322,7 +329,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                 />
               </HolderElement>
               <AccordionMenu
-                mh="146px"
+                mh="186px"
                 className={(activeMenu.status && "active-status") || ""}
               >
                 <AccordionElement
@@ -336,29 +343,48 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                     <SliderRound />
                   </Switch>
                 </AccordionElement>
+                <AccordionElement>
+                  <span>Staking</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
+                <AccordionElement
+                  onClick={() => {
+                    buyingRef.current.checked = !buyingRef.current.checked;
+                    dispatch(buyAction(buyingRef.current.checked));
+                  }}
+                >
+                  <span>Buy now</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" ref={buyingRef} />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
                 <AccordionElement
                   onClick={() => {
                     stakingRef.current.checked = !stakingRef.current.checked;
-                    dispatch(filterAction(stakingRef.current.checked));
+                    dispatch(rentAction(stakingRef.current.checked));
                   }}
                 >
-                  <span>Staking</span>
+                  <span>Rent</span>
                   <Switch>
                     <InputSwitch type="checkbox" ref={stakingRef} />
                     <SliderRound />
                   </Switch>
                 </AccordionElement>
-                <AccordionElement>
-                  <span>Rent</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-                <AccordionElement>
+
+                <AccordionElement
+                  onClick={() => {
+                    hasOffersRef.current.checked =
+                      !hasOffersRef.current.checked;
+                    dispatch(hasOffersAction(hasOffersRef.current.checked));
+                  }}
+                >
                   <span>Has Offers</span>
                   <Switch>
-                    <InputSwitch type="checkbox" />
+                    <InputSwitch type="checkbox" ref={hasOffersRef} />
                     <SliderRound />
                   </Switch>
                 </AccordionElement>
@@ -403,26 +429,27 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                           <AccordionArrow
                             className={(priceMenu && "price-menu-active") || ""}
                           />
+                          <PriceSelect
+                            className={(priceMenu && "price-menu-active") || ""}
+                          >
+                            {variations.map((item) => {
+                              return (
+                                <PriceVariations
+                                  key={item.text}
+                                  onClick={() => {
+                                    currencySelector(item);
+                                  }}
+                                >
+                                  {item.ico}
+                                  <span>{item.text}</span>
+                                </PriceVariations>
+                              );
+                            })}
+                          </PriceSelect>
                         </PriceElement>
                       );
                   })}
-                  <PriceSelect
-                    className={(priceMenu && "price-menu-active") || ""}
-                  >
-                    {variations.map((item) => {
-                      return (
-                        <PriceVariations
-                          key={item.text}
-                          onClick={() => {
-                            currencySelector(item);
-                          }}
-                        >
-                          {item.ico}
-                          <span>{item.text}</span>
-                        </PriceVariations>
-                      );
-                    })}
-                  </PriceSelect>
+
                   <ApplyBtn>Apply</ApplyBtn>
                 </AccordionElement>
               </AccordionMenu>
@@ -451,14 +478,16 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                 mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
                 className={(activeMenu.category && "active-category") || ""}
               >
-                <CategoryItem {...getCategory(Category.allNFTs)} />
-                <CategoryItem {...getCategory(Category.new)} />
-                <CategoryItem {...getCategory(Category.artwork)} />
-                <CategoryItem {...getCategory(Category.sport)} />
-                <CategoryItem {...getCategory(Category.photography)} />
-                <CategoryItem {...getCategory(Category.metaverses)} />
-                <CategoryItem {...getCategory(Category.celebrity)} />
-                <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+                <MobileListWrap>
+                  <CategoryItem {...getCategory(Category.allNFTs)} />
+                  <CategoryItem {...getCategory(Category.new)} />
+                  <CategoryItem {...getCategory(Category.artwork)} />
+                  <CategoryItem {...getCategory(Category.sport)} />
+                  <CategoryItem {...getCategory(Category.photography)} />
+                  <CategoryItem {...getCategory(Category.metaverses)} />
+                  <CategoryItem {...getCategory(Category.celebrity)} />
+                  <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+                </MobileListWrap>
               </AccordionMenu>
             </>
           )}
@@ -489,7 +518,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                 onChange={handleCollectionSearch}
               />
             </AccordionElement>
-            <>
+            <MobileListWrap>
               {filteredCollectionList.map((item: any) => {
                 return (
                   <FilterCollectionItem
@@ -500,7 +529,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                   />
                 );
               })}
-            </>
+            </MobileListWrap>
           </AccordionMenu>
 
           <HolderElement

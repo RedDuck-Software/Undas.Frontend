@@ -109,7 +109,7 @@ const CollectionPage: React.FC = () => {
     });
     return items;
   }
-  console.log("my collection", list);
+  
   async function getUserNft() {
     const response = await getNfts();
 

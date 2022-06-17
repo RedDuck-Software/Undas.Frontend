@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 import { Container } from "../../globalStyles";
 
-export const Background = styled.div`
-  background-color: white;
-`;
 // Seller Menu
 export const SellerNavigation = styled.div`
   width: 100%;
@@ -130,15 +127,16 @@ export const NavigationWrap = styled.div`
   @media (max-width: 992px) {
     margin-top: 40px;
   }
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     flex-wrap: wrap;
     margin-top: 20px;
   }
 `;
 export const NameInner = styled.div`
   margin-right: 20px;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     order: 2;
+    width: 100%;
   }
 `;
 export const Name = styled.div`
@@ -156,8 +154,12 @@ export const NameNft = styled.h1`
     line-height: 39px;
   }
   @media (max-width: 576px) {
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  @media (max-width: 340px) {
+    font-size: 16px;
+    line-height: 20px;
   }
 `;
 
@@ -173,6 +175,10 @@ export const NameCollection = styled.h2`
   @media (max-width: 576px) {
     font-size: 16px;
     line-height: 20px;
+  }
+  @media (max-width: 340px) {
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 interface IVerifiedIcon {
@@ -207,7 +213,7 @@ export const NavMenu = styled.ul`
   box-shadow: 0 0 1px #7c7c7c, inset 0 0 1px #7c7c7c;
   border-radius: 10px;
   overflow: hidden;
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     order: 1;
     margin-bottom: 15px;
   }
@@ -295,7 +301,7 @@ export const Info = styled.ul`
     }
   }
   @media (max-width: 992px) {
-    margin-bottom: 10px;
+    margin: 10px auto;
     justify-content: space-around;
     & .hide {
       display: inline;
@@ -494,6 +500,12 @@ export const RentalPeriod = styled.input`
   outline: none;
   &:focus {
     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
+  @media (max-width: 576px) {
+    width: 130px;
+    font-size: 12px;
+    text-align: center;
+    padding: unset;
   }
 `;
 

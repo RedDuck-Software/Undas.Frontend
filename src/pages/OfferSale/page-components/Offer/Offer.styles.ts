@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     flex-direction: column-reverse;
   }
 `;
@@ -25,7 +25,7 @@ export const CollectionName = styled.div`
   color: #232428;
   margin-bottom: 15px;
   @media (max-width: 768px) {
-    ffont-size: 14px;
+    font-size: 16px;
   }
 `;
 
@@ -46,7 +46,7 @@ export const FirstCollum = styled.div`
   width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -58,7 +58,7 @@ export const SecondCollum = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     width: 100%;
     margin-left: unset;
   }
@@ -121,7 +121,7 @@ export const TextPrice = styled.div`
   @media (max-width: 992px) {
     font-size: 16px;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     font-size: 14px;
     margin-top: 20px;
   }
@@ -246,6 +246,7 @@ export const DaySelect = styled.div`
   color: #7c7c7c;
   padding-left: 20px;
   padding-top: 9px;
+
   @media (max-width: 992px) {
     width: 100%;
     border-radius: 10px 10px 0px 0px;
@@ -265,6 +266,7 @@ export const TimeSelect = styled.div`
   border-radius: 0 10px 10px 0;
   height: 36px;
   padding-top: 5px;
+
   @media (max-width: 992px) {
     width: 100%;
     border-radius: 0px 0px 10px 10px;
@@ -310,7 +312,6 @@ export const UNDPrice = styled.span`
   color: #873dc1;
   margin-left: auto;
   margin-top: 23px;
-
   &.small-size {
     display: none;
     margin-top: unset;
@@ -364,7 +365,7 @@ export const CheckboxInput = styled.input`
     border-right: 1px solid #5d3f92;
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
-    top: 6px;
+    top: 12px;
     left: 5px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
@@ -624,17 +625,24 @@ export const NFTInfoContainer = styled.div`
     background: #c4c4c4;
   }
 
-  @media (max-width: 992px) {
-    width: 310px;
-    height: 360px;
-  }
-  @media (max-width: 768px) {
-    width: 230px;
-    height: 280px;
-  }
-  @media (max-width: 720px) {
+  @media (max-width: 1200px) {
     width: 100%;
-    height: auto;
+  }
+  @media (max-width: 640px) {
+    width: 70%;
+    margin: 0 auto;
+    &.max-width {
+      width: 100%;
+    }
+  }
+  @media (max-width: 550px) {
+    width: 80%;
+    &.max-width {
+      width: 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;
 
@@ -675,17 +683,16 @@ export const OverlayPopUp = styled.div`
     transform: rotate(90deg);
   }
 
-  @media (max-width: 720px) {
-    height: auto;
+  @media (max-width: 992px) {
     margin-left: unset;
     &::after {
-      left: 158px;
+      left: 160px;
     }
   }
-  @media (max-width: 495px) {
-    width: 100%;
+  @media (max-width: 576px) {
+    width: 95%;
     &::after {
-      left: 50%;
+      left: 45%;
     }
   }
 `;

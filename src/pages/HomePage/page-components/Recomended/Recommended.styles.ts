@@ -48,6 +48,10 @@ export const Title = styled.h2`
     font-size: 14px;
     line-height: 17px;
   }
+  @media (min-width: 1700px) {
+    font-size: 44px;
+    line-height: 50px;
+  }
 `;
 export const TitleWrap = styled.div`
   width: 100%;
@@ -81,6 +85,10 @@ export const ViewAllBtn = styled(Link)`
     bottom: 0;
     left: 0;
     width: 100%;
+  }
+  @media (min-width: 1700px) {
+    padding: 15px 100px;
+    font-size: 18px;
   }
 `;
 export const MobileInner = styled.div`

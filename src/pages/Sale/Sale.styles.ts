@@ -8,6 +8,12 @@ export const BlockTitle = styled.h2`
   line-height: 29px;
   color: #232428;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
 `;
 export const BlockWrap = styled.div`
   border-bottom: 1px solid rgba(124, 124, 124, 0.25);
@@ -25,9 +31,19 @@ export const DurationRow = styled.div`
   display: flex;
   align-items: center;
   padding: 15px 0;
+
+  @media (max-width: 880px) {
+    flex-wrap: wrap;
+    width: 100%;
+  }
 `;
 
-export const ButtonsBlock = styled.div``;
+export const ButtonsBlock = styled.div`
+  @media (max-width: 880px) {
+    width: 100%;
+    margin-top: 15px;
+  }
+`;
 export const DurationButton = styled.button`
   padding: 5px;
   background: #ffffff;
@@ -45,8 +61,16 @@ export const DurationButton = styled.button`
   &.active {
     background: #fbf5ff;
   }
+  @media (max-width: 880px) {
+    &.left {
+      margin-left: 0px;
+    }
+  }
   @media (max-width: 576px) {
     margin-left: 10px;
+    &.left {
+      margin-left: 0px;
+    }
   }
 `;
 export const BlockButton = styled.button`
@@ -68,10 +92,7 @@ export const BlockButton = styled.button`
     background: #873dc1;
     color: #fff;
   }
-  @media (max-width: 576px) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  @media (max-width: 768px) {
     width: 100%;
   }
 `;

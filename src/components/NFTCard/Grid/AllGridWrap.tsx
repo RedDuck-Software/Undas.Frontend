@@ -1,16 +1,17 @@
 import { ethers } from "ethers";
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 
-//import NFTGridItem from "./NFTGridItem";
-
-//import { GridLayout } from "../../../pages/AllNFTs/AllNFTs.styles";
-import { useFilter } from "../../../store";
+import {
+  useBuy,
+  useHasOffers,
+  useRent,
+} from "../../../store/reducers/Filter/helpers";
 import Context from "../../../utils/Context";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
-import { createClient } from "urql";
+import { createClient, useQuery } from "urql";
 
 interface CommonProps {
   id: number;
@@ -39,20 +40,28 @@ interface IAllGridWrap {
   priceFilter?: string;
 }
 
-const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
+const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const { connector } = useContext(Context);
+  // buy now
   const items: ItemsProps[] = [];
-  const stakings: StakingsProps[] = [];
-
-  const stackingFilter = useSelector(useFilter);
-
+  const buyingFilter = useSelector(useBuy);
   const [list, setList] = useState<ItemsProps[]>([]);
+  // rent - need refactor from staking to rent naming cause it's actually rent!!!
+  const stakings: StakingsProps[] = [];
+  const stackingFilter = useSelector(useRent);
   const [stakingsList, setStakingsList] = useState<StakingsProps[]>([]);
+  // hasOffer
+  const hasOffers: (ItemsProps | StakingsProps)[] = [];
+  const hasOfferFilter = useSelector(useHasOffers);
+  const [hasOffersList, setHasOffersList] = useState<
+    (ItemsProps | StakingsProps)[]
+  >([]);
 
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
-  const [commonList, setCommonList] = useState<CommonListProps[]>();
+  const [commonList, setCommonList] = useState<CommonListProps[]>([]);
+
   const getListings = async () => {
     setAmountOfNFTs(0);
     if (!connector) {
@@ -63,7 +72,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
-        console.log("listing nft", nft);
         const price = nft.price;
         const id = nft.tokenId;
         const listingId = nft.id;
@@ -90,7 +98,6 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        console.log("staking nft:", nft);
         const price = nft.premiumWei;
         const id = nft.tokenId;
         const name = nft.tokenName;
@@ -115,6 +122,57 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     return stakings;
   };
 
+  const getHasOffers = async () => {
+    setAmountOfNFTs(0);
+    if (!connector) {
+      return;
+    }
+
+    const tokens = await fetchHasOfferData();
+
+    tokens.listings.map((nft: any) => {
+      if (nft.listingStatus == "ACTIVE") {
+        const price = nft.price;
+        const id = nft.tokenId;
+        const listingId = nft.id;
+        const name = nft.tokenName;
+        const URI = nft.tokenURI;
+        const priceInNum = Number(ethers.utils.formatUnits(price, 18));
+        const tokenAddress = nft.token;
+
+        hasOffers.push({ priceInNum, id, name, URI, listingId, tokenAddress });
+
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
+    });
+
+    tokens.stakingListings.map((nft: any) => {
+      if (nft.stakingStatus == "ACTIVE") {
+        const price = nft.premiumWei;
+        const id = nft.tokenId;
+        const name = nft.tokenName;
+        const stakingId = nft.id;
+        const URI = nft.tokenURI;
+        const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        const colloteralWei = nft.colloteralWei;
+        const tokenAddress = nft.token;
+        hasOffers.push({
+          id,
+          name,
+          URI,
+          premiumInNum,
+          colloteralWei,
+          stakingId,
+          tokenAddress,
+        });
+
+        setAmountOfNFTs(amountOfNFTs + 1);
+      }
+    });
+
+    return hasOffers;
+  };
+
   async function getListingsData() {
     const response = await getListings();
     if (response) {
@@ -124,9 +182,15 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
 
   async function getStakingsData() {
     const response = await getStakings();
-
     if (response) {
       setStakingsList(response);
+    }
+  }
+
+  async function getHasOffersData() {
+    const response = await getHasOffers();
+    if (response) {
+      setHasOffersList(response);
     }
   }
   useEffect(() => {
@@ -137,6 +201,7 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     setLoading(false);
     getListingsData();
     getStakingsData();
+    getHasOffersData();
   }, [connector]);
 
   const priceSort = async () => {
@@ -173,40 +238,71 @@ const AllGridWrap: FC<IAllGridWrap> = ({ priceFilter }) => {
     }
   };
 
+  // TO DO:
+  // FIND SMARTER WAY TO MAKE FILTER
   useEffect(() => {
-    console.log(list && !stakingsList);
-    if (!list && !stakingsList) {
-      console.log("!list && !stakingsList");
+    if (!list && !stakingsList && !hasOffersList) {
       return;
-    } else if (list && !stakingsList) {
-      console.log("list && !stakingsList", list);
-      setCommonList(list);
-    } else if (!list && stakingsList) {
-      console.log("!list && stakingsList", list);
-      setCommonList(stakingsList);
-    } else {
-      if (stackingFilter.stacking) {
-        console.log("!list && stakingsList", list);
-
-        setCommonList(stakingsList);
-      } else {
-        priceSort()
-          .then((sortedArr) => {
-            if (sortedArr) {
-              setList(sortedArr);
-            }
-          })
-          .catch((e) => console.log(e));
-        let common: (ItemsProps | StakingsProps)[] = [...list, ...stakingsList];
-        setCommonList(common); //!!  MB ADD TO 199
-        common = common.filter(
-          (value, index, self) =>
-            index === self.findIndex((t) => t.id === value.id),
-        );
-      }
     }
-  }, [list, stakingsList, priceFilter, stackingFilter.stacking]);
-  console.log("commonList", commonList);
+
+    if (
+      buyingFilter.buying &&
+      stackingFilter.stacking &&
+      hasOfferFilter.hasOffers
+    ) {
+      setCommonList([...list, ...stakingsList]);
+    } else if (stackingFilter.stacking && hasOfferFilter.hasOffers) {
+      const unique = new Map(
+        [...stakingsList, ...hasOffersList].map((item: any) => [
+          item["id"],
+          item,
+        ]),
+      ).values();
+      setCommonList(Array.from(unique));
+    } else if (buyingFilter.buying && hasOfferFilter.hasOffers) {
+      const unique = new Map(
+        [...list, ...hasOffersList].map((item: any) => [item["id"], item]),
+      ).values();
+      setCommonList(Array.from(unique));
+    } else if (stackingFilter.stacking && buyingFilter.buying) {
+      setCommonList([...list, ...stakingsList]);
+    } else if (buyingFilter.buying) {
+      setCommonList(list);
+    } else if (stackingFilter.stacking) {
+      setCommonList(stakingsList);
+    } else if (hasOfferFilter.hasOffers) {
+      setCommonList(hasOffersList);
+    } else {
+      priceSort()
+        .then((sortedArr) => {
+          if (sortedArr) {
+            setList(sortedArr);
+          }
+        })
+        .catch((e) => console.log(e));
+      let common: (ItemsProps | StakingsProps | any)[] = [
+        ...list,
+        ...stakingsList,
+      ];
+      setCommonList(common); //!!  MB ADD TO 199
+      common = common.filter(
+        (value, index, self) =>
+          index === self.findIndex((t) => t.id === value.id),
+      );
+    }
+  }, [
+    list,
+    stakingsList,
+    priceFilter,
+    buyingFilter.buying,
+    stackingFilter.stacking,
+    hasOfferFilter.hasOffers,
+  ]);
+
+  useEffect(() => {
+    if (commonList) getResults(commonList.length);
+  }, [commonList]);
+
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -224,39 +320,67 @@ const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
 const tokensQuery = `
-    query   {
-      listings{
-        id
-        token
-        seller
-        tokenId
-        tokenURI
-        listingStatus
-        price
-        tokenDescription
-        tokenName    
-      }
-    }  
+  query {
+    listings{
+      id
+      token
+      seller
+      tokenId
+      tokenURI
+      listingStatus
+      price
+      tokenDescription
+      tokenName    
+    }
+  }  
 `;
 
 const tokensStakingQuery = `
- query  {
-     stakingListings{
-        id
-        seller
-        token
-        tokenId
-        tokenURI
-        stakingStatus
-        tokenName
-        tokenName
-        tokenDescription
-        colloteralWei
-        premiumWei
-        deadlineUTC
+  query {
+    stakingListings{
+      id
+      seller
+      token
+      tokenId
+      tokenURI
+      stakingStatus
+      tokenName
+      tokenDescription
+      colloteralWei
+      premiumWei
+      deadlineUTC
+    }
   }
-}
  `;
+
+const tokensHasOffersQuery = `
+  {
+    listings(where: {hasOffer: true}) {
+      id
+      token
+      seller
+      tokenId
+      tokenURI
+      listingStatus
+      price
+      tokenDescription
+      tokenName   
+    }
+    stakingListings(where: {hasOffer: true}) {
+      id
+      seller
+      token
+      tokenId
+      tokenURI
+      stakingStatus
+      tokenName
+      tokenDescription
+      colloteralWei
+      premiumWei
+      deadlineUTC
+    }
+  }
+`;
 
 const client = createClient({
   url: APIURL,
@@ -270,4 +394,10 @@ async function fetchStakingData() {
   const data = await client.query(tokensStakingQuery).toPromise();
   return data.data;
 }
+
+async function fetchHasOfferData() {
+  const data = await client.query(tokensHasOffersQuery).toPromise();
+  return data.data;
+}
+
 export default AllGridWrap;

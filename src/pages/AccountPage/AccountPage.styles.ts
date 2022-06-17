@@ -24,7 +24,7 @@ export const TabsMenu = styled.ul`
   flex-wrap: wrap;
   list-style: none;
   margin-left: auto;
-  max-width: 70%;
+  max-width: 75%;
   justify-content: flex-end;
   @media (max-width: 992px) {
     max-width: 100%;

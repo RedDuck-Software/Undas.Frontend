@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { PageTitle } from "../../../../globalStyles";
-
 import { ViewAllBtn } from "../../../HomePage/page-components/Recomended/Recommended.styles";
 
 export const ArticleWrap = styled.div`
@@ -55,7 +54,7 @@ export const ArticleDescription = styled.ul`
 `;
 export const ArticleDescriptionItem = styled.li`
   @media (max-width: 576px) {
-    &:first-child{
+    &:first-child {
       flex: 0 0 100%;
     }
   }
@@ -70,6 +69,10 @@ export const ArticleText = styled.p`
   font-size: 16px;
   line-height: 20px;
   color: #232428;
+  @media (min-width: 1700px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 export const RelatedArticles = styled.div`
   @media (max-width: 576px) {
