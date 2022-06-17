@@ -50,6 +50,7 @@ import {
   OverlayPopUp,
   FAQLink,
   SwiperNFT,
+  ContainerCollum,
 } from "./OfferRent.styles";
 
 import {
@@ -199,100 +200,70 @@ const OfferRent: React.FC = () => {
             </OverlayTrigger>
           </ContainerCheckboxCollateral>
           <OfferContainer>
-            <FirstCollum>
-              <NameRow>
-                <TextPrice>Deposit</TextPrice>
-              </NameRow>
-              <PriceRow>
-                <EthSelect>
-                  <EthText>ETH</EthText>
-                  <ImageDown src={down} alt="down-image" />
-                </EthSelect>
-                <AmmountInput
-                  type="number"
-                  placeholder="Amount"
-                  onChange={(e) => setColloteral(+e.target.value)}
-                />
-                <CostSelect>
-                  <DollarText>0.00</DollarText>
-                </CostSelect>
-              </PriceRow>
-              <NameRow>
-                <TextPrice className="сost-per-day">Cost per Day</TextPrice>
-              </NameRow>
-              <PriceRow>
-                <EthSelect>
-                  <EthText>ETH</EthText>
-                  <ImageDown src={down} alt="down-image" />
-                </EthSelect>
-                <AmmountInput
-                  type="number"
-                  placeholder="Amount"
-                  onChange={(e) => setPremium(+e.target.value)}
-                />
-                <CostSelect>
-                  <DollarText>0.00</DollarText>
-                </CostSelect>
-              </PriceRow>
-              <NameRow>
-                <TextPrice className="сost-per-day">Rental Period</TextPrice>
-              </NameRow>
-              <NameRow className="margin-top">
-                <TextDay>Day</TextDay>
-                <InputDay placeholder="Custom date" />
-                <PriceContainer>
-                  <EthPrice>0,035</EthPrice>
-                  <DollarPrice>258,25</DollarPrice>
-                </PriceContainer>
-              </NameRow>
-              <NameRow className="margin-top">
-                <TextOffer>Offer Expiration</TextOffer>
-              </NameRow>
-              <PriceRow>
-                <DaySelect>
-                  3 day
-                  <ImageDownOffer src={down} alt="down-image" />
-                </DaySelect>
-                <TimeSelect>
-                  <TextTime>06 : 35</TextTime>
-                  <TextPmAm>PM</TextPmAm>
-                </TimeSelect>
-              </PriceRow>
-              <NameRow className="margin-top-30">
-                <TextOffer>Marketplace commission</TextOffer>
-                <OverlayTrigger
-                  delay={{ show: 250, hide: 3000 }}
-                  placement="top"
-                  overlay={
-                    <OverlayPopUp>
-                      Speech bubble that will fall out when you click on the
-                      information on the icon <FAQLink href="/faq">FAQ</FAQLink>
-                    </OverlayPopUp>
-                  }
-                >
-                  <ButtonInfo>
-                    <ImageInfo src={info} alt="info-image" />
-                  </ButtonInfo>
-                </OverlayTrigger>
-                <PriceContainer>
-                  <EthPrice>0,035</EthPrice>
-                  <DollarPrice>258,25</DollarPrice>
-                </PriceContainer>
-              </NameRow>
-              <NameRow className="margin-top-20">
-                <TextOffer>Marketplace fee 3%</TextOffer>
-                <UNDPrice>UND 2</UNDPrice>
-              </NameRow>
-              <PayRow>
-                <CheckboxInput
-                  type="checkbox"
-                  id="purchases"
-                  className="custom-checkbox"
-                />
-                <CheckboxLabel htmlFor="purchases">
-                  Pay in {"\u00A0"}
-                  <UNDLabel>UND</UNDLabel>
-                  {"\u00A0"} with a 50% discount
+            <ContainerCollum>
+              <FirstCollum>
+                <NameRow>
+                  <TextPrice>Deposit</TextPrice>
+                </NameRow>
+                <PriceRow>
+                  <EthSelect>
+                    <EthText>ETH</EthText>
+                    <ImageDown src={down} alt="down-image" />
+                  </EthSelect>
+                  <AmmountInput
+                    type="number"
+                    placeholder="Amount"
+                    onChange={(e) => setColloteral(+e.target.value)}
+                  />
+                  <CostSelect>
+                    <DollarText>0.00</DollarText>
+                  </CostSelect>
+                </PriceRow>
+                <NameRow>
+                  <TextPrice className="сost-per-day">Cost per Day</TextPrice>
+                </NameRow>
+                <PriceRow>
+                  <EthSelect>
+                    <EthText>ETH</EthText>
+                    <ImageDown src={down} alt="down-image" />
+                  </EthSelect>
+                  <AmmountInput
+                    type="number"
+                    placeholder="Amount"
+                    onChange={(e) => setPremium(+e.target.value)}
+                  />
+                  <CostSelect>
+                    <DollarText>0.00</DollarText>
+                  </CostSelect>
+                </PriceRow>
+                <NameRow>
+                  <TextPrice className="сost-per-day">Rental Period</TextPrice>
+                </NameRow>
+                <NameRow className="margin-top">
+                  <TextDay>Day</TextDay>
+                  <InputDay placeholder="Custom date" />
+                  <PriceContainer>
+                    <EthPrice>0,035</EthPrice>
+                    <DollarPrice>258,25</DollarPrice>
+                  </PriceContainer>
+                </NameRow>
+                <NameRow className="margin-top">
+                  <TextOffer>Offer Expiration</TextOffer>
+                </NameRow>
+                <PriceRow>
+                  <DaySelect>
+                    3 day
+                    <ImageDownOffer src={down} alt="down-image" />
+                  </DaySelect>
+                  <TimeSelect>
+                    <TextTime>06 : 35</TextTime>
+                    <TextPmAm>PM</TextPmAm>
+                  </TimeSelect>
+                </PriceRow>
+                <NameRow className="margin-top-30">
+                  <TextOffer className="no-margin">
+                    Marketplace commission
+                  </TextOffer>
                   <OverlayTrigger
                     delay={{ show: 250, hide: 3000 }}
                     placement="top"
@@ -305,28 +276,66 @@ const OfferRent: React.FC = () => {
                     }
                   >
                     <ButtonInfo>
-                      <ImageInfo
-                        src={info}
-                        alt="info-image"
-                        className="margin-top"
-                      />
+                      <ImageInfo src={info} alt="info-image" />
                     </ButtonInfo>
                   </OverlayTrigger>
-                </CheckboxLabel>
-                <DollarPrice className="margin-0">258,25</DollarPrice>
-              </PayRow>
-            </FirstCollum>
-            <SecondCollum>
-              <NameRow>
-                <ItemAmount>Owner item</ItemAmount>
-              </NameRow>
-              <NFTInfoContainer>
-                <NFTCard
-                  uri={state.state.state.URI}
-                  name={state.state.state.name}
-                />
-              </NFTInfoContainer>
-            </SecondCollum>
+                  <PriceContainer>
+                    <EthPrice>0,035</EthPrice>
+                    <DollarPrice>258,25</DollarPrice>
+                  </PriceContainer>
+                </NameRow>
+                <NameRow className="margin-top-20">
+                  <TextOffer>Marketplace fee 3%</TextOffer>
+                  <UNDPrice>UND 2</UNDPrice>
+                </NameRow>
+                <PayRow>
+                  <CheckboxInput
+                    type="checkbox"
+                    id="purchases"
+                    className="custom-checkbox"
+                  />
+                  <CheckboxLabel htmlFor="purchases">
+                    Pay in {"\u00A0"}
+                    <UNDLabel>UND</UNDLabel>
+                    {"\u00A0"} with a 50% discount
+                    <OverlayTrigger
+                      delay={{ show: 250, hide: 3000 }}
+                      placement="top"
+                      overlay={
+                        <OverlayPopUp>
+                          Speech bubble that will fall out when you click on the
+                          information on the icon{" "}
+                          <FAQLink href="/faq">FAQ</FAQLink>
+                        </OverlayPopUp>
+                      }
+                    >
+                      <ButtonInfo>
+                        <ImageInfo
+                          src={info}
+                          alt="info-image"
+                          className="margin-top"
+                        />
+                      </ButtonInfo>
+                    </OverlayTrigger>
+                  </CheckboxLabel>
+                  <DollarPrice className="margin-0">258,25</DollarPrice>
+                  <UNDPrice className="small-size">
+                    UND 2 <DollarPrice>258,25</DollarPrice>
+                  </UNDPrice>
+                </PayRow>
+              </FirstCollum>
+              <SecondCollum>
+                <NameRow>
+                  <ItemAmount>Owner item</ItemAmount>
+                </NameRow>
+                <NFTInfoContainer className="max-width">
+                  <NFTCard
+                    uri={state.state.state.URI}
+                    name={state.state.state.name}
+                  />
+                </NFTInfoContainer>
+              </SecondCollum>
+            </ContainerCollum>
             {isNFTCollateral && (
               <>
                 <NameRow>

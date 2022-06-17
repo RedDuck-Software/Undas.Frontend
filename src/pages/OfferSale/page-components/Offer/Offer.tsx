@@ -205,7 +205,7 @@ const Offer: React.FC = () => {
           <NameRow>
             <CollectionName>Owner item</CollectionName>
           </NameRow>
-          <NFTInfoContainer>
+          <NFTInfoContainer className="max-width">
             <NFTCard
               uri={tokenURI ? tokenURI : "loading..."}
               name={tokenName ? tokenName : "loading..."}

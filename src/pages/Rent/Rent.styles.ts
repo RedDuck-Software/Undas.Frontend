@@ -14,7 +14,7 @@ export const TopLink = styled(Link)`
   width: 100%;
   max-width: 80rem;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   color: #873dc1;
   transition: all 0.3s ease-in;
@@ -223,5 +223,11 @@ export const Button = styled.button`
     color: #873dc1;
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
+    border: 1px solid #873dc1;
+  }
+
+  @media (max-width: 992px) {
+    width: 100%;
+    margin-bottom: 80px;
   }
 `;

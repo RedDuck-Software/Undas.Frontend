@@ -181,6 +181,11 @@ export const ContainerPopUp = styled.div`
     border-top: 10px solid white;
     top: -18.5px;
   }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    margin-left: unset;
+  }
 `;
 
 export const InputTextArea = styled.textarea`
