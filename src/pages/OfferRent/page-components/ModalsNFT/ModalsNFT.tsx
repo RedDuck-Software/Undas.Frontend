@@ -7,11 +7,10 @@ import {
   ModalNftDiv,
   AddNFTButton,
   AddNFT,
-  RowFlex,
+  BodyHead,
+  BodyContent,
   SelectedItem,
   MenuSearchWrap,
-  SearchIco,
-  Input,
   Filter,
   FilterItem,
   FilterTitle,
@@ -45,6 +44,8 @@ import {
   ModalContainer,
   ModalFooter,
   FormButtonModal,
+  FilterWrapper,
+  SortWrap,
 } from "./ModalsNFT.styles";
 
 const ModalsNFT: React.FC = () => {
@@ -71,146 +72,149 @@ const ModalsNFT: React.FC = () => {
           <MakeOfferText>All NFTs</MakeOfferText>
         </ModalHeader>
         <ModalBody>
-          <RowFlex>
+          <BodyHead>
             <SelectedItem>NFTs Selected 10</SelectedItem>
-            <MenuSearchWrap>
-              <SearchIco />
-              <Input placeholder="Search" />
-            </MenuSearchWrap>
-          </RowFlex>
-          <RowFlex className="justify-content-end">
-            <FilterCollection className={active.event && "collection-active"}>
-              <FilterItem
-                onClick={() => {
-                  if (!active.event) {
-                    setActive({ event: true });
-                  } else setActive({ event: false });
-                }}
-              >
-                <FilterTitleCollection>Collection</FilterTitleCollection>
-                <Arrow className={active.event && "collection-active"} />
-              </FilterItem>
-              <FilterMenu className={active.event && "collection-active"}>
-                <MenuItem hover={true}>
-                  <CheckboxInputAgreement
-                    type="checkbox"
-                    id="agreement"
-                    className="custom-checkbox"
-                  />
-                  <CheckboxLabelAgreement htmlFor="agreement">
-                    <CollectionBox>
-                      <CollectionImage
-                        src={collectionImage}
-                        alt="collection-image"
-                      />
-                      Borya Fo...
-                      <UNDText>UND</UNDText>
-                      <VerifyImage src={verifyImage} alt="verify-image" />
-                    </CollectionBox>
-                  </CheckboxLabelAgreement>
-                </MenuItem>
-                <MenuItem hover={true}>
-                  <CheckboxInputAgreement
-                    type="checkbox"
-                    id="agreement"
-                    className="custom-checkbox"
-                  />
-                  <CheckboxLabelAgreement htmlFor="agreement">
-                    <CollectionBox>
-                      <CollectionImage
-                        src={collectionImage}
-                        alt="collection-image"
-                      />
-                      Borya Fo...
-                      <UNDText>UND</UNDText>
-                      <VerifyImage src={verifyImage} alt="verify-image" />
-                    </CollectionBox>
-                  </CheckboxLabelAgreement>
-                </MenuItem>
-                <MenuItem hover={true}>
-                  <CheckboxInputAgreement
-                    type="checkbox"
-                    id="agreement"
-                    className="custom-checkbox"
-                  />
-                  <CheckboxLabelAgreement htmlFor="agreement">
-                    <CollectionBox>
-                      <CollectionImage
-                        src={collectionImage}
-                        alt="collection-image"
-                      />
-                      Borya Fo...
-                      <UNDText>UND</UNDText>
-                      <VerifyImage src={verifyImage} alt="verify-image" />
-                    </CollectionBox>
-                  </CheckboxLabelAgreement>
-                </MenuItem>
-                <MenuItem hover={true}>
-                  <CheckboxInputAgreement
-                    type="checkbox"
-                    id="agreement"
-                    className="custom-checkbox"
-                  />
-                  <CheckboxLabelAgreement htmlFor="agreement">
-                    <CollectionBox>
-                      <CollectionImage
-                        src={collectionImage}
-                        alt="collection-image"
-                      />
-                      Borya Fo...
-                      <UNDText>UND</UNDText>
-                      <VerifyImage src={verifyImage} alt="verify-image" />
-                    </CollectionBox>
-                  </CheckboxLabelAgreement>
-                </MenuItem>
-              </FilterMenu>
-            </FilterCollection>
-            <Filter className={active.price && "sort-active"}>
-              <FilterItem
-                onClick={() => {
-                  if (!active.price) {
-                    setActive({ price: true });
-                  } else setActive({ price: false });
-                }}
-              >
-                <FilterTitle>Sort by</FilterTitle>
-                <Arrow className={active.price && "sort-active"} />
-              </FilterItem>
-              <FilterMenu className={active.price && "sort-active"}>
-                <MenuItem
-                  hover={true}
-                  onClick={() => {
-                    setPriceFilter("low-to-high");
-                  }}
+            <FilterWrapper>
+              <MenuSearchWrap placeholder="Search" />
+              <SortWrap>
+                <FilterCollection
+                  className={active.event && "collection-active"}
                 >
-                  <span>Floor price</span>
-                </MenuItem>
-                <MenuItem
-                  hover={true}
-                  onClick={() => {
-                    setPriceFilter("high-to-low");
-                  }}
-                >
-                  <span>Last activity</span>
-                </MenuItem>
-                <MenuItem
-                  hover={true}
-                  onClick={() => {
-                    setPriceFilter("high-to-low");
-                  }}
-                >
-                  <span>A - Z</span>
-                </MenuItem>
-                <MenuItem
-                  hover={true}
-                  onClick={() => {
-                    setPriceFilter("high-to-low");
-                  }}
-                >
-                  <span>Z - A</span>
-                </MenuItem>
-              </FilterMenu>
-            </Filter>
+                  <FilterItem
+                    onClick={() => {
+                      if (!active.event) {
+                        setActive({ event: true });
+                      } else setActive({ event: false });
+                    }}
+                  >
+                    <FilterTitleCollection>Collection</FilterTitleCollection>
+                    <Arrow className={active.event && "collection-active"} />
+                  </FilterItem>
+                  <FilterMenu className={active.event && "collection-active"}>
+                    <MenuItem hover={true}>
+                      <CheckboxInputAgreement
+                        type="checkbox"
+                        id="agreement"
+                        className="custom-checkbox"
+                      />
+                      <CheckboxLabelAgreement htmlFor="agreement">
+                        <CollectionBox>
+                          <CollectionImage
+                            src={collectionImage}
+                            alt="collection-image"
+                          />
+                          Borya Fo...
+                          <UNDText>UND</UNDText>
+                          <VerifyImage src={verifyImage} alt="verify-image" />
+                        </CollectionBox>
+                      </CheckboxLabelAgreement>
+                    </MenuItem>
+                    <MenuItem hover={true}>
+                      <CheckboxInputAgreement
+                        type="checkbox"
+                        id="agreement"
+                        className="custom-checkbox"
+                      />
+                      <CheckboxLabelAgreement htmlFor="agreement">
+                        <CollectionBox>
+                          <CollectionImage
+                            src={collectionImage}
+                            alt="collection-image"
+                          />
+                          Borya Fo...
+                          <UNDText>UND</UNDText>
+                          <VerifyImage src={verifyImage} alt="verify-image" />
+                        </CollectionBox>
+                      </CheckboxLabelAgreement>
+                    </MenuItem>
+                    <MenuItem hover={true}>
+                      <CheckboxInputAgreement
+                        type="checkbox"
+                        id="agreement"
+                        className="custom-checkbox"
+                      />
+                      <CheckboxLabelAgreement htmlFor="agreement">
+                        <CollectionBox>
+                          <CollectionImage
+                            src={collectionImage}
+                            alt="collection-image"
+                          />
+                          Borya Fo...
+                          <UNDText>UND</UNDText>
+                          <VerifyImage src={verifyImage} alt="verify-image" />
+                        </CollectionBox>
+                      </CheckboxLabelAgreement>
+                    </MenuItem>
+                    <MenuItem hover={true}>
+                      <CheckboxInputAgreement
+                        type="checkbox"
+                        id="agreement"
+                        className="custom-checkbox"
+                      />
+                      <CheckboxLabelAgreement htmlFor="agreement">
+                        <CollectionBox>
+                          <CollectionImage
+                            src={collectionImage}
+                            alt="collection-image"
+                          />
+                          Borya Fo...
+                          <UNDText>UND</UNDText>
+                          <VerifyImage src={verifyImage} alt="verify-image" />
+                        </CollectionBox>
+                      </CheckboxLabelAgreement>
+                    </MenuItem>
+                  </FilterMenu>
+                </FilterCollection>
+                <Filter className={active.price && "sort-active"}>
+                  <FilterItem
+                    onClick={() => {
+                      if (!active.price) {
+                        setActive({ price: true });
+                      } else setActive({ price: false });
+                    }}
+                  >
+                    <FilterTitle>Sort by</FilterTitle>
+                    <Arrow className={active.price && "sort-active"} />
+                  </FilterItem>
+                  <FilterMenu className={active.price && "sort-active"}>
+                    <MenuItem
+                      hover={true}
+                      onClick={() => {
+                        setPriceFilter("low-to-high");
+                      }}
+                    >
+                      <span>Floor price</span>
+                    </MenuItem>
+                    <MenuItem
+                      hover={true}
+                      onClick={() => {
+                        setPriceFilter("high-to-low");
+                      }}
+                    >
+                      <span>Last activity</span>
+                    </MenuItem>
+                    <MenuItem
+                      hover={true}
+                      onClick={() => {
+                        setPriceFilter("high-to-low");
+                      }}
+                    >
+                      <span>A - Z</span>
+                    </MenuItem>
+                    <MenuItem
+                      hover={true}
+                      onClick={() => {
+                        setPriceFilter("high-to-low");
+                      }}
+                    >
+                      <span>Z - A</span>
+                    </MenuItem>
+                  </FilterMenu>
+                </Filter>
+              </SortWrap>
+            </FilterWrapper>
+          </BodyHead>
+          <BodyContent>
             <NFTSelect>
               <NFTCard>
                 <FirstCollumNFT>
@@ -221,12 +225,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -246,12 +246,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -259,7 +255,7 @@ const ModalsNFT: React.FC = () => {
                   </TotalPriceBox>
                 </SecondCollumNFT>
                 <LastCollumNFT>
-                  <Add className="minus">—</Add>
+                  <Add className="minus" />
                 </LastCollumNFT>
               </NFTCard>
               <NFTCard>
@@ -271,12 +267,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -296,12 +288,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -321,12 +309,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -346,12 +330,8 @@ const ModalsNFT: React.FC = () => {
                   <CollectionNameNFT>Collection NFT</CollectionNameNFT>
                   <NameNFTBox>
                     <NameNFTText>Name NFT</NameNFTText>
-                    <VerifyImage
-                      src={verifyImage}
-                      alt="verify-image"
-                      className="alight-right"
-                    />
-                    <UNDText className="alight-left">UND</UNDText>
+                    <VerifyImage src={verifyImage} alt="verify-image" />
+                    <UNDText>UND</UNDText>
                   </NameNFTBox>
                   <TotalPriceBox>
                     <EthPrice>40</EthPrice>
@@ -363,7 +343,7 @@ const ModalsNFT: React.FC = () => {
                 </LastCollumNFT>
               </NFTCard>
             </NFTSelect>
-          </RowFlex>
+          </BodyContent>
         </ModalBody>
         <ModalFooter>
           <FormButtonModal className="btn-apply" onClick={handleClose}>

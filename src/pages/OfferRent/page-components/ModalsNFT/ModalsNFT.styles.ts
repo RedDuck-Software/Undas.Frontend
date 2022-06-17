@@ -1,14 +1,8 @@
 import styled from "styled-components";
 import { Modal } from "react-bootstrap";
 
-import { ReactComponent as Search } from "../../../../pages/CollectionPage/assets/search.svg";
-
 import { collectionType, eth } from "../../imports";
-
-export const FormButton = styled.button`
-  height: 36px;
-  width: 250px;
-`;
+import Search from "../../../CollectionPage/assets/search.svg";
 
 export const MakeOfferText = styled.div`
   font-family: "Montserrat";
@@ -19,6 +13,7 @@ export const MakeOfferText = styled.div`
   text-align: center;
   color: #232428;
   width: 100%;
+  padding-left: 50px;
 `;
 
 export const AddNFTButton = styled.button`
@@ -32,7 +27,6 @@ export const AddNFTButton = styled.button`
     box-shadow: 0px 0px 5px #7c7c7c;
   }
 `;
-
 export const AddNFT = styled.div`
   height: 50px;
   width: 50px;
@@ -46,14 +40,23 @@ export const AddNFT = styled.div`
   line-height: 50px;
   transition: all 0.3s;
 `;
-
-export const RowFlex = styled.div`
+export const BodyHead = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  &.justify-content-end {
-    justify-content: end;
-    margin-top: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
   }
+`;
+export const BodyContent = styled.div``;
+export const SortWrap = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+export const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  flex: 0 0 60%;
 `;
 
 export const SelectedItem = styled.div`
@@ -65,22 +68,25 @@ export const SelectedItem = styled.div`
   line-height: 20px;
   margin-top: 6px;
   color: #7c7c7c;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    width: 100%;
+    text-align: right;
+  }
 `;
 
-export const SearchIco = styled(Search)`
-  margin-right: 10px;
-`;
-
-export const MenuSearchWrap = styled.div`
-  width: 60%;
-  padding-left: 20px;
+export const MenuSearchWrap = styled.input`
+  width: 100%;
+  padding-left: 50px;
   display: flex;
   align-items: center;
   height: 36px;
   background-color: #fff;
-  box-shadow: inset 0px 0px 3px rgba(124, 124, 124, 0.25);
+  box-shadow: inset 0px 0px 5px rgb(124, 124, 124, 0.5);
   border-radius: 10px;
   border: none;
+  outline: none;
+  background: #fff url(${Search}) no-repeat 20px center;
   &:focus {
     box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
@@ -97,7 +103,7 @@ export const Input = styled.input`
 `;
 
 export const Filter = styled.ul`
-  width: 20%;
+  width: 40%;
   position: relative;
   cursor: pointer;
   background-color: #fff;
@@ -116,7 +122,7 @@ export const Filter = styled.ul`
 `;
 
 export const FilterCollection = styled.ul`
-  width: 38%;
+  width: 58%;
   height: 36px;
   margin-right: 2%;
   position: relative;
@@ -138,7 +144,11 @@ export const FilterItem = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 7px;
-  transition: all ease-in-out 0.15s;
+  transition: all ease-in-out 0.3s;
+  border-radius: 10px;
+  &:hover {
+    background: #fbf5ff;
+  }
 `;
 
 export const FilterTitle = styled.span`
@@ -215,6 +225,14 @@ export const FilterTitleCollection = styled.span`
     vertical-align: middle;
     padding-right: 10px;
   }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  @media (max-width: 576px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 
 export const CheckboxInputAgreement = styled.input`
@@ -288,21 +306,11 @@ export const UNDText = styled.span`
   font-weight: 600;
   font-size: 12px;
   line-height: 17px;
-  float: right;
   color: #873dc1;
-  &.alight-left {
-    margin-left: 5px;
-    margin-right: 15px;
-  }
 `;
 
 export const VerifyImage = styled.img`
-  margin-right: 5px;
-  float: right;
-  &.alight-right {
-    margin-left: auto;
-    margin-right: unset;
-  }
+  margin: 0 5px 0 10px;
 `;
 
 export const CollectionBox = styled.div`
@@ -317,17 +325,23 @@ export const NFTSelect = styled.div`
   flex-wrap: wrap;
   max-height: 350px;
   overflow-y: auto;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `;
 
 export const NFTCard = styled.div`
   display: flex;
   height: 100px;
   width: 49%;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.2);
   border-radius: 10px;
   margin-top: 15px;
   &.selected {
     background-color: #ebdfff;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -336,6 +350,13 @@ export const FirstCollumNFT = styled.div`
   width: 30%;
   flex-wrap: wrap;
   flex-direction: column;
+  @media (max-width: 768px) {
+    width: 70px;
+    margin-right: 20px;
+  }
+  @media (max-width: 576px) {
+    margin-right: 10px;
+  }
 `;
 
 export const SecondCollumNFT = styled.div`
@@ -352,8 +373,13 @@ export const LastCollumNFT = styled.div`
   align-self: center;
   height: 100px;
   border-radius: 0px 10px 10px 0px;
+  transition: all 0.3s;
   &:hover {
     background-color: #f5efff;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    margin-left: auto;
   }
 `;
 
@@ -376,8 +402,6 @@ export const PriceText = styled.div`
 `;
 
 export const CollectionNameNFT = styled.div`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -388,13 +412,13 @@ export const CollectionNameNFT = styled.div`
 
 export const NameNFTBox = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   margin-top: 10px;
 `;
 
 export const NameNFTText = styled.div`
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -445,8 +469,10 @@ export const Add = styled.div`
   color: #7c7c7c;
   margin-top: 10px;
   &.minus {
-    font-size: 25px;
-    margin-top: 28px;
+    width: 24px;
+    height: 3px;
+    background-color: #7c7c7c;
+    margin-top: 45px;
   }
 `;
 
@@ -470,10 +496,16 @@ export const ModalContainer = styled(Modal)`
   }
   & .modal-content {
     border-radius: 20px 20px 20px 20px;
-    width: 750px;
+    width: 100%;
   }
   & .btn-close {
-    padding-right: 27px !important;
+    padding-right: 27px;
+  }
+  & .btn-close:focus {
+    box-shadow: none;
+  }
+  @media (max-width: 768px) {
+    margin: 0 auto;
   }
 `;
 
@@ -481,47 +513,42 @@ export const ModalFooter = styled(Modal.Footer)`
   align-items: center;
   justify-content: center;
   border: none;
+  @media (max-width: 576px) {
+    padding-bottom: 0.75rem;
+  }
 `;
 
-export const FormButtonModal = styled(FormButton)`
+export const FormButtonModal = styled.button`
+  width: 25%;
+  background: #ffffff;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  transition: all 0.3s;
+  padding: 10px;
   &.btn-apply {
-    width: 160px !important;
-    height: 36px !important;
-    background: #ffffff;
     border: 1px solid #873dc1;
-    border-radius: 10px;
     margin-right: 30px;
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    text-align: center;
     color: #873dc1;
-    transition: all 0.3s;
   }
   &.btn-apply:hover {
     color: #ffffff;
     background: #873dc1;
   }
   &.btn-clear {
-    width: 160px !important;
-    height: 36px !important;
-    background: #ffffff;
     border: 1px solid #ff2a36;
-    border-radius: 10px;
-    margin-right: 30px;
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    text-align: center;
     color: #ff2a36;
-    transition: all 0.3s;
   }
   &.btn-clear:hover {
     color: #ffffff;
     background: #ff2a36;
+  }
+  @media (max-width: 576px) {
+    width: 100%;
+    &.btn-apply {
+      margin-right: 0.25rem;
+    }
   }
 `;
