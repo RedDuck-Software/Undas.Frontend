@@ -56,6 +56,7 @@ export const SocialWrap = styled.div`
   svg {
     cursor: pointer;
   }
+
   & svg:hover path{
     fill: #873dc1;
   }
