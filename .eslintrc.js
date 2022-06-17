@@ -1,16 +1,21 @@
-module.exports = {
+  module.exports = {
   parser: "@typescript-eslint/parser",
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ["./tsconfig.json"],
-  },
   plugins: ["@typescript-eslint", "react", "import", "react-hooks"],
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript",
-    "prettier",
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "prettier",
+      ],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ["./tsconfig.json"],
+      }
+    }
   ],
   rules: {
     "import/order": [

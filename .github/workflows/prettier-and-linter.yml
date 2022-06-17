@@ -1,0 +1,34 @@
+name: Prettier and Linter validation
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  linter-validation:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Run eslint and prettier
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
