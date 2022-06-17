@@ -34,11 +34,19 @@ export const ContentWrapper = styled.div`
   gap: 30px;
   margin-top: 20px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 `;
 export const LeftBlock = styled.div`
   display: flex;
   flex: 0 1 60%;
   flex-direction: column;
+  width: 60%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const ContentItem = styled.div`
@@ -50,18 +58,60 @@ export const ContentItem = styled.div`
   &:first-child {
     padding-top: 0;
   }
+
+  @media (max-width: 860px) {
+    &.wrap {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
-export const RightBlock = styled.div``;
+export const RightBlock = styled.div`
+  width: 40%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 export const ContentItemName = styled.div`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   color: #232428;
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+    &.width {
+      width: 80%;
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 export const ContentItemPriceWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+
+  @media (max-width: 860px) {
+    &.fee {
+      width: 100%;
+      justify-content: flex-end;
+      flex-direction: unset;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: unset;
+    gap: 10px;
+    &.column {
+      flex-direction: column;
+    }
+  }
 `;
 export const ContentItemPriceEth = styled.span`
   font-weight: 400;
@@ -80,6 +130,14 @@ export const ContentItemPriceUsd = styled.span`
   line-height: 17px;
   text-align: right;
   color: #7c7c7c;
+  @media (max-width: 860px) {
+    &.margin-3 {
+      margin-top: 3px;
+    }
+  }
+  @media (max-width: 576px) {
+    margin-top: 1px;
+  }
 `;
 export const ContentItemPriceUnd = styled.span`
   color: #873dc1;
@@ -108,6 +166,13 @@ export const RentalLable = styled.label`
 export const Total = styled(ContentItemName)`
   font-size: 24px;
   line-height: 29px;
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 export const TotalPrice = styled.div`
   display: flex;
@@ -117,6 +182,13 @@ export const TotalPriceEth = styled(ContentItemPriceEth)`
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 export const TotalPriceUnd = styled(ContentItemPriceUnd)`
   font-weight: 500;
@@ -126,6 +198,19 @@ export const TotalPriceUnd = styled(ContentItemPriceUnd)`
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+    @media (max-width: 992px) {
+      font-size: 20px;
+    }
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
   }
 `;
 export const Plus = styled.span`
@@ -190,6 +275,10 @@ export const CheckboxLabel = styled.label`
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
     cursor: pointer;
   }
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
 `;
 export const ItemAmount = styled.p`
   font-weight: 400;
@@ -197,6 +286,10 @@ export const ItemAmount = styled.p`
   line-height: 20px;
   color: #232428;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 export const BottomWrapper = styled.div``;
 export const CheckBoxWrapper = styled.div`
@@ -229,5 +322,11 @@ export const Button = styled.button`
   @media (max-width: 992px) {
     width: 100%;
     margin-bottom: 80px;
+  }
+  @media (max-width: 786px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
   }
 `;

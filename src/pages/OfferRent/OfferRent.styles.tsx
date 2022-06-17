@@ -451,7 +451,7 @@ export const UNDLabel = styled.span`
   line-height: 23px;
   color: #873dc1;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     font-size: 14px;
   }
 `;

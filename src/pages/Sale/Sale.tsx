@@ -257,7 +257,7 @@ const Sale: React.FC = () => {
                     <TextDay>Day</TextDay>
                     <InputDay placeholder="Custom date" />
                     <ButtonsBlock>
-                      <DurationButton>7</DurationButton>
+                      <DurationButton className="left">7</DurationButton>
                       <DurationButton>30</DurationButton>
                       <DurationButton>60</DurationButton>
                       <DurationButton>90</DurationButton>
@@ -341,7 +341,7 @@ const Sale: React.FC = () => {
                       onChange={(e) => setDurationInDay(+e.target.value)}
                     />
                     <ButtonsBlock>
-                      <DurationButton>7</DurationButton>
+                      <DurationButton className="left">7</DurationButton>
                       <DurationButton>30</DurationButton>
                       <DurationButton>60</DurationButton>
                       <DurationButton>90</DurationButton>

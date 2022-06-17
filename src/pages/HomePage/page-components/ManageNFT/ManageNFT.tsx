@@ -35,7 +35,10 @@ const ManageNFT: React.FC = () => {
           <CardTitle>Adding NFT</CardTitle>
           <DescHolder>
             <DescList>
-              Click <PurpleText to="/create-nft" fs="14px">Create</PurpleText>
+              Click{" "}
+              <PurpleText to="/create-nft" fs="14px">
+                Create
+              </PurpleText>
             </DescList>
             <DescList>
               <StyledSpan>Choose an NFT and collection to create</StyledSpan>
