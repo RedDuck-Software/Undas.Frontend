@@ -88,6 +88,9 @@ const NewNFT: React.FC = () => {
             slidesPerView: 3,
             spaceBetween: 20,
           },
+          1700: {
+            slidesPerView: 4,
+          }
         }}
         className="rent-slider"
         modules={[Navigation]}

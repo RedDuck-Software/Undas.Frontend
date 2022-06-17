@@ -69,6 +69,10 @@ export const ArticleText = styled.p`
   font-size: 16px;
   line-height: 20px;
   color: #232428;
+  @media (min-width: 1700px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 export const RelatedArticles = styled.div`
   @media (max-width: 576px) {

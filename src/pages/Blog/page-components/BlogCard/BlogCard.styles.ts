@@ -53,6 +53,9 @@ export const CardWrap = styled(Link)`
   @media (max-width: 400px) {
     height: 50%;
   }
+  @media (min-width: 1700px) {
+    height: 420px;
+  }
 `;
 export const BigCardWrap = styled(CardWrap)`
   flex-direction: row;
