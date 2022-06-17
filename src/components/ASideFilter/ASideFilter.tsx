@@ -54,7 +54,11 @@ import {
   EthereumIcon,
 } from "./imports";
 
-import { filterAction } from "../../store/reducers/stackingReducer";
+import {
+  buyAction,
+  hasOffersAction,
+  rentAction,
+} from "../../store/reducers/Filter/filterActions";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
@@ -278,7 +282,8 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
-
+  const buyingRef: any = useRef();
+  const hasOffersRef: any = useRef();
   return (
     <>
       <ASideWrap
@@ -324,7 +329,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                 />
               </HolderElement>
               <AccordionMenu
-                mh="146px"
+                mh="186px"
                 className={(activeMenu.status && "active-status") || ""}
               >
                 <AccordionElement
@@ -338,29 +343,48 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                     <SliderRound />
                   </Switch>
                 </AccordionElement>
+                <AccordionElement>
+                  <span>Staking</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
+                <AccordionElement
+                  onClick={() => {
+                    buyingRef.current.checked = !buyingRef.current.checked;
+                    dispatch(buyAction(buyingRef.current.checked));
+                  }}
+                >
+                  <span>Buy now</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" ref={buyingRef} />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
                 <AccordionElement
                   onClick={() => {
                     stakingRef.current.checked = !stakingRef.current.checked;
-                    dispatch(filterAction(stakingRef.current.checked));
+                    dispatch(rentAction(stakingRef.current.checked));
                   }}
                 >
-                  <span>Staking</span>
+                  <span>Rent</span>
                   <Switch>
                     <InputSwitch type="checkbox" ref={stakingRef} />
                     <SliderRound />
                   </Switch>
                 </AccordionElement>
-                <AccordionElement>
-                  <span>Rent</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-                <AccordionElement>
+
+                <AccordionElement
+                  onClick={() => {
+                    hasOffersRef.current.checked =
+                      !hasOffersRef.current.checked;
+                    dispatch(hasOffersAction(hasOffersRef.current.checked));
+                  }}
+                >
                   <span>Has Offers</span>
                   <Switch>
-                    <InputSwitch type="checkbox" />
+                    <InputSwitch type="checkbox" ref={hasOffersRef} />
                     <SliderRound />
                   </Switch>
                 </AccordionElement>

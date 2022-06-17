@@ -20,7 +20,7 @@ import {
 } from "./ASideFilterCollection.styles";
 import { FilterIco, StatusIco, PriceIco, UsdIco, EthIco } from "./imports";
 
-import { filterAction } from "../../../../store/reducers/stackingReducer";
+import { rentAction } from "../../../../store/reducers/Filter/filterActions";
 
 const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
   marginTop,
@@ -69,6 +69,7 @@ const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
+  const buyRef: any = useRef();
   return (
     <ASideWrap className={(active && "active") || ""}>
       <Holder marginTop={marginTop}>
@@ -120,7 +121,7 @@ const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
           <AccordionElement
             onClick={() => {
               stakingRef.current.checked = !stakingRef.current.checked;
-              dispatch(filterAction(stakingRef.current.checked));
+              dispatch(rentAction(stakingRef.current.checked));
             }}
           >
             <span>Staking</span>
