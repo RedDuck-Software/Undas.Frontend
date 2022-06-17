@@ -25,7 +25,7 @@ export const EarningsContentText = styled.p`
     color: #873dc1;
     text-decoration: none;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
   }
@@ -41,7 +41,7 @@ export const EarningsContentMessage = styled.p`
   border: 1px solid rgba(135, 61, 193, 0.25);
   box-sizing: border-box;
   border-radius: 10px;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 20px;
     line-height: 26px;
   }

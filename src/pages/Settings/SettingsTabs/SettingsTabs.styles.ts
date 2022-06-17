@@ -56,7 +56,7 @@ export const TabsText = styled.span`
   @media (max-width: 825px) {
     display: none;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
   }
@@ -101,7 +101,7 @@ export const DescriptionText = styled.p`
     font-size: 12px;
     line-height: 14px;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
   }

@@ -27,7 +27,7 @@ export const TitleModal = styled.div`
   font-size: 18px;
   line-height: 22px;
   color: #232428;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 22px;
     line-height: 30px;
   }
@@ -38,7 +38,7 @@ export const Descriprtion = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
   }

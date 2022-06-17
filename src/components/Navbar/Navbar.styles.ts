@@ -19,7 +19,7 @@ export const Header = styled.header`
   @media (max-width: 1024px) {
     overflow: hidden;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     height: 60px;
   }
 `;
@@ -53,7 +53,7 @@ export const SearchWrapper = styled.div`
     width: 100%;
     max-width: 100%;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     max-width: 100%;
     width: 45vw;
   }
@@ -85,7 +85,7 @@ export const NavigationMenu = styled.nav`
   width: 38vw;
   max-width: 390px;
   margin-right: 15px;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     max-width: 500px;
   }
 `;
@@ -140,7 +140,7 @@ export const DropdownMenu = styled.ul<IDropdown>`
   @media (max-width: 1100px) {
     left: -85px;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     width: ${(props) => props.xlWidth || "155px"};
   }
 `;
@@ -182,7 +182,7 @@ export const StyledLink = styled(Link)`
     visibility: visible;
     cursor: pointer;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 22px;
     line-height: 27px;
   }
@@ -206,7 +206,7 @@ export const MenuList = styled(Link)`
     font-weight: 500;
     color: #873dc1;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 16px;
     line-height: 20px;
   }

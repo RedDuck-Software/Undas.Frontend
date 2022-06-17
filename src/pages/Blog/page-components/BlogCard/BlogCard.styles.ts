@@ -53,7 +53,7 @@ export const CardWrap = styled(Link)`
   @media (max-width: 400px) {
     height: 50%;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     height: 420px;
   }
 `;

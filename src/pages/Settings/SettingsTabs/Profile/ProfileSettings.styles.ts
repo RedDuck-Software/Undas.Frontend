@@ -23,7 +23,7 @@ export const BlockDescript = styled.span`
   color: #7c7c7c;
   margin-left: 10px;
   margin-bottom: 10px;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
   }
@@ -35,7 +35,7 @@ export const BlockTitle = styled.h2`
   line-height: 22px;
   color: #232428;
   margin-bottom: 10px;
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 24px;
     line-height: 30px;
   }

@@ -30,7 +30,7 @@ export const AboutContentText = styled.div`
   @media (max-width: 992px) {
     width: 100%;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     width: 65%;
   }
 `;
@@ -69,7 +69,7 @@ export const ArticleText = styled.div`
       max-height: none;
     }
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 20px;
     line-height: 30px;
   }
@@ -88,7 +88,7 @@ export const AboutContentImage = styled.img`
   @media (max-width: 992px) {
     display: none;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     width: 35%;
   }
 `;

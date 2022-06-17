@@ -29,7 +29,7 @@ export const TitleLink = styled.a`
     font-size: 12px;
     line-height: 15px;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 22px;
     line-height: 27px;
   }

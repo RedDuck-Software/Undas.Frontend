@@ -88,7 +88,7 @@ const NewNFT: React.FC = () => {
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          1600: {
+          1700: {
             slidesPerView: 4,
           }
         }}

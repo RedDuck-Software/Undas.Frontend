@@ -55,7 +55,7 @@ export const ManageCard = styled.li<ICard>`
   @media (max-width: 576px) {
     flex: 0 0 100%;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     width: 320px;
   }
 `;

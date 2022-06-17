@@ -39,7 +39,7 @@ export const Container = styled.div`
   @media (max-width: 469px) {
     padding: 0 1rem;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     max-width: 105rem;
   }
 `;
@@ -200,7 +200,7 @@ export const FormButton = styled.button`
       margin-bottom: 15px;
     }
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     padding: 10px 50px;
     font-size: 18px;
   }

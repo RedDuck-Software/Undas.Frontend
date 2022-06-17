@@ -48,7 +48,7 @@ export const Title = styled.h2`
     font-size: 14px;
     line-height: 17px;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     font-size: 44px;
     line-height: 50px;
   }
@@ -86,7 +86,7 @@ export const ViewAllBtn = styled(Link)`
     left: 0;
     width: 100%;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     padding: 15px 100px;
     font-size: 18px;
   }

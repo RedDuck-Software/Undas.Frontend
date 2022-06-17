@@ -14,7 +14,7 @@ export const Wrap = styled.div`
     gap: 10px;
     display: none;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1700px) {
     grid-auto-rows: 420px;
   }
 `;
