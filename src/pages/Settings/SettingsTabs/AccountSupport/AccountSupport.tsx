@@ -44,11 +44,11 @@ const AccountSupport: React.FC = () => {
             <Accordion.Header>Contact UNDAS Support</Accordion.Header>
             <Accordion.Body>
               <DescriptionText>
-                Can&#39;t find the answers you&#39;re looking for? You can
+                Can&#39;t find the answers you&#39;re looking for? You can&nbsp;
                 <a href="" className="accordion-text-link">
                   submit a request
                 </a>
-                here
+                &nbsp;here
               </DescriptionText>
             </Accordion.Body>
           </AccordionItem>
@@ -58,11 +58,10 @@ const AccountSupport: React.FC = () => {
               <DescriptionText>
                 If you believe your account has been compromised, let us know
                 and we can lock your account. This will disable items in your
-                wallet from being bought, sold, or transferred using UNDAS
+                wallet from being bought, sold, or transferred using UNDAS&nbsp;
                 <a href="" className="accordion-text-link">
                   Learn more...
                 </a>
-                here
               </DescriptionText>
               <AccountSupportSelect>
                 <option>I have unknown transactions on my account</option>

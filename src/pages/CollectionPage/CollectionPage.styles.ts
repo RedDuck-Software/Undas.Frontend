@@ -176,7 +176,7 @@ export const HeadWrapper = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
 
   @media (max-width: 1200px) {
     display: block;

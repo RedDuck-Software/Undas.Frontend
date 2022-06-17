@@ -44,8 +44,8 @@ const Slider: React.FC = () => {
           </TextStacking>
         </UndasDiv>
         <SliderButtonsBlock>
-          <ExploreButton>Explore</ExploreButton>
-          <CreateButton>Create</CreateButton>
+          <ExploreButton to="/all">Explore</ExploreButton>
+          <CreateButton to="/create-nft">Create</CreateButton>
         </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>
@@ -64,8 +64,8 @@ const Slider: React.FC = () => {
           </TextStacking>
         </UndasDiv>
         <SliderButtonsBlock>
-          <ExploreButton>Explore</ExploreButton>
-          <CreateButton>Create</CreateButton>
+          <ExploreButton to="/all">Explore</ExploreButton>
+          <CreateButton to="/create-nft">Create</CreateButton>
         </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>
@@ -84,8 +84,8 @@ const Slider: React.FC = () => {
           </TextStacking>
         </UndasDiv>
         <SliderButtonsBlock>
-          <ExploreButton>Explore</ExploreButton>
-          <CreateButton>Create</CreateButton>
+          <ExploreButton to="/all">Explore</ExploreButton>
+          <CreateButton to="/create-nft">Create</CreateButton>
         </SliderButtonsBlock>
         <CollectionDiv>
           <IMGdiv></IMGdiv>

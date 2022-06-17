@@ -5,7 +5,11 @@ export enum Filter {
    removeCollection = "REMOVE_COLLECTION",
    // category
    addCategory = "ADD_CATEGORY",
-   removeCategory = "REMOVE_CATEGORY"
+   removeCategory = "REMOVE_CATEGORY",
+   // status toggle
+   staking = "TOGGLE_STAKING",
+   buying = "TOGGLE_BUYING",
+   hasOffers = "TOGGLE_HAS_OFFERS",
 }
 
 export type Collection = {

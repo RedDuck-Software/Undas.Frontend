@@ -56,6 +56,10 @@ export const SocialWrap = styled.div`
   svg {
     cursor: pointer;
   }
+
+  & svg:hover path {
+    fill: #873dc1;
+  }
   @media (max-width: 1200px) {
     margin-left: auto;
   }
@@ -177,14 +181,19 @@ export const ContainerPopUp = styled.div`
     border-top: 10px solid white;
     top: -18.5px;
   }
+
+  @media (max-width: 576px) {
+    width: 95%;
+    margin-left: unset;
+  }
 `;
 
 export const InputTextArea = styled.textarea`
-  width: 320px;
+  width: 100%;
   border: none;
   margin-top: 20px;
-  margin-left: 15px;
-  margin-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   height: 90px;
   resize: none;
   font-family: "Montserrat";

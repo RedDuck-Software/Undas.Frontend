@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ManageNFTContainer = styled.div`
@@ -54,6 +55,9 @@ export const ManageCard = styled.li<ICard>`
   @media (max-width: 576px) {
     flex: 0 0 100%;
   }
+  @media (min-width: 1700px) {
+    width: 320px;
+  }
 `;
 
 export const CardTitle = styled.span`
@@ -108,7 +112,7 @@ interface IPurpleText {
   fs?: string;
 }
 
-export const PurpleText = styled.a<IPurpleText>`
+export const PurpleText = styled(Link)<IPurpleText>`
   width: 100%;
   text-decoration: none;
   cursor: pointer;

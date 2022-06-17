@@ -143,7 +143,7 @@ const Rent: React.FC = () => {
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
-                <ContentItemName>
+                <ContentItemName className="width">
                   Rental price for
                   <InputBlock>
                     <RentalLable htmlFor="period">Select Period</RentalLable>
@@ -170,13 +170,13 @@ const Rent: React.FC = () => {
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="column">
                   <ContentItemPriceEth>0,035</ContentItemPriceEth>
                   <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
-                <ContentItemName>
+                <ContentItemName className="width">
                   Marketplace commission
                   <OverlayTrigger
                     delay={{ show: 250, hide: 3000 }}
@@ -198,12 +198,12 @@ const Rent: React.FC = () => {
                     </ButtonInfo>
                   </OverlayTrigger>
                 </ContentItemName>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="column">
                   <ContentItemPriceEth>0,035</ContentItemPriceEth>
                   <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
-              <ContentItem>
+              <ContentItem className="wrap">
                 <ContentItemName>
                   Marketplace fee 3%
                   <CheckboxRow>
@@ -238,14 +238,16 @@ const Rent: React.FC = () => {
                     </CheckboxLabel>
                   </CheckboxRow>
                 </ContentItemName>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="fee">
                   <ContentItemPriceUnd>2</ContentItemPriceUnd>
-                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
+                  <ContentItemPriceUsd className="margin-3">
+                    $258,25
+                  </ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem>
                 <Total>Total</Total>
-                <ContentItemPriceWrap>
+                <ContentItemPriceWrap className="column">
                   <TotalPrice>
                       {/* ультра костыль чтобы законтрить 0.2+0.1 todo:сделать номарльно */}
                     <TotalPriceEth>{(+premium*100000 + +colloteral*100000)/100000}</TotalPriceEth>

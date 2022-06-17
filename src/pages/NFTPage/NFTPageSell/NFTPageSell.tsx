@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import { Background } from "../../../globalStyles";
 import { UndasGeneralNFT__factory } from "../../../typechain";
 import { NFT_ADDRESS } from "../../../utils/addressHelpers";
 import Context from "../../../utils/Context";
@@ -33,7 +34,6 @@ import {
   ViewsIco,
 } from "../imports";
 import {
-  Background,
   SellerNavigation,
   SellerWrapper,
   RentSellBtn,

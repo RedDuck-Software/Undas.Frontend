@@ -27,6 +27,10 @@ export const TitleModal = styled.div`
   font-size: 18px;
   line-height: 22px;
   color: #232428;
+  @media (min-width: 1700px) {
+    font-size: 22px;
+    line-height: 30px;
+  }
 `;
 
 export const Descriprtion = styled.p`
@@ -34,6 +38,10 @@ export const Descriprtion = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
+  @media (min-width: 1700px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 
 export const ModalInputGroup = styled.div`
@@ -179,7 +187,6 @@ export const CreateModalFormButton = styled(CreateFormButton)`
     margin-right: 0;
     color: #ffffff;
     background: #873dc1;
-    }
   }
   @media (max-width: 992px) {
     flex: 0 0 48%;

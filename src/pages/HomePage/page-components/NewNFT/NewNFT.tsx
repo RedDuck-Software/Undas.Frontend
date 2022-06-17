@@ -71,7 +71,7 @@ const NewNFT: React.FC = () => {
     <NewNFTContainer>
       <TitleWrap>
         <Title>New NFTs</Title>
-        <ViewAllBtn to="/">View all</ViewAllBtn>
+        <ViewAllBtn to="/categories">View all</ViewAllBtn>
       </TitleWrap>
       <Swiper
         slidesPerView={1}
@@ -88,6 +88,9 @@ const NewNFT: React.FC = () => {
             slidesPerView: 3,
             spaceBetween: 20,
           },
+          1700: {
+            slidesPerView: 4,
+          }
         }}
         className="rent-slider"
         modules={[Navigation]}

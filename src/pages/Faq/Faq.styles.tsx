@@ -29,6 +29,10 @@ export const TabButton = styled(Nav.Link)`
     box-shadow: 3px 5px 5px rgba(135, 61, 193, 0.5);
     text-shadow: 0 0 1px rgba(135, 61, 193, 0.5);
   }
+  @media (min-width: 1700px) {
+    font-size: 24px;
+    line-height: 32px;
+  }
 `;
 export const TabText = styled.div``;
 export const ContentTitle = styled.h2`
@@ -38,6 +42,11 @@ export const ContentTitle = styled.h2`
   color: #232428;
   margin-bottom: 30px;
   max-width: 300px;
+  @media (min-width: 1700px) {
+    font-size: 24px;
+    line-height: 32px;
+    max-width: 60%;
+  }
 `;
 export const ContentText = styled.p`
   font-weight: 400;
@@ -58,6 +67,10 @@ export const ContentText = styled.p`
   @media (max-width: 576px) {
     font-size: 14px;
   }
+  @media (min-width: 1700px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 export const UndasLink = styled.a`
   font-weight: 400;
@@ -71,6 +84,10 @@ export const UndasLink = styled.a`
     text-decoration: underline;
     font-weight: 600;
   }
+  @media (min-width: 1700px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 export const AddToWatchlistLink = styled.a`
   font-weight: 400;
@@ -83,6 +100,10 @@ export const AddToWatchlistLink = styled.a`
   &:hover {
     color: #873dc1;
     font-weight: 600;
+  }
+  @media (min-width: 1700px) {
+    font-size: 20px;
+    line-height: 30px;
   }
 `;
 export const AccordionWrap = styled.div`

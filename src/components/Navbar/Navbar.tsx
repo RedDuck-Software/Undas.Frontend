@@ -149,7 +149,7 @@ const Navbar = () => {
                 >
                   Activity
                 </StyledLink>
-                <DropdownMenu setWidth="146px">
+                <DropdownMenu setWidth="146px" xlWidth="160px">
                   <MenuList to="/topcollection">
                     <TopCollectionIco />
                     Top Collection
@@ -211,7 +211,7 @@ const Navbar = () => {
                 >
                   Create
                 </StyledLink>
-                <DropdownMenu setWidth="170px" left="-3rem">
+                <DropdownMenu setWidth="170px" left="-3rem" xlWidth="160px">
                   <MenuList to="/create-nft">
                     <AddNFTIco />
                     Add NTF
@@ -245,12 +245,12 @@ const Navbar = () => {
               >
                 <ProfileIco />
               </StyledLink>
-              <DropdownMenu setWidth="155px" left="-3rem" top="2rem">
+              <DropdownMenu setWidth="155px" xlWidth="160px" left="-3rem" top="2rem">
                 <MenuList to="/account">
                   <ProfileMenuIco />
                   Profile
                 </MenuList>
-                <MenuList to="/collection">
+                <MenuList to="/account">
                   <MyCollectionIco />
                   My Collections
                 </MenuList>
