@@ -102,8 +102,6 @@ const CreateNFT: React.FC = () => {
       await connector.getProvider(),
     );
 
-    setLoading(true);
-
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
@@ -111,20 +109,20 @@ const CreateNFT: React.FC = () => {
       signer,
     );
 
-    NFTContract.safeMintGeneral(account, description, name, externalLink)
-      .then(() => setLoading(false))
-      .catch((error) => {
-        setLoading(false);
-        console.log(error);
-      });
+    const tx = await NFTContract.safeMintGeneral(
+      account,
+      description,
+      name,
+      externalLink,
+    );
+
+    setLoading(true);
+    await tx.wait();
+    setLoading(false);
   };
 
   const onSubmit = () => {
-    if (connector) {
-      const provider = async () => {
-        new ethers.providers.Web3Provider(await connector.getProvider());
-      };
-    }
+    console.log(errors);
     mintNFT();
   };
 
