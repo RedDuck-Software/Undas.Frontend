@@ -111,7 +111,7 @@ const OfferRent: React.FC = () => {
         value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
-  
+
     await tx.wait();
   }
 

@@ -26,8 +26,8 @@ export interface ItemsProps {
   id: number;
   URI: string;
   name: string;
-  tokenAddress:string;
-  tokenOwner?:string;
+  tokenAddress: string;
+  tokenOwner?: string;
 }
 
 const MainMenu: React.FC = () => {
@@ -64,7 +64,6 @@ const MainMenu: React.FC = () => {
   const [list, setList] = useState<ItemsProps[]>([]);
 
   async function getNfts() {
- 
     const nfts = await fetchData();
 
     if (!nfts) return;
@@ -75,8 +74,8 @@ const MainMenu: React.FC = () => {
       const tokenAddress = nft.token_address;
       const tokenOwner = nft.owner_of;
 
-      console.log(nft)
-      items.push({ id, URI, name,tokenAddress,tokenOwner });
+      console.log(nft);
+      items.push({ id, URI, name, tokenAddress, tokenOwner });
     });
     return items;
   }
@@ -154,20 +153,16 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>{list.length}</ResultsTotal>
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
-                <CollectionGridWrap itemList={list} />
-              ) : (
-                <>
-                  {list.map((item) => {
-                    return (
-                      <NFTListItem
-                        key={item.id}
-                        name={item.name}
-                        URI={item.URI}
-                      />
-                    );
-                  })}
-                </>
-              )}
+        <CollectionGridWrap itemList={list} />
+      ) : (
+        <>
+          {list.map((item) => {
+            return (
+              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };

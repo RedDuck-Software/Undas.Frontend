@@ -62,7 +62,7 @@ const AccountPage: React.FC = () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
       chain: "goerli",
-      address: '0x45434191f03528726CAfd4Eebe0Fc5D33Be27720',
+      address: "0x45434191f03528726CAfd4Eebe0Fc5D33Be27720",
     });
     return listOfNFTS;
   };

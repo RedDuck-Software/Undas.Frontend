@@ -49,11 +49,11 @@ import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-import { ethers} from "ethers";
+import { ethers } from "ethers";
 
 const Rent: React.FC = () => {
   const { connector } = useContext(Context);
-  const state:any = useLocation()
+  const state: any = useLocation();
 
   async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) return;

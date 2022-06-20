@@ -86,7 +86,7 @@ const NFTPage: React.FC = () => {
     display: block;
     margin: auto;
   `;
-  
+
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const [name, setName] = useState<string>();
@@ -102,14 +102,12 @@ const NFTPage: React.FC = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-  
-  const state:any = useLocation()
 
-  const URI = state.state.URI
-  const nameFromProps = state.state.name
-  const tokenId = state.state.tokenId
-  
+  const state: any = useLocation();
 
+  const URI = state.state.URI;
+  const nameFromProps = state.state.name;
+  const tokenId = state.state.tokenId;
 
   const getOwner = async () => {
     if (!connector) return;
@@ -148,14 +146,17 @@ const NFTPage: React.FC = () => {
       await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
-    
+
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    const amountToPay = +colloteralWei + +premium + ((+premium*20)/100)
+    const amountToPay = +colloteralWei + +premium + (+premium * 20) / 100;
 
-    const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
+    const formattedAmountToPay = ethers.utils.formatUnits(
+      amountToPay.toString(),
+      "ether",
+    );
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
       gasPrice: 20000,
@@ -224,11 +225,10 @@ const NFTPage: React.FC = () => {
 
       return;
     }
+  };
 
-  }
-  
-const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
 {
@@ -522,4 +522,4 @@ const APIURL =
   );
 };
 
-export default NFTPage
+export default NFTPage;

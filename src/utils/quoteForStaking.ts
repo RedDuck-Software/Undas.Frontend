@@ -2,7 +2,6 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 import { ethers } from "ethers";
 
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
-import intervalIntoTimeStamp from "./intervalIntoTimeStamp";
 
 import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
 
