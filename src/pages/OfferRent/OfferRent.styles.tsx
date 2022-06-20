@@ -228,12 +228,12 @@ export const ImageDown = styled.img`
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
+  border: none;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   padding-left: 25px;
   outline: none;
   &:focus {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-    border-color: rgb(135 61 193);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 
   @media (max-width: 992px) {

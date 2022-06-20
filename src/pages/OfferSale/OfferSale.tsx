@@ -6,7 +6,6 @@ import {
   BackText,
   TabsMenu,
   Tab,
-  TabCastom,
   TextOffer,
 } from "./OfferSale.styles";
 
@@ -30,12 +29,12 @@ const OfferSale: React.FC = () => {
           >
             <TextOffer>Simple Offer</TextOffer>
           </Tab>
-          <TabCastom
+          <Tab
             onClick={() => setTab("castom")}
             className={tab === "castom" ? "active" : ""}
           >
             <TextOffer>Custom Offer</TextOffer>
-          </TabCastom>
+          </Tab>
         </TabsMenu>
         {tab === "offer" && <Offer />}
         {tab === "castom" && <CastomOffer />}
