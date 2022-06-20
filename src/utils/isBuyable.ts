@@ -25,7 +25,6 @@ export const isBuyableFunction = async (
   );
 
   const isBuyable = await MarketplaceContract.isBuyable(itemId);
-  console.log(isBuyable);
 
   return isBuyable;
 };

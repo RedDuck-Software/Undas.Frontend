@@ -44,7 +44,6 @@ const RentNFT: React.FC = () => {
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        console.log(premiumInNum);
         items.push({ URI, name, id });
       }
     });

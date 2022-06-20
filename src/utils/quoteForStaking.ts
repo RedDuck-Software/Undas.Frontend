@@ -14,7 +14,6 @@ export const quoteForStaking = async (
   connector: AbstractConnector,
 ) => {
   if (!connector) return;
-  console.log(intervalIntoTimeStamp);
   const provider = new ethers.providers.Web3Provider(
     await connector.getProvider(),
   );
@@ -39,7 +38,6 @@ export const quoteForStaking = async (
     ).wait();
   }
 
-  console.log("Item data" + NFT_ADDRESS, tokenId, price, premium, term);
   // const tx = await MarketplaceContract.quoteForStaking(
   //   NFT_ADDRESS,
   //   tokenId,

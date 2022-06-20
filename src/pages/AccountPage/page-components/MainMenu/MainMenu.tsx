@@ -57,7 +57,7 @@ const MainMenu: React.FC = () => {
       chain: "goerli",
       address: signerPublicAddress,
     });
-    console.log('data',data)
+
     return data.result;
   }
   const items: ItemsProps[] = [];
@@ -80,7 +80,7 @@ const MainMenu: React.FC = () => {
     });
     return items;
   }
-  console.log('my collection',list)
+
   async function getUserNft() {
     const response = await getNfts();
 

@@ -38,8 +38,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const [price, setPrice] = useState("280");
   const [deadline, setDeadline] = useState("7");
   const [premium, setPremium] = useState("15");
-  console.log(deadline, premium);
-  console.log(intervalIntoTimeStamp);
+
   const quoteForStaking = async () => {
     if (!connector || !stakingOpen) return;
 
@@ -55,7 +54,7 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    console.log(MarketplaceContract);
+
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
       MARKETPLACE_ADDRESS,

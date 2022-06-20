@@ -160,8 +160,7 @@ const Sale: React.FC = () => {
     );
 
     const amountToPay = (colloteral * 2) / 100;
-    console.log(NFT_ADDRESS);
-    console.log(tokenId);
+
     const tx = await MarketplaceContract.quoteForStakingExternal(
       NFT_ADDRESS,
       tokenId,

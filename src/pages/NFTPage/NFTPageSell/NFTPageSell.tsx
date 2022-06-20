@@ -75,7 +75,7 @@ const NFTPageSell: React.FC = () => {
 
   const params = useParams();
   const tokenId = params.id;
-  console.log(tokenId);
+
   const { connector } = useContext(Context);
 
   const [stakingId, setStakingId] = useState(0);
@@ -114,7 +114,7 @@ const NFTPageSell: React.FC = () => {
       setShowStaking(true);
     }
   };
-  console.log("dasdasdasds");
+
   const getShowBuy = async () => {
     if (!connector) return;
 

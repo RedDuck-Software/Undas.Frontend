@@ -37,9 +37,9 @@ const NewNFT: React.FC = () => {
     if (!connector) {
       return;
     }
-    console.log(list);
+
     const tokens = await fetchData();
-    console.log(tokens);
+
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
@@ -135,7 +135,7 @@ const client = createClient({
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log(data.data.listings);
+
   return data.data.listings;
 }
 

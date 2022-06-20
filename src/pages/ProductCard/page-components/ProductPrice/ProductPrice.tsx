@@ -93,8 +93,6 @@ const ProductPrice: React.FC<{ id: number }> = ({ id }) => {
     getProductPrice();
   }, [connector, web3React]);
 
-  console.log(id);
-
   return (
     <>
       {seller === account || id < 0 ? (

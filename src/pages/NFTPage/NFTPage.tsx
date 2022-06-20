@@ -104,7 +104,6 @@ const NFTPage: React.FC = () => {
   const [isOwner, setIsOwner] = useState(true);
   
   const state:any = useLocation()
-  console.log('state',state)
 
   const URI = state.state.URI
   const nameFromProps = state.state.name
@@ -127,7 +126,6 @@ const NFTPage: React.FC = () => {
     }
 
     if (singerAddress == seller) {
-      console.log("OWNER");
       setIsOwner(false);
     }
   };
@@ -191,7 +189,6 @@ const NFTPage: React.FC = () => {
       getShowRent();
       getTokenData();
       getOwner();
-      console.log("useEf");
     }
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
 
@@ -267,7 +264,6 @@ const APIURL =
 
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("DATA", data);
     return data;
   }
 

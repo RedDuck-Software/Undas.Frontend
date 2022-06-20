@@ -57,6 +57,8 @@ const SelectCollectionList: React.FC<{
 };
 
 const CreateNFT: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const properties = useSelector(useProperties);
   const levels = useSelector(useLevels);
   const stats = useSelector(useStats);
@@ -92,13 +94,16 @@ const CreateNFT: React.FC = () => {
   const { register, formState, handleSubmit } =
     useForm<CreateNFTForm>(formOptions);
   const { errors } = formState;
-  console.log(errors);
+
   const mintNFT = async () => {
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
+
+    setLoading(true);
+
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
@@ -106,11 +111,20 @@ const CreateNFT: React.FC = () => {
       signer,
     );
 
-    NFTContract.safeMintGeneral(account, description, name, externalLink);
+    NFTContract.safeMintGeneral(account, description, name, externalLink)
+      .then(() => setLoading(false))
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   const onSubmit = () => {
-    console.log(errors);
+    if (connector) {
+      const provider = async () => {
+        new ethers.providers.Web3Provider(await connector.getProvider());
+      };
+    }
     mintNFT();
   };
 
@@ -173,188 +187,196 @@ const CreateNFT: React.FC = () => {
   return (
     <Background>
       <CreateSec>
-        <CreateContainer>
-          <CreateTitle>Create NFT</CreateTitle>
+        {loading ? (
+          <CreateTitle>LOADING PENDING...</CreateTitle>
+        ) : (
+          <CreateContainer>
+            <CreateTitle>Create NFT</CreateTitle>
 
-          <CreateForm onSubmit={handleSubmit(onSubmit)}>
-            <BlockDescript>
-              <span className="require-asterisk">*</span>Required fields
-            </BlockDescript>
-            <CreateFormGroup>
-              <CreateLabel>
-                Image, Video, Audio, or 3D Model
-                <span className="require-asterisk">*</span>
-              </CreateLabel>
+            <CreateForm onSubmit={handleSubmit(onSubmit)}>
               <BlockDescript>
-                File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
-                OGG, GLB, GLTF <br />
-                Max size: 100MB
+                <span className="require-asterisk">*</span>Required fields
               </BlockDescript>
-              <AddFileBlock>
-                <NFTItemLabel htmlFor="NFT">
-                  {file ? (
-                    <NFTItemPreview src={file} />
-                  ) : (
-                    <img src={ImgIcon} alt="image-icon" />
-                  )}
-                </NFTItemLabel>
-                <NFTItemInput id="NFT" onChange={fileHandler} required />
-              </AddFileBlock>
-              {fileSizeError && fileSizeError.inputName === "File" && (
-                <ValidationBlock>{fileSizeError.message}</ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateLabel htmlFor="name">
-                Name<span className="require-asterisk">*</span>
-              </CreateLabel>
-              <CreateInput
-                type="text"
-                id="name"
-                placeholder="NFT name"
-                {...register("name")}
-                value={name}
-                onChange={nameHandler}
-              />
-              {errors.name && (
-                <ValidationBlock>{errors.name.message}</ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateLabel htmlFor="external-link">External link</CreateLabel>
-              <BlockDescript>
-                UNDAS will include a link to this URL on this item&#39;s detail
-                page, so that users can click to learn more about it. You are
-                welcome to link to your own webpage with more details
-              </BlockDescript>
-              <CreateInput
-                type="text"
-                id="externalLink"
-                placeholder="https://yoursite.io/item/123"
-                {...register("externalLink")}
-                value={externalLink}
-                onChange={externalLinkHandler}
-              />
-              {errors.externalLink && (
-                <ValidationBlock>{errors.externalLink.message}</ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateLabel htmlFor="description">Description</CreateLabel>
-              <BlockDescript>
-                The description will be included on the item&#39;s detail page
-                underneath its image. Markdown syntax is supported
-              </BlockDescript>
-              <CreateTextArea
-                placeholder="Provide a detailed description of your item"
-                id="description"
-                maxLength={1000}
-                {...register("description")}
-                value={description}
-                onChange={descriptionHandler}
-              />
-              {errors.description && (
-                <ValidationBlock>{errors.description.message}</ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <CreateFormGroup className="collection">
-              <CreateLabel htmlFor="collection" className="collection-label">
-                Collection
-              </CreateLabel>
-              <CreateSelect
-                maxWidth="350px"
-                padding="7px 20px"
-                itemList={
-                  <SelectCollectionList setCollection={setCollection} />
-                }
-                item={collection}
-              />
-              <BlockDescript style={{ marginLeft: "20px" }}>
-                This is the collection where your item will appear
-              </BlockDescript>
-            </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel>
+                  Image, Video, Audio, or 3D Model
+                  <span className="require-asterisk">*</span>
+                </CreateLabel>
+                <BlockDescript>
+                  File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
+                  OGG, GLB, GLTF <br />
+                  Max size: 100MB
+                </BlockDescript>
+                <AddFileBlock>
+                  <NFTItemLabel htmlFor="NFT">
+                    {file ? (
+                      <NFTItemPreview src={file} />
+                    ) : (
+                      <img src={ImgIcon} alt="image-icon" />
+                    )}
+                  </NFTItemLabel>
+                  <NFTItemInput id="NFT" onChange={fileHandler} required />
+                </AddFileBlock>
+                {fileSizeError && fileSizeError.inputName === "File" && (
+                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel htmlFor="name">
+                  Name<span className="require-asterisk">*</span>
+                </CreateLabel>
+                <CreateInput
+                  type="text"
+                  id="name"
+                  placeholder="NFT name"
+                  {...register("name")}
+                  value={name}
+                  onChange={nameHandler}
+                />
+                {errors.name && (
+                  <ValidationBlock>{errors.name.message}</ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel htmlFor="external-link">External link</CreateLabel>
+                <BlockDescript>
+                  UNDAS will include a link to this URL on this item&#39;s
+                  detail page, so that users can click to learn more about it.
+                  You are welcome to link to your own webpage with more details
+                </BlockDescript>
+                <CreateInput
+                  type="text"
+                  id="externalLink"
+                  placeholder="https://yoursite.io/item/123"
+                  {...register("externalLink")}
+                  value={externalLink}
+                  onChange={externalLinkHandler}
+                />
+                {errors.externalLink && (
+                  <ValidationBlock>
+                    {errors.externalLink.message}
+                  </ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel htmlFor="description">Description</CreateLabel>
+                <BlockDescript>
+                  The description will be included on the item&#39;s detail page
+                  underneath its image. Markdown syntax is supported
+                </BlockDescript>
+                <CreateTextArea
+                  placeholder="Provide a detailed description of your item"
+                  id="description"
+                  maxLength={1000}
+                  {...register("description")}
+                  value={description}
+                  onChange={descriptionHandler}
+                />
+                {errors.description && (
+                  <ValidationBlock>
+                    {errors.description.message}
+                  </ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <CreateFormGroup className="collection">
+                <CreateLabel htmlFor="collection" className="collection-label">
+                  Collection
+                </CreateLabel>
+                <CreateSelect
+                  maxWidth="350px"
+                  padding="7px 20px"
+                  itemList={
+                    <SelectCollectionList setCollection={setCollection} />
+                  }
+                  item={collection}
+                />
+                <BlockDescript style={{ marginLeft: "20px" }}>
+                  This is the collection where your item will appear
+                </BlockDescript>
+              </CreateFormGroup>
 
-            <Properties
-              propertyList={propertyList}
-              setPropertyList={setPropertyList}
-            />
-            <Levels levelList={levelList} setLevelList={setLevelList} />
-            <Stats statList={statList} setStatList={setStatList} />
+              <Properties
+                propertyList={propertyList}
+                setPropertyList={setPropertyList}
+              />
+              <Levels levelList={levelList} setLevelList={setLevelList} />
+              <Stats statList={statList} setStatList={setStatList} />
 
-            <CreateFormGroup>
-              <SwitcherBlock>
-                <SwitcherTitle>
-                  <UnlockableContentIco /> Unlockable Content
-                </SwitcherTitle>
-                <Switcher onClick={unlockacleHandler} />
-              </SwitcherBlock>
-              <BlockDescript>
-                Include unlockable content that can only be revealed by the
-                owner of the item
-              </BlockDescript>
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <SwitcherBlock>
-                <SwitcherTitle>
-                  <ExplicitContentIco /> Explicit &amp; Sensitive Content
-                </SwitcherTitle>
-                <Switcher onClick={sensetiveHandler} />
-              </SwitcherBlock>
-              <BlockDescript>
-                Set this item as explicit and sensitive content
-              </BlockDescript>
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateLabel htmlFor="supply">Supply</CreateLabel>
-              <BlockDescript>
-                The number of items that can be minted. No gas cost to you!{" "}
-              </BlockDescript>
-              <CreateInput
-                type="number"
-                id="supply"
-                min="1"
-                placeholder="1"
-                {...register("supply")}
-                value={supply}
-                onChange={supplyHandler}
-              />
-              {errors.supply && (
-                <ValidationBlock>{errors.supply.message}</ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <CreateFormGroup>
-              <CreateLabel htmlFor="freeze-metadata">
-                Freeze metadata
-              </CreateLabel>
-              <BlockDescript>
-                Freezing your metadata will allow you to permanently lock and
-                store all of this item&#39;s content in decentralized file
-                storage.
-              </BlockDescript>
-              <CreateInput
-                type="text"
-                id="freezeMetadata"
-                placeholder="To freeze your metadata, you must create your item first"
-                {...register("freezeMetadata")}
-                value={freezeMetadata}
-                onChange={freezeMetadataHandler}
-              />
-              {errors.freezeMetadata && (
-                <ValidationBlock>
-                  {errors.freezeMetadata.message}
-                </ValidationBlock>
-              )}
-            </CreateFormGroup>
-            <ButtonsBlock>
-              <FormButtonsWrap>
-                <CreateFormButton type="submit" className="left-btn">
-                  Create
-                </CreateFormButton>
-                <CreateFormButton>Back</CreateFormButton>
-              </FormButtonsWrap>
-            </ButtonsBlock>
-          </CreateForm>
-        </CreateContainer>
+              <CreateFormGroup>
+                <SwitcherBlock>
+                  <SwitcherTitle>
+                    <UnlockableContentIco /> Unlockable Content
+                  </SwitcherTitle>
+                  <Switcher onClick={unlockacleHandler} />
+                </SwitcherBlock>
+                <BlockDescript>
+                  Include unlockable content that can only be revealed by the
+                  owner of the item
+                </BlockDescript>
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <SwitcherBlock>
+                  <SwitcherTitle>
+                    <ExplicitContentIco /> Explicit &amp; Sensitive Content
+                  </SwitcherTitle>
+                  <Switcher onClick={sensetiveHandler} />
+                </SwitcherBlock>
+                <BlockDescript>
+                  Set this item as explicit and sensitive content
+                </BlockDescript>
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel htmlFor="supply">Supply</CreateLabel>
+                <BlockDescript>
+                  The number of items that can be minted. No gas cost to you!{" "}
+                </BlockDescript>
+                <CreateInput
+                  type="number"
+                  id="supply"
+                  min="1"
+                  placeholder="1"
+                  {...register("supply")}
+                  value={supply}
+                  onChange={supplyHandler}
+                />
+                {errors.supply && (
+                  <ValidationBlock>{errors.supply.message}</ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <CreateFormGroup>
+                <CreateLabel htmlFor="freeze-metadata">
+                  Freeze metadata
+                </CreateLabel>
+                <BlockDescript>
+                  Freezing your metadata will allow you to permanently lock and
+                  store all of this item&#39;s content in decentralized file
+                  storage.
+                </BlockDescript>
+                <CreateInput
+                  type="text"
+                  id="freezeMetadata"
+                  placeholder="To freeze your metadata, you must create your item first"
+                  {...register("freezeMetadata")}
+                  value={freezeMetadata}
+                  onChange={freezeMetadataHandler}
+                />
+                {errors.freezeMetadata && (
+                  <ValidationBlock>
+                    {errors.freezeMetadata.message}
+                  </ValidationBlock>
+                )}
+              </CreateFormGroup>
+              <ButtonsBlock>
+                <FormButtonsWrap>
+                  <CreateFormButton type="submit" className="left-btn">
+                    Create
+                  </CreateFormButton>
+                  <CreateFormButton>Back</CreateFormButton>
+                </FormButtonsWrap>
+              </ButtonsBlock>
+            </CreateForm>
+          </CreateContainer>
+        )}
       </CreateSec>
     </Background>
   );

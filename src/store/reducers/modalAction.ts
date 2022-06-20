@@ -11,10 +11,6 @@ export function closeModal() {
 export function setComponent(component: any, tokenId?: number,
    priceInNum?: any, tokenURI?: string, name?: string,premiumInNum?:number,colloteralWei?:number ) {
   //todo:rent NFT EVENT 
-  // console.log(component)
-  // console.log(priceInNum)
-
-  // console.log('PROPS COLLOTERAL PREMIUM PRICE','coll  ',colloteralWei,'prem',premiumInNum,'price',priceInNum)
   switch (component) {
     case 'buy':
       return { type: SET_COMPONENT_BUY, tokenId: tokenId, priceInNum: priceInNum, tokenURI:tokenURI, name:name };

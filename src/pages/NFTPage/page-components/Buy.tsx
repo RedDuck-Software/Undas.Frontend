@@ -46,8 +46,6 @@ const Buy: React.FC<BuyProps> = ({
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
 
-  // console.log('price1',price1)
-
   const getListing = async (itemId: number) => {
     if (!connector) return;
 
@@ -80,22 +78,14 @@ const Buy: React.FC<BuyProps> = ({
     const userBalanceInWei = ethers.utils.formatUnits(
       await signer.getBalance(),
     );
-    console.log("price", price);
+
     const amount = ethers.utils.formatUnits(priceInNum);
-    console.log("amount", amount);
-    console.log("user bal", userBalanceInWei);
-    // if (+userBalanceInWei < +amount) {
-    //   alert("not enough funds");
-    //   return;
-    // }
-    console.log("priceInNum", priceInNum);
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
 
-    console.log("amount", amount);
     const tx = await MarketplaceContract.buyToken(tokenId, {
       value: ethers.utils.parseUnits(amount.toString(), "ether"),
     });

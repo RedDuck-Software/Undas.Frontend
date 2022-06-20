@@ -53,7 +53,6 @@ const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
   });
 
   const currencySelector = (currencyItem: any) => {
-    console.log(currencyItem);
     setPriceCurrency((prev) =>
       prev.map((item) => {
         if (currencyItem.currency !== item.currency) {

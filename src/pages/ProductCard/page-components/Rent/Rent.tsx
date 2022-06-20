@@ -52,7 +52,6 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
   const startRenting = async (itemId: number) => {
     if (!connector || !rentOpen) return;
-    console.log(itemId);
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -82,7 +81,6 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     // });
 
     // await tx.wait();
-    console.log(MarketplaceContract);
     setPaymentsAmount(paymentsAmount + 1);
     setIsRented(true);
     setShowRentInfo(true);
@@ -94,8 +92,6 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       await connector.getProvider(),
     );
     // const signer = provider.getSigner(0);
-    console.log(provider);
-    console.log(itemId);
     // const MarketplaceContract = Marketplace__factory.connect(
     //   MARKETPLACE_ADDRESS,
     //   signer,
