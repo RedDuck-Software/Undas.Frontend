@@ -499,6 +499,12 @@ export const ButtonMakeOffer = styled.button`
     width: 100%;
     margin-bottom: 80px;
   }
+  @media (max-width: 992px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 992px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const AgreeRowButton = styled.div`

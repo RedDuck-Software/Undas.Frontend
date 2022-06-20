@@ -5,15 +5,15 @@ import { eth, offerTime } from "./imports";
 import { Swiper } from "swiper/react";
 
 export const PageWrapper = styled.div`
-  padding: 40px 0 120px;
+  padding: 60px 0 120px;
   @media (max-width: 992px) {
-    padding: 30px 0 80px;
+    padding: 60px 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 20px 0 60px;
+    padding: 40px 0 60px;
   }
   @media (max-width: 576px) {
-    padding-bottom: 30px;
+    padding: 20px 0 40px;
   }
 `;
 export const TabsMenu = styled.ul`

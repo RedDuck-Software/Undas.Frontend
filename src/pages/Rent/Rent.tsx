@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
@@ -45,7 +45,7 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-import { useLocation  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 import { RentalPeriod } from "../NFTPage/NFTPage.styles";
@@ -54,17 +54,22 @@ import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
 const Rent: React.FC = () => {
-  const state:any = useLocation()
+  const state: any = useLocation();
   const { connector } = useContext(Context);
 
-  const URI = state.state.state.URI
-  const nameFrom = state.state.state.name
-  const colloteral = ethers.utils.formatUnits(state.state.state.colloteralWei.toString())
-  const premium = state.state.state.premium
-  const stakingId = state.state.state.stakingId
+  const URI = state.state.state.URI;
+  const nameFrom = state.state.state.name;
+  const colloteral = ethers.utils.formatUnits(
+    state.state.state.colloteralWei.toString(),
+  );
+  const premium = state.state.state.premium;
+  const stakingId = state.state.state.stakingId;
 
-  async function rentToken(stakingId: number, colloteralWei?: number,premium?: number) {
-
+  async function rentToken(
+    stakingId: number,
+    colloteralWei?: number,
+    premium?: number,
+  ) {
     if (!connector) return;
 
     if (colloteralWei == undefined) {
@@ -73,27 +78,30 @@ const Rent: React.FC = () => {
     if (premium == undefined) {
       return;
     }
-    
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
-    
+
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
     //todo in wei
-    const amountToPay = (+colloteralWei + +premium + ((+premium*20)/100)).toFixed(7)
-      console.log(amountToPay)
+    const amountToPay = (
+      +colloteralWei +
+      +premium +
+      (+premium * 20) / 100
+    ).toFixed(7);
+    console.log(amountToPay);
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
-      value: ethers.utils.parseUnits(amountToPay.toString(), "ether")
+      value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
     });
 
     await tx.wait();
   }
-
 
   return (
     <Background>
@@ -249,8 +257,10 @@ const Rent: React.FC = () => {
                 <Total>Total</Total>
                 <ContentItemPriceWrap className="column">
                   <TotalPrice>
-                      {/* ультра костыль чтобы законтрить 0.2+0.1 todo:сделать номарльно */}
-                    <TotalPriceEth>{(+premium*100000 + +colloteral*100000)/100000}</TotalPriceEth>
+                    {/* ультра костыль чтобы законтрить 0.2+0.1 todo:сделать номарльно */}
+                    <TotalPriceEth>
+                      {(+premium * 100000 + +colloteral * 100000) / 100000}
+                    </TotalPriceEth>
                     <Plus>+</Plus>
                     <TotalPriceUnd>2</TotalPriceUnd>
                   </TotalPrice>
@@ -277,7 +287,9 @@ const Rent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button onClick={() => rentToken(stakingId,+colloteral,premium)}>Rent</Button>
+            <Button onClick={() => rentToken(stakingId, +colloteral, premium)}>
+              Rent
+            </Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>

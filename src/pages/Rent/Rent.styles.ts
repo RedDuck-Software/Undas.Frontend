@@ -32,7 +32,6 @@ export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  margin-top: 20px;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -321,12 +320,5 @@ export const Button = styled.button`
 
   @media (max-width: 992px) {
     width: 100%;
-    margin-bottom: 80px;
-  }
-  @media (max-width: 786px) {
-    margin-bottom: 60px;
-  }
-  @media (max-width: 576px) {
-    margin-bottom: 40px;
   }
 `;

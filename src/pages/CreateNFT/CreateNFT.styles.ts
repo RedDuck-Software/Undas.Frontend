@@ -3,21 +3,20 @@ import styled from "styled-components";
 import { Container, PageTitle, FormButton } from "../../globalStyles";
 
 export const CreateSec = styled.div`
-  padding: 30px 0 60px;
+  padding: 60px 0 120px;
   @media (max-width: 992px) {
-    padding: 20px 0;
+    padding: 60px 0 80px;
+  }
+  @media (max-width: 768px) {
+    padding: 40px 0 60px;
   }
   @media (max-width: 576px) {
-    padding: 0;
+    padding: 20px 0 40px;
   }
 `;
 
-export const CreateContainer = styled(Container)`
-  padding-bottom: 60px;
-`;
-export const CreateTitle = styled(PageTitle)`
-  margin-bottom: 20px;
-`;
+export const CreateContainer = styled(Container)``;
+export const CreateTitle = styled(PageTitle)``;
 
 export const CreateForm = styled.form`
   & .require-asterisk {

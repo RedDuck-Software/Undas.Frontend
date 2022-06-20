@@ -175,7 +175,6 @@ const CreateNFT: React.FC = () => {
       <CreateSec>
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
-
           <CreateForm onSubmit={handleSubmit(onSubmit)}>
             <BlockDescript>
               <span className="require-asterisk">*</span>Required fields
