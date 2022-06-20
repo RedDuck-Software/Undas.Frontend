@@ -125,6 +125,7 @@ const CollectionPage: React.FC = () => {
 
     getUserNft();
   }, [connector]);
+  
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const [show, setShow] = useState(false);
@@ -272,7 +273,7 @@ const CollectionPage: React.FC = () => {
                 </FilterSelected>
                 <ClearAll>Clear All</ClearAll>
               </SelectedFiltersCollection>
-              {viewMode === ViewMode.grid ? (
+              {/* {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
                 <>
@@ -286,7 +287,7 @@ const CollectionPage: React.FC = () => {
                     );
                   })}
                 </>
-              )}
+              )} */}
             </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>

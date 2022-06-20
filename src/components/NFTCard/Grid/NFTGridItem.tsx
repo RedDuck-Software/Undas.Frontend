@@ -93,6 +93,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
+                navigate(`/rent/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,{state:{state:{...props}}});  
+
               }}
             >
               Rent
