@@ -34,12 +34,9 @@ const NewNFT: React.FC = () => {
     useState<{ id: number; name: string; URI: string }[]>();
 
   const getListings = async () => {
-    if (!connector) {
-      return;
-    }
-    console.log(list);
+
     const tokens = await fetchData();
-    console.log(tokens);
+
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
@@ -56,14 +53,15 @@ const NewNFT: React.FC = () => {
 
   async function getItemsData() {
     const response = await getListings();
-    console.log(response);
+    console.log('response',response);
     setList(response);
   }
 
   useEffect(() => {
-    if (!connector) {
-      return;
-    }
+    // if (!connector) {
+    //   return;
+    // }
+    console.log('dsads')
     getItemsData();
   }, [connector]);
 
