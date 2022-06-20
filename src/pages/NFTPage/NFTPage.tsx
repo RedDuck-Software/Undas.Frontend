@@ -113,7 +113,10 @@ const NFTPage: React.FC = () => {
 
 
   const getOwner = async () => {
-    if (!connector) return;
+
+    if (!connector){
+      return
+    }
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -137,7 +140,6 @@ const NFTPage: React.FC = () => {
     colloteralWei?: number,
     premium?: number,
   ) {
-    if (!connector) return;
 
     if (colloteralWei == undefined) {
       return;
@@ -145,7 +147,10 @@ const NFTPage: React.FC = () => {
     if (premium == undefined) {
       return;
     }
-
+    if(!connector){
+      navigate("/login");
+      return
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -160,13 +165,15 @@ const NFTPage: React.FC = () => {
     const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice: 20000,
+      gasPrice: 20000,//
     });
     await tx.wait();
   }
 
   const getShowBuy = async () => {
-    if (!connector) return;
+    if (!connector){
+      console.log('!connector')
+    }
 
     if (listingId) {
       setShowBuy(true);
@@ -176,7 +183,6 @@ const NFTPage: React.FC = () => {
   };
 
   async function getShowRent() {
-    if (!connector) return;
 
     if (stakingId) {
       setShowRent(true);
@@ -186,13 +192,12 @@ const NFTPage: React.FC = () => {
   }
 
   useEffect(() => {
-    if (connector) {
+
       getShowBuy();
       getShowRent();
       getTokenData();
       getOwner();
-      console.log("useEf");
-    }
+
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
 
   const getTokenData = async () => {
@@ -201,31 +206,31 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
-      setName(tokensQuery.data.listings[0].tokenName);
-      setTokenURI(tokensQuery.data.listings[0].tokenURI);
-      setPriceInNum(tokensQuery.data.listings[0].price);
-      setDescription(tokensQuery.data.listings[0].tokenDescription);
-      setListingId(tokensQuery.data.listings[0].id);
-      setSeller(tokensQuery.data.listings[0].seller);
-      setLoading(false);
+        setName(tokensQuery.data.listings[0].tokenName);
+        setTokenURI(tokensQuery.data.listings[0].tokenURI);
+        setPriceInNum(tokensQuery.data.listings[0].price);
+        setDescription(tokensQuery.data.listings[0].tokenDescription);
+        setListingId(tokensQuery.data.listings[0].id);
+        setSeller(tokensQuery.data.listings[0].seller);
+        setLoading(false);
 
-      return;
+        return;
     }
 
     if (
       tokensQuery.data.stakingListings[0] &&
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
     ) {
-      setName(tokensQuery.data.stakingListings[0].tokenName);
-      setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
-      setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
-      setStakingId(tokensQuery.data.stakingListings[0].id);
-      setSeller(tokensQuery.data.stakingListings[0].seller);
-      setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
-      setPremium(tokensQuery.data.stakingListings[0].premiumWei);
-      setLoading(false);
+        setName(tokensQuery.data.stakingListings[0].tokenName);
+        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
+        setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
+        setStakingId(tokensQuery.data.stakingListings[0].id);
+        setSeller(tokensQuery.data.stakingListings[0].seller);
+        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
+        setPremium(tokensQuery.data.stakingListings[0].premiumWei);
+        setLoading(false);
 
-      return;
+        return;
     }
 
   }
@@ -264,7 +269,7 @@ const APIURL =
   const client = createClient({
     url: APIURL,
   });
-
+  console.log(state)
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
     console.log("DATA", data);
@@ -391,6 +396,7 @@ const APIURL =
                       priceInNum={priceInNum}
                       tokenAddress={state.state.tokenAddress}
                       tokenId={state.state.tokenId}
+                      state = { state.state }
                     />
                   </SaleBlock>
 
@@ -452,6 +458,7 @@ const APIURL =
                             fc="#873DC1"
                             disabled={!isOwner}
                             onClick={(e) => {
+                              alert('click')
                               e.stopPropagation();
                               navigate(
                                 `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,

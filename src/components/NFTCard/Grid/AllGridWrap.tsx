@@ -12,6 +12,7 @@ import Context from "../../../utils/Context";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
 import { createClient, useQuery } from "urql";
+import detectEthereumProvider from '@metamask/detect-provider';
 
 interface CommonProps {
   id: number;
@@ -61,15 +62,12 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
-
+  const [network,setNetwork] = useState('');
   const getListings = async () => {
     setAmountOfNFTs(0);
-    if (!connector) {
-      return;
-    }
 
     const tokens = await fetchData();
-
+    console.log(tokens)
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
@@ -90,9 +88,6 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
 
   const getStakings = async () => {
     setAmountOfNFTs(0);
-    if (!connector) {
-      return;
-    }
 
     const tokens = await fetchStakingData();
 
@@ -124,9 +119,6 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
 
   const getHasOffers = async () => {
     setAmountOfNFTs(0);
-    if (!connector) {
-      return;
-    }
 
     const tokens = await fetchHasOfferData();
 
@@ -193,16 +185,37 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
       setHasOffersList(response);
     }
   }
-  useEffect(() => {
-    if (!connector) {
-      return console.log("loading");
-    }
 
-    setLoading(false);
-    getListingsData();
-    getStakingsData();
-    getHasOffersData();
-  }, [connector]);
+  // async function getNetwork(){
+  //   const provider:any = await detectEthereumProvider();
+  //   console.log('getProvider')
+  //
+  //   const chainId = await provider.request({ method: "eth_chainId" });
+  //   console.log('chainId',chainId)
+  //   const goerliTestChainId = '0x5'
+  //
+  //   if (network === goerliTestChainId) {
+  //     console.log("you are on the correct network");
+  //   } else {
+  //     await provider.request({
+  //       method: 'wallet_switchEthereumChain',
+  //       params: [{ chainId: goerliTestChainId}],
+  //     });
+  //
+  //   }
+  // }
+  useEffect(() => {
+    console.log(connector)
+        // if(!connector){
+        //   return
+        // }
+
+      getListingsData();
+      getStakingsData();
+      getHasOffersData();
+      setLoading(false);
+
+  }, []);
 
   const priceSort = async () => {
     fetchData();

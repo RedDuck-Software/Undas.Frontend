@@ -27,6 +27,7 @@ interface BuyProps {
   showBuy?: boolean;
   tokenAddress?: string;
   tokenId?: string;
+  state:any
 }
 
 const Buy: React.FC<BuyProps> = ({
@@ -36,6 +37,8 @@ const Buy: React.FC<BuyProps> = ({
   showBuy,
   tokenAddress,
   tokenId,
+  state
+
 }) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
@@ -45,8 +48,7 @@ const Buy: React.FC<BuyProps> = ({
   const [price, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [seller, setSeller] = useState("");
-
-  // console.log('price1',price1)
+  console.log('stte',state)
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -68,7 +70,10 @@ const Buy: React.FC<BuyProps> = ({
   };
 
   async function buyToken(tokenId: number, priceInNum?: number) {
-    if (!connector) return;
+    if(!connector){
+      navigate("/login");
+      return
+    }
     if (priceInNum == undefined) {
       return;
     }
@@ -170,7 +175,7 @@ const Buy: React.FC<BuyProps> = ({
                 e.stopPropagation();
                 navigate(
                   `/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,
-                  { state: { tokenAddress, tokenId } },
+                  { state: { state } },
                 );
               }}
             >

@@ -108,7 +108,6 @@ const Sale: React.FC = () => {
     )
       
     const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-
     await approve.wait()
     const expectedValue = (priceForSale * 2) /100;
 
