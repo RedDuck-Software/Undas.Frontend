@@ -259,7 +259,7 @@ export const CheckboxInput = styled.input`
     border-right: 1px solid #5d3f92;
     transform: skew(-10deg) rotate(45deg);
     position: absolute;
-    top: 8px;
+    top: 12px;
     left: 5px;
   }
   &.custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
