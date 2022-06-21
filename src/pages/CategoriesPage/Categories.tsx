@@ -31,13 +31,13 @@ const Categories: React.FC = () => {
             </div>
             <InfoCard>
               <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
+                You can submit your NFT collections for advertising in Undas. To
+                discuss cooperation, please write to us.
               </InfoText>
               <Contact>
                 <ContactImage src={Email} alt="email-ico" />
                 <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
+                <ContactText>Waiting for your message</ContactText>
               </Contact>
             </InfoCard>
           </Info>

@@ -15,6 +15,7 @@ import { ReactComponent as FAQIco } from "../../icons/faq.svg";
 import { ReactComponent as MobileFavoriteIco } from "../../icons/favorite-dropdown.svg";
 import { ReactComponent as FavoriteIco } from "../../icons/favorite.svg";
 import { ReactComponent as InstagramIco } from "../../icons/instagram-dropdown.svg";
+import { ReactComponent as ReddditIco } from "../../icons/reddit-dropdown.svg";
 import { ReactComponent as LoginMenuIco } from "../../icons/login-dropdown.svg";
 import { ReactComponent as MetaversesIcon } from "../../icons/metaverses.svg";
 import { ReactComponent as MyCollectionIco } from "../../icons/my-collections.svg";
@@ -64,4 +65,5 @@ export {
   CreateIco,
   MobileFavoriteIco,
   MobileAccountIco,
+  ReddditIco,
 };
