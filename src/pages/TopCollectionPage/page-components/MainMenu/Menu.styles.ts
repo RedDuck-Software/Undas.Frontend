@@ -40,7 +40,7 @@ export const OfferMenuWrap = styled.div`
 `;
 export const OffersWrapTable = styled.table`
   width: 100%;
-  min-width: 900px;
+  min-width: 950px;
   border-collapse: collapse;
   flex: 0 0 100%;
   margin: 20px 0;
@@ -153,6 +153,12 @@ export const PriceTextW = styled.div`
   width: 100%;
   text-align: left;
   float: left;
+  display: flex;
+  flex-wrap: nowrap;
+
+  &.min-width {
+    min-width: 95px;
+  }
 `;
 export const PercentTextTop = styled.span`
   font-family: "Montserrat";

@@ -65,6 +65,8 @@ const OffersMenu: React.FC = () => {
             </OffersTd>
             <OffersTd>24h Vol</OffersTd>
             <OffersTd>24h Vol</OffersTd>
+            <OffersTd>Owners</OffersTd>
+            <OffersTd>Items</OffersTd>
           </OffersHeadTr>
           <OffersTr className="offers-menu-row">
             <OffersTdText className="first-column">
@@ -105,8 +107,18 @@ const OffersMenu: React.FC = () => {
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
-              <PriceTextW>
+              <PriceTextW className="min-width">
                 <PercentTextTop>100,00%</PercentTextTop>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
               </PriceTextW>
             </OffersTdText>
           </OffersTr>
@@ -153,6 +165,16 @@ const OffersMenu: React.FC = () => {
                 <PercentTextButtom>100,00%</PercentTextButtom>
               </PriceTextW>
             </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
           </OffersTr>
           <OffersTr className="offers-menu-row">
             <OffersTdText className="first-column">
@@ -195,6 +217,16 @@ const OffersMenu: React.FC = () => {
             <OffersTdText>
               <PriceTextW>
                 <PercentTextTop>100,00%</PercentTextTop>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
               </PriceTextW>
             </OffersTdText>
           </OffersTr>

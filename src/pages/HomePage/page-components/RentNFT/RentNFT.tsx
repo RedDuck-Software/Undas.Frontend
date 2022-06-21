@@ -32,7 +32,6 @@ const RentNFT: React.FC = () => {
     useState<{ URI: string; name: string; id: number }[]>();
 
   const getStakings = async () => {
-
     const tokens = await fetchStakingData();
 
     tokens.stakingListings.map((nft: any) => {
@@ -55,7 +54,6 @@ const RentNFT: React.FC = () => {
   }
 
   useEffect(() => {
-
     getItemsData();
   }, [connector]);
 

@@ -102,14 +102,14 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(
-      NFT_ADDRESS,
-      signer,
-    )
-      
-    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-    await approve.wait()
-    const expectedValue = (priceForSale * 2) /100;
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const approve = await NftContract.setApprovalForAll(
+      MARKETPLACE_ADDRESS,
+      true,
+    );
+    await approve.wait();
+    const expectedValue = (priceForSale * 2) / 100;
 
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
