@@ -108,19 +108,19 @@ const Navbar = () => {
                     <AllNFTsIcon />
                     All NFTs
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-new">
                     <NewIcon />
                     New
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-art">
                     <ArtIcon />
                     Artwork
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-sport">
                     <SportIcon />
                     Sport
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-photo">
                     <PhotoIco />
                     Photography
                   </MenuList>
@@ -128,15 +128,15 @@ const Navbar = () => {
                     <MetaversesIcon/>
                     Metaverses
                   </MenuList> */}
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-celebrity">
                     <CelebrityIco />
                     Celebrity
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-rwa">
                     <RwaNFT />
                     rwa NFT
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-18plus">
                     <Ico18 />
                     18+NFTs
                   </MenuList>

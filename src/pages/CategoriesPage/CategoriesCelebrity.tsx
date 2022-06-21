@@ -16,7 +16,7 @@ import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
 
-const Categories: React.FC = () => {
+const CategoriesCelebrity: React.FC = () => {
   return (
     <>
       <Banner>
@@ -26,7 +26,7 @@ const Categories: React.FC = () => {
         <Container>
           <Info>
             <div>
-              <Title>Real World Asset NFT</Title>
+              <Title>Celebrity</Title>
               <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
@@ -53,4 +53,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default CategoriesCelebrity;
