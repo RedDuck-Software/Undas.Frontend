@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrap = styled.div``;
 export const SliderInner = styled.div`
   background-color: #fbf5ff;
-  padding-bottom: 30px;
   box-shadow: inset 0px 0px 1px #7c7c7c;
   border-radius: 0px 0px 10px 10px;
 `;

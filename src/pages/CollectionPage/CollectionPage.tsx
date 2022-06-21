@@ -109,7 +109,7 @@ const CollectionPage: React.FC = () => {
     });
     return items;
   }
-  
+
   async function getUserNft() {
     const response = await getNfts();
 
@@ -125,7 +125,7 @@ const CollectionPage: React.FC = () => {
 
     getUserNft();
   }, [connector]);
-  
+
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const [show, setShow] = useState(false);

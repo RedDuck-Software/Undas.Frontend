@@ -29,11 +29,11 @@ export const OfferMenuWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  @media (max-width: 992px) {
-    margin-top: 10px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
   }
   @media (max-width: 576px) {
-    margin-top: unset;
+    margin-top: 20px;
   }
 `;
 export const OffersWrapTable = styled.table`
@@ -157,7 +157,6 @@ export const PriceTextW = styled.div`
 `;
 export const SelectedFilters = styled.div`
   width: 100%;
-  margin-top: 20px;
 `;
 export const Filter = styled.div`
   width: 180px;

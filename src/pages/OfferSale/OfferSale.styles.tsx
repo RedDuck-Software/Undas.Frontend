@@ -32,17 +32,25 @@ export const TitleText = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 44px;
+  font-weight: 400;
+  font-size: 36px;
   text-align: left;
   color: #232428;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 40px;
+  @media (max-width: 992px) {
+    font-size: 32px;
+    line-height: 36px;
+  }
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 40px;
+    margin-bottom: 30px;
   }
   @media (max-width: 576px) {
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 24px;
     margin-top: 20px;
     margin-bottom: 20px;
   }

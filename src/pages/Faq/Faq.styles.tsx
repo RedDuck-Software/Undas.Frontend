@@ -3,7 +3,7 @@ import Accordion from "react-bootstrap/Accordion";
 import styled from "styled-components";
 
 export const FaqTabsWrapper = styled.div`
-  min-height: 550px;
+  margin-bottom: 120px;
   @media (max-width: 992px) {
     display: none;
   }
@@ -206,8 +206,15 @@ export const HeadText = styled.span`
 `;
 export const AccordionContainer = styled.div`
   display: none;
+  margin-bottom: 80px;
   @media (max-width: 992px) {
     display: block;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    margin-bottom: 40px;
   }
 `;
 export const PageFAQTitle = styled.h1`
@@ -215,15 +222,19 @@ export const PageFAQTitle = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin: 60px 0 20px;
+  margin: 60px 0 40px;
   @media (max-width: 992px) {
-    margin: 40px 0 30px;
+    font-size: 32px;
+    line-height: 36px;
   }
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 40px 0 30px;
   }
   @media (max-width: 576px) {
-    margin: 30px 0 20px;
-    font-size: 24px;
+    margin: 20px 0 20px;
+    font-size: 20px;
+    line-height: 24px;
   }
 `;

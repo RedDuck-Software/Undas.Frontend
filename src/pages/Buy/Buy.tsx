@@ -58,8 +58,6 @@ const Rent: React.FC = () => {
   const state:any = useLocation()
   const navigate = useNavigate();
 
-
-
   async function buyToken(tokenId: number, priceInNum?: number) {
     if(!connector){
       navigate("/login");
