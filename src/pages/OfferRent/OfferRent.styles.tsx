@@ -5,15 +5,15 @@ import { eth, offerTime } from "./imports";
 import { Swiper } from "swiper/react";
 
 export const PageWrapper = styled.div`
-  padding: 40px 0 120px;
+  padding: 60px 0 120px;
   @media (max-width: 992px) {
-    padding: 30px 0 80px;
+    padding: 60px 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 20px 0 60px;
+    padding: 40px 0 60px;
   }
   @media (max-width: 576px) {
-    padding-bottom: 30px;
+    padding: 20px 0 40px;
   }
 `;
 export const TabsMenu = styled.ul`
@@ -228,12 +228,12 @@ export const ImageDown = styled.img`
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
+  border: none;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   padding-left: 25px;
   outline: none;
   &:focus {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-    border-color: rgb(135 61 193);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 
   @media (max-width: 992px) {

@@ -9,18 +9,21 @@ export const StatisticsText = styled.span`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin-left: 30px;
-  margin-top: 45px;
+  margin-top: 60px;
   display: block;
 
   @media (max-width: 992px) {
-    font-size: 24px;
+    font-size: 32px;
+    line-height: 36px;
   }
   @media (max-width: 768px) {
-    margin-top: 25px;
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 28px;
   }
   @media (max-width: 576px) {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 24px;
   }
 `;

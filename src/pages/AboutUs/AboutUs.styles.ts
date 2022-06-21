@@ -179,10 +179,10 @@ export const Roadmap = styled.div`
     padding: 0 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 0 0 50px;
+    padding: 0 0 60px;
   }
   @media (max-width: 576px) {
-    padding: 0 0 50px;
+    padding: 0 0 40px;
   }
 `;
 
@@ -356,17 +356,22 @@ export const PageTitleAbout = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin: 60px 0 60px;
+  margin: 60px 0 40px;
 
   @media (max-width: 992px) {
-    margin: 30px 0 20px;
     text-align: center;
+    font-size: 32px;
+    line-height: 36px;
   }
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 40px 0 30px;
   }
   @media (max-width: 576px) {
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 20px 0 20px;
   }
 `;
 

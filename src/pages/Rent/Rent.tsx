@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
@@ -45,7 +45,7 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 import { RentalPeriod } from "../NFTPage/NFTPage.styles";
@@ -57,6 +57,7 @@ const Rent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const state: any = useLocation();
+  const navigate = useNavigate();
   const { connector } = useContext(Context);
 
   const URI = state.state.state.URI;
@@ -72,7 +73,10 @@ const Rent: React.FC = () => {
     colloteralWei?: number,
     premium?: number,
   ) {
-    if (!connector) return;
+    if (!connector) {
+      navigate("/login");
+      return;
+    }
 
     if (colloteralWei == undefined) {
       return;
@@ -97,7 +101,6 @@ const Rent: React.FC = () => {
       +premium +
       (+premium * 20) / 100
     ).toFixed(7);
-
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
     });

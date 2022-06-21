@@ -9,6 +9,6 @@ export const HomeContainer = styled.div`
     padding-bottom: 60px;
   }
   @media (max-width: 576px) {
-    padding-bottom: 30px;
+    padding-bottom: 40px;
   }
 `;

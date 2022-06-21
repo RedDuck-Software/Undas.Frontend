@@ -56,14 +56,15 @@ const NewNFT: React.FC = () => {
 
   async function getItemsData() {
     const response = await getListings();
-    console.log(response);
+    console.log('response',response);
     setList(response);
   }
 
   useEffect(() => {
-    if (!connector) {
-      return;
-    }
+    // if (!connector) {
+    //   return;
+    // }
+    console.log('dsads')
     getItemsData();
   }, [connector]);
 

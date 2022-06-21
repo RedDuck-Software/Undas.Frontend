@@ -231,7 +231,7 @@ const Navbar = () => {
             className="icons"
           >
             <StyledList>
-              <StyledLink to="/">
+              <StyledLink to="/account">
                 <Favorite />
               </StyledLink>
             </StyledList>

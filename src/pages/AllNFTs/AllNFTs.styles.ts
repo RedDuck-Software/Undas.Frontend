@@ -17,11 +17,15 @@ export const MenuWrap = styled.div<IMenuWrap>`
   display: flex;
   justify-content: ${(props) => props.justifyContent || ""};
   align-items: center;
-  margin: ${(props) => props.marg || "64px 0 20px"};
+  margin: ${(props) => props.marg || "60px 0 40px"};
   flex-wrap: wrap;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    margin: 40px 0 30px;
+  }
   @media (max-width: 576px) {
-    margin-top: 20px;
+    margin: 20px 0 20px;
   }
 `;
 

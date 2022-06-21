@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+import React, {Dispatch, SetStateAction, useContext, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import {
   CreateSec,
@@ -42,6 +42,7 @@ import Levels from "./page-components/Levels/Levels";
 import Stats from "./page-components/Stats/Stats";
 import { CreateSelect, SelectItem } from "../../components";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
+import {useNavigate} from "react-router-dom";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
@@ -59,6 +60,7 @@ const SelectCollectionList: React.FC<{
 const CreateNFT: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
+  const navigate = useNavigate();
   const properties = useSelector(useProperties);
   const levels = useSelector(useLevels);
   const stats = useSelector(useStats);
@@ -88,6 +90,12 @@ const CreateNFT: React.FC = () => {
   const [supply, setSupply] = useState("1");
   const [freezeMetadata, setFreezeMetadata] = useState("");
 
+  useEffect(() => {
+    if(!connector){
+      navigate("/login");
+    }
+
+  }, [connector]);
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
   };

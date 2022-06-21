@@ -128,6 +128,7 @@ export const CollectionBackground = styled.img`
   top: 0;
   left: 0;
   position: absolute;
+  width: 100%;
 `;
 
 export const AuthorWrap = styled.div`
@@ -165,7 +166,9 @@ export const CollectionPicWrap = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-
+  & img {
+    width: 100%;
+  }
   @media (max-width: 576px) {
     height: 60px;
     width: 60px;
@@ -217,6 +220,7 @@ interface IWrapper {
   curs?: string;
   margBottomS?: string;
   margBottomXS?: string;
+  margBottomM?: string;
 }
 
 export const Wrapper = styled.div<IWrapper>`
@@ -234,6 +238,9 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
+  @media (max-width: 992px) {
+    margin-bottom: ${(props) => props.margBottomM};
+  }
   @media (max-width: 768px) {
     margin-bottom: ${(props) => props.margBottomS};
   }

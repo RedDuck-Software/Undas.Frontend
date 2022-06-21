@@ -64,14 +64,13 @@ import {
 
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
 import { createClient } from "urql";
 import { ethers } from "ethers";
-
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 
 const OfferRent: React.FC = () => {
@@ -84,9 +83,13 @@ const OfferRent: React.FC = () => {
   const [listingId, setListingId] = useState("");
 
   const [isNFTCollateral, setIsNFTCollateral] = useState(false);
+  const navigate = useNavigate();
 
   async function makeRentOffer() {
-    if (!connector) return;
+    if(!connector){
+      navigate("/login");
+      return
+    }
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -102,7 +105,6 @@ const OfferRent: React.FC = () => {
     const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
       7,
     );
-
     const tx = await MarketplaceContract.stakingOffer(
       listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),

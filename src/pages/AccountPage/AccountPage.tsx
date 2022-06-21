@@ -107,7 +107,7 @@ const AccountPage: React.FC = () => {
             <ASideFilter marginTop="140px" accountPage />
           )}
           <Wrapper w="100%" marg="0 0 40px 0">
-            <Wrapper w="100%" marg="15px 0 0 0">
+            <Wrapper w="100%" marg="15px 0 0 120px">
               <TabsMenu>
                 <Tab
                   onClick={() => setTab("")}

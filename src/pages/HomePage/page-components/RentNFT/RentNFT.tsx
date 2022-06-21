@@ -32,11 +32,9 @@ const RentNFT: React.FC = () => {
     useState<{ URI: string; name: string; id: number }[]>();
 
   const getStakings = async () => {
-    if (!connector) {
-      return;
-    }
 
     const tokens = await fetchStakingData();
+
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
         const price = nft.premiumWei;
@@ -56,9 +54,7 @@ const RentNFT: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!connector) {
-      return;
-    }
+
     getItemsData();
   }, [connector]);
 
@@ -99,15 +95,6 @@ const RentNFT: React.FC = () => {
         {list?.map((item) => {
           return (
             <>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
               <SwiperSlide key={item.id}>
                 <NFTCard uri={item.URI} name={item.name} />
               </SwiperSlide>
