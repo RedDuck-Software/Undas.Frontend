@@ -28,6 +28,7 @@ import {
   WatchlistIco,
   SettingsIco,
   LoginMenuIco,
+  Ico18
 } from "./imports";
 import {
   Header,
@@ -134,6 +135,10 @@ const Navbar = () => {
                   <MenuList to="/categories">
                     <RwaNFT />
                     rwa NFT
+                  </MenuList>
+                  <MenuList to="/categories">
+                    <Ico18 />
+                    18+NFTs
                   </MenuList>
                 </DropdownMenu>
               </StyledList>
