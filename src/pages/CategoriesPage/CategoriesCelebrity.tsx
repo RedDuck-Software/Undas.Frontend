@@ -16,7 +16,7 @@ import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
 
-const Categories: React.FC = () => {
+const CategoriesCelebrity: React.FC = () => {
   return (
     <>
       <Banner>
@@ -26,18 +26,18 @@ const Categories: React.FC = () => {
         <Container>
           <Info>
             <div>
-              <Title>Real World Asset NFT</Title>
+              <Title>Celebrity</Title>
               <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
               <InfoText>
-                You can submit your NFT collections for advertising in Undas. To
-                discuss cooperation, please write to us.
+                You can exchange your NFT for an item, e.g. selling the tickets
+                through our marketplace
               </InfoText>
               <Contact>
                 <ContactImage src={Email} alt="email-ico" />
                 <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>Waiting for your message</ContactText>
+                <ContactText>cooperate with dreams</ContactText>
               </Contact>
             </InfoCard>
           </Info>
@@ -53,4 +53,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default CategoriesCelebrity;

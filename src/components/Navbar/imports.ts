@@ -1,3 +1,4 @@
+import { ReactComponent as Ico18 } from "../../icons/18.svg";
 import { ReactComponent as AboutIco } from "../../icons/about.svg";
 import { ReactComponent as MobileAccountIco } from "../../icons/account-dropdown.svg";
 import { ReactComponent as ActivityIco } from "../../icons/activity-dropdown.svg";
@@ -66,4 +67,5 @@ export {
   MobileFavoriteIco,
   MobileAccountIco,
   ReddditIco,
+  Ico18,
 };
