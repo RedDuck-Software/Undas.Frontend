@@ -113,7 +113,6 @@ const OffersMenu: React.FC = () => {
   };
 
   const cancelListingOffer = async (listingId: number) => {
-    console.log(listingId);
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -133,7 +132,6 @@ const OffersMenu: React.FC = () => {
   };
 
   const removeStakingOffer = async (stakingId: number) => {
-    console.log(stakingId);
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -153,7 +151,6 @@ const OffersMenu: React.FC = () => {
   };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
-    console.log(stakingId);
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -177,7 +174,6 @@ const OffersMenu: React.FC = () => {
   };
 
   const acceptBuyingOffer = async (listingId: number, taker: string) => {
-    console.log(listingId);
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -204,7 +200,6 @@ const OffersMenu: React.FC = () => {
     const offers = await fetchStakingData();
 
     offers.stakingOffers.map((offer: any) => {
-      console.log("offer222", offer);
       if (
         offer.offerStatus == "ACTIVE" &&
         offer.newOfferedColloteral != "0" &&
@@ -247,10 +242,8 @@ const OffersMenu: React.FC = () => {
     const offers = await fetchBuyingData();
 
     offers.buyingOffers.map((offer: any) => {
-      console.log("BUYoffer", offer);
       //костыль надо <offer.offeredNumber != 0)> переделать контракт
       if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
-        console.log("offer");
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
         const listingId = offer.id;
@@ -284,7 +277,6 @@ const OffersMenu: React.FC = () => {
     const offers = await fetchUserBuyingOffersData();
 
     offers.buyingOffers.map((offer: any) => {
-      console.log("dasda", offer.newOfferedPrice != 0);
       if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
@@ -317,7 +309,6 @@ const OffersMenu: React.FC = () => {
       return;
     }
     const offers = await fetchUserRentingOffersData();
-    console.log("offers22", offers);
     offers.stakingOffers.map((offer: any) => {
       if (
         offer.offerStatus == "ACTIVE" &&
@@ -372,7 +363,6 @@ const OffersMenu: React.FC = () => {
 
   async function getUserOffersData() {
     const response = await getUserBuyingOffers();
-    console.log("response", response);
     if (response) {
       setUserOffersForBuy(response);
     }
@@ -401,8 +391,6 @@ const OffersMenu: React.FC = () => {
     }
   }, [connector, owner]);
 
-  console.log(userOffersForBuy);
-  console.log(userOffersForRent);
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

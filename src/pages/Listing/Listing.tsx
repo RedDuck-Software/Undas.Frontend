@@ -44,10 +44,6 @@ const Listing: React.FC = () => {
     const signer = provider.getSigner(0);
     const SIGNER_ADDRESS = await signer.getAddress();
 
-    console.log(connector);
-    console.log(signer);
-    console.log(tokenId, NFTAddress, price);
-
     const NFTContract = UndasGeneralNFT__factory.connect(
       "0xB073DeaC0dc753d27cC41a0f443000579d017361",
       signer,
@@ -57,8 +53,6 @@ const Listing: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
-    console.log(MarketplaceContract);
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,

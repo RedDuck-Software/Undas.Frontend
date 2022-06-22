@@ -147,7 +147,7 @@ const PropertiesModal: React.FC<PropertiesModalProps> = ({
     dispatch(removeProperty(itemId));
     setModalProperties(properties);
   };
-  console.log("properties modal: ", properties);
+
   return (
     <CreateModalWrap>
       <ModalButton onClick={handleShow}>+</ModalButton>

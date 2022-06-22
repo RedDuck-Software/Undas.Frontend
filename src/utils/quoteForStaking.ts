@@ -2,7 +2,6 @@ import { AbstractConnector } from "@web3-react/abstract-connector";
 import { ethers } from "ethers";
 
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
-import intervalIntoTimeStamp from "./intervalIntoTimeStamp";
 
 import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
 
@@ -14,7 +13,6 @@ export const quoteForStaking = async (
   connector: AbstractConnector,
 ) => {
   if (!connector) return;
-  console.log(intervalIntoTimeStamp);
   const provider = new ethers.providers.Web3Provider(
     await connector.getProvider(),
   );
@@ -39,7 +37,6 @@ export const quoteForStaking = async (
     ).wait();
   }
 
-  console.log("Item data" + NFT_ADDRESS, tokenId, price, premium, term);
   // const tx = await MarketplaceContract.quoteForStaking(
   //   NFT_ADDRESS,
   //   tokenId,

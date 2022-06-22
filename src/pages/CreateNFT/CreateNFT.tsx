@@ -5,6 +5,7 @@ import React, {
   useContext,
   useEffect,
   useState,
+  useReducer,
 } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -49,6 +50,7 @@ import Stats from "./page-components/Stats/Stats";
 import { CreateSelect, SelectItem } from "../../components";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
 import { useNavigate } from "react-router-dom";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
@@ -63,55 +65,84 @@ const SelectCollectionList: React.FC<{
   );
 };
 
+interface IState {
+  name: string;
+  externalLink: string;
+  description: string;
+  supply: string;
+  freezeMetadata: string;
+}
+
+interface IAction {
+  type: string;
+  value: string;
+}
+
+const initialState: IState = {
+  name: "",
+  externalLink: "",
+  description: "",
+  supply: "1",
+  freezeMetadata: "",
+};
+
+const reducer = (state: IState, action: IAction) => {
+  if (action.type === "reset") {
+    return initialState;
+  }
+  const result = { ...state };
+  result[action.type as keyof typeof initialState] = action.value;
+  return result;
+};
+
 const CreateNFT: React.FC = () => {
-  const navigate = useNavigate();
-  const properties = useSelector(useProperties);
-  const levels = useSelector(useLevels);
-  const stats = useSelector(useStats);
-
-  const { connector } = useContext(Context);
-  const web3ReactState = useWeb3React();
-  const { account } = web3ReactState;
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { name, externalLink, description, supply, freezeMetadata } = state;
   const [file, setFile] = useState<string>();
   const [fileSizeError, setFileSizeError] = useState<{
     message: string;
     inputName: string;
   }>();
-  const [name, setName] = useState("");
-  const [externalLink, setExternalLink] = useState("");
-  const [description, setDescription] = useState("");
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
   });
-  const [propertyList, setPropertyList] = useState<Property[]>(properties);
-  const [levelList, setLevelList] = useState<Level[]>(levels);
-  const [statList, setStatList] = useState<Stat[]>(stats);
+  const [propertyList, setPropertyList] = useState<Property[]>(
+    useSelector(useProperties),
+  );
+  const [levelList, setLevelList] = useState<Level[]>(useSelector(useLevels));
+  const [statList, setStatList] = useState<Stat[]>(useSelector(useStats));
   const [isOnlockableContent, setIsOnlockableContent] =
     useState<boolean>(false);
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
-  const [supply, setSupply] = useState("1");
-  const [freezeMetadata, setFreezeMetadata] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const { connector } = useContext(Context);
+  const web3ReactState = useWeb3React();
+  const { account } = web3ReactState;
 
   useEffect(() => {
     if (!connector) {
       navigate("/login");
     }
   }, [connector]);
+
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
   };
   const { register, formState, handleSubmit } =
     useForm<CreateNFTForm>(formOptions);
   const { errors } = formState;
-  console.log(errors);
+
   const mintNFT = async () => {
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
+
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
@@ -126,11 +157,18 @@ const CreateNFT: React.FC = () => {
       externalLink,
     );
 
+    setLoading(true);
     await tx.wait();
+    if(autoRedirect) {
+      console.log("autoredirect")
+      setAutoRedirect(false);
+      navigate("/account");
+    }
+    setLoading(false);
   };
 
   const onSubmit = () => {
-    console.log(errors);
+    setAutoRedirect(true);
     mintNFT();
   };
 
@@ -159,42 +197,44 @@ const CreateNFT: React.FC = () => {
       setFile(file);
     }
   };
-  const nameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-
-  const externalLinkHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setExternalLink(event.target.value);
-  };
-
-  const descriptionHandler = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setDescription(event.target.value);
-  };
 
   const unlockacleHandler = () => {
     setIsOnlockableContent(!isOnlockableContent);
   };
+
   const sensetiveHandler = () => {
     setIsSensetiveContent(!isSensetiveContent);
   };
 
-  const supplyHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSupply(event.target.value);
-  };
-
-  const freezeMetadataHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
+  const onChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFreezeMetadata(event.target.value);
+    const { name, value } = event.target;
+    dispatch({ type: name, value });
   };
 
+  const handleCleanForm = () => {
+    setFile("");
+    setIsOnlockableContent(false);
+    setIsSensetiveContent(false);
+    setLoading(false);
+    setAutoRedirect(false);
+    dispatch({ type: "reset", value: "" });
+  };
+
+  console.log("LOADING", loading);
+  console.log("AUTOREDIRECT", autoRedirect);
   return (
     <Background>
       <CreateSec>
+        <LoadingModal
+          isLoading={loading}
+          setAutoRedirect={setAutoRedirect}
+          addMore={handleCleanForm}
+        />
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
+
           <CreateForm onSubmit={handleSubmit(onSubmit)}>
             <BlockDescript>
               <span className="require-asterisk">*</span>Required fields
@@ -233,7 +273,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="NFT name"
                 {...register("name")}
                 value={name}
-                onChange={nameHandler}
+                onChange={onChange}
               />
               {errors.name && (
                 <ValidationBlock>{errors.name.message}</ValidationBlock>
@@ -252,7 +292,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="https://yoursite.io/item/123"
                 {...register("externalLink")}
                 value={externalLink}
-                onChange={externalLinkHandler}
+                onChange={onChange}
               />
               {errors.externalLink && (
                 <ValidationBlock>{errors.externalLink.message}</ValidationBlock>
@@ -270,7 +310,7 @@ const CreateNFT: React.FC = () => {
                 maxLength={1000}
                 {...register("description")}
                 value={description}
-                onChange={descriptionHandler}
+                onChange={onChange}
               />
               {errors.description && (
                 <ValidationBlock>{errors.description.message}</ValidationBlock>
@@ -335,7 +375,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="1"
                 {...register("supply")}
                 value={supply}
-                onChange={supplyHandler}
+                onChange={onChange}
               />
               {errors.supply && (
                 <ValidationBlock>{errors.supply.message}</ValidationBlock>
@@ -356,7 +396,7 @@ const CreateNFT: React.FC = () => {
                 placeholder="To freeze your metadata, you must create your item first"
                 {...register("freezeMetadata")}
                 value={freezeMetadata}
-                onChange={freezeMetadataHandler}
+                onChange={onChange}
               />
               {errors.freezeMetadata && (
                 <ValidationBlock>

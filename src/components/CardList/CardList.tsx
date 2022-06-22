@@ -241,7 +241,6 @@ const client = createClient({
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log(data.data.listings);
   return data.data.listings;
 }
 

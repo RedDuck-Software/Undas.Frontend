@@ -59,7 +59,6 @@ const Staking: React.FC<{ id: string }> = ({ id }) => {
       term.toString(),
       connector,
     ).then(() => {
-      console.log("Great success!");
       setIsPuttedForStaking(true);
     });
   };

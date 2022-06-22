@@ -74,7 +74,6 @@ const MoreFromCollection: React.FC<CollectionProps> = ({ id }) => {
 
   const toogleCollection = () => {
     setCollection(!Collection);
-    console.log(itemsToShow);
   };
 
   return (
