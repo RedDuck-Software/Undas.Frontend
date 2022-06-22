@@ -24,7 +24,7 @@ import Achievements from "./page-components/Achievements/Achievements";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
-import Referral from "./page-components/Referral/Referral";
+import Rented from "./page-components/Rented/Rented";
 import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
@@ -103,7 +103,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "reward" && tab !== "referral" && tab !== "achievements" && (
+          {tab !== "reward" && tab !== "rented" && tab !== "achievements" && (
             <ASideFilter marginTop="140px" accountPage />
           )}
           <Wrapper w="100%" marg="0 0 40px 0">
@@ -140,11 +140,11 @@ const AccountPage: React.FC = () => {
                   <span>Reward</span>
                 </Tab>
                 <Tab
-                  onClick={() => setTab("referral")}
-                  className={tab === "referral" ? "active" : ""}
+                  onClick={() => setTab("rented")}
+                  className={tab === "rented" ? "active" : ""}
                 >
                   <ReferralIco />
-                  <span>Referral</span>
+                  <span>Rented</span>
                 </Tab>
                 <Tab
                   onClick={() => setTab("achievements")}
@@ -159,7 +159,7 @@ const AccountPage: React.FC = () => {
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
-            {tab === "referral" && <Referral />}
+            {tab === "rented" && <Rented />}
             {tab === "achievements" && <Achievements />}
           </Wrapper>
           {/* {tab == "" || tab == "offers" || tab == "favourite" ? (

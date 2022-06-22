@@ -25,11 +25,12 @@ import {
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
-  MyCollectionIco,
-  WatchlistIco,
+  // MyCollectionIco,
+  // WatchlistIco,
   SettingsIco,
   LoginMenuIco,
   Ico18,
+  ReferralIco,
 } from "./imports";
 import {
   Header,
@@ -256,8 +257,8 @@ const Navbar = () => {
                 <ProfileIco />
               </StyledLink>
               <DropdownMenu
-                setWidth="155px"
-                xlWidth="160px"
+                setWidth="165px"
+                xlWidth="180px"
                 left="-3rem"
                 top="2rem"
               >
@@ -265,14 +266,14 @@ const Navbar = () => {
                   <ProfileMenuIco />
                   Profile
                 </MenuList>
-                <MenuList to="/account">
-                  <MyCollectionIco />
-                  My Collections
+                <MenuList to="/referral">
+                  <ReferralIco />
+                  Referral Program
                 </MenuList>
-                <MenuList to="/">
+                {/* <MenuList to="/">
                   <WatchlistIco />
                   Watchlist
-                </MenuList>
+                </MenuList> */}
                 <MenuList to="/settings">
                   <SettingsIco />
                   Settings

@@ -24,6 +24,7 @@ import { ReactComponent as NewIcon } from "../../icons/new-stars.svg";
 import { ReactComponent as PhotoIco } from "../../icons/photography.svg";
 import { ReactComponent as ProfileMenuIco } from "../../icons/profile-dropdown.svg";
 import { ReactComponent as ProfileIco } from "../../icons/profile-header.svg";
+import { ReactComponent as ReferralIco } from "../../icons/referral.svg";
 import { ReactComponent as RwaNFT } from "../../icons/rwa-nft.svg";
 import { ReactComponent as SettingsIco } from "../../icons/settings.svg";
 import { ReactComponent as SportIcon } from "../../icons/sport.svg";
@@ -68,4 +69,5 @@ export {
   MobileAccountIco,
   ReddditIco,
   Ico18,
+  ReferralIco,
 };
