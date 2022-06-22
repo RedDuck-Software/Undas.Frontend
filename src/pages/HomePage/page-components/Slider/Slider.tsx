@@ -34,20 +34,20 @@ const Slider: React.FC = () => {
       navigation={true}
       pagination={true}
     >
+      <UndasDiv>
+        <TextGet>
+          Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
+        </TextGet>{" "}
+        <TextStacking>
+          Stacking, Renting, Creating, Trading and Exchanging NFT
+        </TextStacking>
+      </UndasDiv>
+      <SliderButtonsBlock>
+        <ExploreButton to="/all">Explore</ExploreButton>
+        <CreateButton to="/create-nft">Create</CreateButton>
+      </SliderButtonsBlock>
       <SwiperSlide>
-        <UndasDiv>
-          <TextGet>
-            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
-          </TextGet>{" "}
-          <TextStacking>
-            Stacking, Renting, Creating, Trading and Exchanging NFT
-          </TextStacking>
-        </UndasDiv>
-        <SliderButtonsBlock>
-          <ExploreButton to="/all">Explore</ExploreButton>
-          <CreateButton to="/create-nft">Create</CreateButton>
-        </SliderButtonsBlock>
-        <CollectionDiv>
+        <CollectionDiv to="/collection">
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
@@ -55,19 +55,7 @@ const Slider: React.FC = () => {
         <SliderImage src={SliderBG} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <UndasDiv>
-          <TextGet>
-            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
-          </TextGet>{" "}
-          <TextStacking>
-            Stacking, Renting, Creating, Trading and Exchanging NFT
-          </TextStacking>
-        </UndasDiv>
-        <SliderButtonsBlock>
-          <ExploreButton to="/all">Explore</ExploreButton>
-          <CreateButton to="/create-nft">Create</CreateButton>
-        </SliderButtonsBlock>
-        <CollectionDiv>
+        <CollectionDiv to="/collection">
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
@@ -75,19 +63,15 @@ const Slider: React.FC = () => {
         <SliderImage src={SliderBG} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <UndasDiv>
-          <TextGet>
-            Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
-          </TextGet>{" "}
-          <TextStacking>
-            Stacking, Renting, Creating, Trading and Exchanging NFT
-          </TextStacking>
-        </UndasDiv>
-        <SliderButtonsBlock>
-          <ExploreButton to="/all">Explore</ExploreButton>
-          <CreateButton to="/create-nft">Create</CreateButton>
-        </SliderButtonsBlock>
-        <CollectionDiv>
+        <CollectionDiv to="/collection">
+          <IMGdiv></IMGdiv>
+          <CollectionTitle>Collection Title</CollectionTitle>
+          <SeeCollection>See collection...</SeeCollection>
+        </CollectionDiv>
+        <SliderImage src={SliderBG} alt="slider-image" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <CollectionDiv to="/collection">
           <IMGdiv></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>

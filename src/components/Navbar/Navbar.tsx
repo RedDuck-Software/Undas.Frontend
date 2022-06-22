@@ -28,6 +28,7 @@ import {
   WatchlistIco,
   SettingsIco,
   LoginMenuIco,
+  Ico18,
 } from "./imports";
 import {
   Header,
@@ -60,6 +61,7 @@ const Navbar = () => {
     community: false,
     create: false,
     profile: false,
+    lang: false,
   });
 
   const value = useContext(Context);
@@ -107,19 +109,19 @@ const Navbar = () => {
                     <AllNFTsIcon />
                     All NFTs
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-new">
                     <NewIcon />
                     New
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-art">
                     <ArtIcon />
                     Artwork
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-sport">
                     <SportIcon />
                     Sport
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-photo">
                     <PhotoIco />
                     Photography
                   </MenuList>
@@ -127,13 +129,17 @@ const Navbar = () => {
                     <MetaversesIcon/>
                     Metaverses
                   </MenuList> */}
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-celebrity">
                     <CelebrityIco />
                     Celebrity
                   </MenuList>
-                  <MenuList to="/categories">
+                  <MenuList to="/categories-rwa">
                     <RwaNFT />
                     rwa NFT
+                  </MenuList>
+                  <MenuList to="/categories-18plus">
+                    <Ico18 />
+                    18+NFTs
                   </MenuList>
                 </DropdownMenu>
               </StyledList>
@@ -273,10 +279,28 @@ const Navbar = () => {
                 </MenuList>
               </DropdownMenu>
             </StyledList>
-            <StyledList>
-              <StyledLink to="/">
+            <StyledList
+              onMouseLeave={() => setHovered({ lang: false })}
+              onMouseEnter={() => setHovered({ lang: true })}
+            >
+              <StyledLink
+                to="/"
+                className={hovered && hovered.lang ? "hovered-lang" : ""}
+              >
                 <LanguageTitle>en</LanguageTitle>
               </StyledLink>
+              <DropdownMenu
+                setWidth="65px"
+                left="-1rem"
+                top="2rem"
+              >
+                <MenuList to="/">
+                 RU
+                </MenuList>
+                <MenuList to="/">
+                中国人
+                </MenuList>
+              </DropdownMenu>
             </StyledList>
           </IconsUl>
         </Navigation>
