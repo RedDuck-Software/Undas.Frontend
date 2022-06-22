@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 import {
@@ -45,7 +45,7 @@ import {
 import { Background, Container, PageTitle } from "../../globalStyles";
 
 import { info } from "../OfferRent/imports";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
 import { RentalPeriod } from "../NFTPage/NFTPage.styles";
@@ -56,19 +56,23 @@ import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 const Rent: React.FC = () => {
   const state: any = useLocation();
   const { connector } = useContext(Context);
-  const URI = state.state.state.URI
-  const nameFrom = state.state.state.name
-  const colloteral = ethers.utils.formatUnits(state.state.state.colloteralWei.toString())
-  const premium = state.state.state.premium
-  const stakingId = state.state.state.stakingId
+  const URI = state.state.state.URI;
+  const nameFrom = state.state.state.name;
+  const colloteral = ethers.utils.formatUnits(
+    state.state.state.colloteralWei.toString(),
+  );
+  const premium = state.state.state.premium;
+  const stakingId = state.state.state.stakingId;
   const navigate = useNavigate();
 
-
-  async function rentToken(stakingId: number, colloteralWei?: number,premium?: number) {
-
-    if(!connector){
+  async function rentToken(
+    stakingId: number,
+    colloteralWei?: number,
+    premium?: number,
+  ) {
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
 
     if (colloteralWei == undefined) {

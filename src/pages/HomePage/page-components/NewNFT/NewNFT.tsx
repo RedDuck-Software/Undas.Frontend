@@ -34,7 +34,6 @@ const NewNFT: React.FC = () => {
     useState<{ id: number; name: string; URI: string }[]>();
 
   const getListings = async () => {
-
     const tokens = await fetchData();
 
     tokens.map((nft: any) => {
@@ -53,7 +52,7 @@ const NewNFT: React.FC = () => {
 
   async function getItemsData() {
     const response = await getListings();
-    console.log('response',response);
+    console.log("response", response);
     setList(response);
   }
 
@@ -61,7 +60,7 @@ const NewNFT: React.FC = () => {
     // if (!connector) {
     //   return;
     // }
-    console.log('dsads')
+    console.log("dsads");
     getItemsData();
   }, [connector]);
 

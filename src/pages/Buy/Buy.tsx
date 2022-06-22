@@ -1,6 +1,6 @@
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 
 import {
   TopLinkWrapper,
@@ -49,25 +49,22 @@ import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-import { ethers} from "ethers";
+import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 
 const Rent: React.FC = () => {
-
   const { connector } = useContext(Context);
-  const state:any = useLocation()
+  const state: any = useLocation();
   const navigate = useNavigate();
 
   async function buyToken(tokenId: number, priceInNum?: number) {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
     if (priceInNum == undefined) {
       return;
     }
-
-
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -85,8 +82,6 @@ const Rent: React.FC = () => {
     });
 
     await tx.wait();
-
-
   }
   return (
     <Background>

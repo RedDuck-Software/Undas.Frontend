@@ -64,7 +64,7 @@ import {
 
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { down, info, deleteNFT } from "./imports";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
@@ -86,9 +86,9 @@ const OfferRent: React.FC = () => {
   const navigate = useNavigate();
 
   async function makeRentOffer() {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
 
     const provider = new ethers.providers.Web3Provider(

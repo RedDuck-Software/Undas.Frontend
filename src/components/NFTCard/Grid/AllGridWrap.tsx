@@ -12,7 +12,7 @@ import Context from "../../../utils/Context";
 import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 
 import { createClient, useQuery } from "urql";
-import detectEthereumProvider from '@metamask/detect-provider';
+import detectEthereumProvider from "@metamask/detect-provider";
 
 interface CommonProps {
   id: number;
@@ -62,12 +62,12 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
-  const [network,setNetwork] = useState('');
+  const [network, setNetwork] = useState("");
   const getListings = async () => {
     setAmountOfNFTs(0);
 
     const tokens = await fetchData();
-    console.log(tokens)
+    console.log(tokens);
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
@@ -205,16 +205,15 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   //   }
   // }
   useEffect(() => {
-    console.log(connector)
-        // if(!connector){
-        //   return
-        // }
+    console.log(connector);
+    // if(!connector){
+    //   return
+    // }
 
-      getListingsData();
-      getStakingsData();
-      getHasOffersData();
-      setLoading(false);
-
+    getListingsData();
+    getStakingsData();
+    getHasOffersData();
+    setLoading(false);
   }, []);
 
   const priceSort = async () => {

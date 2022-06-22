@@ -20,7 +20,8 @@ import {
   TwitterIco,
   TelegramIco,
   DiscordIco,
-  InstagramIco,
+  ReddditIco,
+  /*InstagramIco,*/
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
@@ -201,8 +202,11 @@ const Navbar = () => {
                     <SocialLink to="/">
                       <DiscordIco />
                     </SocialLink>
-                    <SocialLink to="/">
+                    {/*<SocialLink to="/">
                       <InstagramIco />
+                      </SocialLink>*/}
+                    <SocialLink to="/">
+                      <ReddditIco />
                     </SocialLink>
                   </MenuListSocial>
                 </DropdownMenu>

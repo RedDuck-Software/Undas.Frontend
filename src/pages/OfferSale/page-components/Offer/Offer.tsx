@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import {useParams, useLocation, useNavigate} from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 import {
   OfferContainer,
@@ -63,9 +63,9 @@ const Offer: React.FC = () => {
   const navigate = useNavigate();
 
   async function makeSaleOffer() {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
     if (!offeredPrice) return alert("no offeredPrice");
     if (listingId == undefined) return alert("!listingid");
