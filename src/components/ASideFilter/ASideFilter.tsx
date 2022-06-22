@@ -44,6 +44,8 @@ import {
   MinPrice,
   PriceContainer,
   InputPriceContainer,
+  ApplyButton,
+  ButtonContainer,
 } from "./ASideFilter.styles";
 import {
   FilterIco,
@@ -433,14 +435,10 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                             {item.ico}
                             <span>{item.text}</span>
                             <AccordionArrow
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
+                              className={(priceMenu && "price-menu-active") || ""}
                             />
                             <PriceSelect
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
+                              className={(priceMenu && "price-menu-active") || ""}
                             >
                               {variations.map((item) => {
                                 return (
@@ -467,6 +465,9 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                               <MinPrice type="number" id="max" />
                             </InputBlock>
                           </InputPriceContainer>
+                          <ButtonContainer>
+                            <ApplyButton>Apply</ApplyButton>
+                          </ButtonContainer>
                         </PriceContainer>
                       );
                   })}

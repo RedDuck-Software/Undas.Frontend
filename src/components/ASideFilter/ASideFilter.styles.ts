@@ -586,3 +586,38 @@ export const InputPriceContainer = styled.div`
   flex-wrap: nowrap;
   margin-top: 20px;
 `;
+
+export const ApplyButton = styled.button`
+  cursor: pointer;
+  border: 1px solid #873dc1;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 8px;
+  width: 120px;
+  margin-top: 15px;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  color: #873DC1;
+  transition: all 0.3s linear;
+  &.colored-btn:hover {
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+  }
+  &:hover {
+    box-shadow: 0 0 6px #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
