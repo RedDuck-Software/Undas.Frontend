@@ -1,5 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, {Dispatch, SetStateAction, useContext, useEffect, useState} from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+  useReducer,
+} from "react";
 import { useForm } from "react-hook-form";
 import {
   CreateSec,
@@ -42,7 +49,8 @@ import Levels from "./page-components/Levels/Levels";
 import Stats from "./page-components/Stats/Stats";
 import { CreateSelect, SelectItem } from "../../components";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
@@ -57,45 +65,70 @@ const SelectCollectionList: React.FC<{
   );
 };
 
+interface IState {
+  name: string;
+  externalLink: string;
+  description: string;
+  supply: string;
+  freezeMetadata: string;
+}
+
+interface IAction {
+  type: string;
+  value: string;
+}
+
+const initialState: IState = {
+  name: "",
+  externalLink: "",
+  description: "",
+  supply: "1",
+  freezeMetadata: "",
+};
+
+const reducer = (state: IState, action: IAction) => {
+  if (action.type === "reset") {
+    return initialState;
+  }
+  const result = { ...state };
+  result[action.type as keyof typeof initialState] = action.value;
+  return result;
+};
+
 const CreateNFT: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const navigate = useNavigate();
-  const properties = useSelector(useProperties);
-  const levels = useSelector(useLevels);
-  const stats = useSelector(useStats);
-
-  const { connector } = useContext(Context);
-  const web3ReactState = useWeb3React();
-  const { account } = web3ReactState;
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { name, externalLink, description, supply, freezeMetadata } = state;
   const [file, setFile] = useState<string>();
   const [fileSizeError, setFileSizeError] = useState<{
     message: string;
     inputName: string;
   }>();
-  const [name, setName] = useState("");
-  const [externalLink, setExternalLink] = useState("");
-  const [description, setDescription] = useState("");
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
   });
-  const [propertyList, setPropertyList] = useState<Property[]>(properties);
-  const [levelList, setLevelList] = useState<Level[]>(levels);
-  const [statList, setStatList] = useState<Stat[]>(stats);
+  const [propertyList, setPropertyList] = useState<Property[]>(
+    useSelector(useProperties),
+  );
+  const [levelList, setLevelList] = useState<Level[]>(useSelector(useLevels));
+  const [statList, setStatList] = useState<Stat[]>(useSelector(useStats));
   const [isOnlockableContent, setIsOnlockableContent] =
     useState<boolean>(false);
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
-  const [supply, setSupply] = useState("1");
-  const [freezeMetadata, setFreezeMetadata] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const { connector } = useContext(Context);
+  const web3ReactState = useWeb3React();
+  const { account } = web3ReactState;
 
   useEffect(() => {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
     }
-
   }, [connector]);
+
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
   };
@@ -126,11 +159,16 @@ const CreateNFT: React.FC = () => {
 
     setLoading(true);
     await tx.wait();
+    if(autoRedirect) {
+      console.log("autoredirect")
+      setAutoRedirect(false);
+      navigate("/account");
+    }
     setLoading(false);
   };
 
   const onSubmit = () => {
-    console.log(errors);
+    setAutoRedirect(true);
     mintNFT();
   };
 
@@ -159,230 +197,223 @@ const CreateNFT: React.FC = () => {
       setFile(file);
     }
   };
-  const nameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-
-  const externalLinkHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setExternalLink(event.target.value);
-  };
-
-  const descriptionHandler = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setDescription(event.target.value);
-  };
 
   const unlockacleHandler = () => {
     setIsOnlockableContent(!isOnlockableContent);
   };
+
   const sensetiveHandler = () => {
     setIsSensetiveContent(!isSensetiveContent);
   };
 
-  const supplyHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSupply(event.target.value);
-  };
-
-  const freezeMetadataHandler = (
-    event: React.ChangeEvent<HTMLInputElement>,
+  const onChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFreezeMetadata(event.target.value);
+    const { name, value } = event.target;
+    dispatch({ type: name, value });
   };
 
+  const handleCleanForm = () => {
+    setFile("");
+    setIsOnlockableContent(false);
+    setIsSensetiveContent(false);
+    setLoading(false);
+    setAutoRedirect(false);
+    dispatch({ type: "reset", value: "" });
+  };
+
+  console.log("LOADING", loading);
+  console.log("AUTOREDIRECT", autoRedirect);
   return (
     <Background>
       <CreateSec>
-        {loading ? (
-          <CreateTitle>LOADING PENDING...</CreateTitle>
-        ) : (
-          <CreateContainer>
-            <CreateTitle>Create NFT</CreateTitle>
+        <LoadingModal
+          isLoading={loading}
+          setAutoRedirect={setAutoRedirect}
+          addMore={handleCleanForm}
+        />
+        <CreateContainer>
+          <CreateTitle>Create NFT</CreateTitle>
 
-            <CreateForm onSubmit={handleSubmit(onSubmit)}>
+          <CreateForm onSubmit={handleSubmit(onSubmit)}>
+            <BlockDescript>
+              <span className="require-asterisk">*</span>Required fields
+            </BlockDescript>
+            <CreateFormGroup>
+              <CreateLabel>
+                Image, Video, Audio, or 3D Model
+                <span className="require-asterisk">*</span>
+              </CreateLabel>
               <BlockDescript>
-                <span className="require-asterisk">*</span>Required fields
+                File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
+                OGG, GLB, GLTF <br />
+                Max size: 100MB
               </BlockDescript>
-              <CreateFormGroup>
-                <CreateLabel>
-                  Image, Video, Audio, or 3D Model
-                  <span className="require-asterisk">*</span>
-                </CreateLabel>
-                <BlockDescript>
-                  File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV,
-                  OGG, GLB, GLTF <br />
-                  Max size: 100MB
-                </BlockDescript>
-                <AddFileBlock>
-                  <NFTItemLabel htmlFor="NFT">
-                    {file ? (
-                      <NFTItemPreview src={file} />
-                    ) : (
-                      <img src={ImgIcon} alt="image-icon" />
-                    )}
-                  </NFTItemLabel>
-                  <NFTItemInput id="NFT" onChange={fileHandler} required />
-                </AddFileBlock>
-                {fileSizeError && fileSizeError.inputName === "File" && (
-                  <ValidationBlock>{fileSizeError.message}</ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <CreateLabel htmlFor="name">
-                  Name<span className="require-asterisk">*</span>
-                </CreateLabel>
-                <CreateInput
-                  type="text"
-                  id="name"
-                  placeholder="NFT name"
-                  {...register("name")}
-                  value={name}
-                  onChange={nameHandler}
-                />
-                {errors.name && (
-                  <ValidationBlock>{errors.name.message}</ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <CreateLabel htmlFor="external-link">External link</CreateLabel>
-                <BlockDescript>
-                  UNDAS will include a link to this URL on this item&#39;s
-                  detail page, so that users can click to learn more about it.
-                  You are welcome to link to your own webpage with more details
-                </BlockDescript>
-                <CreateInput
-                  type="text"
-                  id="externalLink"
-                  placeholder="https://yoursite.io/item/123"
-                  {...register("externalLink")}
-                  value={externalLink}
-                  onChange={externalLinkHandler}
-                />
-                {errors.externalLink && (
-                  <ValidationBlock>
-                    {errors.externalLink.message}
-                  </ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <CreateLabel htmlFor="description">Description</CreateLabel>
-                <BlockDescript>
-                  The description will be included on the item&#39;s detail page
-                  underneath its image. Markdown syntax is supported
-                </BlockDescript>
-                <CreateTextArea
-                  placeholder="Provide a detailed description of your item"
-                  id="description"
-                  maxLength={1000}
-                  {...register("description")}
-                  value={description}
-                  onChange={descriptionHandler}
-                />
-                {errors.description && (
-                  <ValidationBlock>
-                    {errors.description.message}
-                  </ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <CreateFormGroup className="collection">
-                <CreateLabel htmlFor="collection" className="collection-label">
-                  Collection
-                </CreateLabel>
-                <CreateSelect
-                  maxWidth="350px"
-                  padding="7px 20px"
-                  itemList={
-                    <SelectCollectionList setCollection={setCollection} />
-                  }
-                  item={collection}
-                />
-                <BlockDescript style={{ marginLeft: "20px" }}>
-                  This is the collection where your item will appear
-                </BlockDescript>
-              </CreateFormGroup>
-
-              <Properties
-                propertyList={propertyList}
-                setPropertyList={setPropertyList}
+              <AddFileBlock>
+                <NFTItemLabel htmlFor="NFT">
+                  {file ? (
+                    <NFTItemPreview src={file} />
+                  ) : (
+                    <img src={ImgIcon} alt="image-icon" />
+                  )}
+                </NFTItemLabel>
+                <NFTItemInput id="NFT" onChange={fileHandler} required />
+              </AddFileBlock>
+              {fileSizeError && fileSizeError.inputName === "File" && (
+                <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="name">
+                Name<span className="require-asterisk">*</span>
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="name"
+                placeholder="NFT name"
+                {...register("name")}
+                value={name}
+                onChange={onChange}
               />
-              <Levels levelList={levelList} setLevelList={setLevelList} />
-              <Stats statList={statList} setStatList={setStatList} />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="external-link">External link</CreateLabel>
+              <BlockDescript>
+                UNDAS will include a link to this URL on this item&#39;s detail
+                page, so that users can click to learn more about it. You are
+                welcome to link to your own webpage with more details
+              </BlockDescript>
+              <CreateInput
+                type="text"
+                id="externalLink"
+                placeholder="https://yoursite.io/item/123"
+                {...register("externalLink")}
+                value={externalLink}
+                onChange={onChange}
+              />
+              {errors.externalLink && (
+                <ValidationBlock>{errors.externalLink.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="description">Description</CreateLabel>
+              <BlockDescript>
+                The description will be included on the item&#39;s detail page
+                underneath its image. Markdown syntax is supported
+              </BlockDescript>
+              <CreateTextArea
+                placeholder="Provide a detailed description of your item"
+                id="description"
+                maxLength={1000}
+                {...register("description")}
+                value={description}
+                onChange={onChange}
+              />
+              {errors.description && (
+                <ValidationBlock>{errors.description.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup className="collection">
+              <CreateLabel htmlFor="collection" className="collection-label">
+                Collection
+              </CreateLabel>
+              <CreateSelect
+                maxWidth="350px"
+                padding="7px 20px"
+                itemList={
+                  <SelectCollectionList setCollection={setCollection} />
+                }
+                item={collection}
+              />
+              <BlockDescript style={{ marginLeft: "20px" }}>
+                This is the collection where your item will appear
+              </BlockDescript>
+            </CreateFormGroup>
 
-              <CreateFormGroup>
-                <SwitcherBlock>
-                  <SwitcherTitle>
-                    <UnlockableContentIco /> Unlockable Content
-                  </SwitcherTitle>
-                  <Switcher onClick={unlockacleHandler} />
-                </SwitcherBlock>
-                <BlockDescript>
-                  Include unlockable content that can only be revealed by the
-                  owner of the item
-                </BlockDescript>
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <SwitcherBlock>
-                  <SwitcherTitle>
-                    <ExplicitContentIco /> Explicit &amp; Sensitive Content
-                  </SwitcherTitle>
-                  <Switcher onClick={sensetiveHandler} />
-                </SwitcherBlock>
-                <BlockDescript>
-                  Set this item as explicit and sensitive content
-                </BlockDescript>
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <CreateLabel htmlFor="supply">Supply</CreateLabel>
-                <BlockDescript>
-                  The number of items that can be minted. No gas cost to you!{" "}
-                </BlockDescript>
-                <CreateInput
-                  type="number"
-                  id="supply"
-                  min="1"
-                  placeholder="1"
-                  {...register("supply")}
-                  value={supply}
-                  onChange={supplyHandler}
-                />
-                {errors.supply && (
-                  <ValidationBlock>{errors.supply.message}</ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <CreateFormGroup>
-                <CreateLabel htmlFor="freeze-metadata">
-                  Freeze metadata
-                </CreateLabel>
-                <BlockDescript>
-                  Freezing your metadata will allow you to permanently lock and
-                  store all of this item&#39;s content in decentralized file
-                  storage.
-                </BlockDescript>
-                <CreateInput
-                  type="text"
-                  id="freezeMetadata"
-                  placeholder="To freeze your metadata, you must create your item first"
-                  {...register("freezeMetadata")}
-                  value={freezeMetadata}
-                  onChange={freezeMetadataHandler}
-                />
-                {errors.freezeMetadata && (
-                  <ValidationBlock>
-                    {errors.freezeMetadata.message}
-                  </ValidationBlock>
-                )}
-              </CreateFormGroup>
-              <ButtonsBlock>
-                <FormButtonsWrap>
-                  <CreateFormButton type="submit" className="left-btn">
-                    Create
-                  </CreateFormButton>
-                  <CreateFormButton>Back</CreateFormButton>
-                </FormButtonsWrap>
-              </ButtonsBlock>
-            </CreateForm>
-          </CreateContainer>
-        )}
+            <Properties
+              propertyList={propertyList}
+              setPropertyList={setPropertyList}
+            />
+            <Levels levelList={levelList} setLevelList={setLevelList} />
+            <Stats statList={statList} setStatList={setStatList} />
+
+            <CreateFormGroup>
+              <SwitcherBlock>
+                <SwitcherTitle>
+                  <UnlockableContentIco /> Unlockable Content
+                </SwitcherTitle>
+                <Switcher onClick={unlockacleHandler} />
+              </SwitcherBlock>
+              <BlockDescript>
+                Include unlockable content that can only be revealed by the
+                owner of the item
+              </BlockDescript>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <SwitcherBlock>
+                <SwitcherTitle>
+                  <ExplicitContentIco /> Explicit &amp; Sensitive Content
+                </SwitcherTitle>
+                <Switcher onClick={sensetiveHandler} />
+              </SwitcherBlock>
+              <BlockDescript>
+                Set this item as explicit and sensitive content
+              </BlockDescript>
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="supply">Supply</CreateLabel>
+              <BlockDescript>
+                The number of items that can be minted. No gas cost to you!{" "}
+              </BlockDescript>
+              <CreateInput
+                type="number"
+                id="supply"
+                min="1"
+                placeholder="1"
+                {...register("supply")}
+                value={supply}
+                onChange={onChange}
+              />
+              {errors.supply && (
+                <ValidationBlock>{errors.supply.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="freeze-metadata">
+                Freeze metadata
+              </CreateLabel>
+              <BlockDescript>
+                Freezing your metadata will allow you to permanently lock and
+                store all of this item&#39;s content in decentralized file
+                storage.
+              </BlockDescript>
+              <CreateInput
+                type="text"
+                id="freezeMetadata"
+                placeholder="To freeze your metadata, you must create your item first"
+                {...register("freezeMetadata")}
+                value={freezeMetadata}
+                onChange={onChange}
+              />
+              {errors.freezeMetadata && (
+                <ValidationBlock>
+                  {errors.freezeMetadata.message}
+                </ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <ButtonsBlock>
+              <FormButtonsWrap>
+                <CreateFormButton type="submit" className="left-btn">
+                  Create
+                </CreateFormButton>
+                <CreateFormButton>Back</CreateFormButton>
+              </FormButtonsWrap>
+            </ButtonsBlock>
+          </CreateForm>
+        </CreateContainer>
       </CreateSec>
     </Background>
   );
