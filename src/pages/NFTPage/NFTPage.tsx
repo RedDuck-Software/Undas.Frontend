@@ -110,9 +110,8 @@ const NFTPage: React.FC = () => {
   const tokenId = state.state.tokenId;
 
   const getOwner = async () => {
-
-    if (!connector){
-      return
+    if (!connector) {
+      return;
     }
 
     const provider = new ethers.providers.Web3Provider(
@@ -136,16 +135,15 @@ const NFTPage: React.FC = () => {
     colloteralWei?: number,
     premium?: number,
   ) {
-
     if (colloteralWei == undefined) {
       return;
     }
     if (premium == undefined) {
       return;
     }
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -164,14 +162,14 @@ const NFTPage: React.FC = () => {
     );
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice: 20000,//
+      gasPrice: 20000, //
     });
     await tx.wait();
   }
 
   const getShowBuy = async () => {
-    if (!connector){
-      console.log('!connector')
+    if (!connector) {
+      console.log("!connector");
     }
 
     if (listingId) {
@@ -182,7 +180,6 @@ const NFTPage: React.FC = () => {
   };
 
   async function getShowRent() {
-
     if (stakingId) {
       setShowRent(true);
     } else {
@@ -191,11 +188,10 @@ const NFTPage: React.FC = () => {
   }
 
   useEffect(() => {
-
-      getShowBuy();
-      getShowRent();
-      getTokenData();
-      getOwner();
+    getShowBuy();
+    getShowRent();
+    getTokenData();
+    getOwner();
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
 
   const getTokenData = async () => {
@@ -204,31 +200,31 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
-        setName(tokensQuery.data.listings[0].tokenName);
-        setTokenURI(tokensQuery.data.listings[0].tokenURI);
-        setPriceInNum(tokensQuery.data.listings[0].price);
-        setDescription(tokensQuery.data.listings[0].tokenDescription);
-        setListingId(tokensQuery.data.listings[0].id);
-        setSeller(tokensQuery.data.listings[0].seller);
-        setLoading(false);
+      setName(tokensQuery.data.listings[0].tokenName);
+      setTokenURI(tokensQuery.data.listings[0].tokenURI);
+      setPriceInNum(tokensQuery.data.listings[0].price);
+      setDescription(tokensQuery.data.listings[0].tokenDescription);
+      setListingId(tokensQuery.data.listings[0].id);
+      setSeller(tokensQuery.data.listings[0].seller);
+      setLoading(false);
 
-        return;
+      return;
     }
 
     if (
       tokensQuery.data.stakingListings[0] &&
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
     ) {
-        setName(tokensQuery.data.stakingListings[0].tokenName);
-        setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
-        setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
-        setStakingId(tokensQuery.data.stakingListings[0].id);
-        setSeller(tokensQuery.data.stakingListings[0].seller);
-        setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
-        setPremium(tokensQuery.data.stakingListings[0].premiumWei);
-        setLoading(false);
+      setName(tokensQuery.data.stakingListings[0].tokenName);
+      setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
+      setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
+      setStakingId(tokensQuery.data.stakingListings[0].id);
+      setSeller(tokensQuery.data.stakingListings[0].seller);
+      setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
+      setPremium(tokensQuery.data.stakingListings[0].premiumWei);
+      setLoading(false);
 
-        return;
+      return;
     }
   };
 
@@ -266,7 +262,7 @@ const NFTPage: React.FC = () => {
   const client = createClient({
     url: APIURL,
   });
-  console.log(state)
+  console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
     return data;
@@ -394,7 +390,7 @@ const NFTPage: React.FC = () => {
                       priceInNum={priceInNum}
                       tokenAddress={state.state.tokenAddress}
                       tokenId={state.state.tokenId}
-                      state = { state.state }
+                      state={state.state}
                     />
                   </SaleBlock>
 
@@ -456,7 +452,7 @@ const NFTPage: React.FC = () => {
                             fc="#873DC1"
                             disabled={!isOwner}
                             onClick={(e) => {
-                              alert('click')
+                              alert("click");
                               e.stopPropagation();
                               navigate(
                                 `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,

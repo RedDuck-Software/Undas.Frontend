@@ -49,25 +49,23 @@ import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
-import { ethers} from "ethers";
+import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 
 const Rent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
-  const state:any = useLocation()
+  const state: any = useLocation();
   const navigate = useNavigate();
 
   async function buyToken(tokenId: number, priceInNum?: number) {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
     if (priceInNum == undefined) {
       return;
     }
-
-
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),

@@ -83,10 +83,10 @@ export const Tab = styled.li`
   text-align: center;
   color: #5d3f92;
   max-width: 160px;
-  &:last-child{
+  &:last-child {
     border-radius: 0 10px 10px 0;
   }
-  &:hover{
+  &:hover {
     background: #fbf5ff;
   }
   &.active {

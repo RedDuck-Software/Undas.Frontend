@@ -57,9 +57,7 @@ const Rent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const state: any = useLocation();
-  const navigate = useNavigate();
   const { connector } = useContext(Context);
-
   const URI = state.state.state.URI;
   const nameFrom = state.state.state.name;
   const colloteral = ethers.utils.formatUnits(
@@ -67,6 +65,7 @@ const Rent: React.FC = () => {
   );
   const premium = state.state.state.premium;
   const stakingId = state.state.state.stakingId;
+  const navigate = useNavigate();
 
   async function rentToken(
     stakingId: number,

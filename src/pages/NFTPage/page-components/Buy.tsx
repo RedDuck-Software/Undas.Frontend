@@ -27,7 +27,7 @@ interface BuyProps {
   showBuy?: boolean;
   tokenAddress?: string;
   tokenId?: string;
-  state:any
+  state: any;
 }
 
 const Buy: React.FC<BuyProps> = ({
@@ -37,8 +37,7 @@ const Buy: React.FC<BuyProps> = ({
   showBuy,
   tokenAddress,
   tokenId,
-  state
-
+  state,
 }) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
@@ -69,9 +68,9 @@ const Buy: React.FC<BuyProps> = ({
   };
 
   async function buyToken(tokenId: number, priceInNum?: number) {
-    if(!connector){
+    if (!connector) {
       navigate("/login");
-      return
+      return;
     }
     if (priceInNum == undefined) {
       return;

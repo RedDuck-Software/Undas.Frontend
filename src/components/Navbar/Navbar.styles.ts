@@ -182,6 +182,11 @@ export const StyledLink = styled(Link)`
     visibility: visible;
     cursor: pointer;
   }
+  &.hovered-lang + ${DropdownMenu} {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
   @media (min-width: 1700px) {
     font-size: 22px;
     line-height: 27px;

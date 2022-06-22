@@ -21,7 +21,13 @@ import {
   FooterIconLink,
   MobileMenuInner,
 } from "./Footer.styles";
-import { Twitter, LinkedIn, YouTube, Telegram, Instagram } from "./imports";
+import {
+  Twitter,
+  LinkedIn,
+  YouTube,
+  Telegram,
+  /*Instagram*/ Reddit,
+} from "./imports";
 
 const Footer = () => {
   return (
@@ -100,8 +106,11 @@ const Footer = () => {
               <FooterIcon src={Telegram} />
             </FooterIconLink>
             <FooterIconLink href="#">
-              <FooterIcon src={Instagram} />
+              <FooterIcon src={Reddit} />
             </FooterIconLink>
+            {/*<FooterIconLink href="#">
+              <FooterIcon src={Instagram} />
+            </FooterIconLink>*/}
           </FooterIconsWrapper>
         </RightSideWrapper>
       </FooterContainer>

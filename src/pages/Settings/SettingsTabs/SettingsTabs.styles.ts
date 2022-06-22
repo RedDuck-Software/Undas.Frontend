@@ -21,9 +21,6 @@ export const SettingsTabWrap = styled.div`
   li:first-child .nav-link.active {
     border-radius: 0 0 0 10px;
   }
-  li:last-child .nav-link.active {
-    border-radius: 0 0 10px 0;
-  }
   .nav-tabs .nav-link:focus,
   .nav-tabs .nav-link:hover {
     border: 1px solid transparent;
@@ -44,6 +41,9 @@ export const SettingsTabWrap = styled.div`
     .nav-tabs .nav-link {
       width: 100%;
     }
+    li:last-child .nav-link.active {
+    border-radius: 0 0 10px 0;
+  }
   }
 `;
 export const TabWrap = styled.div`

@@ -107,7 +107,7 @@ export const OffersText = styled.span<{ color?: string }>`
   }
 `;
 export const EtherIcon = styled(EthIco)`
-  vertical-align: middle;
+  margin-top: 5px;
 `;
 // Staking
 export const StakingWrap = styled.div``;

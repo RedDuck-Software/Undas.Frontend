@@ -1,5 +1,6 @@
 import AppStore from "../../icons/app-store.png";
-import Instagram from "../../icons/instagram.svg";
+/*import Instagram from "../../icons/instagram.svg";*/
+import Reddit from "../../icons/reddit.svg";
 import LinkedIn from "../../icons/linkedin.svg";
 import Telegram from "../../icons/telegram.svg";
 import Twitter from "../../icons/twitter.svg";
@@ -12,8 +13,9 @@ export {
   LinkedIn,
   YouTube,
   Telegram,
-  Instagram,
+  /*Instagram,*/
   AppStore,
   Phone,
   FooterBg,
+  Reddit,
 };

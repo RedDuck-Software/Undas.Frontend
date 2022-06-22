@@ -17,6 +17,7 @@ import {
   LoginPage,
   ProductCard,
   AccountPage,
+  Referral,
   AllNFTs,
   NewNFTs,
   Listing,
@@ -25,7 +26,13 @@ import {
   RentNFTPage,
   CreateNFT,
   CreateCollection,
-  Categories,
+  CategoriesRwa,
+  CategoriesArt,
+  CategoriesNew,
+  CategoriesSport,
+  CategoriesPhoto,
+  CategoriesCelebrity,
+  Categories18,
   Faq,
   CollectionPage,
   NFTPage,
@@ -97,6 +104,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product/:id" element={<ProductCard />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/referral" element={<Referral />} />
           <Route path="/all" element={<AllNFTs />} />
           <Route path="/assets/new" element={<NewNFTs />} />
           <Route path="/listing" element={<Listing />} />
@@ -105,7 +113,13 @@ const App: React.FC = () => {
           <Route path="/create-collection" element={<CreateCollection />} />
           <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
           <Route path="/productforsale/:id" element={<ProductForSale />} />
-          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories-rwa" element={<CategoriesRwa />} />
+          <Route path="/categories-art" element={<CategoriesArt />} />
+          <Route path="/categories-new" element={<CategoriesNew />} />
+          <Route path="/categories-sport" element={<CategoriesSport />} />
+          <Route path="/categories-photo" element={<CategoriesPhoto />} />
+          <Route path="/categories-celebrity" element={<CategoriesCelebrity />} />
+          <Route path="/categories-18plus" element={<Categories18 />} />
           <Route path="/collection" element={<CollectionPage />} />
           <Route path="/nft/buy/:address:id" element={<NFTPage />} />
           <Route path="/nft/sell/:address:id" element={<NFTPageSell />} />
