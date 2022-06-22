@@ -42,8 +42,8 @@ export const SettingsTabWrap = styled.div`
       width: 100%;
     }
     li:last-child .nav-link.active {
-    border-radius: 0 0 10px 0;
-  }
+      border-radius: 0 0 10px 0;
+    }
   }
 `;
 export const TabWrap = styled.div`

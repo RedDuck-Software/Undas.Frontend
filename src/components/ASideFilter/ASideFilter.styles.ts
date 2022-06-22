@@ -529,6 +529,7 @@ export const ChainItemTitle = styled.div`
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
 `;
+
 export const MobileListWrap = styled.div`
   @media (max-width: 992px) {
     padding-left: 5rem;
@@ -538,4 +539,50 @@ export const MobileListWrap = styled.div`
     padding-left: 1rem;
     padding-right: 1rem;
   }
+`;
+
+export const InputBlock = styled.span`
+  @media (max-width: 992px) {
+    &.margin-left {
+      margin-left: 20px;
+    }
+  }
+`;
+
+export const MinMaxLable = styled.label`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-right: 10px;
+  color: #7c7c7c;
+`;
+
+export const MinPrice = styled.input`
+  width: 100px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  padding: 10px 15px;
+  background: #ffffff;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
+  border-radius: 10px;
+  color: #7c7c7c;
+  border: none;
+  outline: none;
+  &:focus {
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
+  }
+  @media (max-width: 576px) {
+    width: 90px;
+  }
+`;
+
+export const PriceContainer = styled.div``;
+
+export const InputPriceContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 20px;
 `;

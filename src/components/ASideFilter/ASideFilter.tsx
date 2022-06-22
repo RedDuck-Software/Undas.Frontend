@@ -39,6 +39,11 @@ import {
   FilterCategoryItemTitle,
   CheckboxInputWrapperCentered,
   MobileListWrap,
+  InputBlock,
+  MinMaxLable,
+  MinPrice,
+  PriceContainer,
+  InputPriceContainer,
 } from "./ASideFilter.styles";
 import {
   FilterIco,
@@ -416,37 +421,53 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                   {priceCurrency.map((item) => {
                     if (item.selected)
                       return (
-                        <PriceElement
-                          className={(priceMenu && "price-menu-active") || ""}
-                          onClick={() => {
-                            !priceMenu
-                              ? setPriceMenu(true)
-                              : setPriceMenu(false);
-                          }}
-                        >
-                          {item.ico}
-                          <span>{item.text}</span>
-                          <AccordionArrow
+                        <PriceContainer>
+                          <PriceElement
                             className={(priceMenu && "price-menu-active") || ""}
-                          />
-                          <PriceSelect
-                            className={(priceMenu && "price-menu-active") || ""}
+                            onClick={() => {
+                              !priceMenu
+                                ? setPriceMenu(true)
+                                : setPriceMenu(false);
+                            }}
                           >
-                            {variations.map((item) => {
-                              return (
-                                <PriceVariations
-                                  key={item.text}
-                                  onClick={() => {
-                                    currencySelector(item);
-                                  }}
-                                >
-                                  {item.ico}
-                                  <span>{item.text}</span>
-                                </PriceVariations>
-                              );
-                            })}
-                          </PriceSelect>
-                        </PriceElement>
+                            {item.ico}
+                            <span>{item.text}</span>
+                            <AccordionArrow
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
+                            />
+                            <PriceSelect
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
+                            >
+                              {variations.map((item) => {
+                                return (
+                                  <PriceVariations
+                                    key={item.text}
+                                    onClick={() => {
+                                      currencySelector(item);
+                                    }}
+                                  >
+                                    {item.ico}
+                                    <span>{item.text}</span>
+                                  </PriceVariations>
+                                );
+                              })}
+                            </PriceSelect>
+                          </PriceElement>
+                          <InputPriceContainer>
+                            <InputBlock>
+                              <MinMaxLable htmlFor="min">Min</MinMaxLable>
+                              <MinPrice type="number" id="min" />
+                            </InputBlock>
+                            <InputBlock className="margin-left">
+                              <MinMaxLable htmlFor="max">Max</MinMaxLable>
+                              <MinPrice type="number" id="max" />
+                            </InputBlock>
+                          </InputPriceContainer>
+                        </PriceContainer>
                       );
                   })}
 
