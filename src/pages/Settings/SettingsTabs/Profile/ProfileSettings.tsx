@@ -66,6 +66,7 @@ const ProfileSettings: React.FC = () => {
               placeholder="Your Instagram Handle"
               className="instagram"
             />
+            <InputItem placeholder="Your Reddit Handle" className="reddit" />
             <InputItem placeholder="Yoursite.io" className="yoursite" />
           </InputList>
         </LinksWrap>

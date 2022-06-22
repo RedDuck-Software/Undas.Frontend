@@ -29,6 +29,7 @@ import {
   CategoriesRwa,
   CategoriesArt,
   CategoriesNew,
+  CategoriesGameFI,
   CategoriesSport,
   CategoriesPhoto,
   CategoriesCelebrity,
@@ -115,10 +116,14 @@ const App: React.FC = () => {
           <Route path="/productforsale/:id" element={<ProductForSale />} />
           <Route path="/categories-rwa" element={<CategoriesRwa />} />
           <Route path="/categories-art" element={<CategoriesArt />} />
+          <Route path="/categories-gimefi" element={<CategoriesGameFI />} />
           <Route path="/categories-new" element={<CategoriesNew />} />
           <Route path="/categories-sport" element={<CategoriesSport />} />
           <Route path="/categories-photo" element={<CategoriesPhoto />} />
-          <Route path="/categories-celebrity" element={<CategoriesCelebrity />} />
+          <Route
+            path="/categories-celebrity"
+            element={<CategoriesCelebrity />}
+          />
           <Route path="/categories-18plus" element={<Categories18 />} />
           <Route path="/collection" element={<CollectionPage />} />
           <Route path="/nft/buy/:address:id" element={<NFTPage />} />

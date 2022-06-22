@@ -31,6 +31,7 @@ import {
   LoginMenuIco,
   Ico18,
   ReferralIco,
+  GameFi,
 } from "./imports";
 import {
   Header,
@@ -126,6 +127,10 @@ const Navbar = () => {
                   <MenuList to="/categories-photo">
                     <PhotoIco />
                     Photography
+                  </MenuList>
+                  <MenuList to="/categories-gimefi">
+                    <GameFi />
+                    GameFi
                   </MenuList>
                   {/* <MenuList to="/categories">
                     <MetaversesIcon/>
@@ -294,17 +299,9 @@ const Navbar = () => {
               >
                 <LanguageTitle>en</LanguageTitle>
               </StyledLink>
-              <DropdownMenu
-                setWidth="65px"
-                left="-1rem"
-                top="2rem"
-              >
-                <MenuList to="/">
-                 RU
-                </MenuList>
-                <MenuList to="/">
-                中国人
-                </MenuList>
+              <DropdownMenu setWidth="65px" left="-1rem" top="2rem">
+                <MenuList to="/">RU</MenuList>
+                <MenuList to="/">中国人</MenuList>
               </DropdownMenu>
             </StyledList>
           </IconsUl>

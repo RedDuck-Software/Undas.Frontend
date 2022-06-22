@@ -2,6 +2,7 @@ export { default as HomePage } from "./HomePage/HomePage";
 export { default as LoginPage } from "./LoginPage/LoginPage";
 export { default as CategoriesArt } from "./CategoriesPage/CategoriesArt";
 export { default as CategoriesNew } from "./CategoriesPage/CategoriesNew";
+export { default as CategoriesGameFI } from "./CategoriesPage/CategoriesGameFI";
 export { default as CategoriesRwa } from "./CategoriesPage/CategoriesRwa";
 export { default as CategoriesSport } from "./CategoriesPage/CategoriesSport";
 export { default as CategoriesPhoto } from "./CategoriesPage/CategoriesPhoto";

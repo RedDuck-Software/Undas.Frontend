@@ -63,15 +63,13 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
         setSelected={setCategory}
         {...getCategory(Category.photography)}
       />
-      <SelectItem
-        setSelected={setCategory}
-        {...getCategory(Category.metaverses)}
-      />
+      <SelectItem setSelected={setCategory} {...getCategory(Category.gamefi)} />
       <SelectItem
         setSelected={setCategory}
         {...getCategory(Category.celebrity)}
       />
       <SelectItem setSelected={setCategory} {...getCategory(Category.rwaNFT)} />
+      <SelectItem setSelected={setCategory} {...getCategory(Category.plus18)} />
     </>
   );
 };
@@ -386,6 +384,10 @@ const CreateCollection: React.FC = () => {
                 <InputItem
                   placeholder="Your Instagram Handle"
                   className="instagram"
+                />
+                <InputItem
+                  placeholder="Your Reddit Handle"
+                  className="reddit"
                 />
                 {errors.instagram?.message && (
                   <ValidationBlock>{errors.instagram.message}</ValidationBlock>

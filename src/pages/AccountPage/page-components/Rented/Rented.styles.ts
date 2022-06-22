@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 import {
-    ViewOption,
-    ResultsTotal,
-    SettingsBlock,
-  } from "../../../AllNFTs/AllNFTs.styles";
+  ViewOption,
+  ResultsTotal,
+  SettingsBlock,
+} from "../../../AllNFTs/AllNFTs.styles";
 
 export const FavouriteSettingsBlock = styled(SettingsBlock)`
   @media (max-width: 768px) {

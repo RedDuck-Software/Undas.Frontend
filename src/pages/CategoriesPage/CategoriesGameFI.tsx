@@ -16,7 +16,7 @@ import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
 
-const CategoriesNew: React.FC = () => {
+const CategoriesGameFI: React.FC = () => {
   return (
     <>
       <Banner>
@@ -26,14 +26,11 @@ const CategoriesNew: React.FC = () => {
         <Container>
           <Info>
             <div>
-              <Title>New NFTs</Title>
+              <Title>GameFI</Title>
               <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
-              <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
-              </InfoText>
+              <InfoText>Info about collection</InfoText>
               <Contact>
                 <ContactImage src={Email} alt="email-ico" />
                 <ContactImage src={Telegram} alt="telegram-ico" />
@@ -53,4 +50,4 @@ const CategoriesNew: React.FC = () => {
   );
 };
 
-export default CategoriesNew;
+export default CategoriesGameFI;
