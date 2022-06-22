@@ -17,6 +17,7 @@ import {
   LoginPage,
   ProductCard,
   AccountPage,
+  Referral,
   AllNFTs,
   NewNFTs,
   Listing,
@@ -103,6 +104,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/product/:id" element={<ProductCard />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/referral" element={<Referral />} />
           <Route path="/all" element={<AllNFTs />} />
           <Route path="/assets/new" element={<NewNFTs />} />
           <Route path="/listing" element={<Listing />} />

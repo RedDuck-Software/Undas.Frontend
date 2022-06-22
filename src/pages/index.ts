@@ -9,6 +9,7 @@ export { default as CategoriesCelebrity } from "./CategoriesPage/CategoriesCeleb
 export { default as Categories18 } from "./CategoriesPage/Categories18";
 export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as AccountPage } from "./AccountPage/AccountPage";
+export { default as Referral } from "./Referral/Referral";
 export { default as AllNFTs } from "./AllNFTs/AllNFTs";
 export { default as NewNFTs } from "./NewNFTs/NewNFTs";
 export { default as Listing } from "./Listing/Listing";
