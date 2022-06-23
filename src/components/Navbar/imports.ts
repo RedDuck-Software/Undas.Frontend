@@ -33,7 +33,7 @@ import { ReactComponent as StatisticsIco } from "../../icons/statistics.svg";
 import { ReactComponent as TelegramIco } from "../../icons/telegram-dropdown.svg";
 import { ReactComponent as TopCollectionIco } from "../../icons/top-colleciton.svg";
 import { ReactComponent as TwitterIco } from "../../icons/twitter-dropdown.svg";
-import { ReactComponent as WatchlistIco } from "../../icons/watchlist.svg";
+import { ReactComponent as AchievementsIco } from "../../icons/achievements.svg";
 
 export {
   AllNFTsIcon,
@@ -59,7 +59,6 @@ export {
   AddCollectionIco,
   ProfileMenuIco,
   MyCollectionIco,
-  WatchlistIco,
   SettingsIco,
   LoginMenuIco,
   ExploreIco,
@@ -72,4 +71,5 @@ export {
   Ico18,
   ReferralIco,
   GameFi,
+  AchievementsIco
 };

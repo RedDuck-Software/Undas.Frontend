@@ -25,8 +25,7 @@ import {
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
-  // MyCollectionIco,
-  // WatchlistIco,
+  AchievementsIco,
   SettingsIco,
   LoginMenuIco,
   Ico18,
@@ -275,10 +274,10 @@ const Navbar = () => {
                   <ReferralIco />
                   Referral Program
                 </MenuList>
-                {/* <MenuList to="/">
-                  <WatchlistIco />
-                  Watchlist
-                </MenuList> */}
+                <MenuList to="/achievements">
+                  <AchievementsIco />
+                  Achievements
+                </MenuList>
                 <MenuList to="/settings">
                   <SettingsIco />
                   Settings
