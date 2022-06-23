@@ -102,7 +102,7 @@ export const CreateButton = styled(SecondaryButton)`
   height: 36px;
   margin-top: 15px;
 `;
-export const CollectionDiv = styled(Link).attrs({target: "_blank"})`
+export const CollectionDiv = styled(Link).attrs({ target: "_blank" })`
   position: absolute;
   width: 180px;
   height: 60px;
