@@ -159,8 +159,8 @@ const CreateNFT: React.FC = () => {
 
     setLoading(true);
     await tx.wait();
-    if(autoRedirect) {
-      console.log("autoredirect")
+    if (autoRedirect) {
+      console.log("autoredirect");
       setAutoRedirect(false);
       navigate("/account");
     }

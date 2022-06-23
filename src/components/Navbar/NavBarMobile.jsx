@@ -30,6 +30,7 @@ import {
   CreateIco,
   MobileFavoriteIco,
   MobileAccountIco,
+  GameFi,
   ReddditIco,
 } from './imports';
 import { LanguageTitle, SocialLink } from './Navbar.styles';
@@ -136,6 +137,10 @@ const NavBarMobile = ({ open }) => {
               <HeaderDropdownItem href="categories">
                 <PhotoIco />
                 Photography
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories">
+                <GameFi />
+                GameFi
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories">
                 <CelebrityIco />
