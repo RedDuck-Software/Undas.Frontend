@@ -17,10 +17,10 @@ import {
   FavouriteIco,
   RewardIco,
   ReferralIco,
-  AchievementsIco,
+  MyNFTsIco,
 } from "./imports";
 import AccountCard from "./page-components/AccountCard/AccountCard";
-// import Achievements from "../Achievements/Achievements";
+import Created from "./page-components/Created/Created";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
@@ -113,17 +113,17 @@ const AccountPage: React.FC = () => {
                   onClick={() => setTab("")}
                   className={tab === "" ? "active" : ""}
                 >
-                  <CreatedIco />
+                  <MyNFTsIco />
                   <span>My NFTs</span>
                   <SmallNumber>12</SmallNumber>
                 </Tab>
                 <Tab
-                  onClick={() => setTab("offers")}
-                  className={tab === "offers" ? "active" : ""}
+                  onClick={() => setTab("created")}
+                  className={tab === "created" ? "active" : ""}
                 >
-                  <OffersIco />
-                  <span>Offers</span>
-                  <SmallNumber>6</SmallNumber>
+                  <CreatedIco />
+                  <span>Created</span>
+                  <SmallNumber>8</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("favourite")}
@@ -140,19 +140,20 @@ const AccountPage: React.FC = () => {
                   <span>Rent</span>
                 </Tab>
                 <Tab
+                  onClick={() => setTab("offers")}
+                  className={tab === "offers" ? "active" : ""}
+                >
+                  <OffersIco />
+                  <span>Offers</span>
+                  <SmallNumber>0</SmallNumber>
+                </Tab>
+                <Tab
                   onClick={() => setTab("reward")}
                   className={tab === "reward" ? "active" : ""}
                 >
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
-                {/* <Tab
-                  onClick={() => setTab("achievements")}
-                  className={tab === "achievements" ? "active" : ""}
-                >
-                  <AchievementsIco />
-                  <span>Achievements</span>
-                </Tab> */}
               </TabsMenu>
             </Wrapper>
             {tab === "" && <MainMenu />}
@@ -160,7 +161,7 @@ const AccountPage: React.FC = () => {
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
             {tab === "rent" && <Rent />}
-            {/* {tab === "achievements" && <Achievements />} */}
+            {tab === "created" && <Created />}
           </Wrapper>
           {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
             <FilterMobileButton />

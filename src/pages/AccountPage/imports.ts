@@ -20,6 +20,7 @@ import { ReactComponent as FtmIco } from "./assets/ftm-ico.svg";
 import { ReactComponent as HoldingIco } from "./assets/holding-ico.svg";
 import { ReactComponent as InformIco } from "./assets/inform.svg";
 import { ReactComponent as MaticIco } from "./assets/matic-ico.svg";
+import { ReactComponent as MyNFTsIco } from "./assets/my-nft.svg";
 import { ReactComponent as OffersIco } from "./assets/offers-ico.svg";
 import { ReactComponent as OffMadeIco } from "./assets/offers-made.svg";
 import { ReactComponent as OffResaivedIco } from "./assets/offers-resaived.svg";
@@ -72,6 +73,7 @@ export {
   UsdIco,
   WethIco,
   MaticIco,
+  MyNFTsIco,
   BnbIco,
   SolanaIco,
   FtmIco,

@@ -5,7 +5,7 @@ import {
   SettingsBlock,
 } from "../../../AllNFTs/AllNFTs.styles";
 
-export const RentWrap = styled.div`
+export const CreatedWrap = styled.div`
   padding-bottom: 80px;
   @media (max-width: 992px) {
     padding-bottom: 40px;
@@ -18,12 +18,12 @@ export const RentWrap = styled.div`
   }
 `;
 
-export const RentSettingsBlock = styled(SettingsBlock)`
+export const CreatedSettingsBlock = styled(SettingsBlock)`
   @media (max-width: 768px) {
     flex: 0 0 100%;
   }
 `;
-export const RentSelect = styled.div`
+export const CreatedSelect = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
   height: 36px;
@@ -37,7 +37,7 @@ export const RentSelect = styled.div`
     min-width: 100%;
   }
 `;
-export const RentButton = styled.button`
+export const CreatedButton = styled.button`
   cursor: pointer;
   background: #ffffff;
   height: 40px;
@@ -50,7 +50,7 @@ export const RentButton = styled.button`
   &:hover {
     background-color: #fbf5ff;
   }
-  &.rent-active {
+  &.created-active {
     background-color: #edd2ff;
   }
   @media (max-width: 768px) {
@@ -63,7 +63,7 @@ export const RentButton = styled.button`
     padding: 8px;
   }
 `;
-export const RentResultsTotal = styled(ResultsTotal)`
+export const CreatedResultsTotal = styled(ResultsTotal)`
   @media (max-width: 1200px) {
     flex: 0 0 20%;
     text-align: right;
