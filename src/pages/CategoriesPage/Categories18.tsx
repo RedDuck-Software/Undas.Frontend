@@ -31,14 +31,11 @@ const Categories18: React.FC = () => {
             </div>
             <InfoCard>
               <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                18+ NFTs category. The 18+ NFTs category is dedicated to
+                explicit NFT pictures.
               </InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
-              </Contact>
             </InfoCard>
           </Info>
           <div>
