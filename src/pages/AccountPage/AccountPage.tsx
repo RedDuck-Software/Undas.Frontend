@@ -20,7 +20,7 @@ import {
   AchievementsIco,
 } from "./imports";
 import AccountCard from "./page-components/AccountCard/AccountCard";
-import Achievements from "./page-components/Achievements/Achievements";
+// import Achievements from "../Achievements/Achievements";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
@@ -103,7 +103,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "reward" && tab !== "achievements" && (
+          {tab !== "reward" && (
             <ASideFilter marginTop="140px" accountPage />
           )}
           <Wrapper w="100%" marg="0 0 40px 0">
@@ -146,13 +146,13 @@ const AccountPage: React.FC = () => {
                   <RewardIco />
                   <span>Reward</span>
                 </Tab>
-                <Tab
+                {/* <Tab
                   onClick={() => setTab("achievements")}
                   className={tab === "achievements" ? "active" : ""}
                 >
                   <AchievementsIco />
                   <span>Achievements</span>
-                </Tab>
+                </Tab> */}
               </TabsMenu>
             </Wrapper>
             {tab === "" && <MainMenu />}
@@ -160,7 +160,7 @@ const AccountPage: React.FC = () => {
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
             {tab === "rent" && <Rent />}
-            {tab === "achievements" && <Achievements />}
+            {/* {tab === "achievements" && <Achievements />} */}
           </Wrapper>
           {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
             <FilterMobileButton />
