@@ -1,7 +1,14 @@
 import React from "react";
 import { Background, Container, PageTitle } from "../../globalStyles";
 
-import { Copy, Twitter, Telegram, Discord, /*Instagram*/ Reddit, EthIco } from "./imports";
+import {
+  Copy,
+  Twitter,
+  Telegram,
+  Discord,
+  /*Instagram*/ Reddit,
+  EthIco,
+} from "./imports";
 import {
   ReferralWrap,
   PageHead,
@@ -52,7 +59,6 @@ const Referral: React.FC = () => {
               {/*<SocialButton>
                 <Instagram />
               </SocialButton>*/}
-              
             </SocialWrap>
             <TextBlock>
               the one who came through the link gets 50 und (conditionally) and

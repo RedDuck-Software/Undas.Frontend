@@ -435,10 +435,14 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                             {item.ico}
                             <span>{item.text}</span>
                             <AccordionArrow
-                              className={(priceMenu && "price-menu-active") || ""}
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
                             />
                             <PriceSelect
-                              className={(priceMenu && "price-menu-active") || ""}
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
                             >
                               {variations.map((item) => {
                                 return (
@@ -457,10 +461,18 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                           </PriceElement>
                           <InputPriceContainer>
                             <InputBlock>
-                              <MinPrice type="number" id="min" placeholder="Min" />
+                              <MinPrice
+                                type="number"
+                                id="min"
+                                placeholder="Min"
+                              />
                             </InputBlock>
                             <InputBlock className="margin-left">
-                              <MinPrice type="number" id="max" placeholder="Max" />
+                              <MinPrice
+                                type="number"
+                                id="max"
+                                placeholder="Max"
+                              />
                             </InputBlock>
                           </InputPriceContainer>
                           <ButtonContainer>

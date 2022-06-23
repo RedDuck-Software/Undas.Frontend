@@ -597,8 +597,8 @@ export const ApplyButton = styled.button`
   width: 120px;
   margin-top: 20px;
   font-size: 14px;
-  background-color: #FFFFFF;
-  color: #873DC1;
+  background-color: #ffffff;
+  color: #873dc1;
   transition: all 0.3s linear;
   &.colored-btn:hover {
     box-shadow: 0 0 6px #000;
