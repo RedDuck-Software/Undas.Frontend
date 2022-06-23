@@ -16,7 +16,7 @@ import {
   TwitterIco,
   TelegramIco,
   DiscordIco,
-  InstagramIco,
+  /*InstagramIco,*/
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
@@ -31,6 +31,7 @@ import {
   MobileFavoriteIco,
   MobileAccountIco,
   GameFi,
+  ReddditIco,
 } from './imports';
 import { LanguageTitle, SocialLink } from './Navbar.styles';
 import {
@@ -213,8 +214,11 @@ const NavBarMobile = ({ open }) => {
                 <DiscordIco />
               </SocialLink>
               <SocialLink to="/">
-                <InstagramIco />
+                <ReddditIco />
               </SocialLink>
+              {/*<SocialLink to="/">
+                <InstagramIco />
+               </SocialLink>*/}
             </MobileMenuListSocial>
           </MobileStyledList>
         </MobileUl>

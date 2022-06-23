@@ -3,21 +3,20 @@ import React, { useState, useContext, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
-import FavouriteTable from "../MainMenu/FavouriteTable/FavouriteTable";
 import {
-  FavouriteSettingsBlock,
-  FavouriteButton,
-  FavouriteSelect,
-  FavouriteResultsTotal,
-} from "../MainMenu/Menu.styles";
-import { FavouriteType } from "./types";
+  RentWrap,
+  RentSettingsBlock,
+  RentButton,
+  RentSelect,
+  RentResultsTotal,
+} from "./Rent.styles";
+import { RentType } from "./types";
 
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
-import { FavouriteWrap } from "../../AccountPage.styles";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
 import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
@@ -35,25 +34,25 @@ import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
 const testNFTList = [
   {
     id: 0,
-    URI: nft0,
+    URI: nft5,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 1,
-    URI: nft1,
+    URI: nft6,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 2,
-    URI: nft2,
+    URI: nft7,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 3,
-    URI: nft3,
+    URI: nft8,
     name: "Returne by ...",
     priceInNum: 20,
   },
@@ -65,25 +64,25 @@ const testNFTList = [
   },
   {
     id: 5,
-    URI: nft5,
+    URI: nft0,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 6,
-    URI: nft6,
+    URI: nft1,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 7,
-    URI: nft7,
+    URI: nft2,
     name: "Returne by ...",
     priceInNum: 20,
   },
   {
     id: 8,
-    URI: nft8,
+    URI: nft3,
     name: "Returne by ...",
     priceInNum: 20,
   },
@@ -106,16 +105,46 @@ const testNFTList = [
     priceInNum: 20,
   },
 ];
+const test2NFTList = [
+  {
+    id: 0,
+    URI: nft11,
+    name: "NFT Name",
+    priceInNum: 5,
+  },
+  {
+    id: 1,
+    URI: nft10,
+    name: "NFT Name",
+    priceInNum: 5,
+  },
+  {
+    id: 2,
+    URI: nft9,
+    name: "NFT Name",
+    priceInNum: 5,
+  },
+  {
+    id: 3,
+    URI: nft8,
+    name: "NFT Name",
+    priceInNum: 6,
+  },
+  {
+    id: 4,
+    URI: nft7,
+    name: "NFT Name",
+    priceInNum: 10,
+  },
+];
 
-const FavouriteMenu: React.FC = () => {
+const RentMenu: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
 
   const { viewMode, viewButtonsRender } = useViewMode();
-  const [favouriteType, setFavouriteType] = useState<FavouriteType>(
-    FavouriteType.nft,
-  );
+  const [rentType, setRentType] = useState<RentType>(RentType.rental);
 
   const [, setNFTList] = useState<
     {
@@ -167,40 +196,34 @@ const FavouriteMenu: React.FC = () => {
   }
 
   return (
-    <FavouriteWrap>
+    <RentWrap>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
-        <FavouriteSettingsBlock>
-          <FavouriteSelect>
-            <FavouriteButton
-              className={
-                favouriteType === FavouriteType.nft ? "favourite-active" : ""
-              }
-              onClick={() => setFavouriteType(FavouriteType.nft)}
+        <RentSettingsBlock>
+          <RentSelect>
+            <RentButton
+              className={rentType === RentType.rental ? "rent-active" : ""}
+              onClick={() => setRentType(RentType.rental)}
             >
-              Favourite NFTs
-            </FavouriteButton>
-            <FavouriteButton
-              className={
-                favouriteType === FavouriteType.collection
-                  ? "favourite-active"
-                  : ""
-              }
-              onClick={() => setFavouriteType(FavouriteType.collection)}
+              Rental
+            </RentButton>
+            <RentButton
+              className={rentType === RentType.rented ? "rent-active" : ""}
+              onClick={() => setRentType(RentType.rented)}
             >
-              Favourite Collections
-            </FavouriteButton>
-          </FavouriteSelect>
-          {favouriteType === FavouriteType.nft && viewButtonsRender}
-        </FavouriteSettingsBlock>
+              Rented
+            </RentButton>
+          </RentSelect>
+          {viewButtonsRender}
+        </RentSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
+        <RentResultsTotal>8 results</RentResultsTotal>
       </MenuWrap>
 
-      {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
+      {viewMode === ViewMode.grid && rentType === RentType.rental && (
         <CollectionGridWrap itemList={testNFTList} />
       )}
 
-      {viewMode === ViewMode.list && favouriteType === FavouriteType.nft && (
+      {viewMode === ViewMode.list && rentType === RentType.rental && (
         <>
           {testNFTList?.map((item) => {
             return (
@@ -210,9 +233,21 @@ const FavouriteMenu: React.FC = () => {
         </>
       )}
 
-      {favouriteType === FavouriteType.collection && <FavouriteTable />}
-    </FavouriteWrap>
+      {viewMode === ViewMode.grid && rentType === RentType.rented && (
+        <CollectionGridWrap itemList={test2NFTList} />
+      )}
+
+      {viewMode === ViewMode.list && rentType === RentType.rented && (
+        <>
+          {test2NFTList?.map((item) => {
+            return (
+              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
+            );
+          })}
+        </>
+      )}
+    </RentWrap>
   );
 };
 
-export default FavouriteMenu;
+export default RentMenu;

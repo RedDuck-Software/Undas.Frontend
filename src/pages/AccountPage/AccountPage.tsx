@@ -24,7 +24,7 @@ import Achievements from "./page-components/Achievements/Achievements";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
-import Rented from "./page-components/Rented/Rented";
+import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
@@ -103,7 +103,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "reward" && tab !== "rented" && tab !== "achievements" && (
+          {tab !== "reward" && tab !== "achievements" && (
             <ASideFilter marginTop="140px" accountPage />
           )}
           <Wrapper w="100%" marg="0 0 40px 0">
@@ -133,18 +133,18 @@ const AccountPage: React.FC = () => {
                   <span>Favourite</span>
                 </Tab>
                 <Tab
+                  onClick={() => setTab("rent")}
+                  className={tab === "rent" ? "active" : ""}
+                >
+                  <ReferralIco />
+                  <span>Rent</span>
+                </Tab>
+                <Tab
                   onClick={() => setTab("reward")}
                   className={tab === "reward" ? "active" : ""}
                 >
                   <RewardIco />
                   <span>Reward</span>
-                </Tab>
-                <Tab
-                  onClick={() => setTab("rented")}
-                  className={tab === "rented" ? "active" : ""}
-                >
-                  <ReferralIco />
-                  <span>Rented</span>
                 </Tab>
                 <Tab
                   onClick={() => setTab("achievements")}
@@ -159,7 +159,7 @@ const AccountPage: React.FC = () => {
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
-            {tab === "rented" && <Rented />}
+            {tab === "rent" && <Rent />}
             {tab === "achievements" && <Achievements />}
           </Wrapper>
           {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
