@@ -20,7 +20,6 @@ const initialState = {
 };
 
 export const modalReducer = (state = initialState, action: any) => {
-  // console.log(action)
   switch (action.type) {
     case OPEN_MODAL:
       return {
@@ -52,7 +51,6 @@ export const modalReducer = (state = initialState, action: any) => {
         colloteral:action.colloteral
       };
     case SET_ADDITIONAL_PAGE_FOR_SALE:
-      // console.log('sale');
       return {
         ...state,
         currentComponent: 'open-external-page',
@@ -61,8 +59,7 @@ export const modalReducer = (state = initialState, action: any) => {
         tokenURI:action.tokenURI,
         name:action.name,
       };
-      case SET_ADDITIONAL_PAGE_FOR_RENT:
-        // console.log('rent',action.premiumInNum,action.colloteral);
+    case SET_ADDITIONAL_PAGE_FOR_RENT:
       return {
         ...state,
         currentComponent: 'open-external-page',

@@ -86,7 +86,7 @@ const NFTPage: React.FC = () => {
     display: block;
     margin: auto;
   `;
-  
+
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const [name, setName] = useState<string>();
@@ -102,18 +102,17 @@ const NFTPage: React.FC = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-  
-  const state:any = useLocation()
-  console.log('state',state)
 
-  const URI = state.state.URI
-  const nameFromProps = state.state.name
-  const tokenId = state.state.tokenId
-  
+  const state: any = useLocation();
 
+  const URI = state.state.URI;
+  const nameFromProps = state.state.name;
+  const tokenId = state.state.tokenId;
 
   const getOwner = async () => {
-    if (!connector) return;
+    if (!connector) {
+      return;
+    }
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -127,7 +126,6 @@ const NFTPage: React.FC = () => {
     }
 
     if (singerAddress == seller) {
-      console.log("OWNER");
       setIsOwner(false);
     }
   };
@@ -137,36 +135,42 @@ const NFTPage: React.FC = () => {
     colloteralWei?: number,
     premium?: number,
   ) {
-    if (!connector) return;
-
     if (colloteralWei == undefined) {
       return;
     }
     if (premium == undefined) {
       return;
     }
-
+    if (!connector) {
+      navigate("/login");
+      return;
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
-    
+
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-    const amountToPay = +colloteralWei + +premium + ((+premium*20)/100)
+    const amountToPay = +colloteralWei + +premium + (+premium * 20) / 100;
 
-    const formattedAmountToPay = ethers.utils.formatUnits(amountToPay.toString(),'ether')
+    const formattedAmountToPay = ethers.utils.formatUnits(
+      amountToPay.toString(),
+      "ether",
+    );
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice: 20000,
+      gasPrice: 20000, //
     });
     await tx.wait();
   }
 
   const getShowBuy = async () => {
-    if (!connector) return;
+    if (!connector) {
+      console.log("!connector");
+    }
 
     if (listingId) {
       setShowBuy(true);
@@ -176,8 +180,6 @@ const NFTPage: React.FC = () => {
   };
 
   async function getShowRent() {
-    if (!connector) return;
-
     if (stakingId) {
       setShowRent(true);
     } else {
@@ -186,13 +188,10 @@ const NFTPage: React.FC = () => {
   }
 
   useEffect(() => {
-    if (connector) {
-      getShowBuy();
-      getShowRent();
-      getTokenData();
-      getOwner();
-      console.log("useEf");
-    }
+    getShowBuy();
+    getShowRent();
+    getTokenData();
+    getOwner();
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
 
   const getTokenData = async () => {
@@ -227,11 +226,10 @@ const NFTPage: React.FC = () => {
 
       return;
     }
+  };
 
-  }
-  
-const APIURL =
-  "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
 {
@@ -264,10 +262,9 @@ const APIURL =
   const client = createClient({
     url: APIURL,
   });
-
+  console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("DATA", data);
     return data;
   }
 
@@ -309,8 +306,8 @@ const APIURL =
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
-                  <VerifiedIcon w="24px">
+                  <NameNft>Collection Name</NameNft>
+                  <VerifiedIcon>
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
                   <Platform col="#873DC1" fs="36px" fsxs="20px">
@@ -318,8 +315,10 @@ const APIURL =
                   </Platform>
                 </Name>
                 <Name>
-                  <NameCollection>Collection Name</NameCollection>
-                  <VerifiedIcon>
+                  <NameCollection>
+                    {nameFromProps ? nameFromProps : name}
+                  </NameCollection>
+                  <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
                   <Platform col="#873DC1" fs="24px">
@@ -391,6 +390,7 @@ const APIURL =
                       priceInNum={priceInNum}
                       tokenAddress={state.state.tokenAddress}
                       tokenId={state.state.tokenId}
+                      state={state.state}
                     />
                   </SaleBlock>
 
@@ -452,6 +452,7 @@ const APIURL =
                             fc="#873DC1"
                             disabled={!isOwner}
                             onClick={(e) => {
+                              alert("click");
                               e.stopPropagation();
                               navigate(
                                 `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
@@ -526,4 +527,4 @@ const APIURL =
   );
 };
 
-export default NFTPage
+export default NFTPage;

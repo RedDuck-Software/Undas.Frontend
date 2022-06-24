@@ -34,12 +34,8 @@ const NewNFT: React.FC = () => {
     useState<{ id: number; name: string; URI: string }[]>();
 
   const getListings = async () => {
-    if (!connector) {
-      return;
-    }
-    console.log(list);
     const tokens = await fetchData();
-    console.log(tokens);
+
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
         const price = nft.price;
@@ -56,14 +52,15 @@ const NewNFT: React.FC = () => {
 
   async function getItemsData() {
     const response = await getListings();
-    console.log(response);
+    console.log("response", response);
     setList(response);
   }
 
   useEffect(() => {
-    if (!connector) {
-      return;
-    }
+    // if (!connector) {
+    //   return;
+    // }
+    console.log("dsads");
     getItemsData();
   }, [connector]);
 
@@ -90,7 +87,7 @@ const NewNFT: React.FC = () => {
           },
           1700: {
             slidesPerView: 4,
-          }
+          },
         }}
         className="rent-slider"
         modules={[Navigation]}
@@ -135,7 +132,7 @@ const client = createClient({
 
 async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
-  console.log(data.data.listings);
+
   return data.data.listings;
 }
 

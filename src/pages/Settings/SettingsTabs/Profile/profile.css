@@ -10,6 +10,10 @@ input.instagram{
     background: #fff url(../../../../icons/instagram-dropdown.svg) no-repeat 20px center;
     padding-left: 55px;
 }
+input.reddit{
+    background: #fff url(../../../../icons/reddit-dropdown.svg) no-repeat 20px center;
+    padding-left: 55px;
+}
 input.yoursite{
     background: #fff url(../../../../icons/yoursite.svg) no-repeat 20px center;
     padding-left: 55px;

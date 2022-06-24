@@ -55,7 +55,6 @@ const ProductForSale: React.FC = () => {
   const getListData = async () => {
     const response = await getNFTList();
     if (!response?.result) return;
-    console.log(response);
     const nft = response?.result[+id];
     setNFT(nft);
   };

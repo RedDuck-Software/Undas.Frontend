@@ -16,7 +16,7 @@ import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
 
-const Categories: React.FC = () => {
+const CategoriesSport: React.FC = () => {
   return (
     <>
       <Banner>
@@ -26,19 +26,16 @@ const Categories: React.FC = () => {
         <Container>
           <Info>
             <div>
-              <Title>Real World Asset NFT</Title>
+              <Title>Sport</Title>
               <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
               <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                Sport category. The Sport category is a collection of NTFs with
+                a sport theme.
               </InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
-              </Contact>
             </InfoCard>
           </Info>
           <div>
@@ -53,4 +50,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default CategoriesSport;

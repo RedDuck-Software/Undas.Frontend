@@ -9,9 +9,10 @@ export enum Category {
     artwork,
     sport,
     photography,
-    metaverses,
+    gamefi,
     celebrity,
     rwaNFT,
     rwaNFTLong,
+    plus18,
 }
 

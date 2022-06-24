@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 import {
   OfferContainer,
@@ -56,14 +56,17 @@ const Offer: React.FC = () => {
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-
   const [tokenName, setTokenName] = useState<string>();
   const [tokenURI, setTokenURI] = useState<string>();
   const [listingId, setListingId] = useState<string>();
   const [offeredPrice, setOfferedPrice] = useState<string>();
+  const navigate = useNavigate();
 
   async function makeSaleOffer() {
-    if (!connector) return alert("no connector");
+    if (!connector) {
+      navigate("/login");
+      return;
+    }
     if (!offeredPrice) return alert("no offeredPrice");
     if (listingId == undefined) return alert("!listingid");
 
@@ -109,9 +112,9 @@ const Offer: React.FC = () => {
 
   const tokensQuery = `
 {
-  listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
+  listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
     id
- 		tokenId
+ 	tokenId
     tokenURI
     price
     tokenName
@@ -207,8 +210,8 @@ const Offer: React.FC = () => {
           </NameRow>
           <NFTInfoContainer className="max-width">
             <NFTCard
-              uri={tokenURI ? tokenURI : "loading..."}
-              name={tokenName ? tokenName : "loading..."}
+              uri={state.state.state.URI}
+              name={state.state.state.name}
             />
           </NFTInfoContainer>
         </SecondCollum>

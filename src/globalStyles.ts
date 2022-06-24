@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import LRBackground from "./images/LRBackground.png";
 import LRBackground2 from "./images/LRBackground.png";
 import RBackground from "./images/RBackground.png";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 
 interface GlobalStylesProps {
   violet?: boolean;
@@ -23,9 +24,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     list-style: none;
-  }
-  a:focus{
-    background: transparent;
   }
 `;
 
@@ -135,7 +133,7 @@ export const PageTitle = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   @media (max-width: 992px) {
     font-size: 32px;
     line-height: 36px;
@@ -143,11 +141,12 @@ export const PageTitle = styled.h1`
   @media (max-width: 768px) {
     font-size: 24px;
     line-height: 28px;
-    margin: 30px 0 10px;
+    margin-bottom: 30px;
   }
   @media (max-width: 576px) {
     font-size: 20px;
     line-height: 24px;
+    margin-bottom: 20px;
   }
 `;
 export const SubTitle = styled.h2`

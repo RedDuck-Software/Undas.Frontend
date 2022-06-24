@@ -3,7 +3,13 @@ import styled from "styled-components";
 import { InformIco } from "./imports";
 
 export const OffersWrap = styled.div`
-  padding-top: 30px;
+  padding-top: 60px;
+  @media (max-width: 768px) {
+    padding-top: 40px;
+  }
+  @media (max-width: 576px) {
+    padding-top: 20px;
+  }
 `;
 
 export const OffersTitleWrap = styled.div``;

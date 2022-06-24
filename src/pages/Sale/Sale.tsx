@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -61,8 +61,7 @@ import {
 
 import ModalsNFT from "../OfferRent/page-components//ModalsNFT/ModalsNFT";
 
-import { useParams, useLocation } from "react-router-dom";
-import { OnlyOne__factory } from "../../typechain";
+import { useLocation } from "react-router-dom";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
 import { Marketplace__factory } from "../../typechain";
@@ -70,10 +69,11 @@ import { UndasGeneralNFT__factory } from "../../typechain";
 
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 
-import { date } from "yup";
-import { createClient } from "urql";
-
 const Sale: React.FC = () => {
+  const [loadingSale, setLoadingSale] = useState<boolean>(false);
+  const [loadingRent, setLoadingRent] = useState<boolean>(false);
+  const [isNFTBundle, setIsNFTBundle] = useState<boolean>(false);
+
   const { connector } = useContext(Context);
   const [priceForSale, setPriceForSale] = useState(0);
   const [colloteral, setColloteral] = useState(0);
@@ -82,15 +82,15 @@ const Sale: React.FC = () => {
 
   const state: any = useLocation();
 
-  const URI = state.state.state.URI
-  const nameFromProps = state.state.state.name
+  const URI = state.state.state.URI;
+  const nameFromProps = state.state.state.name;
   const NFT_ADDRESS = state.state.state.tokenAddress;
-  const tokenId = state.state.state.tokenId
+  const tokenId = state.state.state.tokenId;
 
   async function sellToken() {
     if (!connector) return;
-    if (!tokenId) return;
-
+    if (tokenId==undefined && tokenId == null) return;
+    console.log('dassa')
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -102,31 +102,38 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+
+    const approve = await NftContract.setApprovalForAll(
+      MARKETPLACE_ADDRESS,
+      true,
+    );
+    await approve.wait();
+    const expectedValue = (priceForSale * 2) / 100;
+
+    const formattedPrice = ethers.utils.parseUnits(
+      priceForSale.toString(),
+      "ether",
+    );
+    //undas contract
+    const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,
-      signer,
-    )
-      
-    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-
-    await approve.wait()
-    const expectedValue = (priceForSale * 2) /100;
-
-    const formattedPrice =  ethers.utils.parseUnits(priceForSale.toString(), "ether")
-    //undsa contract  
-    const tx = await MarketplaceContract.bidExternal(NFT_ADDRESS,tokenId,
-    formattedPrice,
-    false,
-     {
-      value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-    });
+      tokenId,
+      formattedPrice,
+      false,
+      {
+        value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
+      },
+    );
+    setLoadingSale(true);
     await tx.wait();
-
+    setLoadingSale(false);
   }
 
   async function stakeToken() {
     if (!connector) return;
-    if (!tokenId) return;
+
+    if (tokenId==undefined && tokenId == null) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -139,13 +146,13 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(
-      NFT_ADDRESS,
-      signer,
-    )
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
-    const approve = await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS,true)
-    await approve.wait()
+    const approve = await NftContract.setApprovalForAll(
+      MARKETPLACE_ADDRESS,
+      true,
+    );
+    await approve.wait();
 
     const utcTimestamp = new Date().getTime();
 
@@ -160,8 +167,7 @@ const Sale: React.FC = () => {
     );
 
     const amountToPay = (colloteral * 2) / 100;
-    console.log(NFT_ADDRESS);
-    console.log(tokenId);
+
     const tx = await MarketplaceContract.quoteForStakingExternal(
       NFT_ADDRESS,
       tokenId,
@@ -173,11 +179,14 @@ const Sale: React.FC = () => {
         value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
-
-
+    setLoadingRent(true);
     await tx.wait();
+    setLoadingRent(false);
   }
 
+  const handleNFTBundle = () => {
+    setIsNFTBundle(!isNFTBundle);
+  };
 
   return (
     <Background>
@@ -194,6 +203,7 @@ const Sale: React.FC = () => {
               type="checkbox"
               id="collateral"
               className="custom-checkbox"
+              onClick={handleNFTBundle}
             />
             <CheckboxLabelCollateral htmlFor="collateral">
               Make a Bundle
@@ -217,122 +227,142 @@ const Sale: React.FC = () => {
             <LeftBlock>
               <BlockWrap>
                 <BlockTitle>List item to sale</BlockTitle>
-                <NameRow>
-                  <TextPrice>Price</TextPrice>
-                </NameRow>
-                <PriceRow>
-                  <EthSelect>
-                    <EthText>ETH</EthText>
-                    <ImageDown src={down} alt="down-image" />
-                  </EthSelect>
-                  <AmmountInput
-                    type="number"
-                    placeholder="Amount"
-                    onChange={(e) => setPriceForSale(+e.target.value)}
-                  />
-                  <CostSelect>
-                    <DollarText>0.00</DollarText>
-                  </CostSelect>
-                </PriceRow>
-                <DurationWrap>
-                  <TextPrice>Duration</TextPrice>
-                  <DurationRow>
-                    <TextDay>Day</TextDay>
-                    <InputDay placeholder="Custom date" />
-                    <ButtonsBlock>
-                      <DurationButton className="left">7</DurationButton>
-                      <DurationButton>30</DurationButton>
-                      <DurationButton>60</DurationButton>
-                      <DurationButton>90</DurationButton>
-                      <DurationButton>180</DurationButton>
-                    </ButtonsBlock>
-                  </DurationRow>
-                </DurationWrap>
-                <BlockButton onClick={() => sellToken()}>Confirm</BlockButton>
+                {loadingSale ? (
+                  <TextPrice>Loading pending...</TextPrice>
+                ) : (
+                  <>
+                    <NameRow>
+                      <TextPrice>Price</TextPrice>
+                    </NameRow>
+                    <PriceRow>
+                      <EthSelect>
+                        <EthText>ETH</EthText>
+                        <ImageDown src={down} alt="down-image" />
+                      </EthSelect>
+                      <AmmountInput
+                        type="number"
+                        placeholder="Amount"
+                        onChange={(e) => setPriceForSale(+e.target.value)}
+                      />
+                      <CostSelect>
+                        <DollarText>0.00</DollarText>
+                      </CostSelect>
+                    </PriceRow>
+                    <DurationWrap>
+                      <TextPrice>Duration</TextPrice>
+                      <DurationRow>
+                        <TextDay>Day</TextDay>
+                        <InputDay placeholder="Custom date" />
+                        <ButtonsBlock>
+                          <DurationButton className="left">7</DurationButton>
+                          <DurationButton>30</DurationButton>
+                          <DurationButton>60</DurationButton>
+                          <DurationButton>90</DurationButton>
+                          <DurationButton>180</DurationButton>
+                        </ButtonsBlock>
+                      </DurationRow>
+                    </DurationWrap>
+                    <BlockButton onClick={() => sellToken()}>
+                      Confirm
+                    </BlockButton>
+                  </>
+                )}
               </BlockWrap>
               <BlockWrap>
                 <BlockTitle>List item to rent</BlockTitle>
-                <NameRow>
-                  <TextPrice>
-                    Deposit
-                    <OverlayTrigger
-                      delay={{ show: 250, hide: 3000 }}
-                      placement="top"
-                      overlay={
-                        <OverlayPopUp>
-                          Speech bubble that will fall out when you click on the
-                          information on the icon{" "}
-                          <FAQLink href="/faq">FAQ</FAQLink>
-                        </OverlayPopUp>
-                      }
-                    >
-                      <ButtonInfo>
-                        <ImageInfo
-                          src={info}
-                          alt="info-image"
-                          className="margin"
+                {loadingRent ? (
+                  <TextPrice>Loading pending...</TextPrice>
+                ) : (
+                  <>
+                    <NameRow>
+                      <TextPrice>
+                        Deposit
+                        <OverlayTrigger
+                          delay={{ show: 250, hide: 3000 }}
+                          placement="top"
+                          overlay={
+                            <OverlayPopUp>
+                              Speech bubble that will fall out when you click on
+                              the information on the icon{" "}
+                              <FAQLink href="/faq">FAQ</FAQLink>
+                            </OverlayPopUp>
+                          }
+                        >
+                          <ButtonInfo>
+                            <ImageInfo
+                              src={info}
+                              alt="info-image"
+                              className="margin"
+                            />
+                          </ButtonInfo>
+                        </OverlayTrigger>
+                      </TextPrice>
+                    </NameRow>
+                    <PriceRow>
+                      <EthSelect>
+                        <EthText>ETH</EthText>
+                        <ImageDown src={down} alt="down-image" />
+                      </EthSelect>
+                      <AmmountInput
+                        type="text"
+                        placeholder="Amount"
+                        onChange={(e) => setColloteral(+e.target.value)}
+                      />
+                      <CostSelect>
+                        <DollarText>0.00</DollarText>
+                      </CostSelect>
+                    </PriceRow>
+                    <NameRow>
+                      <TextPrice className="сost-per-day">
+                        Cost per Day
+                      </TextPrice>
+                    </NameRow>
+                    <PriceRow>
+                      <EthSelect>
+                        <EthText>ETH</EthText>
+                        <ImageDown src={down} alt="down-image" />
+                      </EthSelect>
+                      <AmmountInput
+                        type="text"
+                        placeholder="Amount"
+                        onChange={(e) => setPremium(+e.target.value)}
+                      />
+                      <CostSelect>
+                        <DollarText>0.00</DollarText>
+                      </CostSelect>
+                    </PriceRow>
+                    <NameRow>
+                      <TextPrice className="сost-per-day">
+                        Rental Period
+                      </TextPrice>
+                    </NameRow>
+                    <NameRow className="margin-top">
+                      <TextDay>Day</TextDay>
+                      <InputDay placeholder="Min" />
+                      <InputDay placeholder="Max" />
+                    </NameRow>
+                    <DurationWrap>
+                      <TextPrice>Duration</TextPrice>
+                      <DurationRow>
+                        <TextDay>Day</TextDay>
+                        <InputDay
+                          placeholder="Custom date"
+                          onChange={(e) => setDurationInDay(+e.target.value)}
                         />
-                      </ButtonInfo>
-                    </OverlayTrigger>
-                  </TextPrice>
-                </NameRow>
-                <PriceRow>
-                  <EthSelect>
-                    <EthText>ETH</EthText>
-                    <ImageDown src={down} alt="down-image" />
-                  </EthSelect>
-                  <AmmountInput
-                    type="text"
-                    placeholder="Amount"
-                    onChange={(e) => setColloteral(+e.target.value)}
-                  />
-                  <CostSelect>
-                    <DollarText>0.00</DollarText>
-                  </CostSelect>
-                </PriceRow>
-                <NameRow>
-                  <TextPrice className="сost-per-day">Cost per Day</TextPrice>
-                </NameRow>
-                <PriceRow>
-                  <EthSelect>
-                    <EthText>ETH</EthText>
-                    <ImageDown src={down} alt="down-image" />
-                  </EthSelect>
-                  <AmmountInput
-                    type="text"
-                    placeholder="Amount"
-                    onChange={(e) => setPremium(+e.target.value)}
-                  />
-                  <CostSelect>
-                    <DollarText>0.00</DollarText>
-                  </CostSelect>
-                </PriceRow>
-                <NameRow>
-                  <TextPrice className="сost-per-day">Rental Period</TextPrice>
-                </NameRow>
-                <NameRow className="margin-top">
-                  <TextDay>Day</TextDay>
-                  <InputDay placeholder="Min" />
-                  <InputDay placeholder="Max" />
-                </NameRow>
-                <DurationWrap>
-                  <TextPrice>Duration</TextPrice>
-                  <DurationRow>
-                    <TextDay>Day</TextDay>
-                    <InputDay
-                      placeholder="Custom date"
-                      onChange={(e) => setDurationInDay(+e.target.value)}
-                    />
-                    <ButtonsBlock>
-                      <DurationButton className="left">7</DurationButton>
-                      <DurationButton>30</DurationButton>
-                      <DurationButton>60</DurationButton>
-                      <DurationButton>90</DurationButton>
-                      <DurationButton>180</DurationButton>
-                    </ButtonsBlock>
-                  </DurationRow>
-                </DurationWrap>
-                <BlockButton onClick={() => stakeToken()}>Confirm</BlockButton>
+                        <ButtonsBlock>
+                          <DurationButton className="left">7</DurationButton>
+                          <DurationButton>30</DurationButton>
+                          <DurationButton>60</DurationButton>
+                          <DurationButton>90</DurationButton>
+                          <DurationButton>180</DurationButton>
+                        </ButtonsBlock>
+                      </DurationRow>
+                    </DurationWrap>
+                    <BlockButton onClick={() => stakeToken()}>
+                      Confirm
+                    </BlockButton>
+                  </>
+                )}
               </BlockWrap>
             </LeftBlock>
             <RightBlock>
@@ -344,54 +374,56 @@ const Sale: React.FC = () => {
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
-          <NameRow>
-            <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
-            <SelectedNFT>2</SelectedNFT>
-          </NameRow>
-          <SwiperNFT
-            slidesPerView={1}
-            spaceBetween={30}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 50,
-              },
-              1200: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-            }}
-            className="rent-slider"
-            modules={[Navigation]}
-            loop={false}
-            navigation={true}
-          >
+          {isNFTBundle && (
             <>
-              <SwiperSlide>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <NFTCard uri="nft1" name="NFTCard" />
-                <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <AddNFTContainer>
-                  <AddNFTCard>
-                    <ModalsNFT />
-                  </AddNFTCard>
-                </AddNFTContainer>
-              </SwiperSlide>
+              <NameRow>
+                <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
+                <SelectedNFT>2</SelectedNFT>
+              </NameRow>
+              <SwiperNFT
+                slidesPerView={1}
+                spaceBetween={30}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                  },
+                  1200: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                  },
+                }}
+                className="rent-slider"
+                modules={[Navigation]}
+                loop={false}
+                navigation={true}
+              >
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <NFTCard uri="nft1" name="NFTCard" />
+                  <ImgDelete src={deleteNFT} alt="delete-nft-image" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <AddNFTContainer>
+                    <AddNFTCard>
+                      <ModalsNFT />
+                    </AddNFTCard>
+                  </AddNFTContainer>
+                </SwiperSlide>
+              </SwiperNFT>
             </>
-          </SwiperNFT>
+          )}
           <BottomWrapper>
             <CheckBoxWrapper>
               <CheckboxInputAgreement

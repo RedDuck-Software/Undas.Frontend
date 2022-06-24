@@ -48,8 +48,14 @@ export const NFTPageWrap = styled(Container)`
   position: relative;
   overflow: hidden;
   padding-bottom: 120px;
+  @media (max-width: 992px) {
+    padding-bottom: 80px;
+  }
   @media (max-width: 768px) {
-    padding-bottom: 50px;
+    padding-bottom: 60px;
+  }
+  @media (max-width: 576px) {
+    padding-bottom: 40px;
   }
   ${Container}
 `;
@@ -119,17 +125,17 @@ export const OwnerSettingsButton = styled.button<{ isColored?: boolean }>`
 `;
 
 export const NavigationWrap = styled.div`
-  margin: 80px 0 20px 0;
+  margin: 60px 0 20px 0;
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
-  @media (max-width: 992px) {
-    margin-top: 40px;
-  }
   @media (max-width: 768px) {
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 40px 0 20px 0;
+  }
+  @media (max-width: 576px) {
+    margin: 20px 0 20px 0;
   }
 `;
 export const NameInner = styled.div`

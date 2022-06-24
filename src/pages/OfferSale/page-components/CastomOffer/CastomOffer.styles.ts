@@ -118,12 +118,12 @@ export const ImageDown = styled.img`
 export const AmmountInput = styled.input`
   width: 50%;
   background: #ffffff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
+  border: none;
+  box-shadow: inset 0px 0px 5px rgba(124, 124, 124, 0.5);
   padding-left: 25px;
   outline: none;
   &:focus {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-    border-color: rgb(135 61 193);
+    box-shadow: inset 0px 0px 5px rgb(135, 61, 193);
   }
 
   @media (max-width: 992px) {
@@ -169,11 +169,22 @@ export const OwnerContainer = styled.div`
 
 export const ImgDelete = styled.img`
   height: 16px;
-  top: 10px;
+  top: 40px;
   position: absolute;
-  right: 0;
+  right: 6%;
+  @media (max-width: 1200px) {
+    top: 5%;
+  }
+  @media (max-width: 640px) {
+    right: 19%;
+  }
+  @media (max-width: 576px) {
+    right: 14%;
+  }
+  @media (max-width: 576px) {
+    right: 5%;
+  }
 `;
-
 export const TextOffer = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -499,6 +510,12 @@ export const ButtonMakeOffer = styled.button`
     width: 100%;
     margin-bottom: 80px;
   }
+  @media (max-width: 992px) {
+    margin-bottom: 60px;
+  }
+  @media (max-width: 992px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const AgreeRowButton = styled.div`
@@ -594,8 +611,8 @@ export const FAQLink = styled.a`
 
 export const NFTInfoContainer = styled.div`
   display: flex;
-  width: 400px;
-  height: 400px;
+  width: 380px;
+  height: 380px;
   background: #fbf5ff;
   border-radius: 10px;
   justify-content: center;
@@ -618,7 +635,7 @@ export const NFTInfoContainer = styled.div`
 `;
 
 export const AddNFTContainer = styled(NFTInfoContainer)`
-  padding: 65px 40px 15px;
+  padding: 50px 30px 10px;
 `;
 
 export const AddNFTCard = styled(NFTWrap)`

@@ -179,10 +179,10 @@ export const Roadmap = styled.div`
     padding: 0 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 0 0 50px;
+    padding: 0 0 60px;
   }
   @media (max-width: 576px) {
-    padding: 0 0 50px;
+    padding: 0 0 40px;
   }
 `;
 
@@ -215,18 +215,72 @@ export const AchievementСontainer = styled.div`
     top: 8%;
   }
   &.second-container {
-    top: 24%;
+    top: 31%;
   }
   &.third-container {
-    top: 40%;
+    top: 48%;
   }
   &.fourth-container {
-    top: 55%;
+    top: 63%;
   }
   &.fifth-container {
-    top: 70%;
+    top: 77%;
   }
 
+  &.left-side::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #ccb7f2;
+    position: absolute;
+    right: -10px;
+    top: 47%;
+  }
+  &.right-side::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #e2d1ff;
+    position: absolute;
+    left: -10px;
+    top: 47%;
+  }
+  @media (max-width: 1273px) {
+    &.third-container {
+      top: 45%;
+    }
+  }
+  @media (max-width: 1187px) {
+    &.first-container {
+      top: 6%;
+    }
+    &.fifth-container {
+      top: 74%;
+    }
+  }
+  @media (max-width: 1135px) {
+    &.second-container {
+      top: 26%;
+    }
+    &.third-container {
+      top: 43%;
+    }
+    &.fourth-container {
+      top: 66%;
+    }
+    &.fifth-container {
+      top: 74%;
+    }
+  }
+  @media (max-width: 1032px) {
+    &.fourth-container {
+      top: 63%;
+    }
+  }
   @media (max-width: 992px) {
     width: 97%;
     position: relative;
@@ -235,6 +289,20 @@ export const AchievementСontainer = styled.div`
     &.left-side {
       right: 0;
       left: unset;
+    }
+    &.left-side::after {
+      content: none;
+    }
+    &.left-side::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #e2d1ff;
+      position: absolute;
+      left: -10px;
+      top: 47%;
     }
   }
   @media (max-width: 768px) {
@@ -263,28 +331,6 @@ export const ContainerContent = styled.div`
   border-radius: 0 0 10px 10px;
   padding: 15px 20px;
   position: relative;
-  &.left-side::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid #ccb7f2;
-    position: absolute;
-    right: -10px;
-    top: 20%;
-  }
-  &.right-side::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid #e2d1ff;
-    position: absolute;
-    left: -10px;
-    top: 20%;
-  }
   & .container-list {
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
@@ -293,10 +339,12 @@ export const ContainerContent = styled.div`
     & li {
       position: relative;
       padding-left: 8px;
-      display: inline-flex;
       font-weight: 400;
       font-size: 14px;
       line-height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
     }
     & li::before {
       content: "";
@@ -320,20 +368,6 @@ export const ContainerContent = styled.div`
   }
 
   @media (max-width: 992px) {
-    &.left-side::before {
-      content: "";
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-right: 10px solid #e2d1ff;
-      position: absolute;
-      left: -10px;
-      top: 20%;
-    }
-    &.left-side::after {
-      content: none;
-    }
   }
 
   @media (max-width: 576px) {
@@ -356,17 +390,22 @@ export const PageTitleAbout = styled.h1`
   font-size: 36px;
   line-height: 44px;
   color: #232428;
-  margin: 60px 0 60px;
+  margin: 60px 0 40px;
 
   @media (max-width: 992px) {
-    margin: 30px 0 20px;
     text-align: center;
+    font-size: 32px;
+    line-height: 36px;
   }
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 40px 0 30px;
   }
   @media (max-width: 576px) {
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 20px 0 20px;
   }
 `;
 

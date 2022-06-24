@@ -34,16 +34,12 @@ export const Image = styled.img`
   width: 100%;
   border-radius: 10px;
   height: 300px;
+  min-height: 300px;
   object-fit: cover;
   background-color: #fff;
   @media (max-width: 992px) {
     height: 250px;
-  }
-  @media (max-width: 768px) {
-    height: 180px;
-  }
-  @media (max-width: 640px) {
-    height: 250px;
+    min-height: 250px;
   }
 `;
 export const NFTAbout = styled.div`

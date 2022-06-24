@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const AchievementsWrap = styled.div`
-  padding: 60px 0;
+  padding: 60px 0 120px;
   @media (max-width: 992px) {
-    padding: 60px 0 40px;
+    padding: 60px 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 60px 0 20px;
+    padding: 60px 0;
   }
   @media (max-width: 576px) {
-    padding: 30px 0 0;
+    padding: 40px 0;
   }
 `;
 
@@ -19,15 +19,6 @@ export const AchievementsHeadInner = styled.div`
   justify-content: space-between;
   @media (max-width: 992px) {
     flex-direction: column;
-  }
-`;
-
-export const AchievementsTitle = styled.h1`
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
-  @media (max-width: 992px) {
-    margin-bottom: 15px;
   }
 `;
 export const InfoText = styled.p`

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CollectionPrev } from "./imports";
 
 import { PrimaryButton, SecondaryButton } from "../../../../globalStyles";
+import { Link } from "react-router-dom";
 
 export const SliderImage = styled.img`
   width: 100%;
@@ -16,15 +17,16 @@ export const UndasDiv = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 4px 4px 4px rgb(35 36 40 / 50%);
   backdrop-filter: blur(30px);
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
+  -webkit-backdrop-filter: blur(30px);
+  -moz-backdrop-filter: blur(30px);
   border-radius: 20px;
   -webkit-box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
   -moz-box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
   box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
-  left: 160px;
+  left: 12rem;
   top: 50px;
   padding: 20px;
+  z-index: 2;
   @media (max-width: 1200px) {
     display: none;
   }
@@ -84,8 +86,9 @@ export const SliderButtonsBlock = styled.div`
   -webkit-box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
   -moz-box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
   box-shadow: 4px -4px 10px -2px rgb(34 60 80 / 20%);
-  left: 160px;
+  left: 12rem;
   top: 240px;
+  z-index: 2;
   @media (max-width: 1200px) {
     display: none;
   }
@@ -99,7 +102,7 @@ export const CreateButton = styled(SecondaryButton)`
   height: 36px;
   margin-top: 15px;
 `;
-export const CollectionDiv = styled.div`
+export const CollectionDiv = styled(Link).attrs({ target: "_blank" })`
   position: absolute;
   width: 180px;
   height: 60px;
@@ -116,6 +119,7 @@ export const CollectionDiv = styled.div`
   bottom: 50px;
   right: 160px;
   padding-top: 20px;
+  text-decoration: none;
   @media (max-width: 1200px) {
     bottom: 2%;
     right: 4%;

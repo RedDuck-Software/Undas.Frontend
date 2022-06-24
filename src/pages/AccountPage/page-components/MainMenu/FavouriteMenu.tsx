@@ -31,6 +31,7 @@ import nft6 from "../../../../images/temp-nft-examples/nft-exp-6.png";
 import nft7 from "../../../../images/temp-nft-examples/nft-exp-7.png";
 import nft8 from "../../../../images/temp-nft-examples/nft-exp-8.png";
 import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 const testNFTList = [
   {
@@ -195,6 +196,8 @@ const FavouriteMenu: React.FC = () => {
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <FavouriteResultsTotal>8 results</FavouriteResultsTotal>
       </MenuWrap>
+
+      <FilterSelected />
 
       {viewMode === ViewMode.grid && favouriteType === FavouriteType.nft && (
         <CollectionGridWrap itemList={testNFTList} />

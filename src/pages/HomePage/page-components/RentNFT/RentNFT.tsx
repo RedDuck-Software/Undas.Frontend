@@ -32,11 +32,8 @@ const RentNFT: React.FC = () => {
     useState<{ URI: string; name: string; id: number }[]>();
 
   const getStakings = async () => {
-    if (!connector) {
-      return;
-    }
-
     const tokens = await fetchStakingData();
+
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
         const price = nft.premiumWei;
@@ -44,7 +41,6 @@ const RentNFT: React.FC = () => {
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        console.log(premiumInNum);
         items.push({ URI, name, id });
       }
     });
@@ -57,9 +53,6 @@ const RentNFT: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!connector) {
-      return;
-    }
     getItemsData();
   }, [connector]);
 
@@ -90,7 +83,7 @@ const RentNFT: React.FC = () => {
           },
           1700: {
             slidesPerView: 4,
-          }
+          },
         }}
         className="rent-slider"
         modules={[Navigation]}
@@ -100,15 +93,6 @@ const RentNFT: React.FC = () => {
         {list?.map((item) => {
           return (
             <>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
-              <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
-              </SwiperSlide>
               <SwiperSlide key={item.id}>
                 <NFTCard uri={item.URI} name={item.name} />
               </SwiperSlide>

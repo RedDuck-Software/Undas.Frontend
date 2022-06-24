@@ -36,7 +36,7 @@ const StakingPage: React.FC = () => {
   const [premium, setPremium] = useState("");
   const [term, setTerm] = useState("");
   const [showWarning, setShowWarning] = useState(false);
-  console.log(intervalIntoTimeStamp);
+
   const quoteForStaking = async () => {
     if (!connector) return;
     if (+term < 7) {
@@ -56,7 +56,7 @@ const StakingPage: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    console.log(MarketplaceContract);
+
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
       MARKETPLACE_ADDRESS,
@@ -68,7 +68,6 @@ const StakingPage: React.FC = () => {
       ).wait();
     }
 
-    console.log("Item data" + NFTAddress, tokenId, price, premium, term);
     // const tx = await MarketplaceContract.quoteForStaking(
     //   NFTAddress,
     //   tokenId,

@@ -39,6 +39,13 @@ import {
   FilterCategoryItemTitle,
   CheckboxInputWrapperCentered,
   MobileListWrap,
+  InputBlock,
+  MinMaxLable,
+  MinPrice,
+  PriceContainer,
+  InputPriceContainer,
+  ApplyButton,
+  ButtonContainer,
 } from "./ASideFilter.styles";
 import {
   FilterIco,
@@ -312,185 +319,184 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
             <Arrow />
           </HolderElement>
 
-          {!accountPage && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.status) {
-                    setActiveMenu({ status: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ status: false });
-                }}
-              >
-                <StatusIco />
-                <ElementText>Status</ElementText>
-                <AccordionArrow
-                  className={(activeMenu.status && "active-status") || ""}
-                />
-              </HolderElement>
-              <AccordionMenu
-                mh="186px"
-                className={(activeMenu.status && "active-status") || ""}
-              >
-                <AccordionElement
-                  onClick={() => {
-                    newRef.current.checked = !newRef.current.checked;
-                  }}
-                >
-                  <span>New</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" ref={newRef} />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-                <AccordionElement>
-                  <span>Staking</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-                <AccordionElement
-                  onClick={() => {
-                    buyingRef.current.checked = !buyingRef.current.checked;
-                    dispatch(buyAction(buyingRef.current.checked));
-                  }}
-                >
-                  <span>Buy now</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" ref={buyingRef} />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-                <AccordionElement
-                  onClick={() => {
-                    stakingRef.current.checked = !stakingRef.current.checked;
-                    dispatch(rentAction(stakingRef.current.checked));
-                  }}
-                >
-                  <span>Rent</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" ref={stakingRef} />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
+          <HolderElement
+            onClick={() => {
+              if (!activeMenu.status) {
+                setActiveMenu({ status: true });
+                !active && setActive(true);
+              } else setActiveMenu({ status: false });
+            }}
+          >
+            <StatusIco />
+            <ElementText>Status</ElementText>
+            <AccordionArrow
+              className={(activeMenu.status && "active-status") || ""}
+            />
+          </HolderElement>
+          <AccordionMenu
+            mh="186px"
+            className={(activeMenu.status && "active-status") || ""}
+          >
+            <AccordionElement
+              onClick={() => {
+                newRef.current.checked = !newRef.current.checked;
+              }}
+            >
+              <span>New</span>
+              <Switch>
+                <InputSwitch type="checkbox" ref={newRef} />
+                <SliderRound />
+              </Switch>
+            </AccordionElement>
+            <AccordionElement>
+              <span>Staking</span>
+              <Switch>
+                <InputSwitch type="checkbox" />
+                <SliderRound />
+              </Switch>
+            </AccordionElement>
+            <AccordionElement
+              onClick={() => {
+                buyingRef.current.checked = !buyingRef.current.checked;
+                dispatch(buyAction(buyingRef.current.checked));
+              }}
+            >
+              <span>Buy now</span>
+              <Switch>
+                <InputSwitch type="checkbox" ref={buyingRef} />
+                <SliderRound />
+              </Switch>
+            </AccordionElement>
+            <AccordionElement
+              onClick={() => {
+                stakingRef.current.checked = !stakingRef.current.checked;
+                dispatch(rentAction(stakingRef.current.checked));
+              }}
+            >
+              <span>Rent</span>
+              <Switch>
+                <InputSwitch type="checkbox" ref={stakingRef} />
+                <SliderRound />
+              </Switch>
+            </AccordionElement>
 
-                <AccordionElement
-                  onClick={() => {
-                    hasOffersRef.current.checked =
-                      !hasOffersRef.current.checked;
-                    dispatch(hasOffersAction(hasOffersRef.current.checked));
-                  }}
-                >
-                  <span>Has Offers</span>
-                  <Switch>
-                    <InputSwitch type="checkbox" ref={hasOffersRef} />
-                    <SliderRound />
-                  </Switch>
-                </AccordionElement>
-              </AccordionMenu>
-            </>
-          )}
+            <AccordionElement
+              onClick={() => {
+                hasOffersRef.current.checked = !hasOffersRef.current.checked;
+                dispatch(hasOffersAction(hasOffersRef.current.checked));
+              }}
+            >
+              <span>Has Offers</span>
+              <Switch>
+                <InputSwitch type="checkbox" ref={hasOffersRef} />
+                <SliderRound />
+              </Switch>
+            </AccordionElement>
+          </AccordionMenu>
 
-          {!accountPage && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.price) {
-                    setActiveMenu({ price: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ price: false });
-                }}
-              >
-                <PriceIco />
-                <ElementText>Price</ElementText>
-                <AccordionArrow
-                  className={(activeMenu.price && "active-price") || ""}
-                />
-              </HolderElement>
-              <AccordionMenu
-                mh="178px"
-                className={(activeMenu.price && "active-price") || ""}
-              >
-                <AccordionElement padd="15px 15px 20px 15px" direction="column">
-                  {priceCurrency.map((item) => {
-                    if (item.selected)
-                      return (
-                        <PriceElement
+          <HolderElement
+            onClick={() => {
+              if (!activeMenu.price) {
+                setActiveMenu({ price: true });
+                !active && setActive(true);
+              } else setActiveMenu({ price: false });
+            }}
+          >
+            <PriceIco />
+            <ElementText>Price</ElementText>
+            <AccordionArrow
+              className={(activeMenu.price && "active-price") || ""}
+            />
+          </HolderElement>
+          <AccordionMenu
+            mh="178px"
+            className={(activeMenu.price && "active-price") || ""}
+          >
+            <AccordionElement padd="15px 15px 20px 15px" direction="column">
+              {priceCurrency.map((item) => {
+                if (item.selected)
+                  return (
+                    <PriceContainer>
+                      <PriceElement
+                        className={(priceMenu && "price-menu-active") || ""}
+                        onClick={() => {
+                          !priceMenu ? setPriceMenu(true) : setPriceMenu(false);
+                        }}
+                      >
+                        {item.ico}
+                        <span>{item.text}</span>
+                        <AccordionArrow
                           className={(priceMenu && "price-menu-active") || ""}
-                          onClick={() => {
-                            !priceMenu
-                              ? setPriceMenu(true)
-                              : setPriceMenu(false);
-                          }}
+                        />
+                        <PriceSelect
+                          className={(priceMenu && "price-menu-active") || ""}
                         >
-                          {item.ico}
-                          <span>{item.text}</span>
-                          <AccordionArrow
-                            className={(priceMenu && "price-menu-active") || ""}
-                          />
-                          <PriceSelect
-                            className={(priceMenu && "price-menu-active") || ""}
-                          >
-                            {variations.map((item) => {
-                              return (
-                                <PriceVariations
-                                  key={item.text}
-                                  onClick={() => {
-                                    currencySelector(item);
-                                  }}
-                                >
-                                  {item.ico}
-                                  <span>{item.text}</span>
-                                </PriceVariations>
-                              );
-                            })}
-                          </PriceSelect>
-                        </PriceElement>
-                      );
-                  })}
+                          {variations.map((item) => {
+                            return (
+                              <PriceVariations
+                                key={item.text}
+                                onClick={() => {
+                                  currencySelector(item);
+                                }}
+                              >
+                                {item.ico}
+                                <span>{item.text}</span>
+                              </PriceVariations>
+                            );
+                          })}
+                        </PriceSelect>
+                      </PriceElement>
+                      <InputPriceContainer>
+                        <InputBlock>
+                          <MinPrice type="number" id="min" placeholder="Min" />
+                        </InputBlock>
+                        <InputBlock className="margin-left">
+                          <MinPrice type="number" id="max" placeholder="Max" />
+                        </InputBlock>
+                      </InputPriceContainer>
+                      <ButtonContainer>
+                        <ApplyButton>Apply</ApplyButton>
+                      </ButtonContainer>
+                    </PriceContainer>
+                  );
+              })}
 
-                  <ApplyBtn>Apply</ApplyBtn>
-                </AccordionElement>
-              </AccordionMenu>
-            </>
-          )}
+              <ApplyBtn>Apply</ApplyBtn>
+            </AccordionElement>
+          </AccordionMenu>
 
-          {!accountPage && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.category) {
-                    setActiveMenu({ category: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ category: false });
-                }}
-                isActive={activeMenu.category}
-              >
-                <CategoriesIco />
-                <ElementText>Categories</ElementText>
-                <AccordionArrow
-                  className={(activeMenu.category && "active-category") || ""}
-                />
-              </HolderElement>
-              <AccordionMenu
-                backgroundColor="rgba(251, 245, 255, 0.7)"
-                mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
-                className={(activeMenu.category && "active-category") || ""}
-              >
-                <MobileListWrap>
-                  <CategoryItem {...getCategory(Category.allNFTs)} />
-                  <CategoryItem {...getCategory(Category.new)} />
-                  <CategoryItem {...getCategory(Category.artwork)} />
-                  <CategoryItem {...getCategory(Category.sport)} />
-                  <CategoryItem {...getCategory(Category.photography)} />
-                  <CategoryItem {...getCategory(Category.metaverses)} />
-                  <CategoryItem {...getCategory(Category.celebrity)} />
-                  <CategoryItem {...getCategory(Category.rwaNFTLong)} />
-                </MobileListWrap>
-              </AccordionMenu>
-            </>
-          )}
+          <HolderElement
+            onClick={() => {
+              if (!activeMenu.category) {
+                setActiveMenu({ category: true });
+                !active && setActive(true);
+              } else setActiveMenu({ category: false });
+            }}
+            isActive={activeMenu.category}
+          >
+            <CategoriesIco />
+            <ElementText>Categories</ElementText>
+            <AccordionArrow
+              className={(activeMenu.category && "active-category") || ""}
+            />
+          </HolderElement>
+          <AccordionMenu
+            backgroundColor="rgba(251, 245, 255, 0.7)"
+            mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
+            className={(activeMenu.category && "active-category") || ""}
+          >
+            <MobileListWrap>
+              <CategoryItem {...getCategory(Category.allNFTs)} />
+              <CategoryItem {...getCategory(Category.new)} />
+              <CategoryItem {...getCategory(Category.artwork)} />
+              <CategoryItem {...getCategory(Category.sport)} />
+              <CategoryItem {...getCategory(Category.photography)} />
+              <CategoryItem {...getCategory(Category.gamefi)} />
+              <CategoryItem {...getCategory(Category.celebrity)} />
+              <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+              <CategoryItem {...getCategory(Category.plus18)} />
+            </MobileListWrap>
+          </AccordionMenu>
 
           <HolderElement
             onClick={() => {

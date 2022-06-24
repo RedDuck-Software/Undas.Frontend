@@ -32,6 +32,7 @@ import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileB
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemImg, ItemVerifyIco, filter, close } from "../../imports";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 const OffersMenu: React.FC = () => {
   return (
@@ -44,14 +45,7 @@ const OffersMenu: React.FC = () => {
           <TextButton>Verified</TextButton>
         </FilterButton>
       </OfferFilterWrap>
-      <SelectedFilters>
-        <Filter>
-          <FilterImg src={filter} alt="filter-image" />
-          <FilterName>Borya Fo...</FilterName>
-          <FilterClose src={close} alt="close" />
-        </Filter>
-        <ClearAll>Clear All</ClearAll>
-      </SelectedFilters>
+      <FilterSelected />
       <ContainerTable>
         <OffersWrapTable>
           <OffersHeadTr className="offers-menu-head">
@@ -65,6 +59,8 @@ const OffersMenu: React.FC = () => {
             </OffersTd>
             <OffersTd>24h Vol</OffersTd>
             <OffersTd>24h Vol</OffersTd>
+            <OffersTd>Owners</OffersTd>
+            <OffersTd>Items</OffersTd>
           </OffersHeadTr>
           <OffersTr className="offers-menu-row">
             <OffersTdText className="first-column">
@@ -105,8 +101,18 @@ const OffersMenu: React.FC = () => {
               </PriceTextW>
             </OffersTdText>
             <OffersTdText>
-              <PriceTextW>
+              <PriceTextW className="min-width">
                 <PercentTextTop>100,00%</PercentTextTop>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
               </PriceTextW>
             </OffersTdText>
           </OffersTr>
@@ -153,6 +159,16 @@ const OffersMenu: React.FC = () => {
                 <PercentTextButtom>100,00%</PercentTextButtom>
               </PriceTextW>
             </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
           </OffersTr>
           <OffersTr className="offers-menu-row">
             <OffersTdText className="first-column">
@@ -195,6 +211,16 @@ const OffersMenu: React.FC = () => {
             <OffersTdText>
               <PriceTextW>
                 <PercentTextTop>100,00%</PercentTextTop>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>2.5K</PriceText>
+              </PriceTextW>
+            </OffersTdText>
+            <OffersTdText>
+              <PriceTextW>
+                <PriceText>6.4K</PriceText>
               </PriceTextW>
             </OffersTdText>
           </OffersTr>

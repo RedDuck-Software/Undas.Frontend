@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
+import { useMoralisWeb3Api } from "react-moralis";
 
 import {
   AccountContainer,
@@ -17,22 +18,22 @@ import {
   FavouriteIco,
   RewardIco,
   ReferralIco,
-  AchievementsIco,
+  MyNFTsIco,
 } from "./imports";
 import AccountCard from "./page-components/AccountCard/AccountCard";
-import Achievements from "./page-components/Achievements/Achievements";
+import Created from "./page-components/Created/Created";
 import FavouriteMenu from "./page-components/MainMenu/FavouriteMenu";
 import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
-import Referral from "./page-components/Referral/Referral";
+import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import { Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("");
@@ -57,13 +58,21 @@ const AccountPage: React.FC = () => {
       symbol: string;
     }[]
   >();
+  const Web3Api = useMoralisWeb3Api();
 
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
       chain: "goerli",
-      address: '0x45434191f03528726CAfd4Eebe0Fc5D33Be27720',
+      address: '0xc66874D527CfF618a4bC6948C664079F558Ef0Ec',
     });
+
+    // const options = {
+    //   chain: "goerli",
+    //   addresses: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    // };
+    // const tokenMetadata = await Web3Api.token.getTokenMetadata(options);
+    // console.log(tokenMetadata);
     return listOfNFTS;
   };
 
@@ -103,9 +112,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "reward" && tab !== "referral" && tab !== "achievements" && (
-            <ASideFilter marginTop="140px" accountPage />
-          )}
+          {tab !== "reward" && <ASideFilter marginTop="140px" accountPage />}
           <Wrapper w="100%" marg="0 0 40px 0">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
@@ -113,17 +120,17 @@ const AccountPage: React.FC = () => {
                   onClick={() => setTab("")}
                   className={tab === "" ? "active" : ""}
                 >
-                  <CreatedIco />
+                  <MyNFTsIco />
                   <span>My NFTs</span>
                   <SmallNumber>12</SmallNumber>
                 </Tab>
                 <Tab
-                  onClick={() => setTab("offers")}
-                  className={tab === "offers" ? "active" : ""}
+                  onClick={() => setTab("created")}
+                  className={tab === "created" ? "active" : ""}
                 >
-                  <OffersIco />
-                  <span>Offers</span>
-                  <SmallNumber>6</SmallNumber>
+                  <CreatedIco />
+                  <span>Created</span>
+                  <SmallNumber>8</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("favourite")}
@@ -133,25 +140,26 @@ const AccountPage: React.FC = () => {
                   <span>Favourite</span>
                 </Tab>
                 <Tab
+                  onClick={() => setTab("rent")}
+                  className={tab === "rent" ? "active" : ""}
+                >
+                  <ReferralIco />
+                  <span>Rent</span>
+                </Tab>
+                <Tab
+                  onClick={() => setTab("offers")}
+                  className={tab === "offers" ? "active" : ""}
+                >
+                  <OffersIco />
+                  <span>Offers</span>
+                  <SmallNumber>0</SmallNumber>
+                </Tab>
+                <Tab
                   onClick={() => setTab("reward")}
                   className={tab === "reward" ? "active" : ""}
                 >
                   <RewardIco />
                   <span>Reward</span>
-                </Tab>
-                <Tab
-                  onClick={() => setTab("referral")}
-                  className={tab === "referral" ? "active" : ""}
-                >
-                  <ReferralIco />
-                  <span>Referral</span>
-                </Tab>
-                <Tab
-                  onClick={() => setTab("achievements")}
-                  className={tab === "achievements" ? "active" : ""}
-                >
-                  <AchievementsIco />
-                  <span>Achievements</span>
                 </Tab>
               </TabsMenu>
             </Wrapper>
@@ -159,8 +167,8 @@ const AccountPage: React.FC = () => {
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
-            {tab === "referral" && <Referral />}
-            {tab === "achievements" && <Achievements />}
+            {tab === "rent" && <Rent />}
+            {tab === "created" && <Created />}
           </Wrapper>
           {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
             <FilterMobileButton />
