@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
 import {
   AchievementsWrap,
   AchievementsHeadInner,
@@ -52,6 +51,8 @@ import {
   goldPeopleReward,
   diamond,
 } from "./imports";
+
+import { Background, Container, PageTitle } from "../../globalStyles";
 
 const Achievements: React.FC = () => {
   return (

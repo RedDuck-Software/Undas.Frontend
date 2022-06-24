@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-import {
-  ResultsTotal,
-  SettingsBlock,
-} from "../../../AllNFTs/AllNFTs.styles";
+import { ResultsTotal, SettingsBlock } from "../../../AllNFTs/AllNFTs.styles";
 
 export const RentWrap = styled.div`
   padding-bottom: 80px;

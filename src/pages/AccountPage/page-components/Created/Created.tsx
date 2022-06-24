@@ -5,11 +5,11 @@ import { Navigate } from "react-router-dom";
 
 import CreatedCollections from "./CreatedCollections";
 import {
-    CreatedWrap,
-    CreatedSettingsBlock,
-    CreatedButton,
-    CreatedSelect,
-    CreatedResultsTotal,
+  CreatedWrap,
+  CreatedSettingsBlock,
+  CreatedButton,
+  CreatedSelect,
+  CreatedResultsTotal,
 } from "./Created.styles";
 import { CreatedType } from "./types";
 
@@ -89,9 +89,7 @@ const Created: React.FC = () => {
   const { Moralis } = useMoralis();
 
   const { viewMode, viewButtonsRender } = useViewMode();
-  const [createdType, setCreatedType] = useState<CreatedType>(
-    CreatedType.nft,
-  );
+  const [createdType, setCreatedType] = useState<CreatedType>(CreatedType.nft);
 
   const [, setNFTList] = useState<
     {
@@ -157,9 +155,7 @@ const Created: React.FC = () => {
             </CreatedButton>
             <CreatedButton
               className={
-                createdType === CreatedType.collection
-                  ? "created-active"
-                  : ""
+                createdType === CreatedType.collection ? "created-active" : ""
               }
               onClick={() => setCreatedType(CreatedType.collection)}
             >

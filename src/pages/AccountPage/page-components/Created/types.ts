@@ -1,6 +1,4 @@
 export enum CreatedType {
-    nft = "nft",
-    collection = "collection",
-  }
-
-  
+  nft = "nft",
+  collection = "collection",
+}
