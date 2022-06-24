@@ -5,11 +5,11 @@ import { Navigate } from "react-router-dom";
 
 import CreatedCollections from "./CreatedCollections";
 import {
-    CreatedWrap,
-    CreatedSettingsBlock,
-    CreatedButton,
-    CreatedSelect,
-    CreatedResultsTotal,
+  CreatedWrap,
+  CreatedSettingsBlock,
+  CreatedButton,
+  CreatedSelect,
+  CreatedResultsTotal,
 } from "./Created.styles";
 import { CreatedType } from "./types";
 
@@ -19,18 +19,15 @@ import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
-import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
-import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
 import nft10 from "../../../../images/temp-nft-examples/nft-exp-10.png";
 import nft11 from "../../../../images/temp-nft-examples/nft-exp-11.png";
-import nft2 from "../../../../images/temp-nft-examples/nft-exp-2.png";
-import nft3 from "../../../../images/temp-nft-examples/nft-exp-3.png";
 import nft4 from "../../../../images/temp-nft-examples/nft-exp-4.png";
 import nft5 from "../../../../images/temp-nft-examples/nft-exp-5.png";
 import nft6 from "../../../../images/temp-nft-examples/nft-exp-6.png";
 import nft7 from "../../../../images/temp-nft-examples/nft-exp-7.png";
 import nft8 from "../../../../images/temp-nft-examples/nft-exp-8.png";
 import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 const testNFTList = [
   {
@@ -89,9 +86,7 @@ const Created: React.FC = () => {
   const { Moralis } = useMoralis();
 
   const { viewMode, viewButtonsRender } = useViewMode();
-  const [createdType, setCreatedType] = useState<CreatedType>(
-    CreatedType.nft,
-  );
+  const [createdType, setCreatedType] = useState<CreatedType>(CreatedType.nft);
 
   const [, setNFTList] = useState<
     {
@@ -157,9 +152,7 @@ const Created: React.FC = () => {
             </CreatedButton>
             <CreatedButton
               className={
-                createdType === CreatedType.collection
-                  ? "created-active"
-                  : ""
+                createdType === CreatedType.collection ? "created-active" : ""
               }
               onClick={() => setCreatedType(CreatedType.collection)}
             >
@@ -171,6 +164,8 @@ const Created: React.FC = () => {
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <CreatedResultsTotal>8 results</CreatedResultsTotal>
       </MenuWrap>
+
+      <FilterSelected />
 
       {viewMode === ViewMode.grid && createdType === CreatedType.nft && (
         <CollectionGridWrap itemList={testNFTList} />
