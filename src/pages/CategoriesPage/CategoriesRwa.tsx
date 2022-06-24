@@ -31,14 +31,11 @@ const CategoriesRwa: React.FC = () => {
             </div>
             <InfoCard>
               <InfoText>
-                You can submit your NFT collections for advertising in Undas. To
-                discuss cooperation, please write to us.
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                Real World Asset NFT category. The Real World Asset NFT category
+                is a token that denotes virtual ownership of a physical good.
               </InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>Waiting for your message</ContactText>
-              </Contact>
             </InfoCard>
           </Info>
           <div>

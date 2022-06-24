@@ -12,6 +12,7 @@ import { PageTitle } from "../../../../globalStyles";
 const Earnings: React.FC = () => {
   return (
     <EarningsWrap>
+      <PageTitle>Section in development</PageTitle>
       <PageTitle>Earnings</PageTitle>
       <EarningsContentWrap>
         <EarningsContentText>

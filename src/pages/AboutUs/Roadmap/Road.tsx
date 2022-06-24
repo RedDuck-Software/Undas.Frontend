@@ -8,16 +8,16 @@ const Road = () => {
       <Line className="done">
         <Circle className="done" />
       </Line>
-      <Line className="secondLine thirLine">
+      <Line className="second">
         <Circle />
       </Line>
-      <Line className="secondLine ">
+      <Line className="three">
         <Circle />
       </Line>
-      <Line className="secondLine">
+      <Line className="four">
         <Circle />
       </Line>
-      <Line className="secondLine">
+      <Line className="five">
         <Circle />
       </Line>
       <Line className="lastLine"></Line>
