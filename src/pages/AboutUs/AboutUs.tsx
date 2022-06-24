@@ -145,61 +145,66 @@ const AboutUs: React.FC = () => {
               <AchievementСontainerWrap>
                 <AchievementСontainer className="left-side first-container">
                   <ContainerHead>
-                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextDateSmallSize>Now</TextDateSmallSize>
                     <TextQuarter>1st Quarter</TextQuarter>
-                    <TextDate>04 2022</TextDate>
+                    <TextDate>Now</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">
-                      <li className="checked">added new filters</li>
-                      <li>set up wallet</li>
-                      <li>create collection</li>
-                      <li className="checked">night theme</li>
+                      <li className="checked">NFT rental</li>
+                      <li className="checked">Staking NFT</li>
+                      <li className="checked">Offer trading system</li>
+                      <li className="checked">Payment in UND</li>
+                      <li className="checked">Staking UND</li>
+                      <li className="checked">Publishing NFT</li>
+                      <li className="checked">Publishing NFT collections</li>
+                      <li className="checked">Ethereum, Polygon networks</li>
                     </ul>
                   </ContainerContent>
                 </AchievementСontainer>
                 <AchievementСontainer className="right-side second-container">
                   <ContainerHead>
-                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextDateSmallSize>09 2022</TextDateSmallSize>
                     <TextQuarter>2nd Quarter</TextQuarter>
-                    <TextDate>04 2022</TextDate>
+                    <TextDate>09 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="right-side">
                     <ul className="container-list">
-                      <li className="checked">added new filters</li>
-                      <li>set up wallet</li>
-                      <li>create collection</li>
-                      <li className="checked">night theme</li>
+                      <li>Return offer system</li>
+                      <li>Providing rent with NFT</li>
+                      <li>NFT exchange with other NFT</li>
+                      <li>Direct and reverse auctions</li>
+                      <li>Fast betting system from NFT list</li>
+                      <li>Avalanche, Binance networks</li>
                     </ul>
                   </ContainerContent>
                 </AchievementСontainer>
                 <AchievementСontainer className="left-side third-container">
                   <ContainerHead>
-                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextDateSmallSize>12 2022</TextDateSmallSize>
                     <TextQuarter>3rd Quarter</TextQuarter>
-                    <TextDate>04 2022</TextDate>
+                    <TextDate>12 2022</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">
-                      <li className="checked">added new filters</li>
-                      <li>set up wallet</li>
-                      <li>create collection</li>
-                      <li className="checked">night theme</li>
+                      <li>Full platform gamification</li>
+                      <li>Trade, exchange, rent NFT bundles</li>
+                      <li>Metaverse</li>
+                      <li>Solana network support</li>
                     </ul>
                   </ContainerContent>
                 </AchievementСontainer>
                 <AchievementСontainer className="right-side fourth-container">
                   <ContainerHead>
-                    <TextDateSmallSize>04 2022</TextDateSmallSize>
+                    <TextDateSmallSize>03 2023</TextDateSmallSize>
                     <TextQuarter>4th Quarter</TextQuarter>
-                    <TextDate>04 2022</TextDate>
+                    <TextDate>03 2023</TextDate>
                   </ContainerHead>
                   <ContainerContent className="right-side">
                     <ul className="container-list">
-                      <li className="checked">added new filters</li>
-                      <li>set up wallet</li>
-                      <li>create collection</li>
-                      <li className="checked">night theme</li>
+                      <li>Trade parts of NFTs</li>
+                      <li>Mobile app with RWA NFT</li>
+                      <li>Minting NFT collections</li>
                     </ul>
                   </ContainerContent>
                 </AchievementСontainer>
@@ -207,14 +212,14 @@ const AboutUs: React.FC = () => {
                   <ContainerHead>
                     <TextDateSmallSize>04 2022</TextDateSmallSize>
                     <TextQuarter>5th Quarter</TextQuarter>
-                    <TextDate>04 2022</TextDate>
+                    <TextDate>06 2023</TextDate>
                   </ContainerHead>
                   <ContainerContent className="left-side">
                     <ul className="container-list">
-                      <li className="checked">added new filters</li>
-                      <li>set up wallet</li>
-                      <li>create collection</li>
-                      <li className="checked">night theme</li>
+                      <li>Trading pairs NFT to stable coins</li>
+                      <li>NFT pricing system</li>
+                      <li>Lending secured by of the NFT</li>
+                      <li>Launching DAO</li>
                     </ul>
                   </ContainerContent>
                 </AchievementСontainer>
