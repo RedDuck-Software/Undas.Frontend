@@ -30,7 +30,7 @@ import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
 import { validationSchema } from "./validation";
-import { CreateNFTForm, Level, Property, SelectItemType, Stat } from "./types";
+import {CreateNFTForm, Level, Property, SelectItemType, Stat, CollectionType} from "./types";
 import Properties from "./page-components/Properties/Properties";
 import {
   useLevels,
@@ -43,16 +43,24 @@ import Stats from "./page-components/Stats/Stats";
 import { CreateSelect, SelectItem } from "../../components";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
 import {useNavigate} from "react-router-dom";
+import {createClient, useQuery} from "urql";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
-}> = ({ setCollection }) => {
+  items:any
+}> = ({ setCollection,items }) => {
+  console.log(items)
   return (
     <>
-      <SelectItem setSelected={setCollection} label={"Single NFT"} />
-      <SelectItem setSelected={setCollection} label={"Returne"} />
-      <SelectItem setSelected={setCollection} label={"Azuki"} />
-      <SelectItem setSelected={setCollection} label={"Bored Ape Yacht Club."} />
+      {items.map((item:any) => {
+        return <SelectItem
+            key={item.collectionId}
+            setSelected={setCollection}
+            label={item.collectionName}
+            collectionId={item.id}
+        />
+      })}
+
     </>
   );
 };
@@ -66,7 +74,7 @@ const CreateNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-
+  console.log(account,'account')
   const [file, setFile] = useState<string>();
   const [fileSizeError, setFileSizeError] = useState<{
     message: string;
@@ -78,6 +86,7 @@ const CreateNFT: React.FC = () => {
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
+    collectionId: ""
   });
   const [propertyList, setPropertyList] = useState<Property[]>(properties);
   const [levelList, setLevelList] = useState<Level[]>(levels);
@@ -87,13 +96,18 @@ const CreateNFT: React.FC = () => {
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
   const [supply, setSupply] = useState("1");
   const [freezeMetadata, setFreezeMetadata] = useState("");
+  const [collectionList, setCollectionsList] = useState<CollectionType[]>([{
+    collectionId: '',
+    collectionName : ''
+  }])
 
   useEffect(() => {
     if(!connector){
       navigate("/login");
     }
+    getTokenData()
+  }, [connector,account]);
 
-  }, [connector]);
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
   };
@@ -103,18 +117,23 @@ const CreateNFT: React.FC = () => {
   console.log(errors);
   const mintNFT = async () => {
     if (!connector || !account) return;
-
+    console.log('collection.collectionId',collection.collectionId)
+    if(collection.collectionId == ''){
+      alert('Choose collection or create if it doesn`t exist ')
+      return
+    }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x08eC8Fe503218573e28899B08C9Fa0316b5Ef8d3", //goerli contract addr
+      "0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a", //goerli contract addr
       signer,
     );
 
-    const tx = await NFTContract.safeMintGeneral(account, description, name, externalLink);
+    const tx = await NFTContract.safeMintGeneral(account, description, name, externalLink,collection.collectionId);
+
 
     await tx.wait()
   };
@@ -123,7 +142,6 @@ const CreateNFT: React.FC = () => {
     console.log(errors);
     mintNFT();
   };
-
   const fileSizeValidation = (fileList: FileList, inputName: string) => {
     const file = fileList[0];
     if (file.size > 104857600) {
@@ -179,6 +197,33 @@ const CreateNFT: React.FC = () => {
   ) => {
     setFreezeMetadata(event.target.value);
   };
+
+  const getTokenData = async () => {
+    const tokensQuery = await fetchData();
+    console.log('tokensQuery',tokensQuery)
+    setCollectionsList(tokensQuery.data.collections)
+  }
+
+  const APIURL =
+      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const tokensQuery = `
+  {
+    collections(where:{owner:"${account}"}){
+      collectionName
+      id
+    }
+  }
+ `;
+  const client = createClient({
+    url: APIURL,
+  });
+
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    console.log("DATA", data);
+    return data;
+  }
 
   return (
     <Background>
@@ -275,7 +320,7 @@ const CreateNFT: React.FC = () => {
                 maxWidth="350px"
                 padding="7px 20px"
                 itemList={
-                  <SelectCollectionList setCollection={setCollection} />
+                  <SelectCollectionList setCollection={setCollection} items={collectionList}/>
                 }
                 item={collection}
               />

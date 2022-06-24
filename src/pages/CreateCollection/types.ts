@@ -18,6 +18,7 @@ export interface CreateCollectionForm {
 export type SelectItemType = {
   icon?: string;
   label: string;
+  categoryId?: number;
 };
 
 export enum ImageFile {
