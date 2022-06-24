@@ -132,6 +132,7 @@ export const CollectionBackground = styled.img`
   left: 0;
   position: absolute;
   width: 100%;
+  height: 100%;
 `;
 
 export const AuthorWrap = styled.div`
@@ -171,6 +172,7 @@ export const CollectionPicWrap = styled.div`
   border-radius: 20px;
   & img {
     width: 100%;
+    height: 100%;
   }
   @media (max-width: 576px) {
     height: 60px;

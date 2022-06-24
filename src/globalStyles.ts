@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import LRBackground from "./images/LRBackground.png";
 import LRBackground2 from "./images/LRBackground.png";
 import RBackground from "./images/RBackground.png";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 
 interface GlobalStylesProps {
   violet?: boolean;
@@ -23,9 +24,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     list-style: none;
-  }
-  a:focus{
-    background: transparent;
   }
 `;
 

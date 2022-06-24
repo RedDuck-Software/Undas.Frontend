@@ -30,10 +30,10 @@ import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import { Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("");
@@ -112,9 +112,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard account={account} disconnect={disconnect} />
-          {tab !== "reward" && (
-            <ASideFilter marginTop="140px" accountPage />
-          )}
+          {tab !== "reward" && <ASideFilter marginTop="140px" accountPage />}
           <Wrapper w="100%" marg="0 0 40px 0">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
