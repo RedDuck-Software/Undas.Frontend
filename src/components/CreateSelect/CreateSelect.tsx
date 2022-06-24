@@ -17,11 +17,15 @@ export const SelectItem: React.FC<{
   setSelected: any;
   icon?: string;
   label: string;
-}> = ({ setSelected, icon, label }) => {
+  collectionId?: string;
+  categoryId?: number;
+
+}> = ({ setSelected, icon, label,collectionId,categoryId }) => {
   return (
-    <DropdownItemWrapper onClick={() => setSelected({ icon, label })}>
+    <DropdownItemWrapper onClick={() => setSelected({ icon, label,collectionId,categoryId })}>
       {icon && <DropdownItemIcon src={icon} />}
       {label}
+
     </DropdownItemWrapper>
   );
 };

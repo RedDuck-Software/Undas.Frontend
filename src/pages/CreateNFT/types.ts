@@ -10,6 +10,7 @@ export interface CreateNFTForm {
 export type SelectItemType = {
   icon?: string;
   label: string;
+  collectionId: string;
 };
 
 export type Property = {
@@ -25,3 +26,8 @@ export type Level = {
 export type Stat = Level;
 
 export type Complete = string | number;
+
+export type CollectionType = {
+  collectionName: string,
+  collectionId: string;
+}

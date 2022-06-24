@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
+import { useMoralisWeb3Api } from "react-moralis";
 
 import {
   AccountContainer,
@@ -57,13 +58,21 @@ const AccountPage: React.FC = () => {
       symbol: string;
     }[]
   >();
+  const Web3Api = useMoralisWeb3Api();
 
   const getNFTList = async () => {
     if (!connector || !account) return;
     const listOfNFTS = await Moralis.Web3API.account.getNFTs({
       chain: "goerli",
-      address: "0x45434191f03528726CAfd4Eebe0Fc5D33Be27720",
+      address: '0xc66874D527CfF618a4bC6948C664079F558Ef0Ec',
     });
+
+    // const options = {
+    //   chain: "goerli",
+    //   addresses: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    // };
+    // const tokenMetadata = await Web3Api.token.getTokenMetadata(options);
+    // console.log(tokenMetadata);
     return listOfNFTS;
   };
 
