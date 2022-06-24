@@ -24,9 +24,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     list-style: none;
   }
-  a:focus{
-    background: transparent;
-  }
 `;
 
 export const Container = styled.div`
