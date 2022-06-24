@@ -155,9 +155,11 @@ export const CategoryWrap = styled(Link)<ICategory>`
   box-shadow: 0 5px 15px rgba(35, 36, 40, 0.5), inset 0px 0px 4px #ffffff;
   transition: all ease-in-out 0.25s;
   &:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
     ${Name} {
       color: #873dc1;
+      text-shadow: 1px 1px 3px #ffffff;
+      font-weight: 500;
     }
   }
   @media (max-width: 992px) {
