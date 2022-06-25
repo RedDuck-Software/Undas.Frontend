@@ -26,8 +26,26 @@ import {
   AddFileBlock,
   NFTItemPreview,
   NFTItemInput,
+  MenuItem,
+  FilterMenu,
+  Arrow,
+  FilterTitle,
+  FilterItem,
+  Filter,
+  FilterTitlePolygon,
+  FilterTitleBSC,
+  BlockchainIMG,
 } from "./CreateNFT.styles";
-import { ImgIcon, UnlockableContentIco, ExplicitContentIco } from "./imports";
+import {
+  ImgIcon,
+  UnlockableContentIco,
+  ExplicitContentIco,
+  ton,
+  bsc,
+  solana,
+} from "./imports";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
+import { PolygonIcon } from "../AllNFTs/imports";
 
 import Switcher from "./page-components/Switcher/Switcher";
 import { Background } from "../../globalStyles";
@@ -51,6 +69,7 @@ import {
   useProperties,
   useStats,
 } from "../../store/reducers/createNFT/helpers";
+
 import { useSelector } from "react-redux";
 import Levels from "./page-components/Levels/Levels";
 import Stats from "./page-components/Stats/Stats";
@@ -277,6 +296,16 @@ const CreateNFT: React.FC = () => {
     return data;
   }
 
+  const [blockchainFilter, setbBlockchainFilter] = useState<string>("");
+
+  const [active, setActive] = useState<any>({
+    blockchain: false,
+  });
+
+  useEffect(() => {
+    console.log(blockchainFilter);
+  }, [active, blockchainFilter]);
+
   return (
     <Background>
       <CreateSec>
@@ -388,7 +417,85 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
-
+            <CreateFormGroup>
+              <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
+              <BlockDescript>
+                Select the blockchain where you&#39;d like new items from this
+                collection to be added by default
+              </BlockDescript>
+              <Filter className={active.blockchain && "sort-active"}>
+                <FilterItem
+                  onClick={() => {
+                    if (!active.blockchain) {
+                      setActive({ blockchain: true });
+                    } else setActive({ blockchain: false });
+                  }}
+                >
+                  <FilterTitle>
+                    <BlockchainIMG src={ethIcon} alt="blockchain-image" />
+                    Ethereum
+                  </FilterTitle>
+                  <Arrow className={active.blockchain && "sort-active"} />
+                </FilterItem>
+                <FilterMenu className={active.blockchain && "sort-active"}>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={ethIcon} alt="blockchain-image" />
+                      Ethereum
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={PolygonIcon} alt="blockchain-image" />
+                      Polygon
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={solana} alt="blockchain-image" />
+                      Solana
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("high-to-low");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={bsc} alt="blockchain-image" />
+                      BSC
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("high-to-low");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={ton} alt="blockchain-image" />
+                      TON
+                    </FilterTitle>
+                  </MenuItem>
+                </FilterMenu>
+              </Filter>
+            </CreateFormGroup>
             <Properties
               propertyList={propertyList}
               setPropertyList={setPropertyList}
