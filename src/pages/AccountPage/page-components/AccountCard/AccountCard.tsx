@@ -8,6 +8,7 @@ import {
   CopyIco,
   SingOutIco,
   SettingsIco,
+  SettingsLink,
   AchievmentsBlock,
 } from "./AccountCard.styles";
 
@@ -64,7 +65,7 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <SingOutIco />
           <GrayText>Sing Out</GrayText>
         </Wrapper>
-        <SettingsIco />
+        <SettingsLink to="/settings"><SettingsIco /></SettingsLink>
         <AchievmentsBlock>
           <AchievementColoredIco1 />
           <AchievementColoredIco2 />

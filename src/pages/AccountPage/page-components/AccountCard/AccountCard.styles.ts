@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { CardWrap } from "../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles";
@@ -12,7 +13,9 @@ export const SingOutIco = styled(SingOut)`
 export const SettingsIco = styled(Settings)`
   cursor: pointer;
 `;
-
+export const SettingsLink = styled(Link)`
+  text-decoration: none;
+`;
 export const AccountWrap = styled(CardWrap)`
   width: 350px;
   position: absolute;
