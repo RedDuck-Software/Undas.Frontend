@@ -103,6 +103,7 @@ export const Holder = styled.ul<IHolder>`
   overflow: hidden;
   @media (max-width: 992px) {
     background: rgba(251, 245, 255, 0.5);
+    margin-top: 40px;
   }
 `;
 
