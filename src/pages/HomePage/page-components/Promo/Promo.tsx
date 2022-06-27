@@ -31,22 +31,22 @@ const Promo: React.FC = () => {
       <SwiperSlide>
         <PromoSlide to="/blog/website-tips">
           <SlideText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quisquam.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+            quisquam.
           </SlideText>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
         <PromoSlide to="/article">
           <SlideText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque hic voluptatibus rem saepe incidunt sunt?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque hic
+            voluptatibus rem saepe incidunt sunt?
           </SlideText>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
         <PromoSlide to="/blog">
-          <SlideText>
-            Lorem ipsum dolor sit amet.
-          </SlideText>
+          <SlideText>Lorem ipsum dolor sit amet.</SlideText>
         </PromoSlide>
       </SwiperSlide>
     </Swiper>

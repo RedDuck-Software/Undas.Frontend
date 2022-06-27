@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 import { Container, PageTitle, FormButton } from "../../globalStyles";
 
+import ethIcon from "../../icons/tokens/eth-grey.svg";
+import { PolygonIcon } from "../AllNFTs/imports";
+import { bsc } from "./imports";
+
 export const CreateSec = styled.div`
   padding: 60px 0 120px;
   @media (max-width: 992px) {
@@ -239,4 +243,131 @@ export const ButtonsBlock = styled.div`
 /* Add Properties=Levels=Stats */
 export const WithPropertiesBlock = styled.div`
   max-width: 475px;
+`;
+
+export const Filter = styled.ul`
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7c7c7c;
+  transition: all 0.1s ease-in;
+  flex-direction: row;
+  border: none;
+  outline: none;
+  box-shadow: inset 0px 0px 5px rgb(124 124 124 / 50%);
+  border-radius: 10px 10px 10px 10px;
+  width: 100%;
+  margin-top: 10px;
+  max-width: 350px;
+  &.sort-active {
+    border-radius: 10px 10px 0 0;
+  }
+  &:hover {
+    box-shadow: inset 0px 0px 5px rgb(135 61 193);
+  }
+`;
+
+export const FilterItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all ease-in-out 0.3s;
+  padding: 7px 20px;
+  border-radius: 10px;
+`;
+
+export const FilterTitle = styled.span`
+  font-size: 18px;
+  line-height: 22px;
+  color: rgb(124, 124, 124);
+  margin-top: 4px;
+}
+`;
+
+export const FilterTitlePolygon = styled.span`
+  font-size: 18px;
+  line-height: 22px;
+  color: rgb(124, 124, 124);
+  margin-top: 4px;
+
+  &:before {
+    content: url("${PolygonIcon}");
+    position: relative;
+    vertical-align: middle;
+    margin-right: 10px;
+    width:24px;
+    height: 24px;
+  }
+}
+`;
+
+export const FilterTitleBSC = styled.span`
+  font-size: 18px;
+  line-height: 22px;
+  color: rgb(124, 124, 124);
+  margin-top: 4px;
+
+  &:before {
+    content: url("${bsc}");
+    position: relative;
+    vertical-align: middle;
+    margin-right: 10px;
+    width:24px;
+    height: 24px;
+  }
+}
+`;
+
+export const Arrow = styled.span`
+  margin-top: 4px;
+  border-top: 1px solid #5d3f92;
+  border-left: 1px solid #5d3f92;
+  transform: rotate(45deg);
+  width: 10px;
+  height: 10px;
+  transition: all ease-in-out 0.15s;
+  &.sort-active {
+    margin-top: -4px;
+    transform: rotate(-135deg);
+  }
+`;
+
+export const FilterMenu = styled.ul`
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+  background: #ffffff;
+  box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease-in-out 0.15s;
+  &.sort-active {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+interface IMenuItem {
+  hover?: boolean;
+}
+
+export const MenuItem = styled(FilterItem)<IMenuItem>`
+  &:hover {
+    ${(props) =>
+      props.hover ? "box-shadow: inset 0px 0px 5px rgb(135 61 193);" : ""}
+  }
+`;
+
+export const BlockchainIMG = styled.img`
+    width:24px;
+    height: 24px;
+    margin-right: 10px;
+    margin-top: -6px;
+}
 `;

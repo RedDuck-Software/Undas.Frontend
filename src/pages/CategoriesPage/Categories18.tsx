@@ -7,9 +7,6 @@ import {
   Subtitle,
   InfoCard,
   InfoText,
-  Contact,
-  ContactText,
-  ContactImage,
 } from "./Categories.styles";
 import { CollectionBanner, Email, Telegram } from "./imports";
 import Collection from "./page-components/Collection";
@@ -27,7 +24,6 @@ const Categories18: React.FC = () => {
           <Info>
             <div>
               <Title>18+ NFTs</Title>
-              <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
               <InfoText>
