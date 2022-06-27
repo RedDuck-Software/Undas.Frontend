@@ -16,7 +16,10 @@ export const FooterContainer = styled(Container)`
   min-height: 100%;
   padding: 3rem;
   justify-content: space-between;
-
+  & .dropdown-item:active,
+  .dropdown-item:focus{
+    background: transparent;
+  }
   @media (max-width: 992px) {
     flex-wrap: wrap;
     padding: 40px 55px;
