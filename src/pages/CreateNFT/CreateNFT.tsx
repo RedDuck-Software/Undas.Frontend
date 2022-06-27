@@ -26,8 +26,26 @@ import {
   AddFileBlock,
   NFTItemPreview,
   NFTItemInput,
+  MenuItem,
+  FilterMenu,
+  Arrow,
+  FilterTitle,
+  FilterItem,
+  Filter,
+  FilterTitlePolygon,
+  FilterTitleBSC,
+  BlockchainIMG,
 } from "./CreateNFT.styles";
-import { ImgIcon, UnlockableContentIco, ExplicitContentIco } from "./imports";
+import {
+  ImgIcon,
+  UnlockableContentIco,
+  ExplicitContentIco,
+  ton,
+  bsc,
+  solana,
+} from "./imports";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
+import { PolygonIcon } from "../AllNFTs/imports";
 
 import Switcher from "./page-components/Switcher/Switcher";
 import { Background } from "../../globalStyles";
@@ -37,38 +55,47 @@ import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
 import { validationSchema } from "./validation";
-import {CreateNFTForm, Level, Property, SelectItemType, Stat, CollectionType} from "./types";
+import {
+  CreateNFTForm,
+  Level,
+  Property,
+  SelectItemType,
+  Stat,
+  CollectionType,
+} from "./types";
 import Properties from "./page-components/Properties/Properties";
 import {
   useLevels,
   useProperties,
   useStats,
 } from "../../store/reducers/createNFT/helpers";
+
 import { useSelector } from "react-redux";
 import Levels from "./page-components/Levels/Levels";
 import Stats from "./page-components/Stats/Stats";
 import { CreateSelect, SelectItem } from "../../components";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
-import {useNavigate} from "react-router-dom";
-import {createClient, useQuery} from "urql";
+import { useNavigate } from "react-router-dom";
+import { createClient, useQuery } from "urql";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
-  items:any
-}> = ({ setCollection,items }) => {
-  console.log(items)
+  items: any;
+}> = ({ setCollection, items }) => {
+  console.log(items);
   return (
     <>
-      {items.map((item:any) => {
-        return <SelectItem
+      {items.map((item: any) => {
+        return (
+          <SelectItem
             key={item.collectionId}
             setSelected={setCollection}
             label={item.collectionName}
             collectionId={item.id}
-        />
+          />
+        );
       })}
-
     </>
   );
 };
@@ -109,7 +136,7 @@ const CreateNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  console.log(account,'account')
+  console.log(account, "account");
   const [file, setFile] = useState<string>();
   const [fileSizeError, setFileSizeError] = useState<{
     message: string;
@@ -118,7 +145,7 @@ const CreateNFT: React.FC = () => {
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
-    collectionId: ""
+    collectionId: "",
   });
   const [propertyList, setPropertyList] = useState<Property[]>(
     useSelector(useProperties),
@@ -131,17 +158,19 @@ const CreateNFT: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [collectionList, setCollectionsList] = useState<CollectionType[]>([{
-    collectionId: '',
-    collectionName : ''
-  }])
+  const [collectionList, setCollectionsList] = useState<CollectionType[]>([
+    {
+      collectionId: "",
+      collectionName: "",
+    },
+  ]);
 
   useEffect(() => {
     if (!connector) {
       navigate("/login");
     }
-    getTokenData()
-  }, [connector,account]);
+    getTokenData();
+  }, [connector, account]);
 
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
@@ -152,10 +181,10 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    console.log('collection.collectionId',collection.collectionId)
-    if(collection.collectionId == ''){
-      alert('Choose collection or create if it doesn`t exist ')
-      return
+    console.log("collection.collectionId", collection.collectionId);
+    if (collection.collectionId == "") {
+      alert("Choose collection or create if it doesn`t exist ");
+      return;
     }
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -168,7 +197,13 @@ const CreateNFT: React.FC = () => {
       signer,
     );
 
-    const tx = await NFTContract.safeMintGeneral(account, description, name, externalLink,collection.collectionId);
+    const tx = await NFTContract.safeMintGeneral(
+      account,
+      description,
+      name,
+      externalLink,
+      collection.collectionId,
+    );
 
     setLoading(true);
     await tx.wait();
@@ -236,12 +271,12 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log('tokensQuery',tokensQuery)
-    setCollectionsList(tokensQuery.data.collections)
-  }
+    console.log("tokensQuery", tokensQuery);
+    setCollectionsList(tokensQuery.data.collections);
+  };
 
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
   {
@@ -260,6 +295,16 @@ const CreateNFT: React.FC = () => {
     console.log("DATA", data);
     return data;
   }
+
+  const [blockchainFilter, setbBlockchainFilter] = useState<string>("");
+
+  const [active, setActive] = useState<any>({
+    blockchain: false,
+  });
+
+  useEffect(() => {
+    console.log(blockchainFilter);
+  }, [active, blockchainFilter]);
 
   return (
     <Background>
@@ -361,7 +406,10 @@ const CreateNFT: React.FC = () => {
                 maxWidth="350px"
                 padding="7px 20px"
                 itemList={
-                  <SelectCollectionList setCollection={setCollection} items={collectionList}/>
+                  <SelectCollectionList
+                    setCollection={setCollection}
+                    items={collectionList}
+                  />
                 }
                 item={collection}
               />
@@ -369,7 +417,85 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
-
+            <CreateFormGroup>
+              <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
+              <BlockDescript>
+                Select the blockchain where you&#39;d like new items from this
+                collection to be added by default
+              </BlockDescript>
+              <Filter className={active.blockchain && "sort-active"}>
+                <FilterItem
+                  onClick={() => {
+                    if (!active.blockchain) {
+                      setActive({ blockchain: true });
+                    } else setActive({ blockchain: false });
+                  }}
+                >
+                  <FilterTitle>
+                    <BlockchainIMG src={ethIcon} alt="blockchain-image" />
+                    Ethereum
+                  </FilterTitle>
+                  <Arrow className={active.blockchain && "sort-active"} />
+                </FilterItem>
+                <FilterMenu className={active.blockchain && "sort-active"}>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={ethIcon} alt="blockchain-image" />
+                      Ethereum
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={PolygonIcon} alt="blockchain-image" />
+                      Polygon
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={solana} alt="blockchain-image" />
+                      Solana
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("high-to-low");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={bsc} alt="blockchain-image" />
+                      BSC
+                    </FilterTitle>
+                  </MenuItem>
+                  <MenuItem
+                    hover={true}
+                    onClick={() => {
+                      setbBlockchainFilter("high-to-low");
+                    }}
+                  >
+                    <FilterTitle>
+                      <BlockchainIMG src={ton} alt="blockchain-image" />
+                      TON
+                    </FilterTitle>
+                  </MenuItem>
+                </FilterMenu>
+              </Filter>
+            </CreateFormGroup>
             <Properties
               propertyList={propertyList}
               setPropertyList={setPropertyList}

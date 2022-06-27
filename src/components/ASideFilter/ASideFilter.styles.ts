@@ -529,6 +529,8 @@ export const ChainItemTitle = styled.div`
 
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
+  width: 24px;
+  height: 24px;
 `;
 
 export const MobileListWrap = styled.div`
@@ -548,14 +550,6 @@ export const InputBlock = styled.span`
       margin-left: 20px;
     }
   }
-`;
-
-export const MinMaxLable = styled.label`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  margin-right: 10px;
-  color: #7c7c7c;
 `;
 
 export const MinPrice = styled.input`

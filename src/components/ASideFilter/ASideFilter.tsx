@@ -40,7 +40,6 @@ import {
   CheckboxInputWrapperCentered,
   MobileListWrap,
   InputBlock,
-  MinMaxLable,
   MinPrice,
   PriceContainer,
   InputPriceContainer,
@@ -73,6 +72,8 @@ import {
   addSelectedCategory,
   addSelectedCollection,
 } from "../../store/reducers/Filter/filterActions";
+import { PolygonIcon } from "../../pages/AllNFTs/imports";
+import { bsc, solana, ton } from "../../pages/CreateNFT/imports";
 
 interface CategoryItemProps {
   label: string;
@@ -555,7 +556,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
           </HolderElement>
           <AccordionMenu
             backgroundColor="rgba(251, 245, 255, 0.7)"
-            mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
+            mh="320px" // calculate max-height because of accordion animation bug
             className={(activeMenu.chain && "active-chains") || ""}
           >
             <AccordionElement padd="0">
@@ -563,6 +564,18 @@ const ASideFilter: React.FC<ASideFilterProps> = ({
                 chainName={"Ethereum"}
                 chainIcon={EthereumIcon}
               />
+            </AccordionElement>
+            <AccordionElement padd="1">
+              <FilterChainItem chainName={"Polygon"} chainIcon={PolygonIcon} />
+            </AccordionElement>
+            <AccordionElement padd="2">
+              <FilterChainItem chainName={"Solana"} chainIcon={solana} />
+            </AccordionElement>
+            <AccordionElement padd="3">
+              <FilterChainItem chainName={"BSC"} chainIcon={bsc} />
+            </AccordionElement>
+            <AccordionElement padd="4">
+              <FilterChainItem chainName={"TON"} chainIcon={ton} />
             </AccordionElement>
           </AccordionMenu>
         </Holder>

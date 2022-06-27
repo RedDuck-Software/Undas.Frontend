@@ -364,10 +364,8 @@ export const ContainerContent = styled.div`
       border-right: 2px solid #5d3f92;
       transform: rotate(45deg);
       margin-left: 10px;
+      margin-top: -4px;
     }
-  }
-
-  @media (max-width: 992px) {
   }
 
   @media (max-width: 576px) {
@@ -393,7 +391,6 @@ export const PageTitleAbout = styled.h1`
   margin: 60px 0 40px;
 
   @media (max-width: 992px) {
-    text-align: center;
     font-size: 32px;
     line-height: 36px;
   }

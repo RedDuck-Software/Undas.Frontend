@@ -166,7 +166,8 @@ const MainMenu: React.FC = () => {
             );
           })}
         </>
-      )}.
+      )}
+      .
     </div>
   );
 };
