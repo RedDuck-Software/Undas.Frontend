@@ -14,6 +14,8 @@ type GridItem = {
   listingId?: number;
   tokenAddress?: string;
   tokenOwner?: string;
+  collectionName?:string;
+  collectionId?:string;
 };
 interface CollectionGridWrapperProps {
   itemList: GridItem[];
@@ -22,6 +24,7 @@ interface CollectionGridWrapperProps {
 const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   itemList,
 }) => {
+  console.log('itemList',itemList)
   return (
     <GridLayout>
       {itemList.map((item: GridItem) => {

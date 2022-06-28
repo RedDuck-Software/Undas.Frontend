@@ -45,6 +45,8 @@ interface NFTGridItemProps {
   listingId?: number;
   tokenAddress?: string;
   tokenOwner?: string;
+  collectionName?:string;
+  collectionId?:string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
