@@ -26,6 +26,7 @@ import {
   OffersHeadTr,
   OffersTd,
   NameContainer,
+  ContainerFilter,
 } from "./Menu.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -33,18 +34,21 @@ import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemImg, ItemVerifyIco, filter, close } from "../../imports";
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { Container } from "react-bootstrap";
 
 const OffersMenu: React.FC = () => {
   return (
     <OfferMenuWrap>
-      <OfferFilterWrap>
-        <FilterButton className="offers-active">
-          <TextButton>All</TextButton>
-        </FilterButton>
-        <FilterButton>
-          <TextButton>Verified</TextButton>
-        </FilterButton>
-      </OfferFilterWrap>
+      <ContainerFilter>
+        <OfferFilterWrap>
+          <FilterButton className="offers-active">
+            <TextButton>All</TextButton>
+          </FilterButton>
+          <FilterButton>
+            <TextButton>Verified</TextButton>
+          </FilterButton>
+        </OfferFilterWrap>
+      </ContainerFilter>
       <FilterSelected />
       <ContainerTable>
         <OffersWrapTable>

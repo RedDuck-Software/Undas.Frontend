@@ -553,7 +553,7 @@ export const InputBlock = styled.span`
 `;
 
 export const MinPrice = styled.input`
-  width: 80px;
+  width: 90px;
   height: 36px;
   font-weight: 400;
   font-size: 14px;
