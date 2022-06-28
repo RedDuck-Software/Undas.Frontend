@@ -28,6 +28,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({
     setAutoRedirect(false);
     navigate("/account");
   };
+  
   return (
     <ModalWrapper isOpen={isLoading} onClick={() => addMore()}>
       <Modal>

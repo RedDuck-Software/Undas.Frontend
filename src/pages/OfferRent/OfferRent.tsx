@@ -72,8 +72,11 @@ import { Marketplace__factory } from "../../typechain";
 import { createClient } from "urql";
 import { ethers } from "ethers";
 import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const OfferRent: React.FC = () => {
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
@@ -114,7 +117,13 @@ const OfferRent: React.FC = () => {
       },
     );
 
+    setLoading(true);
     await tx.wait();
+    if (autoRedirect) {
+      setAutoRedirect(false);
+      navigate("/account");
+    }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -164,8 +173,22 @@ const OfferRent: React.FC = () => {
     setIsNFTCollateral(!isNFTCollateral);
   };
 
+  const handleCleanForm = () => {
+    setLoading(false);
+  };
+
+  const handleOffer = () => {
+    setAutoRedirect(true);
+    makeRentOffer();
+  };
+
   return (
     <Background>
+      <LoadingModal
+        isLoading={loading}
+        setAutoRedirect={setAutoRedirect}
+        addMore={handleCleanForm}
+      />
       <TopLinkWrapper>
         <Container>
           <TopLink to="/">Back</TopLink>
@@ -402,7 +425,7 @@ const OfferRent: React.FC = () => {
                 <AgreementLink to="/">agreement...</AgreementLink>
               </CheckboxLabelAgreement>
             </CheckBoxWrapper>
-            <Button onClick={makeRentOffer}>Make Offer</Button>
+            <Button onClick={handleOffer}>Make Offer</Button>
           </BottomWrapper>
         </PageWrapper>
       </Container>

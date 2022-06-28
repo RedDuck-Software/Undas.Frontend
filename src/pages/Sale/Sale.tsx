@@ -61,19 +61,21 @@ import {
 
 import ModalsNFT from "../OfferRent/page-components//ModalsNFT/ModalsNFT";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
 import { Marketplace__factory } from "../../typechain";
 import { UndasGeneralNFT__factory } from "../../typechain";
 
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const Sale: React.FC = () => {
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
   const [loadingSale, setLoadingSale] = useState<boolean>(false);
   const [loadingRent, setLoadingRent] = useState<boolean>(false);
   const [isNFTBundle, setIsNFTBundle] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const { connector } = useContext(Context);
   const [priceForSale, setPriceForSale] = useState(0);
   const [colloteral, setColloteral] = useState(0);
@@ -127,6 +129,10 @@ const Sale: React.FC = () => {
     );
     setLoadingSale(true);
     await tx.wait();
+    if (autoRedirect) {
+      setAutoRedirect(false);
+      navigate("/account");
+    }
     setLoadingSale(false);
   }
 
@@ -179,8 +185,14 @@ const Sale: React.FC = () => {
         value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
       },
     );
+
     setLoadingRent(true);
     await tx.wait();
+    if (autoRedirect) {
+      console.log("autoredirect");
+      setAutoRedirect(false);
+      navigate("/account");
+    }
     setLoadingRent(false);
   }
 
@@ -188,8 +200,33 @@ const Sale: React.FC = () => {
     setIsNFTBundle(!isNFTBundle);
   };
 
+  const handleSell = () => {
+    setAutoRedirect(true);
+    sellToken();
+  };
+
+  const handleRent = () => {
+    setAutoRedirect(true);
+    stakeToken();
+  };
+
+  const handleCleanForm = () => {
+    setLoadingSale(false);
+    setLoadingRent(false);
+    setIsNFTBundle(false);
+    setPriceForSale(0);
+    setColloteral(0);
+    setPremium(0);
+    setDurationInDay(1);
+  };
+
   return (
     <Background>
+      <LoadingModal
+        isLoading={loadingSale || loadingRent}
+        setAutoRedirect={setAutoRedirect}
+        addMore={handleCleanForm}
+      />
       <TopLinkWrapper>
         <Container>
           <TopLink to="/">Back</TopLink>
@@ -197,7 +234,7 @@ const Sale: React.FC = () => {
       </TopLinkWrapper>
       <Container>
         <PageWrapper>
-          <PageTitle>List on market</PageTitle>
+          <PageTitle>List on markettttt</PageTitle>
           <ContainerCheckboxCollateral>
             <CheckboxInputCollateral
               type="checkbox"
@@ -227,142 +264,124 @@ const Sale: React.FC = () => {
             <LeftBlock>
               <BlockWrap>
                 <BlockTitle>List item to sale</BlockTitle>
-                {loadingSale ? (
-                  <TextPrice>Loading pending...</TextPrice>
-                ) : (
-                  <>
-                    <NameRow>
-                      <TextPrice>Price</TextPrice>
-                    </NameRow>
-                    <PriceRow>
-                      <EthSelect>
-                        <EthText>ETH</EthText>
-                        <ImageDown src={down} alt="down-image" />
-                      </EthSelect>
-                      <AmmountInput
-                        type="number"
-                        placeholder="Amount"
-                        onChange={(e) => setPriceForSale(+e.target.value)}
-                      />
-                      <CostSelect>
-                        <DollarText>0.00</DollarText>
-                      </CostSelect>
-                    </PriceRow>
-                    <DurationWrap>
-                      <TextPrice>Duration</TextPrice>
-                      <DurationRow>
-                        <TextDay>Day</TextDay>
-                        <InputDay placeholder="Custom date" />
-                        <ButtonsBlock>
-                          <DurationButton className="left">7</DurationButton>
-                          <DurationButton>30</DurationButton>
-                          <DurationButton>60</DurationButton>
-                          <DurationButton>90</DurationButton>
-                          <DurationButton>180</DurationButton>
-                        </ButtonsBlock>
-                      </DurationRow>
-                    </DurationWrap>
-                    <BlockButton onClick={() => sellToken()}>
-                      Confirm
-                    </BlockButton>
-                  </>
-                )}
+
+                <NameRow>
+                  <TextPrice>Price</TextPrice>
+                </NameRow>
+                <PriceRow>
+                  <EthSelect>
+                    <EthText>ETH</EthText>
+                    <ImageDown src={down} alt="down-image" />
+                  </EthSelect>
+                  <AmmountInput
+                    type="number"
+                    placeholder="Amount"
+                    onChange={(e) => setPriceForSale(+e.target.value)}
+                  />
+                  <CostSelect>
+                    <DollarText>0.00</DollarText>
+                  </CostSelect>
+                </PriceRow>
+                <DurationWrap>
+                  <TextPrice>Duration</TextPrice>
+                  <DurationRow>
+                    <TextDay>Day</TextDay>
+                    <InputDay placeholder="Custom date" />
+                    <ButtonsBlock>
+                      <DurationButton className="left">7</DurationButton>
+                      <DurationButton>30</DurationButton>
+                      <DurationButton>60</DurationButton>
+                      <DurationButton>90</DurationButton>
+                      <DurationButton>180</DurationButton>
+                    </ButtonsBlock>
+                  </DurationRow>
+                </DurationWrap>
+                <BlockButton onClick={handleSell}>Confirm</BlockButton>
               </BlockWrap>
               <BlockWrap>
                 <BlockTitle>List item to rent</BlockTitle>
-                {loadingRent ? (
-                  <TextPrice>Loading pending...</TextPrice>
-                ) : (
-                  <>
-                    <NameRow>
-                      <TextPrice>
-                        Deposit
-                        <OverlayTrigger
-                          delay={{ show: 250, hide: 3000 }}
-                          placement="top"
-                          overlay={
-                            <OverlayPopUp>
-                              Speech bubble that will fall out when you click on
-                              the information on the icon{" "}
-                              <FAQLink href="/faq">FAQ</FAQLink>
-                            </OverlayPopUp>
-                          }
-                        >
-                          <ButtonInfo>
-                            <ImageInfo
-                              src={info}
-                              alt="info-image"
-                              className="margin"
-                            />
-                          </ButtonInfo>
-                        </OverlayTrigger>
-                      </TextPrice>
-                    </NameRow>
-                    <PriceRow>
-                      <EthSelect>
-                        <EthText>ETH</EthText>
-                        <ImageDown src={down} alt="down-image" />
-                      </EthSelect>
-                      <AmmountInput
-                        type="text"
-                        placeholder="Amount"
-                        onChange={(e) => setColloteral(+e.target.value)}
-                      />
-                      <CostSelect>
-                        <DollarText>0.00</DollarText>
-                      </CostSelect>
-                    </PriceRow>
-                    <NameRow>
-                      <TextPrice className="сost-per-day">
-                        Cost per Day
-                      </TextPrice>
-                    </NameRow>
-                    <PriceRow>
-                      <EthSelect>
-                        <EthText>ETH</EthText>
-                        <ImageDown src={down} alt="down-image" />
-                      </EthSelect>
-                      <AmmountInput
-                        type="text"
-                        placeholder="Amount"
-                        onChange={(e) => setPremium(+e.target.value)}
-                      />
-                      <CostSelect>
-                        <DollarText>0.00</DollarText>
-                      </CostSelect>
-                    </PriceRow>
-                    <NameRow>
-                      <TextPrice className="сost-per-day">
-                        Rental Period
-                      </TextPrice>
-                    </NameRow>
-                    <NameRow className="margin-top">
-                      <TextDay>Day</TextDay>
-                      <InputDay placeholder="Min" />
-                      <InputDay placeholder="Max" />
-                    </NameRow>
-                    <DurationWrap>
-                      <TextPrice>Duration</TextPrice>
-                      <DurationRow>
-                        <TextDay>Day</TextDay>
-                        <InputDay
-                          placeholder="Custom date"
-                          onChange={(e) => setDurationInDay(+e.target.value)}
+
+                <NameRow>
+                  <TextPrice>
+                    Deposit
+                    <OverlayTrigger
+                      delay={{ show: 250, hide: 3000 }}
+                      placement="top"
+                      overlay={
+                        <OverlayPopUp>
+                          Speech bubble that will fall out when you click on the
+                          information on the icon{" "}
+                          <FAQLink href="/faq">FAQ</FAQLink>
+                        </OverlayPopUp>
+                      }
+                    >
+                      <ButtonInfo>
+                        <ImageInfo
+                          src={info}
+                          alt="info-image"
+                          className="margin"
                         />
-                        <ButtonsBlock>
-                          <DurationButton className="left">7</DurationButton>
-                          <DurationButton>30</DurationButton>
-                          <DurationButton>60</DurationButton>
-                          <DurationButton>90</DurationButton>
-                          <DurationButton>180</DurationButton>
-                        </ButtonsBlock>
-                      </DurationRow>
-                    </DurationWrap>
-                    <BlockButton onClick={() => stakeToken()}>
-                      Confirm
-                    </BlockButton>
-                  </>
-                )}
+                      </ButtonInfo>
+                    </OverlayTrigger>
+                  </TextPrice>
+                </NameRow>
+                <PriceRow>
+                  <EthSelect>
+                    <EthText>ETH</EthText>
+                    <ImageDown src={down} alt="down-image" />
+                  </EthSelect>
+                  <AmmountInput
+                    type="text"
+                    placeholder="Amount"
+                    onChange={(e) => setColloteral(+e.target.value)}
+                  />
+                  <CostSelect>
+                    <DollarText>0.00</DollarText>
+                  </CostSelect>
+                </PriceRow>
+                <NameRow>
+                  <TextPrice className="сost-per-day">Cost per Day</TextPrice>
+                </NameRow>
+                <PriceRow>
+                  <EthSelect>
+                    <EthText>ETH</EthText>
+                    <ImageDown src={down} alt="down-image" />
+                  </EthSelect>
+                  <AmmountInput
+                    type="text"
+                    placeholder="Amount"
+                    onChange={(e) => setPremium(+e.target.value)}
+                  />
+                  <CostSelect>
+                    <DollarText>0.00</DollarText>
+                  </CostSelect>
+                </PriceRow>
+                <NameRow>
+                  <TextPrice className="сost-per-day">Rental Period</TextPrice>
+                </NameRow>
+                <NameRow className="margin-top">
+                  <TextDay>Day</TextDay>
+                  <InputDay placeholder="Min" />
+                  <InputDay placeholder="Max" />
+                </NameRow>
+                <DurationWrap>
+                  <TextPrice>Duration</TextPrice>
+                  <DurationRow>
+                    <TextDay>Day</TextDay>
+                    <InputDay
+                      placeholder="Custom date"
+                      onChange={(e) => setDurationInDay(+e.target.value)}
+                    />
+                    <ButtonsBlock>
+                      <DurationButton className="left">7</DurationButton>
+                      <DurationButton>30</DurationButton>
+                      <DurationButton>60</DurationButton>
+                      <DurationButton>90</DurationButton>
+                      <DurationButton>180</DurationButton>
+                    </ButtonsBlock>
+                  </DurationRow>
+                </DurationWrap>
+                <BlockButton onClick={handleRent}>Confirm</BlockButton>
               </BlockWrap>
             </LeftBlock>
             <RightBlock>
