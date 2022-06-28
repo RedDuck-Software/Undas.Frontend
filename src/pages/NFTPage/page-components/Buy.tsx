@@ -17,8 +17,6 @@ import {
   NotListedWrapper,
   NotListed,
 } from "../NFTPage.styles";
-import { OnlyOne__factory } from "../../../typechain";
-import { useParams } from "react-router-dom";
 
 interface BuyProps {
   id: number;
