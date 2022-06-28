@@ -152,7 +152,7 @@ const NavBarMobile = ({ open }) => {
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories-18plus">
                 <Ico18 />
-                18+NFTs
+                18+ NFTs
               </HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>
