@@ -82,6 +82,7 @@ export const TeamCardTitleSurname = styled(Card.Title)`
 `;
 
 export const CardImg = styled(Card.Img)`
+  border-radius: 20px;
   @media (max-width: 992px) {
     height: 140px;
     width: 140px;

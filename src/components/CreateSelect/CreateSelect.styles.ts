@@ -11,6 +11,10 @@ export const SelectWrapper = styled.div<{
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+
+  @media (max-width: 576px) {
+    max-width: unset;
+  }
 `;
 
 export const SelectedItemWrapper = styled.div<{
@@ -96,6 +100,8 @@ export const DropdownItemIcon = styled.img`
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  width: 24px;
+  height: 24px;
 `;
 
 export const DropdownArrow = styled.img<{ isOpen: boolean }>`

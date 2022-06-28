@@ -55,6 +55,8 @@ import { ethers } from "ethers";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import Context from "../../utils/Context";
 import { useWeb3React } from "@web3-react/core";
+import { PolygonIcon } from "../AllNFTs/imports";
+import { bsc, solana, ton } from "../CreateNFT/imports";
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   console.log();
   return (
@@ -89,6 +91,11 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
         categoryId={5}
         {...getCategory(Category.rwaNFT)}
       />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={6}
+        {...getCategory(Category.plus18)}
+      />
     </>
   );
 };
@@ -97,7 +104,17 @@ const BlockchainList: React.FC<{ setBlockchain: any }> = ({
   setBlockchain,
 }) => {
   return (
-    <SelectItem setSelected={setBlockchain} icon={ethIcon} label="Ethereum" />
+    <>
+      <SelectItem setSelected={setBlockchain} icon={ethIcon} label="Ethereum" />
+      <SelectItem
+        setSelected={setBlockchain}
+        icon={PolygonIcon}
+        label="Polygon"
+      />
+      <SelectItem setSelected={setBlockchain} icon={solana} label="Solana" />
+      <SelectItem setSelected={setBlockchain} icon={bsc} label="BSC" />
+      <SelectItem setSelected={setBlockchain} icon={ton} label="TON" />
+    </>
   );
 };
 
@@ -455,7 +472,7 @@ const CreateCollection: React.FC = () => {
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
-              <BlockDescript>
+              <BlockDescript className="blockchain-descript">
                 Select the blockchain where you&#39;d like new items from this
                 collection to be added by default
               </BlockDescript>

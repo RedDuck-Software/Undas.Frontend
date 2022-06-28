@@ -19,13 +19,13 @@ export const SelectItem: React.FC<{
   label: string;
   collectionId?: string;
   categoryId?: number;
-
-}> = ({ setSelected, icon, label,collectionId,categoryId }) => {
+}> = ({ setSelected, icon, label, collectionId, categoryId }) => {
   return (
-    <DropdownItemWrapper onClick={() => setSelected({ icon, label,collectionId,categoryId })}>
+    <DropdownItemWrapper
+      onClick={() => setSelected({ icon, label, collectionId, categoryId })}
+    >
       {icon && <DropdownItemIcon src={icon} />}
       {label}
-
     </DropdownItemWrapper>
   );
 };

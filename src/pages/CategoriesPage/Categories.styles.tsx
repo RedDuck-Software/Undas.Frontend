@@ -64,7 +64,9 @@ export const InfoCard = styled.div`
   justify-content: center;
   padding: 10px 20px;
   width: 540px;
-  height: 120px;
+  max-height: 120px;
+  height: auto;
+  overflow: hidden;
   background-color: #fbf5ff;
   box-shadow: 0 4px 10px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
@@ -72,6 +74,9 @@ export const InfoCard = styled.div`
   @media (max-width: 1200px) {
     width: 100%;
     margin-top: 10px;
+  }
+  @media (max-width: 576px) {
+    max-height: unset;
   }
 `;
 
@@ -83,23 +88,6 @@ export const InfoText = styled.span`
   @media (max-width: 576px) {
     font-size: 14px;
   }
-`;
-
-export const Contact = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 230px;
-`;
-
-export const ContactImage = styled.img`
-  cursor: pointer;
-`;
-
-export const ContactText = styled.div`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #7c7c7c;
 `;
 
 export const CollectionCard = styled(Link)`
