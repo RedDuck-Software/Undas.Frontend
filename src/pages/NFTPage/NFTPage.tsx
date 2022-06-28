@@ -226,6 +226,9 @@ const NFTPage: React.FC = () => {
 
       return;
     }
+
+    setLoading(false);
+
   };
 
   const APIURL =
