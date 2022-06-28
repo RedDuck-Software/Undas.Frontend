@@ -157,6 +157,7 @@ export const CollectionText = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  padding-right: 10px;
   @media (max-width: 1200px) {
     width: 65%;
     font-size: 12px;
@@ -294,4 +295,6 @@ export const CardsWrapper = styled.div`
 
 export const ImageCollection = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
