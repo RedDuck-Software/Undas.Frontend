@@ -36,9 +36,22 @@ export const BlockDescript = styled.p`
   line-height: 15px;
   color: #7c7c7c;
   margin-bottom: 0;
+  &.collection-descript {
+    margin-left: 20px;
+  }
+  &.blockchain-descript {
+    margin-bottom: 10px;
+  }
   @media (min-width: 1700px) {
     font-size: 18px;
     line-height: 24px;
+  }
+  @media (max-width: 768px) {
+    &.collection-descript {
+      margin-left: unset;
+      margin-top: 10px;
+      width: 100%;
+    }
   }
 `;
 
@@ -62,7 +75,6 @@ export const CreateLabel = styled.label`
   }
   @media (max-width: 768px) {
     &.category-label {
-      order: 1;
     }
   }
   @media (max-width: 576px) {
@@ -268,6 +280,10 @@ export const Filter = styled.ul`
   &:hover {
     box-shadow: inset 0px 0px 5px rgb(135 61 193);
   }
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: unset;
+  }
 `;
 
 export const FilterItem = styled.li`
@@ -277,12 +293,18 @@ export const FilterItem = styled.li`
   transition: all ease-in-out 0.3s;
   padding: 7px 20px;
   border-radius: 10px;
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 export const FilterTitle = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: rgb(124, 124, 124);
+  color: #232428;
   margin-top: 4px;
 }
 `;
@@ -322,16 +344,16 @@ export const FilterTitleBSC = styled.span`
 `;
 
 export const Arrow = styled.span`
-  margin-top: 4px;
+  margin-top: -4px;
   border-top: 1px solid #5d3f92;
   border-left: 1px solid #5d3f92;
-  transform: rotate(45deg);
+  transform: rotate(225deg);
   width: 10px;
   height: 10px;
   transition: all ease-in-out 0.15s;
   &.sort-active {
-    margin-top: -4px;
-    transform: rotate(-135deg);
+    margin-top: 4px;
+    transform: rotate(45deg);
   }
 `;
 

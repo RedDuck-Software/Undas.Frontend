@@ -413,7 +413,7 @@ const CreateNFT: React.FC = () => {
                 }
                 item={collection}
               />
-              <BlockDescript style={{ marginLeft: "20px" }}>
+              <BlockDescript className="collection-descript">
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
