@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const InfoBlock = styled.div`
@@ -26,10 +27,11 @@ export const InfoWrap = styled.ul`
   }
 `;
 
-export const InfoList = styled.li`
+export const InfoList = styled(Link)`
   max-width: 230px;
   display: flex;
   gap: 10px;
+  text-decoration: none;
   @media (max-width: 1200px) {
     max-width: 100%;
     align-items: center;
