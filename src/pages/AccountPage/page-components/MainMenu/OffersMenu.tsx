@@ -24,6 +24,7 @@ import {
   FilterName,
   FilterClose,
   ClearAll,
+  CancelBtnWrapper,
 } from "./Menu.styles";
 import { OfferType } from "./types";
 
@@ -51,6 +52,7 @@ import {
   UndasGeneralNFT__factory,
 } from "../../../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 interface CommonProps {
   tokenId: number;
@@ -508,14 +510,15 @@ const OffersMenu: React.FC = () => {
           <OffMadeIco />
         </FilterButton>
       </OfferFilterWrap>
-      <SelectedFilters>
-        <Filter>
-          <FilterImg src={filter} alt="filter-image" />
-          <FilterName>Borya Fo...</FilterName>
-          <FilterClose src={close} alt="close" />
-        </Filter>
-        <ClearAll>Clear All</ClearAll>
-      </SelectedFilters>
+
+      <FilterSelected />
+
+      {offerType === OfferType.made && (
+        <CancelBtnWrapper>
+          <CancelBtn>Cancel all Offers</CancelBtn>
+        </CancelBtnWrapper>
+      )}
+
       <OffersWrapTable>
         {offerType === OfferType.resaived && (
           <>
@@ -635,7 +638,6 @@ const OffersMenu: React.FC = () => {
         )}
         {offerType === OfferType.made && (
           <>
-            <CancelBtn>Cancel all Offers</CancelBtn>
             <OffersHeadTr className="offers-menu-head">
               <OffersTdText className="first-column"></OffersTdText>
               <OffersTdText>Item</OffersTdText>

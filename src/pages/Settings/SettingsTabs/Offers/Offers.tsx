@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   OffersWrap,
@@ -14,10 +15,12 @@ import { PageTitle } from "../../../../globalStyles";
 import { DescriptionText, Button } from "../SettingsTabs.styles";
 
 const Offers: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <OffersWrap>
       <OffersHeadWrap>
         <OffersTitleWrap>
+          <PageTitle>Section in development</PageTitle>
           <PageTitle>Offer Settings</PageTitle>
           <DescriptionTextWrap>
             <DescriptionText>
@@ -26,7 +29,14 @@ const Offers: React.FC = () => {
             <InformationButton />
           </DescriptionTextWrap>
         </OffersTitleWrap>
-        <Button>View my offers</Button>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate("/account");
+          }}
+        >
+          View my offers
+        </Button>
       </OffersHeadWrap>
       <OffersContentWrap>
         <OffersContentText>No collections to manage offers</OffersContentText>

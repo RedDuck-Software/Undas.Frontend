@@ -73,17 +73,19 @@ export const FavouriteResultsTotal = styled(ResultsTotal)`
 //Offers
 export const OfferMenuWrap = styled.div`
   margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
   @media (max-width: 576px) {
     margin-top: 15px;
   }
 `;
+
 export const OfferFilterWrap = styled(ViewOption)`
+  display: inline-flex;
+  margin-bottom: 1.25rem;
   @media (max-width: 992px) {
     width: 100%;
   }
 `;
+
 export const FilterButton = styled(FavouriteButton)`
   width: 180px;
   font-size: 14px;
@@ -102,6 +104,7 @@ export const FilterButton = styled(FavouriteButton)`
     width: 50%;
   }
 `;
+
 export const OffersWrapTable = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -111,8 +114,7 @@ export const OffersWrapTable = styled.table`
   max-height: 660px;
   overflow-y: auto;
   position: relative;
-  padding-top: 50px;
-  margin-top: -40px;
+  //padding-top: 50px;
   background-color: #fff;
   @media (max-width: 992px) {
     max-width: fit-content;
@@ -127,6 +129,7 @@ export const OffersWrapTable = styled.table`
     max-height: 325px;
   }
 `;
+
 export const ItemIcon = styled.div`
   width: 30px;
   height: 30px;
@@ -135,6 +138,7 @@ export const ItemIcon = styled.div`
     width: 100%;
   }
 `;
+
 export const ItemName = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -147,6 +151,7 @@ export const ItemName = styled.span`
     font-size: 12px;
   }
 `;
+
 export const OffersTdText = styled.td`
   padding: 10px 30px;
   &.offers-table-item {
@@ -169,6 +174,7 @@ export const OffersTdText = styled.td`
     padding: 10px;
   }
 `;
+
 export const OffersTdEmpty = styled(OffersTdText)`
   padding: 10px 50px;
   @media (max-width: 850px) {
@@ -178,6 +184,7 @@ export const OffersTdEmpty = styled(OffersTdText)`
     padding: 0;
   }
 `;
+
 export const OffersTdButton = styled(OffersTdText)`
   padding: 10px;
 `;
@@ -190,6 +197,7 @@ export const OffersTooltipWrap = styled.div`
   opacity: 0;
   transition: all 0.5s ease-out;
 `;
+
 export const OffersTooltip = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -213,6 +221,7 @@ export const OffersTooltip = styled.div`
     border-top: 7px solid #edd2ff;
   }
 `;
+
 export const AcceptBTN = styled.button`
   background: #873dc1;
   border-radius: 10px;
@@ -230,6 +239,7 @@ export const AcceptBTN = styled.button`
     background: #ffffff;
   }
 `;
+
 export const MakeOfferBTN = styled.button`
   width: 100px;
   height: 36px;
@@ -247,6 +257,7 @@ export const MakeOfferBTN = styled.button`
     background: #ffffff;
   }
 `;
+
 export const DenyBTN = styled.button`
   width: 100px;
   height: 36px;
@@ -265,6 +276,12 @@ export const DenyBTN = styled.button`
     color: #ffffff;
   }
 `;
+
+export const CancelBtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const CancelBtn = styled.button`
   font-weight: 400;
   font-size: 14px;
@@ -277,9 +294,6 @@ export const CancelBtn = styled.button`
   border: none;
   outline: none;
   padding: 10px 25px;
-  position: absolute;
-  right: 2px;
-  top: 2px;
   z-index: 2;
   transition: all 0.3s;
   &:hover {
@@ -300,6 +314,7 @@ export const WethText = styled.span`
     font-size: 10px;
   }
 `;
+
 export const PriceTextETH = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -317,11 +332,13 @@ export const PriceTextETH = styled.span`
     padding-right: 5px;
   }
 `;
+
 export const SelectedFilters = styled.div`
   width: 100%;
   margin-top: 20px;
   z-index: 2;
 `;
+
 export const Filter = styled.div`
   width: 180px;
   height: 36px;
@@ -334,6 +351,7 @@ export const Filter = styled.div`
   color: #232428;
   display: inline-block;
 `;
+
 export const FilterImg = styled.img`
   width: 30px;
   height: 30px;
@@ -342,6 +360,7 @@ export const FilterImg = styled.img`
   margin-top: 3px;
   margin-left: 10px;
 `;
+
 export const FilterName = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -352,12 +371,14 @@ export const FilterName = styled.span`
   vertical-align: middle;
   margin-left: 5px;
 `;
+
 export const FilterClose = styled.img`
   width: 10px;
   height: 10px;
   margin-left: 40px;
   margin-top: 3px;
 `;
+
 export const ClearAll = styled.button`
   font-family: "Montserrat";
   font-style: normal;

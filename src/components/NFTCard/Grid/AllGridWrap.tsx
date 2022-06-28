@@ -310,7 +310,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
     stackingFilter.stacking,
     hasOfferFilter.hasOffers,
   ]);
-  
+
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);

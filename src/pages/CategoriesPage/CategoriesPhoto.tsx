@@ -31,14 +31,11 @@ const CategoriesPhoto: React.FC = () => {
             </div>
             <InfoCard>
               <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                Photography category. The Photography category is collections of
+                photos from the best photographers in the NFT world.
               </InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
-              </Contact>
             </InfoCard>
           </Info>
           <div>

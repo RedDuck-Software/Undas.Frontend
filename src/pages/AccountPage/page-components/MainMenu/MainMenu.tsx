@@ -21,6 +21,7 @@ import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListIte
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import { ethers } from "ethers";
 import { useMoralisWeb3Api } from "react-moralis";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 export interface ItemsProps {
   id: number;
@@ -59,6 +60,7 @@ const MainMenu: React.FC = () => {
     });
     return data.result;
   }
+
   const items: ItemsProps[] = [];
   const [list, setList] = useState<ItemsProps[]>([]);
 
@@ -73,11 +75,11 @@ const MainMenu: React.FC = () => {
       const tokenAddress = nft.token_address;
       const tokenOwner = nft.owner_of;
 
-      console.log(nft);
       items.push({ id, URI, name, tokenAddress, tokenOwner });
     });
     return items;
   }
+
   async function getUserNft() {
     const response = await getNfts();
 
@@ -85,9 +87,11 @@ const MainMenu: React.FC = () => {
       setList(response);
     }
   }
+
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
+
   useEffect(() => {
     if (!connector) {
       return console.log("loading");
@@ -95,6 +99,7 @@ const MainMenu: React.FC = () => {
 
     getUserNft();
   }, [connector]);
+
   return (
     <div>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
@@ -149,6 +154,7 @@ const MainMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <ResultsTotal>{list.length}</ResultsTotal>
+        <FilterSelected />
       </MenuWrap>
       {viewMode === ViewMode.grid ? (
         <CollectionGridWrap itemList={list} />
@@ -160,7 +166,7 @@ const MainMenu: React.FC = () => {
             );
           })}
         </>
-      )}
+      )}.
     </div>
   );
 };

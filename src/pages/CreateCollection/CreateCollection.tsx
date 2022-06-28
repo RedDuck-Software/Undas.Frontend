@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -51,25 +51,44 @@ import {
   CreateFormButton,
 } from "../CreateNFT/CreateNFT.styles";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
+import { ethers } from "ethers";
+import { UndasGeneralNFT__factory } from "../../typechain";
+import Context from "../../utils/Context";
+import { useWeb3React } from "@web3-react/core";
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
+  console.log();
   return (
     <>
       <SelectItem
         setSelected={setCategory}
+        categoryId={0}
         {...getCategory(Category.artwork)}
       />
-      <SelectItem setSelected={setCategory} {...getCategory(Category.sport)} />
       <SelectItem
         setSelected={setCategory}
+        categoryId={1}
+        {...getCategory(Category.sport)}
+      />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={2}
         {...getCategory(Category.photography)}
       />
-      <SelectItem setSelected={setCategory} {...getCategory(Category.gamefi)} />
       <SelectItem
         setSelected={setCategory}
+        categoryId={3}
+        {...getCategory(Category.gamefi)}
+      />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={4}
         {...getCategory(Category.celebrity)}
       />
-      <SelectItem setSelected={setCategory} {...getCategory(Category.rwaNFT)} />
-      <SelectItem setSelected={setCategory} {...getCategory(Category.plus18)} />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={5}
+        {...getCategory(Category.rwaNFT)}
+      />
     </>
   );
 };
@@ -97,34 +116,54 @@ const CreateCollection: React.FC = () => {
   const [category, setCategory] = useState<SelectItemType>({
     icon: "",
     label: "Add Category",
+    categoryId: 0,
   });
   const [creatorEarnings, setCreatorEarnings] = useState("");
   const [blockchain, setBlockchain] = useState<SelectItemType>({
     icon: ethIcon,
     label: "Ethereum",
   });
+  const { connector } = useContext(Context);
   const [isSensetiveContent, setIsSensetiveContent] = useState(false);
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, formState, handleSubmit, trigger } =
     useForm<CreateCollectionForm>(formOptions);
+  const web3ReactState = useWeb3React();
+  const { account } = web3ReactState;
   const { errors } = formState;
-  /* const bid = async () => {
+  console.log("category", category);
+  const createCollection = async (
+    collectionName: string,
+    collectionUrl: string,
+    collectionInfo: string,
+    category: number,
+  ) => {
     if (!connector || !account) return;
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
-
     const signer = provider.getSigner(0);
-    const SIGNER_ADDRESS = await signer.getAddress();
+
+    console.log(collectionName);
+    console.log(collectionUrl);
+    console.log(collectionInfo);
+    console.log(category);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      '0xB073DeaC0dc753d27cC41a0f443000579d017361',
+      "0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a", //goerli contract addr
       signer,
     );
 
-    NFTContract.safeMintGeneral(account, information, name, customURL);
-  }; */
+    const tx = await NFTContract.createCollection(
+      collectionName,
+      collectionUrl,
+      collectionInfo,
+      category,
+    );
+
+    await tx.wait();
+  };
 
   const onSubmit = (formValues: any) => {
     trigger("logoURI");
@@ -440,7 +479,20 @@ const CreateCollection: React.FC = () => {
             </CreateFormGroup>
             <ButtonsBlock>
               <FormButtonsWrap>
-                <CreateFormButton className="left-btn" type="submit">
+                <CreateFormButton
+                  className="left-btn"
+                  type="submit"
+                  onClick={() =>
+                    category.categoryId != undefined
+                      ? createCollection(
+                          name,
+                          customURL,
+                          information,
+                          category.categoryId,
+                        )
+                      : alert("chose category")
+                  }
+                >
                   Create
                 </CreateFormButton>
                 <CreateFormButton>Back</CreateFormButton>

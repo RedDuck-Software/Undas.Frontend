@@ -13,33 +13,160 @@ export const LineWrap = styled.div`
 
 export const Line = styled.div`
   width: 5px;
-  height: 65px;
+  height: 100px;
   background: #e5e5e5;
   position: relative;
   margin: 0 auto;
   &.done {
     background-color: #ccb7f2;
   }
-
+  &.second {
+    height: 100px;
+  }
+  &.lastLine {
+    height: 50px;
+  }
+  &.three {
+    height: 70px;
+  }
+  &.four {
+    height: 70px;
+  }
+  &.five {
+    height: 70px;
+  }
+  @media (max-width: 1135px) {
+    &.four {
+      height: 100px;
+    }
+    &.five {
+      height: 60px;
+    }
+  }
   @media (max-width: 992px) {
-    height: 62px;
-    &.secondLine {
-      height: 133px;
+    height: 90px;
+    &.second {
+      height: 176px;
     }
     &.lastLine {
       height: 44px;
     }
+    &.three {
+      height: 146px;
+    }
+    &.four {
+      height: 136px;
+    }
+    &.five {
+      height: 132px;
+    }
+  }
+  @media (max-width: 670px) {
+    &.three {
+      height: 162px;
+    }
+    &.four {
+      height: 152px;
+    }
+  }
+  @media (max-width: 648px) {
+    &.second {
+      height: 183px;
+    }
+    &.three {
+      height: 172px;
+    }
+    &.four {
+      height: 152px;
+    }
+  }
+  @media (max-width: 638px) {
+    &.five {
+      height: 150px;
+    }
+    &.lastLine {
+      height: 58px;
+    }
+  }
+  @media (max-width: 627px) {
+    height: 100px;
+    &.second {
+      height: 189px;
+    }
+  }
+  @media (max-width: 601px) {
+    &.second {
+      height: 205px;
+    }
+    &.three {
+      height: 193px;
+    }
   }
   @media (max-width: 576px) {
-    height: 100px;
-    &.secondLine {
-      height: 189px;
+    height: 152px;
+    &.second {
+      height: 270px;
     }
     &.lastLine {
       height: 79px;
     }
-    &.thirLine {
-      height: 188px;
+    &.three {
+      height: 220px;
+    }
+    &.four {
+      height: 176px;
+    }
+    &.five {
+      height: 176px;
+    }
+    &.lastLine {
+      height: 74px;
+    }
+  }
+  @media (max-width: 348px) {
+    &.three {
+      height: 226px;
+    }
+    &.four {
+      height: 186px;
+    }
+  }
+  @media (max-width: 336px) {
+    &.second {
+      height: 276px;
+    }
+    &.lastLine {
+      height: 79px;
+    }
+    &.three {
+      height: 236px;
+    }
+    &.four {
+      height: 186px;
+    }
+  }
+  @media (max-width: 331px) {
+    &.five {
+      height: 184px;
+    }
+    &.lastLine {
+      height: 88px;
+    }
+  }
+    @media (max-width: 325px) {
+      height: 158px;
+      &.second {
+        height: 288px;
+      }
+      &.lastLine {
+        height: 79px;
+      }
+      &.three {
+        height: 236px;
+      }
+      &.four {
+        height: 186px;
+      }
     }
   }
 `;

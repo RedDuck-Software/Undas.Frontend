@@ -30,12 +30,12 @@ const CategoriesGameFI: React.FC = () => {
               <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
-              <InfoText>Info about collection</InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
-              </Contact>
+              <InfoText>
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                GameFI category. The GameFI category is NFT collections for
+                blockchain games.
+              </InfoText>
             </InfoCard>
           </Info>
           <div>

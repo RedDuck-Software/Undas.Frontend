@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AllNFTsIcon,
@@ -20,8 +20,8 @@ import {
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
-  MyCollectionIco,
-  WatchlistIco,
+  ReferralIco,
+  AchievementsIco,
   SettingsIco,
   LoginMenuIco,
   ExploreIco,
@@ -32,8 +32,9 @@ import {
   MobileAccountIco,
   GameFi,
   ReddditIco,
-} from './imports';
-import { LanguageTitle, SocialLink } from './Navbar.styles';
+  Ico18,
+} from "./imports";
+import { LanguageTitle, SocialLink } from "./Navbar.styles";
 import {
   Navigation,
   NavigationMenu,
@@ -45,8 +46,7 @@ import {
   HeaderDropdownItem,
   IconInner,
   MobileMenuListSocial,
-} from './NavBarMobile.styles';
-
+} from "./NavBarMobile.styles";
 
 const NavBarMobile = ({ open }) => {
   return (
@@ -87,20 +87,20 @@ const NavBarMobile = ({ open }) => {
           </MobileStyledList>
           <MobileStyledList>
             <IconInner>
-              <MobileAccountIco />{' '}
+              <MobileAccountIco />{" "}
             </IconInner>
             <HeaderDropdownButton id="header-dropdown-button" title="Account">
               <HeaderDropdownItem href="account">
                 <ProfileMenuIco />
                 Profile
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="collection">
-                <MyCollectionIco />
-                Collections
+              <HeaderDropdownItem href="referral">
+                <ReferralIco />
+                Referral Program
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="#">
-                <WatchlistIco />
-                Watchlist
+              <HeaderDropdownItem href="achievements">
+                <AchievementsIco />
+                Achievements
               </HeaderDropdownItem>
               <HeaderDropdownItem href="settings">
                 <SettingsIco />
@@ -122,33 +122,37 @@ const NavBarMobile = ({ open }) => {
                 <AllNFTsIcon />
                 All NFTs
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="assets/new">
+              <HeaderDropdownItem href="categories-new">
                 <NewIcon />
                 New
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="explore/art">
+              <HeaderDropdownItem href="categories-art">
                 <ArtIcon />
                 Artwork
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories">
+              <HeaderDropdownItem href="categories-sport">
                 <SportIcon />
                 Sport
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories">
+              <HeaderDropdownItem href="categories-photo">
                 <PhotoIco />
                 Photography
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories">
+              <HeaderDropdownItem href="categories-gimefi">
                 <GameFi />
                 GameFi
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories">
+              <HeaderDropdownItem href="categories-celebrity">
                 <CelebrityIco />
                 Celebrity
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories">
+              <HeaderDropdownItem href="categories-rwa">
                 <RwaNFT />
                 rwaNFT
+              </HeaderDropdownItem>
+              <HeaderDropdownItem href="categories-18plus">
+                <Ico18 />
+                18+NFTs
               </HeaderDropdownItem>
             </HeaderDropdownButton>
           </MobileStyledList>

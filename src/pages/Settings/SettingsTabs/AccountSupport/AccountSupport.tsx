@@ -22,6 +22,7 @@ import { DescriptionText } from "../SettingsTabs.styles";
 const AccountSupport: React.FC = () => {
   return (
     <AccountSupportWrap>
+      <PageTitle>Section in development</PageTitle>
       <PageTitle>Account Support</PageTitle>
       <DescriptionText>
         If you need help related to your account, we can help you

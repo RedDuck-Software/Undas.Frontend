@@ -558,7 +558,7 @@ export const MinMaxLable = styled.label`
 `;
 
 export const MinPrice = styled.input`
-  width: 100px;
+  width: 80px;
   height: 36px;
   font-weight: 400;
   font-size: 14px;
@@ -584,7 +584,8 @@ export const PriceContainer = styled.div``;
 export const InputPriceContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  margin-top: 20px;
+  margin-top: 15px;
+  justify-content: space-between;
 `;
 
 export const ApplyButton = styled.button`
@@ -594,10 +595,10 @@ export const ApplyButton = styled.button`
   border-radius: 10px;
   padding: 8px;
   width: 120px;
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 14px;
-  background-color: #FFFFFF;
-  color: #873DC1;
+  background-color: #ffffff;
+  color: #873dc1;
   transition: all 0.3s linear;
   &.colored-btn:hover {
     box-shadow: 0 0 6px #000;

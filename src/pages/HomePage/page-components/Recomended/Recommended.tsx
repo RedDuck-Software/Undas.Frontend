@@ -28,23 +28,23 @@ const Recommended: React.FC = () => {
       </TitleWrap>
       <MobileInner>
         <CategoriesWrap>
-          <CategoryWrap to="/categories" gridArea="1 / 1 / 4 / 3">
+          <CategoryWrap to="/categories-new" gridArea="1 / 1 / 4 / 3">
             <Name>New</Name>
             <Image src={MetaversesImg} alt="category-img" />
           </CategoryWrap>
-          <CategoryWrap to="/categories" gridArea="1 / 3 / 3 / 5">
+          <CategoryWrap to="/categories-sport" gridArea="1 / 3 / 3 / 5">
             <Name>Sport</Name>
             <Image src={SportImg} alt="category-img" />
           </CategoryWrap>
-          <CategoryWrap to="/categories" gridArea="3 / 3 / 4 / 5">
+          <CategoryWrap to="/categories-celebrity" gridArea="3 / 3 / 4 / 5">
             <Name>Celebrity</Name>
             <Image src={CelebrityImg} alt="category-img" />
           </CategoryWrap>
-          <CategoryWrap to="/categories" gridArea="1 / 5 / 2 / 7">
+          <CategoryWrap to="/categories-rwa" gridArea="1 / 5 / 2 / 7">
             <Name>rwaNFT</Name>
             <Image src={RwaImg} alt="category-img" />
           </CategoryWrap>
-          <CategoryWrap to="/categories" gridArea="2 / 5 / 4 / 7">
+          <CategoryWrap to="/categories-art" gridArea="2 / 5 / 4 / 7">
             <Name>Artwork</Name>
             <Image src={ArtworkImg} alt="category-img" />
           </CategoryWrap>
