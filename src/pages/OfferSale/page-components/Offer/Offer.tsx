@@ -146,16 +146,20 @@ const Offer: React.FC = () => {
 
   const handleCleanForm = () => {
     setLoading(false);
-  }
+  };
 
   const handleOffer = () => {
     setAutoRedirect(true);
     makeSaleOffer();
-  }
+  };
 
   return (
     <OfferContainer>
-      <LoadingModal isLoading={loading} setAutoRedirect={setAutoRedirect} addMore={handleCleanForm} />
+      <LoadingModal
+        isLoading={loading}
+        setAutoRedirect={setAutoRedirect}
+        addMore={handleCleanForm}
+      />
       <Container>
         <FirstCollum>
           <NameRow>
