@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { PromoSlide, SlideText } from "./Promo.styles";
 
+import { Container } from "../../../../globalStyles";
+
 import "./PromoSlider.css";
 
 const Promo: React.FC = () => {
@@ -23,30 +25,38 @@ const Promo: React.FC = () => {
     >
       <SwiperSlide>
         <PromoSlide to="/blog">
-          <SlideText>
-            Hot Offer! Add your NTF and save 50% on commission!
-          </SlideText>
+          <Container>
+            <SlideText>
+              Hot Offer! Add your NTF and save 50% on commission!
+            </SlideText>
+          </Container>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
         <PromoSlide to="/blog/website-tips">
-          <SlideText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quisquam.
-          </SlideText>
+          <Container>
+            <SlideText>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+              quisquam.
+            </SlideText>
+          </Container>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
         <PromoSlide to="/article">
-          <SlideText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque hic voluptatibus rem saepe incidunt sunt?
-          </SlideText>
+          <Container>
+            <SlideText>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque hic
+              voluptatibus rem saepe incidunt sunt?
+            </SlideText>
+          </Container>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
         <PromoSlide to="/blog">
-          <SlideText>
-            Lorem ipsum dolor sit amet.
-          </SlideText>
+          <Container>
+            <SlideText>Lorem ipsum dolor sit amet.</SlideText>
+          </Container>
         </PromoSlide>
       </SwiperSlide>
     </Swiper>

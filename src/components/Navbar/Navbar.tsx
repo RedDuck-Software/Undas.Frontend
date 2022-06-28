@@ -145,7 +145,7 @@ const Navbar = () => {
                   </MenuList>
                   <MenuList to="/categories-18plus">
                     <Ico18 />
-                    18+NFTs
+                    18+ NFTs
                   </MenuList>
                 </DropdownMenu>
               </StyledList>

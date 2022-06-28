@@ -7,9 +7,6 @@ import {
   Subtitle,
   InfoCard,
   InfoText,
-  Contact,
-  ContactText,
-  ContactImage,
 } from "./Categories.styles";
 import { CollectionBanner, Email, Telegram } from "./imports";
 import Collection from "./page-components/Collection";
@@ -27,7 +24,6 @@ const CategoriesPhoto: React.FC = () => {
           <Info>
             <div>
               <Title>Photography</Title>
-              <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
               <InfoText>

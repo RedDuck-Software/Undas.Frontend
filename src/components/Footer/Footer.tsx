@@ -37,12 +37,14 @@ const Footer = () => {
           <TopicColumn>
             <TopicTitle>Explore</TopicTitle>
             <TopicText href="all">All NFTs</TopicText>
-            <TopicText href="assets/new">New</TopicText>
-            <TopicText href="explore/art">Artwork</TopicText>
-            <TopicText href="categories">Sport</TopicText>
-            <TopicText href="categories">Photography</TopicText>
-            <TopicText href="categories">Celebrity</TopicText>
-            <TopicText href="categories">rwaNFT</TopicText>
+            <TopicText href="categories-new">New</TopicText>
+            <TopicText href="categories-art">Artwork</TopicText>
+            <TopicText href="categories-sport">Sport</TopicText>
+            <TopicText href="categories-photo">Photography</TopicText>
+            <TopicText href="categories-gimefi">GameFi</TopicText>
+            <TopicText href="categories-celebrity">Celebrity</TopicText>
+            <TopicText href="categories-rwa">rwaNFT</TopicText>
+            <TopicText href="categories-18plus">18+ NFTs</TopicText>
           </TopicColumn>
           <TopicColumn>
             <TopicTitle>Activity</TopicTitle>

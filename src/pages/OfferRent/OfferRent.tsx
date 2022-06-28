@@ -88,8 +88,8 @@ const OfferRent: React.FC = () => {
   const [isNFTCollateral, setIsNFTCollateral] = useState(false);
   const navigate = useNavigate();
 
-    async function makeRentOffer() {
-    if(!connector){
+  async function makeRentOffer() {
+    if (!connector) {
       navigate("/login");
       return;
     }

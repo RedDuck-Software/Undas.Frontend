@@ -28,6 +28,6 @@ export type Stat = Level;
 export type Complete = string | number;
 
 export type CollectionType = {
-  collectionName: string,
+  collectionName: string;
   collectionId: string;
-}
+};

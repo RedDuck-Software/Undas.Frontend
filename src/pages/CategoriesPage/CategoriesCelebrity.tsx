@@ -7,9 +7,6 @@ import {
   Subtitle,
   InfoCard,
   InfoText,
-  Contact,
-  ContactText,
-  ContactImage,
 } from "./Categories.styles";
 import { CollectionBanner, Email, Telegram } from "./imports";
 import Collection from "./page-components/Collection";
@@ -27,18 +24,13 @@ const CategoriesCelebrity: React.FC = () => {
           <Info>
             <div>
               <Title>Celebrity</Title>
-              <Subtitle>Categories</Subtitle>
             </div>
             <InfoCard>
               <InfoText>
-                You can exchange your NFT for an item, e.g. selling the tickets
-                through our marketplace
+                On this page you can enjoy a selection of interesting
+                collections. In this section the Celebrity collections are
+                presented. The Celebrity category is dedicated to celebrities.
               </InfoText>
-              <Contact>
-                <ContactImage src={Email} alt="email-ico" />
-                <ContactImage src={Telegram} alt="telegram-ico" />
-                <ContactText>cooperate with dreams</ContactText>
-              </Contact>
             </InfoCard>
           </Info>
           <div>

@@ -8,6 +8,7 @@ import {
   CopyIco,
   SingOutIco,
   SettingsIco,
+  SettingsLink,
   AchievmentsBlock,
 } from "./AccountCard.styles";
 
@@ -31,6 +32,7 @@ interface IAccountCard {
 const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
   const accountSplit = account?.split("");
   accountSplit?.splice(6, 32, "...");
+  //
   return (
     <AccountWrap>
       <Wrapper disp="flex" gap="10px">
@@ -64,7 +66,7 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <SingOutIco />
           <GrayText>Sing Out</GrayText>
         </Wrapper>
-        <SettingsIco />
+        <SettingsLink to="/settings"><SettingsIco /></SettingsLink>
         <AchievmentsBlock>
           <AchievementColoredIco1 />
           <AchievementColoredIco2 />

@@ -153,6 +153,10 @@ export const CategorySelectWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const CategoryDescript = styled.span`
@@ -162,12 +166,15 @@ export const CategoryDescript = styled.span`
   font-size: 12px;
   line-height: 15px;
   color: #7c7c7c;
-  @media (max-width: 768px) {
-    margin-left: 0;
-    order: 2;
+  @media (max-width: 576px) {
+    margin-left: 0px;
+    margin-top: 10px;
   }
 `;
 
 export const EarningsInput = styled(CreateInput)`
   max-width: 255px;
+  @media (max-width: 576px) {
+    max-width: unset;
+  }
 `;
