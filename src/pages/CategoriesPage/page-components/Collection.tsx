@@ -46,10 +46,9 @@ interface CollectionWithCards{
 }
 
 const Collection: React.FC<CollectionGridWrapperProps> = ({
-                                                            itemList
-                                                          }) => {
+  itemList
+}) => {
   const { account } = useWeb3React();
-  console.log(itemList)
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
   const items : CollectionWithCards[] = []
 
@@ -61,7 +60,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       const collectionId = i.collectionId
       items.push({uri,collectionId})
     })
-    console.log(items)
 
     return items
   };
@@ -87,7 +85,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log(data)
     return data;
   }
 
@@ -98,7 +95,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       setCollectionItems(response);
     }
   }
-  console.log(itemList)
   return (
    <>
      {itemList.map((i) => {
@@ -106,7 +102,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
          <CollectionBackground src={CollectionBG} alt="collection-bg" />
          <AuthorWrap>
            <CollectionPicWrap>
-             <img src={CollectionPic} alt="collection-pic" />
+             <img src={i.collectionUrl} alt="collection-pic" />
            </CollectionPicWrap>
            {/*CategoriesPage name*/}
            <div>
@@ -128,15 +124,16 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
              {collectionItems ? (
                  collectionItems.map((collectionItem,counter)=>{
                    console.log(i.id)
-                   if(i.id == collectionItem.collectionId && counter <= 3){
+                   if(i.id == collectionItem.collectionId && counter < 3){
                      counter++
+                     console.log(counter)
                      return <NFTCards key={collectionItem.collectionId + collectionItem.uri}>
                        <ImageCollection src={collectionItem.uri} alt="nft-card" />
                      </NFTCards>
                    }
                  })
              ) : (
-                 <span>There are no collections at this category yet</span>
+                 <span></span>
              )}
            </>
          </CardsWrapper>

@@ -35,7 +35,6 @@ interface CollectionGridWrapperProps {
 interface CollectionWithCards{
   collectionId:number;
   uri:string;
-
 }
 
 const Collection: React.FC<CollectionGridWrapperProps> = ({
@@ -54,8 +53,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       const collectionId = i.collectionId
       items.push({uri,collectionId})
     })
-    console.log(items)
-
     return items
   };
   useEffect(() => {
@@ -80,13 +77,12 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log(data)
+
     return data;
   }
 
   async function getNftsData() {
     const response = await getNfts();
-
     if (response) {
       setCollectionItems(response);
     }
@@ -120,7 +116,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
               {collectionItems ? (
                   collectionItems.map((collectionItem,counter)=>{
                     console.log(i.id)
-                    if(i.id == collectionItem.collectionId && counter <= 3){
+                    if(i.id == collectionItem.collectionId && counter < 3){
                       counter++
                       return <NFTCards key={collectionItem.collectionId + collectionItem.uri}>
                        <ImageCollection src={collectionItem.uri} alt="nft-card" />
@@ -128,7 +124,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
                     }
                   })
               ) : (
-                  <span>There are no NFTs on the marketplace</span>
+                  <span></span>
               )}
             </>
           </CardsWrapper>

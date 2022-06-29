@@ -55,7 +55,6 @@ const Created: React.FC = () => {
         })
         return createdItems
         }
-    console.log('account',account)
 
   useEffect(() => {
     if (!connector || !account) {
