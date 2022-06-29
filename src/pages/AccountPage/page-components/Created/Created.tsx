@@ -20,19 +20,17 @@ import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-import {createClient} from "urql";
+import { createClient } from "urql";
 
 type CreatedItemProps = {
-    id: number;
-    URI: string;
-    name: string;
-    tokenOwner?:string;
-    collectionName?:string;
-    collectionId?:string;
-    tokens?: [
-        uri:string
-    ]
-}
+  id: number;
+  URI: string;
+  name: string;
+  tokenOwner?: string;
+  collectionName?: string;
+  collectionId?: string;
+  tokens?: [uri: string];
+};
 
 const Created: React.FC = () => {
   const { account } = useWeb3React();
@@ -40,39 +38,45 @@ const Created: React.FC = () => {
   const createdItems: CreatedItemProps[] = [];
   const { viewMode, viewButtonsRender } = useViewMode();
   const [createdType, setCreatedType] = useState<CreatedType>(CreatedType.nft);
-  const [createdNfts,setCreatedNfts] = useState<CreatedItemProps[]>()
-    const getTokensData = async () => {
-        const tokensQuery = await fetchData();
+  const [createdNfts, setCreatedNfts] = useState<CreatedItemProps[]>();
+  const getTokensData = async () => {
+    const tokensQuery = await fetchData();
 
-        tokensQuery.data.tokens.map((i:any) => {
-            const id = i.id
-            const name = i.name
-            const URI = i.uri
-            const tokenOwner = i.owner
-            const collectionName = i.collectionName
-            const collectionId = i.collectionId
-            const tokens =
-            createdItems.push({id,URI,name,tokenOwner,collectionName,collectionId})
-        })
-        return createdItems
-        }
-    console.log('account',account)
+    tokensQuery.data.tokens.map((i: any) => {
+      const id = i.id;
+      const name = i.name;
+      const URI = i.uri;
+      const tokenOwner = i.owner;
+      const collectionName = i.collectionName;
+      const collectionId = i.collectionId;
+      const tokens = createdItems.push({
+        id,
+        URI,
+        name,
+        tokenOwner,
+        collectionName,
+        collectionId,
+      });
+    });
+    return createdItems;
+  };
+  console.log("account", account);
 
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-      getListingsData()
+    getListingsData();
   }, [connector, account]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
 
-    const APIURL =
-        "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+  const APIURL =
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-    const createdTokensQuery = `
+  const createdTokensQuery = `
     {
       tokens(where:{owner:"${account}"}){
           collectionName
@@ -86,21 +90,21 @@ const Created: React.FC = () => {
     }
  `;
 
-    const client = createClient({
-        url: APIURL,
-    });
+  const client = createClient({
+    url: APIURL,
+  });
 
-    async function fetchData() {
-        const data = await client.query(createdTokensQuery).toPromise();
-        return data;
-    }
+  async function fetchData() {
+    const data = await client.query(createdTokensQuery).toPromise();
+    return data;
+  }
 
-    async function getListingsData() {
-        const response = await getTokensData();
-        if(response){
-            setCreatedNfts(response)
-        }
+  async function getListingsData() {
+    const response = await getTokensData();
+    if (response) {
+      setCreatedNfts(response);
     }
+  }
 
   return (
     <CreatedWrap>
@@ -132,14 +136,14 @@ const Created: React.FC = () => {
 
       <FilterSelected />
 
-      {viewMode === ViewMode.grid && createdType === CreatedType.nft &&  (
-          <>
-              {createdNfts ? (
-                  <CollectionGridWrap itemList={createdNfts} />
-              ) : (
-                  <span>There are no NFTs on the marketplace</span>
-              )}
-          </>
+      {viewMode === ViewMode.grid && createdType === CreatedType.nft && (
+        <>
+          {createdNfts ? (
+            <CollectionGridWrap itemList={createdNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
       )}
 
       {viewMode === ViewMode.list && createdType === CreatedType.nft && (

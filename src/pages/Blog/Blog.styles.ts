@@ -6,10 +6,10 @@ export const BlogWrap = styled.div`
     padding: 40px 0 80px;
   }
   @media (max-width: 768px) {
-    padding: 10px 0 60px;
+    padding: 40px 0 60px;
   }
   @media (max-width: 576px) {
-    padding: 0 0 30px;
+    padding: 20px 0 30px;
   }
 `;
 export const Text = styled.p`

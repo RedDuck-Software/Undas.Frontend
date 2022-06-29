@@ -205,7 +205,10 @@ export const MenuList = styled(Link)`
   font-size: 14px;
   color: #7c7c7c;
   text-decoration: none;
-  box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5);
+  border: 1px solid rgba(124, 124, 124, 0.3);
+  &.last {
+    border-radius: 0 0 10px 10px;
+  }
   &:hover {
     box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
     font-weight: 500;
@@ -229,7 +232,8 @@ export const MenuListSocial = styled.div`
   font-size: 14px;
   color: #7c7c7c;
   text-decoration: none;
-  box-shadow: inset 0 0 1px rgba(135, 61, 193, 0.5);
+  border: 1px solid rgba(124, 124, 124, 0.3);
+  border-radius: 0 0 10px 10px;
   &:hover {
     box-shadow: inset 0px -3px 4px rgba(124, 124, 124, 0.25);
     font-weight: 500;
