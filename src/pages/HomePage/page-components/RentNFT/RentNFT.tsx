@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./NFTHeroSlider.css";
 import Context from "../../../../utils/Context";
-import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
+import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
 import { createClient } from "urql";
@@ -76,15 +76,16 @@ const RentNFT: React.FC = () => {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2,
-            spaceBetween: 50,
-          },
-          1200: {
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          1700: {
+          1200: {
             slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1700: {
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
         className="rent-slider"
@@ -97,7 +98,7 @@ const RentNFT: React.FC = () => {
           return (
             <>
               <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
+                <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>
           );
