@@ -15,7 +15,6 @@ import {
 import { CollectionPic, NFT1, NFT2, NFT3, Verified } from "../imports";
 import {createClient} from "urql";
 import CollectionGridWrap from "../../../../CollectionPage/page-components/CollectionGridWrap";
-
 import {useWeb3React} from "@web3-react/core";
 
 
@@ -98,10 +97,10 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
   <>
       {itemList.map((i)=>{
 
-       return <CollectionCard key={i.id} to='/collection' >
+       return <CollectionCard key={i.id} to={`/collection/${i.id}`} >
           <AuthorWrap>
             <CollectionPicWrap>
-              <img src={CollectionPic} alt="collection-pic" />
+              <img src={i.collectionUrl} alt="collection-pic" />
             </CollectionPicWrap>
             <div>
               <NameNft>

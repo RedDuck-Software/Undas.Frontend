@@ -115,6 +115,8 @@ const Sale: React.FC = () => {
       priceForSale.toString(),
       "ether",
     );
+    console.log("222");
+
     //undas contract
     const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,

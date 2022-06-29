@@ -207,6 +207,7 @@ const NFTPage: React.FC = () => {
       setListingId(tokensQuery.data.listings[0].id);
       setSeller(tokensQuery.data.listings[0].seller);
       setLoading(false);
+      setLoading(false);
 
       return;
     }

@@ -24,7 +24,6 @@ import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
-
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
@@ -55,6 +54,16 @@ import { Background } from "../../globalStyles";
 import { useMoralisWeb3Api } from "react-moralis";
 import Context from "../../utils/Context";
 import { ethers } from "ethers";
+import {useParams} from "react-router-dom";
+import {createClient} from "urql";
+
+interface CommonProps {
+  id: number;
+  name: string;
+  URI: string;
+  description:string;
+  tokenAddress:string;
+}
 
 export interface ItemsProps {
   id: number;
@@ -75,11 +84,65 @@ const CollectionPage: React.FC = () => {
   const { connector } = useContext(Context);
   const Web3Api = useMoralisWeb3Api();
 
-
+  const params = useParams()
+  console.log('paraams',params.id)
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const [show, setShow] = useState(false);
   const target = useRef(null);
+  const collectionItem: CommonProps[] = [];
+  const [list, setList] = useState<CommonProps[]>([]);
+  console.log(list)
+  useEffect(() => {
+
+    getListingsData();
+
+  }, [connector]);
+
+  const getTokenData = async () => {
+    const tokensQuery = await fetchData();
+    console.log(tokensQuery.data.tokens)
+    tokensQuery.data.tokens.map((i:any)=>{
+      const id = i.id
+      const name = i.name
+      const URI = i.uri
+      const description = i.description
+      const tokenAddress = '0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a'
+      collectionItem.push({id,name,URI,description,tokenAddress})
+    })
+      return collectionItem
+
+  };
+
+  async function getListingsData() {
+    const response = await getTokenData();
+    if (response) {
+      setList(response);
+    }
+  }
+
+
+  const APIURL =
+      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const tokensQuery = `
+{
+  tokens(where:{collectionId:"${params.id}"}){
+    id
+    uri
+    desciption
+    name
+  }
+}
+ `;
+
+  const client = createClient({
+    url: APIURL,
+  });
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    return data;
+  }
   return (
     <>
       <ContainerCollection>
@@ -223,7 +286,7 @@ const CollectionPage: React.FC = () => {
                 </FilterSelected>
                 <ClearAll>Clear All</ClearAll>
               </SelectedFiltersCollection>
-              {/* {viewMode === ViewMode.grid ? (
+              { viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
                 <>
@@ -237,7 +300,7 @@ const CollectionPage: React.FC = () => {
                     );
                   })}
                 </>
-              )} */}
+              ) }
             </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>
