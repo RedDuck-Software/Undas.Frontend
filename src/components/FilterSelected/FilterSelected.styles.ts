@@ -5,12 +5,16 @@ export const SelectedCollectionsWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
 `;
 
 export const SelectedCollectionsList = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
 `;
 
 export const SelectedCollection = styled.div`
@@ -21,7 +25,6 @@ export const SelectedCollection = styled.div`
   width: 160px;
   max-height: 36px;
   height: 100%;
-  margin-right: 15px;
   background: #fbf5ff;
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
   border-radius: 10px;
@@ -38,4 +41,5 @@ export const RemoveAllSelectedCollection = styled.div`
   font-size: 14px;
   line-height: 17px;
   color: #5d3f92;
+  cursor: pointer;
 `;

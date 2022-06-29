@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     list-style: none;
   }
+
+  body {
+    counter-reset: position; // counter for top collection position
+  }
 `;
 
 export const Container = styled.div`
