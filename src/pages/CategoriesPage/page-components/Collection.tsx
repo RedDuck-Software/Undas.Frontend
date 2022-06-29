@@ -12,6 +12,9 @@ import {
   CollectionTextDiv,
   CardsWrapper,
   ImageCollection,
+  OwnerName,
+  CollectionName,
+  NameWrap
 } from "../Categories.styles";
 import {
   CollectionBG,
@@ -105,16 +108,16 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
              <img src={i.collectionUrl} alt="collection-pic" />
            </CollectionPicWrap>
            {/*CategoriesPage name*/}
-           <div>
+           <NameWrap>
              <NameNft>
-               <CollectionText fs="14px">{i.collectionName}</CollectionText>
+               <CollectionName>{i.collectionName}</CollectionName>
                <img src={Verified} alt="verified-ico" />
                <Platform>UND</Platform>
              </NameNft>
-             <CollectionText>{i.owner}</CollectionText>
-           </div>
+             <OwnerName>{i.owner}</OwnerName>
+           </NameWrap>
            <CollectionTextDiv>
-             <CollectionText lh="15px" padd="5px 0">
+             <CollectionText>
                {i.collectionInfo}
              </CollectionText>
            </CollectionTextDiv>
