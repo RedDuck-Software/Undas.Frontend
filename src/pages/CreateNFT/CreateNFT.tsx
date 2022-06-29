@@ -268,7 +268,6 @@ const CreateNFT: React.FC = () => {
     dispatch({ type: "reset", value: "" });
   };
 
-
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
     console.log("tokensQuery", tokensQuery);

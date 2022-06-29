@@ -51,18 +51,16 @@ import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Background } from "../../globalStyles";
-import { useMoralisWeb3Api } from "react-moralis";
 import Context from "../../utils/Context";
-import { ethers } from "ethers";
-import {useParams} from "react-router-dom";
-import {createClient} from "urql";
+import { createClient } from "urql";
+import { useParams } from "react-router-dom";
 
 interface CommonProps {
   id: number;
   name: string;
   URI: string;
-  description:string;
-  tokenAddress:string;
+  description: string;
+  tokenAddress: string;
 }
 
 export interface ItemsProps {
@@ -73,45 +71,40 @@ export interface ItemsProps {
   tokenOwner?: string;
 }
 interface props {
-  collectionId:number
+  collectionId: number;
 }
 const CollectionPage: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
-  console.log('here')
-  const { connector } = useContext(Context);
-  const Web3Api = useMoralisWeb3Api();
 
-  const params = useParams()
-  console.log('paraams',params.id)
+  const { connector } = useContext(Context);
+
+  const params = useParams();
+
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const [show, setShow] = useState(false);
   const target = useRef(null);
   const collectionItem: CommonProps[] = [];
   const [list, setList] = useState<CommonProps[]>([]);
-  console.log(list)
   useEffect(() => {
-
     getListingsData();
-
   }, [connector]);
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log(tokensQuery.data.tokens)
-    tokensQuery.data.tokens.map((i:any)=>{
-      const id = i.id
-      const name = i.name
-      const URI = i.uri
-      const description = i.description
-      const tokenAddress = '0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a'
-      collectionItem.push({id,name,URI,description,tokenAddress})
-    })
-      return collectionItem
-
+    console.log(tokensQuery.data.tokens);
+    tokensQuery.data.tokens.map((i: any) => {
+      const id = i.id;
+      const name = i.name;
+      const URI = i.uri;
+      const description = i.description;
+      const tokenAddress = "0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a";
+      collectionItem.push({ id, name, URI, description, tokenAddress });
+    });
+    return collectionItem;
   };
 
   async function getListingsData() {
@@ -121,9 +114,8 @@ const CollectionPage: React.FC = () => {
     }
   }
 
-
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
 {
@@ -286,7 +278,7 @@ const CollectionPage: React.FC = () => {
                 </FilterSelected>
                 <ClearAll>Clear All</ClearAll>
               </SelectedFiltersCollection>
-              { viewMode === ViewMode.grid ? (
+              {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
                 <>
@@ -300,7 +292,7 @@ const CollectionPage: React.FC = () => {
                     );
                   })}
                 </>
-              ) }
+              )}
             </ContainerNFT>
             <FilterMobileButton />
           </AllNFTContainer>

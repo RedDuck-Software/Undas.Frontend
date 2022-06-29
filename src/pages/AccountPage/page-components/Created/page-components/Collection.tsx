@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState,} from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   CollectionCard,
@@ -21,13 +21,15 @@ type CollectionItemProps = {
   id: number;
   collectionUrl: string;
   collectionCategory: string;
-  collectionInfo?:string;
-  collectionName?:string;
-  owner?:string;
-  tokens?: [{
-    uri:string
-  }]
-}
+  collectionInfo?: string;
+  collectionName?: string;
+  owner?: string;
+  tokens?: [
+    {
+      uri: string;
+    },
+  ];
+};
 
 interface CollectionGridWrapperProps {
   itemList: CollectionItemProps[];
@@ -37,9 +39,7 @@ interface CollectionWithCards{
   uri:string;
 }
 
-const Collection: React.FC<CollectionGridWrapperProps> = ({
-    itemList
-}) => {
+const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
   console.log(itemList)
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
@@ -48,7 +48,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
   const getNfts = async () => {
     const tokens = await fetchData();
 
-    tokens.data.tokens.map((i:any)=>{
+    tokens.data.tokens.map((i: any) => {
       const uri = i.uri;
       const collectionId = i.collectionId
       items.push({uri,collectionId})
@@ -59,9 +59,8 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
     getNftsData()
   }, [account]);
 
-
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const client = createClient({
     url: APIURL,
@@ -77,7 +76,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-
     return data;
   }
 
@@ -87,7 +85,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       setCollectionItems(response);
     }
   }
-  console.log(collectionItems)
+  console.log(collectionItems);
   return (
   <>
       {itemList.map((i)=>{
@@ -131,10 +129,8 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
         </CollectionCard>
 
       })}
-
-</>
+    </>
   );
-
 };
 
 export default Collection;

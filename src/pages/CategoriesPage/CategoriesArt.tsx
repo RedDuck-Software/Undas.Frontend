@@ -1,12 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 
-import {
-  Banner,
-  Title,
-  Info,
-  InfoCard,
-  InfoText,
-} from "./Categories.styles";
+import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
