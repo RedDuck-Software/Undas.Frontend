@@ -47,6 +47,7 @@ export const CreatedButton = styled.button`
   font-size: 18px;
   text-align: center;
   color: #5d3f92;
+  min-width: 220px;
   &:hover {
     background-color: #fbf5ff;
   }
@@ -55,6 +56,7 @@ export const CreatedButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 100%;
+    min-width: unset;
   }
   @media (max-width: 576px) {
     font-weight: 400;
@@ -157,6 +159,7 @@ export const CollectionText = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  padding-right: 10px;
   @media (max-width: 1200px) {
     width: 65%;
     font-size: 12px;
@@ -294,4 +297,6 @@ export const CardsWrapper = styled.div`
 
 export const ImageCollection = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;

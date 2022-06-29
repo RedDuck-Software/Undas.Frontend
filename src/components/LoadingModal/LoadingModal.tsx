@@ -14,7 +14,7 @@ import {
 interface LoadingModalProps {
   isLoading: boolean;
   setAutoRedirect: any;
-  addMore: any;
+  addMore?: any;
 }
 
 const LoadingModal: React.FC<LoadingModalProps> = ({
@@ -28,6 +28,7 @@ const LoadingModal: React.FC<LoadingModalProps> = ({
     setAutoRedirect(false);
     navigate("/account");
   };
+  
   return (
     <ModalWrapper isOpen={isLoading} onClick={() => addMore()}>
       <Modal>

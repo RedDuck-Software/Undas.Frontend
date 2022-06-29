@@ -12,9 +12,8 @@ import {
   CardsWrapper,
   ImageCollection,
 } from "../Created.styles";
-import { CollectionPic, NFT1, NFT2, NFT3, Verified } from "../imports";
+import { Verified } from "../imports";
 import {createClient} from "urql";
-import CollectionGridWrap from "../../../../CollectionPage/page-components/CollectionGridWrap";
 import {useWeb3React} from "@web3-react/core";
 
 
@@ -43,11 +42,11 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
     itemList
 }) => {
   const { account } = useWeb3React();
-
+  console.log(itemList)
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
   const items : CollectionWithCards[] = []
 
-  const getListings = async () => {
+  const getNfts = async () => {
     const tokens = await fetchData();
 
     tokens.data.tokens.map((i:any)=>{
@@ -60,7 +59,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
     return items
   };
   useEffect(() => {
-    getListingsData()
+    getNftsData()
   }, [account]);
 
 
@@ -85,8 +84,8 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
     return data;
   }
 
-  async function getListingsData() {
-    const response = await getListings();
+  async function getNftsData() {
+    const response = await getNfts();
 
     if (response) {
       setCollectionItems(response);
@@ -127,7 +126,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
                        <ImageCollection src={collectionItem.uri} alt="nft-card" />
                       </NFTCards>
                     }
-
                   })
               ) : (
                   <span>There are no NFTs on the marketplace</span>

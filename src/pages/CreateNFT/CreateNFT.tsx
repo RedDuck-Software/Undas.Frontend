@@ -208,7 +208,6 @@ const CreateNFT: React.FC = () => {
     setLoading(true);
     await tx.wait();
     if (autoRedirect) {
-      console.log("autoredirect");
       setAutoRedirect(false);
       navigate("/account");
     }
@@ -268,6 +267,7 @@ const CreateNFT: React.FC = () => {
     setAutoRedirect(false);
     dispatch({ type: "reset", value: "" });
   };
+
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();

@@ -66,7 +66,9 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <SingOutIco />
           <GrayText>Sing Out</GrayText>
         </Wrapper>
-        <SettingsLink to="/settings"><SettingsIco /></SettingsLink>
+        <SettingsLink to="/settings">
+          <SettingsIco />
+        </SettingsLink>
         <AchievmentsBlock>
           <AchievementColoredIco1 />
           <AchievementColoredIco2 />

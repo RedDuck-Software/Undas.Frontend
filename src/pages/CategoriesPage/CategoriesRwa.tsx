@@ -4,11 +4,10 @@ import {
   Banner,
   Title,
   Info,
-  Subtitle,
   InfoCard,
   InfoText,
 } from "./Categories.styles";
-import { CollectionBanner, Email, Telegram } from "./imports";
+import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
@@ -35,10 +34,10 @@ const CategoriesRwa: React.FC = () => {
             </InfoCard>
           </Info>
           <div>
-            <Collection />
-            <Collection />
-            <Collection />
-            <Collection />
+            {/*<Collection />*/}
+            {/*<Collection />*/}
+            {/*<Collection />*/}
+            {/*<Collection />*/}
           </div>
         </Container>
       </Background>
