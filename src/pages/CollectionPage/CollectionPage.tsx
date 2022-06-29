@@ -64,17 +64,16 @@ export interface ItemsProps {
   tokenOwner?: string;
 }
 interface props {
-  collectionId:number
+  collectionId: number;
 }
 const CollectionPage: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
   });
-  console.log('here')
+  console.log("here");
   const { connector } = useContext(Context);
   const Web3Api = useMoralisWeb3Api();
-
 
   const { viewMode, viewButtonsRender } = useViewMode();
 

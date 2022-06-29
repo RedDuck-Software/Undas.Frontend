@@ -246,7 +246,7 @@ const Navbar = () => {
             className="icons"
           >
             <StyledList>
-              <StyledLink to="/account">
+              <StyledLink to={"/account"} state={{ tab: "favourite" }}>
                 <Favorite />
               </StyledLink>
             </StyledList>
