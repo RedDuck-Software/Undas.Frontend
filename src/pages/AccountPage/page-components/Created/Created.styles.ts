@@ -47,6 +47,7 @@ export const CreatedButton = styled.button`
   font-size: 18px;
   text-align: center;
   color: #5d3f92;
+  min-width: 220px;
   &:hover {
     background-color: #fbf5ff;
   }
@@ -55,6 +56,7 @@ export const CreatedButton = styled.button`
   }
   @media (max-width: 768px) {
     width: 100%;
+    min-width: unset;
   }
   @media (max-width: 576px) {
     font-weight: 400;

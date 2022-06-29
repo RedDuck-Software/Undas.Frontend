@@ -44,6 +44,7 @@ export const RentButton = styled.button`
   font-size: 18px;
   text-align: center;
   color: #5d3f92;
+  min-width: 110px;
   &:hover {
     background-color: #fbf5ff;
   }
@@ -51,6 +52,7 @@ export const RentButton = styled.button`
     background-color: #edd2ff;
   }
   @media (max-width: 768px) {
+    min-width: unset;
     width: 100%;
   }
   @media (max-width: 576px) {
