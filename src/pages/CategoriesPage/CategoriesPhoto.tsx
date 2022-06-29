@@ -34,10 +34,10 @@ const CategoriesPhoto: React.FC = () => {
             </InfoCard>
           </Info>
           <div>
-            <Collection />
-            <Collection />
-            <Collection />
-            <Collection />
+            {/*<Collection />*/}
+            {/*<Collection />*/}
+            {/*<Collection />*/}
+            {/*<Collection />*/}
           </div>
         </Container>
       </Background>

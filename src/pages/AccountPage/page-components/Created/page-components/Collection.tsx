@@ -12,10 +12,8 @@ import {
   CardsWrapper,
   ImageCollection,
 } from "../Created.styles";
-import { CollectionPic, NFT1, NFT2, NFT3, Verified } from "../imports";
+import { Verified } from "../imports";
 import {createClient} from "urql";
-import CollectionGridWrap from "../../../../CollectionPage/page-components/CollectionGridWrap";
-
 import {useWeb3React} from "@web3-react/core";
 
 
@@ -37,18 +35,17 @@ interface CollectionGridWrapperProps {
 interface CollectionWithCards{
   collectionId:number;
   uri:string;
-
 }
 
 const Collection: React.FC<CollectionGridWrapperProps> = ({
     itemList
 }) => {
   const { account } = useWeb3React();
-
+  console.log(itemList)
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
   const items : CollectionWithCards[] = []
 
-  const getListings = async () => {
+  const getNfts = async () => {
     const tokens = await fetchData();
 
     tokens.data.tokens.map((i:any)=>{
@@ -56,12 +53,10 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       const collectionId = i.collectionId
       items.push({uri,collectionId})
     })
-    console.log(items)
-
     return items
   };
   useEffect(() => {
-    getListingsData()
+    getNftsData()
   }, [account]);
 
 
@@ -82,13 +77,12 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log(data)
+
     return data;
   }
 
-  async function getListingsData() {
-    const response = await getListings();
-
+  async function getNftsData() {
+    const response = await getNfts();
     if (response) {
       setCollectionItems(response);
     }
@@ -98,10 +92,10 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
   <>
       {itemList.map((i)=>{
 
-       return <CollectionCard key={i.id} to='/collection' >
+       return <CollectionCard key={i.id} to={`/collection/${i.id}`} >
           <AuthorWrap>
             <CollectionPicWrap>
-              <img src={CollectionPic} alt="collection-pic" />
+              <img src={i.collectionUrl} alt="collection-pic" />
             </CollectionPicWrap>
             <div>
               <NameNft>
@@ -122,16 +116,15 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
               {collectionItems ? (
                   collectionItems.map((collectionItem,counter)=>{
                     console.log(i.id)
-                    if(i.id == collectionItem.collectionId && counter <= 3){
+                    if(i.id == collectionItem.collectionId && counter < 3){
                       counter++
                       return <NFTCards key={collectionItem.collectionId + collectionItem.uri}>
                        <ImageCollection src={collectionItem.uri} alt="nft-card" />
                       </NFTCards>
                     }
-
                   })
               ) : (
-                  <span>There are no NFTs on the marketplace</span>
+                  <span></span>
               )}
             </>
           </CardsWrapper>

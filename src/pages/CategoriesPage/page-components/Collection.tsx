@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {
   CollectionCard,
@@ -21,43 +21,126 @@ import {
   NFT3,
   Verified,
 } from "../imports";
+import {useWeb3React} from "@web3-react/core";
+import {createClient} from "urql";
 
-const Collection: React.FC = () => {
+type CollectionItemProps = {
+  id: number;
+  collectionUrl: string;
+  collectionCategory: string;
+  collectionInfo?:string;
+  collectionName?:string;
+  owner?:string;
+  tokens?: [{
+    uri:string
+  }]
+}
+
+interface CollectionGridWrapperProps {
+  itemList: CollectionItemProps[];
+}
+interface CollectionWithCards{
+  collectionId:number;
+  uri:string;
+
+}
+
+const Collection: React.FC<CollectionGridWrapperProps> = ({
+  itemList
+}) => {
+  const { account } = useWeb3React();
+  const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
+  const items : CollectionWithCards[] = []
+
+  const getListings = async () => {
+    const tokens = await fetchData();
+
+    tokens.data.tokens.map((i:any)=>{
+      const uri = i.uri;
+      const collectionId = i.collectionId
+      items.push({uri,collectionId})
+    })
+
+    return items
+  };
+  useEffect(() => {
+    getListingsData()
+  }, [account]);
+
+
+  const APIURL =
+      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
+  const client = createClient({
+    url: APIURL,
+  });
+
+  const tokensQuery = `
+      {
+          tokens(where:{owner:"${account}"}){
+          uri
+          collectionId
+        }
+      }
+       `;
+  async function fetchData() {
+    const data = await client.query(tokensQuery).toPromise();
+    return data;
+  }
+
+  async function getListingsData() {
+    const response = await getListings();
+
+    if (response) {
+      setCollectionItems(response);
+    }
+  }
   return (
-    <CollectionCard to="/collection">
-      <CollectionBackground src={CollectionBG} alt="collection-bg" />
-      <AuthorWrap>
-        <CollectionPicWrap>
-          <img src={CollectionPic} alt="collection-pic" />
-        </CollectionPicWrap>
-        {/*CategoriesPage name*/}
-        <div>
-          <NameNft>
-            <CollectionText fs="14px">Borya Borya</CollectionText>
-            <img src={Verified} alt="verified-ico" />
-            <Platform>UND</Platform>
-          </NameNft>
-          <CollectionText>by Borya Borya</CollectionText>
-        </div>
-        <CollectionTextDiv>
-          <CollectionText lh="15px" padd="5px 0">
-            If you believe in the future of DeFi, then you believein the future
-            of rekt.news. Each auction winner will also be sent ...
-          </CollectionText>
-        </CollectionTextDiv>
-      </AuthorWrap>
-      <CardsWrapper>
-        <NFTCards>
-          <ImageCollection src={NFT1} alt="nft-card" />
-        </NFTCards>
-        <NFTCards>
-          <ImageCollection src={NFT2} alt="nft-card" />
-        </NFTCards>
-        <NFTCards>
-          <ImageCollection src={NFT3} alt="nft-card" />
-        </NFTCards>
-      </CardsWrapper>
-    </CollectionCard>
+   <>
+     {itemList.map((i) => {
+       return <CollectionCard key={i.id} to={`/collection/${i.id}`}>
+         <CollectionBackground src={CollectionBG} alt="collection-bg" />
+         <AuthorWrap>
+           <CollectionPicWrap>
+             <img src={i.collectionUrl} alt="collection-pic" />
+           </CollectionPicWrap>
+           {/*CategoriesPage name*/}
+           <div>
+             <NameNft>
+               <CollectionText fs="14px">{i.collectionName}</CollectionText>
+               <img src={Verified} alt="verified-ico" />
+               <Platform>UND</Platform>
+             </NameNft>
+             <CollectionText>{i.owner}</CollectionText>
+           </div>
+           <CollectionTextDiv>
+             <CollectionText lh="15px" padd="5px 0">
+               {i.collectionInfo}
+             </CollectionText>
+           </CollectionTextDiv>
+         </AuthorWrap>
+         <CardsWrapper>
+           <>
+             {collectionItems ? (
+                 collectionItems.map((collectionItem,counter)=>{
+                   console.log(i.id)
+                   if(i.id == collectionItem.collectionId && counter < 3){
+                     counter++
+                     console.log(counter)
+                     return <NFTCards key={collectionItem.collectionId + collectionItem.uri}>
+                       <ImageCollection src={collectionItem.uri} alt="nft-card" />
+                     </NFTCards>
+                   }
+                 })
+             ) : (
+                 <span></span>
+             )}
+           </>
+         </CardsWrapper>
+       </CollectionCard>
+     })}
+
+   </>
   );
 };
 
