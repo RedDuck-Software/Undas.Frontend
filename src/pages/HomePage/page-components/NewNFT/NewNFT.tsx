@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Navigation } from "swiper";
+import { Mousewheel, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Context from "../../../../utils/Context";
@@ -87,9 +87,10 @@ const NewNFT: React.FC = () => {
           },
         }}
         className="rent-slider"
-        modules={[Navigation]}
+        modules={[Mousewheel, Navigation]}
         loop={false}
         navigation={true}
+        mousewheel={true}
       >
         {list?.map((item) => {
           return (

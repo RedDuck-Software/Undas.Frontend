@@ -203,9 +203,18 @@ export const CollectionsTr = styled.tr`
     filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
   }
 `;
-export const CollectionFilterWrap = styled(ViewOption)`
-  @media (max-width: 576px) {
+
+export const CollectionFilterWrap = styled.div`
+  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
+  border-radius: 10px;
+  height: 36px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  @media (max-width: 768px) {
     width: 100%;
+    max-width: unset;
   }
 `;
 export const FilterButton = styled(FavouriteButton)`
@@ -223,7 +232,7 @@ export const FilterButton = styled(FavouriteButton)`
     background-color: #edd2ff;
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     width: 50%;
   }
 `;
@@ -276,4 +285,8 @@ export const NameContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+export const ContainerFilter = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
 `;

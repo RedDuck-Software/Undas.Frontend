@@ -45,19 +45,6 @@ export const Title = styled.h1`
   }
 `;
 
-export const Subtitle = styled.h2`
-  font-weight: 400;
-  font-size: 24px;
-  color: #232428;
-
-  @media (max-width: 1200px) {
-    font-size: 18px;
-  }
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-`;
-
 export const InfoCard = styled.div`
   display: flex;
   flex-direction: column;
