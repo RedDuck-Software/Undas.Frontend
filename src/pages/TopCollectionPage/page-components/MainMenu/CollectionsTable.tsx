@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import {
   CollectionMenuWrap,
@@ -25,10 +25,14 @@ import {
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
-import { ItemImg, ItemVerifyIco, filter, close } from "../../imports";
+import { ItemImg, ItemVerifyIco } from "../../imports";
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
-interface CollectionRowProps {
+interface IObjectKeys {
+  [key: string]: string | number | boolean;
+}
+
+interface CollectionRowProps extends IObjectKeys {
   collectionName: string;
   isVerified: boolean;
   priceFloor: string | number;
@@ -141,10 +145,44 @@ const CollectionsMenu: React.FC = () => {
   const [isVerifiedOnly, setIsVerifiedOnly] = useState<boolean>(false);
   const [collections, setCollections] =
     useState<CollectionRowProps[]>(testCollections);
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: string;
+  }>({ key: "", direction: "asc" });
 
   const handleIsVefiriedOnly = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
+
+  const requestSort = (key: string) => {
+    console.log("SORT KEEEEEEEEEEEY", key);
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+    console.log(sortConfig);
+  };
+
+  const verifiedOnly = collections.filter(
+    (collection: CollectionRowProps) => collection.isVerified === true,
+  );
+  const sortedCollections = isVerifiedOnly ? verifiedOnly : [...collections];
+  useMemo(() => {
+    if (sortedCollections !== null) {
+      sortedCollections.sort((a: CollectionRowProps, b: CollectionRowProps) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === "asc" ? -1 : 1;
+        }
+
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === "asc" ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortedCollections;
+  }, [collections, sortConfig]);
 
   return (
     <CollectionMenuWrap>
@@ -171,17 +209,27 @@ const CollectionsMenu: React.FC = () => {
             <CollectionsTd className="first-column"></CollectionsTd>
             <CollectionsTd>Collection</CollectionsTd>
             <CollectionsTd>
-              <PriceTextW>Floor Price</PriceTextW>
+              <PriceTextW onClick={() => requestSort("priceFloor")}>
+                Floor Price
+              </PriceTextW>
             </CollectionsTd>
-            <CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("totalVol")}>
               <PriceTextW>Total Vol</PriceTextW>
             </CollectionsTd>
-            <CollectionsTd>24h Vol</CollectionsTd>
-            <CollectionsTd>24h Vol</CollectionsTd>
-            <CollectionsTd>Owners</CollectionsTd>
-            <CollectionsTd>Items</CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("dayVol")}>
+              24h Vol
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("dayVol")}>
+              24h Vol
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("ownersCount")}>
+              Owners
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("itemsCount")}>
+              Items
+            </CollectionsTd>
           </CollectionsHeadTr>
-          {collections.map((row) => {
+          {sortedCollections.map((row) => {
             return (
               <CollectionRow
                 key={row.collectionName + row.ownersCount + row.itemsCount}
