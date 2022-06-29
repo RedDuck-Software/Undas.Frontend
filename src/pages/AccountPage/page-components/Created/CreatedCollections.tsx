@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../../../utils/Context";
 
-type CollectionItemProps = {
+type createdCollectionItemProps = {
   id: number;
   collectionUrl: string;
   collectionCategory: string;
@@ -18,13 +18,14 @@ type CollectionItemProps = {
 const CreatedCollections: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
-  const createdItems: CollectionItemProps[] = [];
-  const [createdNfts, setCreatedNfts] = useState<CollectionItemProps[]>();
+  const createdCollectionItems: createdCollectionItemProps[] = [];
+  const [createdCollections, setCreatedCollections] =
+    useState<createdCollectionItemProps[]>();
 
-  const getTokensData = async () => {
-    const tokensQuery = await fetchData();
-    console.log(tokensQuery);
-    tokensQuery.data.collections.map((i: any) => {
+  const getCollection = async () => {
+    const collectionsQuery = await fetchData();
+
+    collectionsQuery.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
@@ -32,7 +33,7 @@ const CreatedCollections: React.FC = () => {
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
 
-      createdItems.push({
+      createdCollectionItems.push({
         id,
         collectionUrl,
         collectionCategory,
@@ -41,19 +42,15 @@ const CreatedCollections: React.FC = () => {
         owner,
       });
     });
-    return createdItems;
+    return createdCollectionItems;
   };
 
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListingsData();
+    getCollectionData();
   }, [connector, account]);
-
-  if (!account) {
-    return <Navigate to={"/login"} replace={true} />;
-  }
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
@@ -81,16 +78,16 @@ const CreatedCollections: React.FC = () => {
     return data;
   }
 
-  async function getListingsData() {
-    const response = await getTokensData();
+  async function getCollectionData() {
+    const response = await getCollection();
     if (response) {
-      setCreatedNfts(response);
+      setCreatedCollections(response);
     }
   }
   return (
     <>
-      {createdNfts ? (
-        <Collection itemList={createdNfts} />
+      {createdCollections ? (
+        <Collection itemList={createdCollections} />
       ) : (
         <span>There are no NFTs on the marketplace</span>
       )}
