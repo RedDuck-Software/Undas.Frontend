@@ -24,12 +24,12 @@ const Recommended: React.FC = () => {
     <RecommendedContainer>
       <TitleWrap>
         <Title>Recommended Categories</Title>
-        <ViewAllBtn to="/all">View all</ViewAllBtn>
+        <ViewAllBtn to="/all">All NFTs</ViewAllBtn>
       </TitleWrap>
       <MobileInner>
         <CategoriesWrap>
-          <CategoryWrap to="/categories-new" gridArea="1 / 1 / 4 / 3">
-            <Name>New</Name>
+          <CategoryWrap to="/categories-gimefi" gridArea="1 / 1 / 4 / 3">
+            <Name>GameFi</Name>
             <Image src={MetaversesImg} alt="category-img" />
           </CategoryWrap>
           <CategoryWrap to="/categories-sport" gridArea="1 / 3 / 3 / 5">
