@@ -38,7 +38,7 @@ const MakeAnOffer: React.FC = () => {
   return (
     <WindowWrap>
       <Title>
-        <span>Complete checkout rtgrgr</span>
+        <span>Complete checkout</span>
         <Close
           onClick={() => {
             dispatch(closeModal());

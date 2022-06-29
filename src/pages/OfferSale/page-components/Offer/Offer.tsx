@@ -51,8 +51,11 @@ import { ethers, Signer } from "ethers";
 import { down, info } from "../../imports";
 import Context from "../../../../utils/Context";
 import { createClient } from "urql";
+import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
 
 const Offer: React.FC = () => {
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
@@ -84,7 +87,13 @@ const Offer: React.FC = () => {
       value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
     });
 
+    setLoading(true);
     await tx.wait();
+    if (autoRedirect) {
+      setAutoRedirect(false);
+      navigate("/account");
+    }
+    setLoading(false);
   }
   useEffect(() => {
     if (connector) {
@@ -135,8 +144,22 @@ const Offer: React.FC = () => {
     return data;
   }
 
+  const handleCleanForm = () => {
+    setLoading(false);
+  };
+
+  const handleOffer = () => {
+    setAutoRedirect(true);
+    makeSaleOffer();
+  };
+
   return (
     <OfferContainer>
+      <LoadingModal
+        isLoading={loading}
+        setAutoRedirect={setAutoRedirect}
+        addMore={handleCleanForm}
+      />
       <Container>
         <FirstCollum>
           <NameRow>
@@ -230,7 +253,7 @@ const Offer: React.FC = () => {
         </CheckBoxCenter>
       </AgreeRow>
       <AgreeRowButton>
-        <ButtonMakeOffer onClick={makeSaleOffer}>Make Offer</ButtonMakeOffer>
+        <ButtonMakeOffer onClick={handleOffer}>Make Offer</ButtonMakeOffer>
       </AgreeRowButton>
     </OfferContainer>
   );

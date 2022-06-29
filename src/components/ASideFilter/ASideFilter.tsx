@@ -200,11 +200,14 @@ interface ASideFilterProps {
   accountPage?: boolean;
   selectedCollections?: any;
   setSelectedCollections?: any;
+  newRefs?: any;
+  rentRefs?: any;
+  buyingRefs?: any;
+  hasOffersRefs?: any;
 }
 
 const ASideFilter: React.FC<ASideFilterProps> = ({
   marginTop,
-  accountPage,
 }) => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);

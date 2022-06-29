@@ -106,7 +106,7 @@ const TeammateCards = () => {
             <TeamCard>
               <CardImg variant="top" src={StasnislavStefanyshynCVO} />
               <CardBody>
-                <TeamCardTitle>Stasnislav</TeamCardTitle>
+                <TeamCardTitle>Stanislav</TeamCardTitle>
                 <TeamCardTitleSurname>CVO</TeamCardTitleSurname>
                 {/* If you will want some Description
                     <Card.Text>

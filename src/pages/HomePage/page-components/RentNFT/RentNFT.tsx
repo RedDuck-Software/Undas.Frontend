@@ -63,7 +63,9 @@ const RentNFT: React.FC = () => {
           <Title>Rent NFT</Title>
           <TitleLink href="faq">Learn more...</TitleLink>
         </TitleInner>
-        <ViewAllBtn to="/all">View all</ViewAllBtn>
+        <ViewAllBtn to={"/all"} state={{ buy: false, rent: true }}>
+          View all
+        </ViewAllBtn>
       </TitleWrap>
       <Swiper
         slidesPerView={1}

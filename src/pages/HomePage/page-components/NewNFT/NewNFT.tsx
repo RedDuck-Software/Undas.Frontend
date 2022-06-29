@@ -7,7 +7,7 @@ import Context from "../../../../utils/Context";
 // import { getListing } from "../../../../utils/getListing";
 // import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
 // import { isBuyableFunction } from "../../../../utils/isBuyable";
-import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
+import NFTCard from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { createClient } from "urql";
 import { ethers } from "ethers";
@@ -52,7 +52,6 @@ const NewNFT: React.FC = () => {
 
   async function getItemsData() {
     const response = await getListings();
-    console.log("response", response);
     setList(response);
   }
 
@@ -60,7 +59,6 @@ const NewNFT: React.FC = () => {
     // if (!connector) {
     //   return;
     // }
-    console.log("dsads");
     getItemsData();
   }, [connector]);
 
@@ -68,7 +66,9 @@ const NewNFT: React.FC = () => {
     <NewNFTContainer>
       <TitleWrap>
         <Title>New NFTs</Title>
-        <ViewAllBtn to="/categories">View all</ViewAllBtn>
+        <ViewAllBtn to="/all" state={{ buy: true, rent: false }}>
+          View all
+        </ViewAllBtn>
       </TitleWrap>
       <Swiper
         slidesPerView={1}

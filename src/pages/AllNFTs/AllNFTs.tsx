@@ -23,8 +23,15 @@ import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import FilterSelected from "../../components/FilterSelected/FilterSelected";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  buyAction,
+  rentAction,
+} from "../../store/reducers/Filter/filterActions";
 
 const AllNFTs: React.FC = () => {
+  const dispatch = useDispatch();
   const [results, setResults] = useState<any>();
   const [priceFilter, setPriceFilter] = useState<string>("");
   const [active, setActive] = useState<any>({
@@ -37,6 +44,16 @@ const AllNFTs: React.FC = () => {
   }, [active, priceFilter]);
 
   const { viewMode, viewButtonsRender } = useViewMode();
+
+  const { state }: any = useLocation();
+  if (state !== null && state !== undefined) {
+    if (state.rent) {
+      dispatch(rentAction(state.rent));
+    }
+    if (state.buy) {
+      dispatch(buyAction(state.buy));
+    }
+  }
 
   return (
     <Background>
