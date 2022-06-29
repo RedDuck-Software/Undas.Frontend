@@ -51,7 +51,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
   const { account } = useWeb3React();
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
   const items : CollectionWithCards[] = []
-
+  console.log('itemList',itemList)
   const getListings = async () => {
     const tokens = await fetchData();
 
@@ -77,7 +77,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
 
   const tokensQuery = `
       {
-          tokens(where:{owner:"${account}"}){
+          tokens(orderDirection:asc){
           uri
           collectionId
         }
@@ -85,6 +85,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
+    console.log('data',data.data.tokens)
     return data;
   }
 
@@ -95,6 +96,8 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
       setCollectionItems(response);
     }
   }
+  console.log(collectionItems)
+
   return (
    <>
      {itemList.map((i) => {
@@ -121,7 +124,8 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
          </AuthorWrap>
          <CardsWrapper>
            <>
-             {collectionItems ? (
+             {collectionItems  ? (
+
                  collectionItems.map((collectionItem,counter)=>{
                    console.log(i.id)
                    if(i.id == collectionItem.collectionId && counter < 3){
