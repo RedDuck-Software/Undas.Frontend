@@ -71,7 +71,7 @@ import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
 import { createClient } from "urql";
 import { ethers } from "ethers";
-import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
 
 const OfferRent: React.FC = () => {
   const { connector } = useContext(Context);

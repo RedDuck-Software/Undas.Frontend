@@ -11,7 +11,7 @@ import {
   ImageWrapper,
   AboutWrapper,
   CollectionWrapper,
-} from "./NFTCard.styles";
+} from "./NFTCardHome.styles";
 
 import { Platform } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";

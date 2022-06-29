@@ -7,7 +7,7 @@ import Context from "../../../../utils/Context";
 // import { getListing } from "../../../../utils/getListing";
 // import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
 // import { isBuyableFunction } from "../../../../utils/isBuyable";
-import NFTCard from "../NFTCard/NFTCard";
+import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { createClient } from "urql";
 import { ethers } from "ethers";

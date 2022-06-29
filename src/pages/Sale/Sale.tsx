@@ -16,7 +16,7 @@ import {
 } from "./Sale.styles";
 
 import { Background, Container, PageTitle } from "../../globalStyles";
-import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
 import { down, info, deleteNFT } from "../OfferRent/imports";
 import {
   PageWrapper,

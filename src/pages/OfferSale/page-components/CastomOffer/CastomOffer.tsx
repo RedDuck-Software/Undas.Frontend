@@ -48,7 +48,7 @@ import {
 
 import { down, deleteNFT, info } from "../../imports";
 
-import NFTCard from "../../../HomePage/page-components/NFTCard/NFTCard";
+import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import ModalsNFT from "../../../OfferRent/page-components//ModalsNFT/ModalsNFT";
 
 const CastomOffer: React.FC = () => {

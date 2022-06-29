@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./NFTHeroSlider.css";
 import Context from "../../../../utils/Context";
-import NFTCard from "../NFTCard/NFTCard";
+import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
 import { createClient } from "urql";
