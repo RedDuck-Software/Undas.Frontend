@@ -26,7 +26,7 @@ export const FavouriteButton = styled.button`
     background-color: #edd2ff;
   }
 `;
-export const OfferMenuWrap = styled.div`
+export const CollectionMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
@@ -38,7 +38,7 @@ export const OfferMenuWrap = styled.div`
     margin-top: 20px;
   }
 `;
-export const OffersWrapTable = styled.table`
+export const CollectionsWrapTable = styled.table`
   width: 100%;
   min-width: 950px;
   border-collapse: collapse;
@@ -100,7 +100,7 @@ export const UND = styled.span`
   left: 25px;
   top: 2px;
 `;
-export const OffersTdText = styled.td`
+export const CollectionsTdText = styled.td`
   padding: 10px 30px;
   position: relative;
 
@@ -122,14 +122,19 @@ export const OffersTdText = styled.td`
     opacity: 1;
   }
 `;
-export const ActionText = styled.div`
+export const Position = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #7c7c7c;
+  counter-increment: position;
+  &::before {
+    content: counter(position);
+  }
 `;
+
 export const USDPrise = styled.div`
   width: 100%;
   text-align: left;
@@ -160,12 +165,16 @@ export const PriceTextW = styled.div`
     min-width: 95px;
   }
 `;
-export const PercentTextTop = styled.span`
+
+const PercentText = styled.span`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+`;
+
+export const PercentTextTop = styled(PercentText)`
   color: #008c38;
 
   &:after {
@@ -173,12 +182,8 @@ export const PercentTextTop = styled.span`
     margin-left: 10px;
   }
 `;
-export const PercentTextButtom = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+
+export const PercentTextBottom = styled(PercentText)`
   color: #cc252f;
 
   &:after {
@@ -186,7 +191,7 @@ export const PercentTextButtom = styled.span`
     margin-left: 10px;
   }
 `;
-export const OffersTr = styled.tr`
+export const CollectionsTr = styled.tr`
   padding: 0 30px;
   background: #fbf5ff;
   box-shadow: inset 0 0 1px #7c7c7c;
@@ -198,7 +203,8 @@ export const OffersTr = styled.tr`
     filter: drop-shadow(0px 0px 10px rgba(124, 124, 124, 0.5));
   }
 `;
-export const OfferFilterWrap = styled.div`
+
+export const CollectionFilterWrap = styled.div`
   box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.25);
   border-radius: 10px;
   height: 36px;
@@ -230,63 +236,7 @@ export const FilterButton = styled(FavouriteButton)`
     width: 50%;
   }
 `;
-export const SelectedFilters = styled.div`
-  width: 100%;
-  margin-top: 20px;
-`;
-export const Filter = styled.div`
-  width: 180px;
-  height: 36px;
-  background: #fbf5ff;
-  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
-  border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  display: inline-block;
-`;
-export const FilterImg = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
-  margin-top: 3px;
-  margin-left: 10px;
-`;
-export const FilterName = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  vertical-align: middle;
-  margin-left: 5px;
-`;
-export const FilterClose = styled.img`
-  width: 10px;
-  height: 10px;
-  margin-left: 40px;
-  margin-top: 3px;
-`;
-export const ClearAll = styled.button`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #5d3f92;
-  border: none;
-  background: transparent;
-  margin-left: 15px;
 
-  @media (max-width: 344px) {
-    margin-top: 20px;
-  }
-`;
 export const TextButton = styled.div`
   width: 100%;
 `;
@@ -305,16 +255,16 @@ export const ContainerTable = styled.div`
     margin-bottom: 40px;
   }
 `;
-export const OffersHeadTr = styled.tr`
+export const CollectionsHeadTr = styled.tr`
   &.offers-menu-head {
     background-color: #fbf5ff;
   }
 `;
-interface IOffersTd {
+interface ICollectionsTd {
   padd?: string;
   textAlign?: string;
 }
-export const OffersTd = styled.td<IOffersTd>`
+export const CollectionsTd = styled.td<ICollectionsTd>`
   padding: ${(props) => props.padd || "10px 30px"};
   text-align: ${(props) => props.textAlign || ""};
   font-weight: 400;

@@ -2,7 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 
-import OffersMenu from "./page-components/MainMenu/OffersMenu";
+import CollectionsTable from "./page-components/MainMenu/CollectionsTable";
 import { AccountContainer, StatisticsText } from "./TopCollectionPage.styles";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
@@ -70,7 +70,7 @@ const TopCollectionPage: React.FC = () => {
             <Wrapper w="100%">
               <Wrapper w="100%">
                 <StatisticsText>Top Collection</StatisticsText>
-                <OffersMenu />
+                <CollectionsTable />
               </Wrapper>
             </Wrapper>
           </AccountContainer>
