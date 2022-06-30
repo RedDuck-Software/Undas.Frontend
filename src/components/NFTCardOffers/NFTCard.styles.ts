@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Wrapper } from "../../pages/CategoriesPage/Categories.styles";
 
 export const NFTWrap = styled.div`

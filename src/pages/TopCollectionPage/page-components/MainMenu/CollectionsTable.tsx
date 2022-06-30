@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   CollectionMenuWrap,
@@ -23,10 +23,10 @@ import {
 } from "./CollectionsTable.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
-import { ItemImg, ItemVerifyIco, filter, close } from "../../imports";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { ItemImg, ItemVerifyIco } from "../../imports";
 
 interface CollectionRowProps {
   collectionName: string;
@@ -139,12 +139,15 @@ const testCollections = [
 
 const CollectionsMenu: React.FC = () => {
   const [isVerifiedOnly, setIsVerifiedOnly] = useState<boolean>(false);
-  const [collections, setCollections] =
-    useState<CollectionRowProps[]>(testCollections);
+  const [collections, setCollections] = useState<CollectionRowProps[]>([]);
 
   const handleIsVefiriedOnly = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
+
+  useEffect(() => {
+    setCollections(testCollections);
+  }, []);
 
   return (
     <CollectionMenuWrap>

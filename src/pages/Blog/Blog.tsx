@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 import { BlogWrap, Text, TabsMenuWrap, TabsMenu, Tab } from "./Blog.styles";
-
-import MainBlog from "./page-components/MainBlog/MainBlog";
-import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
 import BusinessTips from "./page-components/BusinessTips/BusinessTips";
 import Inspiration from "./page-components/Inspiration/Inspiration";
+import MainBlog from "./page-components/MainBlog/MainBlog";
 import News from "./page-components/News/News";
+import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
 
 import {
   Container,

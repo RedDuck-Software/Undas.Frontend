@@ -1,4 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
+
+import StatList from "./StatList";
+
 import {
   CreateFormGroup,
   ModalBlock,
@@ -9,7 +12,6 @@ import {
 import { StatsIco } from "../../imports";
 import { Stat } from "../../types";
 import StatsModal from "../SettingsModal/StatsModal";
-import StatList from "./StatList";
 
 interface StatsProps {
   statList: Stat[];

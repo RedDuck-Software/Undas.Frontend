@@ -1,61 +1,67 @@
-import React, {useContext, useEffect, useState} from "react";
+import { useWeb3React } from "@web3-react/core";
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { createClient } from "urql";
 
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
-import {useWeb3React} from "@web3-react/core";
 import Context from "../../utils/Context";
-import {Navigate} from "react-router-dom";
-import {createClient} from "urql";
 
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
   collectionCategory: string;
-  collectionInfo?:string;
-  collectionName?:string;
-  owner?:string;
-}
+  collectionInfo?: string;
+  collectionName?: string;
+  owner?: string;
+};
 
 const CategoriesGameFI: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const createdItems: CollectionItemProps[] = [];
-  const [createdNfts,setCreatedNfts] = useState<CollectionItemProps[]>()
+  const [createdNfts, setCreatedNfts] = useState<CollectionItemProps[]>();
 
   const getTokensData = async () => {
     const tokensQuery = await fetchData();
-    tokensQuery.data.collections.map((i:any) => {
+    tokensQuery.data.collections.map((i: any) => {
+      const id = i.id;
+      const collectionCategory = i.collectionCategory;
+      const collectionUrl = i.collectionUrl;
+      const collectionName = i.collectionName;
+      const owner = i.owner;
+      const collectionInfo = i.collectionInfo;
 
-      const id = i.id
-      const collectionCategory = i.collectionCategory
-      const collectionUrl = i.collectionUrl
-      const collectionName = i.collectionName
-      const owner = i.owner
-      const collectionInfo = i.collectionInfo
+      createdItems.push({
+        id,
+        collectionUrl,
+        collectionCategory,
+        collectionName,
+        collectionInfo,
+        owner,
+      });
+    });
+    return createdItems;
+  };
 
-      createdItems.push({id,collectionUrl,collectionCategory,collectionName,collectionInfo,owner})
-    })
-    return createdItems
-  }
-
-  console.log('account',account)
+  console.log("account", account);
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListingsData()
+    getListingsData();
   }, [connector, account]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
-  console.log(createdNfts)
+  console.log(createdNfts);
 
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const createdTokensQuery = `
     {
@@ -82,39 +88,39 @@ const CategoriesGameFI: React.FC = () => {
 
   async function getListingsData() {
     const response = await getTokensData();
-    if(response){
-      setCreatedNfts(response)
+    if (response) {
+      setCreatedNfts(response);
     }
   }
   return (
-      <>
-        <Banner>
-          <img src={CollectionBanner} alt="CollectionBanner" />
-        </Banner>
-        <Background>
-          <Container>
-            <Info>
-              <div>
-                <Title>Celebrity</Title>
-              </div>
-              <InfoCard>
-                <InfoText>
-                  On this page you can enjoy a selection of interesting
-                  collections. In this section the Celebrity collections are
-                  presented. The Celebrity category is dedicated to celebrities.
-                </InfoText>
-              </InfoCard>
-            </Info>
+    <>
+      <Banner>
+        <img src={CollectionBanner} alt="CollectionBanner" />
+      </Banner>
+      <Background>
+        <Container>
+          <Info>
             <div>
-              {createdNfts ? (
-                  <Collection itemList={createdNfts}/>
-              ) : (
-                  <span>There are no collections </span>
-              )}
+              <Title>Celebrity</Title>
             </div>
-          </Container>
-        </Background>
-      </>
+            <InfoCard>
+              <InfoText>
+                On this page you can enjoy a selection of interesting
+                collections. In this section the Celebrity collections are
+                presented. The Celebrity category is dedicated to celebrities.
+              </InfoText>
+            </InfoCard>
+          </Info>
+          <div>
+            {createdNfts ? (
+              <Collection itemList={createdNfts} />
+            ) : (
+              <span>There are no collections </span>
+            )}
+          </div>
+        </Container>
+      </Background>
+    </>
   );
 };
 

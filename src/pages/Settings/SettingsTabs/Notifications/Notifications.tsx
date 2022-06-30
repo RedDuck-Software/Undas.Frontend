@@ -7,8 +7,8 @@ import {
   ItemsForm,
 } from "./Notifications.styles";
 
-import { Button, DescriptionText } from "../SettingsTabs.styles";
 import { PageTitle } from "../../../../globalStyles";
+import { Button, DescriptionText } from "../SettingsTabs.styles";
 
 const Notifications: React.FC = () => {
   return (

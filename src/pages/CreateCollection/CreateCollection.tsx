@@ -1,4 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -33,8 +35,11 @@ import {
 import { Background, FormButtonsWrap } from "../../globalStyles";
 import closeIcon from "../../icons/close.svg";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
+import { UndasGeneralNFT__factory } from "../../typechain";
 import { Category } from "../../types/category";
+import Context from "../../utils/Context";
 import { getCategory } from "../../utils/getCategory";
+import { PolygonIcon } from "../AllNFTs/imports";
 import {
   CreateSec,
   CreateContainer,
@@ -50,13 +55,8 @@ import {
   ButtonsBlock,
   CreateFormButton,
 } from "../CreateNFT/CreateNFT.styles";
-import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
-import { ethers } from "ethers";
-import { UndasGeneralNFT__factory } from "../../typechain";
-import Context from "../../utils/Context";
-import { useWeb3React } from "@web3-react/core";
-import { PolygonIcon } from "../AllNFTs/imports";
 import { bsc, solana, ton } from "../CreateNFT/imports";
+import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
   console.log();
   return (

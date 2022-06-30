@@ -19,9 +19,7 @@ const NFTCardHome: React.FC<{ uri: string; name: string }> = ({
   return (
     <NFTWrap>
       <Image src={uri} alt="nft-image" />
-      <AboutWrapper
-        disp="flex"
-      >
+      <AboutWrapper disp="flex">
         <Name>{name}</Name>
         <CollectionWrapper disp="flex" alignItems="center" gap="10px">
           <CollectionText>Collection Name</CollectionText>
@@ -30,7 +28,6 @@ const NFTCardHome: React.FC<{ uri: string; name: string }> = ({
             UND
           </Platform> */}
         </CollectionWrapper>
-        
       </AboutWrapper>
     </NFTWrap>
   );

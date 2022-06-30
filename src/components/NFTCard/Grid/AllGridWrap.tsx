@@ -2,17 +2,15 @@ import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
+import { createClient } from "urql";
 
+import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
 import {
   useBuy,
   useHasOffers,
   useRent,
 } from "../../../store/reducers/Filter/helpers";
 import Context from "../../../utils/Context";
-import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
-
-import { createClient, useQuery } from "urql";
-import detectEthereumProvider from "@metamask/detect-provider";
 
 interface CommonProps {
   id: number;
@@ -62,7 +60,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
-  const [network, setNetwork] = useState("");
+
   const getListings = async () => {
     setAmountOfNFTs(0);
 

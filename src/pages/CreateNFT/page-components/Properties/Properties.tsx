@@ -10,8 +10,8 @@ import {
   WithPropertiesBlock,
 } from "../../CreateNFT.styles";
 import { PropertiesIco } from "../../imports";
-import PropertiesModal from "../SettingsModal/PropertiesModal";
 import { Property } from "../../types";
+import PropertiesModal from "../SettingsModal/PropertiesModal";
 interface PropertiesProps {
   propertyList: Property[];
   setPropertyList: Dispatch<SetStateAction<Property[]>>;

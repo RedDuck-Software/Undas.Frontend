@@ -2,7 +2,6 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Navigate, useLocation } from "react-router-dom";
-import { useMoralisWeb3Api } from "react-moralis";
 
 import {
   AccountContainer,
@@ -27,13 +26,13 @@ import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
 import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
+import { NFT } from "./types";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { NFT } from "./types";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("");

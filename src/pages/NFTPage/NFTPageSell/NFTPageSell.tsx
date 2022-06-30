@@ -65,7 +65,6 @@ import Levels from "../page-components/Accordion/accordrion-components/Levels";
 import Offers from "../page-components/Accordion/accordrion-components/Offers";
 import Properties from "../page-components/Accordion/accordrion-components/Properties";
 import Stats from "../page-components/Accordion/accordrion-components/Stats";
-import Buy from "../page-components/Buy";
 
 const NFTPageSell: React.FC = () => {
   const override = css`

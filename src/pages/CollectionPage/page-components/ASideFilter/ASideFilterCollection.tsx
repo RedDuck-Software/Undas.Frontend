@@ -68,7 +68,6 @@ const ASideFilterCollection: React.FC<{ marginTop?: string }> = ({
 
   const newRef: any = useRef();
   const stakingRef: any = useRef();
-  const buyRef: any = useRef();
   return (
     <ASideWrap className={(active && "active") || ""}>
       <Holder marginTop={marginTop}>

@@ -1,7 +1,28 @@
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
+import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
+import { Background, Container, PageTitle } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
+import { info } from "../OfferRent/imports";
+import {
+  PageWrapper,
+  UNDLabel,
+  ImageInfo,
+  AgreementLink,
+  CheckboxLabelAgreement,
+  CheckboxInputAgreement,
+  NFTInfoContainer,
+  OverlayPopUp,
+  FAQLink,
+  ButtonInfo,
+} from "../OfferRent/OfferRent.styles";
 import {
   TopLinkWrapper,
   TopLink,
@@ -27,31 +48,6 @@ import {
   CheckBoxWrapper,
   Button,
 } from "../Rent/Rent.styles";
-
-import {
-  PageWrapper,
-  UNDLabel,
-  ImageInfo,
-  AgreementLink,
-  CheckboxLabelAgreement,
-  CheckboxInputAgreement,
-  NFTInfoContainer,
-  OverlayPopUp,
-  FAQLink,
-  ButtonInfo,
-} from "../OfferRent/OfferRent.styles";
-
-import { Background, Container, PageTitle } from "../../globalStyles";
-
-import { info } from "../OfferRent/imports";
-import NFTCard from "../../components/NFTCardOffers/NFTCard";
-import { useLocation } from "react-router-dom";
-import Context from "../../utils/Context";
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import { Marketplace__factory } from "../../typechain";
-import { ethers } from "ethers";
-import { useNavigate } from "react-router-dom";
-import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const Rent: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(true);
