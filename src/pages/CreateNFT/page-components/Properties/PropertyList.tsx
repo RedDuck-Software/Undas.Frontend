@@ -1,12 +1,12 @@
 import React from "react";
 
+import { Property as PropertyType } from "../../types";
 import {
   PropertiesWrap,
   PropertiesElement,
   ColoredText,
   PropertiesElementItem,
 } from "../Proprties.styles";
-import { Property as PropertyType } from "../../types";
 
 interface PropertyProps {
   propertyType: string;

@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
 
-import { ViewAllBtn } from "../../../HomePage/page-components/Recomended/Recommended.styles";
-
 import {
   Wrap,
   SectionTitle,
@@ -9,6 +7,8 @@ import {
   DescriptWrap,
   CardsWrap,
 } from "./MainPageSection.styles";
+
+import { ViewAllBtn } from "../../../HomePage/page-components/Recomended/Recommended.styles";
 
 interface MainPageSection {
   titleText: string;

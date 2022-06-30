@@ -1,4 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
+
+import LevelList from "./LevelList";
+
 import {
   CreateFormGroup,
   ModalBlock,
@@ -9,7 +12,6 @@ import {
 import { LevelsIco } from "../../imports";
 import { Level } from "../../types";
 import LevelsModal from "../SettingsModal/LevelsModal";
-import LevelList from "./LevelList";
 
 interface LevelsProps {
   levelList: Level[];

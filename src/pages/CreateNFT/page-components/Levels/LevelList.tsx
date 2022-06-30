@@ -1,6 +1,6 @@
 import React from "react";
-import { Level } from "../../types";
 
+import { Level } from "../../types";
 import CompleteBar from "../CompleteBar";
 import { LevelsWrap } from "../Proprties.styles";
 

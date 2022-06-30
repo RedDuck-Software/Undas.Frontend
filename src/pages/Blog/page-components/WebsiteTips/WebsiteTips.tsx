@@ -1,8 +1,6 @@
 import React from "react";
 
-import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
 import { Text, BlogTitle } from "../../Blog.styles";
-import { BlogPost } from "../../types";
 import {
   SmImg1,
   SmImg2,
@@ -13,6 +11,8 @@ import {
   Inspiration1,
   Inspiration2,
 } from "../../imports";
+import { BlogPost } from "../../types";
+import BlogPageGrid from "../BlogPageGrid/BlogPageGrid";
 
 const WebsiteTipsPosts: BlogPost[] = [
   {

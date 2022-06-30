@@ -1,7 +1,7 @@
 import React from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
 import {
   OwnerItemText,
@@ -46,10 +46,9 @@ import {
   SwiperNFT,
 } from "./CastomOffer.styles";
 
-import { down, deleteNFT, info } from "../../imports";
-
 import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import ModalsNFT from "../../../OfferRent/page-components//ModalsNFT/ModalsNFT";
+import { down, deleteNFT, info } from "../../imports";
 
 const CastomOffer: React.FC = () => {
   return (

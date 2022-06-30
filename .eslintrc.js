@@ -14,7 +14,7 @@ module.exports = {
   ],
   rules: {
     "import/order": [
-      "warn",
+      "error",
       {
         alphabetize: {
           order: "asc",
@@ -34,14 +34,16 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
-    "react/prop-types": "warn",
+    "react/prop-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "warn",
-    "react/display-name": "off",
+    //"@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/display-name": ["off"],
   },
   settings: {
     react: {
       version: "detect",
-    },  
+    },
   },
 };

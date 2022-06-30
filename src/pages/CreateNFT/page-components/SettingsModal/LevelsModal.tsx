@@ -1,12 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addLevel,
-  removeLevel,
-} from "../../../../store/reducers/createNFT/createNFTActions";
-import { useLevels } from "../../../../store/reducers/createNFT/helpers";
-import { Complete, Level } from "../../types";
 
 import {
   CreateModalWrap,
@@ -20,6 +14,13 @@ import {
   ModalLabelStraight,
   CreateModalFormButton,
 } from "./CreateModal.styles";
+
+import {
+  addLevel,
+  removeLevel,
+} from "../../../../store/reducers/createNFT/createNFTActions";
+import { useLevels } from "../../../../store/reducers/createNFT/helpers";
+import { Complete, Level } from "../../types";
 
 import "./styles.css";
 

@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { Marketplace__factory } from "../../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
 import Context from "../../../utils/Context";
@@ -40,11 +41,11 @@ const Buy: React.FC<BuyProps> = ({
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
-  const account = web3React.account;
+  //const account = web3React.account;
 
-  const [price, setPrice] = useState(0);
+  const [, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
-  const [seller, setSeller] = useState("");
+  const [, setSeller] = useState("");
 
   const getListing = async (itemId: number) => {
     if (!connector) return;
@@ -78,9 +79,9 @@ const Buy: React.FC<BuyProps> = ({
     );
 
     const signer = provider.getSigner(0);
-    const userBalanceInWei = ethers.utils.formatUnits(
-      await signer.getBalance(),
-    );
+    //const userBalanceInWei = ethers.utils.formatUnits(
+    //  await signer.getBalance(),
+    //);
 
     const amount = ethers.utils.formatUnits(priceInNum);
 

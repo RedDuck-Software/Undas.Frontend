@@ -1,7 +1,9 @@
+import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Mousewheel, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { createClient } from "urql";
 
 import Context from "../../../../utils/Context";
 // import { getListing } from "../../../../utils/getListing";
@@ -9,8 +11,6 @@ import Context from "../../../../utils/Context";
 // import { isBuyableFunction } from "../../../../utils/isBuyable";
 import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-import { createClient } from "urql";
-import { ethers } from "ethers";
 
 const NewNFTContainer = styled.div`
   margin-top: 120px;

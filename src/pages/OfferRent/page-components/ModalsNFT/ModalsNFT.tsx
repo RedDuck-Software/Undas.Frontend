@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import { collectionImage, verifyImage, nftImage } from "../../imports";
 import {
   MakeOfferText,
   ModalNftDiv,
@@ -48,8 +47,9 @@ import {
   SortWrap,
 } from "./ModalsNFT.styles";
 
+import { collectionImage, verifyImage, nftImage } from "../../imports";
+
 const ModalsNFT: React.FC = () => {
-  const [results, setResults] = useState<any>();
   const [priceFilter, setPriceFilter] = useState<string>("");
   const [active, setActive] = useState<any>({
     price: false,

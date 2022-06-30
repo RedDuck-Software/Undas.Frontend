@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-import { Container, PageTitle, FormButton } from "../../globalStyles";
-
-import ethIcon from "../../icons/tokens/eth-grey.svg";
-import { PolygonIcon } from "../AllNFTs/imports";
 import { bsc } from "./imports";
+
+import { Container, PageTitle, FormButton } from "../../globalStyles";
+import { PolygonIcon } from "../AllNFTs/imports";
 
 export const CreateSec = styled.div`
   padding: 60px 0 120px;

@@ -1,61 +1,68 @@
-import React, {useContext, useEffect, useState} from "react";
-
+import { useWeb3React } from "@web3-react/core";
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+import { createClient } from "urql";
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
-import {useWeb3React} from "@web3-react/core";
 import Context from "../../utils/Context";
-import {Navigate} from "react-router-dom";
-import {createClient} from "urql";
 
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
   collectionCategory: string;
-  collectionInfo?:string;
-  collectionName?:string;
-  owner?:string;
-}
+  collectionInfo?: string;
+  collectionName?: string;
+  owner?: string;
+};
 
 const CategoriesGameFI: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
-  const createdItems: CollectionItemProps[] = [];
-  const [createdNfts,setCreatedNfts] = useState<CollectionItemProps[]>()
+  const collectionsList: CollectionItemProps[] = [];
+  const [collections, setCollections] = useState<CollectionItemProps[]>();
+  const [loading, setLoading] = useState(true);
 
-  const getTokensData = async () => {
-    const tokensQuery = await fetchData();
-    tokensQuery.data.collections.map((i:any) => {
+  const getСollection = async () => {
+    const collections = await fetchData();
+    collections.data.collections.map((i: any) => {
+      const id = i.id;
+      const collectionCategory = i.collectionCategory;
+      const collectionUrl = i.collectionUrl;
+      const collectionName = i.collectionName;
+      const owner = i.owner;
+      const collectionInfo = i.collectionInfo;
 
-      const id = i.id
-      const collectionCategory = i.collectionCategory
-      const collectionUrl = i.collectionUrl
-      const collectionName = i.collectionName
-      const owner = i.owner
-      const collectionInfo = i.collectionInfo
+      collectionsList.push({
+        id,
+        collectionUrl,
+        collectionCategory,
+        collectionName,
+        collectionInfo,
+        owner,
+      });
+    });
+    return collectionsList;
+  };
 
-      createdItems.push({id,collectionUrl,collectionCategory,collectionName,collectionInfo,owner})
-    })
-    return createdItems
-  }
-
-  console.log('account',account)
+  console.log("account", account);
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListingsData()
+    getСollectionData();
+    setLoading(false);
   }, [connector, account]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
-  console.log(createdNfts)
 
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const createdTokensQuery = `
     {
@@ -80,43 +87,45 @@ const CategoriesGameFI: React.FC = () => {
     return data;
   }
 
-  async function getListingsData() {
-    const response = await getTokensData();
-    if(response){
-      setCreatedNfts(response)
+  async function getСollectionData() {
+    const response = await getСollection();
+    if (response) {
+      setCollections(response);
     }
   }
-  console.log(createdNfts)
-  return (
-      <>
-        <Banner>
-          <img src={CollectionBanner} alt="CollectionBanner" />
-        </Banner>
-        <Background>
-          <Container>
-            <Info>
-              <div>
-                <Title>18+ NFTs</Title>
-              </div>
-              <InfoCard>
-                <InfoText>
-                  On this page you can enjoy a selection of interesting
-                  collections. This section provides you with collections in the
-                  18+ NFTs category. The 18+ NFTs category is dedicated to
-                  explicit NFT pictures.
-                </InfoText>
-              </InfoCard>
-            </Info>
+
+  return loading? (
+      <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+  ) :(
+    <>
+      <Banner>
+        <img src={CollectionBanner} alt="CollectionBanner" />
+      </Banner>
+      <Background>
+        <Container>
+          <Info>
             <div>
-              {createdNfts ? (
-                  <Collection itemList={createdNfts}/>
-              ) :
-                  <span>dsadsa</span>
-              }
+              <Title>18+ NFTs</Title>
             </div>
-          </Container>
-        </Background>
-      </>
+            <InfoCard>
+              <InfoText>
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                18+ NFTs category. The 18+ NFTs category is dedicated to
+                explicit NFT pictures.
+              </InfoText>
+            </InfoCard>
+          </Info>
+          <div>
+            {collections?.length ? (
+                <Collection itemList={collections} />
+            ) : (
+                <h1 className="text-center">No collections have been created at this category</h1>
+            )}
+          </div>
+        </Container>
+      </Background>
+    </>
   );
 };
 
