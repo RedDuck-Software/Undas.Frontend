@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NFTWrap } from "../../../HomePage/page-components/NFTCard/NFTCard.styles";
+import { NFTWrap } from "../../../../components/NFTCardOffers/NFTCard.styles";
 import { Swiper } from "swiper/react";
 
 import { eth, offerTime } from "../../imports";

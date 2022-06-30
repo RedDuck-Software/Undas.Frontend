@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Mousewheel, Navigation } from "swiper";
+import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import "swiper/css/effect-coverflow";
 import "./NFTHeroSlider.css";
 import Context from "../../../../utils/Context";
-import NFTCard from "../NFTCard/NFTCard";
+import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { TitleInner, TitleLink } from "./RentNFT.styles";
 import { createClient } from "urql";
@@ -76,28 +77,38 @@ const RentNFT: React.FC = () => {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2,
-            spaceBetween: 50,
-          },
-          1200: {
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          1700: {
+          1200: {
             slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1700: {
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
         className="rent-slider"
-        modules={[Mousewheel, Navigation]}
+        modules={[Mousewheel, Navigation, EffectCoverflow]}
         loop={false}
         navigation={true}
         mousewheel={true}
+        effect={"coverflow"}
+        centeredSlides={true}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
       >
         {list?.map((item) => {
           return (
             <>
               <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
+                <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>
           );

@@ -41,6 +41,10 @@ export const LeftSideWrapper = styled.div`
   @media (max-width: 992px) {
     display: none;
   }
+  @media (min-width: 1700px) {
+    justify-content: flex-start;
+    gap: 10%;
+  }
 `;
 
 export const TopicColumn = styled.div`
@@ -74,6 +78,9 @@ export const TopicTitle = styled.h2`
     margin-bottom: 0.75rem;
     font-size: 1.05rem;
   }
+  @media (min-width: 1700px) {
+    font-size: 2rem;
+  }
 `;
 
 export const TopicText = styled.a`
@@ -100,6 +107,9 @@ export const TopicText = styled.a`
 
   @media (max-width: 734px) {
     font-size: 0.9rem;
+  }
+  @media (min-width: 1700px) {
+    font-size: 1.5rem;
   }
 `;
 export const RightSideWrapper = styled.div`
@@ -128,6 +138,9 @@ export const FooterText = styled.span`
   }
   @media (max-width: 576px) {
     text-align: center;
+  }
+  @media (min-width: 1700px) {
+    font-size: 2rem;
   }
 `;
 
@@ -255,6 +268,9 @@ export const FooterIcon = styled.img`
 
   @media (max-width: 869px) {
     width: 30px;
+  }
+  @media (min-width: 1700px) {
+    width: 60px;
   }
 `;
 

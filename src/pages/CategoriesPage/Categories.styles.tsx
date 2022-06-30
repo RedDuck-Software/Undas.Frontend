@@ -90,6 +90,8 @@ export const CollectionCard = styled(Link)`
   display: flex;
   justify-content: space-between;
   text-decoration: none;
+  align-items: flex-end;
+  gap: 15px;
   @media (max-width: 1200px) {
     height: 180px;
     padding: 0px;
@@ -113,75 +115,131 @@ export const CollectionBackground = styled.img`
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
-  width: 56%;
-  min-width: 474px;
-  height: 70px;
-  margin-top: 45px;
-  padding-right: 20px;
   background: rgba(35, 36, 40, 0.7);
   backdrop-filter: blur(50px);
   border-radius: 20px;
-
+  gap: 10px;
+  flex: 0 0 60%;
   @media (max-width: 1200px) {
+    flex: 0 0 100%;
     width: 100%;
-    position: absolute;
-    margin-top: 110px;
-  }
-  @media (max-width: 768px) {
-    margin-top: 90px;
   }
   @media (max-width: 576px) {
-    height: 95px;
-    margin-top: 70px;
-    align-items: unset;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    padding: 10px 5px;
   }
 `;
 
 export const CollectionPicWrap = styled.div`
-  width: 70px;
-  height: 100%;
-  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+  flex: 0 0 10%;
   & img {
     width: 100%;
-    height: 100%;
+    border-radius: 20px;
   }
   @media (max-width: 576px) {
+    flex: 0 0 20%;
+    & img {
     height: 60px;
     width: 60px;
-    align-items: unset;
+  }
   }
 `;
-
-interface IText {
-  fs?: string;
-  mw?: string;
-  lh?: string;
-  padd?: string;
-}
-
-export const CollectionText = styled.span<IText>`
-  max-width: ${(props) => props.mw || ""};
+export const CollectionName = styled.div`
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
   font-weight: 400;
-  font-size: ${(props) => props.fs || "14px"};
-  line-height: ${(props) => props.lh || "17px"};
-  padding: ${(props) => props.padd};
-  color: #fff;
-
+  font-size: 14px;
+  line-height: 17px;
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+`;
+export const NameWrap = styled.div`
+  flex: 0 1 40%;
   @media (max-width: 1200px) {
-    max-width: unset;
-    width: 65%;
-    font-size: 12px;
+    flex: 0 1 30%;
   }
   @media (max-width: 576px) {
-    font-family: "Montserrat";
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+`;
+export const NameNft = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 20px 0 0;
+  align-items: center;
+  gap: 10px;
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+`;
+export const OwnerName = styled.div`
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  @media (max-width: 576px) {
+    max-width: 95%;
+  }
+`;
+export const CollectionTextDiv = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 0 0 auto;
+  flex: 0 1 50%;
+  @media (max-width: 1200px) {
+    flex: 0 1 60%;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+    padding: 0 15px;
+  }
+`;
+export const CollectionText = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  padding-right: 10px;
+  @media (max-width: 1200px) {
+    width: 100%;
+    padding-right: 0;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  @media (max-width: 576px) {
     font-style: normal;
     font-size: 10px;
     line-height: 12px;
-    display: table-cell;
+    -webkit-line-clamp: 2;
   }
 `;
 
@@ -268,72 +326,6 @@ export const NFTCards = styled.div`
   }
 `;
 
-export const NameNft = styled.div`
-  position: relative;
-  display: flex;
-  margin: 0 20px 0 0;
-  align-items: center;
-  gap: 10px;
-
-  @media (max-width: 576px) {
-    margin-top: 10px;
-  }
-`;
-
-export const CollectionTextDiv = styled.div`
-  position: relative;
-  display: flex;
-  max-width: 320px;
-  margin: 0 0 0 auto;
-
-  @media (max-width: 1200px) {
-    max-width: unset;
-    position: absolute;
-    right: 15px;
-    display: block;
-    width: 70%;
-  }
-  @media (max-width: 950px) {
-    width: 60%;
-  }
-  @media (max-width: 700px) {
-    width: 56%;
-    line-height: 12px;
-    display: table-cell;
-    left: 20px;
-    margin-left: 210px;
-    top: 10px;
-    bottom: 10px;
-  }
-  @media (max-width: 646px) {
-    width: 56%;
-  }
-  @media (max-width: 626px) {
-    width: 53%;
-  }
-  @media (max-width: 576px) {
-    width: 45%;
-  }
-  @media (max-width: 540px) {
-    width: 37%;
-  }
-  @media (max-width: 576px) {
-    left: 170px;
-    margin-left: -100px;
-    width: 68%;
-    bottom: 10px;
-    top: unset;
-  }
-  @media (max-width: 486px) {
-    width: 60%;
-  }
-  @media (max-width: 390px) {
-    width: 50%;
-  }
-  @media (max-width: 340px) {
-    width: 45%;
-  }
-`;
 
 export const CardsWrapper = styled.div`
   position: relative;

@@ -47,7 +47,7 @@ import { Background, Container, PageTitle } from "../../globalStyles";
 import { info } from "../OfferRent/imports";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
-import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
 import { RentalPeriod } from "../NFTPage/NFTPage.styles";
 import Context from "../../utils/Context";
 import { Marketplace__factory } from "../../typechain";

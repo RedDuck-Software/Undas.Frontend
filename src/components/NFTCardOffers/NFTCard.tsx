@@ -13,8 +13,8 @@ import {
   CollectionWrapper,
 } from "./NFTCard.styles";
 
-import { Platform } from "../../../CategoriesPage/Categories.styles";
-import { Verified } from "../../../CategoriesPage/imports";
+import { Platform } from "../../pages/CategoriesPage/Categories.styles";
+import { Verified } from "../../pages/CategoriesPage/imports";
 
 const NFTCard: React.FC<{ uri: string; name: string }> = ({ uri, name }) => {
   return (
