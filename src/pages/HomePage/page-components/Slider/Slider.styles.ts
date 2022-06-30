@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { CollectionPrev } from "./imports";
 
 import { PrimaryButton, SecondaryButton } from "../../../../globalStyles";
-import { Link } from "react-router-dom";
 
 export const SliderImage = styled.img`
   width: 100%;

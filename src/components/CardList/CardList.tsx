@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useEffect, useState, useContext } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import { createClient } from "urql";
 
 import {
   CardListWrapper,
@@ -24,7 +25,6 @@ import { getStaking } from "../../utils/getStaking";
 import { getStakingsLastIndex } from "../../utils/getStakingsLastIndex";
 // import { isBuyableFunction } from "../../utils/isBuyable";
 import Pagination from "../Pagination/Pagination";
-import { createClient } from "urql";
 
 interface CardListProps {
   newFilter?: boolean;

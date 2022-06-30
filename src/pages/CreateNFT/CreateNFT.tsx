@@ -1,4 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 import React, {
   Dispatch,
   SetStateAction,
@@ -8,6 +10,10 @@ import React, {
   useReducer,
 } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createClient } from "urql";
+
 import {
   CreateSec,
   CreateContainer,
@@ -32,8 +38,6 @@ import {
   FilterTitle,
   FilterItem,
   Filter,
-  FilterTitlePolygon,
-  FilterTitleBSC,
   BlockchainIMG,
 } from "./CreateNFT.styles";
 import {
@@ -44,17 +48,10 @@ import {
   bsc,
   solana,
 } from "./imports";
-import ethIcon from "../../icons/tokens/eth-grey.svg";
-import { PolygonIcon } from "../AllNFTs/imports";
-
+import Levels from "./page-components/Levels/Levels";
+import Properties from "./page-components/Properties/Properties";
+import Stats from "./page-components/Stats/Stats";
 import Switcher from "./page-components/Switcher/Switcher";
-import { Background } from "../../globalStyles";
-import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
-import { FormButtonsWrap } from "../Settings/SettingsTabs/Profile/ProfileSettings.styles";
-import { ethers } from "ethers";
-import { useWeb3React } from "@web3-react/core";
-import Context from "../../utils/Context";
-import { validationSchema } from "./validation";
 import {
   CreateNFTForm,
   Level,
@@ -63,21 +60,22 @@ import {
   Stat,
   CollectionType,
 } from "./types";
-import Properties from "./page-components/Properties/Properties";
+import { validationSchema } from "./validation";
+
+import { CreateSelect, SelectItem } from "../../components";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import { Background } from "../../globalStyles";
+import ethIcon from "../../icons/tokens/eth-grey.svg";
 import {
   useLevels,
   useProperties,
   useStats,
 } from "../../store/reducers/createNFT/helpers";
-
-import { useSelector } from "react-redux";
-import Levels from "./page-components/Levels/Levels";
-import Stats from "./page-components/Stats/Stats";
-import { CreateSelect, SelectItem } from "../../components";
+import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
+import Context from "../../utils/Context";
+import { PolygonIcon } from "../AllNFTs/imports";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
-import LoadingModal from "../../components/LoadingModal/LoadingModal";
-import { useNavigate } from "react-router-dom";
-import { createClient, useQuery } from "urql";
+import { FormButtonsWrap } from "../Settings/SettingsTabs/Profile/ProfileSettings.styles";
 
 const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;

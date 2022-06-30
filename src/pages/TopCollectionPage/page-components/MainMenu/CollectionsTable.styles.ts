@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { ViewOption } from "../../../AllNFTs/AllNFTs.styles";
 import { top, buttom } from "../../imports";
 
 export const FavouriteSelect = styled.div`

@@ -12,13 +12,7 @@ import {
 } from "./Menu.styles";
 import { FavouriteType } from "./types";
 
-import { ViewMode } from "../../../../types/viewMode";
-import Context from "../../../../utils/Context";
-import useViewMode from "../../../../utils/hooks/useViewMode";
-import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
-import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
-import { FavouriteWrap } from "../../AccountPage.styles";
-import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import nft0 from "../../../../images/temp-nft-examples/nft-exp-0.png";
 import nft1 from "../../../../images/temp-nft-examples/nft-exp-1.png";
 import nft10 from "../../../../images/temp-nft-examples/nft-exp-10.png";
@@ -31,7 +25,13 @@ import nft6 from "../../../../images/temp-nft-examples/nft-exp-6.png";
 import nft7 from "../../../../images/temp-nft-examples/nft-exp-7.png";
 import nft8 from "../../../../images/temp-nft-examples/nft-exp-8.png";
 import nft9 from "../../../../images/temp-nft-examples/nft-exp-9.png";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { ViewMode } from "../../../../types/viewMode";
+import Context from "../../../../utils/Context";
+import useViewMode from "../../../../utils/hooks/useViewMode";
+import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
+import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
+import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import { FavouriteWrap } from "../../AccountPage.styles";
 
 const testNFTList = [
   {

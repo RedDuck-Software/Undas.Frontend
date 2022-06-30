@@ -1,5 +1,6 @@
 import * as yup from "yup";
-import { urlRegex, ipfsInfuraRegex } from "../../constants/validation";
+
+import { ipfsInfuraRegex } from "../../constants/validation";
 
 export const validationSchema = yup.object().shape(
   {

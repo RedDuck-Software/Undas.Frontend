@@ -1,7 +1,8 @@
 import React from "react";
-import { Complete } from "../types";
 
 import { CompleteWrap, ColoredText } from "./Proprties.styles";
+
+import { Complete } from "../types";
 
 interface CompleteBarProps {
   name: string;

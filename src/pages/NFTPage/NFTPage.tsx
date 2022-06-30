@@ -1,13 +1,12 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setComponent } from "../../store/reducers/modalAction";
+import ClipLoader from "react-spinners/ClipLoader";
+import { createClient } from "urql";
+
 import {
-  NFTImage,
   CartIco,
   ViewsIco,
   FavouriteIco,
@@ -72,14 +71,14 @@ import Properties from "./page-components/Accordion/accordrion-components/Proper
 import Staking from "./page-components/Accordion/accordrion-components/Staking";
 import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
+
 import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
+import { Background } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 import { Verified } from "../CategoriesPage/imports";
-import { createClient } from "urql";
-import { Marketplace__factory } from "../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import { Background } from "../../globalStyles";
 
 const NFTPage: React.FC = () => {
   const override = css`
@@ -94,7 +93,7 @@ const NFTPage: React.FC = () => {
   const [priceInNum, setPriceInNum] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [premium, setPremium] = useState(0);
-  const [description, setDescription] = useState<string>();
+  const [, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();

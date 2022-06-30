@@ -15,7 +15,6 @@ import {
   DescriptionText,
   AccordionHeader,
   HeaderText,
-  HeadText,
   AccordionBody,
   AccordionContainer,
   PageFAQTitle,

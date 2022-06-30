@@ -1,6 +1,6 @@
 import React from "react";
-import { Stat } from "../../types";
 
+import { Stat } from "../../types";
 import CompleteBar from "../CompleteBar";
 import { LevelsWrap } from "../Proprties.styles";
 

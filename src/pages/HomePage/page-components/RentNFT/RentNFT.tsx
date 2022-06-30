@@ -2,15 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css/effect-coverflow";
 import "./NFTHeroSlider.css";
+import { createClient } from "urql";
+
+import { TitleInner, TitleLink } from "./RentNFT.styles";
+
 import Context from "../../../../utils/Context";
 import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-import { TitleInner, TitleLink } from "./RentNFT.styles";
-import { createClient } from "urql";
-import { ethers } from "ethers";
 
 const RentNFTContainer = styled.div`
   margin: 120px 0;
@@ -37,11 +37,11 @@ const RentNFT: React.FC = () => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        const price = nft.premiumWei;
+        //const price = nft.premiumWei;
         const id = nft.id;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
-        const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+        //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
         items.push({ URI, name, id });
       }
     });

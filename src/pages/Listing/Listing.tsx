@@ -21,7 +21,6 @@ import { Background } from "../../globalStyles";
 import Image from "../../images/card-item.png";
 import {
   UndasGeneralNFT__factory,
-  Marketplace__factory,
 } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
@@ -49,10 +48,10 @@ const Listing: React.FC = () => {
       signer,
     );
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+    //const MarketplaceContract = Marketplace__factory.connect(
+    //  MARKETPLACE_ADDRESS,
+    //  signer,
+    //);
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,

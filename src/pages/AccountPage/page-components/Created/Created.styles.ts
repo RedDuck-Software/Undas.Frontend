@@ -230,15 +230,11 @@ export const CollectionTextDiv = styled.div`
   margin: 0 0 0 auto;
 
   @media (max-width: 1200px) {
- 
   }
   @media (max-width: 992px) {
-
   }
   @media (max-width: 768px) {
-
   }
-
 `;
 
 export const CardsWrapper = styled.div`

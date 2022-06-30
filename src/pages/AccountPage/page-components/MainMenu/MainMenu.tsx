@@ -1,7 +1,10 @@
 import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralisWeb3Api } from "react-moralis";
 import { Navigate } from "react-router-dom";
+
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
@@ -19,9 +22,6 @@ import {
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
-import { ethers } from "ethers";
-import { useMoralisWeb3Api } from "react-moralis";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 export interface ItemsProps {
   id: number;
@@ -40,7 +40,6 @@ const MainMenu: React.FC = () => {
   const { viewMode, viewButtonsRender } = useViewMode();
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
-  const { Moralis } = useMoralis();
 
   const Web3Api = useMoralisWeb3Api();
 

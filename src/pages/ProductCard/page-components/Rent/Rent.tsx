@@ -36,8 +36,6 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
-  // const account = web3React.account;
-
   const [rentOpen, setRentOpen] = useState(true);
   const [isRented, setIsRented] = useState(false);
   const [canRent] = useState(true);
@@ -50,7 +48,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
   const [nextPaymentDate, setNextPaymentDate] = useState(0);
   const [requiredPayments, setRequiredPayments] = useState(0);
 
-  const startRenting = async (itemId: number) => {
+  const startRenting = async () => {
     if (!connector || !rentOpen) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -60,10 +58,6 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
@@ -86,11 +80,11 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     setShowRentInfo(true);
   };
 
-  const payPremium = async (itemId: number) => {
+  const payPremium = async () => {
     if (!connector || !rentOpen) return;
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+    //const provider = new ethers.providers.Web3Provider(
+    //  await connector.getProvider(),
+    //);
     // const signer = provider.getSigner(0);
     // const MarketplaceContract = Marketplace__factory.connect(
     //   MARKETPLACE_ADDRESS,
@@ -327,14 +321,14 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
                     <Button violet onClick={() => stopRental(id)}>
                       Stop renting
                     </Button>
-                    <Button violet onClick={() => payPremium(id)}>
+                    <Button violet onClick={() => payPremium()}>
                       Pay premium
                     </Button>
                   </ButtonRow>
                 </>
               ) : (
                 <ButtonRow>
-                  <Button violet big onClick={() => startRenting(id)}>
+                  <Button violet big onClick={() => startRenting()}>
                     Rent NFT
                   </Button>
                 </ButtonRow>

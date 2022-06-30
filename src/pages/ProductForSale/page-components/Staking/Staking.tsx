@@ -28,7 +28,6 @@ import {
 } from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { getNFTStakingIds } from "../../../../utils/getNFTStakingIds";
-import intervalIntoTimeStamp from "../../../../utils/intervalIntoTimeStamp";
 
 const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const [stakingOpen, setStakingOpen] = useState(false);
@@ -36,8 +35,8 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
   const [stakingId, setStakingId] = useState<number>();
   const { connector } = useContext(Context);
   const [price, setPrice] = useState("280");
-  const [deadline, setDeadline] = useState("7");
-  const [premium, setPremium] = useState("15");
+  const [, setDeadline] = useState("7");
+  const [, setPremium] = useState("15");
 
   const quoteForStaking = async () => {
     if (!connector || !stakingOpen) return;
@@ -49,11 +48,6 @@ const Staking: React.FC<{ itemId: string }> = ({ itemId }) => {
     const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
