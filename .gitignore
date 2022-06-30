@@ -27,3 +27,7 @@ yarn-error.log
 .idea/
 
 package-lock.json
+
+# eslint
+.eslintrc.js
+.eslintignore
