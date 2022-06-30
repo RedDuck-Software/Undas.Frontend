@@ -26,6 +26,7 @@ import {
 } from "../imports";
 import {useWeb3React} from "@web3-react/core";
 import {createClient} from "urql";
+import collection from "../../AccountPage/page-components/Created/page-components/Collection";
 
 type CollectionItemProps = {
   id: number;
@@ -104,6 +105,12 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
   return (
    <>
      {itemList.map((i) => {
+
+        if(!collectionItems) return ;
+
+        const result = collectionItems.filter(nft => nft.collectionId == i.id).slice(0,3)
+
+
        return <CollectionCard key={i.id} to={`/collection/${i.id}`}>
          <CollectionBackground src={CollectionBG} alt="collection-bg" />
          <AuthorWrap>
@@ -127,17 +134,17 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({
          </AuthorWrap>
          <CardsWrapper>
            <>
-             {collectionItems  ? (
-
-                 collectionItems.map((collectionItem,counter)=>{
+             {result  ? (
+                 result.map((collectionItem,)=>{
                    console.log(i.id)
-                   if(i.id == collectionItem.collectionId && counter < 3){
-                     counter++
-                     console.log(counter)
+
+                   if(i.id == collectionItem.collectionId ){
+
                      return <NFTCards key={collectionItem.collectionId + collectionItem.uri}>
                        <ImageCollection src={collectionItem.uri} alt="nft-card" />
                      </NFTCards>
                    }
+
                  })
              ) : (
                  <span></span>
