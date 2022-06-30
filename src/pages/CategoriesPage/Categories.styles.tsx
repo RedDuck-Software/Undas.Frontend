@@ -121,17 +121,13 @@ export const AuthorWrap = styled.div`
   gap: 10px;
   flex: 0 0 60%;
   @media (max-width: 1200px) {
+    flex: 0 0 100%;
     width: 100%;
-    position: absolute;
-    margin-top: 110px;
-  }
-  @media (max-width: 768px) {
-    margin-top: 90px;
   }
   @media (max-width: 576px) {
-    height: 95px;
-    margin-top: 70px;
     flex-wrap: wrap;
+    gap: 5px 10px;
+    padding: 10px 5px;
   }
 `;
 
@@ -146,9 +142,11 @@ export const CollectionPicWrap = styled.div`
     border-radius: 20px;
   }
   @media (max-width: 576px) {
+    flex: 0 0 20%;
+    & img {
     height: 60px;
     width: 60px;
-    align-items: unset;
+  }
   }
 `;
 export const CollectionName = styled.div`
@@ -171,6 +169,7 @@ export const NameWrap = styled.div`
   }
   @media (max-width: 576px) {
     flex: 0 0 70%;
+    max-width: 70%;
   }
 `;
 export const NameNft = styled.div`
@@ -200,6 +199,9 @@ export const OwnerName = styled.div`
     font-size: 12px;
     line-height: 15px;
   }
+  @media (max-width: 576px) {
+    max-width: 95%;
+  }
 `;
 export const CollectionTextDiv = styled.div`
   position: relative;
@@ -227,6 +229,7 @@ export const CollectionText = styled.span`
   padding-right: 10px;
   @media (max-width: 1200px) {
     width: 100%;
+    padding-right: 0;
   }
   @media (max-width: 768px) {
     font-size: 12px;
@@ -236,6 +239,7 @@ export const CollectionText = styled.span`
     font-style: normal;
     font-size: 10px;
     line-height: 12px;
+    -webkit-line-clamp: 2;
   }
 `;
 
