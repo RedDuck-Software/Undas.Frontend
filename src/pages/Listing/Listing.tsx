@@ -19,9 +19,7 @@ import {
 
 import { Background } from "../../globalStyles";
 import Image from "../../images/card-item.png";
-import {
-  UndasGeneralNFT__factory,
-} from "../../typechain";
+import { UndasGeneralNFT__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
 

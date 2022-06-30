@@ -18,10 +18,7 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import {
-  CollectionBG,
-  Verified,
-} from "../imports";
+import { CollectionBG, Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
