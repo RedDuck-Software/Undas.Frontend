@@ -5,6 +5,7 @@ export const SliderInner = styled.div`
   background-color: #fbf5ff;
   box-shadow: inset 0px 0px 1px #7c7c7c;
   border-radius: 0px 0px 10px 10px;
+  padding-bottom: 30px;
 `;
 export const SliderTitle = styled.h3`
   font-weight: 400;

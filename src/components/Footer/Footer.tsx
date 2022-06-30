@@ -23,10 +23,12 @@ import {
 } from "./Footer.styles";
 import {
   Twitter,
-  LinkedIn,
-  YouTube,
+  /*LinkedIn,*/
+  /*YouTube,*/
   Telegram,
-  /*Instagram*/ Reddit,
+  /*Instagram*/
+  Reddit,
+  Discord,
 } from "./imports";
 
 const Footer = () => {
@@ -98,14 +100,17 @@ const Footer = () => {
             <FooterIconLink href="#">
               <FooterIcon src={Twitter} />
             </FooterIconLink>
-            <FooterIconLink href="#">
+            {/*<FooterIconLink href="#">
               <FooterIcon src={LinkedIn} />
-            </FooterIconLink>
-            <FooterIconLink href="#">
+            </FooterIconLink>*/}
+            {/* <FooterIconLink href="#">
               <FooterIcon src={YouTube} />
-            </FooterIconLink>
+            </FooterIconLink>*/}
             <FooterIconLink href="#">
               <FooterIcon src={Telegram} />
+            </FooterIconLink>
+            <FooterIconLink href="#">
+              <FooterIcon src={Discord} />
             </FooterIconLink>
             <FooterIconLink href="#">
               <FooterIcon src={Reddit} />

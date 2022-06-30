@@ -1,5 +1,4 @@
 import React from "react";
-import { Background, Container, PageTitle } from "../../globalStyles";
 
 import {
   Copy,
@@ -28,6 +27,8 @@ import {
   ReferralPagination,
   ContentTableWrap,
 } from "./Referral.styles";
+
+import { Background, Container, PageTitle } from "../../globalStyles";
 
 const Referral: React.FC = () => {
   return (

@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,13 +26,12 @@ import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
 import { useName, usePrice, useToken, useUri } from "../../../store";
 import { closeModal } from "../../../store/reducers/modalAction";
+import { Marketplace__factory } from "../../../typechain";
+import { OnlyOne__factory } from "../../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
+import Context from "../../../utils/Context";
 import { EthIco } from "../../ASideFilter/imports";
 import { UNDIco } from "../imports";
-import Context from "../../../utils/Context";
-import { ethers } from "ethers";
-import { Marketplace__factory } from "../../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../../utils/addressHelpers";
-import { OnlyOne__factory } from "../../../typechain";
 
 // // const fetchNFTs = async () => {
 

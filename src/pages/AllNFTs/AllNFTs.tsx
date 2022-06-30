@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import {
   AllNFTContainer,
@@ -16,19 +18,16 @@ import {
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
+import FilterSelected from "../../components/FilterSelected/FilterSelected";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import { Background } from "../../globalStyles";
-
-import { ViewMode } from "../../types/viewMode";
-import useViewMode from "../../utils/hooks/useViewMode";
-import { Wrapper } from "../CategoriesPage/Categories.styles";
-import FilterSelected from "../../components/FilterSelected/FilterSelected";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   buyAction,
   rentAction,
 } from "../../store/reducers/Filter/filterActions";
+import { ViewMode } from "../../types/viewMode";
+import useViewMode from "../../utils/hooks/useViewMode";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const AllNFTs: React.FC = () => {
   const dispatch = useDispatch();

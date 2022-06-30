@@ -144,9 +144,9 @@ export const CollectionPicWrap = styled.div`
   @media (max-width: 576px) {
     flex: 0 0 20%;
     & img {
-    height: 60px;
-    width: 60px;
-  }
+      height: 60px;
+      width: 60px;
+    }
   }
 `;
 export const CollectionName = styled.div`
@@ -325,7 +325,6 @@ export const NFTCards = styled.div`
     border-radius: 10px;
   }
 `;
-
 
 export const CardsWrapper = styled.div`
   position: relative;

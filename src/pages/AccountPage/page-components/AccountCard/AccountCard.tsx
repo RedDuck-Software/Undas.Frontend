@@ -1,9 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   AccountWrap,
   Name,
-  VerifiedIco,
   GrayText,
   CopyIco,
   SingOutIco,
@@ -32,6 +32,7 @@ interface IAccountCard {
 const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
   const accountSplit = account?.split("");
   accountSplit?.splice(6, 32, "...");
+  const navigate = useNavigate();
   //
   return (
     <AccountWrap>
@@ -70,12 +71,42 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
           <SettingsIco />
         </SettingsLink>
         <AchievmentsBlock>
-          <AchievementColoredIco1 />
-          <AchievementColoredIco2 />
-          <AchievementColoredIco3 />
-          <AchievementColoredIco4 />
-          <AchievementColoredIco5 />
-          <AchievementColoredIco6 />
+          <AchievementColoredIco1
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
+          <AchievementColoredIco2
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
+          <AchievementColoredIco3
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
+          <AchievementColoredIco4
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
+          <AchievementColoredIco5
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
+          <AchievementColoredIco6
+            onClick={(e) => {
+              navigate(`/achievements`);
+              e.stopPropagation();
+            }}
+          />
         </AchievmentsBlock>
       </Wrapper>
     </AccountWrap>

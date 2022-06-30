@@ -23,10 +23,10 @@ import {
 } from "./CollectionsTable.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemImg, ItemVerifyIco } from "../../imports";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 
 interface IObjectKeys {
   [key: string]: string | number | boolean;
@@ -153,6 +153,10 @@ const CollectionsMenu: React.FC = () => {
   const handleIsVefiriedOnly = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
+
+  useEffect(() => {
+    setCollections(testCollections);
+  }, []);
 
   const requestSort = (key: string) => {
     console.log("SORT KEEEEEEEEEEEY", key);

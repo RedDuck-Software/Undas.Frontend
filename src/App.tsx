@@ -127,7 +127,7 @@ const App: React.FC = () => {
             element={<CategoriesCelebrity />}
           />
           <Route path="/categories-18plus" element={<Categories18 />} />
-          <Route path="/collection/:id" element={<CollectionPage />}  />
+          <Route path="/collection/:id" element={<CollectionPage />} />
           <Route path="/nft/buy/:address:id" element={<NFTPage />} />
           <Route path="/nft/sell/:address:id" element={<NFTPageSell />} />
           <Route path="/activity" element={<ActivityPage />} />

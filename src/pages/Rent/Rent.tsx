@@ -1,5 +1,7 @@
+import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   TopLinkWrapper,
@@ -29,6 +31,14 @@ import {
   Button,
 } from "./Rent.styles";
 
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
+import { Background, Container, PageTitle } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
+import { RentalPeriod } from "../NFTPage/NFTPage.styles";
+import { info } from "../OfferRent/imports";
 import {
   PageWrapper,
   UNDLabel,
@@ -42,23 +52,11 @@ import {
   FAQLink,
 } from "../OfferRent/OfferRent.styles";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
-
-import { info } from "../OfferRent/imports";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ethers } from "ethers";
-import NFTCard from "../../components/NFTCardOffers/NFTCard";
-import { RentalPeriod } from "../NFTPage/NFTPage.styles";
-import Context from "../../utils/Context";
-import { Marketplace__factory } from "../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import LoadingModal from "../../components/LoadingModal/LoadingModal";
-
 const Rent: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [rentalDays, setRentalDays] = useState<number | string>();
+  const [, setRentalDays] = useState<number | string>();
   const [payInUND, setPayInUND] = useState<boolean>(false);
 
   const state: any = useLocation();

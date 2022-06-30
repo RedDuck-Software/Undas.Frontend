@@ -1,9 +1,9 @@
+import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
+import { createClient } from "urql";
 
 import Collection from "./page-components/Collection";
-import { createClient } from "urql";
-import { Navigate } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
+
 import Context from "../../../../utils/Context";
 
 type createdCollectionItemProps = {
@@ -18,6 +18,7 @@ type createdCollectionItemProps = {
 const CreatedCollections: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
+
   const createdCollectionItems: createdCollectionItemProps[] = [];
   const [createdCollections, setCreatedCollections] =
     useState<createdCollectionItemProps[]>();
@@ -42,6 +43,7 @@ const CreatedCollections: React.FC = () => {
         owner,
       });
     });
+
     return createdCollectionItems;
   };
 
@@ -49,6 +51,7 @@ const CreatedCollections: React.FC = () => {
     if (!connector || !account) {
       return console.log("loading");
     }
+
     getCollectionData();
   }, [connector, account]);
 

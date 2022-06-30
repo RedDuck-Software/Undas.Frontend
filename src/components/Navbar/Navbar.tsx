@@ -99,7 +99,7 @@ const Navbar = () => {
                 onMouseEnter={() => setHovered({ explore: true })}
               >
                 <StyledLink
-                  to="/"
+                  to="/all"
                   className={
                     hovered && hovered.explore ? "hovered-explore" : ""
                   }
@@ -143,7 +143,7 @@ const Navbar = () => {
                     <RwaNFT />
                     rwa NFT
                   </MenuList>
-                  <MenuList to="/categories-18plus">
+                  <MenuList to="/categories-18plus" className="last">
                     <Ico18 />
                     18+ NFTs
                   </MenuList>
@@ -166,7 +166,7 @@ const Navbar = () => {
                     <TopCollectionIco />
                     Top Collection
                   </MenuList>
-                  <MenuList to="/activity">
+                  <MenuList to="/activity" className="last">
                     <StatisticsIco />
                     Statistics
                   </MenuList>
@@ -177,7 +177,7 @@ const Navbar = () => {
                 onMouseEnter={() => setHovered({ community: true })}
               >
                 <StyledLink
-                  to="/"
+                  to="/about-us"
                   className={
                     hovered && hovered.community ? "hovered-community" : ""
                   }
@@ -231,7 +231,7 @@ const Navbar = () => {
                     <AddNFTIco />
                     Add NTF
                   </MenuList>
-                  <MenuList to="/create-collection">
+                  <MenuList to="/create-collection" className="last">
                     <AddCollectionIco />
                     Add Collection
                   </MenuList>
@@ -282,7 +282,7 @@ const Navbar = () => {
                   <SettingsIco />
                   Settings
                 </MenuList>
-                <MenuList to="/login">
+                <MenuList to="/login" className="last">
                   <LoginMenuIco />
                   Log in
                 </MenuList>
@@ -298,9 +298,16 @@ const Navbar = () => {
               >
                 <LanguageTitle>en</LanguageTitle>
               </StyledLink>
-              <DropdownMenu setWidth="65px" left="-1rem" top="2rem" xlWidth="90px">
+              <DropdownMenu
+                setWidth="65px"
+                left="-1rem"
+                top="2rem"
+                xlWidth="90px"
+              >
                 <MenuList to="/">RU</MenuList>
-                <MenuList to="/">中国人</MenuList>
+                <MenuList to="/" className="last">
+                  中国人
+                </MenuList>
               </DropdownMenu>
             </StyledList>
           </IconsUl>

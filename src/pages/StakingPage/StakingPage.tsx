@@ -19,13 +19,9 @@ import {
 
 import { Background } from "../../globalStyles";
 import Image from "../../images/card-item.png";
-import {
-  UndasGeneralNFT__factory,
-  Marketplace__factory,
-} from "../../typechain";
+import { UndasGeneralNFT__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
-import intervalIntoTimeStamp from "../../utils/intervalIntoTimeStamp";
 
 const StakingPage: React.FC = () => {
   const { connector } = useContext(Context);
@@ -51,11 +47,6 @@ const StakingPage: React.FC = () => {
     const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,

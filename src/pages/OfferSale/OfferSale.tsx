@@ -8,10 +8,10 @@ import {
   Tab,
   TextOffer,
 } from "./OfferSale.styles";
-
-import { Background, Container } from "../../globalStyles";
 import CastomOffer from "./page-components/CastomOffer/CastomOffer";
 import Offer from "./page-components/Offer/Offer";
+
+import { Background, Container } from "../../globalStyles";
 
 const OfferSale: React.FC = () => {
   const [tab, setTab] = useState("offer");

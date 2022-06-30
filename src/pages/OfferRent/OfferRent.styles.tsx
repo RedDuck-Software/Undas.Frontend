@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { NFTWrap } from "../../components/NFTCardOffers/NFTCard.styles";
-import { eth, offerTime } from "./imports";
 import { Swiper } from "swiper/react";
+
+import { eth, offerTime } from "./imports";
+
+import { NFTWrap } from "../../components/NFTCardOffers/NFTCard.styles";
 
 export const PageWrapper = styled.div`
   padding: 60px 0 120px;

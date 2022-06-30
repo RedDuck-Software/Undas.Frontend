@@ -1,8 +1,8 @@
-import styled from "styled-components";
 import { Modal } from "react-bootstrap";
+import styled from "styled-components";
 
-import { collectionType, eth } from "../../imports";
 import Search from "../../../CollectionPage/assets/search.svg";
+import { collectionType, eth } from "../../imports";
 
 export const MakeOfferText = styled.div`
   font-family: "Montserrat";

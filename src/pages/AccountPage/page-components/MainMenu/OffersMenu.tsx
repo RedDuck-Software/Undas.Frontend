@@ -1,4 +1,6 @@
+import { ethers } from "ethers";
 import React, { useState, useContext, useEffect } from "react";
+import { createClient } from "urql";
 
 import {
   OfferMenuWrap,
@@ -18,41 +20,21 @@ import {
   CancelBtn,
   WethText,
   PriceTextETH,
-  SelectedFilters,
-  Filter,
-  FilterImg,
-  FilterName,
-  FilterClose,
-  ClearAll,
   CancelBtnWrapper,
 } from "./Menu.styles";
 import { OfferType } from "./types";
 
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { Marketplace__factory } from "../../../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+import Context from "../../../../utils/Context";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
   OffersTr,
   OffersHeadTr,
   OffersText,
 } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
-import {
-  OffResaivedIco,
-  OffMadeIco,
-  ItemImg,
-  ItemVerifyIco,
-  filter,
-  close,
-} from "../../imports";
-import { createClient } from "urql";
-import Context from "../../../../utils/Context";
-import { ethers } from "ethers";
-import { string } from "yup";
-import ClipLoader from "react-spinners/ClipLoader";
-import {
-  Marketplace__factory,
-  UndasGeneralNFT__factory,
-} from "../../../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { OffResaivedIco, OffMadeIco, ItemVerifyIco } from "../../imports";
 
 interface CommonProps {
   tokenId: number;

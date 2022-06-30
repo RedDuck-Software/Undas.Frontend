@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import {
+  SelectedCollection,
+  SelectedCollectionIcon,
+  RemoveSelectedCollection,
+  SelectedCollectionsList,
+  SelectedCollectionsWrapper,
+  RemoveAllSelectedCollection,
+} from "./FilterSelected.styles";
+
 import { CloseIcon } from "../../pages/AllNFTs/imports";
 import {
   clearAll,
@@ -9,14 +19,6 @@ import {
   useSelectedCollections,
   useSelectedCategories,
 } from "../../store/reducers/Filter/helpers";
-import {
-  SelectedCollection,
-  SelectedCollectionIcon,
-  RemoveSelectedCollection,
-  SelectedCollectionsList,
-  SelectedCollectionsWrapper,
-  RemoveAllSelectedCollection,
-} from "./FilterSelected.styles";
 
 interface SelectedCollectionItemProps {
   icon?: string;
@@ -73,7 +75,6 @@ const FilterSelected: React.FC = () => {
     setSelectedCategories(categories);
   }, [categories]);
   const handleClearAll = () => {
-    const all = [...selectedCollections, ...selectedCategories];
     selectedCollections.forEach((item: any) => {
       const element: HTMLElement = document.getElementById(
         item.collectionName,

@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import Overlay from "react-bootstrap/Overlay";
+import { useParams } from "react-router-dom";
+import { createClient } from "urql";
 
 import {
   Info,
@@ -24,8 +26,11 @@ import { CollectionBanner, PurpleEthIco } from "./imports";
 import ASideFilterCollection from "./page-components/ASideFilter/ASideFilterCollection";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
+
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
+import { Background } from "../../globalStyles";
 import { ViewMode } from "../../types/viewMode";
+import Context from "../../utils/Context";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { close, filter } from "../Activity/imports";
 import {
@@ -50,10 +55,6 @@ import {
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
-import { Background } from "../../globalStyles";
-import Context from "../../utils/Context";
-import { createClient } from "urql";
-import { useParams } from "react-router-dom";
 
 interface CommonProps {
   id: number;
@@ -70,9 +71,7 @@ export interface ItemsProps {
   tokenAddress: string;
   tokenOwner?: string;
 }
-interface props {
-  collectionId: number;
-}
+
 const CollectionPage: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
