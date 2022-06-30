@@ -12,15 +12,10 @@ import {
   NameRow,
   TextPrice,
   PriceRow,
-  EthSelect,
-  EthText,
-  ImageDown,
   AmmountInput,
   CostSelect,
   DollarText,
   TextOffer,
-  DaySelect,
-  ImageDownOffer,
   TimeSelect,
   TextPmAm,
   TextTime,
@@ -51,6 +46,15 @@ import {
   FAQLink,
   SwiperNFT,
   ContainerCollum,
+  Filter,
+  FilterItem,
+  FilterTitle,
+  Arrow,
+  FilterMenu,
+  MenuItem,
+  BlockchainIMG,
+  FilterMenuDay,
+  FilterDay,
 } from "./OfferRent.styles";
 
 import {
@@ -65,7 +69,7 @@ import {
 import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 import { Background, Container, PageTitle } from "../../globalStyles";
 import { useLocation, useNavigate } from "react-router-dom";
-import { down, info, deleteNFT } from "./imports";
+import { info, deleteNFT, eth, usd } from "./imports";
 import Context from "../../utils/Context";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import { Marketplace__factory } from "../../typechain";
@@ -73,6 +77,7 @@ import { createClient } from "urql";
 import { ethers } from "ethers";
 import NFTCard from "../../components/NFTCardOffers/NFTCard";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import { bsc, solana, ton } from "../CreateNFT/imports";
 
 const OfferRent: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
@@ -182,6 +187,13 @@ const OfferRent: React.FC = () => {
     makeRentOffer();
   };
 
+  const [priceFilter, setPriceFilter] = useState<string>("");
+  const [active, setActive] = useState<any>({
+    price: false,
+    event: false,
+    day: false,
+  });
+
   return (
     <Background>
       <LoadingModal
@@ -231,10 +243,59 @@ const OfferRent: React.FC = () => {
                   <TextPrice>Deposit</TextPrice>
                 </NameRow>
                 <PriceRow>
-                  <EthSelect>
-                    <EthText>ETH</EthText>
-                    <ImageDown src={down} alt="down-image" />
-                  </EthSelect>
+                  <Filter className={active.price && "sort-active"}>
+                    <FilterItem
+                      onClick={() => {
+                        if (!active.price) {
+                          setActive({ price: true });
+                        } else setActive({ price: false });
+                      }}
+                    >
+                      <FilterTitle>
+                        <BlockchainIMG src={eth} alt="blockchain-image" />
+                        ETH
+                      </FilterTitle>
+                      <Arrow className={active.price && "sort-active"} />
+                    </FilterItem>
+                    <FilterMenu className={active.price && "sort-active"}>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={eth} alt="blockchain-image" />
+                        ETH
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={usd} alt="blockchain-image" />
+                        USD
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={solana} alt="blockchain-image" />
+                        Solana
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={bsc} alt="blockchain-image" />
+                        BNB
+                      </MenuItem>
+                    </FilterMenu>
+                  </Filter>
                   <AmmountInput
                     type="number"
                     placeholder="Amount"
@@ -248,10 +309,59 @@ const OfferRent: React.FC = () => {
                   <TextPrice className="сost-per-day">Cost per Day</TextPrice>
                 </NameRow>
                 <PriceRow>
-                  <EthSelect>
-                    <EthText>ETH</EthText>
-                    <ImageDown src={down} alt="down-image" />
-                  </EthSelect>
+                  <Filter className={active.event && "sort-day"}>
+                    <FilterItem
+                      onClick={() => {
+                        if (!active.event) {
+                          setActive({ event: true });
+                        } else setActive({ event: false });
+                      }}
+                    >
+                      <FilterTitle>
+                        <BlockchainIMG src={eth} alt="blockchain-image" />
+                        ETH
+                      </FilterTitle>
+                      <Arrow className={active.event && "sort-active"} />
+                    </FilterItem>
+                    <FilterMenu className={active.event && "sort-active"}>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={eth} alt="blockchain-image" />
+                        ETH
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={usd} alt="blockchain-image" />
+                        USD
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={solana} alt="blockchain-image" />
+                        Solana
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        <BlockchainIMG src={bsc} alt="blockchain-image" />
+                        BNB
+                      </MenuItem>
+                    </FilterMenu>
+                  </Filter>
                   <AmmountInput
                     type="number"
                     placeholder="Amount"
@@ -276,10 +386,44 @@ const OfferRent: React.FC = () => {
                   <TextOffer>Offer Expiration</TextOffer>
                 </NameRow>
                 <PriceRow>
-                  <DaySelect>
-                    3 day
-                    <ImageDownOffer src={down} alt="down-image" />
-                  </DaySelect>
+                  <FilterDay className={active.day && "sort-day"}>
+                    <FilterItem
+                      onClick={() => {
+                        if (!active.day) {
+                          setActive({ day: true });
+                        } else setActive({ day: false });
+                      }}
+                    >
+                      <FilterTitle className="day">3 day</FilterTitle>
+                      <Arrow className={active.day && "day-active"} />
+                    </FilterItem>
+                    <FilterMenuDay className={active.day && "day-active"}>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        24 hours
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        1 week
+                      </MenuItem>
+                      <MenuItem
+                        hover={true}
+                        onClick={() => {
+                          setPriceFilter("");
+                        }}
+                      >
+                        1 month
+                      </MenuItem>
+                    </FilterMenuDay>
+                  </FilterDay>
                   <TimeSelect>
                     <TextTime>06 : 35</TextTime>
                     <TextPmAm>PM</TextPmAm>

@@ -56,14 +56,14 @@ export const NFTWrap = styled.div`
   background-color: #fbf5ff;
   padding: 0;
   transition: all 0.4s linear;
-  &:hover ${AboutWrapper}{
+  &:hover ${AboutWrapper} {
     backdrop-filter: blur(0);
   }
-  &:hover ${CollectionText}{
-    color: #FBF5FF;
+  &:hover ${CollectionText} {
+    color: #fbf5ff;
   }
-  &:hover ${Name}{
-    color: #FBF5FF;
+  &:hover ${Name} {
+    color: #fbf5ff;
   }
   @media (max-width: 1200px) {
     width: 100%;

@@ -30,7 +30,6 @@ type CreatedItemProps = {
   collectionName?: string;
   collectionId?: string;
   tokenAddress: string;
-
 };
 
 const Created: React.FC = () => {
@@ -59,7 +58,7 @@ const Created: React.FC = () => {
         tokenOwner,
         collectionName,
         collectionId,
-        tokenAddress, 
+        tokenAddress,
       });
     });
     return createdItems;

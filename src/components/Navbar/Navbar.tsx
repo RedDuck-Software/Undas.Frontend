@@ -298,7 +298,12 @@ const Navbar = () => {
               >
                 <LanguageTitle>en</LanguageTitle>
               </StyledLink>
-              <DropdownMenu setWidth="65px" left="-1rem" top="2rem" xlWidth="90px">
+              <DropdownMenu
+                setWidth="65px"
+                left="-1rem"
+                top="2rem"
+                xlWidth="90px"
+              >
                 <MenuList to="/">RU</MenuList>
                 <MenuList to="/" className="last">
                   中国人

@@ -6,9 +6,7 @@ import { Navigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import Context from "../../../../utils/Context";
 
-
 type createdCollectionItemProps = {
-
   id: number;
   collectionUrl: string;
   collectionCategory: string;
@@ -29,14 +27,12 @@ const CreatedCollections: React.FC = () => {
     const collectionsQuery = await fetchData();
 
     collectionsQuery.data.collections.map((i: any) => {
-
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
-
 
       createdCollectionItems.push({
         id,
@@ -50,7 +46,6 @@ const CreatedCollections: React.FC = () => {
 
     return createdCollectionItems;
   };
-
 
   useEffect(() => {
     if (!connector || !account) {
@@ -86,20 +81,16 @@ const CreatedCollections: React.FC = () => {
     return data;
   }
 
-
   async function getCollectionData() {
     const response = await getCollection();
     if (response) {
       setCreatedCollections(response);
-
     }
   }
   return (
     <>
-
       {createdCollections ? (
         <Collection itemList={createdCollections} />
-
       ) : (
         <span>There are no NFTs on the marketplace</span>
       )}
