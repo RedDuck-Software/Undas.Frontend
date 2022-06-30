@@ -24,11 +24,11 @@ const CategoriesArt: React.FC = () => {
   const { connector } = useContext(Context);
   const createdItems: CollectionItemProps[] = [];
   const [createdNfts,setCreatedNfts] = useState<CollectionItemProps[]>()
-  console.log('dasdasdas',createdNfts)
+
   const getTokensData = async () => {
     const tokensQuery = await fetchData();
-    console.log(tokensQuery)
     tokensQuery.data.collections.map((i:any) => {
+
       const id = i.id
       const collectionCategory = i.collectionCategory
       const collectionUrl = i.collectionUrl
@@ -109,7 +109,7 @@ const CategoriesArt: React.FC = () => {
             {createdNfts ? (
                 <Collection itemList={createdNfts}/>
             ) : (
-                <span>There are no NFTs on the marketplace</span>
+                <span></span>
             )}
           </div>
         </Container>
