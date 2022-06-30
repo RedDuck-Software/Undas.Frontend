@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useMoralisWeb3Api } from "react-moralis";
 
 import {
@@ -29,36 +29,30 @@ import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
-import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import { Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 import { Banner } from "../CategoriesPage/Categories.styles";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
+import { NFT } from "./types";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("");
   const { account, deactivate } = useWeb3React();
-
+  const { state }: any = useLocation();
   const { connector } = useContext(Context);
   const { Moralis } = useMoralis();
+  const [, setNFTList] = useState<NFT[]>();
 
-  const [, setNFTList] = useState<
-    {
-      token_address: string;
-      token_id: string;
-      contract_type: string;
-      owner_of: string;
-      block_number: string;
-      block_number_minted: string;
-      token_uri?: string | undefined;
-      metadata?: string | undefined;
-      synced_at?: string | undefined;
-      amount?: string | undefined;
-      name: string;
-      symbol: string;
-    }[]
-  >();
-  const Web3Api = useMoralisWeb3Api();
+  useEffect(() => {
+    if (state !== null && state !== undefined) {
+      if (state.tab === "favourite") {
+        setTab(state.tab);
+      }
+    }
+    return () => {
+      setTab("");
+    };
+  }, [state]);
 
   const getNFTList = async () => {
     if (!connector || !account) return;
@@ -170,9 +164,6 @@ const AccountPage: React.FC = () => {
             {tab === "rent" && <Rent />}
             {tab === "created" && <Created />}
           </Wrapper>
-          {/* {tab == "" || tab == "offers" || tab == "favourite" ? (
-            <FilterMobileButton />
-          ) : null} */}
         </AccountContainer>
       </Background>
     </AccountWrapper>

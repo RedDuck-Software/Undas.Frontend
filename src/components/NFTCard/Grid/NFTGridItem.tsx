@@ -51,6 +51,7 @@ interface NFTGridItemProps {
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
+  console.log(props.tokenAddress)
   return (
     <NFTWrap
       onClick={(e) => {

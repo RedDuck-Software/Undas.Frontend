@@ -230,52 +230,15 @@ export const CollectionTextDiv = styled.div`
   margin: 0 0 0 auto;
 
   @media (max-width: 1200px) {
-    max-width: unset;
-    position: absolute;
-    right: 15px;
-    display: block;
-    width: 70%;
+ 
   }
-  @media (max-width: 950px) {
-    width: 60%;
+  @media (max-width: 992px) {
+
   }
-  @media (max-width: 700px) {
-    width: 56%;
-    line-height: 12px;
-    display: table-cell;
-    left: 20px;
-    margin-left: 210px;
-    top: 10px;
-    bottom: 10px;
+  @media (max-width: 768px) {
+
   }
-  @media (max-width: 646px) {
-    width: 56%;
-  }
-  @media (max-width: 626px) {
-    width: 53%;
-  }
-  @media (max-width: 576px) {
-    width: 45%;
-  }
-  @media (max-width: 540px) {
-    width: 37%;
-  }
-  @media (max-width: 576px) {
-    left: 170px;
-    margin-left: -100px;
-    width: 68%;
-    bottom: 10px;
-    top: unset;
-  }
-  @media (max-width: 486px) {
-    width: 60%;
-  }
-  @media (max-width: 390px) {
-    width: 50%;
-  }
-  @media (max-width: 340px) {
-    width: 45%;
-  }
+
 `;
 
 export const CardsWrapper = styled.div`
