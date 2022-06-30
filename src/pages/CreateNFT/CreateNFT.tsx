@@ -193,7 +193,7 @@ const CreateNFT: React.FC = () => {
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a", //goerli contract addr
+      "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad", //goerli contract addr
       signer,
     );
 
@@ -267,7 +267,6 @@ const CreateNFT: React.FC = () => {
     setAutoRedirect(false);
     dispatch({ type: "reset", value: "" });
   };
-
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();

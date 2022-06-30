@@ -4,7 +4,10 @@ import { Mousewheel, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Context from "../../../../utils/Context";
-import NFTCard from "../NFTCard/NFTCard";
+// import { getListing } from "../../../../utils/getListing";
+// import { getListingsLastIndex } from "../../../../utils/getListingsLastIndex";
+// import { isBuyableFunction } from "../../../../utils/isBuyable";
+import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 import { createClient } from "urql";
 import { ethers } from "ethers";
@@ -69,21 +72,23 @@ const NewNFT: React.FC = () => {
       </TitleWrap>
       <Swiper
         slidesPerView={1}
+        spaceBetween={20}
         breakpoints={{
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2,
-            spaceBetween: 50,
-          },
-          1200: {
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          1700: {
+          1200: {
             slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1700: {
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
         className="rent-slider"
@@ -96,7 +101,7 @@ const NewNFT: React.FC = () => {
           return (
             <>
               <SwiperSlide key={item.id}>
-                <NFTCard uri={item.URI} name={item.name} />
+                <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>
           );

@@ -45,12 +45,13 @@ interface NFTGridItemProps {
   listingId?: number;
   tokenAddress?: string;
   tokenOwner?: string;
-  collectionName?:string;
-  collectionId?:string;
+  collectionName?: string;
+  collectionId?: string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
+  console.log(props.tokenAddress)
   return (
     <NFTWrap
       onClick={(e) => {

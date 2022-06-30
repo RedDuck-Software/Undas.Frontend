@@ -246,7 +246,7 @@ const Navbar = () => {
             className="icons"
           >
             <StyledList>
-              <StyledLink to="/account">
+              <StyledLink to={"/account"} state={{ tab: "favourite" }}>
                 <Favorite />
               </StyledLink>
             </StyledList>
@@ -263,7 +263,7 @@ const Navbar = () => {
               <DropdownMenu
                 setWidth="165px"
                 xlWidth="180px"
-                left="-3rem"
+                left="-4rem"
                 top="2rem"
               >
                 <MenuList to="/account">
@@ -298,7 +298,7 @@ const Navbar = () => {
               >
                 <LanguageTitle>en</LanguageTitle>
               </StyledLink>
-              <DropdownMenu setWidth="65px" left="-1rem" top="2rem">
+              <DropdownMenu setWidth="65px" left="-1rem" top="2rem" xlWidth="90px">
                 <MenuList to="/">RU</MenuList>
                 <MenuList to="/">中国人</MenuList>
               </DropdownMenu>

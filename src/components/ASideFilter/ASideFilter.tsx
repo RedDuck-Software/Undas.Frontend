@@ -206,9 +206,7 @@ interface ASideFilterProps {
   hasOffersRefs?: any;
 }
 
-const ASideFilter: React.FC<ASideFilterProps> = ({
-  marginTop,
-}) => {
+const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   const [isOpenMobile, setIsOpenMobile] = useState(false);

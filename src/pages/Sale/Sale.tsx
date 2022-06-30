@@ -16,7 +16,7 @@ import {
 } from "./Sale.styles";
 
 import { Background, Container, PageTitle } from "../../globalStyles";
-import NFTCard from "../HomePage/page-components/NFTCard/NFTCard";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
 import { down, info, deleteNFT } from "../OfferRent/imports";
 import {
   PageWrapper,
@@ -117,6 +117,8 @@ const Sale: React.FC = () => {
       priceForSale.toString(),
       "ether",
     );
+    console.log("222");
+
     //undas contract
     const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,
