@@ -12,6 +12,7 @@ import {
   CardsWrapper,
   ImageCollection,
 } from "../Created.styles";
+
 import { Verified } from "../imports";
 import {createClient} from "urql";
 import {useWeb3React} from "@web3-react/core";
@@ -34,16 +35,20 @@ type CollectionItemProps = {
 interface CollectionGridWrapperProps {
   itemList: CollectionItemProps[];
 }
+
 interface CollectionWithCards{
   collectionId:number;
   uri:string;
+
 }
 
 const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
+
   console.log(itemList)
   const [collectionItems,setCollectionItems] = useState<CollectionWithCards[]>()
   const items : CollectionWithCards[] = []
+
 
   const getNfts = async () => {
     const tokens = await fetchData();
@@ -57,6 +62,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   };
   useEffect(() => {
     getNftsData()
+
   }, [account]);
 
   const APIURL =
@@ -127,6 +133,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
             </>
           </CardsWrapper>
         </CollectionCard>
+
 
       })}
     </>

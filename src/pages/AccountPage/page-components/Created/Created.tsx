@@ -30,6 +30,7 @@ type CreatedItemProps = {
   collectionName?: string;
   collectionId?: string;
   tokenAddress: string;
+
 };
 
 const Created: React.FC = () => {
@@ -49,6 +50,7 @@ const Created: React.FC = () => {
       const tokenOwner = i.owner;
       const collectionName = i.collectionName;
       const collectionId = i.collectionId;
+
       const tokenAddress = "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad"; //nft collection address
       createdItems.push({
         id,
@@ -57,7 +59,7 @@ const Created: React.FC = () => {
         tokenOwner,
         collectionName,
         collectionId,
-        tokenAddress,
+        tokenAddress, 
       });
     });
     return createdItems;

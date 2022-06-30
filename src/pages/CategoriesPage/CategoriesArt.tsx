@@ -1,4 +1,6 @@
+
 import React, {useContext, useEffect, useState} from "react";
+
 
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";

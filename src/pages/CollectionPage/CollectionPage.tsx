@@ -81,6 +81,7 @@ const CollectionPage: React.FC = () => {
 
   const { connector } = useContext(Context);
 
+
   const params = useParams();
 
   const { viewMode, viewButtonsRender } = useViewMode();
