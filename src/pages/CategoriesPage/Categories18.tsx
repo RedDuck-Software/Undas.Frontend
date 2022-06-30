@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
+
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -94,9 +95,9 @@ const CategoriesGameFI: React.FC = () => {
     }
   }
 
-  return loading? (
-      <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
-  ) :(
+  return loading ? (
+    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+  ) : (
     <>
       <Banner>
         <img src={CollectionBanner} alt="CollectionBanner" />
@@ -118,9 +119,11 @@ const CategoriesGameFI: React.FC = () => {
           </Info>
           <div>
             {collections?.length ? (
-                <Collection itemList={collections} />
+              <Collection itemList={collections} />
             ) : (
-                <h1 className="text-center">No collections have been created at this category</h1>
+              <h1 className="text-center">
+                No collections have been created at this category
+              </h1>
             )}
           </div>
         </Container>

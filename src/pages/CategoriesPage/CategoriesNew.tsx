@@ -1,8 +1,9 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { createClient } from "urql";
 import ClipLoader from "react-spinners/ClipLoader";
+import { createClient } from "urql";
+
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -61,7 +62,7 @@ const CategoriesGameFI: React.FC = () => {
   }
 
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const createdTokensQuery = `
    {
@@ -89,43 +90,44 @@ const CategoriesGameFI: React.FC = () => {
     const response = await getСollection();
     if (response) {
       setCollections(response);
-      setLoading(false)
-
+      setLoading(false);
     }
   }
 
-  return  loading? (
-      <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
-  ) :(
-      <>
-        <Banner>
-          <img src={CollectionBanner} alt="CollectionBanner" />
-        </Banner>
-        <Background>
-          <Container>
-            <Info>
-              <div>
-                <Title>New NFTs</Title>
-              </div>
-              <InfoCard>
-                <InfoText>
-                  On this page you can enjoy a selection of interesting
-                  collections. This section provides you with collections in the
-                  NEW category. The NEW category is the latest collections added
-                  to our site.
-                </InfoText>
-              </InfoCard>
-            </Info>
+  return loading ? (
+    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+  ) : (
+    <>
+      <Banner>
+        <img src={CollectionBanner} alt="CollectionBanner" />
+      </Banner>
+      <Background>
+        <Container>
+          <Info>
             <div>
-              {collections?.length ? (
-                  <Collection itemList={collections} />
-              ) : (
-                  <h1 className="text-center">No collections have been created at this category</h1>
-              )}
+              <Title>New NFTs</Title>
             </div>
-          </Container>
-        </Background>
-      </>
+            <InfoCard>
+              <InfoText>
+                On this page you can enjoy a selection of interesting
+                collections. This section provides you with collections in the
+                NEW category. The NEW category is the latest collections added
+                to our site.
+              </InfoText>
+            </InfoCard>
+          </Info>
+          <div>
+            {collections?.length ? (
+              <Collection itemList={collections} />
+            ) : (
+              <h1 className="text-center">
+                No collections have been created at this category
+              </h1>
+            )}
+          </div>
+        </Container>
+      </Background>
+    </>
   );
 };
 
