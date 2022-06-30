@@ -86,6 +86,7 @@ const CategoriesGameFI: React.FC = () => {
       setCreatedNfts(response)
     }
   }
+  console.log(createdNfts)
   return (
       <>
         <Banner>
@@ -109,9 +110,9 @@ const CategoriesGameFI: React.FC = () => {
             <div>
               {createdNfts ? (
                   <Collection itemList={createdNfts}/>
-              ) : (
-                  <span></span>
-              )}
+              ) :
+                  <span>dsadsa</span>
+              }
             </div>
           </Container>
         </Background>

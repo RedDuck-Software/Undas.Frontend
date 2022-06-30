@@ -60,10 +60,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     const SIGNER_ADDRESS = await signer.getAddress();
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+
 
     const isApprovedForAll = await NFTContract.isApprovedForAll(
       SIGNER_ADDRESS,
@@ -85,7 +82,7 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
     setIsRented(true);
     setShowRentInfo(true);
   };
-
+  console.log('dQQQQQQ')
   const payPremium = async (itemId: number) => {
     if (!connector || !rentOpen) return;
     const provider = new ethers.providers.Web3Provider(
