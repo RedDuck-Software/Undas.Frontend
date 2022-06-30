@@ -1,4 +1,7 @@
+import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { createClient } from "urql";
 
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
 import { CollectionBanner } from "./imports";

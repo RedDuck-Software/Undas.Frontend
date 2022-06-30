@@ -1,9 +1,8 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useState, useContext, useEffect } from "react";
-import { useMoralis } from "react-moralis";
 import { Navigate } from "react-router-dom";
+import { createClient } from "urql";
 
-import CreatedCollections from "./CreatedCollections";
 import {
   CreatedWrap,
   CreatedSettingsBlock,
@@ -11,16 +10,16 @@ import {
   CreatedSelect,
   CreatedResultsTotal,
 } from "./Created.styles";
+import CreatedCollections from "./CreatedCollections";
 import { CreatedType } from "./types";
 
+import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-import { createClient } from "urql";
 
 type CreatedItemProps = {
   id: number;

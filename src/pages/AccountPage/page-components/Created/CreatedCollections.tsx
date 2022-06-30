@@ -1,9 +1,8 @@
+import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
+import { createClient } from "urql";
 
 import Collection from "./page-components/Collection";
-import { createClient } from "urql";
-import { Navigate } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
 import Context from "../../../../utils/Context";
 
 type createdCollectionItemProps = {

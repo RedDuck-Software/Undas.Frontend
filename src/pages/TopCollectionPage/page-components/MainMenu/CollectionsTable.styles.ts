@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { ViewOption } from "../../../AllNFTs/AllNFTs.styles";
 import { top, buttom } from "../../imports";
 
 export const FavouriteSelect = styled.div`
@@ -274,6 +273,7 @@ export const CollectionsTd = styled.td<ICollectionsTd>`
     padding: 15px 0 15px 20px;
     width: 3%;
   }
+
   @media (max-width: 992px) {
     padding: 10px 10px 10px 20px;
   }

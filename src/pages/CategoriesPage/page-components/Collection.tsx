@@ -1,4 +1,6 @@
+import { useWeb3React } from "@web3-react/core";
 import React, { useEffect, useState } from "react";
+import { createClient } from "urql";
 
 import {
   CollectionCard,
@@ -16,6 +18,7 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
+
 import {
   CollectionBG,
   CollectionPic,

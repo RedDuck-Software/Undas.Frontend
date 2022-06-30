@@ -1,12 +1,12 @@
+import plus18 from "../icons/18.svg";
 import allNFTsIcon from "../icons/all-nfts.svg";
-import newIcon from "../icons/new-stars.svg";
 import artworkIcon from "../icons/art-work.svg";
 import celebrityIcon from "../icons/celebrity.svg";
 import gamefi from "../icons/metaverses.svg";
+import newIcon from "../icons/new-stars.svg";
 import photoIcon from "../icons/photography.svg";
 import rwaNFTIcon from "../icons/rwa-nft.svg";
 import sportIcon from "../icons/sport.svg";
-import plus18 from "../icons/18.svg";
 import { Category, ICategory } from "../types/category";
 
 export const getCategory = (category: Category): ICategory => {

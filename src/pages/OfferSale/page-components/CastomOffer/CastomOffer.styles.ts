@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { NFTWrap } from "../../../../components/NFTCardOffers/NFTCard.styles";
 import { Swiper } from "swiper/react";
 
+import { NFTWrap } from "../../../../components/NFTCardOffers/NFTCard.styles";
 import { eth, offerTime } from "../../imports";
 
 export const OwnerItemText = styled.div`

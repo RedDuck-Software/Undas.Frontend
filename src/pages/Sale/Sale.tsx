@@ -1,8 +1,9 @@
+import { ethers } from "ethers";
 import React, { useContext, useState } from "react";
-
-import { SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Navigation } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
 import {
   BlockTitle,
@@ -15,8 +16,13 @@ import {
   SwiperNFT,
 } from "./Sale.styles";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 import NFTCard from "../../components/NFTCardOffers/NFTCard";
+import { Background, Container, PageTitle } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { UndasGeneralNFT__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
 import { down, info, deleteNFT } from "../OfferRent/imports";
 import {
   PageWrapper,
@@ -47,6 +53,7 @@ import {
   ButtonInfo,
   FAQLink,
 } from "../OfferRent/OfferRent.styles";
+import ModalsNFT from "../OfferRent/page-components//ModalsNFT/ModalsNFT";
 import {
   LeftBlock,
   RightBlock,
@@ -58,17 +65,6 @@ import {
   Button,
   ItemAmount,
 } from "../Rent/Rent.styles";
-
-import ModalsNFT from "../OfferRent/page-components//ModalsNFT/ModalsNFT";
-
-import { useLocation, useNavigate } from "react-router-dom";
-import Context from "../../utils/Context";
-import { ethers } from "ethers";
-import { Marketplace__factory } from "../../typechain";
-import { UndasGeneralNFT__factory } from "../../typechain";
-
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import LoadingModal from "../../components/LoadingModal/LoadingModal";
 
 const Sale: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);

@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import React, { useEffect, useState } from "react";
+import { createClient } from "urql";
 
 import {
   CollectionCard,
@@ -12,7 +14,6 @@ import {
   CardsWrapper,
   ImageCollection,
 } from "../Created.styles";
-
 import { Verified } from "../imports";
 import { createClient } from "urql";
 import { useWeb3React } from "@web3-react/core";

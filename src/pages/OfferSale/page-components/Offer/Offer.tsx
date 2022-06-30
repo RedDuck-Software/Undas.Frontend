@@ -1,6 +1,8 @@
+import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createClient } from "urql";
 
 import {
   OfferContainer,
@@ -47,8 +49,8 @@ import {
   FilterDay,
 } from "./Offer.styles";
 
+import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
 import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
-import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
 import { Marketplace__factory } from "../../../../typechain";
 
 import { ethers, Signer } from "ethers";
@@ -58,6 +60,7 @@ import { createClient } from "urql";
 import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
 import { usd } from "../../../OfferRent/imports";
 import { bsc, solana } from "../../../CreateNFT/imports";
+import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
 
 const Offer: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
@@ -65,8 +68,8 @@ const Offer: React.FC = () => {
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-  const [tokenName, setTokenName] = useState<string>();
-  const [tokenURI, setTokenURI] = useState<string>();
+  const [, setTokenName] = useState<string>();
+  const [, setTokenURI] = useState<string>();
   const [listingId, setListingId] = useState<string>();
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();

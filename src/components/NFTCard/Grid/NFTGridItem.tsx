@@ -1,7 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   NFTWrap,
@@ -29,10 +28,6 @@ import {
   Wrapper,
 } from "../../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../../pages/CategoriesPage/imports";
-import { setComponent } from "../../../store/reducers/modalAction";
-import { NFTPage } from "../../../pages";
-// import OfferRent from "../../../pages/OfferRent/OfferRent";
-// import Link from 'react-router-dom';
 
 interface NFTGridItemProps {
   tokenId: number; //listingID

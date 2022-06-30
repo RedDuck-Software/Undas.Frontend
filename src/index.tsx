@@ -2,9 +2,9 @@ import { Web3Provider } from "@ethersproject/providers";
 import { Web3ReactProvider } from "@web3-react/core";
 import React from "react";
 import ReactDOM from "react-dom";
+import { MoralisProvider } from "react-moralis";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { MoralisProvider } from "react-moralis";
 
 import App from "./App";
 import { Footer, ScrollToTop } from "./components";

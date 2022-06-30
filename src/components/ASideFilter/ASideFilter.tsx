@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   ASideWrap,
@@ -46,6 +46,7 @@ import {
   ApplyButton,
   ButtonContainer,
 } from "./ASideFilter.styles";
+import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   FilterIco,
   StatusIco,
@@ -60,20 +61,19 @@ import {
   EthereumIcon,
 } from "./imports";
 
+import { PolygonIcon } from "../../pages/AllNFTs/imports";
+import { bsc, solana, ton } from "../../pages/CreateNFT/imports";
 import {
   buyAction,
   hasOffersAction,
   rentAction,
 } from "../../store/reducers/Filter/filterActions";
-import { Category } from "../../types/category";
-import { getCategory } from "../../utils/getCategory";
-import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   addSelectedCategory,
   addSelectedCollection,
 } from "../../store/reducers/Filter/filterActions";
-import { PolygonIcon } from "../../pages/AllNFTs/imports";
-import { bsc, solana, ton } from "../../pages/CreateNFT/imports";
+import { Category } from "../../types/category";
+import { getCategory } from "../../utils/getCategory";
 
 interface CategoryItemProps {
   label: string;
@@ -233,9 +233,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
     },
   ]);
 
-  const [collectionList, setCollectionList] = useState<
-    FilterCollectionItemProps[]
-  >([
+  const [collectionList] = useState<FilterCollectionItemProps[]>([
     {
       collectionIcon: CollectionItemIco,
       collectionName: "Borya Borya",

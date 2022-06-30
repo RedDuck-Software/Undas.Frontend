@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { eth, offerTime } from "../../imports";
 
 export const OfferContainer = styled.div`

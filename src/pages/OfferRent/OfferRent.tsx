@@ -1,9 +1,12 @@
+import { ethers } from "ethers";
 import React, { useContext, useState, useEffect } from "react";
-
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { SwiperSlide } from "swiper/react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "swiper";
+import { SwiperSlide } from "swiper/react";
+import { createClient } from "urql";
 
+import { down, info, deleteNFT } from "./imports";
 import {
   PageWrapper,
   OfferContainer,
@@ -56,7 +59,14 @@ import {
   FilterMenuDay,
   FilterDay,
 } from "./OfferRent.styles";
+import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
 
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
+import { Background, Container, PageTitle } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
 import {
   TopLinkWrapper,
   TopLink,
