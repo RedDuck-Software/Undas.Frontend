@@ -291,6 +291,8 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
   const stakingRef: any = useRef();
   const buyingRef: any = useRef();
   const hasOffersRef: any = useRef();
+  const createdRef: any = useRef();
+
   return (
     <>
       <ASideWrap
