@@ -3,6 +3,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useState, useEffect } from "react";
 import { MoralisProvider } from "react-moralis";
 import { Route, Routes } from "react-router-dom";
+import { createClient, Provider } from "urql";
 
 import { Navbar } from "./components";
 import Modal from "./components/Modal/Modal";
@@ -61,6 +62,10 @@ import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import { ConnectorState } from "./types/ConnectorState";
 import Context from "./utils/Context";
 
+const urqlClient = createClient({
+  url: "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace",
+});
+
 const App: React.FC = () => {
   const web3Current = useWeb3React();
   const connectorName = localStorage.getItem("connector");
@@ -99,85 +104,90 @@ const App: React.FC = () => {
       serverUrl="https://zem8ktewfkdf.usemoralis.com:2053/server"
     >
       <Context.Provider value={value}>
-        <Modal />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/product" element={<ProductCard />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/referral" element={<Referral />} />
-          <Route path="/achievements" element={<Achievements />} />
-          <Route path="/all" element={<AllNFTs />} />
-          <Route path="/assets/new" element={<NewNFTs />} />
-          <Route path="/listing" element={<Listing />} />
-          <Route path="/staking" element={<StakingPage />} />
-          <Route path="/create-nft" element={<CreateNFT />} />
-          <Route path="/create-collection" element={<CreateCollection />} />
-          <Route path="/explore/art" element={<ExplorePage pageType="Art" />} />
-          <Route path="/productforsale/:id" element={<ProductForSale />} />
-          <Route path="/categories-rwa" element={<CategoriesRwa />} />
-          <Route path="/categories-art" element={<CategoriesArt />} />
-          <Route path="/categories-gimefi" element={<CategoriesGameFI />} />
-          <Route path="/categories-new" element={<CategoriesNew />} />
-          <Route path="/categories-sport" element={<CategoriesSport />} />
-          <Route path="/categories-photo" element={<CategoriesPhoto />} />
-          <Route
-            path="/categories-celebrity"
-            element={<CategoriesCelebrity />}
-          />
-          <Route path="/categories-18plus" element={<Categories18 />} />
-          <Route path="/collection/:id" element={<CollectionPage />} />
-          <Route path="/nft/buy/:address:id" element={<NFTPage />} />
-          <Route path="/nft/sell/:address:id" element={<NFTPageSell />} />
-          <Route path="/activity" element={<ActivityPage />} />
-          <Route path="/topcollection" element={<TopCollectionPage />} />
-          <Route
-            path="/explore/sport"
-            element={<ExplorePage pageType="Sport" />}
-          />
-          <Route
-            path="/explore/girls"
-            element={<ExplorePage pageType="Girls" />}
-          />
-          <Route
-            path="/explore/sport"
-            element={<ExplorePage pageType="Sport" />}
-          />
-          <Route
-            path="/explore/furniture"
-            element={<ExplorePage pageType="Furniture" />}
-          />
-          <Route path="/rent-nft" element={<RentNFTPage />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/creator-card" element={<CreatorCardPage />} />
-          <Route path="/offer-sale/:address:id" element={<OfferSale />} />
-          <Route path="/offer-rent/:address:id" element={<OfferRent />} />
-          <Route path="/rent/:address:id" element={<Rent />} />
-          <Route path="/buy/:address:id" element={<Buy />} />
-          <Route path="/nft/sale/:id" element={<Sale />} />
-          <Route path="/sale" element={<Sale />} />
-          <Route path="/article" element={<ArticlePage />} />
-          <Route
-            path="/blog/website-tips"
-            element={<BlogThemeWrap blogComponent={<WebsiteTips />} />}
-          />
-          <Route
-            path="/blog/business-tips"
-            element={<BlogThemeWrap blogComponent={<BusinessTips />} />}
-          />
-          <Route
-            path="/blog/inspiration"
-            element={<BlogThemeWrap blogComponent={<Inspiration />} />}
-          />
-          <Route
-            path="/blog/news"
-            element={<BlogThemeWrap blogComponent={<News />} />}
-          />
-        </Routes>
+        <Provider value={urqlClient}>
+          <Modal />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/product/:id" element={<ProductCard />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/referral" element={<Referral />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/all" element={<AllNFTs />} />
+            <Route path="/assets/new" element={<NewNFTs />} />
+            <Route path="/listing" element={<Listing />} />
+            <Route path="/staking" element={<StakingPage />} />
+            <Route path="/create-nft" element={<CreateNFT />} />
+            <Route path="/create-collection" element={<CreateCollection />} />
+            <Route
+              path="/explore/art"
+              element={<ExplorePage pageType="Art" />}
+            />
+            <Route path="/productforsale/:id" element={<ProductForSale />} />
+            <Route path="/categories-rwa" element={<CategoriesRwa />} />
+            <Route path="/categories-art" element={<CategoriesArt />} />
+            <Route path="/categories-gimefi" element={<CategoriesGameFI />} />
+            <Route path="/categories-new" element={<CategoriesNew />} />
+            <Route path="/categories-sport" element={<CategoriesSport />} />
+            <Route path="/categories-photo" element={<CategoriesPhoto />} />
+            <Route
+              path="/categories-celebrity"
+              element={<CategoriesCelebrity />}
+            />
+            <Route path="/categories-18plus" element={<Categories18 />} />
+            <Route path="/collection/:id" element={<CollectionPage />} />
+            <Route path="/nft/buy/:address:id" element={<NFTPage />} />
+            <Route path="/nft/sell/:address:id" element={<NFTPageSell />} />
+            <Route path="/activity" element={<ActivityPage />} />
+            <Route path="/topcollection" element={<TopCollectionPage />} />
+            <Route
+              path="/explore/sport"
+              element={<ExplorePage pageType="Sport" />}
+            />
+            <Route
+              path="/explore/girls"
+              element={<ExplorePage pageType="Girls" />}
+            />
+            <Route
+              path="/explore/sport"
+              element={<ExplorePage pageType="Sport" />}
+            />
+            <Route
+              path="/explore/furniture"
+              element={<ExplorePage pageType="Furniture" />}
+            />
+            <Route path="/rent-nft" element={<RentNFTPage />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/creator-card" element={<CreatorCardPage />} />
+            <Route path="/offer-sale/:address:id" element={<OfferSale />} />
+            <Route path="/offer-rent/:address:id" element={<OfferRent />} />
+            <Route path="/rent/:address:id" element={<Rent />} />
+            <Route path="/buy/:address:id" element={<Buy />} />
+            <Route path="/nft/sale/:id" element={<Sale />} />
+            <Route path="/sale" element={<Sale />} />
+            <Route path="/article" element={<ArticlePage />} />
+            <Route
+              path="/blog/website-tips"
+              element={<BlogThemeWrap blogComponent={<WebsiteTips />} />}
+            />
+            <Route
+              path="/blog/business-tips"
+              element={<BlogThemeWrap blogComponent={<BusinessTips />} />}
+            />
+            <Route
+              path="/blog/inspiration"
+              element={<BlogThemeWrap blogComponent={<Inspiration />} />}
+            />
+            <Route
+              path="/blog/news"
+              element={<BlogThemeWrap blogComponent={<News />} />}
+            />
+          </Routes>
+        </Provider>
       </Context.Provider>
     </MoralisProvider>
   );
