@@ -192,6 +192,7 @@ export const PriceRow = styled.div`
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
+  position: relative;
 
   @media (max-width: 992px) {
     flex-wrap: wrap;
@@ -998,7 +999,6 @@ export const FilterMenu = styled.ul`
   visibility: hidden;
   opacity: 0;
   transition: all ease-in-out 0.15s;
-  margin-top: -1px;
   justify-content: flex-start;
   &.day {
     width: 40%;
