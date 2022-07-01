@@ -94,7 +94,6 @@ export const FirstCollum = styled.div`
   width: 60%;
   flex-wrap: wrap;
   flex-direction: column;
-  position: relative;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -757,21 +756,9 @@ export const SelectedNFT = styled.div`
 
 export const ImgDelete = styled.img`
   height: 16px;
-  top: 40px;
+  top: 10px;
   position: absolute;
-  right: 6%;
-  @media (max-width: 1200px) {
-    top: 5%;
-  }
-  @media (max-width: 640px) {
-    right: 19%;
-  }
-  @media (max-width: 576px) {
-    right: 18%;
-  }
-  @media (max-width: 480px) {
-    right: 5%;
-  }
+  right: 0;
 `;
 
 export const AddNFTContainer = styled(NFTInfoContainer)`
