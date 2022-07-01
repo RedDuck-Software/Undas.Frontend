@@ -291,7 +291,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
   const stakingRef: any = useRef();
   const buyingRef: any = useRef();
   const hasOffersRef: any = useRef();
-  const createdRef: any  = useRef();
   return (
     <>
       <ASideWrap
@@ -335,7 +334,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
             />
           </HolderElement>
           <AccordionMenu
-            mh="224px"
+            mh="186px"
             className={(activeMenu.status && "active-status") || ""}
           >
             <AccordionElement
@@ -390,17 +389,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
               <span>Has Offers</span>
               <Switch>
                 <InputSwitch type="checkbox" ref={hasOffersRef} />
-                <SliderRound />
-              </Switch>
-            </AccordionElement>
-            <AccordionElement
-              onClick={() => {
-                createdRef.current.checked = !createdRef.current.checked;
-              }}
-            >
-              <span>Created</span>
-              <Switch>
-                <InputSwitch type="checkbox" ref={createdRef} />
                 <SliderRound />
               </Switch>
             </AccordionElement>

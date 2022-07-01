@@ -1,6 +1,4 @@
-import { ethers } from "ethers";
-import React, { useState } from "react";
-import { useQuery } from "urql";
+import React, { useState, useEffect, useMemo } from "react";
 
 import {
   CollectionMenuWrap,
@@ -28,42 +26,31 @@ import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileB
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
-import { ItemVerifyIco } from "../../imports";
-import { getTopCollections, getFloorPrice } from "../../query";
+import { ItemImg, ItemVerifyIco } from "../../imports";
 
 interface IObjectKeys {
-  [key: string]: any;
+  [key: string]: string | number | boolean;
 }
 
 interface CollectionRowProps extends IObjectKeys {
-  id: number;
-  collectionUrl: string;
   collectionName: string;
-  //isVerified: boolean;
-  //priceFloor: string | number;
-  //totalVol: string | number;
-  //dayVol: number;
-  //ownersCount: string | number;
+  isVerified: boolean;
+  priceFloor: string | number;
+  totalVol: string | number;
+  dayVol: number;
+  ownersCount: string | number;
   itemsCount: string | number;
 }
 
 const CollectionRow: React.FC<CollectionRowProps> = ({
-  id,
-  collectionUrl,
   collectionName,
   isVerified,
+  priceFloor,
   totalVol,
   dayVol,
   ownersCount,
   itemsCount,
 }) => {
-  const [result] = useQuery({
-    query: getFloorPrice,
-    variables: { collectionId: id },
-  });
-
-  const { data, fetching } = result;
-
   return (
     <CollectionsTr className="offers-menu-row">
       <CollectionsTdText className="first-column">
@@ -71,11 +58,7 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
       </CollectionsTdText>
       <CollectionsTdText className="offers-table-item">
         <ItemIcon>
-          <img
-            src={collectionUrl}
-            alt="item image"
-            className="offers-item-image"
-          />
+          <img src={ItemImg} alt="item image" className="offers-item-image" />
         </ItemIcon>
         <NameContainer>
           <ItemName>{collectionName}</ItemName>
@@ -90,17 +73,13 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
       <CollectionsTdText>
         <PriceTextW>
           <EtherIcon />
-          <PriceText>
-            {!fetching && data.listings.length > 0
-              ? ethers.utils.formatEther(data.listings[0].price)
-              : "-"}
-          </PriceText>
+          <PriceText>{priceFloor}</PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
         <PriceTextW>
           <EtherIcon />
-          <PriceText>{ethers.utils.formatEther(totalVol)}</PriceText>
+          <PriceText>{totalVol}</PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
@@ -132,51 +111,83 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
   );
 };
 
+const testCollections = [
+  {
+    collectionName: "Borya Borya",
+    isVerified: false,
+    priceFloor: 20.02,
+    totalVol: 400.103,
+    dayVol: 48,
+    ownersCount: 289,
+    itemsCount: 1337,
+  },
+  {
+    collectionName: "Azuki",
+    isVerified: true,
+    priceFloor: 300.706,
+    totalVol: 800.74,
+    dayVol: -30.5,
+    ownersCount: 8700,
+    itemsCount: 5000,
+  },
+  {
+    collectionName: "Bored Ape",
+    isVerified: true,
+    priceFloor: 80.009,
+    totalVol: 900.8,
+    dayVol: 80,
+    ownersCount: 10000,
+    itemsCount: 4000,
+  },
+];
+
 const CollectionsMenu: React.FC = () => {
   const [isVerifiedOnly, setIsVerifiedOnly] = useState<boolean>(false);
+  const [collections, setCollections] =
+    useState<CollectionRowProps[]>(testCollections);
   const [sortConfig, setSortConfig] = useState<{
-    orderBy: string;
+    key: string;
     direction: string;
-  }>({ orderBy: "collectionItemsAmount", direction: "desc" });
-
-  const [result] = useQuery({
-    query: getTopCollections,
-    variables: { ...sortConfig },
-  });
-  const { data, fetching } = result;
+  }>({ key: "", direction: "asc" });
 
   const handleIsVefiriedOnly = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
 
-  const requestSort = (orderBy: string) => {
+  useEffect(() => {
+    setCollections(testCollections);
+  }, []);
+
+  const requestSort = (key: string) => {
+    console.log("SORT KEEEEEEEEEEEY", key);
     let direction = "asc";
-    if (sortConfig.orderBy === orderBy && sortConfig.direction === "asc") {
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc";
     }
-    setSortConfig({ orderBy, direction });
+    setSortConfig({ key, direction });
+    console.log(sortConfig);
   };
 
-  /* const verifiedOnly = collections.filter(
+  const verifiedOnly = collections.filter(
     (collection: CollectionRowProps) => collection.isVerified === true,
   );
-
   const sortedCollections = isVerifiedOnly ? verifiedOnly : [...collections];
   useMemo(() => {
     if (sortedCollections !== null) {
       sortedCollections.sort((a: CollectionRowProps, b: CollectionRowProps) => {
-        if (a[sortConfig.orderBy] < b[sortConfig.orderBy]) {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
           return sortConfig.direction === "asc" ? -1 : 1;
         }
 
-        if (a[sortConfig.orderBy] > b[sortConfig.orderBy]) {
+        if (a[sortConfig.key] > b[sortConfig.key]) {
           return sortConfig.direction === "asc" ? 1 : -1;
         }
         return 0;
       });
     }
     return sortedCollections;
-  }, [collections, sortConfig]); */
+  }, [collections, sortConfig]);
+
   return (
     <CollectionMenuWrap>
       <CollectionFilterWrap>
@@ -202,33 +213,40 @@ const CollectionsMenu: React.FC = () => {
             <CollectionsTd className="first-column"></CollectionsTd>
             <CollectionsTd>Collection</CollectionsTd>
             <CollectionsTd>
-              <PriceTextW>Floor Price</PriceTextW>
+              <PriceTextW onClick={() => requestSort("priceFloor")}>
+                Floor Price
+              </PriceTextW>
             </CollectionsTd>
-            <CollectionsTd onClick={() => requestSort("collectionVolume")}>
+            <CollectionsTd onClick={() => requestSort("totalVol")}>
               <PriceTextW>Total Vol</PriceTextW>
             </CollectionsTd>
-            <CollectionsTd>24h Vol</CollectionsTd>
-            <CollectionsTd>24h Vol</CollectionsTd>
-            <CollectionsTd>Owners</CollectionsTd>
-            <CollectionsTd onClick={() => requestSort("collectionItemsAmount")}>
+            <CollectionsTd onClick={() => requestSort("dayVol")}>
+              24h Vol
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("dayVol")}>
+              24h Vol
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("ownersCount")}>
+              Owners
+            </CollectionsTd>
+            <CollectionsTd onClick={() => requestSort("itemsCount")}>
               Items
             </CollectionsTd>
           </CollectionsHeadTr>
-          {!fetching &&
-            data.collections.map((row: any) => {
-              return (
-                <CollectionRow
-                  key={row.id}
-                  id={row.id}
-                  collectionName={row.collectionName}
-                  collectionUrl={row.collectionUrl}
-                  totalVol={row.collectionVolume}
-                  //dayVol={row.dayVol}
-                  //ownersCount={row.ownersCount}
-                  itemsCount={row.collectionItemsAmount}
-                />
-              );
-            })}
+          {sortedCollections.map((row) => {
+            return (
+              <CollectionRow
+                key={row.collectionName + row.ownersCount + row.itemsCount}
+                collectionName={row.collectionName}
+                isVerified={row.isVerified}
+                priceFloor={row.priceFloor}
+                totalVol={row.totalVol}
+                dayVol={row.dayVol}
+                ownersCount={row.ownersCount}
+                itemsCount={row.itemsCount}
+              />
+            );
+          })}
         </CollectionsWrapTable>
       </ContainerTable>
       <FilterMobileButton />
