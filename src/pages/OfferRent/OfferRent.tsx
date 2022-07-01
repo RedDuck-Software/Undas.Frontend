@@ -6,7 +6,7 @@ import { Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
 import { createClient } from "urql";
 
-import { down, info, deleteNFT } from "./imports";
+import { info, deleteNFT, eth, usd } from "./imports";
 import {
   PageWrapper,
   OfferContainer,
@@ -67,6 +67,7 @@ import { Background, Container, PageTitle } from "../../globalStyles";
 import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
+import { bsc, solana } from "../CreateNFT/imports";
 import {
   TopLinkWrapper,
   TopLink,
@@ -75,19 +76,6 @@ import {
   Button,
   ItemAmount,
 } from "../Rent/Rent.styles";
-
-import ModalsNFT from "./page-components//ModalsNFT/ModalsNFT";
-import { Background, Container, PageTitle } from "../../globalStyles";
-import { useLocation, useNavigate } from "react-router-dom";
-import { info, deleteNFT, eth, usd } from "./imports";
-import Context from "../../utils/Context";
-import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
-import { Marketplace__factory } from "../../typechain";
-import { createClient } from "urql";
-import { ethers } from "ethers";
-import NFTCard from "../../components/NFTCardOffers/NFTCard";
-import LoadingModal from "../../components/LoadingModal/LoadingModal";
-import { bsc, solana, ton } from "../CreateNFT/imports";
 
 const OfferRent: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
@@ -203,6 +191,10 @@ const OfferRent: React.FC = () => {
     event: false,
     day: false,
   });
+
+  useEffect(() => {
+    console.log(priceFilter);
+  }, [active, priceFilter]);
 
   return (
     <Background>

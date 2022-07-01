@@ -15,8 +15,6 @@ import {
   ImageCollection,
 } from "../Created.styles";
 import { Verified } from "../imports";
-import { createClient } from "urql";
-import { useWeb3React } from "@web3-react/core";
 
 type CollectionItemProps = {
   id: number;

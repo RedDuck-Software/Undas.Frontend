@@ -52,15 +52,11 @@ import {
 import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
 import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import { Marketplace__factory } from "../../../../typechain";
-
-import { ethers, Signer } from "ethers";
-import { eth, info } from "../../imports";
-import Context from "../../../../utils/Context";
-import { createClient } from "urql";
-import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
-import { usd } from "../../../OfferRent/imports";
-import { bsc, solana } from "../../../CreateNFT/imports";
 import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+import Context from "../../../../utils/Context";
+import { bsc, solana } from "../../../CreateNFT/imports";
+import { usd } from "../../../OfferRent/imports";
+import { eth, info } from "../../imports";
 
 const Offer: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
@@ -167,6 +163,9 @@ const Offer: React.FC = () => {
     price: false,
     day: false,
   });
+  useEffect(() => {
+    console.log(priceFilter);
+  }, [active, priceFilter]);
 
   return (
     <OfferContainer>
