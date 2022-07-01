@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
@@ -50,11 +50,11 @@ import {
   FilterDay,
 } from "./CastomOffer.styles";
 
-import { deleteNFT, info, eth } from "../../imports";
 import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
-import ModalsNFT from "../../../OfferRent/page-components//ModalsNFT/ModalsNFT";
-import { usd } from "../../../OfferRent/imports";
 import { bsc, solana } from "../../../CreateNFT/imports";
+import { usd } from "../../../OfferRent/imports";
+import ModalsNFT from "../../../OfferRent/page-components//ModalsNFT/ModalsNFT";
+import { deleteNFT, info, eth } from "../../imports";
 
 const CastomOffer: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState<string>("");
@@ -63,6 +63,9 @@ const CastomOffer: React.FC = () => {
     event: false,
     day: false,
   });
+  useEffect(() => {
+    console.log(priceFilter);
+  }, [active, priceFilter]);
   return (
     <div>
       <OwnerContainer>

@@ -9,10 +9,7 @@ import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
-import { useWeb3React } from "@web3-react/core";
 import Context from "../../utils/Context";
-import { Navigate } from "react-router-dom";
-import { createClient } from "urql";
 
 type CollectionItemProps = {
   id: number;

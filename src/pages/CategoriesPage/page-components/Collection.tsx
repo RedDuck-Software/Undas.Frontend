@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useEffect, useState } from "react";
 import { createClient } from "urql";
 
+/*import collection from "../../AccountPage/page-components/Created/page-components/Collection";*/
 import {
   CollectionCard,
   AuthorWrap,
@@ -18,18 +19,7 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-
-import {
-  CollectionBG,
-  CollectionPic,
-  NFT1,
-  NFT2,
-  NFT3,
-  Verified,
-} from "../imports";
-import { useWeb3React } from "@web3-react/core";
-import { createClient } from "urql";
-import collection from "../../AccountPage/page-components/Created/page-components/Collection";
+import { CollectionBG, Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
