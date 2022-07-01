@@ -1,6 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
 import { Banner, Title, Info, InfoCard, InfoText } from "./Categories.styles";
@@ -22,12 +23,13 @@ type CollectionItemProps = {
 const CategoriesGameFI: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
-  const createdItems: CollectionItemProps[] = [];
-  const [createdNfts, setCreatedNfts] = useState<CollectionItemProps[]>();
+  const collectionsList: CollectionItemProps[] = [];
+  const [collections, setCollections] = useState<CollectionItemProps[]>();
+  const [loading, setLoading] = useState(true);
 
-  const getTokensData = async () => {
-    const tokensQuery = await fetchData();
-    tokensQuery.data.collections.map((i: any) => {
+  const getСollection = async () => {
+    const collectionsFromAPI = await fetchData();
+    collectionsFromAPI.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
@@ -35,7 +37,7 @@ const CategoriesGameFI: React.FC = () => {
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
 
-      createdItems.push({
+      collectionsList.push({
         id,
         collectionUrl,
         collectionCategory,
@@ -44,7 +46,7 @@ const CategoriesGameFI: React.FC = () => {
         owner,
       });
     });
-    return createdItems;
+    return collectionsList;
   };
 
   console.log("account", account);
@@ -52,29 +54,28 @@ const CategoriesGameFI: React.FC = () => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListingsData();
-  }, [connector, account]);
+    getСollectionData();
+  }, [connector]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
   }
-  console.log(createdNfts);
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const createdTokensQuery = `
-    {
-          collections(orderBy:id orderDirection:desc){
-          collectionName
-          owner
-          id
-    	  collectionInfo
-          collectionUrl
-          collectionCategory
-	    }
+   {
+         collections(orderBy:id orderDirection:desc){
+         collectionName
+         owner
+         id
+   	     collectionInfo
+         collectionUrl
+         collectionCategory
     }
- `;
+   }
+`;
 
   const client = createClient({
     url: APIURL,
@@ -85,13 +86,17 @@ const CategoriesGameFI: React.FC = () => {
     return data;
   }
 
-  async function getListingsData() {
-    const response = await getTokensData();
+  async function getСollectionData() {
+    const response = await getСollection();
     if (response) {
-      setCreatedNfts(response);
+      setCollections(response);
+      setLoading(false);
     }
   }
-  return (
+
+  return loading ? (
+    <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
+  ) : (
     <>
       <Banner>
         <img src={CollectionBanner} alt="CollectionBanner" />
@@ -112,10 +117,12 @@ const CategoriesGameFI: React.FC = () => {
             </InfoCard>
           </Info>
           <div>
-            {createdNfts ? (
-              <Collection itemList={createdNfts} />
+            {collections?.length ? (
+              <Collection itemList={collections} />
             ) : (
-              <span></span>
+              <h1 className="text-center">
+                No collections have been created at this category
+              </h1>
             )}
           </div>
         </Container>
