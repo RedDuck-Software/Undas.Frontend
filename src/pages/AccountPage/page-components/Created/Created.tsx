@@ -20,7 +20,6 @@ import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
-import NoData from "../NoData/NoData";
 
 type CreatedItemProps = {
   id: number;
@@ -138,33 +137,27 @@ const Created: React.FC = () => {
 
       <FilterSelected />
 
-      {createdNfts && createdNfts.length > 0 ? (
+      {viewMode === ViewMode.grid && createdType === CreatedType.nft && (
         <>
-          {viewMode === ViewMode.grid && createdType === CreatedType.nft && (
-            <>
-              {createdNfts ? (
-                <CollectionGridWrap itemList={createdNfts} />
-              ) : (
-                <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
+          {createdNfts ? (
+            <CollectionGridWrap itemList={createdNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
           )}
-
-          {viewMode === ViewMode.list && createdType === CreatedType.nft && (
-            <>
-              {createdNfts?.map((item) => {
-                return (
-                  <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-                );
-              })}
-            </>
-          )}
-
-          {createdType === CreatedType.collection && <CreatedCollections />}
         </>
-      ) : (
-        <NoData />
       )}
+
+      {viewMode === ViewMode.list && createdType === CreatedType.nft && (
+        <>
+          {createdNfts?.map((item) => {
+            return (
+              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
+            );
+          })}
+        </>
+      )}
+
+      {createdType === CreatedType.collection && <CreatedCollections />}
     </CreatedWrap>
   );
 };

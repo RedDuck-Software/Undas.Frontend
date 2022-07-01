@@ -2,7 +2,6 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useEffect, useState } from "react";
 import { createClient } from "urql";
 
-/*import collection from "../../AccountPage/page-components/Created/page-components/Collection";*/
 import {
   CollectionCard,
   AuthorWrap,

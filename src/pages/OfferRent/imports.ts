@@ -9,8 +9,6 @@ import nftImage from "./assets/nft-image.svg";
 import offerTime from "./assets/offer-time.svg";
 import verifyImage from "./assets/verify-image.svg";
 
-import usd from "../../icons/usd.svg";
-
 export {
   back,
   down,
@@ -22,5 +20,4 @@ export {
   verifyImage,
   nftImage,
   eth,
-  usd,
 };

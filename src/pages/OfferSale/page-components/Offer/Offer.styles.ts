@@ -133,10 +133,42 @@ export const PriceRow = styled.div`
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
-  position: relative;
   @media (max-width: 992px) {
     flex-wrap: wrap;
   }
+`;
+
+export const EthSelect = styled.div`
+  width: 30%;
+  background: #fbf5ff;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 10px 0px 0px 10px;
+  height: 36px;
+  padding-top: 5px;
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+`;
+
+export const EthText = styled.span`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232428;
+  margin-left: 20px;
+  &::before {
+    content: url(${eth});
+    margin-right: 10px;
+  }
+`;
+
+export const ImageDown = styled.img`
+  float: right;
+  padding-right: 20px;
+  padding-top: 9px;
 `;
 
 export const AmmountInput = styled.input`
@@ -199,6 +231,33 @@ export const TextOffer = styled.div`
   @media (max-width: 768px) {
     font-size: 14px;
   }
+`;
+
+export const DaySelect = styled.div`
+  width: 40%;
+  background: #fbf5ff;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 10px 0px 0px 10px;
+  height: 36px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #7c7c7c;
+  padding-left: 20px;
+  padding-top: 9px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+`;
+
+export const ImageDownOffer = styled.img`
+  float: right;
+  padding-right: 20px;
+  padding-top: 7px;
 `;
 
 export const TimeSelect = styled.div`
@@ -655,157 +714,4 @@ export const FAQLink = styled.a`
   &:hover {
     color: #873dc1;
   }
-`;
-
-export const Filter = styled.ul`
-  width: 30%;
-  background: #fbf5ff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
-  border-radius: 10px 0px 0px 10px;
-  height: 36px;
-  cursor: pointer;
-
-  @media (max-width: 992px) {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-
-    &.sort-active {
-      border-radius: 10px 10px 0px 0px;
-    }
-  }
-
-  &.sort-active {
-    border-radius: 10px 0 0 0;
-  }
-`;
-
-export const FilterDay = styled.ul`
-  width: 40%;
-  background: #fbf5ff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
-  border-radius: 10px 0px 0px 10px;
-  height: 36px;
-  cursor: pointer;
-
-  &.sort-day {
-    border-radius: 10px 0 0 0;
-  }
-
-  @media (max-width: 992px) {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    &.sort-day {
-      border-radius: 10px 10px 0px 0px;
-    }
-  }
-`;
-
-export const FilterItem = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 7px;
-  transition: all ease-in-out 0.3s;
-  border-radius: 10px;
-  margin-top: 2px;
-  &:hover {
-    background: #fbf5ff;
-  }
-`;
-
-export const FilterTitle = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 17px;
-  color: #232428;
-
-  &.day {
-    margin-left: 15px;
-  }
-`;
-
-export const Arrow = styled.span`
-  margin-top: -4px;
-  margin-right: 10px;
-  border-top: 1px solid #5d3f92;
-  border-left: 1px solid #5d3f92;
-  transform: rotate(225deg);
-  width: 10px;
-  height: 10px;
-  transition: all ease-in-out 0.15s;
-  margin-left: auto;
-  &.sort-active {
-    margin-top: 4px;
-    transform: rotate(45deg);
-  }
-`;
-
-export const FilterMenu = styled.ul`
-  width: 30%;
-  position: absolute;
-  z-index: 2;
-  background: rgb(251, 245, 255);
-  border: 1px solid rgba(124, 124, 124, 0.3);
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-  visibility: hidden;
-  opacity: 0;
-  transition: all ease-in-out 0.15s;
-  margin-top: -1px;
-  justify-content: flex-start;
-  &.sort-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  &.collection-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  @media (max-width: 992px) {
-    width: 100%;
-  }
-`;
-
-export const FilterMenuDay = styled.ul`
-  width: 40%;
-  position: absolute;
-  z-index: 2;
-  background: rgb(251, 245, 255);
-  border: 1px solid rgba(124, 124, 124, 0.3);
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-  visibility: hidden;
-  opacity: 0;
-  transition: all ease-in-out 0.15s;
-  margin-top: -1px;
-  justify-content: flex-start;
-  &.day-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  @media (max-width: 992px) {
-    width: 100%;
-  }
-`;
-
-interface IMenuItem {
-  hover?: boolean;
-}
-
-export const MenuItem = styled(FilterItem)<IMenuItem>`
-  &:hover {
-    ${(props) =>
-      props.hover
-        ? "box-shadow: inset 0px 0px 1px rgba(135, 61, 193, 0.5), inset 0px -3px 4px rgba(124, 124, 124, 0.25);"
-        : ""}
-  }
-`;
-
-export const BlockchainIMG = styled.img`
-    width:20px;
-    height: 20px;
-    margin-right: 10px;
-    margin-top: -4px;
-}
 `;
