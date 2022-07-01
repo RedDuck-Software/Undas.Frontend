@@ -76,7 +76,6 @@ const OfferRent: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
-
   const state: any = useLocation();
 
   const [premium, setPremium] = useState(0);
