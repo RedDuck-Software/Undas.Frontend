@@ -22,6 +22,7 @@ import {
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import NoData from "../NoData/NoData";
 
 export interface ItemsProps {
   id: number;
@@ -155,18 +156,21 @@ const MainMenu: React.FC = () => {
         <ResultsTotal>{list.length}</ResultsTotal>
         <FilterSelected />
       </MenuWrap>
-      {viewMode === ViewMode.grid ? (
-        <CollectionGridWrap itemList={list} />
+      {list.length > 0 ? (
+        viewMode === ViewMode.grid ? (
+          <CollectionGridWrap itemList={list} />
+        ) : (
+          <>
+            {list.map((item) => {
+              return (
+                <NFTListItem key={item.id} name={item.name} URI={item.URI} />
+              );
+            })}
+          </>
+        )
       ) : (
-        <>
-          {list.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
-        </>
+        <NoData />
       )}
-      .
     </div>
   );
 };
