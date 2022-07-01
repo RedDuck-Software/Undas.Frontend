@@ -18,7 +18,18 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import { CollectionBG, Verified } from "../imports";
+
+import {
+  CollectionBG,
+  CollectionPic,
+  NFT1,
+  NFT2,
+  NFT3,
+  Verified,
+} from "../imports";
+import { useWeb3React } from "@web3-react/core";
+import { createClient } from "urql";
+import collection from "../../AccountPage/page-components/Created/page-components/Collection";
 
 type CollectionItemProps = {
   id: number;

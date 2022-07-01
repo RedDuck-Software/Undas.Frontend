@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { createClient } from "urql";
 
 import Collection from "./page-components/Collection";
-
 import Context from "../../../../utils/Context";
 
 type createdCollectionItemProps = {
