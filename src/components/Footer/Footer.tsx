@@ -65,12 +65,14 @@ const Footer = () => {
             <Dropdown.Item href="all" className="dropdown-item">
               All NFTs
             </Dropdown.Item>
-            <Dropdown.Item href="assets/new">New</Dropdown.Item>
-            <Dropdown.Item href="explore/art">Artwork</Dropdown.Item>
-            <Dropdown.Item href="categories">Sport</Dropdown.Item>
-            <Dropdown.Item href="categories">Photography</Dropdown.Item>
-            <Dropdown.Item href="categories">Celebrity</Dropdown.Item>
-            <Dropdown.Item href="categories">rwaNFT</Dropdown.Item>
+            <Dropdown.Item href="categories-new">New</Dropdown.Item>
+            <Dropdown.Item href="categories-art">Artwork</Dropdown.Item>
+            <Dropdown.Item href="categories-sport">Sport</Dropdown.Item>
+            <Dropdown.Item href="categories-photo">Photography</Dropdown.Item>
+            <Dropdown.Item href="categories-gimefi">GameFi</Dropdown.Item>
+            <Dropdown.Item href="categories-celebrity">Celebrity</Dropdown.Item>
+            <Dropdown.Item href="categories-rwa">rwaNFT</Dropdown.Item>
+            <Dropdown.Item href="categories-18plus">18+ NFTs</Dropdown.Item>
           </DropdownButton>
           <DropdownButton id="dropdown-button" title="Activity">
             <Dropdown.Item href="topcollection">Top collection</Dropdown.Item>
