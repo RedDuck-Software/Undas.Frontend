@@ -88,7 +88,7 @@ const Sale: React.FC = () => {
   async function sellToken() {
     if (!connector) return;
     if (tokenId == undefined && tokenId == null) return;
-    console.log("dassa");
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -113,7 +113,6 @@ const Sale: React.FC = () => {
       priceForSale.toString(),
       "ether",
     );
-    console.log("222");
 
     //undas contract
     const tx = await MarketplaceContract.bidExternal(
@@ -123,6 +122,7 @@ const Sale: React.FC = () => {
       false,
       {
         value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
+        gasLimit:355080
       },
     );
     setLoadingSale(true);

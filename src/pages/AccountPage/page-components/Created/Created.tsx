@@ -79,7 +79,7 @@ const Created: React.FC = () => {
 
   const createdTokensQuery = `
     {
-      tokens(where:{owner:"${account}"}){
+      tokens(where:{creator :"${account}"}){
           collectionName
           owner
           id

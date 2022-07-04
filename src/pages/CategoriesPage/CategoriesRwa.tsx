@@ -29,7 +29,7 @@ const CategoriesGameFI: React.FC = () => {
 
   const getСollection = async () => {
     const collectionsFromAPI = await fetchData();
-    collectionsFromAPI.data.collections.map((i: any) => {
+     collectionsFromAPI.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;

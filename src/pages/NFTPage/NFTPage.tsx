@@ -170,8 +170,8 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       console.log("!connector");
     }
-
-    if (listingId) {
+    console.log('state',listingId);
+    if (listingId || listingId == 0) {
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -192,9 +192,10 @@ const NFTPage: React.FC = () => {
     getTokenData();
     getOwner();
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
-
+  // console.log('listingId',listingId)
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
+    console.log('tokensQuery',tokensQuery)
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -236,7 +237,7 @@ const NFTPage: React.FC = () => {
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
- 		tokenId
+ 	tokenId
     tokenURI
     price
     tokenName
@@ -266,6 +267,7 @@ const NFTPage: React.FC = () => {
   console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
+    console.log('qqq',data)
     return data;
   }
 
