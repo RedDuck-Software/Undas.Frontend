@@ -133,7 +133,7 @@ const Created: React.FC = () => {
           {createdType === CreatedType.nft && viewButtonsRender}
         </CreatedSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <CreatedResultsTotal>8 results</CreatedResultsTotal>
+        <CreatedResultsTotal>{createdNfts && createdNfts.length} results</CreatedResultsTotal>
       </MenuWrap>
 
       <FilterSelected />

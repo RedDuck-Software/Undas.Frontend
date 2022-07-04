@@ -35,6 +35,7 @@ import {
   OffersText,
 } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { OffResaivedIco, OffMadeIco, ItemVerifyIco } from "../../imports";
+import NoData from "../NoData/NoData";
 
 interface CommonProps {
   tokenId: number;
@@ -504,16 +505,20 @@ const OffersMenu: React.FC = () => {
       <OffersWrapTable>
         {offerType === OfferType.resaived && (
           <>
-            <OffersHeadTr className="offers-menu-head">
-              <OffersTdText className="first-column"></OffersTdText>
-              <OffersTdText>Item</OffersTdText>
-              <OffersTdText>Price</OffersTdText>
-              <OffersTdText>Expiration</OffersTdText>
-              <OffersTdText>From</OffersTdText>
-              <OffersTdText></OffersTdText>
-              <OffersTdText></OffersTdText>
-              <OffersTdText></OffersTdText>
-            </OffersHeadTr>
+            {rentingOffersList.length > 0 || buyingOffersList.length > 0 ? (
+              <OffersHeadTr className="offers-menu-head">
+                <OffersTdText className="first-column"></OffersTdText>
+                <OffersTdText>Item</OffersTdText>
+                <OffersTdText>Price</OffersTdText>
+                <OffersTdText>Expiration</OffersTdText>
+                <OffersTdText>From</OffersTdText>
+                <OffersTdText></OffersTdText>
+                <OffersTdText></OffersTdText>
+                <OffersTdText></OffersTdText>
+              </OffersHeadTr>
+            ) : (
+              <NoData />
+            )}
             {rentingOffersList.map((i) => {
               return (
                 <OffersTr className="offers-menu-row" key={i.tokenURI}>
@@ -620,16 +625,20 @@ const OffersMenu: React.FC = () => {
         )}
         {offerType === OfferType.made && (
           <>
-            <OffersHeadTr className="offers-menu-head">
-              <OffersTdText className="first-column"></OffersTdText>
-              <OffersTdText>Item</OffersTdText>
-              <OffersTdText>Price</OffersTdText>
-              <OffersTdText>Expiration</OffersTdText>
-              <OffersTdText>To</OffersTdText>
-              <OffersTdText></OffersTdText>
-              <OffersTdText></OffersTdText>
-              <OffersTdText></OffersTdText>
-            </OffersHeadTr>
+            {userOffersForRent.length > 0 || userOffersForBuy.length > 0 ? (
+              <OffersHeadTr className="offers-menu-head">
+                <OffersTdText className="first-column"></OffersTdText>
+                <OffersTdText>Item</OffersTdText>
+                <OffersTdText>Price</OffersTdText>
+                <OffersTdText>Expiration</OffersTdText>
+                <OffersTdText>From</OffersTdText>
+                <OffersTdText></OffersTdText>
+                <OffersTdText></OffersTdText>
+                <OffersTdText></OffersTdText>
+              </OffersHeadTr>
+            ) : (
+              <NoData />
+            )}
 
             {userOffersForRent.map((i) => {
               return (
