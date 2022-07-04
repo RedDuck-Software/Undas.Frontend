@@ -198,8 +198,6 @@ export const AccordionElement = styled.li<IAccElement>`
   line-height: 17px;
   color: #232428;
   background-color: #fcf8ff;
-  border-top: 1px solid #dcd9de;
-  margin-top: -1px;
   @media (max-width: 992px) {
     border-radius: 0;
     padding-left: 5rem;

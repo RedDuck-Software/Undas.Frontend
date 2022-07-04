@@ -192,41 +192,11 @@ export const PriceRow = styled.div`
   display: flex;
   border-radius: 10px;
   margin-top: 15px;
+  position: relative;
 
   @media (max-width: 992px) {
     flex-wrap: wrap;
   }
-`;
-export const EthSelect = styled.div`
-  width: 30%;
-  background: #fbf5ff;
-  border: 1px solid rgba(124, 124, 124, 0.25);
-  border-radius: 10px 0px 0px 10px;
-  height: 36px;
-  padding-top: 5px;
-
-  @media (max-width: 992px) {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-  }
-`;
-export const EthText = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  margin-left: 20px;
-  &::before {
-    content: url(${eth});
-    margin-right: 10px;
-  }
-`;
-export const ImageDown = styled.img`
-  float: right;
-  padding-right: 20px;
-  padding-top: 9px;
 `;
 export const AmmountInput = styled.input`
   width: 50%;
