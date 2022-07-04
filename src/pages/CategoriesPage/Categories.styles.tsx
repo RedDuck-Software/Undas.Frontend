@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const LoaderWrapper = styled.div`
+  text-align: center;
+  padding: 10rem 0;
+`;
 export const Banner = styled.div`
   width: 100%;
   height: auto;
