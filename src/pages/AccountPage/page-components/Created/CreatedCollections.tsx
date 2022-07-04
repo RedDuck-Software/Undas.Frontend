@@ -5,6 +5,7 @@ import { createClient } from "urql";
 import Collection from "./page-components/Collection";
 
 import Context from "../../../../utils/Context";
+import NoData from "../NoData/NoData";
 
 type createdCollectionItemProps = {
   id: number;
@@ -89,10 +90,10 @@ const CreatedCollections: React.FC = () => {
   }
   return (
     <>
-      {createdCollections ? (
+      {createdCollections && createdCollections.length > 0 ? (
         <Collection itemList={createdCollections} />
       ) : (
-        <span>There are no NFTs on the marketplace</span>
+        <NoData />
       )}
     </>
   );
