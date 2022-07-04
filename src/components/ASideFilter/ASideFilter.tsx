@@ -179,6 +179,7 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
   chainIcon,
 }) => {
   return (
+    <CheckboxLabel>
     <FilterChainItemWrapper>
       <CheckboxInputWrapper mb="0">
         <CheckboxInput
@@ -192,6 +193,7 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
       <ChainItemIcon src={chainIcon} />
       <ChainItemTitle>{chainName}</ChainItemTitle>
     </FilterChainItemWrapper>
+    </CheckboxLabel>
   );
 };
 
