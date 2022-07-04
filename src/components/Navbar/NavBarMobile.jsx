@@ -96,7 +96,7 @@ const NavBarMobile = ({ open }) => {
               </HeaderDropdownItem>
               <HeaderDropdownItem href="referral">
                 <ReferralIco />
-                Referral Program
+                Referral
               </HeaderDropdownItem>
               <HeaderDropdownItem href="achievements">
                 <AchievementsIco />

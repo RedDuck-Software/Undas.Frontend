@@ -22,6 +22,7 @@ import {
   CollectionsHeadTr,
   CollectionsTd,
   NameContainer,
+  FilterRow,
 } from "./CollectionsTable.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -179,21 +180,22 @@ const CollectionsMenu: React.FC = () => {
   }, [collections, sortConfig]); */
   return (
     <CollectionMenuWrap>
-      <CollectionFilterWrap>
-        <FilterButton
-          className={!isVerifiedOnly ? "offers-active" : ""}
-          onClick={handleIsVefiriedOnly}
-        >
-          <TextButton>All</TextButton>
-        </FilterButton>
-        <FilterButton
-          className={isVerifiedOnly ? "offers-active" : ""}
-          onClick={handleIsVefiriedOnly}
-        >
-          <TextButton>Verified</TextButton>
-        </FilterButton>
-      </CollectionFilterWrap>
-
+      <FilterRow>
+        <CollectionFilterWrap>
+          <FilterButton
+            className={!isVerifiedOnly ? "offers-active" : ""}
+            onClick={handleIsVefiriedOnly}
+          >
+            <TextButton>All</TextButton>
+          </FilterButton>
+          <FilterButton
+            className={isVerifiedOnly ? "offers-active" : ""}
+            onClick={handleIsVefiriedOnly}
+          >
+            <TextButton>Verified</TextButton>
+          </FilterButton>
+        </CollectionFilterWrap>
+      </FilterRow>
       <FilterSelected />
 
       <ContainerTable>
