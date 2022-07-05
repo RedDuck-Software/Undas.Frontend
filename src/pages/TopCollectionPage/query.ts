@@ -5,24 +5,24 @@ export const getTopCollections = gql`
     $orderBy: Collection_orderBy
     $direction: OrderDirection!
   ) {
-    collections(orderBy: $orderBy, orderDirection: $direction) {
+    collections(
+      orderBy: $orderBy
+      orderDirection: $direction
+      where: { collectionVolume_gt: 0 }
+    ) {
       id
       collectionName
       collectionUrl
       collectionVolume
       collectionItemsAmount
-    }
-  }
-`;
-
-export const getFloorPrice = gql`
-  query getFloorPrice($collectionId: BigInt!) {
-    listings(
-      where: { collectionId: $collectionId, listingStatus: ACTIVE }
-      orderBy: price
-      orderDirection: asc
-    ) {
-      price
+      tokens(
+        orderBy: price
+        orderDirection: desc
+        first: 1
+        where: { price_gt: 0 }
+      ) {
+        price
+      }
     }
   }
 `;
