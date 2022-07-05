@@ -14,7 +14,6 @@ export const selectedCollectionsReducer = (state: any = initialState, action: an
             }
         }
         const newState = [...state.selectedCollections, action.payload]
-        console.log('ADDING COLLECTION');
         return {
           ...state,
           selectedCollections: newState

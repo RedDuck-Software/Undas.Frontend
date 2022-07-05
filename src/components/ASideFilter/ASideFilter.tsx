@@ -180,19 +180,19 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
 }) => {
   return (
     <CheckboxLabel>
-    <FilterChainItemWrapper>
-      <CheckboxInputWrapper mb="0">
-        <CheckboxInput
-          type="checkbox"
-          className="custom-checkbox"
-          id={chainName}
-          mr="12px"
-        />
-        <CheckboxLabel htmlFor={chainName} />
-      </CheckboxInputWrapper>
-      <ChainItemIcon src={chainIcon} />
-      <ChainItemTitle>{chainName}</ChainItemTitle>
-    </FilterChainItemWrapper>
+      <FilterChainItemWrapper>
+        <CheckboxInputWrapper mb="0">
+          <CheckboxInput
+            type="checkbox"
+            className="custom-checkbox"
+            id={chainName}
+            mr="12px"
+          />
+          <CheckboxLabel htmlFor={chainName} />
+        </CheckboxInputWrapper>
+        <ChainItemIcon src={chainIcon} />
+        <ChainItemTitle>{chainName}</ChainItemTitle>
+      </FilterChainItemWrapper>
     </CheckboxLabel>
   );
 };
@@ -504,40 +504,44 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
             </>
           )}
 
-          <HolderElement
-            onClick={() => {
-              if (!activeMenu.category) {
-                setActiveMenu({ category: true });
-                !active && setActive(true);
-              } else setActiveMenu({ category: false });
-            }}
-            isActive={activeMenu.category}
-          >
-            <CategoriesIco />
-            <ElementText>Categories</ElementText>
-            <AccordionArrow
-              className={(activeMenu.category && "active-category") || ""}
-            />
-          </HolderElement>
-          <AccordionMenu
-            backgroundColor="rgba(251, 245, 255, 0.7)"
-            mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
-            className={(activeMenu.category && "active-category") || ""}
-          >
-            <MobileListWrap>
-              <CategoryItem {...getCategory(Category.allNFTs)} />
-              <CategoryItem {...getCategory(Category.new)} />
-              <CategoryItem {...getCategory(Category.artwork)} />
-              <CategoryItem {...getCategory(Category.sport)} />
-              <CategoryItem {...getCategory(Category.photography)} />
-              <CategoryItem {...getCategory(Category.gamefi)} />
-              <CategoryItem {...getCategory(Category.celebrity)} />
-              <CategoryItem {...getCategory(Category.rwaNFTLong)} />
-              <CategoryItem {...getCategory(Category.plus18)} />
-            </MobileListWrap>
-          </AccordionMenu>
+          {page !== "Collection" && (
+            <>
+              <HolderElement
+                onClick={() => {
+                  if (!activeMenu.category) {
+                    setActiveMenu({ category: true });
+                    !active && setActive(true);
+                  } else setActiveMenu({ category: false });
+                }}
+                isActive={activeMenu.category}
+              >
+                <CategoriesIco />
+                <ElementText>Categories</ElementText>
+                <AccordionArrow
+                  className={(activeMenu.category && "active-category") || ""}
+                />
+              </HolderElement>
+              <AccordionMenu
+                backgroundColor="rgba(251, 245, 255, 0.7)"
+                mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
+                className={(activeMenu.category && "active-category") || ""}
+              >
+                <MobileListWrap>
+                  <CategoryItem {...getCategory(Category.allNFTs)} />
+                  <CategoryItem {...getCategory(Category.new)} />
+                  <CategoryItem {...getCategory(Category.artwork)} />
+                  <CategoryItem {...getCategory(Category.sport)} />
+                  <CategoryItem {...getCategory(Category.photography)} />
+                  <CategoryItem {...getCategory(Category.gamefi)} />
+                  <CategoryItem {...getCategory(Category.celebrity)} />
+                  <CategoryItem {...getCategory(Category.rwaNFTLong)} />
+                  <CategoryItem {...getCategory(Category.plus18)} />
+                </MobileListWrap>
+              </AccordionMenu>
+            </>
+          )}
 
-          {page !== "TopCollection" && (
+          {page !== "TopCollection" && page !== "Collection" && (
             <>
               <HolderElement
                 onClick={() => {
@@ -583,45 +587,52 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
             </>
           )}
 
-          <HolderElement
-            onClick={() => {
-              if (!activeMenu.chain) {
-                setActiveMenu({ chain: true });
-                !active && setActive(true);
-              } else setActiveMenu({ chain: false });
-            }}
-            isActive={activeMenu.chain}
-          >
-            <ChainsIco />
-            <ElementText>Chains</ElementText>
-            <AccordionArrow
-              className={(activeMenu.chain && "active-chains") || ""}
-            />
-          </HolderElement>
-          <AccordionMenu
-            backgroundColor="rgba(251, 245, 255, 0.7)"
-            mh="320px" // calculate max-height because of accordion animation bug
-            className={(activeMenu.chain && "active-chains") || ""}
-          >
-            <AccordionElement padd="0">
-              <FilterChainItem
-                chainName={"Ethereum"}
-                chainIcon={EthereumIcon}
-              />
-            </AccordionElement>
-            <AccordionElement padd="1">
-              <FilterChainItem chainName={"Polygon"} chainIcon={PolygonIcon} />
-            </AccordionElement>
-            <AccordionElement padd="2">
-              <FilterChainItem chainName={"Solana"} chainIcon={solana} />
-            </AccordionElement>
-            <AccordionElement padd="3">
-              <FilterChainItem chainName={"BSC"} chainIcon={bsc} />
-            </AccordionElement>
-            <AccordionElement padd="4">
-              <FilterChainItem chainName={"TON"} chainIcon={ton} />
-            </AccordionElement>
-          </AccordionMenu>
+          {page !== "Collection" && (
+            <>
+              <HolderElement
+                onClick={() => {
+                  if (!activeMenu.chain) {
+                    setActiveMenu({ chain: true });
+                    !active && setActive(true);
+                  } else setActiveMenu({ chain: false });
+                }}
+                isActive={activeMenu.chain}
+              >
+                <ChainsIco />
+                <ElementText>Chains</ElementText>
+                <AccordionArrow
+                  className={(activeMenu.chain && "active-chains") || ""}
+                />
+              </HolderElement>
+              <AccordionMenu
+                backgroundColor="rgba(251, 245, 255, 0.7)"
+                mh="320px" // calculate max-height because of accordion animation bug
+                className={(activeMenu.chain && "active-chains") || ""}
+              >
+                <AccordionElement padd="0">
+                  <FilterChainItem
+                    chainName={"Ethereum"}
+                    chainIcon={EthereumIcon}
+                  />
+                </AccordionElement>
+                <AccordionElement padd="1">
+                  <FilterChainItem
+                    chainName={"Polygon"}
+                    chainIcon={PolygonIcon}
+                  />
+                </AccordionElement>
+                <AccordionElement padd="2">
+                  <FilterChainItem chainName={"Solana"} chainIcon={solana} />
+                </AccordionElement>
+                <AccordionElement padd="3">
+                  <FilterChainItem chainName={"BSC"} chainIcon={bsc} />
+                </AccordionElement>
+                <AccordionElement padd="4">
+                  <FilterChainItem chainName={"TON"} chainIcon={ton} />
+                </AccordionElement>
+              </AccordionMenu>
+            </>
+          )}
         </Holder>
       </ASideWrap>
       <FilterMobileButton onClick={handleMobileFilter} />
