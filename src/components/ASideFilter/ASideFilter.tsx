@@ -180,19 +180,19 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
 }) => {
   return (
     <CheckboxLabel>
-    <FilterChainItemWrapper>
-      <CheckboxInputWrapper mb="0">
-        <CheckboxInput
-          type="checkbox"
-          className="custom-checkbox"
-          id={chainName}
-          mr="12px"
-        />
-        <CheckboxLabel htmlFor={chainName} />
-      </CheckboxInputWrapper>
-      <ChainItemIcon src={chainIcon} />
-      <ChainItemTitle>{chainName}</ChainItemTitle>
-    </FilterChainItemWrapper>
+      <FilterChainItemWrapper>
+        <CheckboxInputWrapper mb="0">
+          <CheckboxInput
+            type="checkbox"
+            className="custom-checkbox"
+            id={chainName}
+            mr="12px"
+          />
+          <CheckboxLabel htmlFor={chainName} />
+        </CheckboxInputWrapper>
+        <ChainItemIcon src={chainIcon} />
+        <ChainItemTitle>{chainName}</ChainItemTitle>
+      </FilterChainItemWrapper>
     </CheckboxLabel>
   );
 };

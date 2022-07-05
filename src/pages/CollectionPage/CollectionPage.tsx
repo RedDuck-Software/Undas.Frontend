@@ -62,7 +62,7 @@ interface CommonProps {
   URI: string;
   description: string;
   tokenAddress: string;
-  collectionOwner:string;
+  collectionOwner: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -95,7 +95,14 @@ const CollectionPage: React.FC = () => {
       const description = i.tokenDescription;
       const tokenAddress = "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad";
       const collectionOwner = i.owner;
-      collectionItem.push({ id, name, URI, description, tokenAddress, collectionOwner});
+      collectionItem.push({
+        id,
+        name,
+        URI,
+        description,
+        tokenAddress,
+        collectionOwner,
+      });
     });
     return collectionItem;
   };
@@ -126,7 +133,7 @@ const CollectionPage: React.FC = () => {
   });
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log('data',data)
+    console.log("data", data);
     return data;
   }
   return (

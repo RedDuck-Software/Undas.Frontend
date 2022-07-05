@@ -127,7 +127,7 @@ const Sale: React.FC = () => {
       false,
       {
         value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-        gasLimit:355080
+        gasLimit: 355080,
       },
     );
     setLoadingSale(true);

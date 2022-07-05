@@ -7,7 +7,7 @@ export const Back = styled.div`
   height: 50px;
   background: #fbf5ff;
   box-shadow: inset 0px 0px 2px #7c7c7c;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
