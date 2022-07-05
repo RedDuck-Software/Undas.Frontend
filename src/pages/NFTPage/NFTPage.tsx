@@ -170,7 +170,7 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       console.log("!connector");
     }
-    console.log('state',listingId);
+    console.log("state", listingId);
     if (listingId || listingId == 0) {
       setShowBuy(true);
     } else {
@@ -195,7 +195,7 @@ const NFTPage: React.FC = () => {
   // console.log('listingId',listingId)
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log('tokensQuery',tokensQuery)
+    console.log("tokensQuery", tokensQuery);
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -267,7 +267,7 @@ const NFTPage: React.FC = () => {
   console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log('qqq',data)
+    console.log("qqq", data);
     return data;
   }
 
