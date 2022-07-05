@@ -1,5 +1,6 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -42,11 +43,40 @@ interface NFTGridItemProps {
   tokenOwner?: string;
   collectionName?: string;
   collectionId?: string;
+  collectionOwner?:string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
-  console.log(props.tokenAddress);
+  const { account } = useWeb3React();
+  const [userAccount,setAccount] = useState<any>()
+  const [isOwner,setIsOwner] = useState<boolean>(false);
+  console.log('1',props);
+  console.log('2',props.collectionOwner)//fix
+  console.log(isOwner)
+
+  function setOwner(){
+    console.log('props',props.collectionOwner)//fix
+    console.log('user',userAccount)
+
+    if(userAccount && userAccount.toLowerCase() == props.collectionOwner){
+      console.log('owner')
+      setIsOwner(true)
+    }
+    console.log('not an owner')
+  }
+
+  useEffect(() => {
+
+    if(account){
+      console.log('acc',account)
+      setAccount(account)
+      setOwner()
+    }
+
+  }, [account,userAccount]);
+
+
   return (
     <NFTWrap
       onClick={(e) => {
@@ -99,7 +129,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Rent
             </BuyBtn>
-          ) : (
+          ) : isOwner == true ? (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
@@ -112,7 +142,19 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Sell
             </BuyBtn>
-          )}
+          ):(
+              <BuyBtn
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(
+                        `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
+                        { state: { state: { ...props } } },
+                    );
+                    e.stopPropagation();
+                  }}
+              >
+                View
+              </BuyBtn>)}
         </LeftBlock>
         <PriceList>
           <PriceItem>

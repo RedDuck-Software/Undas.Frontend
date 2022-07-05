@@ -45,6 +45,7 @@ const AllNFTs: React.FC = () => {
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const { state }: any = useLocation();
+
   if (state !== null && state !== undefined) {
     if (state.rent) {
       dispatch(rentAction(state.rent));
@@ -52,7 +53,8 @@ const AllNFTs: React.FC = () => {
     if (state.buy) {
       dispatch(buyAction(state.buy));
     }
-  }
+  }  console.log('dasdasda',state)
+
 
   return (
     <Background>
