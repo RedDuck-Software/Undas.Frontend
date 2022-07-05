@@ -400,6 +400,7 @@ async function fetchData() {
   const data = await client.query(tokensQuery).toPromise();
   return data.data.listings;
 }
+
 async function fetchStakingData() {
   const data = await client.query(tokensStakingQuery).toPromise();
   return data.data;

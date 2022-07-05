@@ -210,10 +210,9 @@ export const CollectionFilterWrap = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
-  max-width: 200px;
+  width: 200px;
   @media (max-width: 768px) {
     width: 100%;
-    max-width: unset;
   }
 `;
 export const FilterButton = styled(FavouriteButton)`
@@ -286,7 +285,7 @@ export const NameContainer = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
-export const ContainerFilter = styled.div`
+export const FilterRow = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;

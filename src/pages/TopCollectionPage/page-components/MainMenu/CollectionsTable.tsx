@@ -22,6 +22,7 @@ import {
   CollectionsHeadTr,
   CollectionsTd,
   NameContainer,
+  FilterRow,
 } from "./CollectionsTable.styles";
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
@@ -29,18 +30,17 @@ import FilterSelected from "../../../../components/FilterSelected/FilterSelected
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemVerifyIco } from "../../imports";
-import { getTopCollections, getFloorPrice } from "../../query";
+import { getTopCollections } from "../../query";
 
 interface IObjectKeys {
   [key: string]: any;
 }
 
 interface CollectionRowProps extends IObjectKeys {
-  id: number;
   collectionUrl: string;
   collectionName: string;
   //isVerified: boolean;
-  //priceFloor: string | number;
+  priceFloor?: string | number;
   //totalVol: string | number;
   //dayVol: number;
   //ownersCount: string | number;
@@ -48,22 +48,15 @@ interface CollectionRowProps extends IObjectKeys {
 }
 
 const CollectionRow: React.FC<CollectionRowProps> = ({
-  id,
   collectionUrl,
   collectionName,
   isVerified,
+  priceFloor,
   totalVol,
   dayVol,
   ownersCount,
   itemsCount,
 }) => {
-  const [result] = useQuery({
-    query: getFloorPrice,
-    variables: { collectionId: id },
-  });
-
-  const { data, fetching } = result;
-
   return (
     <CollectionsTr className="offers-menu-row">
       <CollectionsTdText className="first-column">
@@ -90,11 +83,7 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
       <CollectionsTdText>
         <PriceTextW>
           <EtherIcon />
-          <PriceText>
-            {!fetching && data.listings.length > 0
-              ? ethers.utils.formatEther(data.listings[0].price)
-              : "-"}
-          </PriceText>
+          <PriceText>{priceFloor && ethers.utils.formatEther(priceFloor)}</PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
@@ -106,21 +95,25 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
       <CollectionsTdText>
         <PriceTextW>
           <EtherIcon />
-          <PriceText>{dayVol}</PriceText>
+          <PriceText>{dayVol ? dayVol : "-"}</PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
         <PriceTextW className="min-width">
-          {dayVol > 0 ? (
-            <PercentTextTop>{dayVol / 10}%</PercentTextTop>
+          {dayVol ? (
+            dayVol > 0 ? (
+              <PercentTextTop>{dayVol / 10}%</PercentTextTop>
+            ) : (
+              <PercentTextBottom>{dayVol / 10}%</PercentTextBottom>
+            )
           ) : (
-            <PercentTextBottom>{dayVol / 10}%</PercentTextBottom>
+            "-"
           )}
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
         <PriceTextW>
-          <PriceText>{ownersCount}</PriceText>
+          <PriceText>{ownersCount ? ownersCount : "-"}</PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>
@@ -135,9 +128,9 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
 const CollectionsMenu: React.FC = () => {
   const [isVerifiedOnly, setIsVerifiedOnly] = useState<boolean>(false);
   const [sortConfig, setSortConfig] = useState<{
-    orderBy: string;
+    orderBy?: string;
     direction: string;
-  }>({ orderBy: "collectionItemsAmount", direction: "desc" });
+  }>({ orderBy: "collectionVolume", direction: "desc" });
 
   const [result] = useQuery({
     query: getTopCollections,
@@ -149,7 +142,7 @@ const CollectionsMenu: React.FC = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
 
-  const requestSort = (orderBy: string) => {
+  const requestSort = (orderBy?: string) => {
     let direction = "asc";
     if (sortConfig.orderBy === orderBy && sortConfig.direction === "asc") {
       direction = "desc";
@@ -157,43 +150,24 @@ const CollectionsMenu: React.FC = () => {
     setSortConfig({ orderBy, direction });
   };
 
-  /* const verifiedOnly = collections.filter(
-    (collection: CollectionRowProps) => collection.isVerified === true,
-  );
-
-  const sortedCollections = isVerifiedOnly ? verifiedOnly : [...collections];
-  useMemo(() => {
-    if (sortedCollections !== null) {
-      sortedCollections.sort((a: CollectionRowProps, b: CollectionRowProps) => {
-        if (a[sortConfig.orderBy] < b[sortConfig.orderBy]) {
-          return sortConfig.direction === "asc" ? -1 : 1;
-        }
-
-        if (a[sortConfig.orderBy] > b[sortConfig.orderBy]) {
-          return sortConfig.direction === "asc" ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortedCollections;
-  }, [collections, sortConfig]); */
   return (
     <CollectionMenuWrap>
-      <CollectionFilterWrap>
-        <FilterButton
-          className={!isVerifiedOnly ? "offers-active" : ""}
-          onClick={handleIsVefiriedOnly}
-        >
-          <TextButton>All</TextButton>
-        </FilterButton>
-        <FilterButton
-          className={isVerifiedOnly ? "offers-active" : ""}
-          onClick={handleIsVefiriedOnly}
-        >
-          <TextButton>Verified</TextButton>
-        </FilterButton>
-      </CollectionFilterWrap>
-
+      <FilterRow>
+        <CollectionFilterWrap>
+          <FilterButton
+            className={!isVerifiedOnly ? "offers-active" : ""}
+            onClick={handleIsVefiriedOnly}
+          >
+            <TextButton>All</TextButton>
+          </FilterButton>
+          <FilterButton
+            className={isVerifiedOnly ? "offers-active" : ""}
+            onClick={handleIsVefiriedOnly}
+          >
+            <TextButton>Verified</TextButton>
+          </FilterButton>
+        </CollectionFilterWrap>
+      </FilterRow>
       <FilterSelected />
 
       <ContainerTable>
@@ -219,9 +193,9 @@ const CollectionsMenu: React.FC = () => {
               return (
                 <CollectionRow
                   key={row.id}
-                  id={row.id}
                   collectionName={row.collectionName}
                   collectionUrl={row.collectionUrl}
+                  priceFloor={row.tokens[0].price}
                   totalVol={row.collectionVolume}
                   //dayVol={row.dayVol}
                   //ownersCount={row.ownersCount}
