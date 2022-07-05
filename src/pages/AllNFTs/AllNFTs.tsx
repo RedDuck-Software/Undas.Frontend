@@ -53,8 +53,8 @@ const AllNFTs: React.FC = () => {
     if (state.buy) {
       dispatch(buyAction(state.buy));
     }
-  }  console.log('dasdasda',state)
-
+  }
+  console.log("dasdasda", state);
 
   return (
     <Background>

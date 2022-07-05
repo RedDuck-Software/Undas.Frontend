@@ -83,7 +83,9 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
       <CollectionsTdText>
         <PriceTextW>
           <EtherIcon />
-          <PriceText>{priceFloor && ethers.utils.formatEther(priceFloor)}</PriceText>
+          <PriceText>
+            {priceFloor && ethers.utils.formatEther(priceFloor)}
+          </PriceText>
         </PriceTextW>
       </CollectionsTdText>
       <CollectionsTdText>

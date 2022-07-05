@@ -16,7 +16,7 @@ type GridItem = {
   tokenOwner?: string;
   collectionName?: string;
   collectionId?: string;
-  collectionOwner?:string;
+  collectionOwner?: string;
 };
 interface CollectionGridWrapperProps {
   itemList: GridItem[];
