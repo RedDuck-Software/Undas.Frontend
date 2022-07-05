@@ -60,6 +60,7 @@ const Created: React.FC = () => {
         collectionId,
         tokenAddress,
       });
+
     });
     return createdItems;
   };
