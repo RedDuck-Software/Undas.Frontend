@@ -272,7 +272,7 @@ const Navbar = () => {
                 </MenuList>
                 <MenuList to="/referral">
                   <ReferralIco />
-                  Referral Program
+                  Referral
                 </MenuList>
                 <MenuList to="/achievements">
                   <AchievementsIco />

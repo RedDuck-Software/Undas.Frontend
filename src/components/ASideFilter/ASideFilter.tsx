@@ -179,6 +179,7 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
   chainIcon,
 }) => {
   return (
+    <CheckboxLabel>
     <FilterChainItemWrapper>
       <CheckboxInputWrapper mb="0">
         <CheckboxInput
@@ -192,6 +193,7 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
       <ChainItemIcon src={chainIcon} />
       <ChainItemTitle>{chainName}</ChainItemTitle>
     </FilterChainItemWrapper>
+    </CheckboxLabel>
   );
 };
 
@@ -204,9 +206,11 @@ interface ASideFilterProps {
   rentRefs?: any;
   buyingRefs?: any;
   hasOffersRefs?: any;
+
+  page?: string;
 }
 
-const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
+const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
@@ -291,7 +295,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
   const stakingRef: any = useRef();
   const buyingRef: any = useRef();
   const hasOffersRef: any = useRef();
-  const createdRef: any  = useRef();
+  const createdRef: any = useRef();
   return (
     <>
       <ASideWrap
@@ -368,114 +372,137 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
                 <SliderRound />
               </Switch>
             </AccordionElement>
-            <AccordionElement
-              onClick={() => {
-                stakingRef.current.checked = !stakingRef.current.checked;
-                dispatch(rentAction(stakingRef.current.checked));
-              }}
-            >
-              <span>Rent</span>
-              <Switch>
-                <InputSwitch type="checkbox" ref={stakingRef} />
-                <SliderRound />
-              </Switch>
-            </AccordionElement>
+            {page !== "TopCollection" && (
+              <>
+                <AccordionElement
+                  onClick={() => {
+                    stakingRef.current.checked = !stakingRef.current.checked;
+                    dispatch(rentAction(stakingRef.current.checked));
+                  }}
+                >
+                  <span>Rent</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" ref={stakingRef} />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
 
-            <AccordionElement
-              onClick={() => {
-                hasOffersRef.current.checked = !hasOffersRef.current.checked;
-                dispatch(hasOffersAction(hasOffersRef.current.checked));
-              }}
-            >
-              <span>Has Offers</span>
-              <Switch>
-                <InputSwitch type="checkbox" ref={hasOffersRef} />
-                <SliderRound />
-              </Switch>
-            </AccordionElement>
-            <AccordionElement
-              onClick={() => {
-                createdRef.current.checked = !createdRef.current.checked;
-              }}
-            >
-              <span>Created</span>
-              <Switch>
-                <InputSwitch type="checkbox" ref={createdRef} />
-                <SliderRound />
-              </Switch>
-            </AccordionElement>
+                <AccordionElement
+                  onClick={() => {
+                    hasOffersRef.current.checked =
+                      !hasOffersRef.current.checked;
+                    dispatch(hasOffersAction(hasOffersRef.current.checked));
+                  }}
+                >
+                  <span>Has Offers</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" ref={hasOffersRef} />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
+                <AccordionElement
+                  onClick={() => {
+                    createdRef.current.checked = !createdRef.current.checked;
+                  }}
+                >
+                  <span>Created</span>
+                  <Switch>
+                    <InputSwitch type="checkbox" ref={createdRef} />
+                    <SliderRound />
+                  </Switch>
+                </AccordionElement>
+              </>
+            )}
           </AccordionMenu>
 
-          <HolderElement
-            onClick={() => {
-              if (!activeMenu.price) {
-                setActiveMenu({ price: true });
-                !active && setActive(true);
-              } else setActiveMenu({ price: false });
-            }}
-          >
-            <PriceIco />
-            <ElementText>Price</ElementText>
-            <AccordionArrow
-              className={(activeMenu.price && "active-price") || ""}
-            />
-          </HolderElement>
-          <AccordionMenu
-            mh="178px"
-            className={(activeMenu.price && "active-price") || ""}
-          >
-            <AccordionElement padd="15px 15px 20px 15px" direction="column">
-              {priceCurrency.map((item) => {
-                if (item.selected)
-                  return (
-                    <PriceContainer>
-                      <PriceElement
-                        className={(priceMenu && "price-menu-active") || ""}
-                        onClick={() => {
-                          !priceMenu ? setPriceMenu(true) : setPriceMenu(false);
-                        }}
-                      >
-                        {item.ico}
-                        <span>{item.text}</span>
-                        <AccordionArrow
-                          className={(priceMenu && "price-menu-active") || ""}
-                        />
-                        <PriceSelect
-                          className={(priceMenu && "price-menu-active") || ""}
-                        >
-                          {variations.map((item) => {
-                            return (
-                              <PriceVariations
-                                key={item.text}
-                                onClick={() => {
-                                  currencySelector(item);
-                                }}
-                              >
-                                {item.ico}
-                                <span>{item.text}</span>
-                              </PriceVariations>
-                            );
-                          })}
-                        </PriceSelect>
-                      </PriceElement>
-                      <InputPriceContainer>
-                        <InputBlock>
-                          <MinPrice type="number" id="min" placeholder="Min" />
-                        </InputBlock>
-                        <InputBlock className="margin-left">
-                          <MinPrice type="number" id="max" placeholder="Max" />
-                        </InputBlock>
-                      </InputPriceContainer>
-                      <ButtonContainer>
-                        <ApplyButton>Apply</ApplyButton>
-                      </ButtonContainer>
-                    </PriceContainer>
-                  );
-              })}
+          {page !== "TopCollection" && (
+            <>
+              <HolderElement
+                onClick={() => {
+                  if (!activeMenu.price) {
+                    setActiveMenu({ price: true });
+                    !active && setActive(true);
+                  } else setActiveMenu({ price: false });
+                }}
+              >
+                <PriceIco />
+                <ElementText>Price</ElementText>
+                <AccordionArrow
+                  className={(activeMenu.price && "active-price") || ""}
+                />
+              </HolderElement>
+              <AccordionMenu
+                mh="178px"
+                className={(activeMenu.price && "active-price") || ""}
+              >
+                <AccordionElement padd="15px 15px 20px 15px" direction="column">
+                  {priceCurrency.map((item) => {
+                    if (item.selected)
+                      return (
+                        <PriceContainer>
+                          <PriceElement
+                            className={(priceMenu && "price-menu-active") || ""}
+                            onClick={() => {
+                              !priceMenu
+                                ? setPriceMenu(true)
+                                : setPriceMenu(false);
+                            }}
+                          >
+                            {item.ico}
+                            <span>{item.text}</span>
+                            <AccordionArrow
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
+                            />
+                            <PriceSelect
+                              className={
+                                (priceMenu && "price-menu-active") || ""
+                              }
+                            >
+                              {variations.map((item) => {
+                                return (
+                                  <PriceVariations
+                                    key={item.text}
+                                    onClick={() => {
+                                      currencySelector(item);
+                                    }}
+                                  >
+                                    {item.ico}
+                                    <span>{item.text}</span>
+                                  </PriceVariations>
+                                );
+                              })}
+                            </PriceSelect>
+                          </PriceElement>
+                          <InputPriceContainer>
+                            <InputBlock>
+                              <MinPrice
+                                type="number"
+                                id="min"
+                                placeholder="Min"
+                              />
+                            </InputBlock>
+                            <InputBlock className="margin-left">
+                              <MinPrice
+                                type="number"
+                                id="max"
+                                placeholder="Max"
+                              />
+                            </InputBlock>
+                          </InputPriceContainer>
+                          <ButtonContainer>
+                            <ApplyButton>Apply</ApplyButton>
+                          </ButtonContainer>
+                        </PriceContainer>
+                      );
+                  })}
 
-              <ApplyBtn>Apply</ApplyBtn>
-            </AccordionElement>
-          </AccordionMenu>
+                  <ApplyBtn>Apply</ApplyBtn>
+                </AccordionElement>
+              </AccordionMenu>
+            </>
+          )}
 
           <HolderElement
             onClick={() => {
@@ -510,45 +537,51 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop }) => {
             </MobileListWrap>
           </AccordionMenu>
 
-          <HolderElement
-            onClick={() => {
-              if (!activeMenu.collection) {
-                setActiveMenu({ collection: true });
-                !active && setActive(true);
-              } else setActiveMenu({ collection: false });
-            }}
-            isActive={activeMenu.collection}
-          >
-            <CollectionsIco />
-            <ElementText>Collections</ElementText>
-            <AccordionArrow
-              className={(activeMenu.collection && "active-collection") || ""}
-            />
-          </HolderElement>
-          <AccordionMenu
-            backgroundColor="rgba(251, 245, 255, 0.7)"
-            mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
-            className={(activeMenu.collection && "active-collection") || ""}
-          >
-            <AccordionElement padd="20px 15px 0 15px">
-              <SearchInputWrapper
-                placeholder="Search"
-                onChange={handleCollectionSearch}
-              />
-            </AccordionElement>
-            <MobileListWrap>
-              {filteredCollectionList.map((item: any) => {
-                return (
-                  <FilterCollectionItem
-                    key={`${item.collectionName}-${item.collectionIcon}`}
-                    collectionName={item.collectionName}
-                    collectionIcon={item.collectionIcon}
-                    isVerified={item.isVerified}
+          {page !== "TopCollection" && (
+            <>
+              <HolderElement
+                onClick={() => {
+                  if (!activeMenu.collection) {
+                    setActiveMenu({ collection: true });
+                    !active && setActive(true);
+                  } else setActiveMenu({ collection: false });
+                }}
+                isActive={activeMenu.collection}
+              >
+                <CollectionsIco />
+                <ElementText>Collections</ElementText>
+                <AccordionArrow
+                  className={
+                    (activeMenu.collection && "active-collection") || ""
+                  }
+                />
+              </HolderElement>
+              <AccordionMenu
+                backgroundColor="rgba(251, 245, 255, 0.7)"
+                mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
+                className={(activeMenu.collection && "active-collection") || ""}
+              >
+                <AccordionElement padd="20px 15px 0 15px">
+                  <SearchInputWrapper
+                    placeholder="Search"
+                    onChange={handleCollectionSearch}
                   />
-                );
-              })}
-            </MobileListWrap>
-          </AccordionMenu>
+                </AccordionElement>
+                <MobileListWrap>
+                  {filteredCollectionList.map((item: any) => {
+                    return (
+                      <FilterCollectionItem
+                        key={`${item.collectionName}-${item.collectionIcon}`}
+                        collectionName={item.collectionName}
+                        collectionIcon={item.collectionIcon}
+                        isVerified={item.isVerified}
+                      />
+                    );
+                  })}
+                </MobileListWrap>
+              </AccordionMenu>
+            </>
+          )}
 
           <HolderElement
             onClick={() => {

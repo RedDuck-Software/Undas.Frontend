@@ -62,14 +62,7 @@ interface CommonProps {
   URI: string;
   description: string;
   tokenAddress: string;
-}
-
-export interface ItemsProps {
-  id: number;
-  URI: string;
-  name: string;
-  tokenAddress: string;
-  tokenOwner?: string;
+  collectionOwner:string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -99,9 +92,10 @@ const CollectionPage: React.FC = () => {
       const id = i.id;
       const name = i.name;
       const URI = i.uri;
-      const description = i.description;
-      const tokenAddress = "0x3e0bf8ACF0bc007754A1af2EE83F2467BdfAd43a";
-      collectionItem.push({ id, name, URI, description, tokenAddress });
+      const description = i.tokenDescription;
+      const tokenAddress = "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad";
+      const collectionOwner = i.owner;
+      collectionItem.push({ id, name, URI, description, tokenAddress, collectionOwner});
     });
     return collectionItem;
   };
@@ -118,11 +112,11 @@ const CollectionPage: React.FC = () => {
 
   const tokensQuery = `
 {
-  tokens(where:{collectionId:"${params.id}"}){
+   tokens(where:{collectionId:"${params.id}"}){
     id
+ 	name
     uri
-    desciption
-    name
+    owner
   }
 }
  `;
@@ -132,6 +126,7 @@ const CollectionPage: React.FC = () => {
   });
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
+    console.log('data',data)
     return data;
   }
   return (

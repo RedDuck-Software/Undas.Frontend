@@ -66,7 +66,7 @@ const TopCollectionPage: React.FC = () => {
       <Container>
         <Wrapper w="100%">
           <AccountContainer>
-            <ASideFilter marginTop="140px" />
+            <ASideFilter marginTop="140px" page="TopCollection" />
             <Wrapper w="100%">
               <Wrapper w="100%">
                 <StatisticsText>Top Collection</StatisticsText>

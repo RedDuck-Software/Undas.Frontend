@@ -60,6 +60,7 @@ const Created: React.FC = () => {
         collectionId,
         tokenAddress,
       });
+
     });
     return createdItems;
   };
@@ -80,7 +81,7 @@ const Created: React.FC = () => {
 
   const createdTokensQuery = `
     {
-      tokens(where:{owner:"${account}"}){
+      tokens(where:{creator :"${account}"}){
           collectionName
           owner
           id
@@ -133,7 +134,7 @@ const Created: React.FC = () => {
           {createdType === CreatedType.nft && viewButtonsRender}
         </CreatedSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <CreatedResultsTotal>8 results</CreatedResultsTotal>
+        <CreatedResultsTotal>{createdNfts && createdNfts.length} results</CreatedResultsTotal>
       </MenuWrap>
 
       <FilterSelected />
