@@ -30,7 +30,7 @@ import FilterSelected from "../../../../components/FilterSelected/FilterSelected
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemVerifyIco } from "../../imports";
-import { getTopCollections } from "../../query";
+import { GET_TOP_COLLECTIONS } from "../../query";
 
 interface IObjectKeys {
   [key: string]: any;
@@ -135,7 +135,7 @@ const CollectionsMenu: React.FC = () => {
   }>({ orderBy: "collectionVolume", direction: "desc" });
 
   const [result] = useQuery({
-    query: getTopCollections,
+    query: GET_TOP_COLLECTIONS,
     variables: { ...sortConfig },
   });
   const { data, fetching } = result;

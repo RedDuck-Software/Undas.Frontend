@@ -1,241 +1,330 @@
-import { useWeb3React } from "@web3-react/core";
-import React, { useState, useContext, useEffect } from "react";
-import { Navigate } from "react-router-dom";
-import { createClient } from "urql";
+import { ethers } from "ethers";
+import React, { useContext, useState } from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
-  RentWrap,
-  RentSettingsBlock,
-  RentButton,
-  RentSelect,
-  RentResultsTotal,
+  TopLinkWrapper,
+  TopLink,
+  ContentWrapper,
+  BottomWrapper,
+  LeftBlock,
+  RightBlock,
+  ContentItem,
+  ContentItemName,
+  ContentItemPriceWrap,
+  ContentItemPriceEth,
+  ContentItemPriceUsd,
+  ContentItemPriceUnd,
+  InputBlock,
+  RentalLable,
+  CheckboxRow,
+  CheckboxInput,
+  CheckboxLabel,
+  Total,
+  TotalPrice,
+  TotalPriceEth,
+  TotalPriceUnd,
+  Plus,
+  ItemAmount,
+  CheckBoxWrapper,
+  Button,
 } from "./Rent.styles";
-import { RentType } from "./types";
 
-import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-import { ViewMode } from "../../../../types/viewMode";
-import Context from "../../../../utils/Context";
-import useViewMode from "../../../../utils/hooks/useViewMode";
-import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
-import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
-import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import NFTCard from "../../components/NFTCardOffers/NFTCard";
+import { Background, Container, PageTitle } from "../../globalStyles";
+import { Marketplace__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
+import { RentalPeriod } from "../NFTPage/NFTPage.styles";
+import { info } from "../OfferRent/imports";
+import {
+  PageWrapper,
+  UNDLabel,
+  ImageInfo,
+  AgreementLink,
+  CheckboxLabelAgreement,
+  CheckboxInputAgreement,
+  NFTInfoContainer,
+  OverlayPopUp,
+  ButtonInfo,
+  FAQLink,
+} from "../OfferRent/OfferRent.styles";
 
-type CreatedItemProps = {
-  id: number;
-  URI: string;
-  name: string;
-  tokenOwner?: string;
-  collectionName?: string;
-  collectionId?: string;
-  tokenAddress?: string;
-};
-const RentMenu: React.FC = () => {
-  const { account } = useWeb3React();
+const Rent: React.FC = () => {
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const [, setRentalDays] = useState<number | string>();
+  const [payInUND, setPayInUND] = useState<boolean>(false);
+
+  const state: any = useLocation();
   const { connector } = useContext(Context);
+  const URI = state.state.state.URI;
+  const nameFrom = state.state.state.name;
+  const colloteral = ethers.utils.formatUnits(
+    state.state.state.colloteralWei.toString(),
+  );
+  const premium = state.state.state.premium;
+  const stakingId = state.state.state.stakingId;
+  const navigate = useNavigate();
 
-  const { viewMode, viewButtonsRender } = useViewMode();
-  const [rentType, setRentType] = useState<RentType>(RentType.rental);
+  async function rentToken(
+    stakingId: number,
+    colloteralWei?: number,
+    premium?: number,
+  ) {
+    if (!connector) {
+      navigate("/login");
+      return;
+    }
 
-  const rentalItems: CreatedItemProps[] = [];
-  const [rentalNfts, setRentalNfts] = useState<CreatedItemProps[]>();
+    if (colloteralWei == undefined) {
+      return;
+    }
+    if (premium == undefined) {
+      return;
+    }
 
-  const rentedItems: CreatedItemProps[] = [];
-  const [rentedNfts, setRentedNfts] = useState<CreatedItemProps[]>();
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
 
-  const getRental = async () => {
-    const rentalTokensQuery = await fetchRentalData();
+    const signer = provider.getSigner(0);
 
-    rentalTokensQuery.data.stakingListings.map((i: any) => {
-      const id = i.id;
-      const name = i.tokenName;
-      const URI = i.tokenURI;
-      const tokenOwner = i.owner;
-      const collectionName = i.collectionName;
-      const collectionId = i.collectionId;
-
-      const tokenAddress = "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad"; //nft collection address
-      rentalItems.push({
-        id,
-        URI,
-        name,
-        tokenOwner,
-        collectionName,
-        collectionId,
-        tokenAddress,
-      });
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+    //todo in wei
+    const amountToPay = (
+      +colloteralWei +
+      +premium +
+      (+premium * 20) / 100
+    ).toFixed(7);
+    const tx = await MarketplaceContract.rentNFT(stakingId, false, {
+      value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
     });
-    console.log(rentalItems);
-    return rentalItems;
+    setLoading(true);
+    await tx.wait();
+    if (autoRedirect) {
+      setAutoRedirect(false);
+      navigate("/all");
+    }
+    setLoading(false);
+  }
+
+  const handleRentalDays = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.currentTarget.value;
+    setRentalDays(value);
   };
 
-  const getRented = async () => {
-    const rentalTokensQuery = await fetchRentedData();
-
-    rentalTokensQuery.data.stakingListings.map((i: any) => {
-      const id = i.id;
-      const name = i.tokenName;
-      const URI = i.tokenURI;
-      const tokenOwner = i.owner;
-      const collectionName = i.collectionName;
-      const collectionId = i.collectionId;
-
-      const tokenAddress = "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad"; //nft collection address
-      rentedItems.push({
-        id,
-        URI,
-        name,
-        tokenOwner,
-        collectionName,
-        collectionId,
-        tokenAddress,
-      });
-    });
-    console.log(rentedItems);
-    return rentedItems;
+  const handlePayInUND = () => {
+    setPayInUND(!payInUND);
   };
 
-  useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
-    }
-    getRentedData();
-    getRentalData();
-  }, [connector, account]);
+  const handleRent = () => {
+    setAutoRedirect(true);
+    rentToken(stakingId, +colloteral, premium);
+  };
 
-  if (!account) {
-    return <Navigate to={"/login"} replace={true} />;
-  }
-
-  const APIURL =
-    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-  const rentalTokens = `
-      {
-       stakingListings(where:{stakingStatus:RENTED seller:"${account}"}){
-          id
-          seller
-          tokenName
-          tokenURI
-          tokenDescription
-          tokenId
-          deadlineUTC
-          colloteralWei
-      }
-  }
- `;
-
-  const rentedTokens = `
-      {
-       stakingListings(where:{stakingStatus:ACTIVE seller:"${account}"}){
-          id
-          seller
-          tokenName
-          tokenURI
-          tokenDescription
-          tokenId
-          deadlineUTC
-          colloteralWei
-      }
-  }
- `;
-
-  const client = createClient({
-    url: APIURL,
-  });
-  console.log("items", rentalNfts);
-
-  async function fetchRentalData() {
-    const data = await client.query(rentalTokens).toPromise();
-    console.log(data);
-    return data;
-  }
-
-  async function getRentalData() {
-    const response = await getRental();
-    if (response) {
-      setRentalNfts(response);
-    }
-  }
-
-  async function fetchRentedData() {
-    const data = await client.query(rentedTokens).toPromise();
-    console.log(data);
-    return data;
-  }
-
-  async function getRentedData() {
-    const response = await getRented();
-    if (response) {
-      setRentedNfts(response);
-    }
-  }
   return (
-    <RentWrap>
-      <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
-        <RentSettingsBlock>
-          <RentSelect>
-            <RentButton
-              className={rentType === RentType.rental ? "rent-active" : ""}
-              onClick={() => setRentType(RentType.rental)}
-            >
-              Rental
-            </RentButton>
-            <RentButton
-              className={rentType === RentType.rented ? "rent-active" : ""}
-              onClick={() => setRentType(RentType.rented)}
-            >
-              Rented
-            </RentButton>
-          </RentSelect>
-          {viewButtonsRender}
-        </RentSettingsBlock>
-        <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <RentResultsTotal>8 results</RentResultsTotal>
-      </MenuWrap>
-
-      <FilterSelected />
-
-      {viewMode === ViewMode.grid && rentType === RentType.rental && (
-        <>
-          {rentedNfts ? (
-            <CollectionGridWrap itemList={rentedNfts} />
-          ) : (
-            <span>There are no NFTs on the marketplace</span>
-          )}
-        </>
-      )}
-
-      {viewMode === ViewMode.list && rentType === RentType.rental && (
-        <>
-          {rentedNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
-        </>
-      )}
-
-      {viewMode === ViewMode.grid && rentType === RentType.rented && (
-        <>
-          {rentalNfts ? (
-            <CollectionGridWrap itemList={rentalNfts} />
-          ) : (
-            <span>There are no NFTs on the marketplace</span>
-          )}
-        </>
-      )}
-
-      {viewMode === ViewMode.list && rentType === RentType.rented && (
-        <>
-          {rentalNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
-        </>
-      )}
-    </RentWrap>
+    <Background>
+      <LoadingModal isLoading={loading} setAutoRedirect={setAutoRedirect} />
+      <TopLinkWrapper>
+        <Container>
+          <TopLink to="/">Back</TopLink>
+        </Container>
+      </TopLinkWrapper>
+      <Container>
+        <PageWrapper>
+          <PageTitle>Complete checkout</PageTitle>
+          <ContentWrapper>
+            <LeftBlock>
+              <ContentItem>
+                <ContentItemName>Cost Day</ContentItemName>
+                <ContentItemPriceWrap>
+                  <ContentItemPriceEth>{premium}</ContentItemPriceEth>
+                  <ContentItemPriceUsd>$36,93</ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+              <ContentItem>
+                <ContentItemName>
+                  Deposit
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
+                </ContentItemName>
+                <ContentItemPriceWrap>
+                  <ContentItemPriceEth>{colloteral}</ContentItemPriceEth>
+                  <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+              <ContentItem>
+                <ContentItemName className="width">
+                  Rental price for
+                  <InputBlock>
+                    <RentalLable htmlFor="period">Select Period</RentalLable>
+                    <RentalPeriod
+                      id="period"
+                      placeholder="7 for 90 days"
+                      onChange={handleRentalDays}
+                    />
+                  </InputBlock>
+                  days
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
+                </ContentItemName>
+                <ContentItemPriceWrap className="column">
+                  <ContentItemPriceEth>0,035</ContentItemPriceEth>
+                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+              <ContentItem>
+                <ContentItemName className="width">
+                  Marketplace commission
+                  <OverlayTrigger
+                    delay={{ show: 250, hide: 3000 }}
+                    placement="top"
+                    overlay={
+                      <OverlayPopUp>
+                        Speech bubble that will fall out when you click on the
+                        information on the icon{" "}
+                        <FAQLink href="/faq">FAQ</FAQLink>
+                      </OverlayPopUp>
+                    }
+                  >
+                    <ButtonInfo>
+                      <ImageInfo
+                        src={info}
+                        alt="info-image"
+                        className="margin"
+                      />
+                    </ButtonInfo>
+                  </OverlayTrigger>
+                </ContentItemName>
+                <ContentItemPriceWrap className="column">
+                  <ContentItemPriceEth>0,035</ContentItemPriceEth>
+                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+              <ContentItem className="wrap">
+                <ContentItemName>
+                  Marketplace fee 3%
+                  <CheckboxRow>
+                    <CheckboxInput
+                      type="checkbox"
+                      id="purchases"
+                      className="custom-checkbox"
+                      onChange={handlePayInUND}
+                    />
+                    <CheckboxLabel htmlFor="purchases">
+                      Pay in {"\u00A0"}
+                      <UNDLabel>UND</UNDLabel>
+                      {"\u00A0"} with a 50% discount
+                      <OverlayTrigger
+                        delay={{ show: 250, hide: 3000 }}
+                        placement="top"
+                        overlay={
+                          <OverlayPopUp>
+                            Speech bubble that will fall out when you click on
+                            the information on the icon{" "}
+                            <FAQLink href="/faq">FAQ</FAQLink>
+                          </OverlayPopUp>
+                        }
+                      >
+                        <ButtonInfo>
+                          <ImageInfo
+                            src={info}
+                            alt="info-image"
+                            className="margin"
+                          />
+                        </ButtonInfo>
+                      </OverlayTrigger>
+                    </CheckboxLabel>
+                  </CheckboxRow>
+                </ContentItemName>
+                <ContentItemPriceWrap className="fee">
+                  <ContentItemPriceUnd>2</ContentItemPriceUnd>
+                  <ContentItemPriceUsd className="margin-3">
+                    $258,25
+                  </ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+              <ContentItem>
+                <Total>Total</Total>
+                <ContentItemPriceWrap className="column">
+                  <TotalPrice>
+                    {/* ультра костыль чтобы законтрить 0.2+0.1 todo:сделать номарльно */}
+                    <TotalPriceEth>
+                      {(+premium * 100000 + +colloteral * 100000) / 100000}
+                    </TotalPriceEth>
+                    <Plus>+</Plus>
+                    <TotalPriceUnd>2</TotalPriceUnd>
+                  </TotalPrice>
+                  <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
+                </ContentItemPriceWrap>
+              </ContentItem>
+            </LeftBlock>
+            <RightBlock>
+              <ItemAmount>Item</ItemAmount>
+              <NFTInfoContainer>
+                <NFTCard uri={URI} name={nameFrom} />
+              </NFTInfoContainer>
+            </RightBlock>
+          </ContentWrapper>
+          <BottomWrapper>
+            <CheckBoxWrapper>
+              <CheckboxInputAgreement
+                type="checkbox"
+                id="agreement"
+                className="custom-checkbox"
+              />
+              <CheckboxLabelAgreement htmlFor="agreement">
+                I agree to the platform {"\u00A0"}
+                <AgreementLink to="/">agreement...</AgreementLink>
+              </CheckboxLabelAgreement>
+            </CheckBoxWrapper>
+            <Button onClick={handleRent}>Rent</Button>
+          </BottomWrapper>
+        </PageWrapper>
+      </Container>
+    </Background>
   );
 };
 
-export default RentMenu;
+export default Rent;

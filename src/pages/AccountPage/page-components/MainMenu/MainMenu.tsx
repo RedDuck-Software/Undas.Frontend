@@ -153,7 +153,7 @@ const MainMenu: React.FC = () => {
           </Filter>
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <ResultsTotal>{list.length}</ResultsTotal>
+        <ResultsTotal>{list.length} results</ResultsTotal>
         <FilterSelected />
       </MenuWrap>
       {list.length > 0 ? (
