@@ -4,7 +4,14 @@ import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
-import { Banner, Title, Info, InfoCard, InfoText, LoaderWrapper } from "./Categories.styles";
+import {
+  Banner,
+  Title,
+  Info,
+  InfoCard,
+  InfoText,
+  LoaderWrapper,
+} from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 

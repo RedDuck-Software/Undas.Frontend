@@ -60,7 +60,6 @@ const Created: React.FC = () => {
         collectionId,
         tokenAddress,
       });
-
     });
     return createdItems;
   };
@@ -134,7 +133,9 @@ const Created: React.FC = () => {
           {createdType === CreatedType.nft && viewButtonsRender}
         </CreatedSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <CreatedResultsTotal>{createdNfts && createdNfts.length} results</CreatedResultsTotal>
+        <CreatedResultsTotal>
+          {createdNfts && createdNfts.length} results
+        </CreatedResultsTotal>
       </MenuWrap>
 
       <FilterSelected />
@@ -152,13 +153,13 @@ const Created: React.FC = () => {
           )}
 
           {viewMode === ViewMode.list && createdType === CreatedType.nft && (
-            <>
-              {createdNfts?.map((item) => {
-                return (
-                  <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-                );
-              })}
-            </>
+              <>
+                {createdNfts ? (
+                    <NFTListItem itemList={createdNfts}  />
+                ) : (
+                    <span>There are no NFTs on the marketplace</span>
+                )}
+              </>
           )}
 
           {createdType === CreatedType.collection && <CreatedCollections />}

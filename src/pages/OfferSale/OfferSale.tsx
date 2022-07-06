@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+  import React, { useState } from "react";
 
 import {
   TitleText,
@@ -17,7 +17,7 @@ const OfferSale: React.FC = () => {
   const [tab, setTab] = useState("offer");
   return (
     <Background>
-      <Back>
+      <Back onClick={() => history.back()}>
         <BackText>Back</BackText>
       </Back>
       <Container>

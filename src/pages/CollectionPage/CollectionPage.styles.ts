@@ -108,20 +108,7 @@ export const InfoBox = styled.div`
     max-width: max-content;
   }
 `;
-export const FilterSelected = styled.div`
-  width: 180px;
-  height: 36px;
-  background: #fbf5ff;
-  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
-  border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  display: inline-block;
-`;
+
 export const SelectedFiltersCollection = styled.div`
   width: 100%;
   margin-top: 15px;

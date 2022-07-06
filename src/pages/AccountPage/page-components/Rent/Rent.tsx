@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useState, useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import {createClient} from "urql";
+import { createClient } from "urql";
 
 import {
   RentWrap,
@@ -19,7 +19,6 @@ import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
-
 
 type CreatedItemProps = {
   id: number;
@@ -65,7 +64,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-    console.log(rentalItems)
     return rentalItems;
   };
 
@@ -91,7 +89,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-    console.log(rentedItems)
     return rentedItems;
   };
 
@@ -99,7 +96,7 @@ const RentMenu: React.FC = () => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getRentedData()
+    getRentedData();
     getRentalData();
   }, [connector, account]);
 
@@ -108,7 +105,7 @@ const RentMenu: React.FC = () => {
   }
 
   const APIURL =
-      "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const rentalTokens = `
       {
@@ -143,11 +140,10 @@ const RentMenu: React.FC = () => {
   const client = createClient({
     url: APIURL,
   });
-  console.log('items',rentalNfts)
 
   async function fetchRentalData() {
     const data = await client.query(rentalTokens).toPromise();
-    console.log(data)
+
     return data;
   }
 
@@ -160,7 +156,6 @@ const RentMenu: React.FC = () => {
 
   async function fetchRentedData() {
     const data = await client.query(rentedTokens).toPromise();
-    console.log(data)
     return data;
   }
 
@@ -195,44 +190,44 @@ const RentMenu: React.FC = () => {
       </MenuWrap>
 
       <FilterSelected />
-      
-      {viewMode === ViewMode.grid && rentType === RentType.rental && (
-          <>
-            {rentedNfts ? (
-                <CollectionGridWrap itemList={rentedNfts} />
-            ) : (
-                <span>There are no NFTs on the marketplace</span>
-            )}
-          </>
-      )}
 
-      {viewMode === ViewMode.list && rentType === RentType.rental && (
+      {viewMode === ViewMode.grid && rentType === RentType.rental && (
         <>
-          {rentedNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
+          {rentedNfts ? (
+            <CollectionGridWrap itemList={rentedNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
         </>
       )}
 
-      {viewMode === ViewMode.grid && rentType === RentType.rented && (
+      {viewMode === ViewMode.list && rentType === RentType.rental && (
           <>
-            {rentalNfts ? (
-                <CollectionGridWrap itemList={rentalNfts} />
+            {rentedNfts ? (
+                <NFTListItem itemList={rentedNfts}  />
             ) : (
                 <span>There are no NFTs on the marketplace</span>
             )}
           </>
+      )}
+
+      {viewMode === ViewMode.grid && rentType === RentType.rented && (
+        <>
+          {rentalNfts ? (
+            <CollectionGridWrap itemList={rentalNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
       )}
 
       {viewMode === ViewMode.list && rentType === RentType.rented && (
         <>
-          {rentalNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
+      {rentalNfts ? (
+        <NFTListItem itemList={rentalNfts}  />
+        ) : (
+        <span>There are no NFTs on the marketplace</span>
+        )}
         </>
       )}
     </RentWrap>

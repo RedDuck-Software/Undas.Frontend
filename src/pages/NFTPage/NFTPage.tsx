@@ -170,7 +170,7 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       console.log("!connector");
     }
-    console.log('state',listingId);
+    console.log("state", listingId);
     if (listingId || listingId == 0) {
       setShowBuy(true);
     } else {
@@ -195,7 +195,7 @@ const NFTPage: React.FC = () => {
   // console.log('listingId',listingId)
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log('tokensQuery',tokensQuery)
+    console.log("tokensQuery", tokensQuery);
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -232,7 +232,7 @@ const NFTPage: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
+  console.log('state',state.state.tokenId)
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
@@ -249,7 +249,7 @@ const NFTPage: React.FC = () => {
   stakingListings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
     seller
- 		tokenId
+ 	tokenId
     tokenURI
     tokenName
     tokenDescription
@@ -267,7 +267,7 @@ const NFTPage: React.FC = () => {
   console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log('qqq',data)
+    console.log("qqq", data);
     return data;
   }
 
@@ -330,7 +330,7 @@ const NFTPage: React.FC = () => {
                 </Name>
               </NameInner>
               <NavMenu>
-                <NavElement>
+                <NavElement className="first-element">
                   <RefreshIco />
                 </NavElement>
                 <NavElement>
@@ -339,7 +339,7 @@ const NFTPage: React.FC = () => {
                 <NavElement>
                   <ThreeCircleIco />
                 </NavElement>
-                <NavElement>
+                <NavElement className="last-element">
                   <OpenInIco />
                 </NavElement>
               </NavMenu>
@@ -382,7 +382,7 @@ const NFTPage: React.FC = () => {
                     </InfoElement>
                   </Info>
                   <SaleBlock>
-                    <TopBar>
+                    <TopBar className="head-open">
                       <CartIco />
                       Sale
                     </TopBar>
@@ -398,7 +398,7 @@ const NFTPage: React.FC = () => {
                   </SaleBlock>
 
                   <SaleBlock>
-                    <TopBar>
+                    <TopBar className="head-open">
                       <RentIco />
                       Rent
                     </TopBar>
@@ -455,7 +455,6 @@ const NFTPage: React.FC = () => {
                             fc="#873DC1"
                             disabled={!isOwner}
                             onClick={(e) => {
-                              alert("click");
                               e.stopPropagation();
                               navigate(
                                 `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,

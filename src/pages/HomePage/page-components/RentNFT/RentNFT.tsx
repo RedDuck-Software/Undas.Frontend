@@ -95,13 +95,13 @@ const RentNFT: React.FC = () => {
         navigation={true}
         mousewheel={true}
         effect={"coverflow"}
-        centeredSlides={true}
+        centeredSlides={false}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
           depth: 100,
           modifier: 1,
-          slideShadows: true,
+          slideShadows: false,
         }}
       >
         {list?.map((item) => {

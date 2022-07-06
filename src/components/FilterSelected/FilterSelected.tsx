@@ -74,6 +74,13 @@ const FilterSelected: React.FC = () => {
   useEffect(() => {
     setSelectedCategories(categories);
   }, [categories]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAll());
+    };
+  }, []);
+
   const handleClearAll = () => {
     selectedCollections.forEach((item: any) => {
       const element: HTMLElement = document.getElementById(
@@ -87,6 +94,7 @@ const FilterSelected: React.FC = () => {
     });
     dispatch(clearAll());
   };
+
   return (
     <>
       {selectedCollections.length > 0 || selectedCategories.length > 0 ? (

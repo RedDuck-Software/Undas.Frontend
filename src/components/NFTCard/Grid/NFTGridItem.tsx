@@ -1,6 +1,6 @@
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -43,39 +43,28 @@ interface NFTGridItemProps {
   tokenOwner?: string;
   collectionName?: string;
   collectionId?: string;
-  collectionOwner?:string;
+  collectionOwner?: string;
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
+  console.log(props)
   const navigate = useNavigate();
   const { account } = useWeb3React();
-  const [userAccount,setAccount] = useState<any>()
-  const [isOwner,setIsOwner] = useState<boolean>(false);
-  console.log('1',props);
-  console.log('2',props.collectionOwner)//fix
-  console.log(isOwner)
+  const [userAccount, setAccount] = useState<any>();
+  const [isOwner, setIsOwner] = useState<boolean>(false);
 
-  function setOwner(){
-    console.log('props',props.collectionOwner)//fix
-    console.log('user',userAccount)
-
-    if(userAccount && userAccount.toLowerCase() == props.collectionOwner){
-      console.log('owner')
-      setIsOwner(true)
+  function setOwner() {
+    if (userAccount && userAccount.toLowerCase() == props.collectionOwner) {
+      setIsOwner(true);
     }
-    console.log('not an owner')
   }
 
   useEffect(() => {
-
-    if(account){
-      console.log('acc',account)
-      setAccount(account)
-      setOwner()
+    if (account) {
+      setAccount(account);
+      setOwner();
     }
-
-  }, [account,userAccount]);
-
+  }, [account, userAccount]);
 
   return (
     <NFTWrap
@@ -88,7 +77,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       }}
     >
       <Info disp="flex" alignItems="center" gap="10px">
-        <Name>{props.name}</Name>
+        <Name>{props.collectionName?props.collectionName:'No collection'}</Name>
         <img src={Verified} alt="verified-ico" />
         <Platform col="#873DC1">UND</Platform>
         <LockIco />
@@ -103,7 +92,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       </ImageWrap>
       <BuyingBlock>
         <LeftBlock>
-          <TagName>Returne #{props.tokenId}</TagName>
+          <TagName>{props.name}</TagName>
 
           {props.price ? (
             <BuyBtn
@@ -142,19 +131,20 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Sell
             </BuyBtn>
-          ):(
-              <BuyBtn
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(
-                        `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
-                        { state: { state: { ...props } } },
-                    );
-                    e.stopPropagation();
-                  }}
-              >
-                View
-              </BuyBtn>)}
+          ) : (
+            <BuyBtn
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(
+                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
+                  { state: { state: { ...props } } },
+                );
+                e.stopPropagation();
+              }}
+            >
+              View
+            </BuyBtn>
+          )}
         </LeftBlock>
         <PriceList>
           <PriceItem>

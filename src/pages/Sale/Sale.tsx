@@ -127,7 +127,7 @@ const Sale: React.FC = () => {
       false,
       {
         value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-        gasLimit:355080
+        gasLimit: 355080,
       },
     );
     setLoadingSale(true);
@@ -243,7 +243,7 @@ const Sale: React.FC = () => {
       />
       <TopLinkWrapper>
         <Container>
-          <TopLink to="/">Back</TopLink>
+          <TopLink onClick={() => history.back()}>Back</TopLink>
         </Container>
       </TopLinkWrapper>
       <Container>

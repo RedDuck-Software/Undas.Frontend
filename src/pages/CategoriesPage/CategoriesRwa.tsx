@@ -4,7 +4,14 @@ import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
-import { Banner, Title, Info, InfoCard, InfoText, LoaderWrapper } from "./Categories.styles";
+import {
+  Banner,
+  Title,
+  Info,
+  InfoCard,
+  InfoText,
+  LoaderWrapper,
+} from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
@@ -29,7 +36,7 @@ const CategoriesGameFI: React.FC = () => {
 
   const getСollection = async () => {
     const collectionsFromAPI = await fetchData();
-     collectionsFromAPI.data.collections.map((i: any) => {
+    collectionsFromAPI.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;

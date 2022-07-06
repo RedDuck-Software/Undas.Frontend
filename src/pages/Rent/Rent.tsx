@@ -61,6 +61,7 @@ const Rent: React.FC = () => {
 
   const state: any = useLocation();
   const { connector } = useContext(Context);
+  console.log('00000',state.state)
   const URI = state.state.state.URI;
   const nameFrom = state.state.state.name;
   const colloteral = ethers.utils.formatUnits(
@@ -103,6 +104,7 @@ const Rent: React.FC = () => {
       +premium +
       (+premium * 20) / 100
     ).toFixed(7);
+    console.log(amountToPay)
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
     });
@@ -134,7 +136,7 @@ const Rent: React.FC = () => {
       <LoadingModal isLoading={loading} setAutoRedirect={setAutoRedirect} />
       <TopLinkWrapper>
         <Container>
-          <TopLink to="/">Back</TopLink>
+          <TopLink onClick={() => history.back()}>Back</TopLink>
         </Container>
       </TopLinkWrapper>
       <Container>

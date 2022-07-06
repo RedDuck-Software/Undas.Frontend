@@ -153,20 +153,20 @@ const MainMenu: React.FC = () => {
           </Filter>
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <ResultsTotal>{list.length}</ResultsTotal>
+        <ResultsTotal>{list.length} results</ResultsTotal>
         <FilterSelected />
       </MenuWrap>
       {list.length > 0 ? (
         viewMode === ViewMode.grid ? (
           <CollectionGridWrap itemList={list} />
         ) : (
-          <>
-            {list.map((item) => {
-              return (
-                <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-              );
-            })}
-          </>
+            <>
+              {list ? (
+                  <NFTListItem itemList={list}  />
+              ) : (
+                  <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
         )
       ) : (
         <NoData />
