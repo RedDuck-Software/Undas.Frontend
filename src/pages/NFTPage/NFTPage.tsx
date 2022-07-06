@@ -330,7 +330,7 @@ const NFTPage: React.FC = () => {
                 </Name>
               </NameInner>
               <NavMenu>
-                <NavElement>
+                <NavElement className="first-element">
                   <RefreshIco />
                 </NavElement>
                 <NavElement>
@@ -339,7 +339,7 @@ const NFTPage: React.FC = () => {
                 <NavElement>
                   <ThreeCircleIco />
                 </NavElement>
-                <NavElement>
+                <NavElement className="last-element">
                   <OpenInIco />
                 </NavElement>
               </NavMenu>
@@ -382,7 +382,7 @@ const NFTPage: React.FC = () => {
                     </InfoElement>
                   </Info>
                   <SaleBlock>
-                    <TopBar>
+                    <TopBar className="head-open">
                       <CartIco />
                       Sale
                     </TopBar>
@@ -398,7 +398,7 @@ const NFTPage: React.FC = () => {
                   </SaleBlock>
 
                   <SaleBlock>
-                    <TopBar>
+                    <TopBar className="head-open">
                       <RentIco />
                       Rent
                     </TopBar>

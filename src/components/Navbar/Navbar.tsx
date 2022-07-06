@@ -226,7 +226,7 @@ const Navbar = () => {
                 >
                   Create
                 </StyledLink>
-                <DropdownMenu setWidth="170px" left="-3rem" xlWidth="160px">
+                <DropdownMenu setWidth="170px" left="-3rem" xlWidth="170px">
                   <MenuList to="/create-nft">
                     <AddNFTIco />
                     Add NTF
