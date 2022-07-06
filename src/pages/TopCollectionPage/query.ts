@@ -1,6 +1,6 @@
 import { gql } from "urql";
 
-export const getTopCollections = gql`
+export const GET_TOP_COLLECTIONS = gql`
   query getTopCollections(
     $orderBy: Collection_orderBy
     $direction: OrderDirection!

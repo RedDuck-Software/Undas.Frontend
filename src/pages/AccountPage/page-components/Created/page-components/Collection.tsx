@@ -87,7 +87,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
       setCollectionItems(response);
     }
   }
-  console.log(collectionItems);
+
   return (
     <>
       {itemList.map((i) => {

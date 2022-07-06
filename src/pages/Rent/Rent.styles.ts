@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { back, eth } from "../OfferRent/imports";
@@ -9,7 +8,7 @@ export const TopLinkWrapper = styled.div`
   background: #fbf5ff;
   box-shadow: inset 0px 0px 2px #7c7c7c;
 `;
-export const TopLink = styled(Link)`
+export const TopLink = styled.div`
   text-decoration: none;
   width: 100%;
   max-width: 80rem;
@@ -26,6 +25,7 @@ export const TopLink = styled(Link)`
   &:hover {
     color: #873dc1;
     text-decoration: underline;
+    cursor: pointer;
   }
 `;
 export const ContentWrapper = styled.div`

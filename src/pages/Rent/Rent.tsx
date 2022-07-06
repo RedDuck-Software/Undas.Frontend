@@ -134,7 +134,7 @@ const Rent: React.FC = () => {
       <LoadingModal isLoading={loading} setAutoRedirect={setAutoRedirect} />
       <TopLinkWrapper>
         <Container>
-          <TopLink to="/">Back</TopLink>
+          <TopLink onClick={() => history.back()}>Back</TopLink>
         </Container>
       </TopLinkWrapper>
       <Container>
