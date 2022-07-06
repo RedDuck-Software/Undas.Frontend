@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Mousewheel, Navigation } from "swiper";
+import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { createClient } from "urql";
 
@@ -92,10 +92,19 @@ const NewNFT: React.FC = () => {
           },
         }}
         className="rent-slider"
-        modules={[Mousewheel, Navigation]}
+        modules={[Mousewheel, Navigation, EffectCoverflow]}
         loop={false}
         navigation={true}
         mousewheel={true}
+        effect={"coverflow"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          // slideShadows: true,
+        }}
+
       >
         {list?.map((item) => {
           return (
