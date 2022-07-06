@@ -1,6 +1,5 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
 import { Navigate, useLocation } from "react-router-dom";
 
 import {
@@ -26,7 +25,6 @@ import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
 import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
-import { NFT } from "./types";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Background } from "../../globalStyles";
@@ -39,8 +37,6 @@ const AccountPage: React.FC = () => {
   const { account, deactivate } = useWeb3React();
   const { state }: any = useLocation();
   const { connector } = useContext(Context);
-  const { Moralis } = useMoralis();
-  const [, setNFTList] = useState<NFT[]>();
 
   useEffect(() => {
     if (state !== null && state !== undefined) {
@@ -53,40 +49,12 @@ const AccountPage: React.FC = () => {
     };
   }, [state]);
 
-  const getNFTList = async () => {
-    if (!connector || !account) return;
-    const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: "goerli",
-      address: "0xc66874D527CfF618a4bC6948C664079F558Ef0Ec",
-    });
 
-    // const options = {
-    //   chain: "goerli",
-    //   addresses: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    // };
-    // const tokenMetadata = await Web3Api.token.getTokenMetadata(options);
-    // console.log(tokenMetadata);
-    return listOfNFTS;
-  };
-
-  const getListData = async () => {
-    const response = await getNFTList();
-    if (!response?.result) return;
-
-    // deleting duplicates because of moralis bug
-    // (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
-    response.result = response.result.filter(
-      (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
-    );
-    setNFTList(response.result);
-  };
 
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListData();
   }, [connector, account]);
 
   if (!account) {
