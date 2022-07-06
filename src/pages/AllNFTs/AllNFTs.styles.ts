@@ -223,3 +223,7 @@ export const GridLayout = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
   }
 `;
+
+export const ContainerFilters = styled.div`
+  width: 100%;
+`;

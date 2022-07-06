@@ -153,13 +153,13 @@ const Created: React.FC = () => {
           )}
 
           {viewMode === ViewMode.list && createdType === CreatedType.nft && (
-              <>
-                {createdNfts ? (
-                    <NFTListItem itemList={createdNfts}  />
-                ) : (
-                    <span>There are no NFTs on the marketplace</span>
-                )}
-              </>
+            <>
+              {createdNfts ? (
+                <NFTListItem itemList={createdNfts} />
+              ) : (
+                <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
           )}
 
           {createdType === CreatedType.collection && <CreatedCollections />}

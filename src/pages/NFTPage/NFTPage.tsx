@@ -232,7 +232,7 @@ const NFTPage: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-  console.log('state',state.state.tokenId)
+  console.log("state", state.state.tokenId);
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){

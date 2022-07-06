@@ -47,7 +47,7 @@ interface NFTGridItemProps {
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
-  console.log(props)
+  console.log(props);
   const navigate = useNavigate();
   const { account } = useWeb3React();
   const [userAccount, setAccount] = useState<any>();
@@ -77,7 +77,9 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       }}
     >
       <Info disp="flex" alignItems="center" gap="10px">
-        <Name>{props.collectionName?props.collectionName:'No collection'}</Name>
+        <Name>
+          {props.collectionName ? props.collectionName : "No collection"}
+        </Name>
         <img src={Verified} alt="verified-ico" />
         <Platform col="#873DC1">UND</Platform>
         <LockIco />

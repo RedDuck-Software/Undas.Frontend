@@ -49,8 +49,6 @@ const AccountPage: React.FC = () => {
     };
   }, [state]);
 
-
-
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");

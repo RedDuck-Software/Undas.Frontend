@@ -140,7 +140,6 @@ const CollectionsMenu: React.FC = () => {
   });
   const { data, fetching } = result;
 
-
   const handleIsVefiriedOnly = () => {
     setIsVerifiedOnly(!isVerifiedOnly);
   };
