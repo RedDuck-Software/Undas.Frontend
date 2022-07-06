@@ -64,7 +64,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-
     return rentalItems;
   };
 
@@ -90,7 +89,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-
     return rentedItems;
   };
 
