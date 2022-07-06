@@ -111,14 +111,14 @@ const CollectionPage: React.FC = () => {
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
-{
-   tokens(where:{collectionId:"${params.id}"}){
-    id
- 	name
-    uri
-    owner
+  {
+     tokens(where:{collectionId:"${params.id}"}){
+      id
+      name
+      uri
+      owner
+    }
   }
-}
  `;
 
   const client = createClient({
@@ -275,17 +275,13 @@ const CollectionPage: React.FC = () => {
               {viewMode === ViewMode.grid ? (
                 <CollectionGridWrap itemList={list} />
               ) : (
-                <>
-                  {list.map((item) => {
-                    return (
-                      <NFTListItem
-                        key={item.id}
-                        name={item.name}
-                        URI={item.URI}
-                      />
-                    );
-                  })}
-                </>
+                  <>
+                    {list ? (
+                        <NFTListItem itemList={list}  />
+                    ) : (
+                        <span>There are no NFTs on the marketplace</span>
+                    )}
+                  </>
               )}
             </ContainerNFT>
             <FilterMobileButton />

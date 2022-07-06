@@ -160,13 +160,13 @@ const MainMenu: React.FC = () => {
         viewMode === ViewMode.grid ? (
           <CollectionGridWrap itemList={list} />
         ) : (
-          <>
-            {list.map((item) => {
-              return (
-                <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-              );
-            })}
-          </>
+            <>
+              {list ? (
+                  <NFTListItem itemList={list}  />
+              ) : (
+                  <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
         )
       ) : (
         <NoData />

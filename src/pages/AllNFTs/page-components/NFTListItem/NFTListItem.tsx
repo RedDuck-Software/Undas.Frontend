@@ -1,6 +1,6 @@
 import React from "react";
 
-import { girlNFT, eye, checked, block, heart } from "./imports";
+import { eye, checked, block, heart } from "./imports";
 import {
   ColImg,
   ImgNFT,
@@ -19,33 +19,52 @@ import {
 
 import TabsNFT from "../TabsNFT/TabsNFT";
 
-interface NFTListItemProps {
+type GridItem = {
+  id: number;
+  URI: string;
   name: string;
-  URI?: string;
+  priceInNum?: number;
+  premiumInNum?: number;
+  colloteralWei?: number;
+  stakingId?: number;
+  listingId?: number;
+  tokenAddress?: string;
+  tokenOwner?: string;
+  collectionName?: string;
+  collectionId?: string;
+  collectionOwner?:string;
+};
+interface CollectionGridWrapperProps {
+  itemList: GridItem[];
 }
 
-const NFTListItem: React.FC<NFTListItemProps> = ({ name, URI }) => {
+const NFTListItem: React.FC<CollectionGridWrapperProps> = ({ itemList}) => {
+  console.log('itemsLIIIST',itemList)
+
   return (
     <>
-      <RowLine>
-        <ColImg>
-          <ImgNFT src={URI ? URI : girlNFT}></ImgNFT>
-          <ImagePreview>
-            <ImageEye src={eye} alt="eye-image" />
-            <TextPreview>Preview</TextPreview>
-          </ImagePreview>
-        </ColImg>
-        <ColTextTop>
-          <TextNameNFT>{name}</TextNameNFT>
-          <ImageChecked src={checked} alt="checked-image" />
-          <TextUND>UND</TextUND>
-          <ImageBlock src={block} alt="block-image" />
-          <ImageHeart src={heart} alt="heart-image" />
-        </ColTextTop>
-      </RowLine>
-      <RowCenter>
-        <TabsNFT />
-      </RowCenter>
+      {itemList.map((i)=>{
+        return <><RowLine>
+          <ColImg>
+            <ImgNFT src={i.URI}></ImgNFT>
+            <ImagePreview>
+              <ImageEye src={eye} alt="eye-image"/>
+              <TextPreview>Preview</TextPreview>
+            </ImagePreview>
+          </ColImg>
+          <ColTextTop>
+            <TextNameNFT>{i.name}</TextNameNFT>
+            <ImageChecked src={checked} alt="checked-image"/>
+            <TextUND>UND</TextUND>
+            <ImageBlock src={block} alt="block-image"/>
+            <ImageHeart src={heart} alt="heart-image"/>
+          </ColTextTop>
+        </RowLine><RowCenter>
+          <TabsNFT />
+
+        </RowCenter></>
+      })}
+
     </>
   );
 };

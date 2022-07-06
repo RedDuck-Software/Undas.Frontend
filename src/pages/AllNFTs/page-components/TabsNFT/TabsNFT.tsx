@@ -1,7 +1,7 @@
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import "./tabs-nft.css";
-import { useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 import {
   InputTypeYourBid,
@@ -22,11 +22,22 @@ import {
   RentIcon,
 } from "./TabsNFT.styles";
 
-import { setComponent } from "../../../../store/reducers/modalAction";
 
-const TabsNFT: React.FC = () => {
-  const dispatch = useDispatch();
 
+interface NFTListItemProps {
+  name?: string;
+  URI?: string;
+  tokenAddress?:string;
+  tokenId?:number;
+  collectionName?:string
+  isRent?: boolean;
+
+}
+
+const TabsNFT: React.FC<NFTListItemProps> = ({name, URI,tokenAddress,tokenId }) => {
+  const navigate = useNavigate();
+const state = {name,URI,tokenAddress,tokenId}
+  console.log(tokenId,tokenAddress)
   return (
     <Tabs defaultActiveKey="second" id="tab-nft" className="my-tabs">
       <Tab
@@ -38,7 +49,7 @@ const TabsNFT: React.FC = () => {
           </span>
         }
       >
-        <ReturneText>Returne #204</ReturneText>
+        <ReturneText>{name}</ReturneText>
         <SpanSale>Sale ends April 4, 2022 at 6:02pm EET</SpanSale>
         <InputTypeYourBid placeholder="Type Your Bid"></InputTypeYourBid>
         <ButtonRentSale>Buy now</ButtonRentSale>
@@ -72,14 +83,25 @@ const TabsNFT: React.FC = () => {
       >
         <ReturneText>Returne #204</ReturneText>
         <ButtonRent
-          onClick={(e) => {
-            e.stopPropagation();
-            dispatch(setComponent("buy", 1));
-          }}
+            onClick={(e) => {
+              navigate(
+                  `/nft/buy/tokenAddress=${tokenAddress}&id=${tokenId}`,
+                  { state: { ...state } },
+              );
+              e.stopPropagation();
+            }}
         >
           Buy now
         </ButtonRent>
-        <ButtonOffer>Make offer</ButtonOffer>
+        <ButtonOffer onClick={(e) => {
+          console.log(state)
+
+          navigate(
+              `/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,
+              { state: { ...state } },
+          );
+          e.stopPropagation();
+        }}>Make offer</ButtonOffer>
         <RowDown>
           <DivDeposit>
             <DepositText>Price</DepositText>
