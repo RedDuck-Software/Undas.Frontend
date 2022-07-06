@@ -53,16 +53,17 @@ const NFTListItem: React.FC<CollectionGridWrapperProps> = ({ itemList}) => {
             </ImagePreview>
           </ColImg>
           <ColTextTop>
-            <TextNameNFT>{i.name}</TextNameNFT>
+            <TextNameNFT>{i.collectionName?i.collectionName:'No collection'}</TextNameNFT>
             <ImageChecked src={checked} alt="checked-image"/>
             <TextUND>UND</TextUND>
             <ImageBlock src={block} alt="block-image"/>
             <ImageHeart src={heart} alt="heart-image"/>
           </ColTextTop>
         </RowLine><RowCenter>
-          <TabsNFT />
+          <TabsNFT itemLists={i}/>
 
-        </RowCenter></>
+        </RowCenter>
+        </>
       })}
 
     </>
