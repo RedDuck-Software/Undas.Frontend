@@ -64,7 +64,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-    console.log(rentalItems);
     return rentalItems;
   };
 
@@ -90,7 +89,6 @@ const RentMenu: React.FC = () => {
         tokenAddress,
       });
     });
-    console.log(rentedItems);
     return rentedItems;
   };
 
@@ -142,11 +140,10 @@ const RentMenu: React.FC = () => {
   const client = createClient({
     url: APIURL,
   });
-  console.log("items", rentalNfts);
 
   async function fetchRentalData() {
     const data = await client.query(rentalTokens).toPromise();
-    console.log(data);
+
     return data;
   }
 
@@ -159,7 +156,6 @@ const RentMenu: React.FC = () => {
 
   async function fetchRentedData() {
     const data = await client.query(rentedTokens).toPromise();
-    console.log(data);
     return data;
   }
 
