@@ -52,7 +52,7 @@ const Referral: React.FC = () => {
               <ReferralLink>{refLink}</ReferralLink>
               <Copy />
             </ReferralLinkButton>
-            <Message opacity={show}>Copied!</Message>
+            <Message opacity={show}>Link is Copied!</Message>
             <SocialWrap>
               <ShareButton>Share Link</ShareButton>
               <SocialButton>

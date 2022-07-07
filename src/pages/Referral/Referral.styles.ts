@@ -250,9 +250,9 @@ export const ReferralPagination = styled(Pagination)`
 export const Message = styled.div<{ opacity?: boolean }>`
   opacity: ${({ opacity }) => (opacity ? "1" : "0")};
   position: absolute;
-  top: 33%;
-  left: 25%;
-  padding: 10px 25px;
+  top: calc(50% - 32px);
+  left: calc(50% - 102px);
+  padding: 20px 45px;
   border-radius: 20px;
   background-color: #fbf5ff;
   box-shadow: 0px 4px 10px rgb(135 61 193 / 25%);
