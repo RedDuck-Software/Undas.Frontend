@@ -232,7 +232,7 @@ const NFTPage: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
+  console.log("state", state.state.tokenId);
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
@@ -249,7 +249,7 @@ const NFTPage: React.FC = () => {
   stakingListings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
     seller
- 		tokenId
+ 	tokenId
     tokenURI
     tokenName
     tokenDescription
@@ -309,7 +309,7 @@ const NFTPage: React.FC = () => {
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameNft>Collection Name</NameNft>
+                  <NameCollection to="/">Collection Name</NameCollection>
                   <VerifiedIcon>
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
@@ -318,9 +318,9 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameCollection>
+                  <NameNft>
                     {nameFromProps ? nameFromProps : name}
-                  </NameCollection>
+                  </NameNft>
                   <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
@@ -455,7 +455,6 @@ const NFTPage: React.FC = () => {
                             fc="#873DC1"
                             disabled={!isOwner}
                             onClick={(e) => {
-                              alert("click");
                               e.stopPropagation();
                               navigate(
                                 `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,

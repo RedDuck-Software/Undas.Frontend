@@ -21,13 +21,15 @@ export const BackText = styled.div`
   font-size: 16px;
   line-height: 22px;
   color: #873dc1;
-  max-width: 80rem;
   margin: 0 auto;
   padding: 14px 3rem;
   &::before {
     content: url(${back});
     vertical-align: middle;
     padding-right: 12px;
+  }
+  @media (min-width: 1700px) {
+     max-width: 105rem;
   }
 `;
 

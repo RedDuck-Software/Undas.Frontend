@@ -203,11 +203,11 @@ const RentMenu: React.FC = () => {
 
       {viewMode === ViewMode.list && rentType === RentType.rental && (
         <>
-          {rentedNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
+          {rentedNfts ? (
+            <NFTListItem itemList={rentedNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
         </>
       )}
 
@@ -223,11 +223,11 @@ const RentMenu: React.FC = () => {
 
       {viewMode === ViewMode.list && rentType === RentType.rented && (
         <>
-          {rentalNfts?.map((item) => {
-            return (
-              <NFTListItem key={item.id} name={item.name} URI={item.URI} />
-            );
-          })}
+          {rentalNfts ? (
+            <NFTListItem itemList={rentalNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
         </>
       )}
     </RentWrap>

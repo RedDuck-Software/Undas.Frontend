@@ -104,12 +104,11 @@ const NewNFT: React.FC = () => {
           modifier: 1,
           slideShadows: false,
         }}
-
       >
         {list?.map((item) => {
           return (
             <>
-              <SwiperSlide key={item.id}>
+              <SwiperSlide key={item.id} onClick={() => alert(item.name)}>
                 <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>

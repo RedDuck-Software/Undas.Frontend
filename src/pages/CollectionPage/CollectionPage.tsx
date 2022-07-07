@@ -11,15 +11,13 @@ import {
   InfoBox,
   SelectedFiltersCollection,
   HeadWrapper,
-  InfoBlock,
-  ItemsOwners,
-  InfoSmallBorder,
   TextInfo,
   ContainerCollection,
   ContainerNFT,
   ContainerPopUp,
   InputTextArea,
   SendButton,
+  MyWrapper,
 } from "./CollectionPage.styles";
 import { CollectionBanner, PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
@@ -47,7 +45,6 @@ import {
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
 import { Banner } from "../CategoriesPage/Categories.styles";
-import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 interface CommonProps {
   id: number;
@@ -127,7 +124,7 @@ const CollectionPage: React.FC = () => {
                   <CollectionCard />
                   <InfoBox>
                     <Info>
-                      <InfoElement>
+                      <InfoElement className="large-items">
                         <TextInfo>Items</TextInfo>
                         <Amount>14000</Amount>
                       </InfoElement>
@@ -135,19 +132,19 @@ const CollectionPage: React.FC = () => {
                         <TextInfo>Owners</TextInfo>
                         <Amount>6400</Amount>
                       </InfoElement>
-                      <InfoElement>
+                      <InfoElement className="small-floor">
                         <TextInfo>Floor Price</TextInfo>
-                        <Wrapper disp="flex" gap="5px">
+                        <MyWrapper>
                           <PurpleEthIco />
                           <Amount>3,2</Amount>
-                        </Wrapper>
+                        </MyWrapper>
                       </InfoElement>
-                      <InfoElement>
+                      <InfoElement className="small-vol">
                         <TextInfo>Total Vol</TextInfo>
-                        <Wrapper disp="flex" gap="5px">
+                        <MyWrapper>
                           <PurpleEthIco />
                           <Amount>13,402,000</Amount>
-                        </Wrapper>
+                        </MyWrapper>
                       </InfoElement>
                     </Info>
                     <AddToFav ref={target} onClick={() => setShow(!show)}>
@@ -166,30 +163,6 @@ const CollectionPage: React.FC = () => {
                       }
                     </Overlay>
                   </InfoBox>
-                  <InfoBlock>
-                    <ItemsOwners>
-                      <TextInfo>Items</TextInfo>
-                      <br></br>
-                      <Amount>14000</Amount>
-                    </ItemsOwners>
-                    <ItemsOwners>
-                      <TextInfo>Owners</TextInfo>
-                      <br></br>
-                      <Amount>6400</Amount>
-                    </ItemsOwners>
-                  </InfoBlock>
-                  <InfoSmallBorder>
-                    <ItemsOwners>
-                      <TextInfo>Floor Price</TextInfo>
-                      <br></br>
-                      <PurpleEthIco /> <Amount>3,2</Amount>
-                    </ItemsOwners>
-                    <ItemsOwners>
-                      <TextInfo>Total Vol</TextInfo>
-                      <br></br>
-                      <PurpleEthIco /> <Amount>13,402,000</Amount>
-                    </ItemsOwners>
-                  </InfoSmallBorder>
                 </HeadWrapper>
                 <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
                   <SettingsBlock>
@@ -255,15 +228,11 @@ const CollectionPage: React.FC = () => {
                   <CollectionGridWrap itemList={list} />
                 ) : (
                   <>
-                    {list.map((item) => {
-                      return (
-                        <NFTListItem
-                          key={item.id}
-                          name={item.name}
-                          URI={item.URI}
-                        />
-                      );
-                    })}
+                    {list ? (
+                      <NFTListItem itemList={list} />
+                    ) : (
+                      <span>There are no NFTs on the marketplace</span>
+                    )}
                   </>
                 )}
               </ContainerNFT>
