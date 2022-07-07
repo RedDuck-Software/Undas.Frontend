@@ -104,7 +104,6 @@ const NewNFT: React.FC = () => {
           modifier: 1,
           slideShadows: false,
         }}
-
       >
         {list?.map((item) => {
           return (

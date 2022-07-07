@@ -19,6 +19,7 @@ import {
   MenuWrap,
   SettingsBlock,
   ResultsTotal,
+  ContainerFilters,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
@@ -155,19 +156,21 @@ const MainMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <ResultsTotal>{list.length} results</ResultsTotal>
-        <FilterSelected />
+        <ContainerFilters>
+          <FilterSelected />
+        </ContainerFilters>
       </MenuWrap>
       {list.length > 0 ? (
         viewMode === ViewMode.grid ? (
           <CollectionGridWrap itemList={list} />
         ) : (
-            <>
-              {list ? (
-                  <NFTListItem itemList={list}  />
-              ) : (
-                  <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
+          <>
+            {list ? (
+              <NFTListItem itemList={list} />
+            ) : (
+              <span>There are no NFTs on the marketplace</span>
+            )}
+          </>
         )
       ) : (
         <NoData />

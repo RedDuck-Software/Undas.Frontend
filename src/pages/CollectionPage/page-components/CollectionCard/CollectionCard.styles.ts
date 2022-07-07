@@ -88,28 +88,6 @@ export const Creator = styled.h4`
 export const PurpleText = styled(Creator)`
   color: #873dc1;
 `;
-export const MakeComplaint = styled.button`
-  background-color: #fff;
-  border: 1px solid #873dc1;
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #873dc1;
-  padding: 6px 18px;
-  float: right;
-  max-height: 36px;
-  cursor: pointer;
-  display: none;
-  &:hover {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-  }
-  @media (max-width: 1200px) {
-    display: inline-block;
-  }
-  @media (max-width: 576px) {
-    width: 100%;
-  }
-`;
 export const MoreInfo = styled.div`
   width: 36px;
   height: 36px;
@@ -146,87 +124,5 @@ export const CreatorWrapper = styled.div`
   gap: 10px;
   @media (max-width: 576px) {
     margin: 10px 0 0 0;
-  }
-`;
-
-export const ContainerPopUp = styled.div`
-  height: 160px;
-  width: 350px;
-  background: #ffffff;
-  border: 1px solid #7c7c7c;
-  transform: matrix(1, 0, 0, -1, 0, 0);
-  margin-left: -75px;
-  margin-top: 11px;
-  border-radius: 10px;
-  z-index: 10;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 270px;
-    top: -20px;
-    border: 10px solid transparent;
-    border-top: 10px solid #7c7c7c;
-    transform: rotate(180deg);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 270px;
-    top: -20px;
-    border: 10px solid transparent;
-    border-top: 10px solid #7c7c7c;
-    transform: rotate(180deg);
-  }
-  &::after {
-    border-top: 10px solid white;
-    top: -18.5px;
-  }
-
-  @media (max-width: 576px) {
-    width: 95%;
-    margin-left: unset;
-  }
-`;
-
-export const InputTextArea = styled.textarea`
-  width: 100%;
-  border: none;
-  margin-top: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 90px;
-  resize: none;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #232428;
-  &:focus {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-    border: none;
-    outline: none;
-  }
-`;
-
-export const SendButton = styled.button`
-  width: 90px;
-  height: 36px;
-  background: #873dc1;
-  border-radius: 5px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #ffffff;
-  margin-right: 15px;
-  float: right;
-  border: none;
-  &:hover {
-    color: #873dc1;
-    background: #ffffff;
-    border: 1px solid #873dc1;
   }
 `;
