@@ -58,6 +58,7 @@ const MainMenu: React.FC = () => {
       chain: "goerli",
       address: signerPublicAddress,
     });
+    console.log('data',data)
     return data.result;
   }
 
