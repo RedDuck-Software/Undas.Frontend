@@ -202,13 +202,13 @@ const RentMenu: React.FC = () => {
       )}
 
       {viewMode === ViewMode.list && rentType === RentType.rental && (
-          <>
-            {rentedNfts ? (
-                <NFTListItem itemList={rentedNfts}  />
-            ) : (
-                <span>There are no NFTs on the marketplace</span>
-            )}
-          </>
+        <>
+          {rentedNfts ? (
+            <NFTListItem itemList={rentedNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
       )}
 
       {viewMode === ViewMode.grid && rentType === RentType.rented && (
@@ -223,11 +223,11 @@ const RentMenu: React.FC = () => {
 
       {viewMode === ViewMode.list && rentType === RentType.rented && (
         <>
-      {rentalNfts ? (
-        <NFTListItem itemList={rentalNfts}  />
-        ) : (
-        <span>There are no NFTs on the marketplace</span>
-        )}
+          {rentalNfts ? (
+            <NFTListItem itemList={rentalNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
         </>
       )}
     </RentWrap>
