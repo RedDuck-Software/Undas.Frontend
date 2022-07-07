@@ -37,7 +37,9 @@ const Referral: React.FC = () => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(refLink);
     setShow(true);
-    setTimeout(() => {setShow(false)}, 3000)
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
   };
 
   return (

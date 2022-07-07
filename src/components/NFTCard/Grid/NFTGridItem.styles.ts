@@ -71,7 +71,7 @@ export const CollectionName = styled(Link)`
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  &:hover{
+  &:hover {
     text-decoration: underline;
     color: #232428;
   }
