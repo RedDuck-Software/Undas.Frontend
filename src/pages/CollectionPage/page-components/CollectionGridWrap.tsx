@@ -25,6 +25,7 @@ interface CollectionGridWrapperProps {
 const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   itemList,
 }) => {
+  console.log(itemList)
   return (
     <GridLayout>
       {itemList.map((item: GridItem) => {
@@ -42,6 +43,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             tokenAddress={item.tokenAddress}
             tokenOwner={item.tokenOwner}
             collectionOwner={item.collectionOwner}
+            collectionName={item.collectionName}
           />
         );
       })}
