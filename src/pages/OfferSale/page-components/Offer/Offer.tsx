@@ -108,7 +108,7 @@ const Offer: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log(tokensQuery)
+    console.log(tokensQuery);
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -123,7 +123,7 @@ const Offer: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-console.log(state.state.tokenId)
+  console.log(state.state.tokenId);
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){

@@ -17,7 +17,7 @@ interface CommonProps {
   name: string;
   URI: string;
   tokenAddress?: string;
-  collectionName?:string;
+  collectionName?: string;
 }
 
 export interface ItemsProps extends CommonProps {
@@ -76,8 +76,16 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
         const URI = nft.tokenURI;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
         const tokenAddress = nft.token;
-        const collectionName = nft.collectionName
-        items.push({ priceInNum, id, name, URI, listingId, tokenAddress,collectionName });
+        const collectionName = nft.collectionName;
+        items.push({
+          priceInNum,
+          id,
+          name,
+          URI,
+          listingId,
+          tokenAddress,
+          collectionName,
+        });
 
         setAmountOfNFTs(amountOfNFTs + 1);
       }

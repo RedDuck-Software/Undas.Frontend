@@ -204,13 +204,13 @@ const FavouriteMenu: React.FC = () => {
       )}
 
       {viewMode === ViewMode.list && favouriteType === FavouriteType.nft && (
-          <>
-            {testNFTList ? (
-                <NFTListItem itemList={testNFTList}  />
-            ) : (
-                <span>There are no NFTs on the marketplace</span>
-            )}
-          </>
+        <>
+          {testNFTList ? (
+            <NFTListItem itemList={testNFTList} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
       )}
 
       {favouriteType === FavouriteType.collection && <FavouriteTable />}
