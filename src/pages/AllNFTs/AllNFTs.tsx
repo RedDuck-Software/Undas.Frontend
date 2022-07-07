@@ -65,13 +65,10 @@ const AllNFTs: React.FC = () => {
 
   const { data, fetching } = result;
 
-  if (!fetching) {
-    console.log("data", data);
-  }
+
 
   const getListing = async () => {
     const allNfts = [...data.stakingListings, ...data.listings];
-    console.log("allnft22", allNfts);
 
     allNfts.map((i: any) => {
       const item = {
@@ -89,26 +86,19 @@ const AllNFTs: React.FC = () => {
         collectionId: i.collectionId,
         collectionOwner: i.collectionOwner,
       };
-      console.log(item);
 
       items2.push(item);
     });
-    console.log(items2);
     return items2;
   };
   async function getListingsData2() {
     const response = await getListing();
-    console.log("resp", response);
     if (response) {
       setitems(response);
     }
   }
-  console.log(fetching);
-
-  console.log("result", items);
 
   useEffect(() => {
-    console.log(priceFilter);
     if (fetching) return;
     getListingsData2();
   }, [active, priceFilter, fetching]);
@@ -116,7 +106,6 @@ const AllNFTs: React.FC = () => {
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const { state }: any = useLocation();
-  console.log("results", results);
   if (state !== null && state !== undefined) {
     if (state.rent) {
       dispatch(rentAction(state.rent));
@@ -125,7 +114,6 @@ const AllNFTs: React.FC = () => {
       dispatch(buyAction(state.buy));
     }
   }
-  console.log("dasdasda", state);
 
   return (
     <Background>

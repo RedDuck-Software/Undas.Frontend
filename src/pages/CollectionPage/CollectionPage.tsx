@@ -53,6 +53,7 @@ interface CommonProps {
   description: string;
   tokenAddress: string;
   collectionOwner: string;
+  collectionName?:string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -79,20 +80,23 @@ const CollectionPage: React.FC = () => {
   useEffect(() => {
     getListingsData();
   }, [connector, fetching]);
-
+  console.log('list',list)
   const getTokenData = async () => {
     if (fetching) return;
     const collectionItem: CommonProps[] = [];
+    console.log(data)
     data.collection.tokens.map((i: any) => {
+      console.log('item',i)
       const item = {
         id: i.id,
         name: i.name,
         URI: i.uri,
         description: i.tokenDescription,
         collectionOwner: i.owner,
-        tokenAddress: "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad",
+        tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        collectionName:i.collectionName
       };
-
+    console.log(item)
       collectionItem.push(item);
     });
     return collectionItem;

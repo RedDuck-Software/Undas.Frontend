@@ -12,6 +12,9 @@ import Context from "../../../../utils/Context";
 import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
 
+// eslint-disable-next-line import/order
+import {useNavigate} from "react-router-dom";
+
 const RentNFTContainer = styled.div`
   margin: 120px 0;
   @media (max-width: 992px) {
@@ -28,21 +31,24 @@ const RentNFTContainer = styled.div`
 
 const RentNFT: React.FC = () => {
   const { connector } = useContext(Context);
-  const items: { URI: string; name: string; id: number }[] = [];
+  const items: { URI: string; name: string; id: number,tokenAddress:string }[] = [];
   const [list, setList] =
-    useState<{ URI: string; name: string; id: number }[]>();
+    useState<{ URI: string; name: string; id: number,tokenAddress:string }[]>();
 
-  const getStakings = async () => {
+    const navigate = useNavigate();
+
+    const getStakings = async () => {
     const tokens = await fetchStakingData();
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
         //const price = nft.premiumWei;
-        const id = nft.id;
+        const id = nft.tokenId;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
+        const tokenAddress = nft.token
         //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        items.push({ URI, name, id });
+        items.push({ URI, name, id, tokenAddress });
       }
     });
     return items;
@@ -107,7 +113,14 @@ const RentNFT: React.FC = () => {
         {list?.map((item) => {
           return (
             <>
-              <SwiperSlide key={item.id}>
+              <SwiperSlide key={item.id} onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(
+                      `nft/buy/tokenAddress=${item.tokenAddress}?id=${item.id}`
+                      ,
+                      { state: {tokenId:item.id, tokenAddress:item.tokenAddress }  },
+                  );
+              }}>
                 <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>
