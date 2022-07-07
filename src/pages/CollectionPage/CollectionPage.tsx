@@ -80,13 +80,10 @@ const CollectionPage: React.FC = () => {
   useEffect(() => {
     getListingsData();
   }, [connector, fetching]);
-  console.log('list',list)
   const getTokenData = async () => {
     if (fetching) return;
     const collectionItem: CommonProps[] = [];
-    console.log(data)
     data.collection.tokens.map((i: any) => {
-      console.log('item',i)
       const item = {
         id: i.id,
         name: i.name,
@@ -96,7 +93,6 @@ const CollectionPage: React.FC = () => {
         tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
         collectionName:i.collectionName
       };
-    console.log(item)
       collectionItem.push(item);
     });
     return collectionItem;
