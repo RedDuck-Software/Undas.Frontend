@@ -43,7 +43,7 @@ const NFTListCollection: React.FC<NFTListItemProps> = ({ name }) => {
         </ColTextTop>
       </RowLine>
       <RowCenter>
-        <TabsNFT />
+        {/*<TabsNFT itemLists={...id:1,URI:'das',name:'das'} />*/}
       </RowCenter>
     </>
   );
