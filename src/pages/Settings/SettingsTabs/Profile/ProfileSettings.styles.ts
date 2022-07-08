@@ -297,7 +297,7 @@ export const CopyButton = styled.div`
   background-color: #fff;
   outline: none;
   margin-left: 30px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
   @media (max-width: 576px) {

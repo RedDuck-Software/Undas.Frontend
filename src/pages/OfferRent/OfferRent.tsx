@@ -87,7 +87,7 @@ const OfferRent: React.FC = () => {
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [listingId, setListingId] = useState("");
-  const [URI, setURI] = useState('');
+  const [URI, setURI] = useState("");
   const [name, setName] = useState("");
   const [isNFTCollateral, setIsNFTCollateral] = useState(false);
   const navigate = useNavigate();
@@ -507,8 +507,8 @@ const OfferRent: React.FC = () => {
                 </NameRow>
                 <NFTInfoContainer className="max-width">
                   <NFTCard
-                    uri={URI?URI:state.state.state.URI}
-                    name={name?name:state.state.state.name}
+                    uri={URI ? URI : state.state.state.URI}
+                    name={name ? name : state.state.state.name}
                   />
                 </NFTInfoContainer>
               </SecondCollum>

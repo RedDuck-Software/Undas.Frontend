@@ -117,7 +117,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
           colloteralWei,
           stakingId,
           tokenAddress,
-          collectionName
+          collectionName,
         });
 
         setAmountOfNFTs(amountOfNFTs + 1);

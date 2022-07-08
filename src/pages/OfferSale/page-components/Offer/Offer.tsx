@@ -330,8 +330,8 @@ const Offer: React.FC = () => {
           </NameRow>
           <NFTInfoContainer className="max-width">
             <NFTCard
-              uri={tokenURI?tokenURI:state.state.state.URI}
-              name={tokenName?tokenName:state.state.state.tokenName}
+              uri={tokenURI ? tokenURI : state.state.state.URI}
+              name={tokenName ? tokenName : state.state.state.tokenName}
             />
           </NFTInfoContainer>
         </SecondCollum>
