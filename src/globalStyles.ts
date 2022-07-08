@@ -266,5 +266,6 @@ export const Message = styled.div<{ opacity?: boolean }>`
   background-color: rgba(251, 245, 255, 0.9);
   box-shadow: 0px 4px 10px rgb(135 61 193 / 25%);
   transition: all 0.5s;
+  z-index: 4;
 `;
 export default GlobalStyle;
