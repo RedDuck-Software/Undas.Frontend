@@ -1,7 +1,5 @@
 import { useWeb3React } from "@web3-react/core";
-import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useMoralisWeb3Api } from "react-moralis";
 import { Navigate } from "react-router-dom";
 
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
@@ -19,6 +17,7 @@ import {
   MenuWrap,
   SettingsBlock,
   ResultsTotal,
+  ContainerFilters,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
@@ -32,7 +31,11 @@ export interface ItemsProps {
   tokenOwner?: string;
 }
 
-const MainMenu: React.FC = () => {
+interface MainMenuProps {
+  nftList: ItemsProps[];
+}
+
+const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
@@ -42,51 +45,7 @@ const MainMenu: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
 
-  const Web3Api = useMoralisWeb3Api();
-
-  async function fetchData() {
-    if (!connector) return;
-
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
-
-    const signer = provider.getSigner(0);
-    const signerPublicAddress = await signer.getAddress();
-
-    const data = await Web3Api.Web3API.account.getNFTs({
-      chain: "goerli",
-      address: signerPublicAddress,
-    });
-    return data.result;
-  }
-
-  const items: ItemsProps[] = [];
   const [list, setList] = useState<ItemsProps[]>([]);
-
-  async function getNfts() {
-    const nfts = await fetchData();
-
-    if (!nfts) return;
-    nfts.map((nft: any) => {
-      const name = nft.name;
-      const URI = nft.token_uri;
-      const id = nft.token_id;
-      const tokenAddress = nft.token_address;
-      const tokenOwner = nft.owner_of;
-
-      items.push({ id, URI, name, tokenAddress, tokenOwner });
-    });
-    return items;
-  }
-
-  async function getUserNft() {
-    const response = await getNfts();
-
-    if (response) {
-      setList(response);
-    }
-  }
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
@@ -96,9 +55,8 @@ const MainMenu: React.FC = () => {
     if (!connector) {
       return console.log("loading");
     }
-
-    getUserNft();
-  }, [connector]);
+    setList(nftList);
+  }, [connector, nftList]);
 
   return (
     <div>
@@ -154,19 +112,21 @@ const MainMenu: React.FC = () => {
         </SettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <ResultsTotal>{list.length} results</ResultsTotal>
-        <FilterSelected />
+        <ContainerFilters>
+          <FilterSelected />
+        </ContainerFilters>
       </MenuWrap>
-      {list.length > 0 ? (
+      {list && list.length > 0 ? (
         viewMode === ViewMode.grid ? (
           <CollectionGridWrap itemList={list} />
         ) : (
-            <>
-              {list ? (
-                  <NFTListItem itemList={list}  />
-              ) : (
-                  <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
+          <>
+            {list ? (
+              <NFTListItem itemList={list} />
+            ) : (
+              <span>There are no NFTs on the marketplace</span>
+            )}
+          </>
         )
       ) : (
         <NoData />

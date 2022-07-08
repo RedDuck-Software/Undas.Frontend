@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Container } from "../../globalStyles";
@@ -151,9 +152,9 @@ export const Name = styled.div`
 `;
 export const NameNft = styled.h1`
   margin: 0;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   color: #232428;
   @media (max-width: 768px) {
     font-size: 32px;
@@ -169,11 +170,17 @@ export const NameNft = styled.h1`
   }
 `;
 
-export const NameCollection = styled.h2`
+export const NameCollection = styled(Link)`
   margin: 0;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: #232428;
+  }
   @media (max-width: 768px) {
     font-size: 20px;
     line-height: 24px;
@@ -195,6 +202,11 @@ export const VerifiedIcon = styled.div<IVerifiedIcon>`
   width: ${(props) => props.w || "16px"};
   img {
     width: 100%;
+  }
+  @media (max-width: 576px) {
+    &.nft-page {
+      width: 16px;
+    }
   }
 `;
 interface IPlatform {

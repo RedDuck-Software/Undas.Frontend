@@ -247,3 +247,4 @@ export const ReferralPagination = styled(Pagination)`
     }
   }
 `;
+

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {useQuery} from "urql";
+import { useQuery } from "urql";
 
 // eslint-disable-next-line import/order
 import {
@@ -18,7 +18,7 @@ import {
   MenuSearchWrap,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
-import {getListingsData} from "./query";
+import { getListingsData } from "./query";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterSelected from "../../components/FilterSelected/FilterSelected";
@@ -45,7 +45,7 @@ type GridItem = {
   tokenOwner?: string;
   collectionName?: string;
   collectionId?: string;
-  collectionOwner?:string;
+  collectionOwner?: string;
 };
 
 const AllNFTs: React.FC = () => {
@@ -55,9 +55,9 @@ const AllNFTs: React.FC = () => {
   const [active, setActive] = useState<any>({
     price: false,
     event: false,
-  })
-  const items2:GridItem[] = []
-  const [items,setitems] = useState<GridItem[]>()
+  });
+  const items2: GridItem[] = [];
+  const [items, setitems] = useState<GridItem[]>();
 
   const [result] = useQuery({
     query: getListingsData,
@@ -65,14 +65,10 @@ const AllNFTs: React.FC = () => {
 
   const { data, fetching } = result;
 
-  if(!fetching) {
-    console.log('data',data)
-  }
 
 
   const getListing = async () => {
-    const allNfts = [...data.stakingListings,...data.listings]
-    console.log('allnft22',allNfts)
+    const allNfts = [...data.stakingListings, ...data.listings];
 
     allNfts.map((i: any) => {
       const item = {
@@ -88,37 +84,28 @@ const AllNFTs: React.FC = () => {
         tokenOwner: i.seller,
         collectionName: i.collectionName,
         collectionId: i.collectionId,
-        collectionOwner:i.collectionOwner,
-      }
-      console.log(item)
-
+        collectionOwner: i.collectionOwner,
+      };
 
       items2.push(item);
     });
-    console.log(items2)
     return items2;
   };
   async function getListingsData2() {
     const response = await getListing();
-    console.log('resp',response)
     if (response) {
       setitems(response);
     }
   }
-  console.log(fetching)
-
-  console.log('result',items)
 
   useEffect(() => {
-    console.log(priceFilter);
-    if(fetching) return
-    getListingsData2()
-  }, [active, priceFilter,fetching]);
+    if (fetching) return;
+    getListingsData2();
+  }, [active, priceFilter, fetching]);
 
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const { state }: any = useLocation();
-  console.log('results',results)
   if (state !== null && state !== undefined) {
     if (state.rent) {
       dispatch(rentAction(state.rent));
@@ -127,7 +114,6 @@ const AllNFTs: React.FC = () => {
       dispatch(buyAction(state.buy));
     }
   }
-  console.log("dasdasda", state);
 
   return (
     <Background>
@@ -211,13 +197,13 @@ const AllNFTs: React.FC = () => {
               priceFilter={priceFilter}
             />
           ) : (
-              <>
-                {items ? (
-                    <NFTListItem itemList={items}  />
-                ) : (
-                    <span>There are no NFTs on the marketplace</span>
-                )}
-              </>
+            <>
+              {items ? (
+                <NFTListItem itemList={items} />
+              ) : (
+                <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
           )}
         </Wrapper>
       </AllNFTContainer>

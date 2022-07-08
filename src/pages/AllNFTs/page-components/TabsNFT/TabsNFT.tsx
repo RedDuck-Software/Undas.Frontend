@@ -1,9 +1,7 @@
 import React from "react";
-import {
-  Tab,
-  Tabs } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
 import "./tabs-nft.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   InputTypeYourBid,
@@ -25,9 +23,7 @@ import {
 } from "./TabsNFT.styles";
 
 // eslint-disable-next-line import/order
-import {ethers} from "ethers";
-
-
+import { ethers } from "ethers";
 
 type GridItem = {
   id: number;
@@ -42,24 +38,31 @@ type GridItem = {
   tokenOwner?: string;
   collectionName?: string;
   collectionId?: string;
-  collectionOwner?:string;
+  collectionOwner?: string;
 };
 interface CollectionGridWrapperProps {
   itemLists: GridItem;
 }
 const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
   const navigate = useNavigate();
-  console.log('itemss',item.itemLists.URI)
-  const state = {
-    tokenId:item.itemLists.id,
-    tokenAddress:item.itemLists.tokenAddress,
-    URI:item.itemLists.URI,
-    colloteralWei:item.itemLists.colloteralWei,
-    premium:ethers.utils.formatEther(item.itemLists.premiumInNum?item.itemLists.premiumInNum.toString():'0'),
-    stakingId:item.itemLists.stakingId}
-  console.log('state',state)
-  return (
 
+  const state = {
+    tokenId: item.itemLists.id,
+    tokenAddress: item.itemLists.tokenAddress,
+    URI: item.itemLists.URI,
+    colloteralWei: item.itemLists.colloteralWei,
+    premium: ethers.utils.formatEther(
+      item.itemLists.premiumInNum
+        ? item.itemLists.premiumInNum.toString()
+        : "0",
+    ),
+    stakingId: item.itemLists.stakingId,
+    tokenOwner:item.itemLists.tokenOwner
+  };
+
+  console.log("state", state);
+
+  return (
     <Tabs defaultActiveKey="second" id="tab-nft" className="my-tabs">
       <Tab
         className=""
@@ -104,27 +107,35 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
       >
         <ReturneText>{item.itemLists.name}</ReturneText>
         <ButtonRent
-            onClick={(e) => {
-              navigate(
-                  `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-                  { state: { ...state } },
-              );
-              e.stopPropagation();
-            }}
+          onClick={(e) => {
+            navigate(
+              `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
+              { state: { ...state } },
+            );
+            e.stopPropagation();
+          }}
         >
           Buy now
         </ButtonRent>
-        <ButtonOffer onClick={(e) => {
-          navigate(
+        <ButtonOffer
+          onClick={(e) => {
+            navigate(
               `/offer-sale/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-              { state:{state: { ...state }} },
-          );
-          e.stopPropagation();
-        }}>Make offer</ButtonOffer>
+              { state: { state: { ...state } } },
+            );
+            e.stopPropagation();
+          }}
+        >
+          Make offer
+        </ButtonOffer>
         <RowDown>
           <DivDeposit>
             <DepositText>Price</DepositText>
-            <EthereumText>{item.itemLists.priceInNum?ethers.utils.formatEther(item.itemLists.priceInNum.toString()):'-'}</EthereumText>
+            <EthereumText>
+              {item.itemLists.priceInNum
+                ? ethers.utils.formatEther(item.itemLists.priceInNum.toString())
+                : "-"}
+            </EthereumText>
           </DivDeposit>
           <DivPrice>
             <DepositText>Top Offer</DepositText>
@@ -148,28 +159,48 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
         }
       >
         <ReturneText>{item.itemLists.name}</ReturneText>
-        <ButtonRent onClick={(e) => {
-          navigate(
-              `/rent/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-              {state:{state: { ...state }}},
-          );
-          e.stopPropagation();
-        }}>Rent</ButtonRent>
-        <ButtonOffer onClick={(e) => {
-          navigate(
+        <ButtonRent
+          onClick={(e) => {
+            navigate(
+                `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
+                { state: { ...state } },
+            );
+            e.stopPropagation();
+          }}
+        >
+          Rent
+        </ButtonRent>
+        <ButtonOffer
+          onClick={(e) => {
+            navigate(
               `/offer-rent/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-              {state:{state: { ...state }}},
-          );
-          e.stopPropagation();
-        }}>Make offer</ButtonOffer>
+              { state: { state: { ...state } } },
+            );
+            e.stopPropagation();
+          }}
+        >
+          Make offer
+        </ButtonOffer>
         <RowDown>
           <DivDeposit>
             <DepositText>Deposit</DepositText>
-            <EthereumText>{item.itemLists.colloteralWei?ethers.utils.formatEther(item.itemLists.colloteralWei.toString()):'-'}</EthereumText>
+            <EthereumText>
+              {item.itemLists.colloteralWei
+                ? ethers.utils.formatEther(
+                    item.itemLists.colloteralWei.toString(),
+                  )
+                : "-"}
+            </EthereumText>
           </DivDeposit>
           <DivPrice>
             <DepositText>Price a Day</DepositText>
-            <EthereumText>{item.itemLists.premiumInNum?ethers.utils.formatEther(item.itemLists.premiumInNum.toString()):'-'}</EthereumText>
+            <EthereumText>
+              {item.itemLists.premiumInNum
+                ? ethers.utils.formatEther(
+                    item.itemLists.premiumInNum.toString(),
+                  )
+                : "-"}
+            </EthereumText>
           </DivPrice>
           <DivPeriod>
             <DepositText>Period</DepositText>

@@ -87,7 +87,8 @@ const OfferRent: React.FC = () => {
   const [premium, setPremium] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [listingId, setListingId] = useState("");
-
+  const [URI, setURI] = useState('');
+  const [name, setName] = useState("");
   const [isNFTCollateral, setIsNFTCollateral] = useState(false);
   const navigate = useNavigate();
 
@@ -143,6 +144,9 @@ const OfferRent: React.FC = () => {
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
     ) {
       setListingId(tokensQuery.data.stakingListings[0].id);
+      setURI(tokensQuery.data.stakingListings[0].tokenURI);
+      setName(tokensQuery.data.stakingListings[0].tokenName);
+
       return;
     }
   };
@@ -159,6 +163,8 @@ const OfferRent: React.FC = () => {
         tokenDescription
         seller
         stakingStatus
+        tokenName
+        tokenURI
       }
     }
  `;
@@ -501,8 +507,8 @@ const OfferRent: React.FC = () => {
                 </NameRow>
                 <NFTInfoContainer className="max-width">
                   <NFTCard
-                    uri={state.state.state.URI}
-                    name={state.state.state.name}
+                    uri={URI?URI:state.state.state.URI}
+                    name={name?name:state.state.state.name}
                   />
                 </NFTInfoContainer>
               </SecondCollum>

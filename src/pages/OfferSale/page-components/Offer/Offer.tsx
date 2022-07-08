@@ -64,8 +64,8 @@ const Offer: React.FC = () => {
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-  const [, setTokenName] = useState<string>();
-  const [, setTokenURI] = useState<string>();
+  const [tokenName, setTokenName] = useState<string>();
+  const [tokenURI, setTokenURI] = useState<string>();
   const [listingId, setListingId] = useState<string>();
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ const Offer: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log(tokensQuery)
+    console.log(tokensQuery);
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -123,7 +123,7 @@ const Offer: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-console.log(state.state.tokenId)
+  console.log(state.state.tokenId);
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
@@ -330,8 +330,8 @@ console.log(state.state.tokenId)
           </NameRow>
           <NFTInfoContainer className="max-width">
             <NFTCard
-              uri={state.state.state.URI}
-              name={state.state.state.name}
+              uri={tokenURI?tokenURI:state.state.state.URI}
+              name={tokenName?tokenName:state.state.state.tokenName}
             />
           </NFTInfoContainer>
         </SecondCollum>

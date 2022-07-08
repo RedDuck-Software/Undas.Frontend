@@ -38,6 +38,9 @@ export const CreatedSelect = styled.div`
   }
 `;
 export const CreatedButton = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   background: #ffffff;
   height: 40px;
@@ -45,7 +48,6 @@ export const CreatedButton = styled.button`
   padding: 8px 20px;
   font-weight: 400;
   font-size: 18px;
-  text-align: center;
   color: #5d3f92;
   min-width: 220px;
   &:hover {
@@ -258,4 +260,10 @@ export const ImageCollection = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const ClipLoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Copy,
@@ -28,21 +28,30 @@ import {
   ContentTableWrap,
 } from "./Referral.styles";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
+import { Background, Container, PageTitle, Message } from "../../globalStyles";
 
 const Referral: React.FC = () => {
+  const refLink = "https://UNDAS.io/ref?coming_soon/";
+  const [show, setShow] = useState(false);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(refLink);
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
+  };
+
   return (
     <Background>
       <Container>
         <ReferralWrap>
           <PageTitle>Referral Program</PageTitle>
           <PageHead>
-            <ReferralLinkButton>
-              <ReferralLink>
-                https://UNDAS.io/collection/pride-lands
-              </ReferralLink>
+            <ReferralLinkButton onClick={copyToClipboard}>
+              <ReferralLink>{refLink}</ReferralLink>
               <Copy />
             </ReferralLinkButton>
+            <Message opacity={show}>Link is Copied!</Message>
             <SocialWrap>
               <ShareButton>Share Link</ShareButton>
               <SocialButton>

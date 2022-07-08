@@ -79,7 +79,7 @@ export const Tab = styled.li`
 
 export const SmallNumber = styled.span`
   font-weight: 500;
-  font-size: 10px;
+  font-size: 12px;
   color: #232428;
   margin-left: auto;
 `;

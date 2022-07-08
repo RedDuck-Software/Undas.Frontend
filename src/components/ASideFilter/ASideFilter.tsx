@@ -181,7 +181,7 @@ const FilterChainItem: React.FC<FilterChainItemProps> = ({
   return (
     <CheckboxLabel>
       <FilterChainItemWrapper>
-        <CheckboxInputWrapper mb="0">
+        <CheckboxInputWrapper mb="-4px">
           <CheckboxInput
             type="checkbox"
             className="custom-checkbox"
@@ -481,6 +481,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                                 type="number"
                                 id="min"
                                 placeholder="Min"
+                                min="0"
                               />
                             </InputBlock>
                             <InputBlock className="margin-left">
@@ -488,6 +489,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                                 type="number"
                                 id="max"
                                 placeholder="Max"
+                                min="0"
                               />
                             </InputBlock>
                           </InputPriceContainer>
@@ -606,6 +608,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
               </HolderElement>
               <AccordionMenu
                 backgroundColor="rgba(251, 245, 255, 0.7)"
+                pb="15px"
                 mh="320px" // calculate max-height because of accordion animation bug
                 className={(activeMenu.chain && "active-chains") || ""}
               >
