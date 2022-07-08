@@ -55,6 +55,7 @@ import {
   Sale,
   ArticlePage,
   BlogThemeWrap,
+  ClaimUND,
 } from "./pages";
 import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
 import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
@@ -211,6 +212,7 @@ const App: React.FC = () => {
               path="/blog/news"
               element={<BlogThemeWrap blogComponent={<News />} />}
             />
+            <Route path="/claim-UND-test" element={<ClaimUND />} />
           </Routes>
         </Provider>
       </Context.Provider>
