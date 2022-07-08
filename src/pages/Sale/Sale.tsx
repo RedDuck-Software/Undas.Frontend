@@ -243,7 +243,7 @@ const Sale: React.FC = () => {
       />
       <TopLinkWrapper>
         <Container>
-          <TopLink to="/">Back</TopLink>
+          <TopLink onClick={() => history.back()}>Back</TopLink>
         </Container>
       </TopLinkWrapper>
       <Container>

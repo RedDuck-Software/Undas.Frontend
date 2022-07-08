@@ -139,6 +139,10 @@ export const ImgDelete = styled.img`
   top: 40px;
   position: absolute;
   right: 6%;
+  cursor: pointer;
+  @media (min-width: 1700px) {
+    right: 30%;
+  }
   @media (max-width: 1200px) {
     top: 5%;
   }

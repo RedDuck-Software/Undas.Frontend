@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { ReactComponent as FavoriteIco } from "../../../icons/nftcard-favorite.svg";
@@ -53,6 +54,27 @@ export const Name = styled.span`
   font-weight: 400;
   font-size: 14px;
   color: #232428;
+  max-width: 125px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+`;
+export const CollectionName = styled(Link)`
+  font-weight: 400;
+  font-size: 14px;
+  color: #232428;
+  max-width: 135px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: #232428;
+  }
   @media (max-width: 768px) {
     font-size: 12px;
   }
@@ -119,6 +141,10 @@ export const BuyBtn = styled.button`
 
 export const TagName = styled.span`
   padding: 13px 0;
+  max-width: 125px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   @media (max-width: 576px) {
     padding: 14px 0;
   }

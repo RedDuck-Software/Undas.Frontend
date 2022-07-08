@@ -17,8 +17,6 @@ import {
   RowCenter,
 } from "./NFTListCollection.styles";
 
-import TabsNFT from "../../../AllNFTs/page-components/TabsNFT/TabsNFT";
-
 interface NFTListItemProps {
   name: string;
 }
@@ -43,7 +41,7 @@ const NFTListCollection: React.FC<NFTListItemProps> = ({ name }) => {
         </ColTextTop>
       </RowLine>
       <RowCenter>
-        <TabsNFT />
+        {/*<TabsNFT itemLists={...id:1,URI:'das',name:'das'} />*/}
       </RowCenter>
     </>
   );

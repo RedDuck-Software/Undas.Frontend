@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrap = styled.div``;
 export const SliderInner = styled.div`
   background-color: #fbf5ff;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0px 0px 10px 10px;
   padding-bottom: 30px;
 `;
@@ -14,7 +14,7 @@ export const SliderTitle = styled.h3`
   color: #5d3f92;
   background: #ffffff;
   border-radius: 10px 10px 0px 0px;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   padding: 15px 30px;
   margin: 20px 0 0;
 `;
@@ -29,7 +29,7 @@ export const CollectionCard = styled.div`
 export const SliderButton = styled.a`
   display: block;
   background: #873dc1;
-  border-radius: 5px;
+  border-radius: 10px;
   color: #ffffff;
   padding: 10px 30px;
   width: 30%;

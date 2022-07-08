@@ -2,8 +2,8 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 
-import { AccountContainer, StatisticsText } from "./ActivityPage.styles";
-import OffersMenu from "./page-components/MainMenu/OffersMenu";
+import StatisticsMenu from "./page-components/StatisticsMenu/StatisticsMenu";
+import { AccountContainer, StatisticsText } from "./Statistics.styles";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Container, Background } from "../../globalStyles";
@@ -69,7 +69,7 @@ const ActivityPage: React.FC = () => {
             <Wrapper w="100%">
               <Wrapper w="100%">
                 <StatisticsText>Statistics</StatisticsText>
-                <OffersMenu />
+                <StatisticsMenu />
               </Wrapper>
             </Wrapper>
           </AccountContainer>

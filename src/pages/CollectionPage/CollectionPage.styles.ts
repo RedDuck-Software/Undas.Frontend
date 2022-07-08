@@ -9,33 +9,9 @@ export const Info = styled.ul`
   background-color: #fff;
   overflow: hidden;
   max-height: 80px;
+  flex-wrap: wrap;
   @media (max-width: 576px) {
-    display: none;
-  }
-`;
-export const InfoBlock = styled.div`
-  display: none;
-  box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
-  background-color: #fff;
-  max-height: 80px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  @media (max-width: 576px) {
-    display: flex;
-  }
-`;
-export const InfoSmallBorder = styled.div`
-  display: none;
-  box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
-  background-color: #fff;
-  max-height: 80px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0 0 20px 20px;
-  @media (max-width: 576px) {
-    display: flex;
+    max-height: unset;
   }
 `;
 export const InfoElement = styled.li`
@@ -47,6 +23,22 @@ export const InfoElement = styled.li`
   font-size: 14px;
   color: #7c7c7c;
   text-align: center;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  &.small-vol {
+    border-radius: 0 0 20px 0;
+  }
+  &.large-items {
+    border-radius: 0 0 0 20px;
+  }
+  @media (max-width: 576px) {
+    width: 50%;
+    &.small-floor {
+      border-radius: 0 0 0 20px;
+    }
+    &.large-items {
+      border-radius: 0px;
+    }
+  }
 `;
 export const Amount = styled.span`
   font-size: 18px;
@@ -92,7 +84,20 @@ export const AddToFav = styled.button`
     color: #fff;
   }
   @media (max-width: 1200px) {
-    display: none;
+    position: absolute;
+    margin-top: 50px;
+    top: -100px;
+    z-index: 500;
+    right: -40%;
+  }
+  @media (max-width: 998px) {
+    right: -20%;
+  }
+  @media (max-width: 768px) {
+    right: 0;
+  }
+  @media (max-width: 576px) {
+    right: 15px;
   }
 `;
 export const InfoBox = styled.div`
@@ -170,11 +175,6 @@ export const HeadWrapper = styled.div`
     margin-top: 50px;
   }
 `;
-export const ItemsOwners = styled.div`
-  width: 50%;
-  height: 50px;
-  text-align: center;
-`;
 export const TextInfo = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -205,6 +205,7 @@ export const ContainerPopUp = styled.div`
   margin-left: -75px;
   margin-top: 11px;
   border-radius: 10px;
+  z-index: 500;
   &::before {
     content: "";
     position: absolute;
@@ -227,6 +228,10 @@ export const ContainerPopUp = styled.div`
     border-top: 10px solid white;
     top: -18.5px;
   }
+  @media (max-width: 576px) {
+    width: 95%;
+    margin-left: unset;
+  }
 `;
 
 export const InputTextArea = styled.textarea`
@@ -247,6 +252,11 @@ export const InputTextArea = styled.textarea`
     box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
     border: none;
     outline: none;
+  }
+  @media (max-width: 576px) {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
@@ -270,4 +280,11 @@ export const SendButton = styled.button`
     background: #ffffff;
     border: 1px solid #873dc1;
   }
+`;
+
+export const MyWrapper = styled.div`
+  position: relative;
+  display: flex;
+  gap: 5px;
+  align-self: center;
 `;

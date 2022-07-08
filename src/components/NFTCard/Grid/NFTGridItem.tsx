@@ -19,6 +19,7 @@ import {
   PriceItem,
   PriceInEth,
   TextSpan,
+  CollectionName,
 } from "./NFTGridItem.styles";
 
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
@@ -76,7 +77,11 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       }}
     >
       <Info disp="flex" alignItems="center" gap="10px">
-        <Name>{props.name}</Name>
+        <CollectionName to="/">
+          <Name>
+            {props.collectionName ? props.collectionName : "No collection"}
+          </Name>
+        </CollectionName>
         <img src={Verified} alt="verified-ico" />
         <Platform col="#873DC1">UND</Platform>
         <LockIco />
@@ -91,8 +96,9 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       </ImageWrap>
       <BuyingBlock>
         <LeftBlock>
-          <TagName>Returne #{props.tokenId}</TagName>
-
+          <TagName>
+            <Name>{props.name}</Name>
+          </TagName>
           {props.price ? (
             <BuyBtn
               onClick={(e) => {

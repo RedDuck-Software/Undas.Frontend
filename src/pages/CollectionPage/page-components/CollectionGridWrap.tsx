@@ -42,6 +42,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             tokenAddress={item.tokenAddress}
             tokenOwner={item.tokenOwner}
             collectionOwner={item.collectionOwner}
+            collectionName={item.collectionName}
           />
         );
       })}

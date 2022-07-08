@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Container } from "../../globalStyles";
@@ -6,7 +7,7 @@ import { Container } from "../../globalStyles";
 export const SellerNavigation = styled.div`
   width: 100%;
   height: 50px;
-  box-shadow: inset 0px 0px 2px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -61,7 +62,7 @@ export const NFTPageWrap = styled(Container)`
 `;
 
 export const OwnerSettingsWrapper = styled.div`
-  box-shadow: inset 0px 0px 2px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -151,9 +152,9 @@ export const Name = styled.div`
 `;
 export const NameNft = styled.h1`
   margin: 0;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   color: #232428;
   @media (max-width: 768px) {
     font-size: 32px;
@@ -169,11 +170,17 @@ export const NameNft = styled.h1`
   }
 `;
 
-export const NameCollection = styled.h2`
+export const NameCollection = styled(Link)`
   margin: 0;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #232428;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: #232428;
+  }
   @media (max-width: 768px) {
     font-size: 20px;
     line-height: 24px;
@@ -221,7 +228,6 @@ export const Platform = styled.strong<IPlatform>`
 export const NavMenu = styled.ul`
   list-style: none;
   background: #ffffff;
-  box-shadow: 0 0 1px #7c7c7c, inset 0 0 1px #7c7c7c;
   border-radius: 10px;
   overflow: hidden;
   @media (max-width: 768px) {
@@ -233,12 +239,18 @@ export const NavElement = styled.li`
   cursor: pointer;
   display: inline-block;
   text-align: center;
-  padding: 6px;
+  padding: 5px;
   width: 36px;
   height: 36px;
-  box-shadow: 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
   &:hover {
     background-color: #fbf5ff;
+  }
+  &.first-element {
+    border-radius: 10px 0 0 10px;
+  }
+  &.last-element {
+    border-radius: 0 10px 10px 0;
   }
 `;
 export const MainInfoWrap = styled.div`
@@ -286,6 +298,7 @@ export const CounterNumber = styled.span`
 export const Image = styled.img`
   object-fit: cover;
   width: 100%;
+  border-radius: 10px;
 `;
 export const RightSideBlock = styled.div`
   flex: 0 0 48%;
@@ -344,17 +357,24 @@ export const SaleBlock = styled.ul`
 export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
   display: flex;
   align-items: center;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 10px;
   justify-content: ${(props) => props.justifyContent || ""};
   gap: 10px;
   width: 100%;
   background-color: #fff;
-  padding: 16px 28px;
+  padding: 15px 28px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #5d3f92;
   cursor: ${(props) => props.cursor || ""};
+  &.head-open {
+    border-radius: 10px 10px 0px 0px;
+  }
+  &.active {
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 
 export const NotListedWrapper = styled.li`
@@ -363,7 +383,8 @@ export const NotListedWrapper = styled.li`
   line-height: 20px;
   color: #7c7c7c;
   background: #fbf5ff;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 0 0 10px 10px;
   @media (max-width: 992px) {
     flex-flow: row wrap;
     align-items: center;
@@ -387,7 +408,8 @@ export const BuyBar = styled.li`
   line-height: 17px;
   color: #7c7c7c;
   background: #fbf5ff;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 0 0 10px 10px;
   @media (max-width: 992px) {
     flex-flow: row wrap;
     align-items: center;
@@ -481,7 +503,8 @@ export const RentElement = styled.li<{ h?: string }>`
   height: ${(props) => props.h || "50px"};
   padding: 0 30px;
   background: #fbf5ff;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
+  border: 1px solid rgba(124, 124, 124, 0.25);
+  border-radius: 0 0 10px 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;

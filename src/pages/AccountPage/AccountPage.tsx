@@ -1,6 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralisWeb3Api } from "react-moralis";
 import { Navigate, useLocation } from "react-router-dom";
 
 import {
@@ -26,7 +27,7 @@ import MainMenu from "./page-components/MainMenu/MainMenu";
 import OffersMenu from "./page-components/MainMenu/OffersMenu";
 import Rent from "./page-components/Rent/Rent";
 import RewardMenu from "./page-components/Reward/RewardMenu";
-import { NFT } from "./types";
+import { getNFT } from "./types";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import { Background } from "../../globalStyles";
@@ -36,11 +37,57 @@ import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 const AccountPage: React.FC = () => {
   const [tab, setTab] = useState("");
+  const [myNftsCounter, setMyNftsCounter] = useState<number>(0);
+  const [myNfts, setMyNfts] = useState([]);
   const { account, deactivate } = useWeb3React();
+  const Web3Api = useMoralisWeb3Api();
   const { state }: any = useLocation();
   const { connector } = useContext(Context);
-  const { Moralis } = useMoralis();
-  const [, setNFTList] = useState<NFT[]>();
+
+  const userNts = async () => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+    const signerPublicAddress = await signer.getAddress();
+
+    const nfts: getNFT = await Web3Api.Web3API.account.getNFTs({
+      chain: "goerli",
+      address: signerPublicAddress,
+    });
+
+    return nfts;
+  };
+
+  const getMyNfts = async () => {
+    const response = await userNts();
+
+    if (response) {
+      if (response.total) setMyNftsCounter(response.total);
+      if (response.result) {
+        const nfts = response.result.map((nft: any) => {
+          return {
+            name: nft.name,
+            URI: nft.token_uri,
+            id: nft.token_id,
+            tokenAddress: nft.token_address,
+            tokenOwner: nft.owner_of,
+          };
+        });
+        setMyNfts(nfts);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!connector || !account) {
+      return console.log("loading");
+    }
+    getMyNfts();
+  }, [connector, account]);
 
   useEffect(() => {
     if (state !== null && state !== undefined) {
@@ -52,42 +99,6 @@ const AccountPage: React.FC = () => {
       setTab("");
     };
   }, [state]);
-
-  const getNFTList = async () => {
-    if (!connector || !account) return;
-    const listOfNFTS = await Moralis.Web3API.account.getNFTs({
-      chain: "goerli",
-      address: "0xc66874D527CfF618a4bC6948C664079F558Ef0Ec",
-    });
-
-    // const options = {
-    //   chain: "goerli",
-    //   addresses: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    // };
-    // const tokenMetadata = await Web3Api.token.getTokenMetadata(options);
-    // console.log(tokenMetadata);
-    return listOfNFTS;
-  };
-
-  const getListData = async () => {
-    const response = await getNFTList();
-    if (!response?.result) return;
-
-    // deleting duplicates because of moralis bug
-    // (see https://forum.moralis.io/t/api-returns-duplicate-when-using-getnftowners/5523)
-    response.result = response.result.filter(
-      (value, index, self) =>
-        index === self.findIndex((t) => t.token_id === value.token_id),
-    );
-    setNFTList(response.result);
-  };
-
-  useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
-    }
-    getListData();
-  }, [connector, account]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
@@ -116,7 +127,7 @@ const AccountPage: React.FC = () => {
                 >
                   <MyNFTsIco />
                   <span>My NFTs</span>
-                  <SmallNumber>12</SmallNumber>
+                  <SmallNumber>{myNftsCounter}</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("created")}
@@ -124,7 +135,6 @@ const AccountPage: React.FC = () => {
                 >
                   <CreatedIco />
                   <span>Created</span>
-                  <SmallNumber>8</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("favourite")}
@@ -157,7 +167,7 @@ const AccountPage: React.FC = () => {
                 </Tab>
               </TabsMenu>
             </Wrapper>
-            {tab === "" && <MainMenu />}
+            {tab === "" && <MainMenu nftList={myNfts ? myNfts : []} />}
             {tab === "favourite" && <FavouriteMenu />}
             {tab === "offers" && <OffersMenu />}
             {tab === "reward" && <RewardMenu />}
