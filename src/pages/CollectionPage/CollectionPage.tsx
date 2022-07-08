@@ -105,8 +105,6 @@ const CollectionPage: React.FC = () => {
     }
   };
 
-  console.log(data);
-
   return (
     <>
       {fetching && !data ? (

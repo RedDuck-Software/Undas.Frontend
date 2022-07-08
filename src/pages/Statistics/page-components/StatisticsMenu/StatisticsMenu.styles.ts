@@ -24,7 +24,7 @@ export const FavouriteButton = styled.button`
     background-color: #edd2ff;
   }
 `;
-export const OfferMenuWrap = styled.div`
+export const StatisticsMenuWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +36,7 @@ export const OfferMenuWrap = styled.div`
     margin-top: 20px;
   }
 `;
-export const OffersWrapTable = styled.table`
+export const StatisticsWrapTable = styled.table`
   width: 100%;
   min-width: 900px;
   border-collapse: collapse;
@@ -47,7 +47,7 @@ export const ItemIcon = styled.div`
   width: 50px;
   height: 50px;
   margin-right: 5px;
-  & .offers-item-image {
+  & .Statistics-item-image {
     width: 100%;
   }
 
@@ -97,10 +97,10 @@ export const UND = styled.span`
   left: 25px;
   top: 2px;
 `;
-export const OffersTdText = styled.td`
+export const StatisticsTdText = styled.td`
   padding: 10px 30px;
   position: relative;
-  &.offers-table-item {
+  &.Statistics-table-item {
     display: flex;
     align-items: center;
   }
@@ -115,7 +115,7 @@ export const OffersTdText = styled.td`
   &.first-column:hover {
     cursor: pointer;
   }
-  &.first-column:hover .offers-tooltip {
+  &.first-column:hover .Statistics-tooltip {
     visibility: visible;
     opacity: 1;
   }
@@ -130,7 +130,7 @@ export const ActionText = styled.div`
 `;
 export const USDPrise = styled.div`
   width: 100%;
-  text-alight: right;
+  text-align: right;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -155,62 +155,8 @@ export const PriceTextW = styled.div`
   width: 100%;
   text-align: right;
 `;
-export const SelectedFilters = styled.div`
-  width: 100%;
-`;
-export const Filter = styled.div`
-  width: 180px;
-  height: 36px;
-  background: #fbf5ff;
-  box-shadow: 0px 0px 5px rgba(135, 61, 193, 0.5);
-  border-radius: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  display: inline-block;
-`;
-export const FilterImg = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 1px #7c7c7c;
-  margin-top: 3px;
-  margin-left: 10px;
-`;
-export const FilterName = styled.span`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #232428;
-  vertical-align: middle;
-  margin-left: 5px;
-`;
-export const FilterClose = styled.img`
-  width: 10px;
-  height: 10px;
-  margin-left: 40px;
-  margin-top: 3px;
-`;
-export const ClearAll = styled.button`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #5d3f92;
-  border: none;
-  background: transparent;
-  margin-left: 15px;
 
-  @media (max-width: 344px) {
-    margin-top: 20px;
-  }
-`;
+
 export const ContainerTable = styled.div`
   overflow-x: auto;
   width: 100%;
@@ -226,11 +172,11 @@ export const ContainerTable = styled.div`
     margin-bottom: 40px;
   }
 `;
-export const OffersTr = styled.tr`
+export const StatisticsTr = styled.tr`
   padding: 0 30px;
   background: #fbf5ff;
   box-shadow: inset 0 0 1px #7c7c7c;
-  &.offers-menu-row {
+  &.Statistics-menu-row {
     background-color: #ffffff;
   }
   &:hover {
@@ -238,12 +184,12 @@ export const OffersTr = styled.tr`
   }
 `;
 
-interface IOffersTd {
+interface IStatisticsTd {
   padd?: string;
   textAlign?: string;
 }
 
-export const OffersTd = styled.td<IOffersTd>`
+export const StatisticsTd = styled.td<IStatisticsTd>`
   padding: ${(props) => props.padd || "10px 30px"};
   text-align: ${(props) => props.textAlign || ""};
   font-weight: 400;
@@ -260,12 +206,12 @@ export const OffersTd = styled.td<IOffersTd>`
     padding: 10px;
   }
 `;
-export const OffersHeadTr = styled.tr`
-  &.offers-menu-head {
+export const StatisticsHeadTr = styled.tr`
+  &.Statistics-menu-head {
     background-color: #fbf5ff;
   }
 `;
-export const OffersText = styled.span<{ color?: string }>`
+export const StatisticsText = styled.span<{ color?: string }>`
   font-weight: 400;
   font-size: 12px;
   color: ${(props) => props.color || "#7C7C7C"};

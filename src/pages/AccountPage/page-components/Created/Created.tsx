@@ -1,7 +1,8 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useState, useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { createClient } from "urql";
+import ClipLoader from "react-spinners/ClipLoader";
+import { useQuery } from "urql";
 
 import {
   CreatedWrap,
@@ -9,6 +10,7 @@ import {
   CreatedButton,
   CreatedSelect,
   CreatedResultsTotal,
+  ClipLoaderWrapper,
 } from "./Created.styles";
 import CreatedCollections from "./CreatedCollections";
 import { CreatedType } from "./types";
@@ -20,92 +22,100 @@ import useViewMode from "../../../../utils/hooks/useViewMode";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+import { SmallNumber } from "../../AccountPage.styles";
+import { GET_CREATED_COLLECTIONS, GET_CREATED_NFTS } from "../../query";
+import { CreatedCollectionItemProps, CreatedItemProps } from "../../types";
 import NoData from "../NoData/NoData";
-
-type CreatedItemProps = {
-  id: number;
-  URI: string;
-  name: string;
-  tokenOwner?: string;
-  collectionName?: string;
-  collectionId?: string;
-  tokenAddress: string;
-};
 
 const Created: React.FC = () => {
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
-  const createdItems: CreatedItemProps[] = [];
   const { viewMode, viewButtonsRender } = useViewMode();
   const [createdType, setCreatedType] = useState<CreatedType>(CreatedType.nft);
-  const [createdNfts, setCreatedNfts] = useState<CreatedItemProps[]>();
-  const getTokensData = async () => {
-    const tokensQuery = await fetchData();
+  const [createdNfts, setCreatedNfts] = useState<CreatedItemProps[]>([]);
+  const [createdCollections, setCreatedCollections] = useState<
+    CreatedCollectionItemProps[]
+  >([]);
 
-    tokensQuery.data.tokens.map((i: any) => {
-      const id = i.id;
-      const name = i.name;
-      const URI = i.uri;
-      const tokenOwner = i.owner;
-      const collectionName = i.collectionName;
-      const collectionId = i.collectionId;
+  const createdMultipleQuery = () => {
+    const nfts = useQuery({
+      query: GET_CREATED_NFTS,
+      variables: { creator: account },
+    });
+    const collections = useQuery({
+      query: GET_CREATED_COLLECTIONS,
+      variables: { owner: account },
+    });
 
-      const tokenAddress = "0x82907ED3c6adeA2F470066aBF614F3B38094bef2"; //nft collection address
+    return [nfts, collections];
+  };
+  const [[nftsResult], [collectionsResult]] = createdMultipleQuery();
+
+  const getUserCreatedNft = async () => {
+    const { data, fetching } = nftsResult;
+
+    if (fetching) return;
+
+    if (createdType === CreatedType.nft) {
+      const createdItems: CreatedItemProps[] = [];
+      data.tokens.map((i: any) => {
+        createdItems.push({
+          id: i.id,
+          name: i.name,
+          URI: i.uri,
+          tokenOwner: i.owner,
+          collectionName: i.collectionName,
+          collectionId: i.collectionId,
+          tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        });
+      });
+      return createdItems;
+    }
+  };
+
+  const getCreatedNfts = async () => {
+    const response = await getUserCreatedNft();
+    if (response) {
+      setCreatedNfts(response as CreatedItemProps[]);
+    }
+  };
+
+  const getUserCreatedCollections = async () => {
+    const { data, fetching } = collectionsResult;
+
+    if (fetching) return;
+
+    const createdItems: CreatedCollectionItemProps[] = [];
+    data.collections.map((i: any) => {
       createdItems.push({
-        id,
-        URI,
-        name,
-        tokenOwner,
-        collectionName,
-        collectionId,
-        tokenAddress,
+        id: i.id,
+        collectionName: i.collectionName,
+        collectionUrl: i.collectionUrl,
+        owner: i.owner,
+        collectionInfo: i.collectionInfo,
+        collectionCategory: i.collectonCategory,
       });
     });
     return createdItems;
+  };
+
+  const getCreatedCollections = async () => {
+    const response = await getUserCreatedCollections();
+    if (response) {
+      setCreatedCollections(response as CreatedCollectionItemProps[]);
+    }
   };
 
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
     }
-    getListingsData();
-  }, [connector, account]);
+    getCreatedNfts();
+    getCreatedCollections();
+  }, [connector, account, nftsResult.fetching, collectionsResult.fetching]);
 
   if (!account) {
     return <Navigate to={"/login"} replace={true} />;
-  }
-
-  const APIURL =
-    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-  const createdTokensQuery = `
-    {
-      tokens(where:{creator :"${account}"}){
-          collectionName
-          owner
-          id
-          desciption
-          uri
-          collectionId
-          name
-        }
-    }
- `;
-
-  const client = createClient({
-    url: APIURL,
-  });
-
-  async function fetchData() {
-    const data = await client.query(createdTokensQuery).toPromise();
-    return data;
-  }
-
-  async function getListingsData() {
-    const response = await getTokensData();
-    if (response) {
-      setCreatedNfts(response);
-    }
   }
 
   return (
@@ -119,7 +129,8 @@ const Created: React.FC = () => {
               }
               onClick={() => setCreatedType(CreatedType.nft)}
             >
-              Created NFTs
+              NFTs
+              <SmallNumber>{createdNfts.length}</SmallNumber>
             </CreatedButton>
             <CreatedButton
               className={
@@ -127,7 +138,8 @@ const Created: React.FC = () => {
               }
               onClick={() => setCreatedType(CreatedType.collection)}
             >
-              Created Collections
+              Collections
+              <SmallNumber>{createdCollections.length}</SmallNumber>
             </CreatedButton>
           </CreatedSelect>
           {createdType === CreatedType.nft && viewButtonsRender}
@@ -140,32 +152,58 @@ const Created: React.FC = () => {
 
       <FilterSelected />
 
-      {createdNfts && createdNfts.length > 0 ? (
-        <>
-          {viewMode === ViewMode.grid && createdType === CreatedType.nft && (
-            <>
-              {createdNfts ? (
-                <CollectionGridWrap itemList={createdNfts} />
-              ) : (
-                <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
-          )}
-
-          {viewMode === ViewMode.list && createdType === CreatedType.nft && (
-            <>
-              {createdNfts ? (
-                <NFTListItem itemList={createdNfts} />
-              ) : (
-                <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
-          )}
-
-          {createdType === CreatedType.collection && <CreatedCollections />}
-        </>
+      {nftsResult.fetching || collectionsResult.fetching ? (
+        <ClipLoaderWrapper>
+          <ClipLoader
+            color={"#BD10E0"}
+            loading={collectionsResult.fetching || nftsResult.fetching}
+            size={250}
+          />
+        </ClipLoaderWrapper>
       ) : (
-        <NoData />
+        <>
+          {createdNfts.length > 0 || createdCollections.length > 0 ? (
+            <>
+              {createdType === CreatedType.nft && (
+                <>
+                  {nftsResult.fetching ? (
+                    <ClipLoader
+                      color={"#BD10E0"}
+                      loading={collectionsResult.fetching}
+                      size={250}
+                    />
+                  ) : (
+                    <>
+                      {viewMode === ViewMode.grid ? (
+                        <CollectionGridWrap itemList={createdNfts} />
+                      ) : (
+                        <NFTListItem itemList={createdNfts} />
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+
+              {createdType === CreatedType.collection && (
+                <>
+                  {collectionsResult.fetching ? (
+                    <ClipLoader
+                      color={"#BD10E0"}
+                      loading={collectionsResult.fetching}
+                      size={250}
+                    />
+                  ) : (
+                    <CreatedCollections
+                      createdCollections={createdCollections}
+                    />
+                  )}
+                </>
+              )}
+            </>
+          ) : (
+            <NoData />
+          )}
+        </>
       )}
     </CreatedWrap>
   );

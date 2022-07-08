@@ -25,7 +25,6 @@ interface CollectionGridWrapperProps {
 const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   itemList,
 }) => {
-
   return (
     <GridLayout>
       {itemList.map((item: GridItem) => {

@@ -12,3 +12,30 @@ export type NFT = {
   name: string;
   symbol: string;
 };
+
+export type getNFT = {
+  page?: number;
+  page_size?: number;
+  result?: any;
+  status?: string;
+  total?: number;
+};
+
+export type CreatedItemProps = {
+  id: number;
+  URI: string;
+  name: string;
+  tokenOwner?: string;
+  collectionName?: string;
+  collectionId?: string;
+  tokenAddress: string;
+};
+
+export type CreatedCollectionItemProps = {
+  id: number;
+  collectionUrl: string;
+  collectionCategory: string;
+  collectionInfo?: string;
+  collectionName?: string;
+  owner?: string;
+};

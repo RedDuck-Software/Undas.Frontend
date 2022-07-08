@@ -17,8 +17,6 @@ import {
   RowCenter,
 } from "./NFTListCollection.styles";
 
-import TabsNFT from "../../../AllNFTs/page-components/TabsNFT/TabsNFT";
-
 interface NFTListItemProps {
   name: string;
 }

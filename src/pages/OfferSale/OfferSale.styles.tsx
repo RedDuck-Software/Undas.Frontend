@@ -29,7 +29,7 @@ export const BackText = styled.div`
     padding-right: 12px;
   }
   @media (min-width: 1700px) {
-     max-width: 105rem;
+    max-width: 105rem;
   }
 `;
 
