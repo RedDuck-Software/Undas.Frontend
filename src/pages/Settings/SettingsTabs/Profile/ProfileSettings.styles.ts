@@ -291,7 +291,7 @@ export const FakeInputItem = styled.div`
     text-overflow: ellipsis;
   }
 `;
-export const CopyButton = styled.button`
+export const CopyButton = styled.div`
   width: 30px;
   border: none;
   background-color: #fff;
