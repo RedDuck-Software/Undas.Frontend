@@ -56,7 +56,6 @@ const CategoriesGameFI: React.FC = () => {
     return collectionsList;
   };
 
-  console.log("account", account);
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");

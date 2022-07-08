@@ -1,8 +1,10 @@
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { useWeb3React } from "@web3-react/core";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect
+  // , useContext
+} from "react";
 import { MoralisProvider } from "react-moralis";
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import { createClient, Provider } from "urql";
 
 import { Navbar } from "./components";
@@ -70,6 +72,15 @@ const App: React.FC = () => {
   const web3Current = useWeb3React();
   const connectorName = localStorage.getItem("connector");
 
+  const { account } = useWeb3React();
+  const [userAccount, setAccount] = useState<any>();
+
+  useEffect(() => {
+    if (account) {
+      setAccount(account);
+    }
+  }, [account, userAccount]);
+
   useEffect(() => {
     switch (connectorName) {
       case "injected":
@@ -86,17 +97,36 @@ const App: React.FC = () => {
         web3Current.activate(walletlink);
         break;
     }
+
+
   }, [connectorName]);
 
-  const [connector, setConnector] = useState<AbstractConnector | null>(null);
+  const [connector, setConnector, ] = useState<AbstractConnector | null>(null);
 
   const setConnectorFun = (connector: AbstractConnector) =>
     setConnector(connector);
+
 
   const value: ConnectorState = {
     connector,
     setConnectorFun,
   };
+  const { ethereum }:any = window;
+  
+
+  async function HandleSwapChain(){
+
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x5' }]
+    });
+  }
+
+  useEffect(() => {
+    HandleSwapChain()
+
+  }, [account]);
+
 
   return (
     <MoralisProvider

@@ -45,7 +45,7 @@ interface CollectionGridWrapperProps {
 }
 const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
   const navigate = useNavigate();
-  console.log("itemss", item.itemLists.URI);
+
   const state = {
     tokenId: item.itemLists.id,
     tokenAddress: item.itemLists.tokenAddress,
@@ -57,8 +57,11 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
         : "0",
     ),
     stakingId: item.itemLists.stakingId,
+    tokenOwner:item.itemLists.tokenOwner
   };
+
   console.log("state", state);
+
   return (
     <Tabs defaultActiveKey="second" id="tab-nft" className="my-tabs">
       <Tab
@@ -159,8 +162,8 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
         <ButtonRent
           onClick={(e) => {
             navigate(
-              `/rent/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-              { state: { state: { ...state } } },
+                `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
+                { state: { ...state } },
             );
             e.stopPropagation();
           }}

@@ -1,8 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 
 import {
   AddImgBlock,
@@ -58,7 +59,7 @@ import {
 import { bsc, solana, ton } from "../CreateNFT/imports";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
-  console.log();
+
   return (
     <>
       <SelectItem
@@ -148,7 +149,8 @@ const CreateCollection: React.FC = () => {
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
   const { errors } = formState;
-  console.log("category", category);
+  const navigate = useNavigate();
+
   const createCollection = async (
     collectionName: string,
     collectionUrl: string,
@@ -168,7 +170,7 @@ const CreateCollection: React.FC = () => {
     console.log(category);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x482995DA0c3f0Fe629DB4dca956F95A81F88C4Ad", //goerli contract addr
+      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
       signer,
     );
 
@@ -238,6 +240,12 @@ const CreateCollection: React.FC = () => {
     trigger("bannerURI");
   };
 
+  useEffect(() => {
+    if (!connector) {
+      navigate("/login");
+    }
+
+  }, [connector, account]);
   return (
     <Background>
       <CreateSec>
