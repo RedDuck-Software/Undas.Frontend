@@ -43,7 +43,6 @@ interface CollectionWithCards {
   uri: string;
 }
 
-
 const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
   const [collectionItems, setCollectionItems] =

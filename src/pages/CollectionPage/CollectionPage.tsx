@@ -53,7 +53,7 @@ interface CommonProps {
   description: string;
   tokenAddress: string;
   collectionOwner: string;
-  collectionName?:string;
+  collectionName?: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -91,7 +91,7 @@ const CollectionPage: React.FC = () => {
         description: i.tokenDescription,
         collectionOwner: i.owner,
         tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
-        collectionName:i.collectionName
+        collectionName: i.collectionName,
       };
       collectionItem.push(item);
     });

@@ -129,9 +129,7 @@ const ProfileSettings: React.FC = () => {
         <BlockTitle>Wallet Address</BlockTitle>
         <InputGroup>
           <AdressInput tabIndex={0}>
-            <FakeInputItem>
-              {walletAdress}
-            </FakeInputItem>
+            <FakeInputItem>{walletAdress}</FakeInputItem>
             <CopyButton className="copy-btn" onClick={copyToClipboard} />
             <Message opacity={show}>Adress is Copied!</Message>
           </AdressInput>

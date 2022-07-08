@@ -54,7 +54,6 @@ const CategoriesGameFI: React.FC = () => {
   };
 
   useEffect(() => {
-
     getСollectionData();
   }, [connector]);
 

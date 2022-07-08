@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,6 @@ import { createClient } from "urql";
 import Context from "../../../../utils/Context";
 import NFTCardHome from "../NFTCardHome/NFTCardHome";
 import { Title, TitleWrap, ViewAllBtn } from "../Recomended/Recommended.styles";
-
 
 const NewNFTContainer = styled.div`
   margin-top: 120px;
@@ -29,10 +28,17 @@ const NewNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const navigate = useNavigate();
 
-  const items: { priceInNum: number; id: number; name: string; URI: string,tokenAddress:string }[] =
-    [];
+  const items: {
+    priceInNum: number;
+    id: number;
+    name: string;
+    URI: string;
+    tokenAddress: string;
+  }[] = [];
   const [list, setList] =
-    useState<{ id: number; name: string; URI: string,tokenAddress:string }[]>();
+    useState<
+      { id: number; name: string; URI: string; tokenAddress: string }[]
+    >();
 
   const getListings = async () => {
     const tokens = await fetchData();
@@ -43,18 +49,14 @@ const NewNFT: React.FC = () => {
         const id = nft.tokenId;
         const name = nft.tokenName;
         const URI = nft.tokenURI;
-        const tokenAddress = nft.token
+        const tokenAddress = nft.token;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
 
-        items.push({ priceInNum, id, name, URI,tokenAddress });
+        items.push({ priceInNum, id, name, URI, tokenAddress });
       }
     });
     return items;
   };
-
-
-
-
 
   async function getItemsData() {
     const response = await getListings();
@@ -114,15 +116,21 @@ const NewNFT: React.FC = () => {
         {list?.map((item) => {
           return (
             <>
-              <SwiperSlide key={item.id}
-                  onClick={(e) => {
+              <SwiperSlide
+                key={item.id}
+                onClick={(e) => {
                   e.stopPropagation();
                   navigate(
-                      `nft/buy/tokenAddress=${item.tokenAddress}?id=${item.id}`
-                      ,
-                      { state: {tokenId:item.id, tokenAddress:item.tokenAddress }  },
+                    `nft/buy/tokenAddress=${item.tokenAddress}?id=${item.id}`,
+                    {
+                      state: {
+                        tokenId: item.id,
+                        tokenAddress: item.tokenAddress,
+                      },
+                    },
                   );
-              }}>
+                }}
+              >
                 <NFTCardHome uri={item.URI} name={item.name} />
               </SwiperSlide>
             </>

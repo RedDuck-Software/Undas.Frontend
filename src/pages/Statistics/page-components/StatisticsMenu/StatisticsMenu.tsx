@@ -26,7 +26,7 @@ import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileB
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
-import { ItemImg, ItemVerifyIco, } from "../../imports";
+import { ItemImg, ItemVerifyIco } from "../../imports";
 
 interface StatisticsRowProps {
   action: string;

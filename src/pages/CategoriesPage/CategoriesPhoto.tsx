@@ -54,10 +54,8 @@ const CategoriesGameFI: React.FC = () => {
   };
 
   useEffect(() => {
-
     getСollectionData();
   }, [connector]);
-
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
