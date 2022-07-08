@@ -318,9 +318,7 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameNft>
-                    {nameFromProps ? nameFromProps : name}
-                  </NameNft>
+                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
                   <VerifiedIcon w="24px">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
