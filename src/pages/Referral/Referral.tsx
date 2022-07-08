@@ -26,10 +26,9 @@ import {
   ContentTableTd,
   ReferralPagination,
   ContentTableWrap,
-  Message,
 } from "./Referral.styles";
 
-import { Background, Container, PageTitle } from "../../globalStyles";
+import { Background, Container, PageTitle, Message } from "../../globalStyles";
 
 const Referral: React.FC = () => {
   const refLink = "https://UNDAS.io/ref?coming_soon/";

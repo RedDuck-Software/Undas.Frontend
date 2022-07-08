@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { BannerIcon } from "./imports";
 import {
@@ -30,10 +30,19 @@ import {
   CopyButton,
 } from "./ProfileSettings.styles";
 
-import { FormButtonsWrap, FormButton } from "../../../../globalStyles";
+import { FormButtonsWrap, FormButton, Message } from "../../../../globalStyles";
 import "./profile.css";
 
 const ProfileSettings: React.FC = () => {
+  const walletAdress = "0x5d46cb693bd0d1585d1de9823cb6b488281cc99c";
+  const [show, setShow] = useState(false);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(walletAdress);
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
+  };
   return (
     <ProfileWrap>
       <BannerWrap>
@@ -121,9 +130,10 @@ const ProfileSettings: React.FC = () => {
         <InputGroup>
           <AdressInput tabIndex={0}>
             <FakeInputItem>
-              0x5d46cb693bd0d1585d1de9823cb6b488281cc99c
+              {walletAdress}
             </FakeInputItem>
-            <CopyButton className="copy-btn" />
+            <CopyButton className="copy-btn" onClick={copyToClipboard} />
+            <Message opacity={show}>Adress is Copied!</Message>
           </AdressInput>
           <FormButtonsWrap>
             <FormButton className="left-btn">Save</FormButton>
