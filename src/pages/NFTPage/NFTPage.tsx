@@ -97,7 +97,7 @@ const NFTPage: React.FC = () => {
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
-  const [collectionName, setcollectionName] = useState<string>('No collection');
+  const [, setcollectionName] = useState<string>("No collection");
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -121,8 +121,8 @@ const NFTPage: React.FC = () => {
 
     const signer = provider.getSigner(0);
     const singerAddress = await (await signer.getAddress()).toLowerCase();
-    console.log('seeller',seller)
-    console.log('state',state)
+    console.log("seeller", seller);
+    console.log("state", state);
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
@@ -203,14 +203,18 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
-      console.log('tokensQuery.data.listings[0].id;')
+      console.log("tokensQuery.data.listings[0].id;");
       setName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
       setSeller(tokensQuery.data.listings[0].seller);
-      setcollectionName(tokensQuery.data.listings[0].collectionName?tokensQuery.data.listings[0].collectionName:'No collection')
+      setcollectionName(
+        tokensQuery.data.listings[0].collectionName
+          ? tokensQuery.data.listings[0].collectionName
+          : "No collection",
+      );
       setLoading(false);
 
       return;
@@ -321,7 +325,7 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameCollection>
+                  <NameCollection to="/">
                     {nameFromProps ? nameFromProps : name}
                   </NameCollection>
                 </Name>

@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   AddImgBlock,
@@ -59,7 +59,6 @@ import {
 import { bsc, solana, ton } from "../CreateNFT/imports";
 import Switcher from "../CreateNFT/page-components/Switcher/Switcher";
 const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
-
   return (
     <>
       <SelectItem
@@ -244,7 +243,6 @@ const CreateCollection: React.FC = () => {
     if (!connector) {
       navigate("/login");
     }
-
   }, [connector, account]);
   return (
     <Background>

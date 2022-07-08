@@ -65,8 +65,6 @@ const AllNFTs: React.FC = () => {
 
   const { data, fetching } = result;
 
-
-
   const getListing = async () => {
     const allNfts = [...data.stakingListings, ...data.listings];
 

@@ -57,7 +57,7 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
         : "0",
     ),
     stakingId: item.itemLists.stakingId,
-    tokenOwner:item.itemLists.tokenOwner
+    tokenOwner: item.itemLists.tokenOwner,
   };
 
   console.log("state", state);
@@ -162,8 +162,8 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
         <ButtonRent
           onClick={(e) => {
             navigate(
-                `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
-                { state: { ...state } },
+              `/nft/buy/tokenAddress=${item.itemLists.tokenAddress}&id=${item.itemLists.id}`,
+              { state: { ...state } },
             );
             e.stopPropagation();
           }}

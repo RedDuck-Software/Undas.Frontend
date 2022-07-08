@@ -156,7 +156,6 @@ export const PriceTextW = styled.div`
   text-align: right;
 `;
 
-
 export const ContainerTable = styled.div`
   overflow-x: auto;
   width: 100%;
