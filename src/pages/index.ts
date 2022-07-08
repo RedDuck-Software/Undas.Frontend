@@ -25,7 +25,7 @@ export { default as Faq } from "./Faq/Faq";
 export { default as NFTPage } from "./NFTPage/NFTPage";
 export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Settings } from "./Settings/Settings";
-export { default as Activity } from "./Activity/ActivityPage";
+export { default as Activity } from "./Statistics/Statistics";
 export { default as TopCollectionPage } from "./TopCollectionPage/TopCollectionPage";
 export { default as Blog } from "./Blog/Blog";
 export { default as CreatorCardPage } from "./CreatorCardPage/CreatorCardPage";

@@ -48,7 +48,6 @@ interface NFTGridItemProps {
 }
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
-  console.log(props);
   const navigate = useNavigate();
   const { account } = useWeb3React();
   const [userAccount, setAccount] = useState<any>();
