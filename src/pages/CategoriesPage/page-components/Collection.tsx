@@ -43,12 +43,13 @@ interface CollectionWithCards {
   uri: string;
 }
 
+
 const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
-  console.log("ite22222mList", itemList);
+
   const getListings = async () => {
     const tokens = await fetchData();
 

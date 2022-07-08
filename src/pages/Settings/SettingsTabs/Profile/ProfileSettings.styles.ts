@@ -291,12 +291,15 @@ export const FakeInputItem = styled.div`
     text-overflow: ellipsis;
   }
 `;
-export const CopyButton = styled.button`
+export const CopyButton = styled.div`
   width: 30px;
   border: none;
   background-color: #fff;
   outline: none;
   margin-left: 30px;
+  &:hover{
+    cursor: pointer;
+  }
   @media (max-width: 576px) {
     margin-left: 10px;
   }

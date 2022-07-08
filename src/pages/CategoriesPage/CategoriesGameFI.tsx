@@ -1,6 +1,4 @@
-import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
@@ -28,7 +26,6 @@ type CollectionItemProps = {
 };
 
 const CategoriesGameFI: React.FC = () => {
-  const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const collectionsList: CollectionItemProps[] = [];
   const [collections, setCollections] = useState<CollectionItemProps[]>();
@@ -56,17 +53,12 @@ const CategoriesGameFI: React.FC = () => {
     return collectionsList;
   };
 
-  console.log("account", account);
   useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
-    }
+
     getСollectionData();
   }, [connector]);
 
-  if (!account) {
-    return <Navigate to={"/login"} replace={true} />;
-  }
+
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
