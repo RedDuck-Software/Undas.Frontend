@@ -256,4 +256,15 @@ export const SecondaryButton = styled(Link)`
     font-size: 16px;
   }
 `;
+export const Message = styled.div<{ opacity?: boolean }>`
+  opacity: ${({ opacity }) => (opacity ? "1" : "0")};
+  position: fixed;
+  top: calc(50% - 32px);
+  left: calc(50% - 102px);
+  padding: 20px 45px;
+  border-radius: 20px;
+  background-color: rgba(251, 245, 255, 0.5);
+  box-shadow: 0px 4px 10px rgb(135 61 193 / 25%);
+  transition: all 0.5s;
+`;
 export default GlobalStyle;
