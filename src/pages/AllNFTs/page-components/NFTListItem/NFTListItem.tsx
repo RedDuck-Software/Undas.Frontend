@@ -39,7 +39,6 @@ interface CollectionGridWrapperProps {
 }
 
 const NFTListItem: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
-  console.log("itemsLIIIST", itemList);
 
   return (
     <>

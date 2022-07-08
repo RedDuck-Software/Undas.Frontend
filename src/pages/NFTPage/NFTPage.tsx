@@ -97,6 +97,8 @@ const NFTPage: React.FC = () => {
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
+  const [collectionName, setcollectionName] = useState<string>('No collection');
+
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
@@ -119,7 +121,8 @@ const NFTPage: React.FC = () => {
 
     const signer = provider.getSigner(0);
     const singerAddress = await (await signer.getAddress()).toLowerCase();
-
+    console.log('seeller',seller)
+    console.log('state',state)
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
@@ -161,7 +164,7 @@ const NFTPage: React.FC = () => {
     );
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice: 20000, //
+      gasPrice: 20000,
     });
     await tx.wait();
   }
@@ -170,8 +173,8 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       console.log("!connector");
     }
-    console.log("state", listingId);
-    if (listingId || listingId == 0) {
+    console.log("listingID", listingId);
+    if (listingId) {
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -187,12 +190,12 @@ const NFTPage: React.FC = () => {
   }
 
   useEffect(() => {
+    getTokenData();
     getShowBuy();
     getShowRent();
-    getTokenData();
     getOwner();
   }, [connector, listingId, stakingId, premium, colloteral, seller]);
-  // console.log('listingId',listingId)
+
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
     console.log("tokensQuery", tokensQuery);
@@ -200,13 +203,14 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
+      console.log('tokensQuery.data.listings[0].id;')
       setName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
       setSeller(tokensQuery.data.listings[0].seller);
-      setLoading(false);
+      setcollectionName(tokensQuery.data.listings[0].collectionName?tokensQuery.data.listings[0].collectionName:'No collection')
       setLoading(false);
 
       return;
@@ -232,7 +236,10 @@ const NFTPage: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-  console.log("state", state.state.tokenId);
+
+  console.log("stateID", state.state.tokenId);
+  console.log("stateADDRESS", state.state.tokenAddress);
+
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
@@ -245,6 +252,7 @@ const NFTPage: React.FC = () => {
     tokenDescription
     seller
     listingStatus
+    collectionName
   }
   stakingListings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
@@ -264,26 +272,21 @@ const NFTPage: React.FC = () => {
   const client = createClient({
     url: APIURL,
   });
-  console.log(state);
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("qqq", data);
+
     return data;
   }
-
   return (
     <Background>
       {!loading && !isOwner && (
         <OwnerSettingsWrapper>
           <OwnerSettingsNavigation>
-            <OwnerSettingsButton>Edit</OwnerSettingsButton>
-
             <>
               <OwnerSettingsButton isColored={true}>
                 Cancel listing
               </OwnerSettingsButton>
             </>
-
             <OwnerSettingsButton
               isColored={true}
               onClick={(e) => {
@@ -309,22 +312,18 @@ const NFTPage: React.FC = () => {
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameCollection to="/">Collection Name</NameCollection>
-                  <VerifiedIcon>
-                    <img src={Verified} alt="verified-ico" />
-                  </VerifiedIcon>
-                  <Platform col="#873DC1" fs="36px" fsxs="20px">
-                    UND
-                  </Platform>
-                </Name>
-                <Name>
-                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
-                  <VerifiedIcon w="24px">
+                  <NameNft>Collection Name</NameNft>
+                  <VerifiedIcon w="24px" className="nft-page">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
                   <Platform col="#873DC1" fs="24px">
                     UND
                   </Platform>
+                </Name>
+                <Name>
+                  <NameCollection>
+                    {nameFromProps ? nameFromProps : name}
+                  </NameCollection>
                 </Name>
               </NameInner>
               <NavMenu>

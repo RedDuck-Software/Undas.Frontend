@@ -64,8 +64,8 @@ const Offer: React.FC = () => {
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-  const [, setTokenName] = useState<string>();
-  const [, setTokenURI] = useState<string>();
+  const [tokenName, setTokenName] = useState<string>();
+  const [tokenURI, setTokenURI] = useState<string>();
   const [listingId, setListingId] = useState<string>();
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();
@@ -330,8 +330,8 @@ const Offer: React.FC = () => {
           </NameRow>
           <NFTInfoContainer className="max-width">
             <NFTCard
-              uri={state.state.state.URI}
-              name={state.state.state.name}
+              uri={tokenURI?tokenURI:state.state.state.URI}
+              name={tokenName?tokenName:state.state.state.tokenName}
             />
           </NFTInfoContainer>
         </SecondCollum>

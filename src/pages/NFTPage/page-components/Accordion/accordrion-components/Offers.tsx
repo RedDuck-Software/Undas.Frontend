@@ -17,9 +17,11 @@ import {
 
 interface OffersProps {
   isOwner?: boolean;
+
+
 }
 
-const Offers: React.FC<OffersProps> = ({ isOwner }) => {
+const Offers: React.FC<OffersProps> = ({ isOwner  }) => {
   return (
     <OffersWrap>
       <OffersHeadTr>
