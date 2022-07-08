@@ -196,6 +196,11 @@ export const VerifiedIcon = styled.div<IVerifiedIcon>`
   img {
     width: 100%;
   }
+  @media (max-width: 576px) {
+    &.nft-page {
+      width: 16px;
+    }
+  }
 `;
 interface IPlatform {
   col?: string;

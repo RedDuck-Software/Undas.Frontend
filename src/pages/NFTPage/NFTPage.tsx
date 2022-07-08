@@ -310,7 +310,7 @@ const NFTPage: React.FC = () => {
               <NameInner>
                 <Name>
                   <NameNft>Collection Name</NameNft>
-                  <VerifiedIcon>
+                  <VerifiedIcon w="24px" className="nft-page">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
                   <Platform col="#873DC1" fs="36px" fsxs="20px">
@@ -321,12 +321,6 @@ const NFTPage: React.FC = () => {
                   <NameCollection>
                     {nameFromProps ? nameFromProps : name}
                   </NameCollection>
-                  <VerifiedIcon w="24px">
-                    <img src={Verified} alt="verified-ico" />
-                  </VerifiedIcon>
-                  <Platform col="#873DC1" fs="24px">
-                    UND
-                  </Platform>
                 </Name>
               </NameInner>
               <NavMenu>

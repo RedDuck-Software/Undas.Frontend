@@ -152,6 +152,7 @@ export const AccordionArrow = styled(Arrow)`
 
 interface IAccordionMenu {
   mh?: string;
+  pb?: string;
   backgroundColor?: string;
 }
 
@@ -176,6 +177,7 @@ export const AccordionMenu = styled.ul<IAccordionMenu>`
   }
   &.active-chains {
     max-height: ${({ mh }) => mh || "146px"};
+    padding-bottom: ${({ pb }) => pb};
   }
 `;
 
@@ -417,6 +419,7 @@ export const CheckboxInput = styled.input<{ mr?: string }>`
 
 export const CheckboxLabel = styled.label`
   display: block;
+  width: 100%;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
   }
@@ -515,20 +518,24 @@ export const FilterChainItemWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  margin: 20px 15px;
+  margin-top: 15px;
+  margin-left: 15px;
+  &.last {
+    margin-bottom: 15px;
+  }
 `;
 
 export const ChainItemTitle = styled.div`
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 22px;
   color: #232428;
 `;
 
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
 `;
 
 export const MobileListWrap = styled.div`
