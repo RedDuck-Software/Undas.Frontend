@@ -410,7 +410,7 @@ const NFTPage: React.FC = () => {
                       </NotListedWrapper>
                     ) : (
                       <>
-                        <RentElement>
+                        <RentElement className="center">
                           <span>Deposit</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
@@ -423,7 +423,7 @@ const NFTPage: React.FC = () => {
                             <PriceInUSD>($18 465,32)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
-                        <RentElement>
+                        <RentElement className="center">
                           <span>Price for 1 Week Rental</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
@@ -436,7 +436,7 @@ const NFTPage: React.FC = () => {
                             <PriceInUSD>($36,93)</PriceInUSD>
                           </Wrapper>
                         </RentElement>
-                        <RentElement>
+                        <RentElement className="center">
                           <span>Period</span>
                           <RentalPeriod placeholder="7 for 90 days" />
                         </RentElement>
