@@ -109,6 +109,8 @@ const AccountPage: React.FC = () => {
     deactivate();
   }
 
+  const { offersMenu, offersCounter } = OffersMenu();
+
   return (
     <AccountWrapper>
       <Banner>
@@ -156,7 +158,7 @@ const AccountPage: React.FC = () => {
                 >
                   <OffersIco />
                   <span>Offers</span>
-                  <SmallNumber>0</SmallNumber>
+                  <SmallNumber>{offersCounter}</SmallNumber>
                 </Tab>
                 <Tab
                   onClick={() => setTab("reward")}
@@ -169,7 +171,7 @@ const AccountPage: React.FC = () => {
             </Wrapper>
             {tab === "" && <MainMenu nftList={myNfts ? myNfts : []} />}
             {tab === "favourite" && <FavouriteMenu />}
-            {tab === "offers" && <OffersMenu />}
+            {tab === "offers" && offersMenu}
             {tab === "reward" && <RewardMenu />}
             {tab === "rent" && <Rent />}
             {tab === "created" && <Created />}

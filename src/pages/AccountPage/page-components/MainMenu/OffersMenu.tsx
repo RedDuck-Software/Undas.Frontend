@@ -57,7 +57,7 @@ export interface BuyingOfferProps extends CommonProps {
   listingId: number;
 }
 
-const OffersMenu: React.FC = () => {
+const OffersMenu = () => {
   const { connector } = useContext(Context);
 
   const [offerType, setOfferType] = useState(OfferType.resaived);
@@ -475,266 +475,279 @@ const OffersMenu: React.FC = () => {
     return data.data;
   }
 
-  return (
-    <OfferMenuWrap>
-      <OfferFilterWrap>
-        <FilterButton
-          className={offerType === OfferType.resaived ? "offers-active" : ""}
-          onClick={() => setOfferType(OfferType.resaived)}
-        >
-          <OffResaivedIco />
-          Offers Received
-        </FilterButton>
-        <FilterButton
-          className={offerType === OfferType.made ? "offers-active" : ""}
-          onClick={() => setOfferType(OfferType.made)}
-        >
-          Offers Made
-          <OffMadeIco />
-        </FilterButton>
-      </OfferFilterWrap>
+  return {
+    offersCounter: rentingOffersList.length + buyingOffersList.length,
+    offersMenu: (
+      <>
+        <OfferMenuWrap>
+          <OfferFilterWrap>
+            <FilterButton
+              className={
+                offerType === OfferType.resaived ? "offers-active" : ""
+              }
+              onClick={() => setOfferType(OfferType.resaived)}
+            >
+              <OffResaivedIco />
+              Offers Received
+            </FilterButton>
+            <FilterButton
+              className={offerType === OfferType.made ? "offers-active" : ""}
+              onClick={() => setOfferType(OfferType.made)}
+            >
+              Offers Made
+              <OffMadeIco />
+            </FilterButton>
+          </OfferFilterWrap>
 
-      <FilterSelected />
+          <FilterSelected />
 
-      {offerType === OfferType.made && (
-        <CancelBtnWrapper>
-          <CancelBtn>Cancel all Offers</CancelBtn>
-        </CancelBtnWrapper>
-      )}
+          {offerType === OfferType.made && (
+            <CancelBtnWrapper>
+              <CancelBtn>Cancel all Offers</CancelBtn>
+            </CancelBtnWrapper>
+          )}
 
-      <OffersWrapTable>
-        {offerType === OfferType.resaived && (
-          <>
-            {rentingOffersList.length > 0 || buyingOffersList.length > 0 ? (
-              <OffersHeadTr className="offers-menu-head">
-                <OffersTdText className="first-column"></OffersTdText>
-                <OffersTdText>Item</OffersTdText>
-                <OffersTdText>Price</OffersTdText>
-                <OffersTdText>Expiration</OffersTdText>
-                <OffersTdText>From</OffersTdText>
-                <OffersTdText></OffersTdText>
-                <OffersTdText></OffersTdText>
-                <OffersTdText></OffersTdText>
-              </OffersHeadTr>
-            ) : (
-              <NoData />
+          <OffersWrapTable>
+            {offerType === OfferType.resaived && (
+              <>
+                {rentingOffersList.length > 0 || buyingOffersList.length > 0 ? (
+                  <OffersHeadTr className="offers-menu-head">
+                    <OffersTdText className="first-column"></OffersTdText>
+                    <OffersTdText>Item</OffersTdText>
+                    <OffersTdText>Price</OffersTdText>
+                    <OffersTdText>Expiration</OffersTdText>
+                    <OffersTdText>From</OffersTdText>
+                    <OffersTdText></OffersTdText>
+                    <OffersTdText></OffersTdText>
+                    <OffersTdText></OffersTdText>
+                  </OffersHeadTr>
+                ) : (
+                  <NoData />
+                )}
+                {rentingOffersList.map((i) => {
+                  return (
+                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                      <OffersTdText className="first-column">
+                        <HandShakeIco />
+                        <OffersTooltipWrap className="offers-tooltip">
+                          <OffersTooltip>Rent</OffersTooltip>
+                        </OffersTooltipWrap>
+                      </OffersTdText>
+                      <OffersTdText className="offers-table-item">
+                        <ItemIcon>
+                          <img
+                            src={i.tokenURI}
+                            alt="item image"
+                            className="offers-item-image"
+                          />
+                        </ItemIcon>
+                        <ItemName>{i.tokenName}</ItemName>
+                        <ItemVerifyIco />
+                      </OffersTdText>
+                      <OffersTdText>
+                        <PriceTextETH>
+                          {i.offeredColloteralWei}/{i.offeredPremiumInNum}
+                        </PriceTextETH>
+                        <WethText>WETH</WethText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText>In 20 hours</OffersText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText color="#5D3F92">{i.taker}</OffersText>
+                      </OffersTdText>
+                      <OffersTdButton>
+                        <AcceptBTN
+                          onClick={() =>
+                            acceptStakingOffer(i.stakingId, i.taker)
+                          }
+                        >
+                          Accept
+                        </AcceptBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <MakeOfferBTN>Make offer</MakeOfferBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <DenyBTN
+                          onClick={() => {
+                            alert("Not ready yet");
+                          }}
+                        >
+                          Deny
+                        </DenyBTN>
+                      </OffersTdButton>
+                    </OffersTr>
+                  );
+                })}
+                {buyingOffersList.map((i) => {
+                  return (
+                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                      <OffersTdText className="first-column">
+                        <CartIco />
+                        <OffersTooltipWrap className="offers-tooltip">
+                          <OffersTooltip>Buy</OffersTooltip>
+                        </OffersTooltipWrap>
+                      </OffersTdText>
+                      <OffersTdText className="offers-table-item">
+                        <ItemIcon>
+                          <img
+                            src={i.tokenURI}
+                            width={30}
+                            height={30}
+                            alt="item icon"
+                          />
+                        </ItemIcon>
+                        <ItemName>{i.tokenName}</ItemName>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                        <WethText>WETH</WethText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText>In 20 hours</OffersText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText color="#5D3F92">{i.taker}</OffersText>
+                      </OffersTdText>
+                      <OffersTdButton>
+                        <AcceptBTN
+                          onClick={() =>
+                            acceptBuyingOffer(i.listingId, i.taker)
+                          }
+                        >
+                          Accept
+                        </AcceptBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <MakeOfferBTN>Make offer</MakeOfferBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
+                          Deny
+                        </DenyBTN>
+                      </OffersTdButton>
+                    </OffersTr>
+                  );
+                })}
+              </>
             )}
-            {rentingOffersList.map((i) => {
-              return (
-                <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                  <OffersTdText className="first-column">
-                    <HandShakeIco />
-                    <OffersTooltipWrap className="offers-tooltip">
-                      <OffersTooltip>Rent</OffersTooltip>
-                    </OffersTooltipWrap>
-                  </OffersTdText>
-                  <OffersTdText className="offers-table-item">
-                    <ItemIcon>
-                      <img
-                        src={i.tokenURI}
-                        alt="item image"
-                        className="offers-item-image"
-                      />
-                    </ItemIcon>
-                    <ItemName>{i.tokenName}</ItemName>
-                    <ItemVerifyIco />
-                  </OffersTdText>
-                  <OffersTdText>
-                    <PriceTextETH>
-                      {i.offeredColloteralWei}/{i.offeredPremiumInNum}
-                    </PriceTextETH>
-                    <WethText>WETH</WethText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText>In 20 hours</OffersText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText color="#5D3F92">{i.taker}</OffersText>
-                  </OffersTdText>
-                  <OffersTdButton>
-                    <AcceptBTN
-                      onClick={() => acceptStakingOffer(i.stakingId, i.taker)}
-                    >
-                      Accept
-                    </AcceptBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <MakeOfferBTN>Make offer</MakeOfferBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <DenyBTN
-                      onClick={() => {
-                        alert("Not ready yet");
-                      }}
-                    >
-                      Deny
-                    </DenyBTN>
-                  </OffersTdButton>
-                </OffersTr>
-              );
-            })}
-            {buyingOffersList.map((i) => {
-              return (
-                <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                  <OffersTdText className="first-column">
-                    <CartIco />
-                    <OffersTooltipWrap className="offers-tooltip">
-                      <OffersTooltip>Buy</OffersTooltip>
-                    </OffersTooltipWrap>
-                  </OffersTdText>
-                  <OffersTdText className="offers-table-item">
-                    <ItemIcon>
-                      <img
-                        src={i.tokenURI}
-                        width={30}
-                        height={30}
-                        alt="item icon"
-                      />
-                    </ItemIcon>
-                    <ItemName>{i.tokenName}</ItemName>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <PriceTextETH>{i.offeredNumber}</PriceTextETH>
-                    <WethText>WETH</WethText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText>In 20 hours</OffersText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText color="#5D3F92">{i.taker}</OffersText>
-                  </OffersTdText>
-                  <OffersTdButton>
-                    <AcceptBTN
-                      onClick={() => acceptBuyingOffer(i.listingId, i.taker)}
-                    >
-                      Accept
-                    </AcceptBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <MakeOfferBTN>Make offer</MakeOfferBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
-                      Deny
-                    </DenyBTN>
-                  </OffersTdButton>
-                </OffersTr>
-              );
-            })}
-          </>
-        )}
-        {offerType === OfferType.made && (
-          <>
-            {userOffersForRent.length > 0 || userOffersForBuy.length > 0 ? (
-              <OffersHeadTr className="offers-menu-head">
-                <OffersTdText className="first-column"></OffersTdText>
-                <OffersTdText>Item</OffersTdText>
-                <OffersTdText>Price</OffersTdText>
-                <OffersTdText>Expiration</OffersTdText>
-                <OffersTdText>From</OffersTdText>
-                <OffersTdText></OffersTdText>
-                <OffersTdText></OffersTdText>
-                <OffersTdText></OffersTdText>
-              </OffersHeadTr>
-            ) : (
-              <NoData />
-            )}
+            {offerType === OfferType.made && (
+              <>
+                {userOffersForRent.length > 0 || userOffersForBuy.length > 0 ? (
+                  <OffersHeadTr className="offers-menu-head">
+                    <OffersTdText className="first-column"></OffersTdText>
+                    <OffersTdText>Item</OffersTdText>
+                    <OffersTdText>Price</OffersTdText>
+                    <OffersTdText>Expiration</OffersTdText>
+                    <OffersTdText>From</OffersTdText>
+                    <OffersTdText></OffersTdText>
+                    <OffersTdText></OffersTdText>
+                    <OffersTdText></OffersTdText>
+                  </OffersHeadTr>
+                ) : (
+                  <NoData />
+                )}
 
-            {userOffersForRent.map((i) => {
-              return (
-                <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                  <OffersTdText className="first-column">
-                    <HandShakeIco />
-                    <OffersTooltipWrap className="offers-tooltip">
-                      <OffersTooltip>Rent</OffersTooltip>
-                    </OffersTooltipWrap>
-                  </OffersTdText>
-                  <OffersTdText className="offers-table-item">
-                    <ItemIcon>
-                      <img
-                        src={i.tokenURI}
-                        width={25}
-                        height={25}
-                        alt="item icon"
-                      />
-                    </ItemIcon>
-                    <ItemName>{i.tokenName}</ItemName>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <PriceTextETH>
-                      {i.offeredColloteralWei}/{i.offeredPremiumInNum}
-                    </PriceTextETH>
-                    <WethText>WETH</WethText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText>In 20 hours</OffersText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText color="#5D3F92">{i.owner}</OffersText>
-                  </OffersTdText>
-                  <OffersTdEmpty></OffersTdEmpty>
-                  <OffersTdButton>
-                    <MakeOfferBTN>Edit Offer</MakeOfferBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <DenyBTN onClick={() => removeStakingOffer(i.stakingId)}>
-                      Cancel
-                    </DenyBTN>
-                  </OffersTdButton>
-                </OffersTr>
-              );
-            })}
-            {userOffersForBuy.map((i) => {
-              return (
-                <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                  <OffersTdText className="first-column">
-                    <CartIco />
-                    <OffersTooltipWrap className="offers-tooltip">
-                      <OffersTooltip>Buy</OffersTooltip>
-                    </OffersTooltipWrap>
-                  </OffersTdText>
-                  <OffersTdText className="offers-table-item">
-                    <ItemIcon>
-                      <img
-                        src={i.tokenURI}
-                        width={25}
-                        height={25}
-                        alt="item icon"
-                      />
-                    </ItemIcon>
-                    <ItemName>{i.tokenName}</ItemName>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <PriceTextETH>{i.offeredNumber}</PriceTextETH>
-                    <WethText>WETH</WethText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText>In 20 hours</OffersText>
-                  </OffersTdText>
-                  <OffersTdText>
-                    <OffersText color="#5D3F92">{i.owner}</OffersText>
-                  </OffersTdText>
-                  <OffersTdEmpty></OffersTdEmpty>
-                  <OffersTdButton>
-                    <MakeOfferBTN>Edit Offer</MakeOfferBTN>
-                  </OffersTdButton>
-                  <OffersTdButton>
-                    <DenyBTN
-                      onClick={() => {
-                        cancelListingOffer(i.listingId);
-                      }}
-                    >
-                      Cancel
-                    </DenyBTN>
-                  </OffersTdButton>
-                </OffersTr>
-              );
-            })}
-          </>
-        )}
-      </OffersWrapTable>
-    </OfferMenuWrap>
-  );
+                {userOffersForRent.map((i) => {
+                  return (
+                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                      <OffersTdText className="first-column">
+                        <HandShakeIco />
+                        <OffersTooltipWrap className="offers-tooltip">
+                          <OffersTooltip>Rent</OffersTooltip>
+                        </OffersTooltipWrap>
+                      </OffersTdText>
+                      <OffersTdText className="offers-table-item">
+                        <ItemIcon>
+                          <img
+                            src={i.tokenURI}
+                            width={25}
+                            height={25}
+                            alt="item icon"
+                          />
+                        </ItemIcon>
+                        <ItemName>{i.tokenName}</ItemName>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <PriceTextETH>
+                          {i.offeredColloteralWei}/{i.offeredPremiumInNum}
+                        </PriceTextETH>
+                        <WethText>WETH</WethText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText>In 20 hours</OffersText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText color="#5D3F92">{i.owner}</OffersText>
+                      </OffersTdText>
+                      <OffersTdEmpty></OffersTdEmpty>
+                      <OffersTdButton>
+                        <MakeOfferBTN>Edit Offer</MakeOfferBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <DenyBTN
+                          onClick={() => removeStakingOffer(i.stakingId)}
+                        >
+                          Cancel
+                        </DenyBTN>
+                      </OffersTdButton>
+                    </OffersTr>
+                  );
+                })}
+                {userOffersForBuy.map((i) => {
+                  return (
+                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                      <OffersTdText className="first-column">
+                        <CartIco />
+                        <OffersTooltipWrap className="offers-tooltip">
+                          <OffersTooltip>Buy</OffersTooltip>
+                        </OffersTooltipWrap>
+                      </OffersTdText>
+                      <OffersTdText className="offers-table-item">
+                        <ItemIcon>
+                          <img
+                            src={i.tokenURI}
+                            width={25}
+                            height={25}
+                            alt="item icon"
+                          />
+                        </ItemIcon>
+                        <ItemName>{i.tokenName}</ItemName>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                        <WethText>WETH</WethText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText>In 20 hours</OffersText>
+                      </OffersTdText>
+                      <OffersTdText>
+                        <OffersText color="#5D3F92">{i.owner}</OffersText>
+                      </OffersTdText>
+                      <OffersTdEmpty></OffersTdEmpty>
+                      <OffersTdButton>
+                        <MakeOfferBTN>Edit Offer</MakeOfferBTN>
+                      </OffersTdButton>
+                      <OffersTdButton>
+                        <DenyBTN
+                          onClick={() => {
+                            cancelListingOffer(i.listingId);
+                          }}
+                        >
+                          Cancel
+                        </DenyBTN>
+                      </OffersTdButton>
+                    </OffersTr>
+                  );
+                })}
+              </>
+            )}
+          </OffersWrapTable>
+        </OfferMenuWrap>
+      </>
+    ),
+  };
 };
 
 export default OffersMenu;
