@@ -21,6 +21,7 @@ import {
   WethText,
   PriceTextETH,
   CancelBtnWrapper,
+  NFTImg,
 } from "./Menu.styles";
 import { OfferType } from "./types";
 
@@ -535,11 +536,7 @@ const OffersMenu = () => {
                       </OffersTdText>
                       <OffersTdText className="offers-table-item">
                         <ItemIcon>
-                          <img
-                            src={i.tokenURI}
-                            alt="item image"
-                            className="offers-item-image"
-                          />
+                          <NFTImg src={i.tokenURI} alt="item image" />
                         </ItemIcon>
                         <ItemName>{i.tokenName}</ItemName>
                         <ItemVerifyIco />
@@ -591,12 +588,7 @@ const OffersMenu = () => {
                       </OffersTdText>
                       <OffersTdText className="offers-table-item">
                         <ItemIcon>
-                          <img
-                            src={i.tokenURI}
-                            width={30}
-                            height={30}
-                            alt="item icon"
-                          />
+                          <NFTImg src={i.tokenURI} alt="item icon" />
                         </ItemIcon>
                         <ItemName>{i.tokenName}</ItemName>
                       </OffersTdText>
@@ -660,12 +652,7 @@ const OffersMenu = () => {
                       </OffersTdText>
                       <OffersTdText className="offers-table-item">
                         <ItemIcon>
-                          <img
-                            src={i.tokenURI}
-                            width={25}
-                            height={25}
-                            alt="item icon"
-                          />
+                          <NFTImg src={i.tokenURI} alt="item icon" />
                         </ItemIcon>
                         <ItemName>{i.tokenName}</ItemName>
                       </OffersTdText>
@@ -706,12 +693,7 @@ const OffersMenu = () => {
                       </OffersTdText>
                       <OffersTdText className="offers-table-item">
                         <ItemIcon>
-                          <img
-                            src={i.tokenURI}
-                            width={25}
-                            height={25}
-                            alt="item icon"
-                          />
+                          <NFTImg src={i.tokenURI} alt="item icon" />
                         </ItemIcon>
                         <ItemName>{i.tokenName}</ItemName>
                       </OffersTdText>
