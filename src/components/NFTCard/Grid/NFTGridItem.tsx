@@ -155,14 +155,13 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <PriceItem>
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>{props.price ?? "-"}</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Price for rent</span>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>
                 {props.colloteralWei
                   ? ethers.utils.formatUnits(
@@ -171,20 +170,21 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                     )
                   : "-"}
               </PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <TextSpan>Top Offer</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>-</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <TextSpan>Last Sales</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>-</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
         </PriceList>

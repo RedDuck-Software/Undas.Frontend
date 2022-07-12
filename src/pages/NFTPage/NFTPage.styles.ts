@@ -510,6 +510,9 @@ export const RentElement = styled.li<{ h?: string }>`
   justify-content: space-between;
   align-items: center;
   color: #7c7c7c;
+  &.center {
+    border-radius: 0;
+  }
   @media (max-width: 576px) {
     font-size: 14px;
     line-height: 17px;

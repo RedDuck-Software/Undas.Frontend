@@ -1,4 +1,5 @@
-import React from "react";
+import { useWeb3React } from "@web3-react/core";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -12,6 +13,7 @@ import {
   AchievmentsBlock,
 } from "./AccountCard.styles";
 
+import { Message } from "../../../../globalStyles";
 import { Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { ImageWrap } from "../../../CollectionPage/page-components/CollectionCard/CollectionCard.styles";
 import ProfilePic from "../../assets/profile-pic.png";
@@ -25,14 +27,32 @@ import {
 } from "../../imports";
 
 interface IAccountCard {
-  account?: string;
+  profile?: string;
   disconnect?: any;
 }
 
-const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
-  const accountSplit = account?.split("");
-  accountSplit?.splice(6, 32, "...");
+const AccountCard: React.FC<IAccountCard> = ({ profile, disconnect }) => {
+  const profileSplit = profile?.split("");
+  profileSplit?.splice(6, 32, "...");
   const navigate = useNavigate();
+
+  const { account } = useWeb3React();
+  const [userAccount, setAccount] = useState<any>();
+
+  useEffect(() => {
+    if (account) {
+      setAccount(account);
+    }
+  }, [account, userAccount]);
+
+  const [show, setShow] = useState(false);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(userAccount);
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
+  };
   //
   return (
     <AccountWrap>
@@ -42,9 +62,10 @@ const AccountCard: React.FC<IAccountCard> = ({ account, disconnect }) => {
         </ImageWrap>
         <Wrapper disp="flex" flexDirection="column" gap="10px">
           <Name>Unnamed</Name>
-          <Wrapper disp="flex" gap="10px">
-            <span>{accountSplit?.join("")}</span>
+          <Wrapper disp="flex" gap="10px" onClick={copyToClipboard}>
+            <span>{profileSplit?.join("")}</span>
             <CopyIco />
+            <Message opacity={show}>Adress is Copied!</Message>
           </Wrapper>
           <span>&#34;Return&#34; is a meditation o...</span>
           <GrayText>Was a long time ago</GrayText>
