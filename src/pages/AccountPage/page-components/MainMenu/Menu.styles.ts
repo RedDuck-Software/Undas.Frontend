@@ -133,8 +133,8 @@ export const OffersWrapTable = styled.table`
 `;
 
 export const ItemIcon = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   margin-right: 5px;
   & .offers-item-image {
     width: 100%;
@@ -325,6 +325,7 @@ export const PriceTextETH = styled.span`
   line-height: 20px;
   color: #232428;
   display: inline-block;
+  display: flex;
   @media (max-width: 576px) {
     font-size: 14px;
   }
@@ -391,4 +392,9 @@ export const ClearAll = styled.button`
   border: none;
   background: transparent;
   margin-left: 15px;
+`;
+
+export const NFTImg = styled.img`
+  width: 50px;
+  height: 50px;
 `;
