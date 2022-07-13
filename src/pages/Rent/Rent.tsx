@@ -17,7 +17,7 @@ import {
   ContentItemPriceUsd,
   ContentItemPriceUnd,
   InputBlock,
-  RentalLable,
+  // RentalLable,
   CheckboxRow,
   CheckboxInput,
   CheckboxLabel,
@@ -143,7 +143,7 @@ const Rent: React.FC = () => {
           <ContentWrapper>
             <LeftBlock>
               <ContentItem>
-                <ContentItemName>Cost Day</ContentItemName>
+                <ContentItemName>Cost per day</ContentItemName>
                 <ContentItemPriceWrap>
                   <ContentItemPriceEth>{premium}</ContentItemPriceEth>
                   <ContentItemPriceUsd>$36,93</ContentItemPriceUsd>
@@ -179,9 +179,9 @@ const Rent: React.FC = () => {
               </ContentItem>
               <ContentItem>
                 <ContentItemName className="width">
-                  Rental price for
+                Rent for
                   <InputBlock>
-                    <RentalLable htmlFor="period">Select Period</RentalLable>
+                    {/* <RentalLable htmlFor="period">Select Period</RentalLable> */}
                     <RentalPeriod
                       id="period"
                       placeholder="7 for 90 days"
