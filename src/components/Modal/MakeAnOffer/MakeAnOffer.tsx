@@ -31,7 +31,6 @@ import { NFTImg, UNDIco } from "../imports";
 const MakeAnOffer: React.FC = () => {
   const dispatch = useDispatch();
   const tokenId = useSelector(useToken);
-  console.log(tokenId);
 
   // const { connector } = useContext(Context);
 

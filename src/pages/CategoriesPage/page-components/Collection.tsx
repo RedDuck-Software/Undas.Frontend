@@ -81,7 +81,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
        `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("data", data.data.tokens);
     return data;
   }
 
@@ -92,7 +91,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
       setCollectionItems(response);
     }
   }
-  console.log(collectionItems);
 
   return (
     <>
@@ -127,7 +125,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <>
                 {result ? (
                   result.map((collectionItem) => {
-                    console.log(i.id);
 
                     if (i.id == collectionItem.collectionId) {
                       return (

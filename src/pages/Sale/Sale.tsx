@@ -192,7 +192,6 @@ const Sale: React.FC = () => {
     setLoadingRent(true);
     await tx.wait();
     if (autoRedirect) {
-      console.log("autoredirect");
       setAutoRedirect(false);
       navigate("/account");
     }
