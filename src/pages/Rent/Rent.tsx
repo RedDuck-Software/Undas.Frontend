@@ -179,7 +179,7 @@ const Rent: React.FC = () => {
               </ContentItem>
               <ContentItem>
                 <ContentItemName className="width">
-                Rent for
+                  Rent for
                   <InputBlock>
                     {/* <RentalLable htmlFor="period">Select Period</RentalLable> */}
                     <RentalPeriod
