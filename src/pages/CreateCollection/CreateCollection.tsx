@@ -163,11 +163,6 @@ const CreateCollection: React.FC = () => {
     );
     const signer = provider.getSigner(0);
 
-    console.log(collectionName);
-    console.log(collectionUrl);
-    console.log(collectionInfo);
-    console.log(category);
-
     const NFTContract = UndasGeneralNFT__factory.connect(
       "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
       signer,

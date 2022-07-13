@@ -197,14 +197,11 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
 
   // async function getNetwork(){
   //   const provider:any = await detectEthereumProvider();
-  //   console.log('getProvider')
   //
   //   const chainId = await provider.request({ method: "eth_chainId" });
-  //   console.log('chainId',chainId)
   //   const goerliTestChainId = '0x5'
   //
   //   if (network === goerliTestChainId) {
-  //     console.log("you are on the correct network");
   //   } else {
   //     await provider.request({
   //       method: 'wallet_switchEthereumChain',

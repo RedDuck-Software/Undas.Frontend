@@ -121,8 +121,7 @@ const NFTPage: React.FC = () => {
 
     const signer = provider.getSigner(0);
     const singerAddress = await (await signer.getAddress()).toLowerCase();
-    console.log("seeller", seller);
-    console.log("state", state);
+
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
@@ -171,9 +170,7 @@ const NFTPage: React.FC = () => {
 
   const getShowBuy = async () => {
     if (!connector) {
-      console.log("!connector");
     }
-    console.log("listingID", listingId);
     if (listingId) {
       setShowBuy(true);
     } else {
@@ -198,12 +195,10 @@ const NFTPage: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log("tokensQuery", tokensQuery);
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
-      console.log("tokensQuery.data.listings[0].id;");
       setName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setPriceInNum(tokensQuery.data.listings[0].price);
@@ -241,8 +236,7 @@ const NFTPage: React.FC = () => {
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-  console.log("stateID", state.state.tokenId);
-  console.log("stateADDRESS", state.state.tokenAddress);
+
 
   const tokensQuery = `
 {
