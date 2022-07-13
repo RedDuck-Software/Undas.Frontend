@@ -29,7 +29,7 @@ export const NFTWrap = styled.div`
   overflow: hidden;
   border: 1px solid rgba(124, 124, 124, 0.25);
   transition: all 0.3s;
-  max-width: 420px;
+  max-width: 290px;
   &:hover {
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
   }
