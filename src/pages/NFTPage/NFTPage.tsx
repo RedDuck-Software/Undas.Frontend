@@ -170,6 +170,7 @@ const NFTPage: React.FC = () => {
 
   const getShowBuy = async () => {
     if (!connector) {
+      return;
     }
     if (listingId) {
       setShowBuy(true);
