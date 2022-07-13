@@ -213,7 +213,7 @@ export const SettingsElement = styled.li``;
 export const GridLayout = styled.div`
   display: grid;
   grid-gap: 30px 15px;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
 
   @media (max-width: 786px) {
