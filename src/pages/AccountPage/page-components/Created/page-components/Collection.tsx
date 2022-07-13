@@ -42,7 +42,6 @@ interface CollectionWithCards {
 const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
 
-  console.log(itemList);
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
@@ -118,7 +117,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <>
                 {result ? (
                   result.map((collectionItem) => {
-                    console.log(i.id);
                     if (i.id == collectionItem.collectionId) {
                       return (
                         <NFTCards

@@ -81,7 +81,6 @@ const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
   items: any;
 }> = ({ setCollection, items }) => {
-  console.log(items);
   return (
     <>
       {items.map((item: any) => {
@@ -134,7 +133,6 @@ const CreateNFT: React.FC = () => {
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  console.log(account, "account");
   const [file, setFile] = useState<string>();
   const [fileSizeError, setFileSizeError] = useState<{
     message: string;
@@ -179,7 +177,6 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    console.log("collection.collectionId", collection.collectionId);
     if (collection.collectionId == "") {
       alert("Choose collection or create if it doesn`t exist ");
       return;
@@ -268,7 +265,6 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log("tokensQuery", tokensQuery);
     setCollectionsList(tokensQuery.data.collections);
   };
 
@@ -289,7 +285,6 @@ const CreateNFT: React.FC = () => {
 
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("DATA", data);
     return data;
   }
 

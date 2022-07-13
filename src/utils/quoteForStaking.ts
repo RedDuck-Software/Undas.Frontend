@@ -25,7 +25,6 @@ export const quoteForStaking = async (
     MARKETPLACE_ADDRESS,
     signer,
   );
-  console.log(MarketplaceContract);
   const isApprovedForAll = await NFTContract.isApprovedForAll(
     SIGNER_ADDRESS,
     MARKETPLACE_ADDRESS,

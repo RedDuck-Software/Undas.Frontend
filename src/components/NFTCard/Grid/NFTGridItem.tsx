@@ -54,7 +54,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const [isOwner, setIsOwner] = useState<boolean>(false);
 
   function setOwner() {
-    if (userAccount && userAccount.toLowerCase() == props.collectionOwner) {
+  
+    if (userAccount && userAccount.toLowerCase() == props.tokenOwner) {
       setIsOwner(true);
     }
   }
@@ -138,14 +139,13 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             </BuyBtn>
           ) : (
             <BuyBtn
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate(
-                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
-                  { state: { state: { ...props } } },
-                );
-                e.stopPropagation();
-              }}
+            onClick={(e) => {
+              navigate(
+                `/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,
+                { state: { ...props } },
+              );
+              e.stopPropagation();
+            }}
             >
               View
             </BuyBtn>
@@ -155,14 +155,13 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <PriceItem>
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>{props.price ?? "-"}</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <span>Price for rent</span>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>
                 {props.colloteralWei
                   ? ethers.utils.formatUnits(
@@ -171,20 +170,21 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                     )
                   : "-"}
               </PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <TextSpan>Top Offer</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>-</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
           <PriceItem>
             <TextSpan>Last Sales</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <EthLogo />
               <PriceInEth>-</PriceInEth>
+              <EthLogo />
             </Wrapper>
           </PriceItem>
         </PriceList>
