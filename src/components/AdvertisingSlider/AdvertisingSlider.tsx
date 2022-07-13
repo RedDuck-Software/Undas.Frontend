@@ -47,7 +47,9 @@ const AdvertisingSlider: React.FC = () => {
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 30,
+            },
+            1700: {
+              slidesPerView: 4,
             },
           }}
         >
