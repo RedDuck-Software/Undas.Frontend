@@ -54,7 +54,10 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const [isOwner, setIsOwner] = useState<boolean>(false);
 
   function setOwner() {
-    if (userAccount && userAccount.toLowerCase() == props.collectionOwner) {
+    console.log('here')
+    console.log(props)
+    if (userAccount && userAccount.toLowerCase() == props.tokenOwner) {
+      console.log('owner')
       setIsOwner(true);
     }
   }
@@ -138,14 +141,13 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             </BuyBtn>
           ) : (
             <BuyBtn
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate(
-                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
-                  { state: { state: { ...props } } },
-                );
-                e.stopPropagation();
-              }}
+            onClick={(e) => {
+              navigate(
+                `/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,
+                { state: { ...props } },
+              );
+              e.stopPropagation();
+            }}
             >
               View
             </BuyBtn>
