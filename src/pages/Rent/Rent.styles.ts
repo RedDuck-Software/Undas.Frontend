@@ -155,13 +155,13 @@ export const ContentItemPriceUnd = styled.span`
 export const InputBlock = styled.span`
   margin: 0 10px;
 `;
-export const RentalLable = styled.label`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  margin-right: 10px;
-  color: #7c7c7c;
-`;
+// export const RentalLable = styled.label`
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 17px;
+//   margin-right: 10px;
+//   color: #7c7c7c;
+// `;
 export const Total = styled(ContentItemName)`
   font-size: 24px;
   line-height: 29px;

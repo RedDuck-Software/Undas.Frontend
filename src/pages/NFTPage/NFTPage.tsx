@@ -170,6 +170,7 @@ const NFTPage: React.FC = () => {
 
   const getShowBuy = async () => {
     if (!connector) {
+      return;
     }
     if (listingId) {
       setShowBuy(true);
@@ -235,8 +236,6 @@ const NFTPage: React.FC = () => {
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-
-
 
   const tokensQuery = `
 {

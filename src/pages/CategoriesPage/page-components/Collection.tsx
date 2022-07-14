@@ -125,7 +125,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <>
                 {result ? (
                   result.map((collectionItem) => {
-
                     if (i.id == collectionItem.collectionId) {
                       return (
                         <NFTCards

@@ -60,7 +60,6 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
     tokenOwner: item.itemLists.tokenOwner,
   };
 
-
   return (
     <Tabs defaultActiveKey="second" id="tab-nft" className="my-tabs">
       <Tab

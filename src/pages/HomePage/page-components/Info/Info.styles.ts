@@ -27,7 +27,7 @@ export const InfoWrap = styled.ul`
   }
 `;
 
-export const InfoList = styled(Link)`
+export const InfoList = styled(Link).attrs({ target: "_blank" })`
   max-width: 230px;
   display: flex;
   gap: 10px;
