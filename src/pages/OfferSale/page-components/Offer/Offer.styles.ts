@@ -807,5 +807,4 @@ export const BlockchainIMG = styled.img`
     height: 20px;
     margin-right: 10px;
     margin-top: -4px;
-}
 `;

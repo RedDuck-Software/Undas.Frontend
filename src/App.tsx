@@ -56,6 +56,7 @@ import {
   ArticlePage,
   BlogThemeWrap,
   ClaimUND,
+  InteractionRent,
 } from "./pages";
 import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
 import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
@@ -213,6 +214,7 @@ const App: React.FC = () => {
               element={<BlogThemeWrap blogComponent={<News />} />}
             />
             <Route path="/claim-UND-test" element={<ClaimUND />} />
+            <Route path="/interaction-rent" element={<InteractionRent />} />
           </Routes>
         </Provider>
       </Context.Provider>
