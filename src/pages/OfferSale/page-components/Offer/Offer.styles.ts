@@ -803,8 +803,8 @@ export const MenuItem = styled(FilterItem)<IMenuItem>`
 `;
 
 export const BlockchainIMG = styled.img`
-    width:20px;
-    height: 20px;
-    margin-right: 10px;
-    margin-top: -4px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-top: -4px;
 `;

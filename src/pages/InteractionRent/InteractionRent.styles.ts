@@ -64,13 +64,13 @@ export const MainContainer = styled.div`
   flex-wrap: wrap;
 `;
 export const ContentWrap = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media (max-width: 768px) {
-        flex-direction: column-reverse;
-        gap: 30px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
 `;
 export const ContentItem = styled.div`
   display: flex;
@@ -394,7 +394,6 @@ export const Button = styled.button`
   @media (max-width: 992px) {
     width: 100%;
   }
-
 `;
 export const TextDay = styled.div`
   font-family: "Montserrat";

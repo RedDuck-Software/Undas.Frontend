@@ -4,5 +4,4 @@ import eth from "./assets/eth.svg";
 import UND from "./assets/UND.svg";
 import verify from "./assets/verify.svg";
 
-
 export { back, verify, UND, cardNFT, eth };

@@ -151,51 +151,51 @@ const InteractionRent: React.FC = () => {
       <Container>
         <TitleText>Interaction with Rent</TitleText>
         <ContentWrap>
-        <FirstCollumn>
-          <ContentItem>
-            <ContentItemName className="width">
-              Extend rental
-              <InputBlock>
-                <RentalPeriod
-                  id="period"
-                  placeholder="7 for 90 days"
-                  onChange={handleRentalDays}
-                />
-              </InputBlock>
-              days
-            </ContentItemName>
-            <ContentItemPriceWrap className="column">
-              <ContentItemPriceEth>0,035</ContentItemPriceEth>
-              <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
-            </ContentItemPriceWrap>
-          </ContentItem>
-        </FirstCollumn>
-        <SecondCollumn>
-          <NameRow>
-            <CollectionName>Owner item</CollectionName>
-          </NameRow>
-          <NFTInfoContainer className="max-width">
-            <NFTCard uri="string" name="string" />
-          </NFTInfoContainer>
-        </SecondCollumn>
+          <FirstCollumn>
+            <ContentItem>
+              <ContentItemName className="width">
+                Extend rental
+                <InputBlock>
+                  <RentalPeriod
+                    id="period"
+                    placeholder="7 for 90 days"
+                    onChange={handleRentalDays}
+                  />
+                </InputBlock>
+                days
+              </ContentItemName>
+              <ContentItemPriceWrap className="column">
+                <ContentItemPriceEth>0,035</ContentItemPriceEth>
+                <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
+              </ContentItemPriceWrap>
+            </ContentItem>
+          </FirstCollumn>
+          <SecondCollumn>
+            <NameRow>
+              <CollectionName>Owner item</CollectionName>
+            </NameRow>
+            <NFTInfoContainer className="max-width">
+              <NFTCard uri="string" name="string" />
+            </NFTInfoContainer>
+          </SecondCollumn>
         </ContentWrap>
-      <AgreeRow>
-        <CheckBoxCenter>
-          <CheckboxInputAgreement
-            type="checkbox"
-            id="agreement"
-            className="custom-checkbox"
-          />
-          <CheckboxLabelAgreement htmlFor="agreement">
-            I agree to the platform {"\u00A0"}
-            <AgreementLink>agreement...</AgreementLink>
-          </CheckboxLabelAgreement>
-        </CheckBoxCenter>
-      </AgreeRow>
-      <ButtonsBlock>
-        <Button>Extend rental</Button>
-        <Button>Return the leased NFT</Button>
-      </ButtonsBlock>
+        <AgreeRow>
+          <CheckBoxCenter>
+            <CheckboxInputAgreement
+              type="checkbox"
+              id="agreement"
+              className="custom-checkbox"
+            />
+            <CheckboxLabelAgreement htmlFor="agreement">
+              I agree to the platform {"\u00A0"}
+              <AgreementLink>agreement...</AgreementLink>
+            </CheckboxLabelAgreement>
+          </CheckBoxCenter>
+        </AgreeRow>
+        <ButtonsBlock>
+          <Button>Extend rental</Button>
+          <Button>Return the leased NFT</Button>
+        </ButtonsBlock>
       </Container>
     </MainContainer>
   );
