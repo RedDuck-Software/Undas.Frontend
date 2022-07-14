@@ -15,8 +15,8 @@ export const hasOffersAction = (hasOffers: boolean) => ({
     payload: hasOffers,
 })
 
-export function addSelectedCollection(collectionIcon: string, collectionName: string) {
-    const action = { type: Filter.addCollection, payload: { collectionIcon, collectionName } };
+export function addSelectedCollection(id: string | number, collectionIcon: string, collectionName: string) {
+    const action = { type: Filter.addCollection, payload: {id, collectionIcon, collectionName } };
     return action;
 }
 

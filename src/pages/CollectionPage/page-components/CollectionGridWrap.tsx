@@ -30,7 +30,9 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
       {itemList.map((item: GridItem) => {
         return (
           <NFTGridItem
-            key={item.name + item.id + item.URI}
+            key={
+              item.name + item.id + item.URI + item.stakingId + item.listingId
+            }
             tokenId={+item.id}
             URI={item.URI}
             name={item.name}
