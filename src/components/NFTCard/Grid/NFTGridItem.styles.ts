@@ -61,6 +61,9 @@ export const Name = styled.span`
   @media (max-width: 768px) {
     font-size: 12px;
   }
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
 `;
 export const CollectionName = styled(Link)`
   font-weight: 400;
@@ -147,6 +150,7 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
   @media (max-width: 576px) {
     padding: 14px 0;
+    max-width: 100%;
   }
 `;
 

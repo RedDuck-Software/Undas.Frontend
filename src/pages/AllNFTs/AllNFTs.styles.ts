@@ -215,7 +215,12 @@ export const GridLayout = styled.div`
   grid-gap: 30px 15px;
   grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
-
+  @media (max-width: 1700px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
   @media (max-width: 786px) {
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
