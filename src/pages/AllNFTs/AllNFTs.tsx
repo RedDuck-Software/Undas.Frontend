@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "urql";
 
-// eslint-disable-next-line import/order
 import {
   AllNFTContainer,
   MenuWrap,

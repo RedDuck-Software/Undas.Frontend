@@ -9,6 +9,7 @@ import {
   useBuy,
   useHasOffers,
   useRent,
+  useSelectedCollections,
 } from "../../../store/reducers/Filter/helpers";
 import Context from "../../../utils/Context";
 
@@ -56,11 +57,42 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const [hasOffersList, setHasOffersList] = useState<
     (ItemsProps | StakingsProps)[]
   >([]);
+  // selected collections
+  const selectedCollectionFilter = useSelector(useSelectedCollections);
+  const [selectedCollectionsTokens, setSelectedCollectionsTokens] =
+    useState<any>([]);
 
   const [loading, setLoading] = useState(true);
   const [amountOfNFTs, setAmountOfNFTs] = useState(0);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
+
+  const getCollectionsTokens = async () => {
+    const tokens = await fetchCollectionTokens(selectedCollectionFilter);
+    const mergedCollections: any[] = [];
+    for (const key of Object.keys(tokens)) {
+      const value = tokens[key];
+      mergedCollections.push(...value);
+    }
+    const selectedCollectionTokens: any = [];
+
+    mergedCollections.map((nft: any) => {
+      const priceInNum = nft.price
+        ? Number(ethers.utils.formatUnits(nft.price, 18))
+        : 0;
+      selectedCollectionTokens.push({
+        priceInNum,
+        id: nft.id,
+        name: nft.name,
+        URI: nft.uri,
+        collectionId: nft.collectionId,
+        collectionName: nft.collectionName,
+        tokenAddress: "0x82907ed3c6adea2f470066abf614f3b38094bef2",
+      });
+    });
+
+    return selectedCollectionTokens;
+  };
 
   const getListings = async () => {
     setAmountOfNFTs(0);
@@ -195,6 +227,14 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
     }
   }
 
+  async function getCollectionsTokensData() {
+    const response = await getCollectionsTokens();
+    if (response) {
+      setSelectedCollectionsTokens(response);
+      setCommonList(response);
+    }
+  }
+
   // async function getNetwork(){
   //   const provider:any = await detectEthereumProvider();
   //
@@ -225,7 +265,9 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   const priceSort = async () => {
     fetchData();
     if (!priceFilter) return list;
+
     let sortedArr;
+
     if (priceFilter === "low-to-high") {
       sortedArr = list?.sort(
         (a: { priceInNum: any }, b: { priceInNum: any }) => {
@@ -240,6 +282,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
       );
       return sortedArr;
     }
+
     if (priceFilter === "high-to-low") {
       sortedArr = list?.sort(
         (a: { priceInNum: any }, b: { priceInNum: any }) => {
@@ -316,6 +359,18 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
     stackingFilter.stacking,
     hasOfferFilter.hasOffers,
   ]);
+
+  useEffect(() => {
+    getCollectionsTokensData();
+    console.log("set fetched collections", selectedCollectionsTokens);
+    if (selectedCollectionFilter.length == 0) {
+      const common: (ItemsProps | StakingsProps | any)[] = [
+        ...list,
+        ...stakingsList,
+      ];
+      setCommonList(common);
+    }
+  }, [selectedCollectionFilter]);
 
   useEffect(() => {
     if (commonList) getResults(commonList.length);
@@ -402,6 +457,26 @@ const tokensHasOffersQuery = `
   }
 `;
 
+const collectionsTokens = (selectedCollectionFilter: []) => {
+  const query = `{${selectedCollectionFilter.map(
+    (item: { id: number | string }) => {
+      return `
+        tokens_${item.id}: tokens(where: {collectionId: ${item.id}}) {
+          id
+          name
+          uri
+          price
+          colloteral
+          premiumWei
+          collectionId
+          collectionName
+        }
+      `;
+    },
+  )}}`;
+  return query;
+};
+
 const client = createClient({
   url: APIURL,
 });
@@ -418,6 +493,13 @@ async function fetchStakingData() {
 
 async function fetchHasOfferData() {
   const data = await client.query(tokensHasOffersQuery).toPromise();
+  return data.data;
+}
+
+async function fetchCollectionTokens(selectedCollections: []) {
+  const customQuery = collectionsTokens(selectedCollections);
+
+  const data = await client.query(customQuery).toPromise();
   return data.data;
 }
 

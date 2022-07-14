@@ -361,6 +361,7 @@ export const SearchInputWrapper = styled.input<{ maxWidth?: string }>`
 `;
 export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
   margin-bottom: ${({ mb }) => (mb ? mb : "12px")};
+  margin: auto 0;
 `;
 
 export const CheckboxInputWrapperCentered = styled.div<{ mr?: string }>`
@@ -450,8 +451,7 @@ export const CategoryItemTitleIcon = styled.img`
 
 export const FilterCollectionItemWrapper = styled.div`
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   margin: 15px;
   max-width: 255px;
 `;
@@ -460,19 +460,22 @@ export const FilterCollectionItemTitle = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   text-align: start;
-  margin-right: 25px;
+  margin-right: auto;
 `;
 
 export const CollectionItemTitleIcon = styled.img`
   margin-right: 5px;
+  width: 24px;
+  height: 24px;
 `;
 
 export const CollectionItemTitleName = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  white-space: nowrap;
 `;
 
 export const CollectiomItemTitleVol = styled.span`
@@ -480,15 +483,14 @@ export const CollectiomItemTitleVol = styled.span`
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
-  margin-top: 5px;
 `;
 
-export const CollectionItemVerifyWrapper = styled.div`
+export const CollectionItemInfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: auto;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 5px;
 `;
 
 export const CollectionItemVerify = styled.div`
@@ -509,9 +511,7 @@ export const CollectionItemVerifyText = styled.span`
   color: #873dc1;
 `;
 
-export const CollectionItemVerifyFloor = styled(CollectiomItemTitleVol)`
-  margin-top: 10px;
-`;
+export const CollectionItemVerifyFloor = styled(CollectiomItemTitleVol)``;
 
 export const FilterChainItemWrapper = styled.div`
   display: flex;
