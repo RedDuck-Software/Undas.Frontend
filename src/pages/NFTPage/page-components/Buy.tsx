@@ -15,8 +15,8 @@ import {
   ButtonWrap,
   InfoButton,
   PriceWrap,
-  NotListedWrapper,
-  NotListed,
+  // NotListedWrapper,
+  // NotListed,
 } from "../NFTPage.styles";
 
 interface BuyProps {
@@ -133,9 +133,27 @@ const Buy: React.FC<BuyProps> = ({
   return (
     <>
       {showBuy === false && isOwner === true ? (
-        <NotListedWrapper>
-          <NotListed>Not listed for sale</NotListed>
-        </NotListedWrapper>
+         <BuyBar>
+         
+         <ButtonWrap>
+         <Wrapper disp="flex" alignItems="center">
+           Not listed for sale yet
+         </Wrapper>
+           <InfoButton
+             fc="#873DC1"
+             disabled={!isOwner}
+             onClick={(e) => {
+               e.stopPropagation();
+               navigate(
+                `/offer-for-not-listed-nft/tokenAddress=${state.tokenAddress}&id=${state.tokenId}`,
+                { state: { state } },
+               );
+             }}
+           >
+             Make offer to purchase
+           </InfoButton>
+         </ButtonWrap>
+       </BuyBar>
       ) : (
         <BuyBar>
           <span>Current price</span>

@@ -41,6 +41,7 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
             listingId={item.listingId}
             tokenAddress={item.tokenAddress}
             tokenOwner={item.tokenOwner}
+            collectionId={item.collectionId}
             collectionOwner={item.collectionOwner}
             collectionName={item.collectionName}
           />

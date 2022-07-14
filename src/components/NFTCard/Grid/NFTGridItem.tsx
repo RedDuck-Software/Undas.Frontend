@@ -52,7 +52,6 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const { account } = useWeb3React();
   const [userAccount, setAccount] = useState<any>();
   const [isOwner, setIsOwner] = useState<boolean>(false);
-
   function setOwner() {
     if (userAccount && userAccount.toLowerCase() == props.tokenOwner) {
       setIsOwner(true);

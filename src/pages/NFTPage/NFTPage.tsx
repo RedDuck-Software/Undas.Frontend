@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+  import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
@@ -55,7 +55,6 @@ import {
   RentalPeriod,
   RightSideBlock,
   NotListed,
-  NotListedWrapper,
   OwnerSettingsWrapper,
   OwnerSettingsButton,
   OwnerSettingsNavigation,
@@ -98,6 +97,7 @@ const NFTPage: React.FC = () => {
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
   const [, setcollectionName] = useState<string>("No collection");
+  const [status, setStatus] = useState('');
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -105,11 +105,9 @@ const NFTPage: React.FC = () => {
   const [isOwner, setIsOwner] = useState(true);
 
   const state: any = useLocation();
-
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
-
   const getOwner = async () => {
     if (!connector) {
       return;
@@ -130,7 +128,6 @@ const NFTPage: React.FC = () => {
       setIsOwner(false);
     }
   };
-
   async function rentToken(
     stakingId: number,
     colloteralWei?: number,
@@ -172,7 +169,7 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       return;
     }
-    if (listingId) {
+    if (listingId && status == 'ACTIVE') {
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -180,7 +177,7 @@ const NFTPage: React.FC = () => {
   };
 
   async function getShowRent() {
-    if (stakingId) {
+    if (stakingId && status == 'ACTIVE') {
       setShowRent(true);
     } else {
       setShowRent(false);
@@ -206,6 +203,7 @@ const NFTPage: React.FC = () => {
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
       setSeller(tokensQuery.data.listings[0].seller);
+      setStatus(tokensQuery.data.listings[0].listingStatus);
       setcollectionName(
         tokensQuery.data.listings[0].collectionName
           ? tokensQuery.data.listings[0].collectionName
@@ -215,7 +213,7 @@ const NFTPage: React.FC = () => {
 
       return;
     }
-
+    
     if (
       tokensQuery.data.stakingListings[0] &&
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
@@ -223,6 +221,7 @@ const NFTPage: React.FC = () => {
       setName(tokensQuery.data.stakingListings[0].tokenName);
       setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
+      setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
       setSeller(tokensQuery.data.stakingListings[0].seller);
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
@@ -398,9 +397,26 @@ const NFTPage: React.FC = () => {
                     </TopBar>
 
                     {showRent === false && isOwner === true ? (
-                      <NotListedWrapper>
-                        <NotListed>Not listed for rent</NotListed>
-                      </NotListedWrapper>
+                      <>
+                          <RentElement h="76px">
+
+                          <NotListed>Not listed for rent yet</NotListed>                          
+                          <InfoButton
+                            fc="#873DC1"
+                            disabled={!isOwner}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(
+                                `/offer-for-not-listed-nft/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                { state: { ...state } },
+                              );
+                            }}
+                          >
+                            Make offer to rent
+                          </InfoButton>
+                        </RentElement>
+                      </>
+                      
                     ) : (
                       <>
                         <RentElement className="center">
