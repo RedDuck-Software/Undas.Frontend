@@ -15,6 +15,7 @@ import {
   Arrow,
   FilterMenu,
   MenuSearchWrap,
+  TitleWrap,
 } from "./AllNFTs.styles";
 import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 import { getListingsData } from "./query";
@@ -22,7 +23,7 @@ import { getListingsData } from "./query";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterSelected from "../../components/FilterSelected/FilterSelected";
 import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
-import { Background } from "../../globalStyles";
+import { Background, PageTitle } from "../../globalStyles";
 import {
   buyAction,
   rentAction,
@@ -115,7 +116,7 @@ const AllNFTs: React.FC = () => {
   return (
     <Background>
       <AllNFTContainer>
-        <ASideFilter />
+        <ASideFilter marginTop="160px"/>
         <Wrapper
           w="100%"
           marg="0 0 120px 0"
@@ -124,6 +125,9 @@ const AllNFTs: React.FC = () => {
           margBottomM="80px"
         >
           {/*rm marg after deploy*/}
+          <TitleWrap>
+            <PageTitle>All NFTs</PageTitle>
+          </TitleWrap>
           <MenuWrap justifyContent="space-between">
             <SettingsBlock>
               {viewButtonsRender}
