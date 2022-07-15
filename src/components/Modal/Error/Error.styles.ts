@@ -34,9 +34,9 @@ export const StyledHeader = styled(Modal.Header)`
     outline: 0;
     box-shadow: none;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     & .modal-title {
-        font-size: 18px;
+      font-size: 18px;
     }
   }
 `;
