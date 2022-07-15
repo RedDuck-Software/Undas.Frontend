@@ -63,6 +63,7 @@ import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
 import News from "./pages/Blog/page-components/News/News";
 import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
+import OfferFotNotListedNft from "./pages/OfferFotNotListedNft/OfferFotNotListedNft";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
 import ActivityPage from "./pages/Statistics/Statistics";
 import { ConnectorState } from "./types/ConnectorState";
@@ -192,6 +193,7 @@ const App: React.FC = () => {
             <Route path="/creator-card" element={<CreatorCardPage />} />
             <Route path="/offer-sale/:address:id" element={<OfferSale />} />
             <Route path="/offer-rent/:address:id" element={<OfferRent />} />
+            <Route path="/offer-for-not-listed-nft/:address:id" element={<OfferFotNotListedNft />} />
             <Route path="/rent/:address:id" element={<Rent />} />
             <Route path="/buy/:address:id" element={<Buy />} />
             <Route path="/nft/sale/:id" element={<Sale />} />

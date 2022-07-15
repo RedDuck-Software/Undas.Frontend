@@ -2,7 +2,6 @@ import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { useLocation, useNavigate } from "react-router-dom";
-import { createClient } from "urql";
 
 import {
   OfferContainer,
@@ -58,25 +57,26 @@ import { bsc, solana } from "../../../CreateNFT/imports";
 import { usd } from "../../../OfferRent/imports";
 import { eth, info } from "../../imports";
 
-const Offer: React.FC = () => {
+const OfferFotNotListed: React.FC = () => {
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-  const [tokenName, setTokenName] = useState<string>();
-  const [tokenURI, setTokenURI] = useState<string>();
-  const [listingId, setListingId] = useState<string>();
+  const collectionId = state.state.state.collectionId
+  const tokenId = state.state.state.tokenId
+  const tokenContract = state.state.state.tokenAddress
+
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();
-
   async function makeSaleOffer() {
+
     if (!connector) {
       navigate("/login");
       return;
     }
+
     if (!offeredPrice) return alert("no offeredPrice");
-    if (listingId == undefined) return alert("!listingid");
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -87,8 +87,12 @@ const Offer: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
-    const tx = await MarketplaceContract.listingOffer(listingId, {
+   
+    const tx = await MarketplaceContract.offerForNotListedToken( 
+      collectionId,
+      tokenId,
+      tokenContract,
+      {
       value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
     });
 
@@ -100,52 +104,9 @@ const Offer: React.FC = () => {
     }
     setLoading(false);
   }
-  useEffect(() => {
-    if (connector) {
-      getTokenData();
-    }
-  }, [connector, listingId]);
 
-  const getTokenData = async () => {
-    const tokensQuery = await fetchData();
-    if (
-      tokensQuery.data.listings[0] &&
-      tokensQuery.data.listings[0].listingStatus == "ACTIVE"
-    ) {
-      setTokenName(tokensQuery.data.listings[0].tokenName);
-      setTokenURI(tokensQuery.data.listings[0].tokenURI);
-      setListingId(tokensQuery.data.listings[0].id);
 
-      return;
-    }
-  };
-
-  const APIURL =
-    "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-  const tokensQuery = `
-{
-  listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
-    id
- 	tokenId
-    tokenURI
-    price
-    tokenName
-    token
-    tokenDescription
-    seller
-    listingStatus
-  }
-}
- `;
-  const client = createClient({
-    url: APIURL,
-  });
-
-  async function fetchData() {
-    const data = await client.query(tokensQuery).toPromise();
-
-    return data;
-  }
+  
 
   const handleCleanForm = () => {
     setLoading(false);
@@ -328,8 +289,9 @@ const Offer: React.FC = () => {
           </NameRow>
           <NFTInfoContainer className="max-width">
             <NFTCard
-              uri={tokenURI ? tokenURI : state.state.state.URI}
-              name={tokenName ? tokenName : state.state.state.tokenName}
+              uri={state.state.state.URI}
+              name={state.state.state.tokenName}
+              collectionName={state.state.state.collectionName}
             />
           </NFTInfoContainer>
         </SecondCollum>
@@ -354,4 +316,4 @@ const Offer: React.FC = () => {
   );
 };
 
-export default Offer;
+export default OfferFotNotListed;
