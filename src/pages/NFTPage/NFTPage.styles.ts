@@ -351,7 +351,7 @@ export const SaleBlock = styled.ul`
   list-style: none;
   border-radius: 10px;
   overflow: hidden;
-  margin: 20px 0;
+  padding: 30px 0;
 `;
 
 export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
@@ -363,7 +363,7 @@ export const TopBar = styled.li<{ justifyContent?: string; cursor?: string }>`
   gap: 10px;
   width: 100%;
   background-color: #fff;
-  padding: 15px 28px;
+  padding: 15px 30px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -400,7 +400,7 @@ export const NotListed = styled.p`
 `;
 
 export const BuyBar = styled.li`
-  padding: 20px 28px;
+  padding: 20px 30px;
   display: flex;
   flex-direction: column;
   font-weight: 400;
@@ -501,7 +501,7 @@ export const InfoButton = styled.button<IButton>`
 export const RentElement = styled.li<{ h?: string }>`
   gap: 30px;
   height: ${(props) => props.h || "50px"};
-  padding: 0 30px;
+  padding: 20px 30px;
   background: #fbf5ff;
   border: 1px solid rgba(124, 124, 124, 0.25);
   border-radius: 0 0 10px 10px;
@@ -548,4 +548,12 @@ export const RentalPeriod = styled.input`
 
 export const SmallAccordionWrap = styled.div`
   display: flex;
+`;
+
+export const ContainerButton = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
 `;

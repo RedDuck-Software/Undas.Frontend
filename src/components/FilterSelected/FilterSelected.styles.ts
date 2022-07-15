@@ -37,6 +37,7 @@ export const SelectedCollectionIcon = styled.img`
 `;
 export const RemoveSelectedCollection = styled.img`
   margin-left: auto;
+  cursor: pointer;
 `;
 export const RemoveAllSelectedCollection = styled.div`
   font-weight: 400;
