@@ -352,11 +352,7 @@ export const SearchInputWrapper = styled.input<{ maxWidth?: string }>`
   @media (max-width: 1200px) {
     order: 1;
     flex: 0 0 100%;
-    margin-bottom: 20px;
     max-width: 100%;
-  }
-  @media (max-width: 992px) {
-    margin-bottom: 10px;
   }
 `;
 export const CheckboxInputWrapper = styled.div<{ mb?: string }>`
@@ -420,6 +416,7 @@ export const CheckboxInput = styled.input<{ mr?: string }>`
 export const CheckboxLabel = styled.label`
   display: block;
   width: 100%;
+  cursor: pointer;
   &:hover {
     text-shadow: 0px 0px 2px rgba(124, 124, 124, 0.5);
   }
@@ -454,6 +451,9 @@ export const FilterCollectionItemWrapper = styled.div`
   flex-direction: row;
   margin: 15px;
   max-width: 255px;
+  @media (max-width: 992px) {
+    max-width: unset;
+  }
 `;
 
 export const FilterCollectionItemTitle = styled.div`

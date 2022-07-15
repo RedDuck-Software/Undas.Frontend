@@ -39,7 +39,7 @@ export const CreatedSelect = styled.div`
 `;
 export const CreatedButton = styled.button`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
   background: #ffffff;

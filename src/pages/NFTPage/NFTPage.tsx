@@ -59,6 +59,7 @@ import {
   OwnerSettingsWrapper,
   OwnerSettingsButton,
   OwnerSettingsNavigation,
+  ContainerButton,
 } from "./NFTPage.styles";
 import Accordion from "./page-components/Accordion/Accordion";
 import About from "./page-components/Accordion/accordrion-components/About";
@@ -433,31 +434,32 @@ const NFTPage: React.FC = () => {
                           <span>Period</span>
                           <RentalPeriod placeholder="7 for 90 days" />
                         </RentElement>
-                        <RentElement h="76px">
-                          <InfoButton
-                            bg="#873DC1"
-                            flex="1 1 0"
-                            className="colored-btn"
-                            disabled={!isOwner}
-                            onClick={() =>
-                              rentToken(stakingId, colloteral, premium)
-                            }
-                          >
-                            Rent
-                          </InfoButton>
-                          <InfoButton
-                            fc="#873DC1"
-                            disabled={!isOwner}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(
-                                `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
-                                { state: { ...state } },
-                              );
-                            }}
-                          >
-                            Make offer
-                          </InfoButton>
+                        <RentElement h="unset">
+                          <ContainerButton>
+                            <InfoButton
+                              bg="#873DC1"
+                              className="colored-btn"
+                              disabled={!isOwner}
+                              onClick={() =>
+                                rentToken(stakingId, colloteral, premium)
+                              }
+                            >
+                              Rent
+                            </InfoButton>
+                            <InfoButton
+                              fc="#873DC1"
+                              disabled={!isOwner}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                  { state: { ...state } },
+                                );
+                              }}
+                            >
+                              Make offer
+                            </InfoButton>
+                          </ContainerButton>
                         </RentElement>
                       </>
                     )}

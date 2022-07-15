@@ -127,6 +127,9 @@ export const CollectionDiv = styled(Link).attrs({ target: "_blank" })`
   @media (max-width: 576px) {
     display: none;
   }
+  &:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
 `;
 export const ImgNFTSmall = styled.img`
   width: 50px;
