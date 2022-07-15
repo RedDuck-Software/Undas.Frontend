@@ -23,7 +23,7 @@ import {
   SubTitleArticle,
   AboutGalleryCenter,
   SubTitleRoadmap,
-  SubTitleBuilding,
+  /*SubTitleBuilding,*/
   SubTitleOurTeam,
   SubTitleOurTeamSmallSize,
   Download,
@@ -52,30 +52,29 @@ const AboutUs: React.FC = () => {
               <AboutContentText>
                 <SubTitleArticle>Our Story</SubTitleArticle>
                 <ArticleText>
-                  <p>
-                    In 2017 the world witnessed the birth of CryptoKitties. For
-                    the first time, the world experienced a decentralized
-                    application built on blockchains but targetted towards a
-                    mainstream audience.
-                  </p>
+                <p>
+                The history of <span>UNDAS</span> began in 2021. 
+                We have witnessed the boom of the technology of non-fungible tokens and the waves that have
+                spread across all technology markets from this boom.
+                This gave us an idea to the name of the future project, <span>UNDAS</span> (from the lat.) – waves.
+                </p>
+                <p>
+                We ourselves have become active participants in this community. 
+                Exploring the market, we were surprised that the entire history of the development of NFT technology is largely
+                limited to the sale of collections, most of which may lose their value over time.
+                At <span>UNDAS</span>, we believe in the development of NFT technology and mechanics beyond the current
+                market and offer a new look at the use of non – fungible tokens - rental of virtual and
+                physical items, transfer of ownership rights in the physical and meta-worlds, passive
+                income from owning liquid NFTs, joint ownership and exchange of asset groups through NFT,
+                collateral for deposits using NFT, lending and much more.
+                </p>
+                <p>
+                The project team worked on the creation of various projects in the Defi and GameFi
+                sectors of the crypto market, as well as on traditional fintech solutions for banks.
+                Nevertheless, in our opinion, it is the NFT technology that will truly open the door
+                to the world of WEB 3.0, and we at <span>UNDAS</span> are happy to become one of the pioneers!
+                </p>
 
-                  <p>
-                    While CryptoKitties felt like a toy to many, it represented
-                    a dramatic shift in how we interact with items in the
-                    digital world. While previous digital items lived on company
-                    servers, blockchain-native items lived on shared, public
-                    blockchains owned by no single party. They could be viewed
-                    anywhere, exchanged openly, and truly owned in a way that
-                    was never before possible in the digital world.
-                  </p>
-
-                  <p>
-                    Today, we’re proud to remain the largest general marketplace
-                    for user-owned digital items, supporting multiple
-                    blockchains, with the broadest set of categories and the
-                    best prices for new emerging digital item classes.and the
-                    best prices for new emerging digital item{" "}
-                  </p>
                 </ArticleText>
               </AboutContentText>
               <AboutGalleryCenter>
@@ -84,41 +83,29 @@ const AboutUs: React.FC = () => {
             </AboutTopContent>
             <AboutBottomContent>
               <AboutContentText>
-                <SubTitleBuilding>
-                  Building an open digital economy
-                </SubTitleBuilding>
                 <ArticleText className="bottom-text">
                   <p>
-                    At <span>UNDAS</span>, we&#39;re excited about a brand new
-                    type of digital good called a non-fungible token, or NFT.
-                    NFTs have exciting new properties: they&#39;re unique,
-                    provably scarce, tradeable, and usable across multiple
-                    applications. Just like physical goods, you can do whatever
-                    you want with them! You could throw them in the trash, gift
-                    them to a friend across the world, or go sell them on an
-                    open marketplace. But unlike physical goods, they&#39;re
-                    armed with all the programmability of digital goods.
+                  <span>UNDAS</span> is a project, first of all, for the crypto and NFT community. 
+                  We have reduced the effective commission of the platform by 10 times compared to other marketplaces
+                  using a new approach to tokenomics of marketplaces. We have also introduced gamification of the 
+                  entire trading process with a progressive discount on commission. As well the team has developed 
+                  a special interface for traders, from which you can make quick bids on auctions, rent and purchase 
+                  transactions of NFT.
                   </p>
 
                   <p>
-                    A core part of our vision is that open protocols like
-                    Ethereum and interoperable standards like{" "}
-                    <span>ERC-721</span> and <span>ERC-1155</span> will enable
-                    vibrant new economies. We&#39;re building tools that allow
-                    consumers to trade their items freely, creators to launch
-                    new digital works, and developers to build rich, integrated
-                    marketplaces for their digital items.
+                  We want to enable all market participants to interact effectively. 
+                  We will use a system of return orders developed in-house for the first time on the market. 
+                  Our system allows users to return offers to each other until all the conditions of the 
+                  transaction are agreed. We have made a system of a chain of orders of gas-free. Gas users 
+                  pay only once – when recording transaction terms in the blockchain.
                   </p>
 
                   <p>
-                    We’re proud to be the first and largest marketplace for
-                    NFTs. A core part of our vision is that open protocols like
-                    Ethereum and interoperable standards like{" "}
-                    <span>ERC-721</span> and <span>ERC-1155</span> will enable
-                    vibrant new economies. We&#39;re building tools that allow
-                    consumers to trade their items freely, creators to launch
-                    new digital works, and developers to build rich, integrated
-                    marketplaces for their digital items.
+                  <span>UNDAS</span> tokenomics is unique – it allows you to pay a trading bonus to UND token holders, 
+                  NFT staking participants, buyers and sellers of all NFTs without exception. At the same time, 
+                  the payout pools are fully renewable and will only increase with the growth of users on the site 
+                  due to an increase in the volume of transactions.
                   </p>
                 </ArticleText>
               </AboutContentText>
