@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const InfoBlock = styled.div`
@@ -27,11 +27,15 @@ export const InfoWrap = styled.ul`
   }
 `;
 
-export const InfoList = styled(Link).attrs({ target: "_blank" })`
+/*for future, when it will be link, change div to (Link).attrs({ target: "_blank" })*/
+export const InfoList = styled.div`
   max-width: 230px;
   display: flex;
   gap: 10px;
   text-decoration: none;
+  &:hover{
+    cursor: pointer;
+  }
   @media (max-width: 1200px) {
     max-width: 100%;
     align-items: center;
