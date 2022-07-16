@@ -8,11 +8,9 @@ export const AboutTopContent = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  margin-bottom: 60px;
 
   @media (max-width: 992px) {
     display: block;
-    margin-bottom: 0px;
   }
 `;
 
@@ -37,10 +35,10 @@ export const AboutContentText = styled.div`
 
 export const ArticleText = styled.div`
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   color: #232428;
-  max-height: 450px;
+  max-height: 550px;
   overflow-y: auto;
   &.bottom-text {
     max-height: 690px;
@@ -83,13 +81,14 @@ export const AboutBottomContent = styled.div`
 
 export const AboutContentImage = styled.img`
   width: 50%;
-  max-height: 500px;
+  height: 50%;
 
   @media (max-width: 992px) {
     display: none;
   }
   @media (min-width: 1700px) {
-    width: 35%;
+    width: 30%;
+    height: 30%;
   }
 `;
 

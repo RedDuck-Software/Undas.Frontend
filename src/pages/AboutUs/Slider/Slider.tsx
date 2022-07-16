@@ -16,6 +16,10 @@ import {
   SliderImg3,
   SliderImg4,
   SliderImg5,
+  SliderImg6,
+  SliderImg7,
+  SliderImg8,
+  SliderImg9,
 } from "./imports";
 import { SliderImage } from "./Slider.styles";
 
@@ -32,6 +36,18 @@ export default function AboutSlider() {
           modules={[FreeMode, Navigation, Thumbs]}
           className="AboutSwiper2"
         >
+          <SwiperSlide>
+            <SliderImage src={SliderImg6} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg7} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg8} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg9} alt="slider-image" />
+          </SwiperSlide>
           <SwiperSlide>
             <SliderImage src={SliderImg1} alt="slider-image" />
           </SwiperSlide>
