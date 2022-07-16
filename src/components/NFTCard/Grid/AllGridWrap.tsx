@@ -258,10 +258,10 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
     hasOfferFilter.hasOffers,
   ]);
 
+
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
-
   return loading ? (
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
@@ -270,7 +270,6 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
     <>{commonList && <CollectionGridWrap itemList={commonList} />}</>
   );
 };
-
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

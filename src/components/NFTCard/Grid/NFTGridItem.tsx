@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "urql";
 
 import {
   NFTWrap,
@@ -21,6 +22,7 @@ import {
   TextSpan,
   CollectionName,
 } from "./NFTGridItem.styles";
+import { GET_NFT_TOP_OFFER } from "./query";
 
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import { ReactComponent as LockIco } from "../../../icons/lock.svg";
@@ -45,7 +47,9 @@ interface NFTGridItemProps {
   collectionName?: string;
   collectionId?: string;
   collectionOwner?: string;
+  isRented?:boolean;
 }
+
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
@@ -57,14 +61,24 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       setIsOwner(true);
     }
   }
-
   useEffect(() => {
     if (account) {
       setAccount(account);
       setOwner();
     }
   }, [account, userAccount]);
+  console.log('props',props)
+  const createdMultipleQuery = () => {
 
+    const offersItems = useQuery({
+      query: GET_NFT_TOP_OFFER,
+      variables: { tokenId:props.tokenId,tokenAddress: props.tokenAddress }
+    });
+
+    return offersItems;
+  };
+  const offersItems = createdMultipleQuery();
+  console.log(offersItems)
   return (
     <NFTWrap
       onClick={(e) => {
@@ -110,7 +124,32 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Buy
             </BuyBtn>
-          ) : props.premium ? (
+          ) : isOwner == true && !props.isRented ? (
+            <BuyBtn
+              onClick={(e) => { 
+                e.stopPropagation();
+                navigate(
+                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
+                  { state: { state: { ...props } } },
+                );
+                e.stopPropagation();
+              }}
+            >
+              Sell
+            </BuyBtn>
+          ) : props.isRented == true && isOwner ?(
+            <BuyBtn
+              onClick={(e) => {
+                navigate(
+                  `/interaction-rent/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,
+                  { state: { ...props } },
+                );
+                e.stopPropagation();
+              }}  
+            >
+              Pay Premium
+            </BuyBtn>
+          ) : props.premium ?(
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
@@ -122,20 +161,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Rent
             </BuyBtn>
-          ) : isOwner == true ? (
-            <BuyBtn
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate(
-                  `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
-                  { state: { state: { ...props } } },
-                );
-                e.stopPropagation();
-              }}
-            >
-              Sell
-            </BuyBtn>
-          ) : (
+          ):(
             <BuyBtn
               onClick={(e) => {
                 navigate(

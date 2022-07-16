@@ -1,6 +1,6 @@
-// import { ethers } from "ethers";
-import React, { useState } from "react";
-// import { useLocation,  } from "react-router-dom";
+import { ethers } from "ethers";
+import React, { useState, useContext} from "react";
+import { useLocation,  } from "react-router-dom";
 // import { createClient } from "urql";
 
 import {
@@ -33,104 +33,69 @@ import {
 // import LoadingModal from "../../components/LoadingModal/LoadingModal";
 import NFTCard from "../../components/NFTCardOffers/NFTCard";
 import { Container } from "../../globalStyles";
-// import { Marketplace__factory } from "../../typechain";
-// import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import { Marketplace__factory, UndasGeneralNFT__factory } from "../../typechain";
+import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
+import Context from "../../utils/Context";
+
 // import Context from "../../utils/Context";
 
 const InteractionRent: React.FC = () => {
-  //   const [, setAutoRedirect] = useState<boolean>(false);
-  //   const [loading, setLoading] = useState<boolean>(false);
-  //   const { connector } = useContext(Context);
+    // const [, setAutoRedirect] = useState<boolean>(false);
+    // const [loading, setLoading] = useState<boolean>(false);
+    const { connector } = useContext(Context);
 
-  //   const state: any = useLocation();
-  //   const [tokenName, setTokenName] = useState<string>();
-  //   const [tokenURI, setTokenURI] = useState<string>();
-  //   const [listingId, setListingId] = useState<string>();
-  //   const [offeredPrice, ] = useState<string>();
-  //   const navigate = useNavigate();
+    const state: any = useLocation();
+    const stakingId = state.state.tokenId
+    const premium = state.state.premium
+    const tokenAddress = state.state.tokenAddress
+    async function ReturnNFT(stakingId:number) {
+      if (!connector) return;
 
-  //   async function makeSaleOffer() {
-  //     if (!connector) {
-  //       navigate("/login");
-  //       return;
-  //     }
-  //     if (!offeredPrice) return alert("no offeredPrice");
-  //     if (listingId == undefined) return alert("!listingid");
+      const provider = new ethers.providers.Web3Provider(
+        await connector.getProvider(),
+      );
+  
+      const signer = provider.getSigner(0);
 
-  //     const provider = new ethers.providers.Web3Provider(
-  //       await connector.getProvider(),
-  //     );
-  //     const signer = provider.getSigner(0);
+      const NFTContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
+      const approve = await NFTContract.setApprovalForAll(
+        MARKETPLACE_ADDRESS,
+        true,
+      );
+      await approve.wait();
+      
+      const MarketplaceContract = Marketplace__factory.connect(
+        MARKETPLACE_ADDRESS,
+        signer,
+      );
+      const tx = await MarketplaceContract.stopRental(stakingId);//this is staking id :)
+  
+      await tx.wait();
+    }
+    async function PayPremium(stakingId:number,premium:number) {
 
-  //     const MarketplaceContract = Marketplace__factory.connect(
-  //       MARKETPLACE_ADDRESS,
-  //       signer,
-  //     );
+      if (!connector) return;
 
-  //     const tx = await MarketplaceContract.listingOffer(listingId, {
-  //       value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
-  //     });
+      const provider = new ethers.providers.Web3Provider(
+        await connector.getProvider(),
+      );
+  
+      const signer = provider.getSigner(0);
 
-  //     setLoading(true);
-  //     await tx.wait();
-  //     if (autoRedirect) {
-  //       setAutoRedirect(false);
-  //       navigate("/account");
-  //     }
-  //     setLoading(false);
-  //   }
-  //   useEffect(() => {
-  //     if (connector) {
-  //       getTokenData();
-  //     }
-  //   }, [connector, listingId]);
+      const MarketplaceContract = Marketplace__factory.connect(
+        MARKETPLACE_ADDRESS,
+        signer,
+      );
 
-  //   const getTokenData = async () => {
-  //     const tokensQuery = await fetchData();
-  //     console.log(tokensQuery);
-  //     if (
-  //       tokensQuery.data.listings[0] &&
-  //       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
-  //     ) {
-  //       setTokenName(tokensQuery.data.listings[0].tokenName);
-  //       setTokenURI(tokensQuery.data.listings[0].tokenURI);
-  //       setListingId(tokensQuery.data.listings[0].id);
+      const amountToPay = ((+premium * 20/100) + +premium)
 
-  //       return;
-  //     }
-  //   };
+      const tx = await MarketplaceContract.payPremium(stakingId,false,{
+        value: amountToPay.toString(),
+      });//this is staking id :)
 
-  //   const APIURL =
-  //     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
-  //   console.log(state.state.tokenId);
-  //   const tokensQuery = `
-  //   {
-  //     listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
-  //       id
-  //        tokenId
-  //       tokenURI
-  //       price
-  //       tokenName
-  //       token
-  //       tokenDescription
-  //       seller
-  //       listingStatus
-  //     }
-  //   }
-  //    `;
-  //   const client = createClient({
-  //     url: APIURL,
-  //   });
-
-  //   async function fetchData() {
-  //     const data = await client.query(tokensQuery).toPromise();
-
-  //     return data;
-  //   }
-
-  //   const handleCleanForm = () => {
-  //     setLoading(false);
-  //   };
+      await tx.wait();
+    }
+  
   const [, setRentalDays] = useState<number | string>();
 
   const handleRentalDays = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,11 +105,6 @@ const InteractionRent: React.FC = () => {
 
   return (
     <MainContainer>
-      {/* <LoadingModal
-        isLoading={loading}
-        setAutoRedirect={setAutoRedirect}
-        addMore={handleCleanForm}
-      /> */}
       <Back onClick={() => history.back()}>
         <BackText>Back</BackText>
       </Back>
@@ -175,7 +135,7 @@ const InteractionRent: React.FC = () => {
               <CollectionName>Owner item</CollectionName>
             </NameRow>
             <NFTInfoContainer className="max-width">
-              <NFTCard uri="string" name="string" />
+              <NFTCard uri={state.state.URI} name={state.state.name} collectionName={state.state.collectionName}/>
             </NFTInfoContainer>
           </SecondCollumn>
         </ContentWrap>
@@ -193,8 +153,10 @@ const InteractionRent: React.FC = () => {
           </CheckBoxCenter>
         </AgreeRow>
         <ButtonsBlock>
-          <Button>Extend rental</Button>
-          <Button>Return the leased NFT</Button>
+          <Button
+          onClick={()=>PayPremium(stakingId,premium)}>Extend rental</Button>
+          <Button 
+          onClick={()=>ReturnNFT(stakingId)}>Return the leased NFT</Button>
         </ButtonsBlock>
       </Container>
     </MainContainer>

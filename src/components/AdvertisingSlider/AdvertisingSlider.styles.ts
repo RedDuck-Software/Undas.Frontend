@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.div``;
@@ -26,7 +27,7 @@ export const CollectionCard = styled.div`
   margin: 0 auto;
   text-align: center;
 `;
-export const SliderButton = styled.a`
+export const SliderButton = styled(Link)`
   display: block;
   background: #873dc1;
   border-radius: 10px;
