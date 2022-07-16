@@ -103,12 +103,12 @@ const OfferRent: React.FC = () => {
     );
 
     const signer = provider.getSigner(0);
-    
+
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,
       signer,
     );
-      
+
     const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
       7,
     );

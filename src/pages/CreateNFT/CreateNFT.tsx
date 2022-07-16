@@ -99,6 +99,7 @@ const SelectCollectionList: React.FC<{
 
 interface IState {
   name: string;
+  urlImage: string;
   externalLink: string;
   description: string;
   supply: string;
@@ -112,6 +113,7 @@ interface IAction {
 
 const initialState: IState = {
   name: "",
+  urlImage: "",
   externalLink: "",
   description: "",
   supply: "1",
@@ -129,12 +131,13 @@ const reducer = (state: IState, action: IAction) => {
 
 const CreateNFT: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { name, externalLink, description, supply, freezeMetadata } = state;
+  const { name, urlImage, externalLink, description, supply, freezeMetadata } =
+    state;
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  const [file, setFile] = useState<string>();
-  const [fileSizeError, setFileSizeError] = useState<{
+  const [, /* file */ setFile] = useState<string>();
+  const [fileSizeError /*  setFileSizeError */] = useState<{
     message: string;
     inputName: string;
   }>();
@@ -196,7 +199,7 @@ const CreateNFT: React.FC = () => {
       account,
       description,
       name,
-      externalLink,
+      urlImage,
       collection.collectionId,
     );
 
@@ -213,7 +216,7 @@ const CreateNFT: React.FC = () => {
     setAutoRedirect(true);
     mintNFT();
   };
-  const fileSizeValidation = (fileList: FileList, inputName: string) => {
+  /* const fileSizeValidation = (fileList: FileList, inputName: string) => {
     const file = fileList[0];
     if (file.size > 104857600) {
       setFileSizeError({
@@ -226,9 +229,9 @@ const CreateNFT: React.FC = () => {
       setFileSizeError({ message: "", inputName: "" });
       return false;
     }
-  };
+  }; */
 
-  const fileHandler = (event: React.FormEvent) => {
+  /*  const fileHandler = (event: React.FormEvent) => {
     const fileList = (event.target as HTMLInputElement).files;
     if (fileList) {
       if (fileSizeValidation(fileList, "File")) {
@@ -237,7 +240,7 @@ const CreateNFT: React.FC = () => {
       const file = URL.createObjectURL(fileList[0]);
       setFile(file);
     }
-  };
+  }; */
 
   const unlockacleHandler = () => {
     setIsOnlockableContent(!isOnlockableContent);
@@ -325,17 +328,33 @@ const CreateNFT: React.FC = () => {
               </BlockDescript>
               <AddFileBlock>
                 <NFTItemLabel htmlFor="NFT">
-                  {file ? (
-                    <NFTItemPreview src={file} />
+                  {urlImage ? (
+                    <NFTItemPreview src={urlImage} />
                   ) : (
                     <img src={ImgIcon} alt="image-icon" />
                   )}
                 </NFTItemLabel>
-                <NFTItemInput id="NFT" onChange={fileHandler} required />
+                <NFTItemInput
+                  disabled
+                  id="NFT"
+                  /* onChange={fileHandler} */
+                  required
+                />
               </AddFileBlock>
               {fileSizeError && fileSizeError.inputName === "File" && (
                 <ValidationBlock>{fileSizeError.message}</ValidationBlock>
               )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                id="urlImage"
+                name="urlImage"
+                placeholder="URL-image"
+                value={urlImage}
+                onChange={onChange}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">

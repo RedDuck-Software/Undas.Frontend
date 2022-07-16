@@ -15,6 +15,14 @@ export const hasOffersAction = (hasOffers: boolean) => ({
     payload: hasOffers,
 })
 
+export const addSelectedStatus = (statusName: string) => {
+    return { type: Filter.addStatus, payload: { statusName } }
+}
+
+export const removeSelectedStatus = (statusName: string) => {
+    return { type: Filter.removeStatus, payload: statusName }
+}
+
 export function addSelectedCollection(id: string | number, collectionIcon: string, collectionName: string) {
     const action = { type: Filter.addCollection, payload: {id, collectionIcon, collectionName } };
     return action;

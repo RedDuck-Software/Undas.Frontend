@@ -81,6 +81,7 @@ export const SmallNumber = styled.span`
   font-weight: 500;
   font-size: 12px;
   color: #232428;
+  margin-left: auto;
 `;
 export const FavouriteWrap = styled.div`
   padding-bottom: 80px;

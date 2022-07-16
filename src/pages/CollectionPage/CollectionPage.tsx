@@ -53,7 +53,7 @@ interface CommonProps {
   description: string;
   tokenAddress: string;
   collectionOwner: string;
-  collectionId:string;
+  collectionId: string;
   collectionName?: string;
 }
 

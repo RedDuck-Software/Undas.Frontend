@@ -119,11 +119,10 @@ const BlockchainList: React.FC<{ setBlockchain: any }> = ({
 };
 
 const CreateCollection: React.FC = () => {
-  // const web3ReactState = useWeb3React();
   const [logo, setLogo] = useState<string>("");
   const [featured, setFeatured] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
-  const [fileSizeError, setFileSizeError] = useState<{
+  const [fileSizeError /* setFileSizeError */] = useState<{
     message: string;
     inputName: string;
   }>();
@@ -178,12 +177,11 @@ const CreateCollection: React.FC = () => {
     await tx.wait();
   };
 
-  const onSubmit = (formValues: any) => {
+  const onSubmit = () => {
     trigger("logoURI");
-    alert(JSON.stringify(formValues));
   };
 
-  const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
+  /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
     const file = fileList[0];
     if (file.size > 3145728) {
       setFileSizeError({
@@ -232,7 +230,7 @@ const CreateCollection: React.FC = () => {
       setBanner(file);
     }
     trigger("bannerURI");
-  };
+  }; */
 
   useEffect(() => {
     if (!connector) {
@@ -261,9 +259,10 @@ const CreateCollection: React.FC = () => {
                   )}
                 </CollectionLogoLabel>
                 <CollectionImageInput
+                  disabled
                   {...register("logoURI")}
                   id="logo"
-                  onChange={logoHandler}
+                  //onChange={logoHandler}
                   required
                 />
 
@@ -275,6 +274,15 @@ const CreateCollection: React.FC = () => {
               {fileSizeError && fileSizeError.inputName === ImageFile.logo && (
                 <ValidationBlock>{fileSizeError.message}</ValidationBlock>
               )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>Logo URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Logo URL-image"
+                value={logo}
+                onChange={(e) => setLogo(e.target.value)}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CollectionFeaturedLabelWrapper>
@@ -304,8 +312,9 @@ const CreateCollection: React.FC = () => {
                 </CollectionFeaturedLabel>
 
                 <CollectionImageInput
+                  disabled
                   id="featured"
-                  onChange={featuredHandler}
+                  //onChange={featuredHandler}
                 />
                 <BlockDescript>
                   This image will be used for featuring your collection on the
@@ -313,10 +322,19 @@ const CreateCollection: React.FC = () => {
                   <br /> Recommended 600px X 400px
                 </BlockDescript>
               </AddImgBlock>
-              {fileSizeError &&
+              {/* {fileSizeError &&
                 fileSizeError.inputName === ImageFile.featured && (
                   <ValidationBlock>{fileSizeError.message}</ValidationBlock>
-                )}
+                )} */}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>Featured URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Featured URL-image"
+                value={featured}
+                onChange={(e) => setFeatured(e.target.value)}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CollectionBannerLabelWrapper>
@@ -349,12 +367,24 @@ const CreateCollection: React.FC = () => {
                     <img src={ImgIcon} alt="image-icon" />
                   )}
                 </CollectionBannerLabel>
-                <CollectionImageInput id="banner" onChange={bannerHandler} />
+                <CollectionImageInput
+                  disabled
+                  id="banner" /* onChange={bannerHandler} */
+                />
               </AddBannerBlock>
               {fileSizeError &&
                 fileSizeError.inputName === ImageFile.banner && (
                   <ValidationBlock>{fileSizeError.message}</ValidationBlock>
                 )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>Banner URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Banner URL-image"
+                value={banner}
+                onChange={(e) => setBanner(e.target.value)}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
@@ -504,7 +534,7 @@ const CreateCollection: React.FC = () => {
                     category.categoryId != undefined
                       ? createCollection(
                           name,
-                          customURL,
+                          logo,
                           information,
                           category.categoryId,
                         )

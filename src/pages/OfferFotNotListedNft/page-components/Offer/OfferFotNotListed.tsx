@@ -63,14 +63,13 @@ const OfferFotNotListed: React.FC = () => {
   const { connector } = useContext(Context);
 
   const state: any = useLocation();
-  const collectionId = state.state.state.collectionId
-  const tokenId = state.state.state.tokenId
-  const tokenContract = state.state.state.tokenAddress
+  const collectionId = state.state.state.collectionId;
+  const tokenId = state.state.state.tokenId;
+  const tokenContract = state.state.state.tokenAddress;
 
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();
   async function makeSaleOffer() {
-
     if (!connector) {
       navigate("/login");
       return;
@@ -87,14 +86,15 @@ const OfferFotNotListed: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-   
-    const tx = await MarketplaceContract.offerForNotListedToken( 
+
+    const tx = await MarketplaceContract.offerForNotListedToken(
       collectionId,
       tokenId,
       tokenContract,
       {
-      value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
-    });
+        value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
+      },
+    );
 
     setLoading(true);
     await tx.wait();
@@ -104,9 +104,6 @@ const OfferFotNotListed: React.FC = () => {
     }
     setLoading(false);
   }
-
-
-  
 
   const handleCleanForm = () => {
     setLoading(false);

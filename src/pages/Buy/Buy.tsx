@@ -116,34 +116,6 @@ const Rent: React.FC = () => {
                   <ContentItemPriceUsd>$123 278,00</ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
-              <ContentItem>
-                <ContentItemName>
-                  Marketplace commission
-                  <OverlayTrigger
-                    delay={{ show: 250, hide: 3000 }}
-                    placement="top"
-                    overlay={
-                      <OverlayPopUp>
-                        Speech bubble that will fall out when you click on the
-                        information on the icon{" "}
-                        <FAQLink href="/faq">FAQ</FAQLink>
-                      </OverlayPopUp>
-                    }
-                  >
-                    <ButtonInfo>
-                      <ImageInfo
-                        src={info}
-                        alt="info-image"
-                        className="margin"
-                      />
-                    </ButtonInfo>
-                  </OverlayTrigger>
-                </ContentItemName>
-                <ContentItemPriceWrap className="column">
-                  <ContentItemPriceEth>0,035</ContentItemPriceEth>
-                  <ContentItemPriceUsd>$258,25</ContentItemPriceUsd>
-                </ContentItemPriceWrap>
-              </ContentItem>
               <ContentItem className="wrap">
                 <ContentItemName>
                   Marketplace fee 3%

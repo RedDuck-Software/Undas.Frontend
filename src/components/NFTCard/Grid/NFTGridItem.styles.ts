@@ -181,3 +181,10 @@ export const PriceItem = styled.li`
 export const PriceInEth = styled.span`
   font-size: 12px;
 `;
+
+export const ClipLoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6rem;
+`;

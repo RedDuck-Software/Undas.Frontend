@@ -11,13 +11,11 @@ import {
 } from "./FilterSelected.styles";
 
 import { CloseIcon } from "../../pages/AllNFTs/imports";
-import {
-  clearAll,
-  removeSelectedCollection,
-} from "../../store/reducers/Filter/filterActions";
+import { clearAll } from "../../store/reducers/Filter/filterActions";
 import {
   useSelectedCollections,
   useSelectedCategories,
+  //useSelectedStatuses,
 } from "../../store/reducers/Filter/helpers";
 
 interface SelectedCollectionItemProps {
@@ -29,11 +27,9 @@ const SelectedItem: React.FC<SelectedCollectionItemProps> = ({
   icon,
   label,
 }) => {
-  const dispatch = useDispatch();
-  const handleUnselectCollection = (name: string) => {
+  const handleUnselectCollection = () => {
     const element: HTMLElement = document.getElementById(label)!;
     element.click();
-    dispatch(removeSelectedCollection(name));
   };
   const [longName, setLongName] = useState<string>("");
   const handleCollectionName = (name: string) => {
@@ -50,8 +46,8 @@ const SelectedItem: React.FC<SelectedCollectionItemProps> = ({
   }, []);
 
   return (
-    <SelectedCollection onClick={() => handleUnselectCollection(label)}>
-      <SelectedCollectionIcon src={icon} />
+    <SelectedCollection onClick={() => handleUnselectCollection()}>
+      {icon && <SelectedCollectionIcon src={icon} />}
       {longName}
       <RemoveSelectedCollection src={CloseIcon} />
     </SelectedCollection>
@@ -60,9 +56,11 @@ const SelectedItem: React.FC<SelectedCollectionItemProps> = ({
 
 const FilterSelected: React.FC = () => {
   const dispatch = useDispatch();
+  //const statuses = useSelector(useSelectedStatuses);
   const collections = useSelector(useSelectedCollections);
   const categories = useSelector(useSelectedCategories);
 
+  //const [selectedStatuses, setSelectedStatuses] = useState<any>(statuses);
   const [selectedCollections, setSelectedCollections] =
     useState<any>(collections);
   const [selectedCategories, setSelectedCategories] = useState<any>(categories);
@@ -74,6 +72,10 @@ const FilterSelected: React.FC = () => {
   useEffect(() => {
     setSelectedCategories(categories);
   }, [categories]);
+
+  /* useEffect(() => {
+    setSelectedStatuses(statuses);
+  }, [statuses]); */
 
   useEffect(() => {
     return () => {
@@ -92,14 +94,25 @@ const FilterSelected: React.FC = () => {
       const element: HTMLElement = document.getElementById(item.categoryName)!;
       element.click();
     });
+    /* selectedStatuses.forEach((item: any) => {
+      const element: HTMLElement = document.getElementById(item.statusName)!;
+      element.click();
+    }); */
     dispatch(clearAll());
   };
 
   return (
     <>
-      {selectedCollections.length > 0 || selectedCategories.length > 0 ? (
+      {selectedCollections.length > 0 ||
+      selectedCategories.length > 0 /* ||
+      selectedStatuses.length > 0 */ ? (
         <SelectedCollectionsWrapper>
           <SelectedCollectionsList>
+            {/* {selectedStatuses.map((item: any) => {
+              return (
+                <SelectedItem key={item.statusName} label={item.statusName} />
+              );
+            })} */}
             {selectedCollections.map((item: any) => {
               return (
                 <SelectedItem

@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-  import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient, useQuery } from "urql";
@@ -173,7 +173,7 @@ console.log('itemsForOffer',itemsForOffer)
     if (!connector) {
       return;
     }
-    if (listingId && status == 'ACTIVE') {
+    if (listingId && status == "ACTIVE") {
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -181,7 +181,7 @@ console.log('itemsForOffer',itemsForOffer)
   };
 
   async function getShowRent() {
-    if (stakingId && status == 'ACTIVE') {
+    if (stakingId && status == "ACTIVE") {
       setShowRent(true);
     } else {
       setShowRent(false);
@@ -229,7 +229,7 @@ console.log('itemsForOffer',itemsForOffer)
       setCollectionId(tokensQuery.data.listings[0].collectionId)
       return;
     }
-    
+
     if (
       tokensQuery.data.stakingListings[0] &&
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
@@ -428,9 +428,8 @@ console.log('itemsForOffer',itemsForOffer)
 
                     {showRent === false && isOwner === true ? (
                       <>
-                          <RentElement h="76px">
-
-                          <NotListed>Not listed for rent yet</NotListed>                          
+                        <RentElement h="76px">
+                          <NotListed>Not listed for rent yet</NotListed>
                           <InfoButton
                             fc="#873DC1"
                             disabled={!isOwner}
