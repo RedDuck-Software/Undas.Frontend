@@ -1,6 +1,7 @@
+import { ethers } from "ethers";
 import React from "react";
 
-import { CartIco, HandShakeIco } from "../../../imports";
+import {  HandShakeIco } from "../../../imports";
 import {
   OffersWrap,
   OffersTr,
@@ -17,10 +18,16 @@ import {
 
 interface OffersProps {
   isOwner?: boolean;
+  items?:any
 }
 
-const Offers: React.FC<OffersProps> = ({ isOwner }) => {
+const Offers: React.FC<OffersProps> = ({ isOwner,items}) => {
+  console.log(items)
+
+  const data = [...items.buyingOffers,...items.stakingOffers]
+console.log(data)
   return (
+    
     <OffersWrap>
       <OffersHeadTr>
         <OffersTd>Event</OffersTd>
@@ -35,118 +42,43 @@ const Offers: React.FC<OffersProps> = ({ isOwner }) => {
           </>
         )}
       </OffersHeadTr>
-      <OffersTr>
-        <OffersTdText>
-          <HandShakeIco />
-        </OffersTdText>
-        <OffersTdText>
-          <PriceTextETH>1,2</PriceTextETH>
-          <WethText>WETH</WethText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText>In 20 hours</OffersText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText color="#5D3F92">65BA4F</OffersText>
-        </OffersTdText>
-        {isOwner === true && (
-          <>
+      {data.map((i) => {
+        return <OffersTr key={i}>
             <OffersTdText>
-              <AcceptBTN>Accept</AcceptBTN>
+              <HandShakeIco />
             </OffersTdText>
             <OffersTdText>
-              <MakeOfferBTN>Make offer</MakeOfferBTN>
+              <PriceTextETH>{i.newOfferedPrice?ethers.utils.formatUnits(
+              i.newOfferedPrice.toString(),
+              "ether",
+            ):ethers.utils.formatUnits(
+              (+i.newOfferedColloteral + +i.newOfferedPremiumWei).toString(),
+              "ether",
+            )}</PriceTextETH>
+              <WethText>WETH</WethText>
             </OffersTdText>
             <OffersTdText>
-              <DenyBTN>Deny</DenyBTN>
-            </OffersTdText>
-          </>
-        )}
-      </OffersTr>
-      <OffersTr>
-        <OffersTdText>
-          <CartIco />
-        </OffersTdText>
-        <OffersTdText>
-          <PriceTextETH>1,2</PriceTextETH>
-          <WethText>WETH</WethText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText>In 20 hours</OffersText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText color="#5D3F92">65BA4F</OffersText>
-        </OffersTdText>
-        {isOwner === true && (
-          <>
-            <OffersTdText>
-              <AcceptBTN>Accept</AcceptBTN>
+              <OffersText>In 20 hours</OffersText>
             </OffersTdText>
             <OffersTdText>
-              <MakeOfferBTN>Make offer</MakeOfferBTN>
+              <OffersText color="#5D3F92">65BA4F</OffersText>
             </OffersTdText>
-            <OffersTdText>
-              <DenyBTN>Deny</DenyBTN>
-            </OffersTdText>
-          </>
-        )}
-      </OffersTr>
-      <OffersTr>
-        <OffersTdText>
-          <HandShakeIco />
-        </OffersTdText>
-        <OffersTdText>
-          <PriceTextETH>1,2</PriceTextETH>
-          <WethText>WETH</WethText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText>In 20 hours</OffersText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText color="#5D3F92">65BA4F</OffersText>
-        </OffersTdText>
-        {isOwner === true && (
-          <>
-            <OffersTdText>
-              <AcceptBTN>Accept</AcceptBTN>
-            </OffersTdText>
-            <OffersTdText>
-              <MakeOfferBTN>Make offer</MakeOfferBTN>
-            </OffersTdText>
-            <OffersTdText>
-              <DenyBTN>Deny</DenyBTN>
-            </OffersTdText>
-          </>
-        )}
-      </OffersTr>
-      <OffersTr>
-        <OffersTdText>
-          <HandShakeIco />
-        </OffersTdText>
-        <OffersTdText>
-          <PriceTextETH>1,2</PriceTextETH>
-          <WethText>WETH</WethText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText>In 20 hours</OffersText>
-        </OffersTdText>
-        <OffersTdText>
-          <OffersText color="#5D3F92">65BA4F</OffersText>
-        </OffersTdText>
-        {isOwner === true && (
-          <>
-            <OffersTdText>
-              <AcceptBTN>Accept</AcceptBTN>
-            </OffersTdText>
-            <OffersTdText>
-              <MakeOfferBTN>Make offer</MakeOfferBTN>
-            </OffersTdText>
-            <OffersTdText>
-              <DenyBTN>Deny</DenyBTN>
-            </OffersTdText>
-          </>
-        )}
-      </OffersTr>
+            {isOwner === true && (
+              <>
+                <OffersTdText>
+                  <AcceptBTN>Accept</AcceptBTN>
+                </OffersTdText>
+                <OffersTdText>
+                  <MakeOfferBTN>Make offer</MakeOfferBTN>
+                </OffersTdText>
+                <OffersTdText>
+                  <DenyBTN>Deny</DenyBTN>
+                </OffersTdText>
+              </>
+            )}
+          </OffersTr>
+      })}
+    
     </OffersWrap>
   );
 };

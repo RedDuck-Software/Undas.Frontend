@@ -25,6 +25,7 @@ import {
 // eslint-disable-next-line import/order
 import { ethers } from "ethers";
 
+
 type GridItem = {
   id: number;
   URI: string;

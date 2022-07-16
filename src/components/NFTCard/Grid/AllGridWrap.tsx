@@ -251,16 +251,15 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
   //   }
   // }
   useEffect(() => {
-    console.log(connector);
-    // if(!connector){
-    //   return
-    // }
+    if(!connector){
+      return
+    }
 
     getListingsData();
     getStakingsData();
     getHasOffersData();
     setLoading(false);
-  }, []);
+  }, [connector]);
 
   const priceSort = async () => {
     fetchData();
@@ -372,10 +371,10 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
     }
   }, [selectedCollectionFilter]);
 
+
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
-
   return loading ? (
     <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
   ) : (
@@ -388,7 +387,6 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({ priceFilter, getResults }) => {
     </>
   );
 };
-
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

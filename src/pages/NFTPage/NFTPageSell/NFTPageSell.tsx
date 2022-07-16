@@ -62,7 +62,7 @@ import About from "../page-components/Accordion/accordrion-components/About";
 import Description from "../page-components/Accordion/accordrion-components/Description";
 import Details from "../page-components/Accordion/accordrion-components/Details";
 import Levels from "../page-components/Accordion/accordrion-components/Levels";
-import Offers from "../page-components/Accordion/accordrion-components/Offers";
+// import Offers from "../page-components/Accordion/accordrion-components/Offers";
 import Properties from "../page-components/Accordion/accordrion-components/Properties";
 import Stats from "../page-components/Accordion/accordrion-components/Stats";
 
@@ -326,7 +326,7 @@ const NFTPageSell: React.FC = () => {
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
               <Accordion name="Offers" ico={<OffersIco />}>
-                <Offers />
+                {/* <Offers /> */}
               </Accordion>
               <Accordion name="Description" flex="1 0 40%">
                 <Description />

@@ -216,7 +216,7 @@ const App: React.FC = () => {
               element={<BlogThemeWrap blogComponent={<News />} />}
             />
             <Route path="/claim-UND-test" element={<ClaimUND />} />
-            <Route path="/interaction-rent" element={<InteractionRent />} />
+            <Route path="/interaction-rent/:address:id" element={<InteractionRent />} />
           </Routes>
         </Provider>
       </Context.Provider>

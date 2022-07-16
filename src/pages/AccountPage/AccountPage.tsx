@@ -58,7 +58,6 @@ const AccountPage: React.FC = () => {
       chain: "goerli",
       address: signerPublicAddress,
     });
-
     return nfts;
   };
 
@@ -110,7 +109,6 @@ const AccountPage: React.FC = () => {
   }
 
   const { offersMenu, offersCounter } = OffersMenu();
-
   return (
     <AccountWrapper>
       <Banner>

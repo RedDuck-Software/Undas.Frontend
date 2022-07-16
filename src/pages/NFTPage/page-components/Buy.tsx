@@ -65,7 +65,6 @@ const Buy: React.FC<BuyProps> = ({
 
     return tx;
   };
-
   async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) {
       navigate("/login");
@@ -154,7 +153,17 @@ const Buy: React.FC<BuyProps> = ({
            </InfoButton>
          </ButtonWrap>
        </BuyBar>
-      ) : (
+      ) : !state.price ? (
+        <BuyBar>
+        
+        <ButtonWrap>
+        <Wrapper disp="flex" alignItems="center">
+          Not listed for sale yet
+        </Wrapper>
+
+        </ButtonWrap>
+      </BuyBar>
+     ) :(
         <BuyBar>
           <span>Current price</span>
           <Wrapper disp="flex" alignItems="center">

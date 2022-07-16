@@ -1,9 +1,8 @@
 import React from "react";
-// import required modules
 import { Autoplay, Navigation, Scrollbar } from "swiper";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
+// eslint-disable-next-line import/order
+import { Swiper,SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
@@ -12,12 +11,23 @@ import "./AdvertisingSlider.css";
 import {
   Wrap,
   SliderTitle,
-  CollectionCard,
   SliderButton,
   SliderInner,
 } from "./AdvertisingSlider.styles";
 
-const AdvertisingSlider: React.FC = () => {
+// import NFTCard from "../NFTCardOffers/NFTCard";
+import NFTCardForCarousel from "../NFTCardForCarousel/NFTCardForCarousel";
+
+interface CollectionGridWrapperProps {
+  collectionItems: any;
+  collectionId:number;
+}
+
+const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({collectionItems, collectionId}) => {
+  console.log('collectiofsaaId',collectionId)
+  const href = `/collection/${collectionId}`
+  console.log('href',href)
+  // console.log(collectionItems.collectionItems.tokens)
   return (
     <Wrap>
       <SliderTitle>More from this collection</SliderTitle>
@@ -53,35 +63,14 @@ const AdvertisingSlider: React.FC = () => {
             },
           }}
         >
-          <SwiperSlide>
-            <CollectionCard>Slide 1</CollectionCard>
+          {collectionItems.tokens.map((i:any) =>{
+            return <SwiperSlide key={i.name}>
+            <NFTCardForCarousel uri={i.uri} name = {i.name}></NFTCardForCarousel>
           </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 2</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 3</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 4</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 5</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 6</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 7</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 8</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 9</CollectionCard>
-          </SwiperSlide>
+          })}
+         
         </Swiper>
-        <SliderButton href="#">View Collection</SliderButton>
+        <SliderButton to={href} >View Collection</SliderButton>
       </SliderInner>
     </Wrap>
   );
