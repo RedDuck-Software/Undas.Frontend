@@ -1,4 +1,5 @@
 export interface CreateNFTForm {
+  urlImage: string;
   name: string;
   externalLink: string;
   description: string;
@@ -10,7 +11,7 @@ export interface CreateNFTForm {
 export type SelectItemType = {
   icon?: string;
   label: string;
-  collectionId: string;
+  collectionId?: string;
 };
 
 export type Property = {

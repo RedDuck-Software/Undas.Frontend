@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import React, { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useQuery } from "urql";
 
 import {
@@ -27,6 +28,7 @@ import {
 
 import FilterMobileButton from "../../../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import { ClipLoaderWrapper } from "../../../../globalStyles";
 import { PriceText } from "../../../NFTPage/NFTPage.styles";
 import { EtherIcon } from "../../../NFTPage/page-components/Accordion/Accordion.styles";
 import { ItemVerifyIco } from "../../imports";
@@ -84,7 +86,9 @@ const CollectionRow: React.FC<CollectionRowProps> = ({
         <PriceTextW>
           <EtherIcon />
           <PriceText>
-            {priceFloor && ethers.utils.formatEther(priceFloor)}
+            {priceFloor && typeof priceFloor == "number"
+              ? ethers.utils.formatEther(priceFloor)
+              : "-"}
           </PriceText>
         </PriceTextW>
       </CollectionsTdText>
@@ -190,21 +194,26 @@ const CollectionsMenu: React.FC = () => {
               Items
             </CollectionsTd>
           </CollectionsHeadTr>
-          {!fetching &&
+          {!fetching ? (
             data.collections.map((row: any) => {
               return (
                 <CollectionRow
                   key={row.id}
                   collectionName={row.collectionName}
                   collectionUrl={row.collectionUrl}
-                  priceFloor={row.tokens[0].price}
+                  priceFloor={row.tokens.length > 0 ? row.tokens[0].price : "-"}
                   totalVol={row.collectionVolume}
                   //dayVol={row.dayVol}
                   //ownersCount={row.ownersCount}
                   itemsCount={row.collectionItemsAmount}
                 />
               );
-            })}
+            })
+          ) : (
+            <ClipLoaderWrapper>
+              <ClipLoader color={"#BD10E0"} size={250} />
+            </ClipLoaderWrapper>
+          )}
         </CollectionsWrapTable>
       </ContainerTable>
       <FilterMobileButton />

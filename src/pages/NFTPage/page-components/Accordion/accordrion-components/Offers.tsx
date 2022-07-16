@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import React from "react";
 
-import {  HandShakeIco } from "../../../imports";
+import { HandShakeIco } from "../../../imports";
 import {
   OffersWrap,
   OffersTr,
@@ -18,16 +18,15 @@ import {
 
 interface OffersProps {
   isOwner?: boolean;
-  items?:any
+  items?: any;
 }
 
-const Offers: React.FC<OffersProps> = ({ isOwner,items}) => {
-  console.log(items)
+const Offers: React.FC<OffersProps> = ({ isOwner, items }) => {
+  console.log(items);
 
-  const data = [...items.buyingOffers,...items.stakingOffers]
-console.log(data)
+  const data = [...items.buyingOffers, ...items.stakingOffers];
+  console.log(data);
   return (
-    
     <OffersWrap>
       <OffersHeadTr>
         <OffersTd>Event</OffersTd>
@@ -43,18 +42,25 @@ console.log(data)
         )}
       </OffersHeadTr>
       {data.map((i) => {
-        return <OffersTr key={i}>
+        return (
+          <OffersTr key={i}>
             <OffersTdText>
               <HandShakeIco />
             </OffersTdText>
             <OffersTdText>
-              <PriceTextETH>{i.newOfferedPrice?ethers.utils.formatUnits(
-              i.newOfferedPrice.toString(),
-              "ether",
-            ):ethers.utils.formatUnits(
-              (+i.newOfferedColloteral + +i.newOfferedPremiumWei).toString(),
-              "ether",
-            )}</PriceTextETH>
+              <PriceTextETH>
+                {i.newOfferedPrice
+                  ? ethers.utils.formatUnits(
+                      i.newOfferedPrice.toString(),
+                      "ether",
+                    )
+                  : ethers.utils.formatUnits(
+                      (
+                        +i.newOfferedColloteral + +i.newOfferedPremiumWei
+                      ).toString(),
+                      "ether",
+                    )}
+              </PriceTextETH>
               <WethText>WETH</WethText>
             </OffersTdText>
             <OffersTdText>
@@ -77,8 +83,8 @@ console.log(data)
               </>
             )}
           </OffersTr>
+        );
       })}
-    
     </OffersWrap>
   );
 };

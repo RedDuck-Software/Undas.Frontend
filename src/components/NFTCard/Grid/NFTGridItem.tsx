@@ -47,9 +47,8 @@ interface NFTGridItemProps {
   collectionName?: string;
   collectionId?: string;
   collectionOwner?: string;
-  isRented?:boolean;
+  isRented?: boolean;
 }
-
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
@@ -67,18 +66,17 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       setOwner();
     }
   }, [account, userAccount]);
-  console.log('props',props)
+  console.log("props", props);
   const createdMultipleQuery = () => {
-
     const offersItems = useQuery({
       query: GET_NFT_TOP_OFFER,
-      variables: { tokenId:props.tokenId,tokenAddress: props.tokenAddress }
+      variables: { tokenId: props.tokenId, tokenAddress: props.tokenAddress },
     });
 
     return offersItems;
   };
   const offersItems = createdMultipleQuery();
-  console.log(offersItems)
+  console.log(offersItems);
   return (
     <NFTWrap
       onClick={(e) => {
@@ -126,7 +124,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             </BuyBtn>
           ) : isOwner == true && !props.isRented ? (
             <BuyBtn
-              onClick={(e) => { 
+              onClick={(e) => {
                 e.stopPropagation();
                 navigate(
                   `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
@@ -137,7 +135,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Sell
             </BuyBtn>
-          ) : props.isRented == true && isOwner ?(
+          ) : props.isRented == true && isOwner ? (
             <BuyBtn
               onClick={(e) => {
                 navigate(
@@ -145,11 +143,11 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
                   { state: { ...props } },
                 );
                 e.stopPropagation();
-              }}  
+              }}
             >
               Pay Premium
             </BuyBtn>
-          ) : props.premium ?(
+          ) : props.premium ? (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
@@ -161,7 +159,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             >
               Rent
             </BuyBtn>
-          ):(
+          ) : (
             <BuyBtn
               onClick={(e) => {
                 navigate(

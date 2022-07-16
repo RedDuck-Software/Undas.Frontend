@@ -4,6 +4,7 @@ import { ipfsInfuraRegex } from "../../constants/validation";
 
 export const validationSchema = yup.object().shape(
   {
+    urlImage: yup.string().required("Image URL is required"),
     name: yup
       .string()
       .required("Name is required.")

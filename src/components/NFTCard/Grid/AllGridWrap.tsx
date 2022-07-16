@@ -258,7 +258,6 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
     hasOfferFilter.hasOffers,
   ]);
 
-
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
