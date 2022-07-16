@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
-  import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
@@ -98,7 +98,7 @@ const NFTPage: React.FC = () => {
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
   const [, setcollectionName] = useState<string>("No collection");
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -170,7 +170,7 @@ const NFTPage: React.FC = () => {
     if (!connector) {
       return;
     }
-    if (listingId && status == 'ACTIVE') {
+    if (listingId && status == "ACTIVE") {
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -178,7 +178,7 @@ const NFTPage: React.FC = () => {
   };
 
   async function getShowRent() {
-    if (stakingId && status == 'ACTIVE') {
+    if (stakingId && status == "ACTIVE") {
       setShowRent(true);
     } else {
       setShowRent(false);
@@ -214,7 +214,7 @@ const NFTPage: React.FC = () => {
 
       return;
     }
-    
+
     if (
       tokensQuery.data.stakingListings[0] &&
       tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
@@ -399,9 +399,8 @@ const NFTPage: React.FC = () => {
 
                     {showRent === false && isOwner === true ? (
                       <>
-                          <RentElement h="76px">
-
-                          <NotListed>Not listed for rent yet</NotListed>                          
+                        <RentElement h="76px">
+                          <NotListed>Not listed for rent yet</NotListed>
                           <InfoButton
                             fc="#873DC1"
                             disabled={!isOwner}
@@ -417,7 +416,6 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                      
                     ) : (
                       <>
                         <RentElement className="center">

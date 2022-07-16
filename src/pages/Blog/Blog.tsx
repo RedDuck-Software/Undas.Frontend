@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { BlogWrap, Text, TabsMenuWrap, TabsMenu, Tab } from "./Blog.styles";
-import BusinessTips from "./page-components/BusinessTips/BusinessTips";
-import Inspiration from "./page-components/Inspiration/Inspiration";
+import { BlogWrap, Text } from "./Blog.styles";
+// import BusinessTips from "./page-components/BusinessTips/BusinessTips";
+// import Inspiration from "./page-components/Inspiration/Inspiration";
 import MainBlog from "./page-components/MainBlog/MainBlog";
-import News from "./page-components/News/News";
-import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
+// import News from "./page-components/News/News";
+// import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
 
 import {
   Container,
@@ -15,7 +15,7 @@ import {
 } from "../../globalStyles";
 
 const Blog: React.FC = () => {
-  const [tab, setTab] = useState("main");
+  // const [tab, setTab] = useState("main");
 
   return (
     <Background>
@@ -29,7 +29,7 @@ const Blog: React.FC = () => {
             web design, online stores, SEO, marketing, and more
           </Text>
         </Container>
-        <TabsMenuWrap>
+        {/* <TabsMenuWrap>
           <Container>
             <TabsMenu>
               <Tab
@@ -64,13 +64,14 @@ const Blog: React.FC = () => {
               </Tab>
             </TabsMenu>
           </Container>
-        </TabsMenuWrap>
+        </TabsMenuWrap> */}
         <Container>
-          {tab === "main" && <MainBlog />}
+          <MainBlog />
+          {/* {tab === "main" && <MainBlog />}
           {tab === "website-tips" && <WebsiteTips />}
           {tab === "business-tips" && <BusinessTips />}
           {tab === "inspiration" && <Inspiration />}
-          {tab === "news" && <News />}
+          {tab === "news" && <News />} */}
         </Container>
       </BlogWrap>
     </Background>

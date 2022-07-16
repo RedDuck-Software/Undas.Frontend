@@ -16,7 +16,11 @@ import {
 import { Platform } from "../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../pages/CategoriesPage/imports";
 //todo all collection names
-const NFTCard: React.FC<{ uri: string; name: string;collectionName?:string }> = ({ uri, name, collectionName }) => {
+const NFTCard: React.FC<{
+  uri: string;
+  name: string;
+  collectionName?: string;
+}> = ({ uri, name, collectionName }) => {
   return (
     <NFTWrap>
       <NFTAbout>
