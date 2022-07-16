@@ -10,7 +10,7 @@ import {
   InfoText,
   LoaderWrapper,
 } from "./Categories.styles";
-import { CollectionBanner } from "./imports";
+import { CollectionArtBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
@@ -98,7 +98,7 @@ const CategoriesGameFI: React.FC = () => {
   ) : (
     <>
       <Banner>
-        <img src={CollectionBanner} alt="CollectionBanner" />
+        <img src={CollectionArtBanner} alt="CollectionBanner" />
       </Banner>
       <Background>
         <Container>
