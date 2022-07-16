@@ -28,7 +28,15 @@ export const MenuWrap = styled.div<IMenuWrap>`
     margin: 20px 0 20px;
   }
 `;
-
+export const TitleWrap = styled.div`
+  padding-top: 60px;
+  @media (max-width: 768px) {
+    padding-top: 40px;
+  }
+  @media (max-width: 576px) {
+    padding-top: 20px;
+  }
+`;
 interface IMenuSearch {
   mw?: string;
   marginLeft?: string;

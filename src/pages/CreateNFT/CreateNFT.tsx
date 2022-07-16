@@ -339,6 +339,22 @@ const CreateNFT: React.FC = () => {
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
+                URL-image
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="url"
+                placeholder="URL-image"
+                {...register("name")}
+                value={name}
+                onChange={onChange}
+              />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="name">
                 Name<span className="require-asterisk">*</span>
               </CreateLabel>
               <CreateInput

@@ -277,6 +277,22 @@ const CreateCollection: React.FC = () => {
               )}
             </CreateFormGroup>
             <CreateFormGroup>
+              <CreateLabel htmlFor="name">
+              Logo URL-image
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="name"
+                {...register("name")}
+                placeholder="Logo URL-image"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
               <CollectionFeaturedLabelWrapper>
                 <CreateLabel>Featured image</CreateLabel>
                 {featured && (
@@ -319,6 +335,22 @@ const CreateCollection: React.FC = () => {
                 )}
             </CreateFormGroup>
             <CreateFormGroup>
+              <CreateLabel htmlFor="name">
+              Featured URL-image
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="name"
+                {...register("name")}
+                placeholder="Featured URL-image"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
               <CollectionBannerLabelWrapper>
                 <CreateLabel>Banner image</CreateLabel>
                 {banner && (
@@ -355,6 +387,22 @@ const CreateCollection: React.FC = () => {
                 fileSizeError.inputName === ImageFile.banner && (
                   <ValidationBlock>{fileSizeError.message}</ValidationBlock>
                 )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel htmlFor="name">
+              Banner URL-image
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="name"
+                {...register("name")}
+                placeholder="Banner URL-image"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && (
+                <ValidationBlock>{errors.name.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
