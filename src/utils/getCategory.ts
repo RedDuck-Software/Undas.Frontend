@@ -20,7 +20,7 @@ export const getCategory = (category: Category): ICategory => {
     case Category.sport:
       return { icon: sportIcon, label: "Sports" };
     case Category.photography:
-      return { icon: photoIcon, label: "Protography" };
+      return { icon: photoIcon, label: "Photography" };
     case Category.gamefi:
       return { icon: gamefi, label: "GameFi" };
     case Category.celebrity:

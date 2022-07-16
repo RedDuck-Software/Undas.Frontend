@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import { AsideCollectionItem } from "./AsideCollectionItem";
-//import { AsideCollectionItemProps } from "./types";
 
 import { useGetCollections } from "../../../../utils";
 import {
@@ -22,7 +21,7 @@ interface AsideCollectionListProps {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
+export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
   activeMenu,
   setActiveMenu,
   active,
@@ -113,5 +112,3 @@ const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
     </>
   );
 };
-
-export default AsideCollectionList;

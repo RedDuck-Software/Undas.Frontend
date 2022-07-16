@@ -12,6 +12,10 @@ export const useHasOffers = (state: RootState) => {
     return state.hasOffers;
 }
 
+export const useSelectedStatuses = (state: RootState) => {
+    return (state.selectedStatuses as any).selectedStatuses
+}
+
 export const useSelectedCollections = (state: RootState) => {
     return (state.selectedCollections as any).selectedCollections;
 }

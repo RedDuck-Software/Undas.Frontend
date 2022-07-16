@@ -17,6 +17,7 @@ import { rootSaga } from './saga/rootSaga';
 import { selectedCategoriesReducer } from './reducers/Filter/selectedCategoriesReducer';
 import { buyingReducer } from './reducers/Filter/buyReducer';
 import { hasOffersReducer } from './reducers/Filter/hasOffersReducer';
+import { selectedStatusesReducer } from './reducers/Filter/selectedStatusesReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   stacking: stackingReducer,
   buying: buyingReducer,
   hasOffers: hasOffersReducer,
+  selectedStatuses: selectedStatusesReducer,
   selectedCollections: selectedCollectionsReducer,
   selectedCategories: selectedCategoriesReducer,
 });

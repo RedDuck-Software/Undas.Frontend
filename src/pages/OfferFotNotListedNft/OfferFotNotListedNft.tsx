@@ -11,9 +11,7 @@ import {
 import CastomOffer from "./page-components/CastomOffer/CastomOffer";
 import OfferFotNotListed from "./page-components/Offer/OfferFotNotListed";
 
-
 import { Background, Container } from "../../globalStyles";
-
 
 const OfferFotNotListedNft: React.FC = () => {
   const [tab, setTab] = useState("offer");
