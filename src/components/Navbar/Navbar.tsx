@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Burger from "./Burger";
 import {
   AllNFTsIcon,
-  NewIcon,
   ArtIcon,
   SportIcon,
   PhotoIco,
@@ -21,7 +20,6 @@ import {
   TelegramIco,
   DiscordIco,
   ReddditIco,
-  /*InstagramIco,*/
   AddNFTIco,
   AddCollectionIco,
   ProfileMenuIco,
@@ -110,10 +108,6 @@ const Navbar = () => {
                   <MenuList to="/all">
                     <AllNFTsIcon />
                     All NFTs
-                  </MenuList>
-                  <MenuList to="/categories-new">
-                    <NewIcon />
-                    New
                   </MenuList>
                   <MenuList to="/categories-art">
                     <ArtIcon />

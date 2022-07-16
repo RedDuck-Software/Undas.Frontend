@@ -33,6 +33,7 @@ import {
   CreateSelect,
   SelectItem,
 } from "../../components/CreateSelect/CreateSelect";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
 import { Background, FormButtonsWrap } from "../../globalStyles";
 import closeIcon from "../../icons/close.svg";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
@@ -132,8 +133,8 @@ const CreateCollection: React.FC = () => {
   const [category, setCategory] = useState<SelectItemType>({
     icon: "",
     label: "Add Category",
-    categoryId: 0,
   });
+  const [categoryError, setCategoryError] = useState<any>("");
   const [creatorEarnings, setCreatorEarnings] = useState("");
   const [blockchain, setBlockchain] = useState<SelectItemType>({
     icon: ethIcon,
@@ -141,9 +142,14 @@ const CreateCollection: React.FC = () => {
   });
   const { connector } = useContext(Context);
   const [isSensetiveContent, setIsSensetiveContent] = useState(false);
+
   const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, formState, handleSubmit, trigger } =
+  const { register, formState, handleSubmit } =
     useForm<CreateCollectionForm>(formOptions);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
   const { errors } = formState;
@@ -174,11 +180,23 @@ const CreateCollection: React.FC = () => {
       category,
     );
 
+    setLoading(true);
     await tx.wait();
+    if (autoRedirect) {
+      setAutoRedirect(false);
+      navigate("/account");
+    }
+    setLoading(false);
+  };
+
+  const handleCleanForm = () => {
+    location.reload();
   };
 
   const onSubmit = () => {
-    trigger("logoURI");
+    if (Object.keys(errors).length > 0) return;
+    setAutoRedirect(true);
+    createCollection(name, logo, information, category.categoryId!);
   };
 
   /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
@@ -233,13 +251,25 @@ const CreateCollection: React.FC = () => {
   }; */
 
   useEffect(() => {
+    if (category.categoryId) {
+      setCategoryError("");
+    }
+  }, [category]);
+
+  useEffect(() => {
     if (!connector) {
       navigate("/login");
     }
   }, [connector, account]);
+
   return (
     <Background>
       <CreateSec>
+        <LoadingModal
+          isLoading={loading}
+          setAutoRedirect={setAutoRedirect}
+          addMore={handleCleanForm}
+        />
         <CreateContainer>
           <CreateTitle>Create Collection</CreateTitle>
           <CreateForm onSubmit={handleSubmit(onSubmit)}>
@@ -280,9 +310,14 @@ const CreateCollection: React.FC = () => {
               <CreateInput
                 type="text"
                 placeholder="Logo URL-image"
+                id="logoURL"
+                {...register("logoURL")}
                 value={logo}
                 onChange={(e) => setLogo(e.target.value)}
               />
+              {errors.logoURL && (
+                <ValidationBlock>{errors.logoURL.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CollectionFeaturedLabelWrapper>
@@ -449,6 +484,9 @@ const CreateCollection: React.FC = () => {
                   </CategoryDescript>
                 </CategorySelectWrapper>
               </CategoryGroup>
+              {categoryError.length > 0 && (
+                <ValidationText>{categoryError}</ValidationText>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel>Links</CreateLabel>
@@ -501,6 +539,9 @@ const CreateCollection: React.FC = () => {
                 onChange={(e) => setCreatorEarnings(e.target.value)}
               />
             </CreateFormGroup>
+            {errors.creatorEarnings && (
+              <ValidationText>{errors.creatorEarnings.message}</ValidationText>
+            )}
             <CreateFormGroup>
               <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
               <BlockDescript className="blockchain-descript">
@@ -531,14 +572,9 @@ const CreateCollection: React.FC = () => {
                   className="left-btn"
                   type="submit"
                   onClick={() =>
-                    category.categoryId != undefined
-                      ? createCollection(
-                          name,
-                          logo,
-                          information,
-                          category.categoryId,
-                        )
-                      : alert("chose category")
+                    !category.categoryId
+                      ? setCategoryError("Please, select category")
+                      : ""
                   }
                 >
                   Create

@@ -55,7 +55,7 @@ const Listing: React.FC = () => {
       SIGNER_ADDRESS,
       MARKETPLACE_ADDRESS,
     );
-      
+
     if (!isApprovedForAll) {
       await (
         await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
