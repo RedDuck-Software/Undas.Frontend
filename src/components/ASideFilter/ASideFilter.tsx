@@ -35,7 +35,7 @@ import {
   ApplyButton,
   ButtonContainer,
 } from "./ASideFilter.styles";
-import AsideCollectionList from "./components/AsideCollectionList/AsideCollectionList";
+import { AsideCollectionList } from "./components";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   FilterIco,
@@ -418,7 +418,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 className={(activeMenu.category && "active-category") || ""}
               >
                 <MobileListWrap>
-                  <CategoryItem {...getCategory(Category.allNFTs)} />
+                  {/* <CategoryItem {...getCategory(Category.allNFTs)} /> */}
                   <CategoryItem {...getCategory(Category.new)} />
                   <CategoryItem {...getCategory(Category.artwork)} />
                   <CategoryItem {...getCategory(Category.sport)} />
