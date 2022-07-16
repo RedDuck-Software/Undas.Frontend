@@ -103,8 +103,7 @@ const FilterSelected: React.FC = () => {
 
   return (
     <>
-      {selectedCollections.length > 0 ||
-      selectedCategories.length > 0 /* ||
+      {selectedCollections.length > 0 || selectedCategories.length > 0 /* ||
       selectedStatuses.length > 0 */ ? (
         <SelectedCollectionsWrapper>
           <SelectedCollectionsList>

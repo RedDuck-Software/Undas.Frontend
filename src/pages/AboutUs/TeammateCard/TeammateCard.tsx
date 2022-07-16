@@ -17,6 +17,7 @@ import {
   AnnaTsysMetaverses,
   IlyaArkhipovArtDirector,
   DanilDeveloper,
+  YefimMigirov,
 } from "./imports";
 import {
   CardWrap,
@@ -143,7 +144,7 @@ const TeammateCards = () => {
                 <TeamCardLink href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
-               {/* <TeamCardLink href="#">
+                {/* <TeamCardLink href="#">
                   <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>*/}
               </CardBody>
@@ -211,7 +212,19 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Danil</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/#">
+                <TeamCardLink href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/">
+                  <img src={LinkedInIco} alt="icon" />
+                </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
+              <CardImg variant="top" src={YefimMigirov} />
+              <CardBody>
+                <TeamCardTitle>Yefim</TeamCardTitle>
+                <TeamCardTitleSurname>Community Manager</TeamCardTitleSurname>
+                <TeamCardLink href="#">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
