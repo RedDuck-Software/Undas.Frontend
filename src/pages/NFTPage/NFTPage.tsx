@@ -168,7 +168,6 @@ const NFTPage: React.FC = () => {
     });
     await tx.wait();
   }
-console.log('itemsForOffer',itemsForOffer)
   const getShowBuy = async () => {
     if (!connector) {
       return;
@@ -188,7 +187,6 @@ console.log('itemsForOffer',itemsForOffer)
     }
   }
 
-  console.log(state.state.tokenAddress )
   const createdMultipleQuery = () => {
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
@@ -249,7 +247,6 @@ console.log('itemsForOffer',itemsForOffer)
     }
     setLoading(false);
   };
-  console.log('itemsForOffer',itemsForOffer)
   useEffect(() => {
     if (fetching) return;
     setItemsForCarousel(data)
@@ -302,7 +299,6 @@ console.log('itemsForOffer',itemsForOffer)
     return data;
   }
 
-  console.log('collectionId',collectionId)
   return (
     <Background>
       {!loading && !isOwner && (

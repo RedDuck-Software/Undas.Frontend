@@ -22,10 +22,8 @@ interface OffersProps {
 }
 
 const Offers: React.FC<OffersProps> = ({ isOwner,items}) => {
-  console.log(items)
 
   const data = [...items.buyingOffers,...items.stakingOffers]
-console.log(data)
   return (
     
     <OffersWrap>
