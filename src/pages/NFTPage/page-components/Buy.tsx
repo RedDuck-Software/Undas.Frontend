@@ -132,38 +132,35 @@ const Buy: React.FC<BuyProps> = ({
   return (
     <>
       {showBuy === false && isOwner === true ? (
-         <BuyBar>
-         
-         <ButtonWrap>
-         <Wrapper disp="flex" alignItems="center">
-           Not listed for sale yet
-         </Wrapper>
-           <InfoButton
-             fc="#873DC1"
-             disabled={!isOwner}
-             onClick={(e) => {
-               e.stopPropagation();
-               navigate(
-                `/offer-for-not-listed-nft/tokenAddress=${state.tokenAddress}&id=${state.tokenId}`,
-                { state: { state } },
-               );
-             }}
-           >
-             Make offer to purchase
-           </InfoButton>
-         </ButtonWrap>
-       </BuyBar>
+        <BuyBar>
+          <ButtonWrap>
+            <Wrapper disp="flex" alignItems="center">
+              Not listed for sale yet
+            </Wrapper>
+            <InfoButton
+              fc="#873DC1"
+              disabled={!isOwner}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(
+                  `/offer-for-not-listed-nft/tokenAddress=${state.tokenAddress}&id=${state.tokenId}`,
+                  { state: { state } },
+                );
+              }}
+            >
+              Make offer to purchase
+            </InfoButton>
+          </ButtonWrap>
+        </BuyBar>
       ) : !state.price ? (
         <BuyBar>
-        
-        <ButtonWrap>
-        <Wrapper disp="flex" alignItems="center">
-          Not listed for sale yet
-        </Wrapper>
-
-        </ButtonWrap>
-      </BuyBar>
-     ) :(
+          <ButtonWrap>
+            <Wrapper disp="flex" alignItems="center">
+              Not listed for sale yet
+            </Wrapper>
+          </ButtonWrap>
+        </BuyBar>
+      ) : (
         <BuyBar>
           <span>Current price</span>
           <Wrapper disp="flex" alignItems="center">

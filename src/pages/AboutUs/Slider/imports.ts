@@ -8,4 +8,14 @@ import SliderImg3 from "../../../images/image-slider/our-team/depositphotos_3875
 import SliderImg1 from "../../../images/image-slider/our-team/depositphotos_76566951-stock-photo-group-interaction.jpg";
 import SliderImg4 from "../../../images/image-slider/our-team/depositphotos_76580229-stock-photo-business-casual.jpg";
 
-export { SliderImg1, SliderImg2, SliderImg3, SliderImg4, SliderImg5, SliderImg6, SliderImg7, SliderImg8, SliderImg9 };
+export {
+  SliderImg1,
+  SliderImg2,
+  SliderImg3,
+  SliderImg4,
+  SliderImg5,
+  SliderImg6,
+  SliderImg7,
+  SliderImg8,
+  SliderImg9,
+};

@@ -10,9 +10,29 @@ import {
 
 export const validationSchema = yup.object().shape(
   {
-    logoURI: yup.string().required("Logo is required"),
-    featureURI: yup.string(),
-    bannerURI: yup.string(),
+    //logoURI: yup.string().required("Logo is required"),
+    logoURL: yup.string().required("Logo is required"),
+    /* .when("logoURL", {
+        is: (value: string) => value?.length,
+        then: (rule) => rule.matches(urlRegex, "Enter correct url!"),
+      }) */ //featureURI: yup.string(),
+    /* featuredURL: yup
+      .string()
+      .nullable()
+      .notRequired()
+      .when("featuredURL", {
+        is: (value: string) => value?.length,
+        then: (rule) => rule.matches(urlRegex, "Enter correct url!"),
+      }),
+    //bannerURI: yup.string(),
+    bannerURL: yup
+      .string()
+      .nullable()
+      .notRequired()
+      .when("bannerURL", {
+        is: (value: string) => value?.length,
+        then: (rule) => rule.matches(urlRegex, "Enter correct url!"),
+      }), */
     name: yup
       .string()
       .required("Name is required.")
@@ -26,7 +46,6 @@ export const validationSchema = yup.object().shape(
         then: (rule) => rule.matches(customUrlName, "Enter correct url!"),
       }),
     information: yup.string().nullable().notRequired(),
-    category: yup.string(),
     twitter: yup
       .string()
       .nullable()
@@ -65,8 +84,11 @@ export const validationSchema = yup.object().shape(
   },
   [
     ["logoURI", "logoURI"],
+    ["logoURL", "logoURL"],
     ["featuredURI", "featuredURI"],
+    ["featuredURL", "featuredURL"],
     ["bannerURI", "bannerURI"],
+    ["bannerURL", "bannerURL"],
     ["name", "name"],
     ["customURL", "customURL"],
     ["twitter", "twitter"],

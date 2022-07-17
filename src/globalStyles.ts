@@ -268,4 +268,13 @@ export const Message = styled.div<{ opacity?: boolean }>`
   transition: all 0.5s;
   z-index: 4;
 `;
+
+export const ClipLoaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 6rem;
+`;
+
 export default GlobalStyle;

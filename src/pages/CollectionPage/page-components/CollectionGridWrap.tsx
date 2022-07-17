@@ -17,7 +17,7 @@ type GridItem = {
   collectionName?: string;
   collectionId?: string;
   collectionOwner?: string;
-  isRented?:boolean;
+  isRented?: boolean;
 };
 interface CollectionGridWrapperProps {
   itemList: GridItem[];
@@ -32,7 +32,6 @@ const CollectionGridWrap: React.FC<CollectionGridWrapperProps> = ({
   ) : (
     <GridLayout>
       {itemList.map((item: GridItem) => {
-  
         return (
           <NFTGridItem
             key={

@@ -185,6 +185,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
   const buyingRef: any = useRef();
   const hasOffersRef: any = useRef();
   const createdRef: any = useRef();
+
   return (
     <>
       <ASideWrap

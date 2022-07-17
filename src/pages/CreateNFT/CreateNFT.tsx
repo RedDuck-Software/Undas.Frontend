@@ -137,15 +137,15 @@ const CreateNFT: React.FC = () => {
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
   const [, /* file */ setFile] = useState<string>();
-  const [fileSizeError /*  setFileSizeError */] = useState<{
+  /*  const [fileSizeError,  setFileSizeError] = useState<{
     message: string;
     inputName: string;
-  }>();
+  }>(); */
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
-    collectionId: "",
   });
+  const [collectionError, setCollectionError] = useState<any>("");
   const [propertyList, setPropertyList] = useState<Property[]>(
     useSelector(useProperties),
   );
@@ -200,7 +200,7 @@ const CreateNFT: React.FC = () => {
       description,
       name,
       urlImage,
-      collection.collectionId,
+      collection.collectionId!,
     );
 
     setLoading(true);
@@ -213,6 +213,7 @@ const CreateNFT: React.FC = () => {
   };
 
   const onSubmit = () => {
+    if (Object.keys(errors).length > 0) return;
     setAutoRedirect(true);
     mintNFT();
   };
@@ -291,15 +292,17 @@ const CreateNFT: React.FC = () => {
     return data;
   }
 
-  const [blockchainFilter, setbBlockchainFilter] = useState<string>("");
+  const [, /* blockchainFilter */ setbBlockchainFilter] = useState<string>("");
 
   const [active, setActive] = useState<any>({
     blockchain: false,
   });
 
   useEffect(() => {
-    console.log(blockchainFilter);
-  }, [active, blockchainFilter]);
+    if (collection.collectionId) {
+      setCollectionError("");
+    }
+  }, [collection]);
 
   return (
     <Background>
@@ -341,20 +344,26 @@ const CreateNFT: React.FC = () => {
                   required
                 />
               </AddFileBlock>
-              {fileSizeError && fileSizeError.inputName === "File" && (
+              {/* {fileSizeError && fileSizeError.inputName === "File" && (
                 <ValidationBlock>{fileSizeError.message}</ValidationBlock>
-              )}
+              )} */}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>URL-image</CreateLabel>
+              <CreateLabel>
+                URL-image<span className="require-asterisk">*</span>
+              </CreateLabel>
               <CreateInput
                 type="text"
                 id="urlImage"
+                {...register("urlImage")}
                 name="urlImage"
                 placeholder="URL-image"
                 value={urlImage}
                 onChange={onChange}
               />
+              {errors.urlImage && (
+                <ValidationBlock>{errors.urlImage.message}</ValidationBlock>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
@@ -428,6 +437,9 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
+            {collectionError.length > 0 && (
+              <ValidationBlock>{collectionError}</ValidationBlock>
+            )}
             <CreateFormGroup>
               <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
               <BlockDescript>
@@ -580,7 +592,15 @@ const CreateNFT: React.FC = () => {
             </CreateFormGroup>
             <ButtonsBlock>
               <FormButtonsWrap>
-                <CreateFormButton type="submit" className="left-btn">
+                <CreateFormButton
+                  type="submit"
+                  className="left-btn"
+                  onClick={() => {
+                    !collection.collectionId
+                      ? setCollectionError("Please, select collection")
+                      : "";
+                  }}
+                >
                   Create
                 </CreateFormButton>
                 <CreateFormButton>Back</CreateFormButton>

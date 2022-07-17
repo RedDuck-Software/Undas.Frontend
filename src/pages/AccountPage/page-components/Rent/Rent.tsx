@@ -28,8 +28,8 @@ type CreatedItemProps = {
   collectionName?: string;
   collectionId?: string;
   tokenAddress?: string;
-  premiumInNum?:number;
-  isRented?:boolean;
+  premiumInNum?: number;
+  isRented?: boolean;
 };
 const RentMenu: React.FC = () => {
   const { account } = useWeb3React();
@@ -54,8 +54,8 @@ const RentMenu: React.FC = () => {
       const tokenOwner = i.taker;
       const collectionName = i.collectionName;
       const collectionId = i.collectionId;
-      const premiumInNum = i.premiumWei
-        // const stakingId = 2
+      const premiumInNum = i.premiumWei;
+      // const stakingId = 2
       const tokenAddress = i.token; //nft collection address
       rentalItems.push({
         id,
@@ -94,7 +94,7 @@ const RentMenu: React.FC = () => {
         collectionId,
         tokenAddress,
         premiumInNum,
-        isRented
+        isRented,
       });
     });
     return rentedItems;
@@ -181,7 +181,6 @@ const RentMenu: React.FC = () => {
       setRentedNfts(response);
     }
   }
-
 
   return (
     <RentWrap>

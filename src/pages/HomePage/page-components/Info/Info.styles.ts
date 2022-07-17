@@ -33,7 +33,7 @@ export const InfoList = styled.div`
   display: flex;
   gap: 10px;
   text-decoration: none;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
   @media (max-width: 1200px) {

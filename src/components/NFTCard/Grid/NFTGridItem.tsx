@@ -47,9 +47,8 @@ interface NFTGridItemProps {
   collectionName?: string;
   collectionId?: string;
   collectionOwner?: string;
-  isRented?:boolean;
+  isRented?: boolean;
 }
-
 
 const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const navigate = useNavigate();
@@ -62,12 +61,10 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       setIsOwner(true);
     }
   }
-
   const createdMultipleQuery = () => {
-
     const offersItems = useQuery({
       query: GET_NFT_TOP_OFFER,
-      variables: { tokenId:props.tokenId,tokenAddress: props.tokenAddress }
+      variables: { tokenId: props.tokenId, tokenAddress: props.tokenAddress },
     });
 
     return offersItems;
@@ -138,7 +135,7 @@ if(data){
             </BuyBtn>
           ) : isOwner == true && !props.isRented ? (
             <BuyBtn
-              onClick={(e) => { 
+              onClick={(e) => {
                 e.stopPropagation();
                 navigate(
                   `/nft/sale/tokenAddress=${props.tokenAddress}?id=${props.tokenId}`,
@@ -149,7 +146,7 @@ if(data){
             >
               Sell
             </BuyBtn>
-          ) : props.isRented == true && isOwner ?(
+          ) : props.isRented == true && isOwner ? (
             <BuyBtn
               onClick={(e) => {
                 navigate(
@@ -157,11 +154,11 @@ if(data){
                   { state: { ...props } },
                 );
                 e.stopPropagation();
-              }}  
+              }}
             >
               Return nft
             </BuyBtn>
-          ) : props.premium ?(
+          ) : props.premium ? (
             <BuyBtn
               onClick={(e) => {
                 e.stopPropagation();
@@ -173,7 +170,7 @@ if(data){
             >
               Rent
             </BuyBtn>
-          ):(
+          ) : (
             <BuyBtn
               onClick={(e) => {
                 navigate(

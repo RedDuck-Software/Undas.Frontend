@@ -73,7 +73,10 @@ import Stats from "./page-components/Accordion/accordrion-components/Stats";
 import Buy from "./page-components/Buy";
 
 import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSlider";
-import { GET_NFT_OFFERS, GET_SAME_COLLECTIONS } from "../../components/AdvertisingSlider/query";
+import {
+  GET_NFT_OFFERS,
+  GET_SAME_COLLECTIONS,
+} from "../../components/AdvertisingSlider/query";
 import { Background } from "../../globalStyles";
 import { Marketplace__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
@@ -99,10 +102,10 @@ const NFTPage: React.FC = () => {
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
   const [collectionName, setcollectionName] = useState<string>("No collection");
-  const [collectionId,setCollectionId] = useState('null')
-  const [status, setStatus] = useState('');
-  const [itemForCarousel,setItemsForCarousel] = useState<any>()
-  const [itemsForOffer,setItemsForOffer] = useState<any>()
+  const [collectionId, setCollectionId] = useState("null");
+  const [status, setStatus] = useState("");
+  const [itemForCarousel, setItemsForCarousel] = useState<any>();
+  const [itemsForOffer, setItemsForOffer] = useState<any>();
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -190,20 +193,18 @@ const NFTPage: React.FC = () => {
   const createdMultipleQuery = () => {
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
-      variables: { collectionId: collectionId}
+      variables: { collectionId: collectionId },
     });
     const offersItems = useQuery({
       query: GET_NFT_OFFERS,
-      variables: { tokenId:tokenId,tokenAddress:state.state.tokenAddress }
+      variables: { tokenId: tokenId, tokenAddress: state.state.tokenAddress },
     });
 
-    return [collectionItems,offersItems];
+    return [collectionItems, offersItems];
   };
-  const [[collectionItemResult],[offersItems]] = createdMultipleQuery();
+  const [[collectionItemResult], [offersItems]] = createdMultipleQuery();
 
-  const { data,fetching } = collectionItemResult;
-
-  
+  const { data, fetching } = collectionItemResult;
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
@@ -224,7 +225,7 @@ const NFTPage: React.FC = () => {
           : "No collection",
       );
       setLoading(false);
-      setCollectionId(tokensQuery.data.listings[0].collectionId)
+      setCollectionId(tokensQuery.data.listings[0].collectionId);
       return;
     }
 
@@ -240,7 +241,7 @@ const NFTPage: React.FC = () => {
       setSeller(tokensQuery.data.stakingListings[0].seller);
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
-      setCollectionId(tokensQuery.data.stakingListings[0].collectionId)
+      setCollectionId(tokensQuery.data.stakingListings[0].collectionId);
       setLoading(false);
 
       return;
@@ -249,13 +250,23 @@ const NFTPage: React.FC = () => {
   };
   useEffect(() => {
     if (fetching) return;
-    setItemsForCarousel(data)
-    setItemsForOffer(offersItems.data)
+    setItemsForCarousel(data);
+    setItemsForOffer(offersItems.data);
     getTokenData();
     getShowBuy();
     getShowRent();
     getOwner();
-  }, [connector, listingId, stakingId, premium, colloteral, seller, fetching, collectionId, offersItems.fetching]);
+  }, [
+    connector,
+    listingId,
+    stakingId,
+    premium,
+    colloteral,
+    seller,
+    fetching,
+    collectionId,
+    offersItems.fetching,
+  ]);
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
@@ -380,7 +391,10 @@ const NFTPage: React.FC = () => {
                   <Info>
                     <InfoElement>
                       <span>
-                        Owned by <PurpleText>{seller?seller.slice(0, 8) + "...":'somebody'}</PurpleText>
+                        Owned by{" "}
+                        <PurpleText>
+                          {seller ? seller.slice(0, 8) + "..." : "somebody"}
+                        </PurpleText>
                       </span>
                     </InfoElement>
                     <InfoElement>
@@ -441,16 +455,13 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                      
                     ) : !state.state.premium ? (
                       <>
-                          <RentElement h="76px">
-
-                          <NotListed>Not listed for rent yet</NotListed>                          
-                      
+                        <RentElement h="76px">
+                          <NotListed>Not listed for rent yet</NotListed>
                         </RentElement>
                       </>
-                    ): (
+                    ) : (
                       <>
                         <RentElement className="center">
                           <span>Deposit</span>
@@ -466,7 +477,7 @@ const NFTPage: React.FC = () => {
                           </Wrapper>
                         </RentElement>
                         <RentElement className="center">
-                          <span>Price for 1  Rental</span>
+                          <span>Price for 1 Rental</span>
                           <Wrapper disp="flex" alignItems="center">
                             <EthIco />
                             <PriceText>
@@ -518,8 +529,11 @@ const NFTPage: React.FC = () => {
             {/*Accordions*/}
             <Wrapper disp="flex" flexWrap="wrap" gap="10px">
               <Accordion name="Offers" ico={<OffersIco />}>
-                {itemsForOffer?<Offers isOwner={!isOwner} items={itemsForOffer} />:''}
-                
+                {itemsForOffer ? (
+                  <Offers isOwner={!isOwner} items={itemsForOffer} />
+                ) : (
+                  ""
+                )}
               </Accordion>
               <Accordion name="Staking" ico={<StakingIco />} und="UND">
                 <Staking />
@@ -566,11 +580,14 @@ const NFTPage: React.FC = () => {
                 <Levels complete={4} />
               </Accordion>
             </Wrapper>
-            {itemForCarousel ?
-            <AdvertisingSlider collectionItems={itemForCarousel} collectionId={+collectionId}/>
-            :
+            {itemForCarousel ? (
+              <AdvertisingSlider
+                collectionItems={itemForCarousel}
+                collectionId={+collectionId}
+              />
+            ) : (
               <></>
-          }
+            )}
           </>
         )}
       </NFTPageWrap>

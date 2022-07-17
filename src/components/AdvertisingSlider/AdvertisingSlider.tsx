@@ -1,7 +1,7 @@
 import React from "react";
 import { Autoplay, Navigation, Scrollbar } from "swiper";
 // eslint-disable-next-line import/order
-import { Swiper,SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/scrollbar";
@@ -20,11 +20,14 @@ import NFTCardForCarousel from "../NFTCardForCarousel/NFTCardForCarousel";
 
 interface CollectionGridWrapperProps {
   collectionItems: any;
-  collectionId:number;
+  collectionId: number;
 }
 
-const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({collectionItems, collectionId}) => {
-  const href = `/collection/${collectionId}`
+const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
+  collectionItems,
+  collectionId,
+}) => {
+  const href = `/collection/${collectionId}`;
   return (
     <Wrap>
       <SliderTitle>More from this collection</SliderTitle>
@@ -60,14 +63,18 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({collectionItem
             },
           }}
         >
-          {collectionItems.tokens.map((i:any) =>{
-            return <SwiperSlide key={i.name}>
-            <NFTCardForCarousel uri={i.uri} name = {i.name}></NFTCardForCarousel>
-          </SwiperSlide>
+          {collectionItems.tokens.map((i: any) => {
+            return (
+              <SwiperSlide key={i.name}>
+                <NFTCardForCarousel
+                  uri={i.uri}
+                  name={i.name}
+                ></NFTCardForCarousel>
+              </SwiperSlide>
+            );
           })}
-         
         </Swiper>
-        <SliderButton to={href} >View Collection</SliderButton>
+        <SliderButton to={href}>View Collection</SliderButton>
       </SliderInner>
     </Wrap>
   );
