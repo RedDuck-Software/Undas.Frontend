@@ -128,7 +128,7 @@ const Buy: React.FC<BuyProps> = ({
 
     getProductPrice();
   }, [connector, web3React]);
-
+  console.log('isOwner',isOwner,'showBuy',showBuy)
   return (
     <>
       {showBuy === false && isOwner === true ? (

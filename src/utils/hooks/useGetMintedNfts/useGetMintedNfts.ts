@@ -13,7 +13,7 @@ export const useGetMintedNfts = () => {
     if (error) return;
 
     const mints: any = [];
-
+    console.log(data.tokens)
     data.tokens.map((nft: any) => {
       mints.push({
         id: nft.id,
@@ -21,6 +21,7 @@ export const useGetMintedNfts = () => {
         URI: nft.uri,
         tokenAddress: nft.tokenAdress,
         collectionName: nft.collectionName,
+        collectionId:nft.collectionId
       });
     });
 

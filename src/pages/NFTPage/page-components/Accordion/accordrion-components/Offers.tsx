@@ -21,11 +21,9 @@ interface OffersProps {
   items?: any;
 }
 
-const Offers: React.FC<OffersProps> = ({ isOwner, items }) => {
-  console.log(items);
+const Offers: React.FC<OffersProps> = ({ isOwner,items}) => {
 
-  const data = [...items.buyingOffers, ...items.stakingOffers];
-  console.log(data);
+  const data = [...items.buyingOffers,...items.stakingOffers]
   return (
     <OffersWrap>
       <OffersHeadTr>
@@ -64,7 +62,7 @@ const Offers: React.FC<OffersProps> = ({ isOwner, items }) => {
               <WethText>WETH</WethText>
             </OffersTdText>
             <OffersTdText>
-              <OffersText>In 20 hours</OffersText>
+              <OffersText>No expiration time</OffersText>
             </OffersTdText>
             <OffersTdText>
               <OffersText color="#5D3F92">65BA4F</OffersText>
