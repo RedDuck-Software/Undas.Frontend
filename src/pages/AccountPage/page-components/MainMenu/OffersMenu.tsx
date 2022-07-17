@@ -167,7 +167,6 @@ const OffersMenu = () => {
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
     if (!connector) return;
-
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -187,10 +186,8 @@ const OffersMenu = () => {
 
     await tx.wait();
   };
-
   const acceptBuyingOffer = async (listingId: any, taker: any) => {
     if (!connector) return;
-
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -291,7 +288,7 @@ const OffersMenu = () => {
       ) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const stakingId = offer.id;
+        const stakingId = offer.stakingId;
         const tokenURI = offer.tokenURI;
         const offeredColloteralWei = Number(
           ethers.utils.formatUnits(offer.newOfferedColloteral, 18),
@@ -330,7 +327,7 @@ const OffersMenu = () => {
       if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const listingId = offer.id;
+        const listingId = offer.listingId;
         const tokenURI = offer.tokenURI;
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.newOfferedPrice, 18),
@@ -390,12 +387,11 @@ const OffersMenu = () => {
 
     const { data, fetching } = madeOffersResult;
     if (fetching) return;
-
     offers.buyingOffers.map((offer: any) => {
-      if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
+      if ((offer.offerStatus == "ACTIVE") && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const listingId = offer.id;
+        const listingId = offer.listingId;
         const tokenURI = offer.tokenURI;
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.newOfferedPrice, 18),
@@ -417,7 +413,7 @@ const OffersMenu = () => {
       }
     });
     data.offerForUserNfts.map((offer: any) => {
-      if (offer.offerStatus == "ACTIVE") {
+      if (offer.offerStatus == "ACTIVE"|| offer.offerStatus=="EXPIRED") {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
         const offerId = offer.offerId;
@@ -459,7 +455,7 @@ const OffersMenu = () => {
       ) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const stakingId = offer.id;
+        const stakingId = offer.stakingId;
         const tokenURI = offer.tokenURI;
         const offeredColloteralWei = Number(
           ethers.utils.formatUnits(offer.newOfferedColloteral, 18),
@@ -704,7 +700,7 @@ const OffersMenu = () => {
                         <WethText>WETH</WethText>
                       </OffersTdText>
                       <OffersTdText>
-                        <OffersText>In 212 hours</OffersText>
+                        <OffersText>No expiration time</OffersText>
                       </OffersTdText>
                       <OffersTdText>
                         <OffersText color="#5D3F92">{i.taker}</OffersText>
@@ -754,7 +750,7 @@ const OffersMenu = () => {
                           <WethText>WETH</WethText>
                         </OffersTdText>
                         <OffersTdText>
-                          <OffersText>In 222 hours</OffersText>
+                          <OffersText>No expiration time</OffersText>
                         </OffersTdText>
                         <OffersTdText>
                           <OffersText color="#5D3F92">{i.taker}</OffersText>
@@ -800,7 +796,7 @@ const OffersMenu = () => {
                           <WethText>WETH</WethText>
                         </OffersTdText>
                         <OffersTdText>
-                          <OffersText>In 222 hours</OffersText>
+                          <OffersText>No expiration time</OffersText>
                         </OffersTdText>
                         <OffersTdText>
                           <OffersText color="#5D3F92">{i.taker}</OffersText>
@@ -871,7 +867,7 @@ const OffersMenu = () => {
                         <WethText>WETH</WethText>
                       </OffersTdText>
                       <OffersTdText>
-                        <OffersText>In 20 hours</OffersText>
+                        <OffersText>No expiration time</OffersText>
                       </OffersTdText>
                       <OffersTdText>
                         <OffersText color="#5D3F92">{i.owner}</OffersText>
@@ -911,7 +907,7 @@ const OffersMenu = () => {
                           <WethText>WETH</WethText>
                         </OffersTdText>
                         <OffersTdText>
-                          <OffersText>In 228 hours</OffersText>
+                          <OffersText>No expiration time</OffersText>
                         </OffersTdText>
                         <OffersTdText>
                           <OffersText color="#5D3F92">{i.owner}</OffersText>
@@ -952,7 +948,7 @@ const OffersMenu = () => {
                           <WethText>WETH</WethText>
                         </OffersTdText>
                         <OffersTdText>
-                          <OffersText>In 228 hours</OffersText>
+                          <OffersText>No expiration time</OffersText>
                         </OffersTdText>
                         <OffersTdText>
                           <OffersText color="#5D3F92">{i.owner}</OffersText>

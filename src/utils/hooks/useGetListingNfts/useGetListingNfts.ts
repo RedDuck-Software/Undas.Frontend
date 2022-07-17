@@ -14,7 +14,7 @@ export const useGetListingNfts = () => {
     if (error) return "error";
 
     const listingNfts: any = [];
-    
+    console.log(data.listings)
     data.listings.map((nft: any) => {
       listingNfts.push({
         id: nft.tokenId,

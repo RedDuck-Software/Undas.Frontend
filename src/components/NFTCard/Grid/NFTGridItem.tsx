@@ -91,7 +91,6 @@ if(data){
     }
 } 
   }, [account, userAccount,fetching]);
-  console.log('props at NFTGRIDITEM',props)
   return (
     <NFTWrap
       onClick={(e) => {
@@ -160,7 +159,7 @@ if(data){
                 e.stopPropagation();
               }}  
             >
-              Pay Premium
+              Return nft
             </BuyBtn>
           ) : props.premium ?(
             <BuyBtn

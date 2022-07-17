@@ -7,6 +7,7 @@ export const GET_MINTED_NFTS = gql`
       name
       uri
       collectionName
+      collectionId
       tokenAdress
     }
   }
