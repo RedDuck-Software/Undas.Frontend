@@ -17,11 +17,13 @@ import {
   ButtonRow,
 } from "./Rent.styles";
 
+import Error from "../../../../components/Modal/Error/Error";
 import { Button } from "../../../../globalStyles";
 import {
   UndasGeneralNFT__factory,
   Marketplace__factory,
 } from "../../../../typechain";
+import { TransactionError } from "../../../../types/global";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
@@ -33,6 +35,13 @@ import Context from "../../../../utils/Context";
 import { getStaking } from "../../../../utils/getStaking";
 
 const Rent: React.FC<{ id: number }> = ({ id }) => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const { connector } = useContext(Context);
 
   const web3React = useWeb3React();
@@ -59,15 +68,20 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
     const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
-    const isApprovedForAll = await NFTContract.isApprovedForAll(
-      SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
-    );
+    try {
+      const isApprovedForAll = await NFTContract.isApprovedForAll(
+        SIGNER_ADDRESS,
+        MARKETPLACE_ADDRESS,
+      );
 
-    if (!isApprovedForAll) {
-      await (
-        await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
-      ).wait();
+      if (!isApprovedForAll) {
+        await (
+          await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+        ).wait();
+      }
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
 
     // const tx = await MarketplaceContract.rentNFT(itemId, {
@@ -114,19 +128,24 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       signer,
     );
 
-    const isApprovedForAll = await NFTContract.isApprovedForAll(
-      SIGNER_ADDRESS,
-      MARKETPLACE_ADDRESS,
-    );
+    try {
+      const isApprovedForAll = await NFTContract.isApprovedForAll(
+        SIGNER_ADDRESS,
+        MARKETPLACE_ADDRESS,
+      );
 
-    if (!isApprovedForAll) {
-      await (
-        await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
-      ).wait();
+      if (!isApprovedForAll) {
+        await (
+          await NFTContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+        ).wait();
+      }
+
+      const tx = await MarketplaceContract.stopRental(itemId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
-
-    const tx = await MarketplaceContract.stopRental(itemId);
-    await tx.wait();
 
     setIsRented(false);
     setShowRentInfo(false);
@@ -144,8 +163,13 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       signer,
     );
 
-    const tx = await MarketplaceContract.dateOfNextPayment(itemId);
-    return tx;
+    try {
+      const tx = await MarketplaceContract.dateOfNextPayment(itemId);
+      return tx;
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const getAsyncValues = async (itemId: number) => {
@@ -178,9 +202,14 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
       deadlineInNum,
       startRentalUTCInNum,
     );
-    const paymentsDue = await MarketplaceContract.paymentsDue(itemId);
 
-    return { paymentsDue, requiredPayments };
+    try {
+      const paymentsDue = await MarketplaceContract.paymentsDue(itemId);
+      return { paymentsDue, requiredPayments };
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   async function getProductValue() {
@@ -266,6 +295,13 @@ const Rent: React.FC<{ id: number }> = ({ id }) => {
 
   return (
     <RentContainer>
+      {showTransactionError && transactionError.message.length > 0 && (
+        <Error
+          error={transactionError}
+          show={showTransactionError}
+          setShow={setShowTransactionError}
+        />
+      )}
       {rentOpen ? (
         canRent ? (
           <>

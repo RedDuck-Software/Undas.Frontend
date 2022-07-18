@@ -76,13 +76,15 @@ const Rent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
-    const tx = await MarketplaceContract.buyToken(tokenId, {
-      value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
-    });
-
+    try {
+      const tx = await MarketplaceContract.buyToken(tokenId, {
+        value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
+      });
+      await tx.wait();
+    } catch (error: any) {
+      console.log("buy error check", error);
+    }
     setLoading(true);
-    await tx.wait();
     if (autoRedirect) {
       setAutoRedirect(false);
       navigate("/all");

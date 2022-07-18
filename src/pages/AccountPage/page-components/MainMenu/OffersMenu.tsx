@@ -32,10 +32,12 @@ import {
 import { OfferType } from "./types";
 
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
+import Error from "../../../../components/Modal/Error/Error";
 import {
   Marketplace__factory,
   UndasGeneralNFT__factory,
 } from "../../../../typechain";
+import { TransactionError } from "../../../../types/global";
 import {
   MARKETPLACE_ADDRESS,
   NFT_ADDRESS,
@@ -73,6 +75,13 @@ export interface BuyingOfferProps extends CommonProps {
 }
 
 const OffersMenu = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const { connector } = useContext(Context);
   const { account } = useWeb3React();
 
@@ -141,9 +150,13 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.cancelListingOffer(listingId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.cancelListingOffer(listingId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const removeStakingOffer = async (stakingId: number) => {
@@ -160,9 +173,13 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.removeStakingOffer(stakingId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.removeStakingOffer(stakingId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
@@ -178,13 +195,17 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.acceptStakingOffer(
-      stakingId,
-      taker,
-      false,
-    );
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.acceptStakingOffer(
+        stakingId,
+        taker,
+        false,
+      );
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
   const acceptBuyingOffer = async (listingId: any, taker: any) => {
     if (!connector) return;
@@ -199,9 +220,13 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const acceptOfferForNotListedToken = async (offerId: any) => {
@@ -220,19 +245,30 @@ const OffersMenu = () => {
 
     const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
     //approve to market
-    const approve = await NftContract.setApprovalForAll(
-      MARKETPLACE_ADDRESS,
-      true,
-    );
+    try {
+      const approve = await NftContract.setApprovalForAll(
+        MARKETPLACE_ADDRESS,
+        true,
+      );
 
-    await approve.wait();
+      await approve.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
+
     //todo put hardcoded to env
-    const tx = await MarketplaceContract.acceptOfferForNotListedToken(
-      offerId,
-      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
-    );
+    try {
+      const tx = await MarketplaceContract.acceptOfferForNotListedToken(
+        offerId,
+        "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+      );
 
-    await tx.wait();
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const denyOfferForNotListedToken = async (offerId: any) => {
@@ -249,9 +285,13 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.denyOfferForNotListedToken(offerId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.denyOfferForNotListedToken(offerId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const cancelUserOfferForNotListedToken = async (offerId: any) => {
@@ -268,9 +308,15 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.cancelOfferForNotListedToken(offerId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.cancelOfferForNotListedToken(
+        offerId,
+      );
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const getStaking0ffers = async () => {
@@ -388,7 +434,7 @@ const OffersMenu = () => {
     const { data, fetching } = madeOffersResult;
     if (fetching) return;
     offers.buyingOffers.map((offer: any) => {
-      if ((offer.offerStatus == "ACTIVE") && offer.newOfferedPrice != 0) {
+      if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
         const listingId = offer.listingId;
@@ -413,7 +459,7 @@ const OffersMenu = () => {
       }
     });
     data.offerForUserNfts.map((offer: any) => {
-      if (offer.offerStatus == "ACTIVE"|| offer.offerStatus=="EXPIRED") {
+      if (offer.offerStatus == "ACTIVE" || offer.offerStatus == "EXPIRED") {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
         const offerId = offer.offerId;
@@ -633,6 +679,13 @@ const OffersMenu = () => {
     offersMenu: (
       <>
         <OfferMenuWrap>
+          {showTransactionError && transactionError.message.length > 0 && (
+            <Error
+              error={transactionError}
+              show={showTransactionError}
+              setShow={setShowTransactionError}
+            />
+          )}
           <OfferFilterWrap>
             <FilterButton
               className={

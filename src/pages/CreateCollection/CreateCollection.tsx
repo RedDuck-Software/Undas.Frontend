@@ -34,11 +34,13 @@ import {
   SelectItem,
 } from "../../components/CreateSelect/CreateSelect";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import Error from "../../components/Modal/Error/Error";
 import { Background, FormButtonsWrap } from "../../globalStyles";
 import closeIcon from "../../icons/close.svg";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import { Category } from "../../types/category";
+import { TransactionError } from "../../types/global";
 import Context from "../../utils/Context";
 import { getCategory } from "../../utils/getCategory";
 import { PolygonIcon } from "../AllNFTs/imports";
@@ -120,6 +122,13 @@ const BlockchainList: React.FC<{ setBlockchain: any }> = ({
 };
 
 const CreateCollection: React.FC = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const [logo, setLogo] = useState<string>("");
   const [featured, setFeatured] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
@@ -173,20 +182,25 @@ const CreateCollection: React.FC = () => {
       signer,
     );
 
-    const tx = await NFTContract.createCollection(
-      collectionName,
-      collectionUrl,
-      collectionInfo,
-      category,
-    );
+    try {
+      const tx = await NFTContract.createCollection(
+        collectionName,
+        collectionUrl,
+        collectionInfo,
+        category,
+      );
 
-    setLoading(true);
-    await tx.wait();
-    if (autoRedirect) {
-      setAutoRedirect(false);
-      navigate("/account");
+      setLoading(true);
+      await tx.wait();
+      if (autoRedirect) {
+        setAutoRedirect(false);
+        navigate("/account");
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
-    setLoading(false);
   };
 
   const handleCleanForm = () => {
@@ -270,6 +284,13 @@ const CreateCollection: React.FC = () => {
           setAutoRedirect={setAutoRedirect}
           addMore={handleCleanForm}
         />
+        {showTransactionError && transactionError.message.length > 0 && (
+          <Error
+            error={transactionError}
+            show={showTransactionError}
+            setShow={setShowTransactionError}
+          />
+        )}
         <CreateContainer>
           <CreateTitle>Create Collection</CreateTitle>
           <CreateForm onSubmit={handleSubmit(onSubmit)}>
@@ -306,7 +327,9 @@ const CreateCollection: React.FC = () => {
               )}
             </CreateFormGroup>
             <CreateFormGroup>
-              <CreateLabel>Logo URL-image</CreateLabel>
+              <CreateLabel>
+                Logo URL-image<span className="require-asterisk">*</span>
+              </CreateLabel>
               <CreateInput
                 type="text"
                 placeholder="Logo URL-image"

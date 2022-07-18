@@ -61,7 +61,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
   );
-    console.log(nfts)
+  console.log(nfts);
   const [loading, setLoading] = useState(false);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);

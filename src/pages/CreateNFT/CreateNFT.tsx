@@ -64,6 +64,7 @@ import { validationSchema } from "./validation";
 
 import { CreateSelect, SelectItem } from "../../components";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import Error from "../../components/Modal/Error/Error";
 import { Background } from "../../globalStyles";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
 import {
@@ -72,6 +73,7 @@ import {
   useStats,
 } from "../../store/reducers/createNFT/helpers";
 import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
+import { TransactionError } from "../../types/global";
 import Context from "../../utils/Context";
 import { PolygonIcon } from "../AllNFTs/imports";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
@@ -130,6 +132,13 @@ const reducer = (state: IState, action: IAction) => {
 };
 
 const CreateNFT: React.FC = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const { name, urlImage, externalLink, description, supply, freezeMetadata } =
     state;
@@ -195,21 +204,26 @@ const CreateNFT: React.FC = () => {
       signer,
     );
 
-    const tx = await NFTContract.safeMintGeneral(
-      account,
-      description,
-      name,
-      urlImage,
-      collection.collectionId!,
-    );
+    try {
+      const tx = await NFTContract.safeMintGeneral(
+        account,
+        description,
+        name,
+        urlImage,
+        collection.collectionId!,
+      );
 
-    setLoading(true);
-    await tx.wait();
-    if (autoRedirect) {
-      setAutoRedirect(false);
-      navigate("/account");
+      setLoading(true);
+      await tx.wait();
+      if (autoRedirect) {
+        setAutoRedirect(false);
+        navigate("/account");
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
-    setLoading(false);
   };
 
   const onSubmit = () => {
@@ -312,6 +326,13 @@ const CreateNFT: React.FC = () => {
           setAutoRedirect={setAutoRedirect}
           addMore={handleCleanForm}
         />
+        {showTransactionError && transactionError.message.length > 0 && (
+          <Error
+            error={transactionError}
+            show={showTransactionError}
+            setShow={setShowTransactionError}
+          />
+        )}
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
 

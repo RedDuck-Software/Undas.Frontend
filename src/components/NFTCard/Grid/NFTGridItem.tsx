@@ -55,7 +55,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const { account } = useWeb3React();
   const [userAccount, setAccount] = useState<any>();
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [topOffer,setTopOffer] = useState(0)
+  const [topOffer, setTopOffer] = useState(0);
   function setOwner() {
     if (userAccount && userAccount.toLowerCase() == props.tokenOwner) {
       setIsOwner(true);
@@ -70,7 +70,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
     return offersItems;
   };
   const offersItems = createdMultipleQuery();
-  const [result] = offersItems
+  const [result] = offersItems;
   const { data, fetching } = result;
 
   useEffect(() => {
@@ -79,15 +79,18 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       setOwner();
     }
 
-if(data){
-  if(data.buyingOffers[0] && !data.stakingOffers[0]){
-      setTopOffer(data.buyingOffers[0].newOfferedPrice)
-  }
-  if(!data.buyingOffers[0] && data.stakingOffers[0]){
-      setTopOffer(+data.stakingOffers[0].newOfferedColloteral + +data.stakingOffers[0].newOfferedPremiumWei)
+    if (data) {
+      if (data.buyingOffers[0] && !data.stakingOffers[0]) {
+        setTopOffer(data.buyingOffers[0].newOfferedPrice);
+      }
+      if (!data.buyingOffers[0] && data.stakingOffers[0]) {
+        setTopOffer(
+          +data.stakingOffers[0].newOfferedColloteral +
+            +data.stakingOffers[0].newOfferedPremiumWei,
+        );
+      }
     }
-} 
-  }, [account, userAccount,fetching]);
+  }, [account, userAccount, fetching]);
   return (
     <NFTWrap
       onClick={(e) => {
@@ -209,12 +212,11 @@ if(data){
           <PriceItem>
             <TextSpan>Top Offer</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <PriceInEth>{topOffer
-                  ? ethers.utils.formatUnits(
-                    topOffer.toString(),
-                      "ether",
-                    )
-                  : "-"}</PriceInEth>
+              <PriceInEth>
+                {topOffer
+                  ? ethers.utils.formatUnits(topOffer.toString(), "ether")
+                  : "-"}
+              </PriceInEth>
               <EthLogo />
             </Wrapper>
           </PriceItem>

@@ -66,7 +66,7 @@ const OfferFotNotListed: React.FC = () => {
   const collectionId = state.state.state.collectionId;
   const tokenId = state.state.state.tokenId;
   const tokenContract = state.state.state.tokenAddress;
-  console.log('OFFERFOR NOT LISTEED',state)
+  console.log("OFFERFOR NOT LISTEED", state);
   const [offeredPrice, setOfferedPrice] = useState<string>();
   const navigate = useNavigate();
   async function makeSaleOffer() {

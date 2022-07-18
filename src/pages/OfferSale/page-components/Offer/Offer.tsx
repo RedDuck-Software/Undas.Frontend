@@ -50,8 +50,10 @@ import {
 } from "./Offer.styles";
 
 import LoadingModal from "../../../../components/LoadingModal/LoadingModal";
+import Error from "../../../../components/Modal/Error/Error";
 import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import { Marketplace__factory } from "../../../../typechain";
+import { TransactionError } from "../../../../types/global";
 import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { bsc, solana } from "../../../CreateNFT/imports";
@@ -59,6 +61,13 @@ import { usd } from "../../../OfferRent/imports";
 import { eth, info } from "../../imports";
 
 const Offer: React.FC = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
@@ -88,18 +97,24 @@ const Offer: React.FC = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.listingOffer(listingId, {
-      value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
-    });
+    try {
+      const tx = await MarketplaceContract.listingOffer(listingId, {
+        value: ethers.utils.parseUnits(offeredPrice.toString(), "ether"),
+      });
 
-    setLoading(true);
-    await tx.wait();
-    if (autoRedirect) {
-      setAutoRedirect(false);
-      navigate("/account");
+      setLoading(true);
+      await tx.wait();
+      if (autoRedirect) {
+        setAutoRedirect(false);
+        navigate("/account");
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
-    setLoading(false);
   }
+
   useEffect(() => {
     if (connector) {
       getTokenData();
@@ -172,6 +187,13 @@ const Offer: React.FC = () => {
         setAutoRedirect={setAutoRedirect}
         addMore={handleCleanForm}
       />
+      {showTransactionError && transactionError.message.length > 0 && (
+        <Error
+          error={transactionError}
+          show={showTransactionError}
+          setShow={setShowTransactionError}
+        />
+      )}
       <Container>
         <FirstCollum>
           <NameRow>
