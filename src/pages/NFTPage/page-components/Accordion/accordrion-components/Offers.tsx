@@ -21,9 +21,8 @@ interface OffersProps {
   items?: any;
 }
 
-const Offers: React.FC<OffersProps> = ({ isOwner,items}) => {
-
-  const data = [...items.buyingOffers,...items.stakingOffers]
+const Offers: React.FC<OffersProps> = ({ isOwner, items }) => {
+  const data = [...items.buyingOffers, ...items.stakingOffers];
   return (
     <OffersWrap>
       <OffersHeadTr>

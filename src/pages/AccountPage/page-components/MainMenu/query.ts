@@ -18,7 +18,7 @@ export const GET_YOUR_OFFERS_FOR_NOT_LISTED_NFTS = gql`
 `;
 export const GET_RECEIVED_OFFERS_FOR_NOT_LISTED_NFTS = gql`
   query getCreatedNfts($creator: Bytes!) {
-    offerForUserNfts(where: { to: $creator,offerStatus:ACTIVE }) {
+    offerForUserNfts(where: { to: $creator, offerStatus: ACTIVE }) {
       offeredAmount
       collectionId
       offerId

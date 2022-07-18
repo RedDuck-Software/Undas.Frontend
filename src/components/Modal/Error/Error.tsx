@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 
 import {
@@ -10,22 +10,30 @@ import {
   StyledFooter,
 } from "./Error.styles";
 
-const Error: React.FC = () => {
-  const [show, setShow] = useState(false);
+import { TransactionError } from "../../../types/global";
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+interface ErrorModalProps {
+  show: boolean;
+  setShow: any;
+  error: TransactionError;
+}
+
+const Error: React.FC<ErrorModalProps> = ({ show, setShow, error }) => {
+  const handleClose = () => {
+    setShow(false);
+  };
+  //const handleShow = () => setShow(true);
+
   return (
     <Wrap>
-      <StyledButton onClick={handleShow}>Launch modal</StyledButton>
+      {/* <StyledButton onClick={handleShow}>Launch modal</StyledButton> */}
       <StyledModal show={show} onHide={handleClose}>
         <StyledHeader closeButton>
-          <Modal.Title>Oops...Something went wrong</Modal.Title>
+          <Modal.Title>
+            Something went wrong. Code Error: {error.code}
+          </Modal.Title>
         </StyledHeader>
-        <StyledBody>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti
-          doloribus rem iste minima, cum reprehenderit dicta.
-        </StyledBody>
+        <StyledBody>{error.message}</StyledBody>
         <StyledFooter>
           <StyledButton onClick={handleClose}>OK</StyledButton>
         </StyledFooter>

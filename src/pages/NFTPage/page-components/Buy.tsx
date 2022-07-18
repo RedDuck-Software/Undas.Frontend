@@ -27,6 +27,8 @@ interface BuyProps {
   tokenAddress?: string;
   tokenId?: string;
   state: any;
+  setTransactionError: any;
+  setShowTransactionError: any;
 }
 
 const Buy: React.FC<BuyProps> = ({
@@ -37,11 +39,12 @@ const Buy: React.FC<BuyProps> = ({
   tokenAddress,
   tokenId,
   state,
+  setTransactionError,
+  setShowTransactionError,
 }) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
-  //const account = web3React.account;
 
   const [, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
@@ -89,10 +92,15 @@ const Buy: React.FC<BuyProps> = ({
       signer,
     );
 
-    const tx = await MarketplaceContract.buyToken(tokenId, {
-      value: ethers.utils.parseUnits(amount.toString(), "ether"),
-    });
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.buyToken(tokenId, {
+        value: ethers.utils.parseUnits(amount.toString(), "ether"),
+      });
+      await tx.wait();
+    } catch (error: any) {
+      setShowTransactionError(true);
+      setTransactionError(error);
+    }
   }
 
   async function getEthPrice() {
@@ -128,7 +136,7 @@ const Buy: React.FC<BuyProps> = ({
 
     getProductPrice();
   }, [connector, web3React]);
-  console.log('isOwner',isOwner,'showBuy',showBuy)
+
   return (
     <>
       {showBuy === false && isOwner === true ? (

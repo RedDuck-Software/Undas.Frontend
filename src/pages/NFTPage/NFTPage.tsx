@@ -77,8 +77,10 @@ import {
   GET_NFT_OFFERS,
   GET_SAME_COLLECTIONS,
 } from "../../components/AdvertisingSlider/query";
+import Error from "../../components/Modal/Error/Error";
 import { Background } from "../../globalStyles";
 import { Marketplace__factory } from "../../typechain";
+import { TransactionError } from "../../types/global";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
@@ -89,6 +91,13 @@ const NFTPage: React.FC = () => {
     display: block;
     margin: auto;
   `;
+
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
 
   const navigate = useNavigate();
   const { connector } = useContext(Context);
@@ -165,11 +174,16 @@ const NFTPage: React.FC = () => {
       amountToPay.toString(),
       "ether",
     );
-    const tx = await MarketplaceContract.rentNFT(stakingId, false, {
-      value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-      gasPrice: 20000,
-    });
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.rentNFT(stakingId, false, {
+        value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
+        gasPrice: 20000,
+      });
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   }
   const getShowBuy = async () => {
     if (!connector) {
@@ -342,6 +356,13 @@ const NFTPage: React.FC = () => {
           />
         ) : (
           <>
+            {showTransactionError && transactionError.message.length > 0 && (
+              <Error
+                error={transactionError}
+                show={showTransactionError}
+                setShow={setShowTransactionError}
+              />
+            )}
             <NavigationWrap>
               <NameInner>
                 <Name>
@@ -427,6 +448,8 @@ const NFTPage: React.FC = () => {
                       tokenAddress={state.state.tokenAddress}
                       tokenId={state.state.tokenId}
                       state={state.state}
+                      setTransactionError={setTransactionError}
+                      setShowTransactionError={setShowTransactionError}
                     />
                   </SaleBlock>
 
