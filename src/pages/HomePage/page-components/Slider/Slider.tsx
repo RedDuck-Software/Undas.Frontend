@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./HeroSlides.css";
 
-import { SliderBG } from "./imports";
+import { SliderBG, CollectionPrev, CollectionPrev2, CollectionPrev3, CollectionPrev4, SliderBG2, SliderBG3, SliderBG4 } from "./imports";
 import {
   SliderImage,
   UndasDiv,
@@ -47,36 +47,38 @@ const Slider: React.FC = () => {
         <CreateButton to="/create-nft">Create</CreateButton>
       </SliderButtonsBlock>
       <SwiperSlide>
-        <CollectionDiv to="/collection">
-          <IMGdiv></IMGdiv>
+        <CollectionDiv to="/">
+          <IMGdiv>
+            <img src={CollectionPrev} />
+          </IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
         <SliderImage src={SliderBG} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/collection">
-          <IMGdiv></IMGdiv>
+        <CollectionDiv to="/">
+          <IMGdiv><img src={CollectionPrev2} /></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
-        <SliderImage src={SliderBG} alt="slider-image" />
+        <SliderImage src={SliderBG2} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/collection">
-          <IMGdiv></IMGdiv>
+        <CollectionDiv to="/">
+          <IMGdiv><img src={CollectionPrev3} /></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
-        <SliderImage src={SliderBG} alt="slider-image" />
+        <SliderImage src={SliderBG3} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/collection">
-          <IMGdiv></IMGdiv>
+        <CollectionDiv to="/">
+          <IMGdiv><img src={CollectionPrev4} /></IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
-        <SliderImage src={SliderBG} alt="slider-image" />
+        <SliderImage src={SliderBG4} alt="slider-image" />
       </SwiperSlide>
     </Swiper>
   );
