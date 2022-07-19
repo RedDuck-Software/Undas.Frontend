@@ -419,8 +419,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 className={(activeMenu.category && "active-category") || ""}
               >
                 <MobileListWrap>
-                  {/* <CategoryItem {...getCategory(Category.allNFTs)} /> */}
-                  <CategoryItem {...getCategory(Category.new)} />
                   <CategoryItem {...getCategory(Category.artwork)} />
                   <CategoryItem {...getCategory(Category.sport)} />
                   <CategoryItem {...getCategory(Category.photography)} />

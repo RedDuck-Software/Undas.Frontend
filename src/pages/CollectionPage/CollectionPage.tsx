@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import React, { useState, useContext, useEffect, useRef } from "react";
 import Overlay from "react-bootstrap/Overlay";
 import { useParams } from "react-router-dom";
@@ -81,6 +82,7 @@ const CollectionPage: React.FC = () => {
   useEffect(() => {
     getListingsData();
   }, [connector, fetching]);
+
   const getTokenData = async () => {
     if (fetching) return;
     const collectionItem: CommonProps[] = [];
@@ -122,29 +124,54 @@ const CollectionPage: React.FC = () => {
               <ASideFilter marginTop="208px" page="Collection" />
               <ContainerNFT>
                 <HeadWrapper>
-                  <CollectionCard />
+                  <CollectionCard
+                    name={data.collection.collectionName}
+                    creator={data.collection.owner}
+                    description={data.collection.collectionInfo}
+                  />
                   <InfoBox>
                     <Info>
                       <InfoElement className="large-items">
                         <TextInfo>Items</TextInfo>
-                        <Amount>14000</Amount>
+                        <Amount>
+                          {data.collection.collectionItemsAmount
+                            ? data.collection.collectionItemsAmount
+                            : "-"}
+                        </Amount>
                       </InfoElement>
                       <InfoElement>
                         <TextInfo>Owners</TextInfo>
-                        <Amount>6400</Amount>
+                        <Amount>
+                          {data.collection.totalOwners
+                            ? data.collection.totalOwners
+                            : "-"}
+                        </Amount>
                       </InfoElement>
                       <InfoElement className="small-floor">
                         <TextInfo>Floor Price</TextInfo>
                         <MyWrapper>
                           <PurpleEthIco />
-                          <Amount>3,2</Amount>
+                          <Amount>
+                            {data.collection.floorPrice &&
+                            data.collection.floorPrice[0]
+                              ? ethers.utils.formatEther(
+                                  data.collection.floorPrice[0].price,
+                                )
+                              : "-"}
+                          </Amount>
                         </MyWrapper>
                       </InfoElement>
                       <InfoElement className="small-vol">
                         <TextInfo>Total Vol</TextInfo>
                         <MyWrapper>
                           <PurpleEthIco />
-                          <Amount>13,402,000</Amount>
+                          <Amount>
+                            {data.collection.collectionVolume
+                              ? ethers.utils.formatEther(
+                                  data.collection.collectionVolume,
+                                )
+                              : "-"}
+                          </Amount>
                         </MyWrapper>
                       </InfoElement>
                     </Info>
