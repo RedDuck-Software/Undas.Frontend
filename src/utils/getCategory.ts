@@ -10,8 +10,9 @@ import sportIcon from "../icons/sport.svg";
 import { Category, ICategory } from "../types/category";
 
 export const getCategory = (category: Category): ICategory => {
+  console.log(category)
   switch (category) {
-    case Category.allNFTs:
+    case Category.other:
       return { icon: allNFTsIcon, label: "All NFTs" };
     case Category.new:
       return { icon: newIcon, label: "New" };
@@ -31,6 +32,7 @@ export const getCategory = (category: Category): ICategory => {
       return { icon: rwaNFTIcon, label: "Real World Asset NFT" };
     case Category.plus18:
       return { icon: plus18, label: "18+NFTs" };
+
     default:
       return { icon: "", label: "No such category" };
   }

@@ -261,7 +261,7 @@ const OffersMenu = () => {
     try {
       const tx = await MarketplaceContract.acceptOfferForNotListedToken(
         offerId,
-        "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
       );
 
       await tx.wait();
@@ -403,7 +403,7 @@ const OffersMenu = () => {
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.offeredAmount, 18),
         );
-        const tokenAddress = "0x82907ED3c6adeA2F470066aBF614F3B38094bef2";
+        const tokenAddress = "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d";
         const owner = offer.to;
         const taker = offer.from;
         const collectionId = offer.collectionId;
@@ -467,7 +467,7 @@ const OffersMenu = () => {
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.offeredAmount, 18),
         );
-        const tokenAddress = "0x82907ED3c6adeA2F470066aBF614F3B38094bef2";
+        const tokenAddress = "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d";
         const owner = offer.to;
         const taker = offer.from;
         const collectionId = offer.collectionId;
@@ -889,7 +889,7 @@ const OffersMenu = () => {
                     <OffersTdText>Item</OffersTdText>
                     <OffersTdText>Price</OffersTdText>
                     <OffersTdText>Expiration</OffersTdText>
-                    <OffersTdText>From</OffersTdText>
+                    <OffersTdText>To</OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>

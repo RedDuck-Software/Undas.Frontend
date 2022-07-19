@@ -11,6 +11,8 @@ export const GET_COLLECTIONS_LIST = gql`
       id
       collectionName
       collectionUrl
+      collectionFeatureUrl
+      collectionBannerUrl
       collectionCategory
       collectionVolume
       tokens(

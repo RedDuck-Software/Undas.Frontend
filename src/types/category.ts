@@ -14,5 +14,6 @@ export enum Category {
     rwaNFT,
     rwaNFTLong,
     plus18,
+    other
 }
 
