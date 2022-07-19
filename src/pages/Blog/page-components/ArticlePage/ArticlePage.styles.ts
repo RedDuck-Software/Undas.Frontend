@@ -96,15 +96,14 @@ export const RelatedButton = styled(ViewAllBtn)`
     position: static;
   }
 `;
-interface IColoredArticleText{
+interface IColoredArticleText {
   textAlign?: string;
 }
 export const ColoredArticleText = styled(ArticleText)<IColoredArticleText>`
-  color: #873DC1;
+  color: #873dc1;
   font-weight: 500;
   text-align: ${(props) => props.textAlign || "left"};
 `;
 export const Colored = styled.span`
-  color: #873DC1;
+  color: #873dc1;
 `;
-

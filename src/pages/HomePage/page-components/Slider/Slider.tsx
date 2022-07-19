@@ -6,7 +6,16 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./HeroSlides.css";
 
-import { SliderBG, CollectionPrev, CollectionPrev2, CollectionPrev3, CollectionPrev4, SliderBG2, SliderBG3, SliderBG4 } from "./imports";
+import {
+  SliderBG,
+  CollectionPrev,
+  CollectionPrev2,
+  CollectionPrev3,
+  CollectionPrev4,
+  SliderBG2,
+  SliderBG3,
+  SliderBG4,
+} from "./imports";
 import {
   SliderImage,
   UndasDiv,
@@ -58,7 +67,9 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <CollectionDiv to="/">
-          <IMGdiv><img src={CollectionPrev2} /></IMGdiv>
+          <IMGdiv>
+            <img src={CollectionPrev2} />
+          </IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
@@ -66,7 +77,9 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <CollectionDiv to="/">
-          <IMGdiv><img src={CollectionPrev3} /></IMGdiv>
+          <IMGdiv>
+            <img src={CollectionPrev3} />
+          </IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
@@ -74,7 +87,9 @@ const Slider: React.FC = () => {
       </SwiperSlide>
       <SwiperSlide>
         <CollectionDiv to="/">
-          <IMGdiv><img src={CollectionPrev4} /></IMGdiv>
+          <IMGdiv>
+            <img src={CollectionPrev4} />
+          </IMGdiv>
           <CollectionTitle>Collection Title</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>

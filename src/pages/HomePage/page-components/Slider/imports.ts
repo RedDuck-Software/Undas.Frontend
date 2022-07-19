@@ -7,5 +7,13 @@ import SliderBG2 from "../../../../images/image-slider/slider-image_2.png";
 import SliderBG3 from "../../../../images/image-slider/slider-image_3.png";
 import SliderBG4 from "../../../../images/image-slider/slider-image_4.png";
 
-
-export { SliderBG, CollectionPrev, CollectionPrev2, CollectionPrev3, CollectionPrev4, SliderBG2, SliderBG3, SliderBG4 };
+export {
+  SliderBG,
+  CollectionPrev,
+  CollectionPrev2,
+  CollectionPrev3,
+  CollectionPrev4,
+  SliderBG2,
+  SliderBG3,
+  SliderBG4,
+};

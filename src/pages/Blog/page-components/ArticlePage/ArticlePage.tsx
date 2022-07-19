@@ -58,9 +58,9 @@ const ArticlePage: React.FC = () => {
               </ArticleDescription>
               <ArticleImage src={ArticleBig}></ArticleImage>
               <ArticleText>
-                Hello to all readers of the <Colored>UNDAS</Colored> blog! We would like to open
-                this blog with a story about the project itself, how it was
-                invented and how it was brought to life.
+                Hello to all readers of the <Colored>UNDAS</Colored> blog! We
+                would like to open this blog with a story about the project
+                itself, how it was invented and how it was brought to life.
               </ArticleText>
               <ArticleText>
                 The project began with the idea of an NFT publishing house,
@@ -80,12 +80,13 @@ const ArticlePage: React.FC = () => {
                 2021, that the technology is at the start of its development. In
                 this regard, no NFT marketplace can support the mechanics and
                 capabilities that we would like our NFT owners to have. The
-                future of the <Colored>UNDAS</Colored> company was decided by one call in October
-                2021. We told our old friends from RedDuck (we developed fintech
-                solutions for banks with them) about our realization issues and
-                mechanics that we would like to see in collections. During the
-                meet, we also mentioned that we are negotiating with one hockey
-                club to issue player cards in the NFT format.
+                future of the <Colored>UNDAS</Colored> company was decided by
+                one call in October 2021. We told our old friends from RedDuck
+                (we developed fintech solutions for banks with them) about our
+                realization issues and mechanics that we would like to see in
+                collections. During the meet, we also mentioned that we are
+                negotiating with one hockey club to issue player cards in the
+                NFT format.
               </ArticleText>
               <ArticleText>
                 {" "}
