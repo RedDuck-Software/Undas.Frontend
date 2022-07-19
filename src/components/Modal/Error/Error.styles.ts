@@ -26,9 +26,9 @@ export const StyledModal = styled(Modal)`
   & .modal-content {
     border-radius: 20px;
   }
-  @media (min-width: 576px) {
+  @media (min-width: 992px) {
     & .modal-dialog {
-      max-width: 50%;
+      max-width: 60%;
     }
   }
 `;
