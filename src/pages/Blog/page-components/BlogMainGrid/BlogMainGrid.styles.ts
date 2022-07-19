@@ -6,7 +6,7 @@ export const Wrap = styled.div`
   grid-auto-rows: 340px;
   gap: 30px;
   @media (max-width: 768px) {
-    grid-auto-rows: 300px;
+    grid-auto-rows: 260px;
     gap: 15px;
     grid-template-columns: repeat(2, 1fr);
   }

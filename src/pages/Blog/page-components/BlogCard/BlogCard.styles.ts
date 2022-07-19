@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Inner = styled.div`
   background-color: #5d3f92;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 0 0 10px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -18,6 +18,9 @@ export const Image = styled.img`
   object-fit: cover;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
+  @media (max-width: 992px) {
+    object-fit: fill;
+  }
 `;
 export const CardWrap = styled(Link)`
   display: flex;
@@ -63,8 +66,12 @@ export const BigCardWrap = styled(CardWrap)`
   grid-column-end: 4;
   max-height: 340px;
   width: 100%;
+  @media (max-width: 992px) {
+    max-height: 300px;
+  }
   @media (max-width: 768px) {
     grid-column-end: 3;
+    max-height: 200px;
   }
   @media (max-width: 576px) {
     display: none;
@@ -77,6 +84,12 @@ export const ImageWrap = styled.div`
 export const BigImageWrap = styled(ImageWrap)`
   width: 50%;
   border-radius: 10px 0 0 10px;
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 992px) {
+    width: 80%;
+  }
 `;
 
 export const BigImage = styled(Image)`
@@ -136,8 +149,7 @@ export const BigCardText = styled.p`
     line-height: 22px;
   }
   @media (max-width: 768px) {
-    font-size: 14px;
-    line-height: 17px;
+    display: none;
   }
 `;
 export const CardLink = styled.a`

@@ -1,4 +1,3 @@
-import BigImg from "./assets/big-card.png";
 import BusinessTips1 from "./assets/business-tips-1.png";
 import BusinessTips2 from "./assets/business-tips-2.png";
 import BusinessTips3 from "./assets/business-tips-3.png";
@@ -18,7 +17,6 @@ import WebsiteTips2 from "./assets/website-tips-2.png";
 import WebsiteTips3 from "./assets/website-tips-3.png";
 
 export {
-  BigImg,
   SmImg1,
   SmImg2,
   SmImg3,
