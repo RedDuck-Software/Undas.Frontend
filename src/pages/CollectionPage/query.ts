@@ -19,6 +19,14 @@ export const GET_COLLECTION_INFO = gql`
         collectionName
         collectionId
       }
+      floorPrice: tokens(
+        orderBy: price
+        orderDirection: desc
+        first: 1
+        where: { price_gt: 0 }
+      ) {
+        price
+      }
     }
   }
 `;
