@@ -203,7 +203,6 @@ const CreateNFT: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-      console.log(collection.collectionId)
     try {
       const tx = await NFTContract.safeMintGeneral(
         account,

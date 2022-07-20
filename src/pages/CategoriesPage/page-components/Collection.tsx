@@ -50,7 +50,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
-  console.log('items list',itemList)
   const getListings = async () => {
     const tokens = await fetchData();
 

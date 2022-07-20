@@ -111,7 +111,6 @@ const CollectionPage: React.FC = () => {
       setList(response);
     }
   };
-  console.log(data)
   return (
     <>
       {fetching && !data ? (

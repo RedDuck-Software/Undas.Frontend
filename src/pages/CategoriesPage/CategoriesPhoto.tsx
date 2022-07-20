@@ -88,7 +88,6 @@ const CategoriesGameFI: React.FC = () => {
 
   async function fetchData() {
     const data = await client.query(collectionsQuery).toPromise();
-    console.log(data)
     return data;
   }
 
