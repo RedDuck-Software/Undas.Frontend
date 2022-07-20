@@ -1,7 +1,14 @@
 import React from "react";
 
 import { BlogWrap } from "./Blog.styles";
-import { WebsiteTips1, WebsiteTips2, WebsiteTips3, Inspiration1, Inspiration2, Inspiration3 } from "./imports";
+import {
+  WebsiteTips1,
+  WebsiteTips2,
+  WebsiteTips3,
+  Inspiration1,
+  Inspiration2,
+  Inspiration3,
+} from "./imports";
 import BlogMainGrid from "./page-components/BlogMainGrid/BlogMainGrid";
 import BlogPageGrid from "./page-components/BlogPageGrid/BlogPageGrid";
 import { BlogPost } from "./types";

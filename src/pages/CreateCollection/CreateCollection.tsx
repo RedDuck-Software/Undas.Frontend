@@ -193,7 +193,7 @@ const CreateCollection: React.FC = () => {
         featured,
         banner,
         collectionInfo,
-        category
+        category,
       );
 
       setLoading(true);
@@ -216,7 +216,7 @@ const CreateCollection: React.FC = () => {
   const onSubmit = () => {
     if (Object.keys(errors).length > 0) return;
     setAutoRedirect(true);
-    createCollection(name, logo, information, category.categoryId!,);
+    createCollection(name, logo, information, category.categoryId!);
   };
 
   /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {

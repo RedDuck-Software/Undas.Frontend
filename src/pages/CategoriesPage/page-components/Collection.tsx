@@ -19,7 +19,7 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import {Verified } from "../imports";
+import { Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
@@ -104,7 +104,10 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
 
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground src={i.collectionFeatureImg} alt="collection-bg" />
+            <CollectionBackground
+              src={i.collectionFeatureImg}
+              alt="collection-bg"
+            />
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />

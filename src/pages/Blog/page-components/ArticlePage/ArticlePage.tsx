@@ -14,7 +14,7 @@ import {
   RelatedButton,
   ColoredArticleText,
   Colored,
-  CardsWrap
+  CardsWrap,
 } from "./ArticlePage.styles";
 
 import Partners from "../../../../components/Partners/Partners";
