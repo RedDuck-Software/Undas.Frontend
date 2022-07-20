@@ -129,12 +129,6 @@ const _abi = [
         name: "collectionId",
         type: "uint256",
       },
-      {
-        indexed: false,
-        internalType: "string",
-        name: "collectionName",
-        type: "string",
-      },
     ],
     name: "collectionTokenMint",
     type: "event",
@@ -144,7 +138,7 @@ const _abi = [
     inputs: [
       {
         indexed: false,
-        internalType: "enum Undas.Category",
+        internalType: "enum UndasMVP.Category",
         name: "",
         type: "uint8",
       },
@@ -169,7 +163,19 @@ const _abi = [
       {
         indexed: false,
         internalType: "string",
-        name: "url",
+        name: "logoImgUrl",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "featuredImgUrl",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "bannerImgUrl",
         type: "string",
       },
       {
@@ -180,6 +186,19 @@ const _abi = [
       },
     ],
     name: "createdCollection",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collectionId",
+        type: "uint256",
+      },
+    ],
+    name: "verify",
     type: "event",
   },
   {
@@ -240,9 +259,29 @@ const _abi = [
         type: "address",
       },
       {
-        internalType: "enum Undas.Category",
+        internalType: "enum UndasMVP.Category",
         name: "category",
         type: "uint8",
+      },
+      {
+        internalType: "bool",
+        name: "isVerified",
+        type: "bool",
+      },
+      {
+        internalType: "string",
+        name: "logoImgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "featuredImgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "bannerImgUrl",
+        type: "string",
       },
     ],
     stateMutability: "view",
@@ -257,7 +296,17 @@ const _abi = [
       },
       {
         internalType: "string",
-        name: "_url",
+        name: "_logoImgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_featuredImgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_bannerImgUrl",
         type: "string",
       },
       {
@@ -266,7 +315,7 @@ const _abi = [
         type: "string",
       },
       {
-        internalType: "enum Undas.Category",
+        internalType: "enum UndasMVP.Category",
         name: "_category",
         type: "uint8",
       },
@@ -309,6 +358,19 @@ const _abi = [
       },
     ],
     name: "isApprovedForAll",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "isOthersCollectionCreated",
     outputs: [
       {
         internalType: "bool",
@@ -626,6 +688,19 @@ const _abi = [
       },
     ],
     name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "collectionId",
+        type: "uint256",
+      },
+    ],
+    name: "verifyCollection",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

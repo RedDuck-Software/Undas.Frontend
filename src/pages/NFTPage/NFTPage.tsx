@@ -226,6 +226,7 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
+      
       setName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setPriceInNum(tokensQuery.data.listings[0].price);
@@ -256,6 +257,11 @@ const NFTPage: React.FC = () => {
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
       setCollectionId(tokensQuery.data.stakingListings[0].collectionId);
+      setcollectionName(
+        tokensQuery.data.stakingListings[0].collectionName
+          ? tokensQuery.data.stakingListings[0].collectionName
+          : "No collection",
+      );
       setLoading(false);
 
       return;
@@ -311,6 +317,7 @@ const NFTPage: React.FC = () => {
     deadlineUTC
     stakingStatus
     collectionId
+    collectionName
   }
 }
  `;

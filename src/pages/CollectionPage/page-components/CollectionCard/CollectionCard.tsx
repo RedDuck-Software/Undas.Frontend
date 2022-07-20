@@ -17,7 +17,6 @@ import {
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 import {
-  CollectionPic,
   TwitterIco,
   TelegramIco,
   DiscordIco,
@@ -30,18 +29,20 @@ interface CollectionCardProps {
   name: string;
   creator: string;
   description: string;
+  logo:string;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
   name,
   creator,
   description,
+  logo
 }) => {
   return (
     <CardWrap>
       <Wrapper disp="flex" gap="20px">
         <ImageWrap>
-          <ImgCollection src={CollectionPic} alt="collection-pic" />
+          <ImgCollection src={logo} alt="collection-pic" />
         </ImageWrap>
         <Wrapper
           disp="flex"

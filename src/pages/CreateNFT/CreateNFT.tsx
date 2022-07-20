@@ -200,10 +200,9 @@ const CreateNFT: React.FC = () => {
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
+      "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-
     try {
       const tx = await NFTContract.safeMintGeneral(
         account,
@@ -283,18 +282,21 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
+    const data = tokensQuery.data.collections
+    data.push({collectionName:'All Nfts',collectionId:0})
     setCollectionsList(tokensQuery.data.collections);
-  };
 
+  };
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
   {
-    collections(where:{owner:"${account}"}){
-      collectionName
-      id
-    }
+      collections(where:{owner:"${account}"}){
+        collectionName
+        id
+      }
+
   }
  `;
   const client = createClient({
