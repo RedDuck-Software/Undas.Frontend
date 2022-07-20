@@ -889,7 +889,7 @@ const OffersMenu = () => {
                     <OffersTdText>Item</OffersTdText>
                     <OffersTdText>Price</OffersTdText>
                     <OffersTdText>Expiration</OffersTdText>
-                    <OffersTdText>From</OffersTdText>
+                    <OffersTdText>To</OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>
