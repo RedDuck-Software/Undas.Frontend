@@ -42,16 +42,10 @@ export const CardWrap = styled(Link)`
   @media (max-width: 768px) {
     height: 300px;
     flex: 0 0 50%;
-    &:last-child {
-      display: none;
-    }
   }
   @media (max-width: 576px) {
     height: 370px;
     flex: 0 0 100%;
-    &:nth-child(2) {
-      display: none;
-    }
   }
   @media (max-width: 400px) {
     height: 50%;
@@ -74,7 +68,8 @@ export const BigCardWrap = styled(CardWrap)`
     max-height: 200px;
   }
   @media (max-width: 576px) {
-    display: none;
+    flex-direction: column;
+    max-height: 340px;
   }
 `;
 export const ImageWrap = styled.div`
@@ -90,10 +85,16 @@ export const BigImageWrap = styled(ImageWrap)`
   @media (max-width: 992px) {
     width: 80%;
   }
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 export const BigImage = styled(Image)`
   border-radius: 10px 0 0 10px;
+  @media (max-width: 576px) {
+    border-radius: 10px 10px 0 0;
+  }
 `;
 
 export const CardBody = styled.div`
@@ -107,6 +108,14 @@ export const BigCardBody = styled(CardBody)`
   width: 50%;
   padding: 30px;
   gap: 20px;
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+  @media (max-width: 576px) {
+    padding: 30px;
+    width: 100%;
+    gap: 0;
+  }
 `;
 
 export const CardTitle = styled.h2`

@@ -20,7 +20,7 @@ const Partners: React.FC = () => {
           ></FirstPartner>
 
           <SecondPartner
-            href="#"
+            href="https://sgm.team"
             target="_blank"
           ></SecondPartner>
         </PartnersWrap>
