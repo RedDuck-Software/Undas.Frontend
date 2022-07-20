@@ -19,7 +19,7 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import { CollectionBG, Verified } from "../imports";
+import {Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
@@ -27,6 +27,8 @@ type CollectionItemProps = {
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   owner?: string;
   tokens?: [
     {
@@ -48,7 +50,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
-
   const getListings = async () => {
     const tokens = await fetchData();
 
@@ -103,7 +104,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
 
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground src={CollectionBG} alt="collection-bg" />
+            <CollectionBackground src={i.collectionFeatureImg} alt="collection-bg" />
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />

@@ -186,7 +186,6 @@ const CreateCollection: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-      console.log(category)
     try {
       const tx = await NFTContract.createCollection(
         collectionName,

@@ -83,7 +83,6 @@ const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
   items: any;
 }> = ({ setCollection, items }) => {
-  console.log('dsadas',items)
   return (
     <>
       {items.map((item: any) => {
@@ -180,7 +179,6 @@ const CreateNFT: React.FC = () => {
     }
     getTokenData();
   }, [connector, account]);
-  console.log(collection)
 
   const formOptions: { resolver: any } = {
     resolver: yupResolver(validationSchema),
@@ -188,7 +186,6 @@ const CreateNFT: React.FC = () => {
   const { register, formState, handleSubmit } =
     useForm<CreateNFTForm>(formOptions);
   const { errors } = formState;
-  console.log('ID',collection.collectionId)
 
   const mintNFT = async () => {
     if (!connector || !account) return;
@@ -206,7 +203,6 @@ const CreateNFT: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-      console.log('ID',collection.collectionId)
     try {
       const tx = await NFTContract.safeMintGeneral(
         account,
@@ -291,7 +287,6 @@ const CreateNFT: React.FC = () => {
     setCollectionsList(tokensQuery.data.collections);
 
   };
-  console.log()
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

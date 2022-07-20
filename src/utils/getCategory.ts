@@ -10,7 +10,6 @@ import sportIcon from "../icons/sport.svg";
 import { Category, ICategory } from "../types/category";
 
 export const getCategory = (category: Category): ICategory => {
-  console.log(category)
   switch (category) {
     case Category.other:
       return { icon: allNFTsIcon, label: "All NFTs" };
