@@ -196,7 +196,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
             </Wrapper>
           </PriceItem>
           <PriceItem>
-            <span>Price for rent</span>
+            <span>Rent</span>
             <Wrapper disp="flex" gap="6px">
               <PriceInEth>
                 {props.colloteralWei

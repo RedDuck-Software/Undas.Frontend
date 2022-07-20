@@ -26,6 +26,11 @@ export const StyledModal = styled(Modal)`
   & .modal-content {
     border-radius: 20px;
   }
+  @media (min-width: 992px) {
+    & .modal-dialog {
+      max-width: 60%;
+    }
+  }
 `;
 export const StyledHeader = styled(Modal.Header)`
   background: #ebdfff;

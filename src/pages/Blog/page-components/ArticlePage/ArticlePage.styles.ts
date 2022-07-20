@@ -64,6 +64,7 @@ export const ArticleImage = styled.img`
   border-radius: 10px;
 `;
 export const ArticleText = styled.p`
+  text-indent: 3ch;
   margin: 30px 0 0;
   font-weight: 400;
   font-size: 16px;
@@ -94,4 +95,15 @@ export const RelatedButton = styled(ViewAllBtn)`
     display: block;
     position: static;
   }
+`;
+interface IColoredArticleText {
+  textAlign?: string;
+}
+export const ColoredArticleText = styled(ArticleText)<IColoredArticleText>`
+  color: #873dc1;
+  font-weight: 500;
+  text-align: ${(props) => props.textAlign || "left"};
+`;
+export const Colored = styled.span`
+  color: #873dc1;
 `;

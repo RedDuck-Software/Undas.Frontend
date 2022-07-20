@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BlogWrap, Text } from "./Blog.styles";
+import { BlogWrap } from "./Blog.styles";
 // import BusinessTips from "./page-components/BusinessTips/BusinessTips";
 // import Inspiration from "./page-components/Inspiration/Inspiration";
 import MainBlog from "./page-components/MainBlog/MainBlog";
@@ -22,12 +22,12 @@ const Blog: React.FC = () => {
       <BlogWrap>
         <Container>
           <PageTitle>
-            THE <ColoredText>UNDAS</ColoredText> BLOG
+            The <ColoredText>UNDAS</ColoredText> Blog
           </PageTitle>
-          <Text>
+          {/* <Text>
             Get advice about self-employment, starting a business, website tips,
             web design, online stores, SEO, marketing, and more
-          </Text>
+          </Text> */}
         </Container>
         {/* <TabsMenuWrap>
           <Container>
