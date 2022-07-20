@@ -84,13 +84,14 @@ export const CreatedResultsTotal = styled(ResultsTotal)`
 
 //Created collections
 
-export const CollectionCard = styled(Link)`
+export const CollectionCard = styled(Link)<{ bg?: string }>`
   margin: 20px 0;
   position: relative;
   cursor: pointer;
   width: 100%;
   padding: 20px;
-  background: url(${CollectionBG}) no-repeat center / cover;
+  background: url(${({ bg }) => (bg ? bg : CollectionBG)}) no-repeat center /
+    cover;
   border-radius: 20px;
   overflow: hidden;
   display: flex;

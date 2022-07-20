@@ -169,8 +169,10 @@ const CreateNFT: React.FC = () => {
   const [isOnlockableContent, setIsOnlockableContent] =
     useState<boolean>(false);
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const [collectionList, setCollectionsList] = useState<CollectionType[]>([
     {
