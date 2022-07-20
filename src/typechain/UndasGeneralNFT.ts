@@ -22,9 +22,10 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "collections(uint256)": FunctionFragment;
-    "createCollection(string,string,string,uint8)": FunctionFragment;
+    "createCollection(string,string,string,string,string,uint8)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
+    "isOthersCollectionCreated()": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
@@ -39,6 +40,7 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
     "tokenURI(uint256)": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
+    "verifyCollection(uint256)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -52,7 +54,7 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "createCollection",
-    values: [string, string, string, BigNumberish]
+    values: [string, string, string, string, string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "getApproved",
@@ -61,6 +63,10 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [string, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isOthersCollectionCreated",
+    values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
@@ -109,6 +115,10 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "verifyCollection",
+    values: [BigNumberish]
+  ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
@@ -126,6 +136,10 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "isOthersCollectionCreated",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
@@ -169,13 +183,18 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
     functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "verifyCollection",
+    data: BytesLike
+  ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
-    "collectionTokenMint(address,uint256,string,string,string,uint256,string)": EventFragment;
-    "createdCollection(uint8,string,uint256,string,string,address)": EventFragment;
+    "collectionTokenMint(address,uint256,string,string,string,uint256)": EventFragment;
+    "createdCollection(uint8,string,uint256,string,string,string,string,address)": EventFragment;
+    "verify(uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
@@ -183,6 +202,7 @@ export interface UndasGeneralNFTInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "collectionTokenMint"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "createdCollection"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "verify"): EventFragment;
 }
 
 export type ApprovalEvent = TypedEvent<
@@ -207,7 +227,7 @@ export type TransferEvent = TypedEvent<
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
 export type collectionTokenMintEvent = TypedEvent<
-  [string, BigNumber, string, string, string, BigNumber, string],
+  [string, BigNumber, string, string, string, BigNumber],
   {
     to: string;
     tokenId: BigNumber;
@@ -215,7 +235,6 @@ export type collectionTokenMintEvent = TypedEvent<
     url: string;
     description: string;
     collectionId: BigNumber;
-    collectionName: string;
   }
 >;
 
@@ -223,19 +242,25 @@ export type collectionTokenMintEventFilter =
   TypedEventFilter<collectionTokenMintEvent>;
 
 export type createdCollectionEvent = TypedEvent<
-  [number, string, BigNumber, string, string, string],
+  [number, string, BigNumber, string, string, string, string, string],
   {
     arg0: number;
     collectionName: string;
     collectionId: BigNumber;
     information: string;
-    url: string;
+    logoImgUrl: string;
+    featuredImgUrl: string;
+    bannerImgUrl: string;
     owner: string;
   }
 >;
 
 export type createdCollectionEventFilter =
   TypedEventFilter<createdCollectionEvent>;
+
+export type verifyEvent = TypedEvent<[BigNumber], { collectionId: BigNumber }>;
+
+export type verifyEventFilter = TypedEventFilter<verifyEvent>;
 
 export interface UndasGeneralNFT extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -276,16 +301,22 @@ export interface UndasGeneralNFT extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, number] & {
+      [string, string, number, boolean, string, string, string] & {
         name: string;
         owner: string;
         category: number;
+        isVerified: boolean;
+        logoImgUrl: string;
+        featuredImgUrl: string;
+        bannerImgUrl: string;
       }
     >;
 
     createCollection(
       _collectionName: string,
-      _url: string,
+      _logoImgUrl: string,
+      _featuredImgUrl: string,
+      _bannerImgUrl: string,
       _information: string,
       _category: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -301,6 +332,8 @@ export interface UndasGeneralNFT extends BaseContract {
       operator: string,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
+
+    isOthersCollectionCreated(overrides?: CallOverrides): Promise<[boolean]>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
@@ -384,6 +417,11 @@ export interface UndasGeneralNFT extends BaseContract {
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    verifyCollection(
+      collectionId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
 
   approve(
@@ -398,12 +436,22 @@ export interface UndasGeneralNFT extends BaseContract {
     arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, number] & { name: string; owner: string; category: number }
+    [string, string, number, boolean, string, string, string] & {
+      name: string;
+      owner: string;
+      category: number;
+      isVerified: boolean;
+      logoImgUrl: string;
+      featuredImgUrl: string;
+      bannerImgUrl: string;
+    }
   >;
 
   createCollection(
     _collectionName: string,
-    _url: string,
+    _logoImgUrl: string,
+    _featuredImgUrl: string,
+    _bannerImgUrl: string,
     _information: string,
     _category: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -419,6 +467,8 @@ export interface UndasGeneralNFT extends BaseContract {
     operator: string,
     overrides?: CallOverrides
   ): Promise<boolean>;
+
+  isOthersCollectionCreated(overrides?: CallOverrides): Promise<boolean>;
 
   name(overrides?: CallOverrides): Promise<string>;
 
@@ -497,6 +547,11 @@ export interface UndasGeneralNFT extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  verifyCollection(
+    collectionId: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     approve(
       to: string,
@@ -510,16 +565,22 @@ export interface UndasGeneralNFT extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, number] & {
+      [string, string, number, boolean, string, string, string] & {
         name: string;
         owner: string;
         category: number;
+        isVerified: boolean;
+        logoImgUrl: string;
+        featuredImgUrl: string;
+        bannerImgUrl: string;
       }
     >;
 
     createCollection(
       _collectionName: string,
-      _url: string,
+      _logoImgUrl: string,
+      _featuredImgUrl: string,
+      _bannerImgUrl: string,
       _information: string,
       _category: BigNumberish,
       overrides?: CallOverrides
@@ -535,6 +596,8 @@ export interface UndasGeneralNFT extends BaseContract {
       operator: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    isOthersCollectionCreated(overrides?: CallOverrides): Promise<boolean>;
 
     name(overrides?: CallOverrides): Promise<string>;
 
@@ -612,6 +675,11 @@ export interface UndasGeneralNFT extends BaseContract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    verifyCollection(
+      collectionId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {
@@ -648,14 +716,13 @@ export interface UndasGeneralNFT extends BaseContract {
       tokenId?: BigNumberish | null
     ): TransferEventFilter;
 
-    "collectionTokenMint(address,uint256,string,string,string,uint256,string)"(
+    "collectionTokenMint(address,uint256,string,string,string,uint256)"(
       to?: null,
       tokenId?: null,
       name?: null,
       url?: null,
       description?: null,
-      collectionId?: null,
-      collectionName?: null
+      collectionId?: null
     ): collectionTokenMintEventFilter;
     collectionTokenMint(
       to?: null,
@@ -663,16 +730,17 @@ export interface UndasGeneralNFT extends BaseContract {
       name?: null,
       url?: null,
       description?: null,
-      collectionId?: null,
-      collectionName?: null
+      collectionId?: null
     ): collectionTokenMintEventFilter;
 
-    "createdCollection(uint8,string,uint256,string,string,address)"(
+    "createdCollection(uint8,string,uint256,string,string,string,string,address)"(
       undefined?: null,
       collectionName?: null,
       collectionId?: null,
       information?: null,
-      url?: null,
+      logoImgUrl?: null,
+      featuredImgUrl?: null,
+      bannerImgUrl?: null,
       owner?: null
     ): createdCollectionEventFilter;
     createdCollection(
@@ -680,9 +748,14 @@ export interface UndasGeneralNFT extends BaseContract {
       collectionName?: null,
       collectionId?: null,
       information?: null,
-      url?: null,
+      logoImgUrl?: null,
+      featuredImgUrl?: null,
+      bannerImgUrl?: null,
       owner?: null
     ): createdCollectionEventFilter;
+
+    "verify(uint256)"(collectionId?: null): verifyEventFilter;
+    verify(collectionId?: null): verifyEventFilter;
   };
 
   estimateGas: {
@@ -701,7 +774,9 @@ export interface UndasGeneralNFT extends BaseContract {
 
     createCollection(
       _collectionName: string,
-      _url: string,
+      _logoImgUrl: string,
+      _featuredImgUrl: string,
+      _bannerImgUrl: string,
       _information: string,
       _category: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -717,6 +792,8 @@ export interface UndasGeneralNFT extends BaseContract {
       operator: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    isOthersCollectionCreated(overrides?: CallOverrides): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -793,6 +870,11 @@ export interface UndasGeneralNFT extends BaseContract {
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    verifyCollection(
+      collectionId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -814,7 +896,9 @@ export interface UndasGeneralNFT extends BaseContract {
 
     createCollection(
       _collectionName: string,
-      _url: string,
+      _logoImgUrl: string,
+      _featuredImgUrl: string,
+      _bannerImgUrl: string,
       _information: string,
       _category: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -828,6 +912,10 @@ export interface UndasGeneralNFT extends BaseContract {
     isApprovedForAll(
       owner: string,
       operator: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    isOthersCollectionCreated(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -904,6 +992,11 @@ export interface UndasGeneralNFT extends BaseContract {
       from: string,
       to: string,
       tokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    verifyCollection(
+      collectionId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

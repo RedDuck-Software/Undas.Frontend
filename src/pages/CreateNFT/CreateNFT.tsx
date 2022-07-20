@@ -282,18 +282,21 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
+    const data = tokensQuery.data.collections
+    data.push({collectionName:'All Nfts',collectionId:0})
     setCollectionsList(tokensQuery.data.collections);
-  };
 
+  };
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
   const tokensQuery = `
   {
-    collections(where:{owner:"${account}"}){
-      collectionName
-      id
-    }
+      collections(where:{owner:"${account}"}){
+        collectionName
+        id
+      }
+
   }
  `;
   const client = createClient({
