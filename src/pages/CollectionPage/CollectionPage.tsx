@@ -94,7 +94,7 @@ const CollectionPage: React.FC = () => {
         description: i.tokenDescription,
         collectionOwner: i.owner,
         collectionId: i.collectionId.toString(),
-        tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         collectionName: i.collectionName,
       };
       collectionItem.push(item);

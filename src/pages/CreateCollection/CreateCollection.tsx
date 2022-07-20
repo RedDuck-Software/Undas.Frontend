@@ -99,6 +99,11 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
         categoryId={6}
         {...getCategory(Category.plus18)}
       />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={7}
+        {...getCategory(Category.other)}
+      />
     </>
   );
 };
@@ -178,16 +183,18 @@ const CreateCollection: React.FC = () => {
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
+      "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-
+      console.log(category)
     try {
       const tx = await NFTContract.createCollection(
         collectionName,
         collectionUrl,
+        featured,
+        banner,
         collectionInfo,
-        category,
+        category
       );
 
       setLoading(true);
@@ -210,7 +217,7 @@ const CreateCollection: React.FC = () => {
   const onSubmit = () => {
     if (Object.keys(errors).length > 0) return;
     setAutoRedirect(true);
-    createCollection(name, logo, information, category.categoryId!);
+    createCollection(name, logo, information, category.categoryId!,);
   };
 
   /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {

@@ -91,7 +91,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
         URI: nft.uri,
         collectionId: nft.collectionId,
         collectionName: nft.collectionName,
-        tokenAddress: "0x82907ed3c6adea2f470066abf614f3b38094bef2",
+        tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
       });
     });
 
@@ -124,7 +124,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
         URI: nft.uri,
         collectionId: nft.collectionId,
         collectionName: nft.collectionName,
-        tokenAddress: "0x82907ed3c6adea2f470066abf614f3b38094bef2",
+        tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
       });
     });
 
