@@ -15,15 +15,17 @@ export const AboutTopContent = styled.div`
 `;
 
 export const AboutGallery = styled.div`
-  width: 45%;
-
+  width: 40%;
+  @media (max-width: 1200px) {
+    width: 45%;
+  }
   @media (max-width: 992px) {
     display: none;
   }
 `;
 
 export const AboutContentText = styled.div`
-  width: 50%;
+  width: 55%;
 
   @media (max-width: 992px) {
     width: 100%;

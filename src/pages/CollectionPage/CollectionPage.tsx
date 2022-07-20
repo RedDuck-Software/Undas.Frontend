@@ -20,7 +20,7 @@ import {
   SendButton,
   MyWrapper,
 } from "./CollectionPage.styles";
-import {PurpleEthIco } from "./imports";
+import { PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 import { GET_COLLECTION_INFO } from "./query";
@@ -97,7 +97,6 @@ const CollectionPage: React.FC = () => {
         collectionId: i.collectionId.toString(),
         tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         collectionName: i.collectionName,
-        
       };
       collectionItem.push(item);
     });
@@ -118,7 +117,10 @@ const CollectionPage: React.FC = () => {
       ) : (
         <ContainerCollection>
           <Banner>
-            <img src={data.collection.collectionFeatureUrl} alt="CollectionBanner" />
+            <img
+              src={data.collection.collectionFeatureUrl}
+              alt="CollectionBanner"
+            />
           </Banner>
           <Background>
             <AllNFTContainer>
