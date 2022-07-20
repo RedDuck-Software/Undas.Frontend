@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   NFTWrap,
@@ -11,12 +12,22 @@ import {
 } from "./NFTCardForCarousel.styles";
 
 //todo all collection names
-const NFTCardForCarousel: React.FC<{ uri: string; name: string }> = ({
+const NFTCardForCarousel: React.FC<{ uri: string; name: string,tokenAddress:string,tokenId:string,owner:string }> = ({
   uri,
   name,
+  tokenAddress,
+  tokenId,
+  owner
 }) => {
+    const navigate = useNavigate();
   return (
-    <NFTWrap>
+    <NFTWrap onClick={(e) => {
+      e.stopPropagation();
+      navigate(
+        `/nft/buy/tokenAddress=${tokenAddress}?id=${tokenId}`,
+        { state:{ tokenId:tokenId,tokenAddress:tokenAddress,URI:uri,name:name,tokenOwner:owner }},
+      );
+    }}>
       <NFTAbout>
         <AboutWrapper
           disp="flex"

@@ -76,6 +76,7 @@ import AdvertisingSlider from "../../components/AdvertisingSlider/AdvertisingSli
 import {
   GET_NFT_OFFERS,
   GET_SAME_COLLECTIONS,
+  ITEM_ACTIVITY,
 } from "../../components/AdvertisingSlider/query";
 import Error from "../../components/Modal/Error/Error";
 import { Background } from "../../globalStyles";
@@ -106,15 +107,16 @@ const NFTPage: React.FC = () => {
   const [priceInNum, setPriceInNum] = useState(0);
   const [colloteral, setColloteral] = useState(0);
   const [premium, setPremium] = useState(0);
-  const [, setDescription] = useState<string>();
+  const [description, setDescription] = useState<string>();
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
   const [collectionName, setcollectionName] = useState<string>("No collection");
-  const [collectionId, setCollectionId] = useState("null");
+  const [collectionId, setCollectionId] = useState("0");
   const [status, setStatus] = useState("");
-  const [itemForCarousel, setItemsForCarousel] = useState<any>();
+  const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
+  const [itemHistory, setItemHistory] = useState<any>()
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -125,6 +127,7 @@ const NFTPage: React.FC = () => {
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
+
   const getOwner = async () => {
     if (!connector) {
       return;
@@ -140,7 +143,8 @@ const NFTPage: React.FC = () => {
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
-    if (singerAddress == seller) {
+ 
+    if (singerAddress == seller || singerAddress == state.state.tokenOwner) {
       setIsOwner(false);
     }
   };
@@ -177,7 +181,6 @@ const NFTPage: React.FC = () => {
     try {
       const tx = await MarketplaceContract.rentNFT(stakingId, false, {
         value: ethers.utils.parseUnits(formattedAmountToPay, "ether"),
-        gasPrice: 20000,
       });
       await tx.wait();
     } catch (error: any) {
@@ -190,6 +193,7 @@ const NFTPage: React.FC = () => {
       return;
     }
     if (listingId && status == "ACTIVE") {
+
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -205,23 +209,30 @@ const NFTPage: React.FC = () => {
   }
 
   const createdMultipleQuery = () => {
+
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
-      variables: { collectionId: collectionId },
+      variables: { collectionId: +collectionId },
     });
+
     const offersItems = useQuery({
       query: GET_NFT_OFFERS,
       variables: { tokenId: tokenId, tokenAddress: state.state.tokenAddress },
     });
 
-    return [collectionItems, offersItems];
+    const itemActivity = useQuery({
+      query:ITEM_ACTIVITY,
+      variables: {tokenId: tokenId, tokenAddress: state.state.tokenAddress }
+    })
+    return [collectionItems, offersItems, itemActivity];
   };
-  const [[collectionItemResult], [offersItems]] = createdMultipleQuery();
+  const [[collectionItemResult], [offersItems], [itemActivity]] = createdMultipleQuery();
 
   const { data, fetching } = collectionItemResult;
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
+
     if (
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
@@ -234,14 +245,9 @@ const NFTPage: React.FC = () => {
       setListingId(tokensQuery.data.listings[0].id);
       setSeller(tokensQuery.data.listings[0].seller);
       setStatus(tokensQuery.data.listings[0].listingStatus);
-      setcollectionName(
-        tokensQuery.data.listings[0].collectionName
-          ? tokensQuery.data.listings[0].collectionName
-          : "No collection",
-      );
       setLoading(false);
       setCollectionId(tokensQuery.data.listings[0].collectionId);
-      return;
+    
     }
 
     if (
@@ -257,14 +263,26 @@ const NFTPage: React.FC = () => {
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
       setCollectionId(tokensQuery.data.stakingListings[0].collectionId);
-      setcollectionName(
-        tokensQuery.data.stakingListings[0].collectionName
-          ? tokensQuery.data.stakingListings[0].collectionName
-          : "No collection",
-      );
+
       setLoading(false);
 
-      return;
+ 
+    }
+
+    if(tokensQuery.data.tokens[0]){
+
+      setcollectionName(
+        tokensQuery.data.tokens[0].collectionName
+          ? tokensQuery.data.tokens[0].collectionName
+          : "No collection",
+      );
+      setCollectionId(
+        tokensQuery.data.tokens[0].collectionId
+          ? tokensQuery.data.tokens[0].collectionId
+          : "0",
+      );
+      setDescription(tokensQuery.data.tokens[0].description);
+      setSeller(tokensQuery.data.tokens[0].owner)
     }
     setLoading(false);
   };
@@ -276,6 +294,10 @@ const NFTPage: React.FC = () => {
     getShowBuy();
     getShowRent();
     getOwner();
+    if(itemActivity.data){  
+        setItemHistory(itemActivity)
+    }
+    
   }, [
     connector,
     listingId,
@@ -286,6 +308,7 @@ const NFTPage: React.FC = () => {
     fetching,
     collectionId,
     offersItems.fetching,
+    itemActivity.fetching
   ]);
 
   const APIURL =
@@ -294,7 +317,7 @@ const NFTPage: React.FC = () => {
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
     id
- 	tokenId
+ 	  tokenId
     tokenURI
     price
     tokenName
@@ -319,15 +342,20 @@ const NFTPage: React.FC = () => {
     collectionId
     collectionName
   }
+  tokens(where:{id:"${state.state.tokenId}" tokenAdress:"${state.state.tokenAddress}"}){
+    collectionId
+    collectionName
+    owner
+    description
+  }
 }
  `;
-
+  const path = `/collection/${collectionId}`
   const client = createClient({
     url: APIURL,
   });
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-
     return data;
   }
 
@@ -373,7 +401,7 @@ const NFTPage: React.FC = () => {
             <NavigationWrap>
               <NameInner>
                 <Name>
-                  <NameNft>{collectionName}</NameNft>
+                  <NameCollection to={path}>{collectionName}</NameCollection>
                   <VerifiedIcon w="24px" className="nft-page">
                     <img src={Verified} alt="verified-ico" />
                   </VerifiedIcon>
@@ -382,9 +410,9 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameCollection to="/">
+                  <NameNft>
                     {nameFromProps ? nameFromProps : name}
-                  </NameCollection>
+                  </NameNft>
                 </Name>
               </NameInner>
               <NavMenu>
@@ -569,10 +597,20 @@ const NFTPage: React.FC = () => {
                 <Staking />
               </Accordion>
               <Accordion name="Item Activity" ico={<ItemActivityIco />}>
-                <ItemActivity />
+                {itemHistory ? (
+                <ItemActivity items={itemHistory}/>
+                ) : (
+                  ''
+                  )}
               </Accordion>
               <Accordion name="Description" classLabel="half-width">
-                <Description />
+              {description ? (
+                  <Description text={description} creator={seller} />
+                ) : (
+                  <Description text='No description' creator="no-data" />
+                )}
+               
+                
               </Accordion>
               <Accordion
                 name="Details"
@@ -610,9 +648,9 @@ const NFTPage: React.FC = () => {
                 <Levels complete={4} />
               </Accordion>
             </Wrapper>
-            {itemForCarousel ? (
+            {itemsForCarousel ? (
               <AdvertisingSlider
-                collectionItems={itemForCarousel}
+                collectionItems={itemsForCarousel}
                 collectionId={+collectionId}
               />
             ) : (

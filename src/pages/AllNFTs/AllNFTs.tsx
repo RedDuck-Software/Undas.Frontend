@@ -101,6 +101,7 @@ const AllNFTs: React.FC = () => {
     getListingsData2();
   }, [active, priceFilter, fetching]);
 
+
   const { viewMode, viewButtonsRender } = useViewMode();
 
   const { state }: any = useLocation();

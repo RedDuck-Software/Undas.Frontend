@@ -7,18 +7,19 @@ import {
   AccordionText,
   WrapperDescript,
 } from "../Accordion.styles";
+interface DescriptionProps {
+  creator?:string;
+  text?: string;
+}
+const Description: React.FC<DescriptionProps> = ({text,creator}) => {
 
-const Description: React.FC = () => {
   return (
     <DescriptionWrap>
       <Title>
-        Created by <Title color="#873DC1">aaronpenne-ab</Title>
+        Created by <Title color="#873DC1">{creator}</Title>
       </Title>
       <AccordionText>
-        &#34;Return&#34; is a meditation on returning inward, cyclical change,
-        and the beauty of iteration.The composition of each piece slowly loops,
-        providing a new experience for the viewer over time. Created by Aaron
-        Penne
+        {text}
       </AccordionText>
       <WrapperDescript>
         <AccordionText>See more information about Aeron Penne</AccordionText>

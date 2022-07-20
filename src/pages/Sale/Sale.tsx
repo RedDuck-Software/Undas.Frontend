@@ -104,30 +104,27 @@ const Sale: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-
-    const approve = await NftContract.setApprovalForAll(
-      MARKETPLACE_ADDRESS,
-      true,
-    );
-    await approve.wait();
     const expectedValue = (priceForSale * 2) / 100;
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    // const approve = await NftContract.setApprovalForAll(
+    //   MARKETPLACE_ADDRESS,
+    //   true,
+    // );
+    // await approve.wait();
+
 
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
       "ether",
     );
-
-    //undas contract
+      
     const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,
       tokenId,
       formattedPrice,
       false,
       {
-        value: ethers.utils.parseUnits(expectedValue.toString(), "ether"),
-        gasLimit: 355080,
+        value: ethers.utils.parseEther(expectedValue.toString()),
       },
     );
     setLoadingSale(true);
