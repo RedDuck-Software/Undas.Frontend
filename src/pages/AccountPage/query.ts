@@ -22,6 +22,8 @@ export const GET_CREATED_COLLECTIONS = gql`
       id
       collectionInfo
       collectionUrl
+      collectionFeatureUrl
+      collectionBannerUrl
       collectionCategory
     }
   }
