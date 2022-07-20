@@ -20,7 +20,7 @@ import {
   SendButton,
   MyWrapper,
 } from "./CollectionPage.styles";
-import { CollectionBanner, PurpleEthIco } from "./imports";
+import {PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 import { GET_COLLECTION_INFO } from "./query";
@@ -56,6 +56,7 @@ interface CommonProps {
   collectionOwner: string;
   collectionId: string;
   collectionName?: string;
+  collectionFeatureUrl?: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -94,8 +95,9 @@ const CollectionPage: React.FC = () => {
         description: i.tokenDescription,
         collectionOwner: i.owner,
         collectionId: i.collectionId.toString(),
-        tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         collectionName: i.collectionName,
+        
       };
       collectionItem.push(item);
     });
@@ -109,7 +111,7 @@ const CollectionPage: React.FC = () => {
       setList(response);
     }
   };
-
+  console.log(data)
   return (
     <>
       {fetching && !data ? (
@@ -117,7 +119,7 @@ const CollectionPage: React.FC = () => {
       ) : (
         <ContainerCollection>
           <Banner>
-            <img src={CollectionBanner} alt="CollectionBanner" />
+            <img src={data.collection.collectionFeatureUrl} alt="CollectionBanner" />
           </Banner>
           <Background>
             <AllNFTContainer>
@@ -128,6 +130,7 @@ const CollectionPage: React.FC = () => {
                     name={data.collection.collectionName}
                     creator={data.collection.owner}
                     description={data.collection.collectionInfo}
+                    logo={data.collection.collectionUrl}
                   />
                   <InfoBox>
                     <Info>

@@ -66,7 +66,7 @@ const Created: React.FC = () => {
           tokenOwner: i.owner,
           collectionName: i.collectionName,
           collectionId: i.collectionId,
-          tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+          tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         });
       });
       return createdItems;

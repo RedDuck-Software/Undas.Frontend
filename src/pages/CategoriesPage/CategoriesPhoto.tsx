@@ -22,6 +22,8 @@ type CollectionItemProps = {
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   owner?: string;
 };
 
@@ -40,6 +42,8 @@ const CategoriesGameFI: React.FC = () => {
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
+      const collectionFeatureImg = i.collectionFeatureUrl
+      const collectionBannerImg = i.collectionBannerUrl
 
       collectionsList.push({
         id,
@@ -48,6 +52,8 @@ const CategoriesGameFI: React.FC = () => {
         collectionName,
         collectionInfo,
         owner,
+        collectionFeatureImg,
+        collectionBannerImg
       });
     });
     return collectionsList;
@@ -60,15 +66,17 @@ const CategoriesGameFI: React.FC = () => {
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
-  const createdTokensQuery = `
+  const collectionsQuery = `
     {
           collections(where:{collectionCategory:PHOTOGRAPHY}){
           collectionName
           owner
           id
-    	  collectionInfo
+    	    collectionInfo
           collectionUrl
           collectionCategory
+          collectionFeatureUrl
+          collectionBannerUrl
           
 	    }
     }
@@ -79,7 +87,8 @@ const CategoriesGameFI: React.FC = () => {
   });
 
   async function fetchData() {
-    const data = await client.query(createdTokensQuery).toPromise();
+    const data = await client.query(collectionsQuery).toPromise();
+    console.log(data)
     return data;
   }
 

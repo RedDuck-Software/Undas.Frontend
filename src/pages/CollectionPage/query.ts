@@ -8,6 +8,7 @@ export const GET_COLLECTION_INFO = gql`
       collectionName
       collectionInfo
       collectionUrl
+      collectionFeatureUrl
       collectionCategory
       collectionVolume
       collectionItemsAmount
