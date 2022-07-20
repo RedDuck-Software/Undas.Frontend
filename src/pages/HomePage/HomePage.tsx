@@ -10,6 +10,7 @@ import Promo from "./page-components/Promo/Promo";
 import Recommended from "./page-components/Recomended/Recommended";
 import Slider from "./page-components/Slider/Slider";
 
+import Partners from "../../components/Partners/Partners";
 import { Container, Background } from "../../globalStyles";
 
 const HomePage: React.FC = () => {
@@ -34,6 +35,7 @@ const HomePage: React.FC = () => {
         <TopBuyers />
       </Background>*/}
       </HomeContainer>
+      <Partners />
     </Background>
   );
 };

@@ -107,3 +107,16 @@ export const ColoredArticleText = styled(ArticleText)<IColoredArticleText>`
 export const Colored = styled.span`
   color: #873dc1;
 `;
+export const CardsWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  @media (max-width: 576px) {
+    gap: 15px;
+  }
+  @media (max-width: 576px) {
+    gap: 10px;
+    display: block;
+  }
+`;

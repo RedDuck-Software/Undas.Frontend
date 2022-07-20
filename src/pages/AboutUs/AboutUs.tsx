@@ -36,6 +36,7 @@ import Road from "./Roadmap/Road";
 import AboutSlider from "./Slider/Slider";
 import TeammateCards from "./TeammateCard/TeammateCard";
 
+import Partners from "../../components/Partners/Partners";
 import { Background, Container } from "../../globalStyles";
 
 const AboutUs: React.FC = () => {
@@ -227,6 +228,7 @@ const AboutUs: React.FC = () => {
             </RoadMapContent>
           </Roadmap>
         </Container>
+        <Partners />
       </Background>
     </AboutWrap>
   );
