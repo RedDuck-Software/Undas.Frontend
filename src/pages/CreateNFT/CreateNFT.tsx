@@ -86,6 +86,7 @@ const SelectCollectionList: React.FC<{
   return (
     <>
       {items.map((item: any) => {
+        console.log('iteeeemms',item)
         return (
           <SelectItem
             key={item.collectionId}
@@ -153,6 +154,7 @@ const CreateNFT: React.FC = () => {
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
+    collectionId: ""
   });
   const [collectionError, setCollectionError] = useState<any>("");
   const [propertyList, setPropertyList] = useState<Property[]>(
@@ -189,12 +191,13 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    if (collection.collectionId == "") {
+    console.log('qwe',collection)
+    if (collection.collectionId == undefined) {
       alert("Choose collection or create if it doesn`t exist ");
       return;
     }
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
+      await connector.getProvider(),    
     );
 
     const signer = provider.getSigner(0);
@@ -203,6 +206,7 @@ const CreateNFT: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
+    console.log('collection',collection)           
     try {
       const tx = await NFTContract.safeMintGeneral(
         account,
@@ -282,9 +286,12 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
+    console.log("tokensQuerytokensQuery",tokensQuery)
     const data = tokensQuery.data.collections
-    data.push({collectionName:'All Nfts',collectionId:0})
-    setCollectionsList(tokensQuery.data.collections);
+    data.push({collectionName:'All Nfts',id:'0'})
+    console.log('zxc',data)
+
+    setCollectionsList(data);
 
   };
   const APIURL =
@@ -315,7 +322,10 @@ const CreateNFT: React.FC = () => {
   });
 
   useEffect(() => {
+    console.log('collectionList',collectionList)
+    console.log('fsaafs',collection)
     if (collection.collectionId) {
+      
       setCollectionError("");
     }
   }, [collection]);

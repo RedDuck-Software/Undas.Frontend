@@ -149,7 +149,7 @@ const OffersMenu = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
+      console.log("listingId",listingId)
     try {
       const tx = await MarketplaceContract.cancelListingOffer(listingId);
       await tx.wait();
@@ -161,6 +161,7 @@ const OffersMenu = () => {
 
   const removeStakingOffer = async (stakingId: number) => {
     if (!connector) return;
+    console.log("stakingId",stakingId)
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -494,6 +495,7 @@ const OffersMenu = () => {
     }
     const offers = await fetchUserRentingOffersData();
     offers.stakingOffers.map((offer: any) => {
+      console.log(offer)
       if (
         offer.offerStatus == "ACTIVE" &&
         offer.newOfferedPremiumWei != "0" &&
@@ -626,6 +628,7 @@ const OffersMenu = () => {
         owner
         tokenAdress
         offerStatus
+        stakingId
         
     }
   }
@@ -673,7 +676,7 @@ const OffersMenu = () => {
 
     return data.data;
   }
-
+  console.log(userOffersForRent)
   return {
     offersCounter: rentingOffersList.length + buyingOffersList.length,
     offersMenu: (
@@ -761,6 +764,7 @@ const OffersMenu = () => {
                       <OffersTdButton>
                         <AcceptBTN
                           onClick={() =>
+        
                             acceptStakingOffer(i.stakingId, i.taker)
                           }
                         >
