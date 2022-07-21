@@ -112,7 +112,6 @@ const Sale: React.FC = () => {
     );
     await approve.wait();
 
-
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
       "ether",
