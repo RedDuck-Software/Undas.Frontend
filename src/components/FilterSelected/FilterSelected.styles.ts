@@ -32,9 +32,12 @@ export const SelectedCollection = styled.div`
 
 export const SelectedCollectionIcon = styled.img`
   margin-right: 5px;
+  width: 24px;
+  height: 24px;
 `;
 export const RemoveSelectedCollection = styled.img`
   margin-left: auto;
+  cursor: pointer;
 `;
 export const RemoveAllSelectedCollection = styled.div`
   font-weight: 400;

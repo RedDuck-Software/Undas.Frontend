@@ -1,6 +1,8 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useState, useContext, useEffect } from "react";
 import { createClient } from "urql";
+import { useQuery } from "urql";
 
 import {
   OfferMenuWrap,
@@ -23,11 +25,23 @@ import {
   CancelBtnWrapper,
   NFTImg,
 } from "./Menu.styles";
+import {
+  GET_RECEIVED_OFFERS_FOR_NOT_LISTED_NFTS,
+  GET_YOUR_OFFERS_FOR_NOT_LISTED_NFTS,
+} from "./query";
 import { OfferType } from "./types";
 
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-import { Marketplace__factory } from "../../../../typechain";
-import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
+import Error from "../../../../components/Modal/Error/Error";
+import {
+  Marketplace__factory,
+  UndasGeneralNFT__factory,
+} from "../../../../typechain";
+import { TransactionError } from "../../../../types/global";
+import {
+  MARKETPLACE_ADDRESS,
+  NFT_ADDRESS,
+} from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
@@ -45,6 +59,7 @@ interface CommonProps {
   tokenAddress?: string;
   owner: string;
   taker: string;
+  collectionId?: string;
 }
 
 export interface RentingOfferProps extends CommonProps {
@@ -55,11 +70,20 @@ export interface RentingOfferProps extends CommonProps {
 
 export interface BuyingOfferProps extends CommonProps {
   offeredNumber: number;
-  listingId: number;
+  listingId?: number;
+  offerId?: number;
 }
 
 const OffersMenu = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const { connector } = useContext(Context);
+  const { account } = useWeb3React();
 
   const [offerType, setOfferType] = useState(OfferType.resaived);
 
@@ -85,6 +109,20 @@ const OffersMenu = () => {
 
   const [owner, setOwner] = useState("");
 
+  const createdMultipleQuery = () => {
+    const madeOffers = useQuery({
+      query: GET_YOUR_OFFERS_FOR_NOT_LISTED_NFTS,
+      variables: { creator: account },
+    });
+    const receivedOffers = useQuery({
+      query: GET_RECEIVED_OFFERS_FOR_NOT_LISTED_NFTS,
+      variables: { creator: account },
+    });
+
+    return [madeOffers, receivedOffers];
+  };
+  const [[madeOffersResult], [receivedOffersResult]] = createdMultipleQuery();
+
   const getOwner = async () => {
     if (!connector) return;
 
@@ -98,7 +136,7 @@ const OffersMenu = () => {
     setOwner(singerAddress);
   };
 
-  const cancelListingOffer = async (listingId: number) => {
+  const cancelListingOffer = async (listingId: any) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -112,9 +150,13 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.cancelListingOffer(listingId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.cancelListingOffer(listingId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const removeStakingOffer = async (stakingId: number) => {
@@ -131,14 +173,17 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.removeStakingOffer(stakingId);
-
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.removeStakingOffer(stakingId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
     if (!connector) return;
-
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -150,16 +195,41 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.acceptStakingOffer(
-      stakingId,
-      taker,
-      false,
+    try {
+      const tx = await MarketplaceContract.acceptStakingOffer(
+        stakingId,
+        taker,
+        false,
+      );
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
+  };
+  const acceptBuyingOffer = async (listingId: any, taker: any) => {
+    if (!connector) return;
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
     );
 
-    await tx.wait();
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+    try {
+      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
-  const acceptBuyingOffer = async (listingId: number, taker: string) => {
+  const acceptOfferForNotListedToken = async (offerId: any) => {
     if (!connector) return;
 
     const provider = new ethers.providers.Web3Provider(
@@ -173,9 +243,80 @@ const OffersMenu = () => {
       signer,
     );
 
-    const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
+    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    //approve to market
+    try {
+      const approve = await NftContract.setApprovalForAll(
+        MARKETPLACE_ADDRESS,
+        true,
+      );
 
-    await tx.wait();
+      await approve.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
+
+    //todo put hardcoded to env
+    try {
+      const tx = await MarketplaceContract.acceptOfferForNotListedToken(
+        offerId,
+        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+      );
+
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
+  };
+
+  const denyOfferForNotListedToken = async (offerId: any) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+    try {
+      const tx = await MarketplaceContract.denyOfferForNotListedToken(offerId);
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
+  };
+
+  const cancelUserOfferForNotListedToken = async (offerId: any) => {
+    if (!connector) return;
+
+    const provider = new ethers.providers.Web3Provider(
+      await connector.getProvider(),
+    );
+
+    const signer = provider.getSigner(0);
+
+    const MarketplaceContract = Marketplace__factory.connect(
+      MARKETPLACE_ADDRESS,
+      signer,
+    );
+
+    try {
+      const tx = await MarketplaceContract.cancelOfferForNotListedToken(
+        offerId,
+      );
+      await tx.wait();
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
   const getStaking0ffers = async () => {
@@ -193,7 +334,7 @@ const OffersMenu = () => {
       ) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const stakingId = offer.id;
+        const stakingId = offer.stakingId;
         const tokenURI = offer.tokenURI;
         const offeredColloteralWei = Number(
           ethers.utils.formatUnits(offer.newOfferedColloteral, 18),
@@ -222,17 +363,17 @@ const OffersMenu = () => {
   };
 
   const getBuyingOffers = async () => {
-    if (!connector) {
-      return;
-    }
     const offers = await fetchBuyingData();
 
+    const { data, fetching } = receivedOffersResult;
+
+    if (fetching) return;
+
     offers.buyingOffers.map((offer: any) => {
-      //костыль надо <offer.offeredNumber != 0)> переделать контракт
       if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const listingId = offer.id;
+        const listingId = offer.listingId;
         const tokenURI = offer.tokenURI;
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.newOfferedPrice, 18),
@@ -253,6 +394,34 @@ const OffersMenu = () => {
         });
       }
     });
+    data.offerForUserNfts.map((offer: any) => {
+      if (offer.offerStatus == "ACTIVE") {
+        const tokenId = offer.tokenId;
+        const tokenName = offer.tokenName;
+        const offerId = offer.offerId;
+        const tokenURI = offer.tokenUri;
+        const offeredNumber = Number(
+          ethers.utils.formatUnits(offer.offeredAmount, 18),
+        );
+        const tokenAddress = "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d";
+        const owner = offer.to;
+        const taker = offer.from;
+        const collectionId = offer.collectionId;
+
+        listing.push({
+          tokenId,
+          tokenName,
+          tokenURI,
+          tokenAddress,
+          owner,
+          taker,
+          offeredNumber,
+          offerId,
+          collectionId,
+        });
+      }
+    });
+
     return listing;
   };
 
@@ -262,11 +431,13 @@ const OffersMenu = () => {
     }
     const offers = await fetchUserBuyingOffersData();
 
+    const { data, fetching } = madeOffersResult;
+    if (fetching) return;
     offers.buyingOffers.map((offer: any) => {
       if (offer.offerStatus == "ACTIVE" && offer.newOfferedPrice != 0) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const listingId = offer.id;
+        const listingId = offer.listingId;
         const tokenURI = offer.tokenURI;
         const offeredNumber = Number(
           ethers.utils.formatUnits(offer.newOfferedPrice, 18),
@@ -287,6 +458,33 @@ const OffersMenu = () => {
         });
       }
     });
+    data.offerForUserNfts.map((offer: any) => {
+      if (offer.offerStatus == "ACTIVE" || offer.offerStatus == "EXPIRED") {
+        const tokenId = offer.tokenId;
+        const tokenName = offer.tokenName;
+        const offerId = offer.offerId;
+        const tokenURI = offer.tokenUri;
+        const offeredNumber = Number(
+          ethers.utils.formatUnits(offer.offeredAmount, 18),
+        );
+        const tokenAddress = "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d";
+        const owner = offer.to;
+        const taker = offer.from;
+        const collectionId = offer.collectionId;
+
+        userListingOffers.push({
+          tokenId,
+          tokenName,
+          tokenURI,
+          tokenAddress,
+          owner,
+          taker,
+          offeredNumber,
+          offerId,
+          collectionId,
+        });
+      }
+    });
     return userListingOffers;
   };
 
@@ -303,7 +501,7 @@ const OffersMenu = () => {
       ) {
         const tokenId = offer.tokenId;
         const tokenName = offer.tokenName;
-        const stakingId = offer.id;
+        const stakingId = offer.stakingId;
         const tokenURI = offer.tokenURI;
         const offeredColloteralWei = Number(
           ethers.utils.formatUnits(offer.newOfferedColloteral, 18),
@@ -341,7 +539,6 @@ const OffersMenu = () => {
 
   async function getBuyingOffersData() {
     const response = await getBuyingOffers();
-
     if (response) {
       setBuyingOffersList(response);
     }
@@ -366,16 +563,17 @@ const OffersMenu = () => {
     if (!connector) {
       return console.log("loading");
     }
-
     getOwner();
-
-    if (owner && connector) {
-      getStakingsOffersData();
-      getBuyingOffersData();
-      getUserOffersData();
-      getUserRentingOffersData();
-    }
-  }, [connector, owner]);
+    getStakingsOffersData();
+    getBuyingOffersData();
+    getUserOffersData();
+    getUserRentingOffersData();
+  }, [
+    connector,
+    owner,
+    madeOffersResult.fetching,
+    receivedOffersResult.fetching,
+  ]);
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
@@ -481,6 +679,13 @@ const OffersMenu = () => {
     offersMenu: (
       <>
         <OfferMenuWrap>
+          {showTransactionError && transactionError.message.length > 0 && (
+            <Error
+              error={transactionError}
+              show={showTransactionError}
+              setShow={setShowTransactionError}
+            />
+          )}
           <OfferFilterWrap>
             <FilterButton
               className={
@@ -548,7 +753,7 @@ const OffersMenu = () => {
                         <WethText>WETH</WethText>
                       </OffersTdText>
                       <OffersTdText>
-                        <OffersText>In 20 hours</OffersText>
+                        <OffersText>No expiration time</OffersText>
                       </OffersTdText>
                       <OffersTdText>
                         <OffersText color="#5D3F92">{i.taker}</OffersText>
@@ -578,49 +783,101 @@ const OffersMenu = () => {
                   );
                 })}
                 {buyingOffersList.map((i) => {
-                  return (
-                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                      <OffersTdText className="first-column">
-                        <CartIco />
-                        <OffersTooltipWrap className="offers-tooltip">
-                          <OffersTooltip>Buy</OffersTooltip>
-                        </OffersTooltipWrap>
-                      </OffersTdText>
-                      <OffersTdText className="offers-table-item">
-                        <ItemIcon>
-                          <NFTImg src={i.tokenURI} alt="item icon" />
-                        </ItemIcon>
-                        <ItemName>{i.tokenName}</ItemName>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <PriceTextETH>{i.offeredNumber}</PriceTextETH>
-                        <WethText>WETH</WethText>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <OffersText>In 20 hours</OffersText>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <OffersText color="#5D3F92">{i.taker}</OffersText>
-                      </OffersTdText>
-                      <OffersTdButton>
-                        <AcceptBTN
-                          onClick={() =>
-                            acceptBuyingOffer(i.listingId, i.taker)
-                          }
-                        >
-                          Accept
-                        </AcceptBTN>
-                      </OffersTdButton>
-                      <OffersTdButton>
-                        <MakeOfferBTN>Make offer</MakeOfferBTN>
-                      </OffersTdButton>
-                      <OffersTdButton>
-                        <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
-                          Deny
-                        </DenyBTN>
-                      </OffersTdButton>
-                    </OffersTr>
-                  );
+                  if (i.listingId) {
+                    return (
+                      <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                        <OffersTdText className="first-column">
+                          <CartIco />
+                          <OffersTooltipWrap className="offers-tooltip">
+                            <OffersTooltip>Buy</OffersTooltip>
+                          </OffersTooltipWrap>
+                        </OffersTdText>
+                        <OffersTdText className="offers-table-item">
+                          <ItemIcon>
+                            <NFTImg src={i.tokenURI} alt="item icon" />
+                          </ItemIcon>
+                          <ItemName>{i.tokenName}</ItemName>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                          <WethText>WETH</WethText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText>No expiration time</OffersText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText color="#5D3F92">{i.taker}</OffersText>
+                        </OffersTdText>
+                        <OffersTdButton>
+                          <AcceptBTN
+                            onClick={() =>
+                              acceptBuyingOffer(i.listingId, i.taker)
+                            }
+                          >
+                            Accept
+                          </AcceptBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <MakeOfferBTN>Make offer</MakeOfferBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
+                            Deny
+                          </DenyBTN>
+                        </OffersTdButton>
+                      </OffersTr>
+                    );
+                  }
+                  /// .|.
+                  if (i.offerId) {
+                    return (
+                      <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                        <OffersTdText className="first-column">
+                          <CartIco />
+                          <OffersTooltipWrap className="offers-tooltip">
+                            <OffersTooltip>Buy</OffersTooltip>
+                          </OffersTooltipWrap>
+                        </OffersTdText>
+                        <OffersTdText className="offers-table-item">
+                          <ItemIcon>
+                            <NFTImg src={i.tokenURI} alt="item icon" />
+                          </ItemIcon>
+                          <ItemName>{i.tokenName}</ItemName>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                          <WethText>WETH</WethText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText>No expiration time</OffersText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText color="#5D3F92">{i.taker}</OffersText>
+                        </OffersTdText>
+                        <OffersTdButton>
+                          <AcceptBTN
+                            onClick={() =>
+                              acceptOfferForNotListedToken(i.offerId)
+                            }
+                          >
+                            Accept
+                          </AcceptBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <MakeOfferBTN>Make offer</MakeOfferBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <DenyBTN
+                            onClick={() =>
+                              denyOfferForNotListedToken(i.offerId)
+                            }
+                          >
+                            Deny
+                          </DenyBTN>
+                        </OffersTdButton>
+                      </OffersTr>
+                    );
+                  }
                 })}
               </>
             )}
@@ -632,7 +889,7 @@ const OffersMenu = () => {
                     <OffersTdText>Item</OffersTdText>
                     <OffersTdText>Price</OffersTdText>
                     <OffersTdText>Expiration</OffersTdText>
-                    <OffersTdText>From</OffersTdText>
+                    <OffersTdText>To</OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>
                     <OffersTdText></OffersTdText>
@@ -663,7 +920,7 @@ const OffersMenu = () => {
                         <WethText>WETH</WethText>
                       </OffersTdText>
                       <OffersTdText>
-                        <OffersText>In 20 hours</OffersText>
+                        <OffersText>No expiration time</OffersText>
                       </OffersTdText>
                       <OffersTdText>
                         <OffersText color="#5D3F92">{i.owner}</OffersText>
@@ -683,45 +940,88 @@ const OffersMenu = () => {
                   );
                 })}
                 {userOffersForBuy.map((i) => {
-                  return (
-                    <OffersTr className="offers-menu-row" key={i.tokenURI}>
-                      <OffersTdText className="first-column">
-                        <CartIco />
-                        <OffersTooltipWrap className="offers-tooltip">
-                          <OffersTooltip>Buy</OffersTooltip>
-                        </OffersTooltipWrap>
-                      </OffersTdText>
-                      <OffersTdText className="offers-table-item">
-                        <ItemIcon>
-                          <NFTImg src={i.tokenURI} alt="item icon" />
-                        </ItemIcon>
-                        <ItemName>{i.tokenName}</ItemName>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <PriceTextETH>{i.offeredNumber}</PriceTextETH>
-                        <WethText>WETH</WethText>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <OffersText>In 20 hours</OffersText>
-                      </OffersTdText>
-                      <OffersTdText>
-                        <OffersText color="#5D3F92">{i.owner}</OffersText>
-                      </OffersTdText>
-                      <OffersTdEmpty></OffersTdEmpty>
-                      <OffersTdButton>
-                        <MakeOfferBTN>Edit Offer</MakeOfferBTN>
-                      </OffersTdButton>
-                      <OffersTdButton>
-                        <DenyBTN
-                          onClick={() => {
-                            cancelListingOffer(i.listingId);
-                          }}
-                        >
-                          Cancel
-                        </DenyBTN>
-                      </OffersTdButton>
-                    </OffersTr>
-                  );
+                  if (i.listingId) {
+                    return (
+                      <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                        <OffersTdText className="first-column">
+                          <CartIco />
+                          <OffersTooltipWrap className="offers-tooltip">
+                            <OffersTooltip>Buy</OffersTooltip>
+                          </OffersTooltipWrap>
+                        </OffersTdText>
+                        <OffersTdText className="offers-table-item">
+                          <ItemIcon>
+                            <NFTImg src={i.tokenURI} alt="item icon" />
+                          </ItemIcon>
+                          <ItemName>{i.tokenName}</ItemName>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                          <WethText>WETH</WethText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText>No expiration time</OffersText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText color="#5D3F92">{i.owner}</OffersText>
+                        </OffersTdText>
+                        <OffersTdEmpty></OffersTdEmpty>
+                        <OffersTdButton>
+                          <MakeOfferBTN>Edit Offer</MakeOfferBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <DenyBTN
+                            onClick={() => {
+                              cancelListingOffer(i.listingId);
+                            }}
+                          >
+                            Cancel
+                          </DenyBTN>
+                        </OffersTdButton>
+                      </OffersTr>
+                    );
+                  }
+                  if (i.offerId) {
+                    return (
+                      <OffersTr className="offers-menu-row" key={i.tokenURI}>
+                        <OffersTdText className="first-column">
+                          <CartIco />
+                          <OffersTooltipWrap className="offers-tooltip">
+                            <OffersTooltip>Buy</OffersTooltip>
+                          </OffersTooltipWrap>
+                        </OffersTdText>
+                        <OffersTdText className="offers-table-item">
+                          <ItemIcon>
+                            <NFTImg src={i.tokenURI} alt="item icon" />
+                          </ItemIcon>
+                          <ItemName>{i.tokenName}</ItemName>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <PriceTextETH>{i.offeredNumber}</PriceTextETH>
+                          <WethText>WETH</WethText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText>No expiration time</OffersText>
+                        </OffersTdText>
+                        <OffersTdText>
+                          <OffersText color="#5D3F92">{i.owner}</OffersText>
+                        </OffersTdText>
+                        <OffersTdEmpty></OffersTdEmpty>
+                        <OffersTdButton>
+                          <MakeOfferBTN>Edit Offer</MakeOfferBTN>
+                        </OffersTdButton>
+                        <OffersTdButton>
+                          <DenyBTN
+                            onClick={() => {
+                              cancelUserOfferForNotListedToken(i.offerId); //suda
+                            }}
+                          >
+                            Cancel
+                          </DenyBTN>
+                        </OffersTdButton>
+                      </OffersTr>
+                    );
+                  }
                 })}
               </>
             )}

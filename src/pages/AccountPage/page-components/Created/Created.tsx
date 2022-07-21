@@ -66,7 +66,7 @@ const Created: React.FC = () => {
           tokenOwner: i.owner,
           collectionName: i.collectionName,
           collectionId: i.collectionId,
-          tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+          tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         });
       });
       return createdItems;
@@ -91,6 +91,7 @@ const Created: React.FC = () => {
         id: i.id,
         collectionName: i.collectionName,
         collectionUrl: i.collectionUrl,
+        collectionFeatureUrl: i.collectionFeatureUrl,
         owner: i.owner,
         collectionInfo: i.collectionInfo,
         collectionCategory: i.collectonCategory,
@@ -146,7 +147,10 @@ const Created: React.FC = () => {
         </CreatedSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <CreatedResultsTotal>
-          {createdNfts && createdNfts.length} results
+          {createdType === CreatedType.nft
+            ? createdNfts.length
+            : createdCollections.length}{" "}
+          results
         </CreatedResultsTotal>
       </MenuWrap>
 

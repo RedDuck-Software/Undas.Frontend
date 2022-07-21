@@ -37,3 +37,4 @@ export { default as Sale } from "./Sale/Sale";
 export { default as ArticlePage } from "./Blog/page-components/ArticlePage/ArticlePage";
 export { default as BlogThemeWrap } from "./Blog/page-components/BlogThemeWrap";
 export { default as ClaimUND } from "./ClaimUND/ClaimUND";
+export { default as InteractionRent } from "./InteractionRent/InteractionRent";

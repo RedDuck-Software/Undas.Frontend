@@ -15,8 +15,12 @@ import {
 
 import { Platform } from "../../pages/CategoriesPage/Categories.styles";
 import { Verified } from "../../pages/CategoriesPage/imports";
-
-const NFTCard: React.FC<{ uri: string; name: string }> = ({ uri, name }) => {
+//todo all collection names
+const NFTCard: React.FC<{
+  uri: string;
+  name: string;
+  collectionName?: string;
+}> = ({ uri, name, collectionName }) => {
   return (
     <NFTWrap>
       <NFTAbout>
@@ -27,7 +31,7 @@ const NFTCard: React.FC<{ uri: string; name: string }> = ({ uri, name }) => {
           marg="0 0 10px"
         >
           <CollectionWrapper disp="flex" alignItems="center" gap="10px">
-            <CollectionText>Collection Name</CollectionText>
+            <CollectionText>{collectionName}</CollectionText>
             <img src={Verified} alt="verified-ico" />
             <Platform col="#873DC1" fs="16px">
               UND

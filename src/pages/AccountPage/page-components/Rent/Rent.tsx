@@ -28,6 +28,8 @@ type CreatedItemProps = {
   collectionName?: string;
   collectionId?: string;
   tokenAddress?: string;
+  premiumInNum?: number;
+  isRented?: boolean;
 };
 const RentMenu: React.FC = () => {
   const { account } = useWeb3React();
@@ -49,11 +51,12 @@ const RentMenu: React.FC = () => {
       const id = i.id;
       const name = i.tokenName;
       const URI = i.tokenURI;
-      const tokenOwner = i.owner;
+      const tokenOwner = i.taker;
       const collectionName = i.collectionName;
       const collectionId = i.collectionId;
-
-      const tokenAddress = "0x82907ED3c6adeA2F470066aBF614F3B38094bef2"; //nft collection address
+      const premiumInNum = i.premiumWei;
+      // const stakingId = 2
+      const tokenAddress = i.token; //nft collection address
       rentalItems.push({
         id,
         URI,
@@ -62,6 +65,7 @@ const RentMenu: React.FC = () => {
         collectionName,
         collectionId,
         tokenAddress,
+        premiumInNum,
       });
     });
     return rentalItems;
@@ -74,11 +78,13 @@ const RentMenu: React.FC = () => {
       const id = i.id;
       const name = i.tokenName;
       const URI = i.tokenURI;
-      const tokenOwner = i.owner;
+      const tokenOwner = i.taker;
       const collectionName = i.collectionName;
       const collectionId = i.collectionId;
+      const premiumInNum = i.premiumWei;
+      const isRented = true;
 
-      const tokenAddress = "0x82907ED3c6adeA2F470066aBF614F3B38094bef2"; //nft collection address
+      const tokenAddress = i.token; //nft collection address
       rentedItems.push({
         id,
         URI,
@@ -87,6 +93,8 @@ const RentMenu: React.FC = () => {
         collectionName,
         collectionId,
         tokenAddress,
+        premiumInNum,
+        isRented,
       });
     });
     return rentedItems;
@@ -116,23 +124,31 @@ const RentMenu: React.FC = () => {
           tokenURI
           tokenDescription
           tokenId
+          token
           deadlineUTC
           colloteralWei
+          collectionName
+          premiumWei
+          taker
       }
   }
  `;
 
   const rentedTokens = `
       {
-       stakingListings(where:{stakingStatus:ACTIVE seller:"${account}"}){
+       stakingListings(where:{stakingStatus:RENTED taker:"${account}"}){
           id
           seller
           tokenName
           tokenURI
           tokenDescription
           tokenId
+          token
           deadlineUTC
           colloteralWei
+          collectionName
+          premiumWei
+          taker
       }
   }
  `;
@@ -165,6 +181,7 @@ const RentMenu: React.FC = () => {
       setRentedNfts(response);
     }
   }
+
   return (
     <RentWrap>
       <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
@@ -186,32 +203,12 @@ const RentMenu: React.FC = () => {
           {viewButtonsRender}
         </RentSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <RentResultsTotal>8 results</RentResultsTotal>
+        <RentResultsTotal>{rentalNfts?.length} results</RentResultsTotal>
       </MenuWrap>
 
       <FilterSelected />
 
       {viewMode === ViewMode.grid && rentType === RentType.rental && (
-        <>
-          {rentedNfts ? (
-            <CollectionGridWrap itemList={rentedNfts} />
-          ) : (
-            <span>There are no NFTs on the marketplace</span>
-          )}
-        </>
-      )}
-
-      {viewMode === ViewMode.list && rentType === RentType.rental && (
-        <>
-          {rentedNfts ? (
-            <NFTListItem itemList={rentedNfts} />
-          ) : (
-            <span>There are no NFTs on the marketplace</span>
-          )}
-        </>
-      )}
-
-      {viewMode === ViewMode.grid && rentType === RentType.rented && (
         <>
           {rentalNfts ? (
             <CollectionGridWrap itemList={rentalNfts} />
@@ -221,10 +218,30 @@ const RentMenu: React.FC = () => {
         </>
       )}
 
-      {viewMode === ViewMode.list && rentType === RentType.rented && (
+      {viewMode === ViewMode.list && rentType === RentType.rental && (
         <>
           {rentalNfts ? (
             <NFTListItem itemList={rentalNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
+      )}
+
+      {viewMode === ViewMode.grid && rentType === RentType.rented && (
+        <>
+          {rentedNfts ? (
+            <CollectionGridWrap itemList={rentedNfts} />
+          ) : (
+            <span>There are no NFTs on the marketplace</span>
+          )}
+        </>
+      )}
+
+      {viewMode === ViewMode.list && rentType === RentType.rented && (
+        <>
+          {rentedNfts ? (
+            <NFTListItem itemList={rentedNfts} />
           ) : (
             <span>There are no NFTs on the marketplace</span>
           )}

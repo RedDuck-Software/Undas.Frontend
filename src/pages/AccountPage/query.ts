@@ -6,7 +6,7 @@ export const GET_CREATED_NFTS = gql`
       collectionName
       owner
       id
-      desciption
+      description
       uri
       collectionId
       name
@@ -22,6 +22,8 @@ export const GET_CREATED_COLLECTIONS = gql`
       id
       collectionInfo
       collectionUrl
+      collectionFeatureUrl
+      collectionBannerUrl
       collectionCategory
     }
   }

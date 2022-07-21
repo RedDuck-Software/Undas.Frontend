@@ -15,8 +15,8 @@ import {
   ButtonWrap,
   InfoButton,
   PriceWrap,
-  NotListedWrapper,
-  NotListed,
+  // NotListedWrapper,
+  // NotListed,
 } from "../NFTPage.styles";
 
 interface BuyProps {
@@ -27,6 +27,8 @@ interface BuyProps {
   tokenAddress?: string;
   tokenId?: string;
   state: any;
+  setTransactionError: any;
+  setShowTransactionError: any;
 }
 
 const Buy: React.FC<BuyProps> = ({
@@ -37,12 +39,12 @@ const Buy: React.FC<BuyProps> = ({
   tokenAddress,
   tokenId,
   state,
+  setTransactionError,
+  setShowTransactionError,
 }) => {
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
-  //const account = web3React.account;
-
   const [, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [, setSeller] = useState("");
@@ -90,10 +92,15 @@ const Buy: React.FC<BuyProps> = ({
       signer,
     );
 
-    const tx = await MarketplaceContract.buyToken(tokenId, {
-      value: ethers.utils.parseUnits(amount.toString(), "ether"),
-    });
-    await tx.wait();
+    try {
+      const tx = await MarketplaceContract.buyToken(tokenId, {
+        value: ethers.utils.parseUnits(amount.toString(), "ether"),
+      });
+      await tx.wait();
+    } catch (error: any) {
+      setShowTransactionError(true);
+      setTransactionError(error);
+    }
   }
 
   async function getEthPrice() {
@@ -130,12 +137,39 @@ const Buy: React.FC<BuyProps> = ({
     getProductPrice();
   }, [connector, web3React]);
 
+
   return (
     <>
       {showBuy === false && isOwner === true ? (
-        <NotListedWrapper>
-          <NotListed>Not listed for sale</NotListed>
-        </NotListedWrapper>
+        <BuyBar>
+          <ButtonWrap>
+            <Wrapper disp="flex" alignItems="center">
+              Not listed for sale yet
+            </Wrapper>
+            <InfoButton
+              fc="#873DC1"
+              disabled={!isOwner}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(
+                  `/offer-for-not-listed-nft/tokenAddress=${state.tokenAddress}&id=${state.tokenId}`,
+                  { state: { state } },
+                );
+              }}
+            >
+              Make offer to purchase
+            </InfoButton>
+          </ButtonWrap>
+        </BuyBar>
+      ) : !isOwner ? (
+        <BuyBar>
+          <ButtonWrap>
+            <Wrapper disp="flex" alignItems="center">
+              Not listed for sale yet
+            </Wrapper>
+            
+          </ButtonWrap>
+        </BuyBar>
       ) : (
         <BuyBar>
           <span>Current price</span>

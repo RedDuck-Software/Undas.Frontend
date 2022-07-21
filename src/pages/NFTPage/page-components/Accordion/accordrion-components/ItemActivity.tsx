@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import React from "react";
 
 import { PriceText } from "../../../NFTPage.styles";
@@ -13,8 +14,10 @@ import {
   ActivityColorText,
   EtherIcon,
 } from "../Accordion.styles";
-
-const ItemActivity: React.FC = () => {
+interface ItemActivityItems {
+  items?:any 
+}
+const ItemActivity: React.FC<ItemActivityItems> = ({items}) => {
   return (
     <ActivityWrap>
       <ActivityTopRow>
@@ -31,74 +34,71 @@ const ItemActivity: React.FC = () => {
           <ActivityTd>To</ActivityTd>
           <ActivityTd>Date</ActivityTd>
         </ActivityHeadTr>
-        <ActivityTr>
-          <ActivityTd>
-            <ActivityText>Sale</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <EtherIcon />
-            <PriceText>2,5</PriceText>
-            <ActivityText>ETH</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>5 months ago</ActivityTd>
-        </ActivityTr>
-        <ActivityTr>
-          <ActivityTd>
-            <ActivityText>Transfer</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <EtherIcon />
-            <PriceText>2</PriceText>
-            <ActivityText>ETH</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>5 months ago</ActivityTd>
-        </ActivityTr>
-        <ActivityTr>
-          <ActivityTd>
-            <ActivityText>Minted</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <EtherIcon />
-            <PriceText>0,5</PriceText>
-            <ActivityText>ETH</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">NullAddress</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>6 months ago</ActivityTd>
-        </ActivityTr>
-        <ActivityTr>
-          <ActivityTd>
-            <ActivityText>Transfer</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <EtherIcon />
-            <PriceText>1,25</PriceText>
-            <ActivityText>ETH</ActivityText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">steen</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>
-            <ActivityColorText color="#5D3F92">Hype-eth</ActivityColorText>
-          </ActivityTd>
-          <ActivityTd>8 months ago</ActivityTd>
-        </ActivityTr>
+         {items.data.listings.map((item:any) => {
+            return <ActivityTr key={item}>
+                      <ActivityTd>
+                        <ActivityText>Sale</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <EtherIcon />
+                        <PriceText>{ethers.utils.formatEther(
+                             item.price.toString(),
+                          )}
+                        </PriceText>
+                        <ActivityText>ETH</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">0xdA0....49154</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">0xf35....C8ACd</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>Day ago</ActivityTd>
+                    </ActivityTr>
+          })}
+          {items.data.stakingListings.map((item:any) => {
+            return <ActivityTr key={item}>
+                      <ActivityTd>
+                        <ActivityText>Rent</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <EtherIcon />
+                        <PriceText>{ethers.utils.formatEther(
+                             item.colloteralWei.toString(),
+                          )}
+                        </PriceText>
+                        <ActivityText>ETH</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">0x454...7720</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">0x1DE...93a24</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>Day ago</ActivityTd>
+                    </ActivityTr>
+          })}
+          {items.data.tokens.map((item:any) => {
+            return <ActivityTr key={item}>
+                      <ActivityTd>
+                        <ActivityText>Mint</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <EtherIcon />
+                        <PriceText>
+                          -
+                        </PriceText>
+                        <ActivityText>ETH</ActivityText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">-</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>
+                        <ActivityColorText color="#5D3F92">0x1DE...93a24</ActivityColorText>
+                      </ActivityTd>
+                      <ActivityTd>Week ago</ActivityTd>
+                    </ActivityTr>
+          })}              
       </ActivityTableWrap>
 
       {/* <ActivityTableWrapMobile>

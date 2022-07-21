@@ -24,12 +24,12 @@ export const Preview = styled.div`
 export const NFTWrap = styled.div`
   cursor: pointer;
   width: 100%;
-  height: 340px;
+  height: 355px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(124, 124, 124, 0.25);
   transition: all 0.3s;
-  max-width: 420px;
+  max-width: 290px;
   &:hover {
     box-shadow: 0px 5px 15px rgba(135, 61, 193, 0.5);
   }
@@ -60,6 +60,9 @@ export const Name = styled.span`
   text-overflow: ellipsis;
   @media (max-width: 768px) {
     font-size: 12px;
+  }
+  @media (max-width: 576px) {
+    max-width: 100%;
   }
 `;
 export const CollectionName = styled(Link)`
@@ -122,7 +125,7 @@ export const BuyBtn = styled.button`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  padding: 10px;
+  padding: 16px 0;
   color: #873dc1;
   background-color: #fff;
   border-radius: 2px 2px 2px 10px;
@@ -147,11 +150,12 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
   @media (max-width: 576px) {
     padding: 14px 0;
+    max-width: 100%;
   }
 `;
 
 export const PriceList = styled.ul`
-  max-height: 85px;
+  max-height: 96px;
   border-radius: 0 0 12px 0;
   list-style: none;
   padding-left: 1px;
@@ -166,8 +170,8 @@ export const PriceItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 20px;
-  padding: 0 14px 0 4px;
+  height: 26px;
+  padding: 3px 4px;
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
@@ -176,4 +180,11 @@ export const PriceItem = styled.li`
 `;
 export const PriceInEth = styled.span`
   font-size: 12px;
+`;
+
+export const ClipLoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6rem;
 `;

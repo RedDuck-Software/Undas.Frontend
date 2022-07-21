@@ -19,11 +19,13 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import { CollectionBG, Verified } from "../imports";
+import { Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl?: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -38,6 +40,7 @@ type CollectionItemProps = {
 interface CollectionGridWrapperProps {
   itemList: CollectionItemProps[];
 }
+
 interface CollectionWithCards {
   collectionId: number;
   uri: string;
@@ -48,7 +51,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
-
   const getListings = async () => {
     const tokens = await fetchData();
 
@@ -72,16 +74,15 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   });
 
   const tokensQuery = `
-      {
-          tokens(orderDirection:asc){
-          uri
-          collectionId
-        }
+    {
+      tokens(orderDirection:asc){
+        uri
+        collectionId
       }
-       `;
+    }
+  `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("data", data.data.tokens);
     return data;
   }
 
@@ -92,20 +93,21 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
       setCollectionItems(response);
     }
   }
-  console.log(collectionItems);
 
   return (
     <>
       {itemList.map((i) => {
         if (!collectionItems) return;
-
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
 
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground src={CollectionBG} alt="collection-bg" />
+            <CollectionBackground
+              src={i.collectionFeatureUrl}
+              alt="collection-bg"
+            />
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />
@@ -127,8 +129,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <>
                 {result ? (
                   result.map((collectionItem) => {
-                    console.log(i.id);
-
                     if (i.id == collectionItem.collectionId) {
                       return (
                         <NFTCards

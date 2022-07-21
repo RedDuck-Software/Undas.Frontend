@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import React, { useState, useContext, useEffect, useRef } from "react";
 import Overlay from "react-bootstrap/Overlay";
 import { useParams } from "react-router-dom";
@@ -19,7 +20,7 @@ import {
   SendButton,
   MyWrapper,
 } from "./CollectionPage.styles";
-import { CollectionBanner, PurpleEthIco } from "./imports";
+import { PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 import { GET_COLLECTION_INFO } from "./query";
@@ -53,7 +54,9 @@ interface CommonProps {
   description: string;
   tokenAddress: string;
   collectionOwner: string;
+  collectionId: string;
   collectionName?: string;
+  collectionFeatureUrl?: string;
 }
 
 const CollectionPage: React.FC = () => {
@@ -80,6 +83,7 @@ const CollectionPage: React.FC = () => {
   useEffect(() => {
     getListingsData();
   }, [connector, fetching]);
+
   const getTokenData = async () => {
     if (fetching) return;
     const collectionItem: CommonProps[] = [];
@@ -90,11 +94,13 @@ const CollectionPage: React.FC = () => {
         URI: i.uri,
         description: i.tokenDescription,
         collectionOwner: i.owner,
-        tokenAddress: "0x82907ED3c6adeA2F470066aBF614F3B38094bef2",
+        collectionId: i.collectionId.toString(),
+        tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         collectionName: i.collectionName,
       };
       collectionItem.push(item);
     });
+
     return collectionItem;
   };
 
@@ -104,7 +110,6 @@ const CollectionPage: React.FC = () => {
       setList(response);
     }
   };
-
   return (
     <>
       {fetching && !data ? (
@@ -112,36 +117,65 @@ const CollectionPage: React.FC = () => {
       ) : (
         <ContainerCollection>
           <Banner>
-            <img src={CollectionBanner} alt="CollectionBanner" />
+            <img
+              src={data.collection.collectionFeatureUrl}
+              alt="CollectionBanner"
+            />
           </Banner>
           <Background>
             <AllNFTContainer>
               <ASideFilter marginTop="208px" page="Collection" />
               <ContainerNFT>
                 <HeadWrapper>
-                  <CollectionCard />
+                  <CollectionCard
+                    name={data.collection.collectionName}
+                    creator={data.collection.owner}
+                    description={data.collection.collectionInfo}
+                    logo={data.collection.collectionUrl}
+                  />
                   <InfoBox>
                     <Info>
                       <InfoElement className="large-items">
                         <TextInfo>Items</TextInfo>
-                        <Amount>14000</Amount>
+                        <Amount>
+                          {data.collection.collectionItemsAmount
+                            ? data.collection.collectionItemsAmount
+                            : "-"}
+                        </Amount>
                       </InfoElement>
                       <InfoElement>
                         <TextInfo>Owners</TextInfo>
-                        <Amount>6400</Amount>
+                        <Amount>
+                          {data.collection.totalOwners
+                            ? data.collection.totalOwners
+                            : "-"}
+                        </Amount>
                       </InfoElement>
                       <InfoElement className="small-floor">
                         <TextInfo>Floor Price</TextInfo>
                         <MyWrapper>
                           <PurpleEthIco />
-                          <Amount>3,2</Amount>
+                          <Amount>
+                            {data.collection.floorPrice &&
+                            data.collection.floorPrice[0]
+                              ? ethers.utils.formatEther(
+                                  data.collection.floorPrice[0].price,
+                                )
+                              : "-"}
+                          </Amount>
                         </MyWrapper>
                       </InfoElement>
                       <InfoElement className="small-vol">
                         <TextInfo>Total Vol</TextInfo>
                         <MyWrapper>
                           <PurpleEthIco />
-                          <Amount>13,402,000</Amount>
+                          <Amount>
+                            {data.collection.collectionVolume
+                              ? ethers.utils.formatEther(
+                                  data.collection.collectionVolume,
+                                )
+                              : "-"}
+                          </Amount>
                         </MyWrapper>
                       </InfoElement>
                     </Info>

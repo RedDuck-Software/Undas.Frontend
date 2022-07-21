@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Inner = styled.div`
   background-color: #5d3f92;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 0 0 10px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -18,6 +18,9 @@ export const Image = styled.img`
   object-fit: cover;
   background-color: #fff;
   border-radius: 10px 10px 0 0;
+  @media (max-width: 992px) {
+    object-fit: fill;
+  }
 `;
 export const CardWrap = styled(Link)`
   display: flex;
@@ -39,16 +42,10 @@ export const CardWrap = styled(Link)`
   @media (max-width: 768px) {
     height: 300px;
     flex: 0 0 50%;
-    &:last-child {
-      display: none;
-    }
   }
   @media (max-width: 576px) {
     height: 370px;
     flex: 0 0 100%;
-    &:nth-child(2) {
-      display: none;
-    }
   }
   @media (max-width: 400px) {
     height: 50%;
@@ -63,11 +60,16 @@ export const BigCardWrap = styled(CardWrap)`
   grid-column-end: 4;
   max-height: 340px;
   width: 100%;
+  @media (max-width: 992px) {
+    max-height: 300px;
+  }
   @media (max-width: 768px) {
     grid-column-end: 3;
+    max-height: 200px;
   }
   @media (max-width: 576px) {
-    display: none;
+    flex-direction: column;
+    max-height: 340px;
   }
 `;
 export const ImageWrap = styled.div`
@@ -77,10 +79,22 @@ export const ImageWrap = styled.div`
 export const BigImageWrap = styled(ImageWrap)`
   width: 50%;
   border-radius: 10px 0 0 10px;
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 992px) {
+    width: 80%;
+  }
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 export const BigImage = styled(Image)`
   border-radius: 10px 0 0 10px;
+  @media (max-width: 576px) {
+    border-radius: 10px 10px 0 0;
+  }
 `;
 
 export const CardBody = styled.div`
@@ -94,6 +108,14 @@ export const BigCardBody = styled(CardBody)`
   width: 50%;
   padding: 30px;
   gap: 20px;
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+  @media (max-width: 576px) {
+    padding: 30px;
+    width: 100%;
+    gap: 0;
+  }
 `;
 
 export const CardTitle = styled.h2`
@@ -136,8 +158,7 @@ export const BigCardText = styled.p`
     line-height: 22px;
   }
   @media (max-width: 768px) {
-    font-size: 14px;
-    line-height: 17px;
+    display: none;
   }
 `;
 export const CardLink = styled.a`

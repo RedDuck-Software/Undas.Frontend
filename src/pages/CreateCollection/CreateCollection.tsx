@@ -33,11 +33,14 @@ import {
   CreateSelect,
   SelectItem,
 } from "../../components/CreateSelect/CreateSelect";
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import Error from "../../components/Modal/Error/Error";
 import { Background, FormButtonsWrap } from "../../globalStyles";
 import closeIcon from "../../icons/close.svg";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
 import { UndasGeneralNFT__factory } from "../../typechain";
 import { Category } from "../../types/category";
+import { TransactionError } from "../../types/global";
 import Context from "../../utils/Context";
 import { getCategory } from "../../utils/getCategory";
 import { PolygonIcon } from "../AllNFTs/imports";
@@ -96,6 +99,11 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
         categoryId={6}
         {...getCategory(Category.plus18)}
       />
+      <SelectItem
+        setSelected={setCategory}
+        categoryId={7}
+        {...getCategory(Category.other)}
+      />
     </>
   );
 };
@@ -119,11 +127,17 @@ const BlockchainList: React.FC<{ setBlockchain: any }> = ({
 };
 
 const CreateCollection: React.FC = () => {
-  // const web3ReactState = useWeb3React();
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const [logo, setLogo] = useState<string>("");
   const [featured, setFeatured] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
-  const [fileSizeError, setFileSizeError] = useState<{
+  const [fileSizeError /* setFileSizeError */] = useState<{
     message: string;
     inputName: string;
   }>();
@@ -133,8 +147,8 @@ const CreateCollection: React.FC = () => {
   const [category, setCategory] = useState<SelectItemType>({
     icon: "",
     label: "Add Category",
-    categoryId: 0,
   });
+  const [categoryError, setCategoryError] = useState<any>("");
   const [creatorEarnings, setCreatorEarnings] = useState("");
   const [blockchain, setBlockchain] = useState<SelectItemType>({
     icon: ethIcon,
@@ -142,9 +156,14 @@ const CreateCollection: React.FC = () => {
   });
   const { connector } = useContext(Context);
   const [isSensetiveContent, setIsSensetiveContent] = useState(false);
+
   const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, formState, handleSubmit, trigger } =
+  const { register, formState, handleSubmit } =
     useForm<CreateCollectionForm>(formOptions);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
   const { errors } = formState;
@@ -163,32 +182,45 @@ const CreateCollection: React.FC = () => {
     );
     const signer = provider.getSigner(0);
 
-    console.log(collectionName);
-    console.log(collectionUrl);
-    console.log(collectionInfo);
-    console.log(category);
-
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
+      "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
 
-    const tx = await NFTContract.createCollection(
-      collectionName,
-      collectionUrl,
-      collectionInfo,
-      category,
-    );
+    try {
+      const tx = await NFTContract.createCollection(
+        collectionName,
+        collectionUrl,
+        featured,
+        banner,
+        collectionInfo,
+        category,
+      );
 
-    await tx.wait();
+      setLoading(true);
+      await tx.wait();
+      if (autoRedirect) {
+        setAutoRedirect(false);
+        navigate("/account");
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
+    }
   };
 
-  const onSubmit = (formValues: any) => {
-    trigger("logoURI");
-    alert(JSON.stringify(formValues));
+  const handleCleanForm = () => {
+    location.reload();
   };
 
-  const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
+  const onSubmit = () => {
+    if (Object.keys(errors).length > 0) return;
+    setAutoRedirect(true);
+    createCollection(name, logo, information, category.categoryId!);
+  };
+
+  /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {
     const file = fileList[0];
     if (file.size > 3145728) {
       setFileSizeError({
@@ -237,16 +269,35 @@ const CreateCollection: React.FC = () => {
       setBanner(file);
     }
     trigger("bannerURI");
-  };
+  }; */
+
+  useEffect(() => {
+    if (category.categoryId) {
+      setCategoryError("");
+    }
+  }, [category]);
 
   useEffect(() => {
     if (!connector) {
       navigate("/login");
     }
   }, [connector, account]);
+
   return (
     <Background>
       <CreateSec>
+        <LoadingModal
+          isLoading={loading}
+          setAutoRedirect={setAutoRedirect}
+          addMore={handleCleanForm}
+        />
+        {showTransactionError && transactionError.message.length > 0 && (
+          <Error
+            error={transactionError}
+            show={showTransactionError}
+            setShow={setShowTransactionError}
+          />
+        )}
         <CreateContainer>
           <CreateTitle>Create Collection</CreateTitle>
           <CreateForm onSubmit={handleSubmit(onSubmit)}>
@@ -266,9 +317,10 @@ const CreateCollection: React.FC = () => {
                   )}
                 </CollectionLogoLabel>
                 <CollectionImageInput
+                  disabled
                   {...register("logoURI")}
                   id="logo"
-                  onChange={logoHandler}
+                  //onChange={logoHandler}
                   required
                 />
 
@@ -279,6 +331,22 @@ const CreateCollection: React.FC = () => {
               </AddImgBlock>
               {fileSizeError && fileSizeError.inputName === ImageFile.logo && (
                 <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>
+                Logo URL-image<span className="require-asterisk">*</span>
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Logo URL-image"
+                id="logoURL"
+                {...register("logoURL")}
+                value={logo}
+                onChange={(e) => setLogo(e.target.value)}
+              />
+              {errors.logoURL && (
+                <ValidationBlock>{errors.logoURL.message}</ValidationBlock>
               )}
             </CreateFormGroup>
             <CreateFormGroup>
@@ -309,8 +377,9 @@ const CreateCollection: React.FC = () => {
                 </CollectionFeaturedLabel>
 
                 <CollectionImageInput
+                  disabled
                   id="featured"
-                  onChange={featuredHandler}
+                  //onChange={featuredHandler}
                 />
                 <BlockDescript>
                   This image will be used for featuring your collection on the
@@ -318,10 +387,19 @@ const CreateCollection: React.FC = () => {
                   <br /> Recommended 600px X 400px
                 </BlockDescript>
               </AddImgBlock>
-              {fileSizeError &&
+              {/* {fileSizeError &&
                 fileSizeError.inputName === ImageFile.featured && (
                   <ValidationBlock>{fileSizeError.message}</ValidationBlock>
-                )}
+                )} */}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>Featured URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Featured URL-image"
+                value={featured}
+                onChange={(e) => setFeatured(e.target.value)}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CollectionBannerLabelWrapper>
@@ -354,12 +432,24 @@ const CreateCollection: React.FC = () => {
                     <img src={ImgIcon} alt="image-icon" />
                   )}
                 </CollectionBannerLabel>
-                <CollectionImageInput id="banner" onChange={bannerHandler} />
+                <CollectionImageInput
+                  disabled
+                  id="banner" /* onChange={bannerHandler} */
+                />
               </AddBannerBlock>
               {fileSizeError &&
                 fileSizeError.inputName === ImageFile.banner && (
                   <ValidationBlock>{fileSizeError.message}</ValidationBlock>
                 )}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>Banner URL-image</CreateLabel>
+              <CreateInput
+                type="text"
+                placeholder="Banner URL-image"
+                value={banner}
+                onChange={(e) => setBanner(e.target.value)}
+              />
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel htmlFor="name">
@@ -424,6 +514,9 @@ const CreateCollection: React.FC = () => {
                   </CategoryDescript>
                 </CategorySelectWrapper>
               </CategoryGroup>
+              {categoryError.length > 0 && (
+                <ValidationText>{categoryError}</ValidationText>
+              )}
             </CreateFormGroup>
             <CreateFormGroup>
               <CreateLabel>Links</CreateLabel>
@@ -476,6 +569,9 @@ const CreateCollection: React.FC = () => {
                 onChange={(e) => setCreatorEarnings(e.target.value)}
               />
             </CreateFormGroup>
+            {errors.creatorEarnings && (
+              <ValidationText>{errors.creatorEarnings.message}</ValidationText>
+            )}
             <CreateFormGroup>
               <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
               <BlockDescript className="blockchain-descript">
@@ -506,14 +602,9 @@ const CreateCollection: React.FC = () => {
                   className="left-btn"
                   type="submit"
                   onClick={() =>
-                    category.categoryId != undefined
-                      ? createCollection(
-                          name,
-                          customURL,
-                          information,
-                          category.categoryId,
-                        )
-                      : alert("chose category")
+                    !category.categoryId
+                      ? setCategoryError("Please, select category")
+                      : ""
                   }
                 >
                   Create

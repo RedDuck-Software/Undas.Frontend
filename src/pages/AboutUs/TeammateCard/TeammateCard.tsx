@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 
 import {
   LinkedInIco,
-  TwitterIco,
+  /*TwitterIco,*/
   GermanFounder,
   ErvinMigirov,
   ArtemFranz,
@@ -17,6 +17,7 @@ import {
   AnnaTsysMetaverses,
   IlyaArkhipovArtDirector,
   DanilDeveloper,
+  YefimMigirov,
 } from "./imports";
 import {
   CardWrap,
@@ -44,11 +45,8 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/german-solovyov/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -59,11 +57,8 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Ervin</TeamCardTitle>
                 <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/ervin-migirov-37024a6a/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -78,11 +73,8 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/artemalekhin/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -93,11 +85,8 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Mark</TeamCardTitle>
                 <TeamCardTitleSurname>Founder, CTO</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/mark-virchenko/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -112,11 +101,8 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/stasnislav-stefanyshyn/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -127,11 +113,8 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Alexandr</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/mwlite/in/gurinalex">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -146,11 +129,8 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/a-fedko/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -161,12 +141,12 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Kostiantyn</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
-                <TeamCardLink href="#">
+                {/* <TeamCardLink href="#">
                   <img src={TwitterIco} alt="icon" />
-                </TeamCardLink>
+                </TeamCardLink>*/}
               </CardBody>
             </TeamCard>
           </ColTeamCard>
@@ -180,11 +160,8 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/andrii-shvaika-253588212/">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -195,11 +172,8 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Maxim</TeamCardTitle>
                 <TeamCardTitleSurname>Designer</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/maxim-kulikov-ab12b923a">
                   <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>
@@ -217,9 +191,6 @@ const TeammateCards = () => {
                 <TeamCardLink href="#">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
-                </TeamCardLink>
               </CardBody>
             </TeamCard>
           </ColTeamCard>
@@ -232,9 +203,6 @@ const TeammateCards = () => {
                 <TeamCardLink href="#">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
-                <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
-                </TeamCardLink>
               </CardBody>
             </TeamCard>
           </ColTeamCard>
@@ -244,11 +212,20 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Danil</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
+              <CardImg variant="top" src={YefimMigirov} />
+              <CardBody>
+                <TeamCardTitle>Yefim</TeamCardTitle>
+                <TeamCardTitleSurname>Community Manager</TeamCardTitleSurname>
                 <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
+                  <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
             </TeamCard>

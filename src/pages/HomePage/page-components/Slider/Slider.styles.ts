@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { CollectionPrev } from "./imports";
-
 import { PrimaryButton, SecondaryButton } from "../../../../globalStyles";
 
 export const SliderImage = styled.img`
@@ -13,7 +11,7 @@ export const SliderImage = styled.img`
 export const UndasDiv = styled.div`
   position: absolute;
   width: 830px;
-  text-align: center;
+  text-align: left;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 4px 4px 4px rgb(35 36 40 / 50%);
   backdrop-filter: blur(30px);
@@ -67,7 +65,6 @@ export const TextStacking = styled.p`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  text-align: center;
 `;
 export const SliderButtonsBlock = styled.div`
   position: absolute;
@@ -127,13 +124,15 @@ export const CollectionDiv = styled(Link).attrs({ target: "_blank" })`
   @media (max-width: 576px) {
     display: none;
   }
+  &:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
 `;
 export const ImgNFTSmall = styled.img`
   width: 50px;
   height: 50px;
 `;
 export const IMGdiv = styled.div`
-  background-image: url(${CollectionPrev});
   width: 50px;
   height: 50px;
   margin-top: -15px;

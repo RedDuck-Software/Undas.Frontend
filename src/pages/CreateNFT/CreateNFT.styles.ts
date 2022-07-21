@@ -298,14 +298,13 @@ export const FilterItem = styled.li`
 `;
 
 export const FilterTitle = styled.span`
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #232428;
   margin-top: 4px;
-}
 `;
 
 export const FilterTitlePolygon = styled.span`
@@ -319,10 +318,9 @@ export const FilterTitlePolygon = styled.span`
     position: relative;
     vertical-align: middle;
     margin-right: 10px;
-    width:24px;
+    width: 24px;
     height: 24px;
   }
-}
 `;
 
 export const FilterTitleBSC = styled.span`
@@ -336,10 +334,9 @@ export const FilterTitleBSC = styled.span`
     position: relative;
     vertical-align: middle;
     margin-right: 10px;
-    width:24px;
+    width: 24px;
     height: 24px;
   }
-}
 `;
 
 export const Arrow = styled.span`
@@ -386,9 +383,8 @@ export const MenuItem = styled(FilterItem)<IMenuItem>`
 `;
 
 export const BlockchainIMG = styled.img`
-    width:24px;
-    height: 24px;
-    margin-right: 10px;
-    margin-top: -6px;
-}
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-top: -6px;
 `;

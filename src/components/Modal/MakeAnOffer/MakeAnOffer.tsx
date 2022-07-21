@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   WindowWrap,
@@ -23,15 +23,12 @@ import {
 
 import { Wrapper } from "../../../pages/CategoriesPage/Categories.styles";
 import { ColoredText } from "../../../pages/NFTPage/page-components/Accordion/Accordion.styles";
-import { useToken } from "../../../store";
 import { closeModal } from "../../../store/reducers/modalAction";
 import { EthIco } from "../../ASideFilter/imports";
 import { NFTImg, UNDIco } from "../imports";
 
 const MakeAnOffer: React.FC = () => {
   const dispatch = useDispatch();
-  const tokenId = useSelector(useToken);
-  console.log(tokenId);
 
   // const { connector } = useContext(Context);
 

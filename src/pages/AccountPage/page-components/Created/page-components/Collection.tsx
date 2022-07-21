@@ -19,6 +19,8 @@ import { Verified } from "../imports";
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl?: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -42,7 +44,6 @@ interface CollectionWithCards {
 const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const { account } = useWeb3React();
 
-  console.log(itemList);
   const [collectionItems, setCollectionItems] =
     useState<CollectionWithCards[]>();
   const items: CollectionWithCards[] = [];
@@ -95,9 +96,12 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
-
         return (
-          <CollectionCard key={i.id} to={`/collection/${i.id}`}>
+          <CollectionCard
+            key={i.id}
+            to={`/collection/${i.id}`}
+            bg={i.collectionFeatureUrl}
+          >
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />
@@ -118,7 +122,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <>
                 {result ? (
                   result.map((collectionItem) => {
-                    console.log(i.id);
                     if (i.id == collectionItem.collectionId) {
                       return (
                         <NFTCards

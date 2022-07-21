@@ -11,11 +11,15 @@ import "swiper/css/thumbs";
 import "./AboutSlides.css";
 
 import {
-  SliderImg1,
+  /*SliderImg1,
   SliderImg2,
   SliderImg3,
   SliderImg4,
-  SliderImg5,
+  SliderImg5,*/
+  SliderImg6,
+  SliderImg7,
+  SliderImg8,
+  SliderImg9,
 } from "./imports";
 import { SliderImage } from "./Slider.styles";
 
@@ -33,6 +37,18 @@ export default function AboutSlider() {
           className="AboutSwiper2"
         >
           <SwiperSlide>
+            <SliderImage src={SliderImg6} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg7} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg8} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg9} alt="slider-image" />
+          </SwiperSlide>
+          {/*<SwiperSlide>
             <SliderImage src={SliderImg1} alt="slider-image" />
           </SwiperSlide>
           <SwiperSlide>
@@ -46,7 +62,7 @@ export default function AboutSlider() {
           </SwiperSlide>
           <SwiperSlide>
             <SliderImage src={SliderImg5} alt="slider-image" />
-          </SwiperSlide>
+          </SwiperSlide>*/}
         </Swiper>
         <Swiper
           onSwiper={setThumbsSwiper}
@@ -60,6 +76,18 @@ export default function AboutSlider() {
           className="AboutSwiper"
         >
           <SwiperSlide>
+            <SliderImage src={SliderImg6} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg7} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg8} alt="slider-image" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderImage src={SliderImg9} alt="slider-image" />
+          </SwiperSlide>
+          {/*<SwiperSlide>
             <SliderImage src={SliderImg1} alt="slider-image" />
           </SwiperSlide>
           <SwiperSlide>
@@ -73,7 +101,7 @@ export default function AboutSlider() {
           </SwiperSlide>
           <SwiperSlide>
             <SliderImage src={SliderImg5} alt="slider-image" />
-          </SwiperSlide>
+          </SwiperSlide>*/}
         </Swiper>
       </>
     );

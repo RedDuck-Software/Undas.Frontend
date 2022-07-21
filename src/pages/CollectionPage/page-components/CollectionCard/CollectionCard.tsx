@@ -17,7 +17,6 @@ import {
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 import {
-  CollectionPic,
   TwitterIco,
   TelegramIco,
   DiscordIco,
@@ -26,12 +25,24 @@ import {
   More,
 } from "../../imports";
 
-const CollectionCard: React.FC = () => {
+interface CollectionCardProps {
+  name: string;
+  creator: string;
+  description: string;
+  logo: string;
+}
+
+const CollectionCard: React.FC<CollectionCardProps> = ({
+  name,
+  creator,
+  description,
+  logo,
+}) => {
   return (
     <CardWrap>
       <Wrapper disp="flex" gap="20px">
         <ImageWrap>
-          <ImgCollection src={CollectionPic} alt="collection-pic" />
+          <ImgCollection src={logo} alt="collection-pic" />
         </ImageWrap>
         <Wrapper
           disp="flex"
@@ -49,23 +60,17 @@ const CollectionCard: React.FC = () => {
           <MoreInfo>
             <img src={More} alt="more-info" />
           </MoreInfo>
-          <Description>
-            If you believe in the future of DeFi, then you believein the future
-            of ...
-          </Description>
+          <Description>{description}</Description>
         </Wrapper>
       </Wrapper>
-      <DescriptionS>
-        If you believe in the future of DeFi, then you believein the future of
-        ...
-      </DescriptionS>
+      <DescriptionS>{description}</DescriptionS>
       <CreatorWrapper>
-        <CollectionName>Collection Name</CollectionName>
+        <CollectionName>{name}</CollectionName>
         <img src={Verified} alt="verified-ico" />
         <Platform>UND</Platform>
       </CreatorWrapper>
       <Creator>
-        Creator <PurpleText>Borya Borya</PurpleText>
+        Creator <PurpleText>{creator}</PurpleText>
       </Creator>
     </CardWrap>
   );

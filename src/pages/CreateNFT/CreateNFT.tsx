@@ -64,6 +64,7 @@ import { validationSchema } from "./validation";
 
 import { CreateSelect, SelectItem } from "../../components";
 import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import Error from "../../components/Modal/Error/Error";
 import { Background } from "../../globalStyles";
 import ethIcon from "../../icons/tokens/eth-grey.svg";
 import {
@@ -72,6 +73,7 @@ import {
   useStats,
 } from "../../store/reducers/createNFT/helpers";
 import { UndasGeneralNFT__factory } from "../../typechain/factories/UndasGeneralNFT__factory";
+import { TransactionError } from "../../types/global";
 import Context from "../../utils/Context";
 import { PolygonIcon } from "../AllNFTs/imports";
 import { ValidationBlock } from "../CreateCollection/CreateCollection.styles";
@@ -81,9 +83,14 @@ const SelectCollectionList: React.FC<{
   setCollection: Dispatch<SetStateAction<SelectItemType>>;
   items: any;
 }> = ({ setCollection, items }) => {
-  console.log(items);
   return (
     <>
+      <SelectItem
+        key={"collection-all-nfts"}
+        setSelected={setCollection}
+        label={"All Nfts"}
+        collectionId={"0"}
+      />
       {items.map((item: any) => {
         return (
           <SelectItem
@@ -100,6 +107,7 @@ const SelectCollectionList: React.FC<{
 
 interface IState {
   name: string;
+  urlImage: string;
   externalLink: string;
   description: string;
   supply: string;
@@ -113,6 +121,7 @@ interface IAction {
 
 const initialState: IState = {
   name: "",
+  urlImage: "",
   externalLink: "",
   description: "",
   supply: "1",
@@ -129,22 +138,29 @@ const reducer = (state: IState, action: IAction) => {
 };
 
 const CreateNFT: React.FC = () => {
+  const [showTransactionError, setShowTransactionError] =
+    useState<boolean>(false);
+  const [transactionError, setTransactionError] = useState<TransactionError>({
+    code: -1,
+    message: "",
+  });
+
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { name, externalLink, description, supply, freezeMetadata } = state;
+  const { name, urlImage, externalLink, description, supply, freezeMetadata } =
+    state;
   const { connector } = useContext(Context);
   const web3ReactState = useWeb3React();
   const { account } = web3ReactState;
-  console.log(account, "account");
-  const [file, setFile] = useState<string>();
-  const [fileSizeError, setFileSizeError] = useState<{
+  const [, /* file */ setFile] = useState<string>();
+  /*  const [fileSizeError,  setFileSizeError] = useState<{
     message: string;
     inputName: string;
-  }>();
+  }>(); */
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
-    collectionId: "",
   });
+  const [collectionError, setCollectionError] = useState<any>("");
   const [propertyList, setPropertyList] = useState<Property[]>(
     useSelector(useProperties),
   );
@@ -153,8 +169,10 @@ const CreateNFT: React.FC = () => {
   const [isOnlockableContent, setIsOnlockableContent] =
     useState<boolean>(false);
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const [collectionList, setCollectionsList] = useState<CollectionType[]>([
     {
@@ -179,7 +197,6 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    console.log("collection.collectionId", collection.collectionId);
     if (collection.collectionId == "") {
       alert("Choose collection or create if it doesn`t exist ");
       return;
@@ -191,32 +208,37 @@ const CreateNFT: React.FC = () => {
     const signer = provider.getSigner(0);
 
     const NFTContract = UndasGeneralNFT__factory.connect(
-      "0x82907ED3c6adeA2F470066aBF614F3B38094bef2", //goerli contract addr
+      "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
+    try {
+      const tx = await NFTContract.safeMintGeneral(
+        account,
+        description,
+        name,
+        urlImage,
+        collection.collectionId!,
+      );
 
-    const tx = await NFTContract.safeMintGeneral(
-      account,
-      description,
-      name,
-      externalLink,
-      collection.collectionId,
-    );
-
-    setLoading(true);
-    await tx.wait();
-    if (autoRedirect) {
-      setAutoRedirect(false);
-      navigate("/account");
+      setLoading(true);
+      await tx.wait();
+      if (autoRedirect) {
+        setAutoRedirect(false);
+        navigate("/account");
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setTransactionError(error);
+      setShowTransactionError(true);
     }
-    setLoading(false);
   };
 
   const onSubmit = () => {
+    if (Object.keys(errors).length > 0) return;
     setAutoRedirect(true);
     mintNFT();
   };
-  const fileSizeValidation = (fileList: FileList, inputName: string) => {
+  /* const fileSizeValidation = (fileList: FileList, inputName: string) => {
     const file = fileList[0];
     if (file.size > 104857600) {
       setFileSizeError({
@@ -229,9 +251,9 @@ const CreateNFT: React.FC = () => {
       setFileSizeError({ message: "", inputName: "" });
       return false;
     }
-  };
+  }; */
 
-  const fileHandler = (event: React.FormEvent) => {
+  /*  const fileHandler = (event: React.FormEvent) => {
     const fileList = (event.target as HTMLInputElement).files;
     if (fileList) {
       if (fileSizeValidation(fileList, "File")) {
@@ -240,7 +262,7 @@ const CreateNFT: React.FC = () => {
       const file = URL.createObjectURL(fileList[0]);
       setFile(file);
     }
-  };
+  }; */
 
   const unlockacleHandler = () => {
     setIsOnlockableContent(!isOnlockableContent);
@@ -268,8 +290,8 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log("tokensQuery", tokensQuery);
-    setCollectionsList(tokensQuery.data.collections);
+    const data = tokensQuery.data.collections;
+    setCollectionsList(data);
   };
 
   const APIURL =
@@ -277,10 +299,11 @@ const CreateNFT: React.FC = () => {
 
   const tokensQuery = `
   {
-    collections(where:{owner:"${account}"}){
-      collectionName
-      id
-    }
+      collections(where:{owner:"${account}"}){
+        collectionName
+        id
+      }
+
   }
  `;
   const client = createClient({
@@ -289,19 +312,20 @@ const CreateNFT: React.FC = () => {
 
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
-    console.log("DATA", data);
     return data;
   }
 
-  const [blockchainFilter, setbBlockchainFilter] = useState<string>("");
+  const [, /* blockchainFilter */ setbBlockchainFilter] = useState<string>("");
 
   const [active, setActive] = useState<any>({
     blockchain: false,
   });
 
   useEffect(() => {
-    console.log(blockchainFilter);
-  }, [active, blockchainFilter]);
+    if (collection.collectionId) {
+      setCollectionError("");
+    }
+  }, [collection]);
 
   return (
     <Background>
@@ -311,6 +335,13 @@ const CreateNFT: React.FC = () => {
           setAutoRedirect={setAutoRedirect}
           addMore={handleCleanForm}
         />
+        {showTransactionError && transactionError.message.length > 0 && (
+          <Error
+            error={transactionError}
+            show={showTransactionError}
+            setShow={setShowTransactionError}
+          />
+        )}
         <CreateContainer>
           <CreateTitle>Create NFT</CreateTitle>
 
@@ -330,16 +361,38 @@ const CreateNFT: React.FC = () => {
               </BlockDescript>
               <AddFileBlock>
                 <NFTItemLabel htmlFor="NFT">
-                  {file ? (
-                    <NFTItemPreview src={file} />
+                  {urlImage ? (
+                    <NFTItemPreview src={urlImage} />
                   ) : (
                     <img src={ImgIcon} alt="image-icon" />
                   )}
                 </NFTItemLabel>
-                <NFTItemInput id="NFT" onChange={fileHandler} required />
+                <NFTItemInput
+                  disabled
+                  id="NFT"
+                  /* onChange={fileHandler} */
+                  required
+                />
               </AddFileBlock>
-              {fileSizeError && fileSizeError.inputName === "File" && (
+              {/* {fileSizeError && fileSizeError.inputName === "File" && (
                 <ValidationBlock>{fileSizeError.message}</ValidationBlock>
+              )} */}
+            </CreateFormGroup>
+            <CreateFormGroup>
+              <CreateLabel>
+                URL-image<span className="require-asterisk">*</span>
+              </CreateLabel>
+              <CreateInput
+                type="text"
+                id="urlImage"
+                {...register("urlImage")}
+                name="urlImage"
+                placeholder="URL-image"
+                value={urlImage}
+                onChange={onChange}
+              />
+              {errors.urlImage && (
+                <ValidationBlock>{errors.urlImage.message}</ValidationBlock>
               )}
             </CreateFormGroup>
             <CreateFormGroup>
@@ -414,6 +467,9 @@ const CreateNFT: React.FC = () => {
                 This is the collection where your item will appear
               </BlockDescript>
             </CreateFormGroup>
+            {collectionError.length > 0 && (
+              <ValidationBlock>{collectionError}</ValidationBlock>
+            )}
             <CreateFormGroup>
               <CreateLabel htmlFor="blockchain">Blockchain</CreateLabel>
               <BlockDescript>
@@ -566,7 +622,15 @@ const CreateNFT: React.FC = () => {
             </CreateFormGroup>
             <ButtonsBlock>
               <FormButtonsWrap>
-                <CreateFormButton type="submit" className="left-btn">
+                <CreateFormButton
+                  type="submit"
+                  className="left-btn"
+                  onClick={() => {
+                    !collection.collectionId
+                      ? setCollectionError("Please, select collection")
+                      : "";
+                  }}
+                >
                   Create
                 </CreateFormButton>
                 <CreateFormButton>Back</CreateFormButton>

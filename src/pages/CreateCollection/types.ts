@@ -1,7 +1,10 @@
 export interface CreateCollectionForm {
   logoURI?: string;
+  logoURL?: string;
   featuredURI?: string;
+  featuredURL?: string;
   bannerURI?: string;
+  bannerURL?: string;
   name: string;
   customURL?: string;
   information?: string;

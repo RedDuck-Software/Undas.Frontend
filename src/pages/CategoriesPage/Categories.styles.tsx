@@ -109,6 +109,7 @@ export const CollectionCard = styled(Link)`
 `;
 
 export const CollectionBackground = styled.img`
+  object-fit: cover;
   top: 0;
   left: 0;
   position: absolute;

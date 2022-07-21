@@ -1,9 +1,8 @@
 import React from "react";
-// import required modules
 import { Autoplay, Navigation, Scrollbar } from "swiper";
-// Import Swiper React components
+// eslint-disable-next-line import/order
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
@@ -12,12 +11,23 @@ import "./AdvertisingSlider.css";
 import {
   Wrap,
   SliderTitle,
-  CollectionCard,
   SliderButton,
   SliderInner,
 } from "./AdvertisingSlider.styles";
 
-const AdvertisingSlider: React.FC = () => {
+// import NFTCard from "../NFTCardOffers/NFTCard";
+import NFTCardForCarousel from "../NFTCardForCarousel/NFTCardForCarousel";
+
+interface CollectionGridWrapperProps {
+  collectionItems: any;
+  collectionId: number;
+}
+
+const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
+  collectionItems,
+  collectionId,
+}) => {
+  const href = `/collection/${collectionId}`;
   return (
     <Wrap>
       <SliderTitle>More from this collection</SliderTitle>
@@ -47,39 +57,27 @@ const AdvertisingSlider: React.FC = () => {
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 30,
+            },
+            1700: {
+              slidesPerView: 4,
             },
           }}
         >
-          <SwiperSlide>
-            <CollectionCard>Slide 1</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 2</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 3</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 4</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 5</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 6</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 7</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 8</CollectionCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <CollectionCard>Slide 9</CollectionCard>
-          </SwiperSlide>
+          {collectionItems.tokens.map((i: any) => {
+            return (
+              <SwiperSlide key={i.name} >
+                <NFTCardForCarousel
+                  uri={i.uri}
+                  name={i.name}
+                  tokenAddress={i.tokenAdress}
+                  tokenId={i.id}
+                  owner={i.creator}
+                ></NFTCardForCarousel>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
-        <SliderButton href="#">View Collection</SliderButton>
+        <SliderButton to={href}>View Collection</SliderButton>
       </SliderInner>
     </Wrap>
   );

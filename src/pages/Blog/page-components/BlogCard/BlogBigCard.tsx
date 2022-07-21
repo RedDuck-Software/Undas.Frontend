@@ -14,29 +14,26 @@ import {
   Inner,
 } from "./BlogCard.styles";
 
-import { BigImg } from "../../imports";
+import { ArticleBig } from "../../imports";
 
 const BlogBigCard: React.FC = () => {
   return (
     <BigCardWrap to="/article">
       <BigImageWrap>
         <Inner />
-        <BigImage src={BigImg} alt="card-image" />
+        <BigImage src={ArticleBig} alt="card-image" />
       </BigImageWrap>
       <BigCardBody>
-        <BigCardTitle>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit!
-        </BigCardTitle>
+        <BigCardTitle>Welcome to UNDAS: Project History</BigCardTitle>
         <BigCardTextWrap>
           <BigCardText>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi iure
-            dicta, deserunt at unde aperiam, ipsa fuga quis minus eveniet
-            sapiente, esse perferendis facilis. Adipisci laborum vel veritatis
-            fugiat doloribus...
+            Hello to all readers of the UNDAS blog! We would like to open this
+            blog with a story about the project itself, how it was invented and
+            how it was brought to life.
           </BigCardText>
         </BigCardTextWrap>
         <CardFooter>
-          <Date>06.06.2022</Date>
+          <Date>18.07.2022</Date>
           <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </BigCardBody>

@@ -10,7 +10,7 @@ import {
   InfoText,
   LoaderWrapper,
 } from "./Categories.styles";
-import { CollectionBanner } from "./imports";
+import { CollectionArtBanner } from "./imports";
 import Collection from "./page-components/Collection";
 
 import { Container, Background } from "../../globalStyles";
@@ -19,6 +19,8 @@ import Context from "../../utils/Context";
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -37,6 +39,8 @@ const CategoriesGameFI: React.FC = () => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
+      const collectionFeatureUrl = i.collectionFeatureUrl;
+      const collectionBannerUrl = i.collectionBannerUrl;
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
@@ -44,6 +48,8 @@ const CategoriesGameFI: React.FC = () => {
       collectionsList.push({
         id,
         collectionUrl,
+        collectionFeatureUrl,
+        collectionBannerUrl,
         collectionCategory,
         collectionName,
         collectionInfo,
@@ -62,14 +68,15 @@ const CategoriesGameFI: React.FC = () => {
 
   const createdTokensQuery = `
     {
-          collections(where:{collectionCategory:ARTWORK}){
-          collectionName
-          owner
-          id
-    	  collectionInfo
-          collectionUrl
-          collectionCategory
-          
+      collections(where:{collectionCategory:ARTWORK}) {
+        collectionName
+        owner
+        id
+        collectionInfo
+        collectionUrl
+        collectionFeatureUrl
+        collectionBannerUrl
+        collectionCategory
 	    }
     }
  `;
@@ -98,7 +105,7 @@ const CategoriesGameFI: React.FC = () => {
   ) : (
     <>
       <Banner>
-        <img src={CollectionBanner} alt="CollectionBanner" />
+        <img src={CollectionArtBanner} alt="CollectionBanner" />
       </Banner>
       <Background>
         <Container>

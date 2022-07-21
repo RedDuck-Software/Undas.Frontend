@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -17,20 +17,9 @@ import {
   PriceElement,
   ApplyBtn,
   PriceVariations,
-  SearchInputWrapper,
-  FilterCollectionItemWrapper,
   CheckboxInputWrapper,
   CheckboxInput,
   CheckboxLabel,
-  FilterCollectionItemTitle,
-  CollectionItemTitleIcon,
-  CollectionItemTitleName,
-  CollectiomItemTitleVol,
-  CollectionItemVerifyWrapper,
-  CollectionItemVerify,
-  CollectionItemVerifyIcon,
-  CollectionItemVerifyText,
-  CollectionItemVerifyFloor,
   FilterChainItemWrapper,
   ChainItemIcon,
   ChainItemTitle,
@@ -46,6 +35,7 @@ import {
   ApplyButton,
   ButtonContainer,
 } from "./ASideFilter.styles";
+import { AsideCollectionList } from "./components";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   FilterIco,
@@ -54,9 +44,6 @@ import {
   UsdIco,
   EthIco,
   CategoriesIco,
-  CollectionsIco,
-  CollectionItemIco,
-  VerifyIcon,
   ChainsIco,
   EthereumIcon,
 } from "./imports";
@@ -68,10 +55,7 @@ import {
   hasOffersAction,
   rentAction,
 } from "../../store/reducers/Filter/filterActions";
-import {
-  addSelectedCategory,
-  addSelectedCollection,
-} from "../../store/reducers/Filter/filterActions";
+import { addSelectedCategory } from "../../store/reducers/Filter/filterActions";
 import { Category } from "../../types/category";
 import { getCategory } from "../../utils/getCategory";
 
@@ -101,70 +85,6 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
           {label}
         </FilterCategoryItemTitle>
       </FilterCategoryItemWrapper>
-    </CheckboxLabel>
-  );
-};
-
-interface FilterCollectionItemProps {
-  collectionIcon: string;
-  collectionName: string;
-  vol?: number | string;
-  isVerified: boolean;
-  floor?: number | string;
-}
-
-const FilterCollectionItem: React.FC<FilterCollectionItemProps> = ({
-  collectionIcon,
-  collectionName,
-  isVerified,
-}) => {
-  const dispatch = useDispatch();
-  const [longName, setLongName] = useState<string>("");
-  const handleCollectionName = (name: string, verify: boolean) => {
-    if (name.length > 9 && verify === true) {
-      const trunced = collectionName.slice(0, 8) + "...";
-      setLongName(trunced);
-    } else {
-      setLongName(name);
-    }
-  };
-
-  useEffect(() => {
-    handleCollectionName(collectionName, isVerified);
-  }, []);
-
-  return (
-    <CheckboxLabel>
-      <FilterCollectionItemWrapper>
-        <CheckboxInputWrapper mb="12px">
-          <CheckboxInput
-            type="checkbox"
-            className="custom-checkbox"
-            id={collectionName}
-            mr="15px"
-            onClick={() =>
-              dispatch(addSelectedCollection(collectionIcon, collectionName))
-            }
-          />
-          <CheckboxLabel htmlFor={collectionName} />
-        </CheckboxInputWrapper>
-        <FilterCollectionItemTitle>
-          <CollectionItemTitleName>
-            <CollectionItemTitleIcon src={collectionIcon} />
-            {longName}
-          </CollectionItemTitleName>
-          <CollectiomItemTitleVol>Vol=87,017,06</CollectiomItemTitleVol>
-        </FilterCollectionItemTitle>
-        {isVerified && (
-          <CollectionItemVerifyWrapper>
-            <CollectionItemVerify>
-              <CollectionItemVerifyIcon src={VerifyIcon} />
-              <CollectionItemVerifyText>UND</CollectionItemVerifyText>
-            </CollectionItemVerify>
-            <CollectionItemVerifyFloor>Floor=896</CollectionItemVerifyFloor>
-          </CollectionItemVerifyWrapper>
-        )}
-      </FilterCollectionItemWrapper>
     </CheckboxLabel>
   );
 };
@@ -206,7 +126,6 @@ interface ASideFilterProps {
   rentRefs?: any;
   buyingRefs?: any;
   hasOffersRefs?: any;
-
   page?: string;
 }
 
@@ -237,26 +156,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
     },
   ]);
 
-  const [collectionList] = useState<FilterCollectionItemProps[]>([
-    {
-      collectionIcon: CollectionItemIco,
-      collectionName: "Borya Borya",
-      isVerified: true,
-    },
-    {
-      collectionIcon: CollectionItemIco,
-      collectionName: "Azuki",
-      isVerified: true,
-    },
-    {
-      collectionIcon: CollectionItemIco,
-      collectionName: "Bored Ape",
-      isVerified: false,
-    },
-  ]);
-  const [filteredCollectionList, setFilteredCollectionList] =
-    useState(collectionList);
-
   const variations = priceCurrency.filter((element) => {
     if (!element.selected) {
       return true;
@@ -281,21 +180,12 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
     setIsOpenMobile(!isOpenMobile);
   };
 
-  const handleCollectionSearch = (event: any) => {
-    const pattern: string = event?.target.value;
-    const searchResult = collectionList.filter((collection) =>
-      collection.collectionName
-        .toLowerCase()
-        .includes(pattern.toLocaleLowerCase()),
-    );
-    setFilteredCollectionList(searchResult);
-  };
-
   const newRef: any = useRef();
   const stakingRef: any = useRef();
   const buyingRef: any = useRef();
   const hasOffersRef: any = useRef();
   const createdRef: any = useRef();
+
   return (
     <>
       <ASideWrap
@@ -439,7 +329,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                   {priceCurrency.map((item) => {
                     if (item.selected)
                       return (
-                        <PriceContainer>
+                        <PriceContainer key={`${item.ico}-${item.selected}`}>
                           <PriceElement
                             className={(priceMenu && "price-menu-active") || ""}
                             onClick={() => {
@@ -529,8 +419,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 className={(activeMenu.category && "active-category") || ""}
               >
                 <MobileListWrap>
-                  <CategoryItem {...getCategory(Category.allNFTs)} />
-                  <CategoryItem {...getCategory(Category.new)} />
                   <CategoryItem {...getCategory(Category.artwork)} />
                   <CategoryItem {...getCategory(Category.sport)} />
                   <CategoryItem {...getCategory(Category.photography)} />
@@ -544,49 +432,12 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
           )}
 
           {page !== "TopCollection" && page !== "Collection" && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.collection) {
-                    setActiveMenu({ collection: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ collection: false });
-                }}
-                isActive={activeMenu.collection}
-              >
-                <CollectionsIco />
-                <ElementText>Collections</ElementText>
-                <AccordionArrow
-                  className={
-                    (activeMenu.collection && "active-collection") || ""
-                  }
-                />
-              </HolderElement>
-              <AccordionMenu
-                backgroundColor="rgba(251, 245, 255, 0.7)"
-                mh={`${60 + 3 * 60}px`} // calculate max-height because of accordion animation bug
-                className={(activeMenu.collection && "active-collection") || ""}
-              >
-                <AccordionElement padd="20px 15px 0 15px">
-                  <SearchInputWrapper
-                    placeholder="Search"
-                    onChange={handleCollectionSearch}
-                  />
-                </AccordionElement>
-                <MobileListWrap>
-                  {filteredCollectionList.map((item: any) => {
-                    return (
-                      <FilterCollectionItem
-                        key={`${item.collectionName}-${item.collectionIcon}`}
-                        collectionName={item.collectionName}
-                        collectionIcon={item.collectionIcon}
-                        isVerified={item.isVerified}
-                      />
-                    );
-                  })}
-                </MobileListWrap>
-              </AccordionMenu>
-            </>
+            <AsideCollectionList
+              activeMenu={activeMenu}
+              setActiveMenu={setActiveMenu}
+              active={active}
+              setActive={setActive}
+            />
           )}
 
           {page !== "Collection" && (

@@ -17,7 +17,7 @@ import {
   ContentItemPriceUsd,
   ContentItemPriceUnd,
   InputBlock,
-  RentalLable,
+  // RentalLable,
   CheckboxRow,
   CheckboxInput,
   CheckboxLabel,
@@ -61,7 +61,6 @@ const Rent: React.FC = () => {
 
   const state: any = useLocation();
   const { connector } = useContext(Context);
-  console.log("00000", state.state);
   const URI = state.state.state.URI;
   const nameFrom = state.state.state.name;
   const colloteral = ethers.utils.formatUnits(
@@ -104,7 +103,6 @@ const Rent: React.FC = () => {
       +premium +
       (+premium * 20) / 100
     ).toFixed(7);
-    console.log(amountToPay);
     const tx = await MarketplaceContract.rentNFT(stakingId, false, {
       value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
     });
@@ -145,7 +143,7 @@ const Rent: React.FC = () => {
           <ContentWrapper>
             <LeftBlock>
               <ContentItem>
-                <ContentItemName>Cost Day</ContentItemName>
+                <ContentItemName>Cost per day</ContentItemName>
                 <ContentItemPriceWrap>
                   <ContentItemPriceEth>{premium}</ContentItemPriceEth>
                   <ContentItemPriceUsd>$36,93</ContentItemPriceUsd>
@@ -181,9 +179,9 @@ const Rent: React.FC = () => {
               </ContentItem>
               <ContentItem>
                 <ContentItemName className="width">
-                  Rental price for
+                  Rent for
                   <InputBlock>
-                    <RentalLable htmlFor="period">Select Period</RentalLable>
+                    {/* <RentalLable htmlFor="period">Select Period</RentalLable> */}
                     <RentalPeriod
                       id="period"
                       placeholder="7 for 90 days"

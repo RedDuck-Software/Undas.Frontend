@@ -8,6 +8,7 @@ export const GET_COLLECTION_INFO = gql`
       collectionName
       collectionInfo
       collectionUrl
+      collectionFeatureUrl
       collectionCategory
       collectionVolume
       collectionItemsAmount
@@ -18,6 +19,14 @@ export const GET_COLLECTION_INFO = gql`
         price
         collectionName
         collectionId
+      }
+      floorPrice: tokens(
+        orderBy: price
+        orderDirection: desc
+        first: 1
+        where: { price_gt: 0 }
+      ) {
+        price
       }
     }
   }

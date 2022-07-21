@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 
 import { MARKETPLACE_ADDRESS, NFT_ADDRESS } from "./addressHelpers";
 
-import { Marketplace__factory, UndasGeneralNFT__factory } from "../typechain";
+import { UndasGeneralNFT__factory } from "../typechain";
 
 export const quoteForStaking = async (
   tokenId: string,
@@ -21,11 +21,6 @@ export const quoteForStaking = async (
 
   const NFTContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
 
-  const MarketplaceContract = Marketplace__factory.connect(
-    MARKETPLACE_ADDRESS,
-    signer,
-  );
-  console.log(MarketplaceContract);
   const isApprovedForAll = await NFTContract.isApprovedForAll(
     SIGNER_ADDRESS,
     MARKETPLACE_ADDRESS,
