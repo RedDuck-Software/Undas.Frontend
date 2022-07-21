@@ -45,7 +45,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="https://www.linkedin.com/in/german-solovyov/">
+                <TeamCardLink href="https://www.linkedin.com/in/german-solovyov/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -57,7 +57,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Ervin</TeamCardTitle>
                 <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/ervin-migirov-37024a6a/">
+                <TeamCardLink href="https://www.linkedin.com/in/ervin-migirov-37024a6a/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -73,7 +73,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="https://www.linkedin.com/in/artemalekhin/">
+                <TeamCardLink href="https://www.linkedin.com/in/artemalekhin/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -85,7 +85,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Mark</TeamCardTitle>
                 <TeamCardTitleSurname>Founder, CTO</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/mark-virchenko/">
+                <TeamCardLink href="https://www.linkedin.com/in/mark-virchenko/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -101,7 +101,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="https://www.linkedin.com/in/stasnislav-stefanyshyn/">
+                <TeamCardLink href="https://www.linkedin.com/in/stasnislav-stefanyshyn/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -113,7 +113,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Alexandr</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/mwlite/in/gurinalex">
+                <TeamCardLink href="https://www.linkedin.com/mwlite/in/gurinalex" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -129,7 +129,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="https://www.linkedin.com/in/a-fedko/">
+                <TeamCardLink href="https://www.linkedin.com/in/a-fedko/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -141,7 +141,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Kostiantyn</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/">
+                <TeamCardLink href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
                 {/* <TeamCardLink href="#">
@@ -160,7 +160,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="https://www.linkedin.com/in/andrii-shvaika-253588212/">
+                <TeamCardLink href="https://www.linkedin.com/in/andrii-shvaika-253588212/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -172,7 +172,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Maxim</TeamCardTitle>
                 <TeamCardTitleSurname>Designer</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/maxim-kulikov-ab12b923a">
+                <TeamCardLink href="https://www.linkedin.com/in/maxim-kulikov-ab12b923a" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -188,7 +188,7 @@ const TeammateCards = () => {
                     <Card.Text>
 
                     </Card.Text> */}
-                <TeamCardLink href="#">
+                <TeamCardLink href="#" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -200,7 +200,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Ilya</TeamCardTitle>
                 <TeamCardTitleSurname>Art Director</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="#" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -212,7 +212,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Danil</TeamCardTitle>
                 <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/">
+                <TeamCardLink href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
@@ -224,7 +224,7 @@ const TeammateCards = () => {
               <CardBody>
                 <TeamCardTitle>Yefim</TeamCardTitle>
                 <TeamCardTitleSurname>Community Manager</TeamCardTitleSurname>
-                <TeamCardLink href="#">
+                <TeamCardLink href="#" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
