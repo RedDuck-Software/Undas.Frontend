@@ -86,7 +86,6 @@ const SelectCollectionList: React.FC<{
   return (
     <>
       {items.map((item: any) => {
-        console.log('iteeeemms',item)
         return (
           <SelectItem
             key={item.collectionId}
@@ -191,7 +190,6 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    console.log('qwe',collection)
     if (collection.collectionId == undefined) {
       alert("Choose collection or create if it doesn`t exist ");
       return;
@@ -206,7 +204,6 @@ const CreateNFT: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
-    console.log('collection',collection)           
     try {
       const tx = await NFTContract.safeMintGeneral(
         account,
@@ -286,10 +283,8 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log("tokensQuerytokensQuery",tokensQuery)
     const data = tokensQuery.data.collections
     data.push({collectionName:'All Nfts',id:'0'})
-    console.log('zxc',data)
 
     setCollectionsList(data);
 
@@ -322,8 +317,7 @@ const CreateNFT: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log('collectionList',collectionList)
-    console.log('fsaafs',collection)
+    
     if (collection.collectionId) {
       
       setCollectionError("");
