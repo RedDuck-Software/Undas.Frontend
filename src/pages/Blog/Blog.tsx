@@ -1,12 +1,19 @@
 import React from "react";
 
 import { BlogWrap } from "./Blog.styles";
-// import BusinessTips from "./page-components/BusinessTips/BusinessTips";
-// import Inspiration from "./page-components/Inspiration/Inspiration";
-import MainBlog from "./page-components/MainBlog/MainBlog";
-// import News from "./page-components/News/News";
-// import WebsiteTips from "./page-components/WebsiteTips/WebsiteTips";
+import {
+  WebsiteTips1,
+  WebsiteTips2,
+  WebsiteTips3,
+  Inspiration1,
+  Inspiration2,
+  Inspiration3,
+} from "./imports";
+import BlogMainGrid from "./page-components/BlogMainGrid/BlogMainGrid";
+import BlogPageGrid from "./page-components/BlogPageGrid/BlogPageGrid";
+import { BlogPost } from "./types";
 
+import Partners from "../../components/Partners/Partners";
 import {
   Container,
   Background,
@@ -14,9 +21,39 @@ import {
   ColoredText,
 } from "../../globalStyles";
 
+const Posts: BlogPost[] = [
+  {
+    image: WebsiteTips1,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: WebsiteTips2,
+    titleText: "Lorem ipsum dolor sit, amet consectetur",
+    date: "22.05.2022",
+  },
+  {
+    image: WebsiteTips3,
+    titleText: "Lorem ipsum amet consectetur adipisicing elit.",
+    date: "09.05.2022",
+  },
+  {
+    image: Inspiration1,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "10.06.2022",
+  },
+  {
+    image: Inspiration2,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+  {
+    image: Inspiration3,
+    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+    date: "09.06.2022",
+  },
+];
 const Blog: React.FC = () => {
-  // const [tab, setTab] = useState("main");
-
   return (
     <Background>
       <BlogWrap>
@@ -24,56 +61,11 @@ const Blog: React.FC = () => {
           <PageTitle>
             The <ColoredText>UNDAS</ColoredText> Blog
           </PageTitle>
-          {/* <Text>
-            Get advice about self-employment, starting a business, website tips,
-            web design, online stores, SEO, marketing, and more
-          </Text> */}
-        </Container>
-        {/* <TabsMenuWrap>
-          <Container>
-            <TabsMenu>
-              <Tab
-                onClick={() => setTab("main")}
-                className={tab === "main" ? "active" : ""}
-              >
-                <span>Recent Posts</span>
-              </Tab>
-              <Tab
-                onClick={() => setTab("website-tips")}
-                className={tab === "website-tips" ? "active" : ""}
-              >
-                <span>Website Tips</span>
-              </Tab>
-              <Tab
-                onClick={() => setTab("business-tips")}
-                className={tab === "business-tips" ? "active" : ""}
-              >
-                <span>Business Tips</span>
-              </Tab>
-              <Tab
-                onClick={() => setTab("inspiration")}
-                className={tab === "inspiration" ? "active" : ""}
-              >
-                <span>Inspiration</span>
-              </Tab>
-              <Tab
-                onClick={() => setTab("news")}
-                className={tab === "news" ? "active" : ""}
-              >
-                <span>News</span>
-              </Tab>
-            </TabsMenu>
-          </Container>
-        </TabsMenuWrap> */}
-        <Container>
-          <MainBlog />
-          {/* {tab === "main" && <MainBlog />}
-          {tab === "website-tips" && <WebsiteTips />}
-          {tab === "business-tips" && <BusinessTips />}
-          {tab === "inspiration" && <Inspiration />}
-          {tab === "news" && <News />} */}
+          <BlogMainGrid />
+          <BlogPageGrid posts={Posts} />
         </Container>
       </BlogWrap>
+      <Partners />
     </Background>
   );
 };

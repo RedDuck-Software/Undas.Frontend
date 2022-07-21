@@ -56,14 +56,9 @@ import {
   Buy,
   Sale,
   ArticlePage,
-  BlogThemeWrap,
   ClaimUND,
   InteractionRent,
 } from "./pages";
-import BusinessTips from "./pages/Blog/page-components/BusinessTips/BusinessTips";
-import Inspiration from "./pages/Blog/page-components/Inspiration/Inspiration";
-import News from "./pages/Blog/page-components/News/News";
-import WebsiteTips from "./pages/Blog/page-components/WebsiteTips/WebsiteTips";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import OfferFotNotListedNft from "./pages/OfferFotNotListedNft/OfferFotNotListedNft";
 import ProductForSale from "./pages/ProductForSale/ProductForSale";
@@ -220,22 +215,6 @@ const App: React.FC = () => {
               <Route path="/nft/sale/:id" element={<Sale />} />
               <Route path="/sale" element={<Sale />} />
               <Route path="/article" element={<ArticlePage />} />
-              <Route
-                path="/blog/website-tips"
-                element={<BlogThemeWrap blogComponent={<WebsiteTips />} />}
-              />
-              <Route
-                path="/blog/business-tips"
-                element={<BlogThemeWrap blogComponent={<BusinessTips />} />}
-              />
-              <Route
-                path="/blog/inspiration"
-                element={<BlogThemeWrap blogComponent={<Inspiration />} />}
-              />
-              <Route
-                path="/blog/news"
-                element={<BlogThemeWrap blogComponent={<News />} />}
-              />
               <Route path="/claim-UND-test" element={<ClaimUND />} />
               <Route
                 path="/interaction-rent/:address:id"

@@ -14,12 +14,13 @@ import {
   RelatedButton,
   ColoredArticleText,
   Colored,
+  CardsWrap,
 } from "./ArticlePage.styles";
 
+import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
 import { Inspiration1, News2, News3, ArticleBig, Heart } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
-import { CardsWrap } from "../MainPageSection/MainPageSection.styles";
 
 const CardsSection: React.FC = () => {
   return (
@@ -150,6 +151,7 @@ const ArticlePage: React.FC = () => {
           <RelatedButton to="/blog">go to blog</RelatedButton>
         </ArticleWrap>
       </Container>
+      <Partners />
     </Background>
   );
 };

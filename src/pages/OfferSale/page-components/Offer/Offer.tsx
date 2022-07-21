@@ -141,7 +141,7 @@ const Offer: React.FC = () => {
 {
   listings(where:{tokenId:"${state.state.state.tokenId}" token:"${state.state.state.tokenAddress}"}){
     id
- 	tokenId
+ 	  tokenId
     tokenURI
     price
     tokenName

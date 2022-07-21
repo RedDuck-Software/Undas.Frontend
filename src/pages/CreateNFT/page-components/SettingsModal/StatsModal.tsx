@@ -179,7 +179,9 @@ const StatsModal: React.FC<StatsModalProps> = ({ setStatList }) => {
 
   return (
     <CreateModalWrap>
-      <ModalButton onClick={handleShow}>+</ModalButton>
+      <ModalButton onClick={handleShow} type="button">
+        +
+      </ModalButton>
 
       <Modal className="modal-wrap" show={show} onHide={handleClose}>
         <Modal.Header closeButton>

@@ -20,6 +20,8 @@ import Context from "../../utils/Context";
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -40,6 +42,8 @@ const CategoriesGameFI: React.FC = () => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
+      const collectionFeatureUrl = i.collectionFeatureUrl;
+      const collectionBannerUrl = i.collectionBannerUrl;
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
@@ -49,6 +53,8 @@ const CategoriesGameFI: React.FC = () => {
       collectionsList.push({
         id,
         collectionUrl,
+        collectionFeatureUrl,
+        collectionBannerUrl,
         collectionCategory,
         collectionName,
         collectionInfo,
@@ -69,6 +75,7 @@ const CategoriesGameFI: React.FC = () => {
 
   const createdTokensQuery = `
     {
+
           collections(where:{collectionCategory:ARTWORK}){
           collectionName
           owner
@@ -78,6 +85,7 @@ const CategoriesGameFI: React.FC = () => {
           collectionCategory
           collectionFeatureUrl
           collectionBannerUrl          
+
 	    }
     }
  `;

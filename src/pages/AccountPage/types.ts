@@ -34,6 +34,8 @@ export type CreatedItemProps = {
 export type CreatedCollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl?: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;

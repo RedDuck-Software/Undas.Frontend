@@ -29,14 +29,14 @@ interface CollectionCardProps {
   name: string;
   creator: string;
   description: string;
-  logo:string;
+  logo: string;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
   name,
   creator,
   description,
-  logo
+  logo,
 }) => {
   return (
     <CardWrap>

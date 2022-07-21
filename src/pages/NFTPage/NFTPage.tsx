@@ -237,7 +237,6 @@ const NFTPage: React.FC = () => {
       tokensQuery.data.listings[0] &&
       tokensQuery.data.listings[0].listingStatus == "ACTIVE"
     ) {
-      
       setName(tokensQuery.data.listings[0].tokenName);
       setTokenURI(tokensQuery.data.listings[0].tokenURI);
       setPriceInNum(tokensQuery.data.listings[0].price);
