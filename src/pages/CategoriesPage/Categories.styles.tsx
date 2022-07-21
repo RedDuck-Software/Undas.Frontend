@@ -141,10 +141,20 @@ export const CollectionPicWrap = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  flex: 0 0 10%;
+  height: 90px;
+  width: 90px;
+  overflow: hidden;
   & img {
     width: 100%;
     border-radius: 20px;
+  }
+  @media (max-width: 992px) {
+    height: 80px;
+    width: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 70px;
+    width: 70px;
   }
   @media (max-width: 576px) {
     flex: 0 0 20%;
@@ -200,9 +210,13 @@ export const OwnerName = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  @media (max-width: 992px) {
+    max-width: 220px;
+  }
   @media (max-width: 768px) {
     font-size: 12px;
     line-height: 15px;
+    max-width: 165px;
   }
   @media (max-width: 576px) {
     max-width: 95%;
@@ -215,6 +229,9 @@ export const CollectionTextDiv = styled.div`
   flex: 0 1 50%;
   @media (max-width: 1200px) {
     flex: 0 1 60%;
+  }
+  @media (max-width: 992px) {
+    flex: 0 1 50%;
   }
   @media (max-width: 576px) {
     flex: 0 0 100%;
