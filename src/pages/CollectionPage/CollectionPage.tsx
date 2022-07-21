@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "urql";
 
 import {
+  Banner,
   Info,
   InfoElement,
   Amount,
@@ -45,7 +46,6 @@ import {
   ResultsTotal,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
-import { Banner } from "../CategoriesPage/Categories.styles";
 
 interface CommonProps {
   id: number;
@@ -116,11 +116,7 @@ const CollectionPage: React.FC = () => {
         "LOADING..."
       ) : (
         <ContainerCollection>
-          <Banner>
-            <img
-              src={data.collection.collectionFeatureUrl}
-              alt="CollectionBanner"
-            />
+          <Banner src={data.collection.collectionFeatureUrl}>
           </Banner>
           <Background>
             <AllNFTContainer>

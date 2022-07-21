@@ -2,6 +2,21 @@ import styled from "styled-components";
 
 import { FilterImg } from "./imports";
 
+interface IBanner{
+  src: string;
+}
+export const Banner = styled.div<IBanner>`
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  @media (max-width: 576px) {
+    height: 60px;
+  }
+`;
 export const Info = styled.ul`
   display: flex;
   border-radius: 0 0 20px 20px;
