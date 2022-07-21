@@ -115,6 +115,7 @@ export const CollectionBackground = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
+  opacity: 0.70 
 `;
 
 export const AuthorWrap = styled.div`
