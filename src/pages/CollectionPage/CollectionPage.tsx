@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
-import React, { useState, useContext, useEffect, useRef } from "react";
-import Overlay from "react-bootstrap/Overlay";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "urql";
 
@@ -9,16 +8,12 @@ import {
   Info,
   InfoElement,
   Amount,
-  AddToFav,
   InfoBox,
   SelectedFiltersCollection,
   HeadWrapper,
   TextInfo,
   ContainerCollection,
   ContainerNFT,
-  ContainerPopUp,
-  InputTextArea,
-  SendButton,
   MyWrapper,
 } from "./CollectionPage.styles";
 import { PurpleEthIco } from "./imports";
@@ -76,9 +71,6 @@ const CollectionPage: React.FC = () => {
 
   const { connector } = useContext(Context);
 
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
-
   const [list, setList] = useState<CommonProps[]>([]);
   useEffect(() => {
     getListingsData();
@@ -116,8 +108,7 @@ const CollectionPage: React.FC = () => {
         "LOADING..."
       ) : (
         <ContainerCollection>
-          <Banner src={data.collection.collectionFeatureUrl}>
-          </Banner>
+          <Banner src={data.collection.collectionFeatureUrl}></Banner>
           <Background>
             <AllNFTContainer>
               <ASideFilter marginTop="208px" page="Collection" />
@@ -175,7 +166,7 @@ const CollectionPage: React.FC = () => {
                         </MyWrapper>
                       </InfoElement>
                     </Info>
-                    <AddToFav ref={target} onClick={() => setShow(!show)}>
+                    {/* <AddToFav ref={target} onClick={() => setShow(!show)}>
                       Make a Complaint
                     </AddToFav>
                     <Overlay
@@ -189,7 +180,7 @@ const CollectionPage: React.FC = () => {
                           <SendButton>Send</SendButton>
                         </ContainerPopUp>
                       }
-                    </Overlay>
+                    </Overlay> */}
                   </InfoBox>
                 </HeadWrapper>
                 <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
