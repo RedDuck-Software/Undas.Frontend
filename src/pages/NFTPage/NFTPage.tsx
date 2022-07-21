@@ -116,7 +116,7 @@ const NFTPage: React.FC = () => {
   const [status, setStatus] = useState("");
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
-  const [itemHistory, setItemHistory] = useState<any>()
+  const [itemHistory, setItemHistory] = useState<any>();
 
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
@@ -143,7 +143,7 @@ const NFTPage: React.FC = () => {
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
- 
+
     if (singerAddress == seller || singerAddress == state.state.tokenOwner) {
       setIsOwner(false);
     }
@@ -193,7 +193,6 @@ const NFTPage: React.FC = () => {
       return;
     }
     if (listingId && status == "ACTIVE") {
-
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -209,7 +208,6 @@ const NFTPage: React.FC = () => {
   }
 
   const createdMultipleQuery = () => {
-
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
       variables: { collectionId: +collectionId },
@@ -221,12 +219,13 @@ const NFTPage: React.FC = () => {
     });
 
     const itemActivity = useQuery({
-      query:ITEM_ACTIVITY,
-      variables: {tokenId: tokenId, tokenAddress: state.state.tokenAddress }
-    })
+      query: ITEM_ACTIVITY,
+      variables: { tokenId: tokenId, tokenAddress: state.state.tokenAddress },
+    });
     return [collectionItems, offersItems, itemActivity];
   };
-  const [[collectionItemResult], [offersItems], [itemActivity]] = createdMultipleQuery();
+  const [[collectionItemResult], [offersItems], [itemActivity]] =
+    createdMultipleQuery();
 
   const { data, fetching } = collectionItemResult;
 
@@ -246,7 +245,6 @@ const NFTPage: React.FC = () => {
       setStatus(tokensQuery.data.listings[0].listingStatus);
       setLoading(false);
       setCollectionId(tokensQuery.data.listings[0].collectionId);
-    
     }
 
     if (
@@ -264,12 +262,9 @@ const NFTPage: React.FC = () => {
       setCollectionId(tokensQuery.data.stakingListings[0].collectionId);
 
       setLoading(false);
-
- 
     }
 
-    if(tokensQuery.data.tokens[0]){
-
+    if (tokensQuery.data.tokens[0]) {
       setcollectionName(
         tokensQuery.data.tokens[0].collectionName
           ? tokensQuery.data.tokens[0].collectionName
@@ -281,7 +276,7 @@ const NFTPage: React.FC = () => {
           : "0",
       );
       setDescription(tokensQuery.data.tokens[0].description);
-      setSeller(tokensQuery.data.tokens[0].owner)
+      setSeller(tokensQuery.data.tokens[0].owner);
     }
     setLoading(false);
   };
@@ -293,10 +288,9 @@ const NFTPage: React.FC = () => {
     getShowBuy();
     getShowRent();
     getOwner();
-    if(itemActivity.data){  
-        setItemHistory(itemActivity)
+    if (itemActivity.data) {
+      setItemHistory(itemActivity);
     }
-    
   }, [
     connector,
     listingId,
@@ -307,7 +301,7 @@ const NFTPage: React.FC = () => {
     fetching,
     collectionId,
     offersItems.fetching,
-    itemActivity.fetching
+    itemActivity.fetching,
   ]);
 
   const APIURL =
@@ -349,7 +343,7 @@ const NFTPage: React.FC = () => {
   }
 }
  `;
-  const path = `/collection/${collectionId}`
+  const path = `/collection/${collectionId}`;
   const client = createClient({
     url: APIURL,
   });
@@ -409,9 +403,7 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameNft>
-                    {nameFromProps ? nameFromProps : name}
-                  </NameNft>
+                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
                 </Name>
               </NameInner>
               <NavMenu>
@@ -596,20 +588,14 @@ const NFTPage: React.FC = () => {
                 <Staking />
               </Accordion>
               <Accordion name="Item Activity" ico={<ItemActivityIco />}>
-                {itemHistory ? (
-                <ItemActivity items={itemHistory}/>
-                ) : (
-                  ''
-                  )}
+                {itemHistory ? <ItemActivity items={itemHistory} /> : ""}
               </Accordion>
               <Accordion name="Description" classLabel="half-width">
-              {description ? (
+                {description ? (
                   <Description text={description} creator={seller} />
                 ) : (
-                  <Description text='No description' creator="no-data" />
+                  <Description text="No description" creator="no-data" />
                 )}
-               
-                
               </Accordion>
               <Accordion
                 name="Details"

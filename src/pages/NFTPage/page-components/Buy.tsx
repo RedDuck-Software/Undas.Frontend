@@ -137,7 +137,6 @@ const Buy: React.FC<BuyProps> = ({
     getProductPrice();
   }, [connector, web3React]);
 
-
   return (
     <>
       {showBuy === false && isOwner === true ? (
@@ -167,7 +166,6 @@ const Buy: React.FC<BuyProps> = ({
             <Wrapper disp="flex" alignItems="center">
               Not listed for sale yet
             </Wrapper>
-            
           </ButtonWrap>
         </BuyBar>
       ) : (

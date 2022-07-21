@@ -65,7 +65,7 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
         >
           {collectionItems.tokens.map((i: any) => {
             return (
-              <SwiperSlide key={i.name} >
+              <SwiperSlide key={i.name}>
                 <NFTCardForCarousel
                   uri={i.uri}
                   name={i.name}

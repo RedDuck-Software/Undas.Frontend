@@ -3,6 +3,8 @@ export enum Filter {
   // status
   addStatus = "ADD_STATUS",
   removeStatus = "REMOVE_STATUS",
+  // price
+  setPrice = "SET_PRICE",
   // collection
   addCollection = "ADD_COLLECTION",
   removeCollection = "REMOVE_COLLECTION",
@@ -10,6 +12,7 @@ export enum Filter {
   addCategory = "ADD_CATEGORY",
   removeCategory = "REMOVE_CATEGORY",
   // status toggle
+  new = "TOGGLE_NEW",
   staking = "TOGGLE_STAKING",
   buying = "TOGGLE_BUYING",
   hasOffers = "TOGGLE_HAS_OFFERS",

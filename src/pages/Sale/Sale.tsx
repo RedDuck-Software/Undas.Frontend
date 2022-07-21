@@ -112,12 +112,11 @@ const Sale: React.FC = () => {
     );
     await approve.wait();
 
-
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
       "ether",
     );
-      
+
     const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,
       tokenId,

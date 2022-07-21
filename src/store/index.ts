@@ -18,6 +18,8 @@ import { selectedCategoriesReducer } from './reducers/Filter/selectedCategoriesR
 import { buyingReducer } from './reducers/Filter/buyReducer';
 import { hasOffersReducer } from './reducers/Filter/hasOffersReducer';
 import { selectedStatusesReducer } from './reducers/Filter/selectedStatusesReducer';
+import { newReducer } from './reducers/Filter/newReducer';
+import { priceReducer } from './reducers/Filter/priceReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -33,9 +35,11 @@ const rootReducer = combineReducers({
   properties: propertyReducer,
   stats: statReducer,
   // filter
+  newNfts: newReducer,
   stacking: stackingReducer,
   buying: buyingReducer,
   hasOffers: hasOffersReducer,
+  price: priceReducer,
   selectedStatuses: selectedStatusesReducer,
   selectedCollections: selectedCollectionsReducer,
   selectedCategories: selectedCategoriesReducer,
