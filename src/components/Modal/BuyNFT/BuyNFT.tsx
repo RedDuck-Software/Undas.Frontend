@@ -92,6 +92,7 @@ const BuyNFT: React.FC = () => {
     const tx = await MarketplaceContract.buyToken(litsingId, {
       value: ethers.utils.parseUnits(priceInNum.toString(), "ether"),
     });
+    
     await tx.wait();
   }
 

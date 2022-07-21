@@ -45,7 +45,6 @@ const Buy: React.FC<BuyProps> = ({
   const navigate = useNavigate();
   const { connector } = useContext(Context);
   const web3React = useWeb3React();
-
   const [, setPrice] = useState(0);
   const [priceInEth, setPriceInEth] = useState(0);
   const [, setSeller] = useState("");
@@ -138,6 +137,7 @@ const Buy: React.FC<BuyProps> = ({
     getProductPrice();
   }, [connector, web3React]);
 
+
   return (
     <>
       {showBuy === false && isOwner === true ? (
@@ -161,12 +161,13 @@ const Buy: React.FC<BuyProps> = ({
             </InfoButton>
           </ButtonWrap>
         </BuyBar>
-      ) : !state.price ? (
+      ) : !isOwner ? (
         <BuyBar>
           <ButtonWrap>
             <Wrapper disp="flex" alignItems="center">
               Not listed for sale yet
             </Wrapper>
+            
           </ButtonWrap>
         </BuyBar>
       ) : (
