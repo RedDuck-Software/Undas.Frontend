@@ -22,7 +22,7 @@ import {
   TextSpan,
   CollectionName,
 } from "./NFTGridItem.styles";
-import { GET_NFT_TOP_OFFER } from "./query";
+import { GET_NFT_LAST_SALES, GET_NFT_TOP_OFFER } from "./query";
 
 import { ReactComponent as EthLogo } from "../../../icons/eth-logo-nft.svg";
 import { ReactComponent as LockIco } from "../../../icons/lock.svg";
@@ -56,6 +56,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   const [userAccount, setAccount] = useState<any>();
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [topOffer, setTopOffer] = useState(0);
+  const [lastSales, setLastSales] = useState(0);
+
   function setOwner() {
     if (userAccount && userAccount.toLowerCase() == props.tokenOwner) {
       setIsOwner(true);
@@ -66,13 +68,17 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
       query: GET_NFT_TOP_OFFER,
       variables: { tokenId: props.tokenId, tokenAddress: props.tokenAddress },
     });
-
-    return offersItems;
+    const lastSales = useQuery({
+      query: GET_NFT_LAST_SALES,
+      variables:  { tokenId: props.tokenId, tokenAddress: props.tokenAddress }
+    })
+    return [offersItems,lastSales];
   };
-  const offersItems = createdMultipleQuery();
-  const [result] = offersItems;
+  const [[offersItemsList],[lastSalesList]] = createdMultipleQuery();
+  
+  const result = offersItemsList;
   const { data, fetching } = result;
-
+  
   useEffect(() => {
     if (account) {
       setAccount(account);
@@ -90,7 +96,12 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
         );
       }
     }
-  }, [account, userAccount, fetching]);
+    if(lastSalesList.data){
+      if(lastSalesList.data.listings[0]){
+        setLastSales(lastSalesList.data.listings[0].price)
+      }
+    }
+  }, [account, userAccount, fetching,lastSalesList.fetching]);
   return (
     <NFTWrap
       onClick={(e) => {
@@ -223,7 +234,10 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <PriceItem>
             <TextSpan>Last Sales</TextSpan>
             <Wrapper disp="flex" gap="6px">
-              <PriceInEth>-</PriceInEth>
+              <PriceInEth>
+                {lastSales
+                  ? ethers.utils.formatUnits(lastSales.toString(), "ether")
+                  : "-"}</PriceInEth>
               <EthLogo />
             </Wrapper>
           </PriceItem>

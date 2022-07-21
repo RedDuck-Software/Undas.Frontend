@@ -20,11 +20,11 @@ const Details: React.FC = () => {
       </DetailsElement>
       <DetailsElement>
         <span>Token Standard</span>
-        <ColoredText color="#7C7C7C">ERC-1155</ColoredText>
+        <ColoredText color="#7C7C7C">ERC-721</ColoredText>
       </DetailsElement>
       <DetailsElement>
         <span>Blockchain</span>
-        <ColoredText color="#7C7C7C">Polygon</ColoredText>
+        <ColoredText color="#7C7C7C">Ethereum</ColoredText>
       </DetailsElement>
       <DetailsElement>
         <span>Metadata</span>
