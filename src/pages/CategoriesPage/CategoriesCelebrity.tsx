@@ -22,6 +22,8 @@ type CollectionItemProps = {
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   owner?: string;
 };
 
@@ -40,6 +42,8 @@ const CategoriesGameFI: React.FC = () => {
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
+      const collectionFeatureImg = i.collectionFeatureUrl
+      const collectionBannerImg = i.collectionBannerUrl
 
       collectionsList.push({
         id,
@@ -48,6 +52,8 @@ const CategoriesGameFI: React.FC = () => {
         collectionName,
         collectionInfo,
         owner,
+        collectionFeatureImg,
+        collectionBannerImg
       });
     });
     return collectionsList;
@@ -66,10 +72,11 @@ const CategoriesGameFI: React.FC = () => {
           collectionName
           owner
           id
-    	  collectionInfo
+    	    collectionInfo
           collectionUrl
           collectionCategory
-          
+          collectionFeatureUrl
+          collectionBannerUrl          
 	    }
     }
  `;

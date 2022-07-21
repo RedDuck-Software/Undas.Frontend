@@ -149,7 +149,6 @@ const OffersMenu = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
     try {
       const tx = await MarketplaceContract.cancelListingOffer(listingId);
       await tx.wait();
@@ -626,6 +625,7 @@ const OffersMenu = () => {
         owner
         tokenAdress
         offerStatus
+        stakingId
         
     }
   }
@@ -673,7 +673,6 @@ const OffersMenu = () => {
 
     return data.data;
   }
-
   return {
     offersCounter: rentingOffersList.length + buyingOffersList.length,
     offersMenu: (
@@ -761,6 +760,7 @@ const OffersMenu = () => {
                       <OffersTdButton>
                         <AcceptBTN
                           onClick={() =>
+        
                             acceptStakingOffer(i.stakingId, i.taker)
                           }
                         >
