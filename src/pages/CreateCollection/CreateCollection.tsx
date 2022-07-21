@@ -186,6 +186,7 @@ const CreateCollection: React.FC = () => {
       "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d", //goerli contract addr
       signer,
     );
+
     try {
       const tx = await NFTContract.createCollection(
         collectionName,
@@ -193,7 +194,7 @@ const CreateCollection: React.FC = () => {
         featured,
         banner,
         collectionInfo,
-        category
+        category,
       );
 
       setLoading(true);
@@ -216,7 +217,7 @@ const CreateCollection: React.FC = () => {
   const onSubmit = () => {
     if (Object.keys(errors).length > 0) return;
     setAutoRedirect(true);
-    createCollection(name, logo, information, category.categoryId!,);
+    createCollection(name, logo, information, category.categoryId!);
   };
 
   /* const imageSizeValidation = (fileList: FileList, inputName: ImageFile) => {

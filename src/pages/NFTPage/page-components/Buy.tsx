@@ -67,6 +67,7 @@ const Buy: React.FC<BuyProps> = ({
 
     return tx;
   };
+
   async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) {
       navigate("/login");

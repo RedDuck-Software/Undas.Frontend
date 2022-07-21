@@ -16,6 +16,7 @@ interface LoadingModalProps {
   isLoading: boolean;
   setAutoRedirect: any;
   addMore?: any;
+  back?: keyof JSX.IntrinsicElements;
 }
 
 const LoadingModal: React.FC<LoadingModalProps> = ({

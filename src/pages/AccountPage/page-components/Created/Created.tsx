@@ -91,6 +91,7 @@ const Created: React.FC = () => {
         id: i.id,
         collectionName: i.collectionName,
         collectionUrl: i.collectionUrl,
+        collectionFeatureUrl: i.collectionFeatureUrl,
         owner: i.owner,
         collectionInfo: i.collectionInfo,
         collectionCategory: i.collectonCategory,
@@ -146,7 +147,10 @@ const Created: React.FC = () => {
         </CreatedSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
         <CreatedResultsTotal>
-          {createdNfts && createdNfts.length} results
+          {createdType === CreatedType.nft
+            ? createdNfts.length
+            : createdCollections.length}{" "}
+          results
         </CreatedResultsTotal>
       </MenuWrap>
 

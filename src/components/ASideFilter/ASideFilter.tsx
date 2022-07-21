@@ -329,7 +329,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                   {priceCurrency.map((item) => {
                     if (item.selected)
                       return (
-                        <PriceContainer>
+                        <PriceContainer key={`${item.ico}-${item.selected}`}>
                           <PriceElement
                             className={(priceMenu && "price-menu-active") || ""}
                             onClick={() => {

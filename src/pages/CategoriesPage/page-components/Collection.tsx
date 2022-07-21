@@ -19,16 +19,16 @@ import {
   CollectionName,
   NameWrap,
 } from "../Categories.styles";
-import {Verified } from "../imports";
+import { Verified } from "../imports";
 
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
+  collectionFeatureUrl?: string;
+  collectionBannerUrl?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
-  collectionFeatureImg?: string;
-  collectionBannerImg?: string;
   owner?: string;
   tokens?: [
     {
@@ -40,6 +40,7 @@ type CollectionItemProps = {
 interface CollectionGridWrapperProps {
   itemList: CollectionItemProps[];
 }
+
 interface CollectionWithCards {
   collectionId: number;
   uri: string;
@@ -73,13 +74,13 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   });
 
   const tokensQuery = `
-      {
-          tokens(orderDirection:asc){
-          uri
-          collectionId
-        }
+    {
+      tokens(orderDirection:asc){
+        uri
+        collectionId
       }
-       `;
+    }
+  `;
   async function fetchData() {
     const data = await client.query(tokensQuery).toPromise();
     return data;
@@ -97,14 +98,16 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
     <>
       {itemList.map((i) => {
         if (!collectionItems) return;
-
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
 
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground src={i.collectionFeatureImg} alt="collection-bg" />
+            <CollectionBackground
+              src={i.collectionFeatureUrl}
+              alt="collection-bg"
+            />
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />

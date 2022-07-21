@@ -203,7 +203,7 @@ const RentMenu: React.FC = () => {
           {viewButtonsRender}
         </RentSettingsBlock>
         <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <RentResultsTotal>8 results</RentResultsTotal>
+        <RentResultsTotal>{rentalNfts?.length} results</RentResultsTotal>
       </MenuWrap>
 
       <FilterSelected />

@@ -85,6 +85,12 @@ const SelectCollectionList: React.FC<{
 }> = ({ setCollection, items }) => {
   return (
     <>
+      <SelectItem
+        key={"collection-all-nfts"}
+        setSelected={setCollection}
+        label={"All Nfts"}
+        collectionId={"0"}
+      />
       {items.map((item: any) => {
         console.log('iteeeemms',item)
         return (
@@ -165,8 +171,10 @@ const CreateNFT: React.FC = () => {
   const [isOnlockableContent, setIsOnlockableContent] =
     useState<boolean>(false);
   const [isSensetiveContent, setIsSensetiveContent] = useState<boolean>(false);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [autoRedirect, setAutoRedirect] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const [collectionList, setCollectionsList] = useState<CollectionType[]>([
     {
@@ -286,14 +294,12 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    console.log("tokensQuerytokensQuery",tokensQuery)
     const data = tokensQuery.data.collections
     data.push({collectionName:'All Nfts',id:'0'})
-    console.log('zxc',data)
 
     setCollectionsList(data);
-
   };
+
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

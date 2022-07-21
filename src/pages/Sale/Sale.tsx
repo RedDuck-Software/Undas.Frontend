@@ -332,6 +332,7 @@ const Sale: React.FC = () => {
                   </Filter>
                   <AmmountInput
                     type="number"
+                    min="0.0000000000000000000000000001"
                     placeholder="Amount"
                     onChange={(e) => setPriceForSale(+e.target.value)}
                   />
@@ -343,7 +344,12 @@ const Sale: React.FC = () => {
                   <TextPrice>Duration</TextPrice>
                   <DurationRow>
                     <TextDay>Day</TextDay>
-                    <InputDay placeholder="Custom date" />
+                    <InputDay
+                      type="number"
+                      min="1"
+                      step="1"
+                      placeholder="Custom date"
+                    />
                     <ButtonsBlock>
                       <DurationButton className="left">7</DurationButton>
                       <DurationButton>30</DurationButton>
@@ -436,7 +442,8 @@ const Sale: React.FC = () => {
                     </FilterMenu>
                   </Filter>
                   <AmmountInput
-                    type="text"
+                    type="number"
+                    min="0.0000000000000000000000000001"
                     placeholder="Amount"
                     onChange={(e) => setColloteral(+e.target.value)}
                   />
@@ -502,7 +509,8 @@ const Sale: React.FC = () => {
                     </FilterMenu>
                   </Filter>
                   <AmmountInput
-                    type="text"
+                    type="number"
+                    min="0.0000000000000000000000000001"
                     placeholder="Amount"
                     onChange={(e) => setPremium(+e.target.value)}
                   />
@@ -515,8 +523,8 @@ const Sale: React.FC = () => {
                 </NameRow>
                 <NameRow className="margin-top">
                   <TextDay>Day</TextDay>
-                  <InputDay placeholder="Min" />
-                  <InputDay placeholder="Max" />
+                  <InputDay type="number" min="1" step="1" placeholder="Min" />
+                  <InputDay type="number" min="1" step="1" placeholder="Max" />
                 </NameRow>
                 <DurationWrap>
                   <TextPrice>Duration</TextPrice>

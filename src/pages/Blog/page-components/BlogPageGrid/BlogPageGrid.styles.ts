@@ -16,7 +16,7 @@ export const PageGridWrap = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     display: flex;
     flex-direction: column;
   }
