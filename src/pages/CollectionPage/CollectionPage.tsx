@@ -16,7 +16,7 @@ import {
   ContainerNFT,
   MyWrapper,
   CollectionDescript,
-  DescriptBtn
+  DescriptBtn,
 } from "./CollectionPage.styles";
 import { PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
@@ -169,8 +169,12 @@ const CollectionPage: React.FC = () => {
                         </MyWrapper>
                       </InfoElement>
                     </Info>
-                    <CollectionDescript opacity={show}>{data.collection.collectionInfo}</CollectionDescript>
-                    <DescriptBtn onClick={() => setShow(true)}>Show more</DescriptBtn>
+                    <CollectionDescript opacity={show}>
+                      {data.collection.collectionInfo}
+                    </CollectionDescript>
+                    <DescriptBtn onClick={() => setShow(true)}>
+                      Show more
+                    </DescriptBtn>
                   </InfoBox>
                 </HeadWrapper>
                 <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">

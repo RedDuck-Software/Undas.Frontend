@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { FilterImg } from "./imports";
 
-interface IBanner{
+interface IBanner {
   src: string;
 }
 export const Banner = styled.div<IBanner>`
@@ -52,7 +52,7 @@ export const Info = styled.ul`
   max-height: 80px;
   margin-left: 20%;
   @media (max-width: 1200px) {
-    margin: 0 auto
+    margin: 0 auto;
   }
   @media (max-width: 576px) {
     max-height: unset;
@@ -99,14 +99,14 @@ export const CollectionDescript = styled.div<{ opacity?: boolean }>`
   background-color: ${({ opacity }) => (opacity ? "#fff" : "transparent")};
   padding: ${({ opacity }) => (opacity ? "0 15px 15px 15px" : "0")};
   border-radius: 10px;
-  &:after{
+  &:after {
     position: absolute;
     bottom: 0;
     left: 0;
     display: block;
     width: 100%;
     height: 40px;
-    background: linear-gradient(180deg,hsla(0,0%,100%,0),#fff);
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
     content: "";
     display: ${({ opacity }) => (opacity ? "none" : "block")};
   }
@@ -196,4 +196,3 @@ export const MyWrapper = styled.div`
   gap: 5px;
   align-self: center;
 `;
-

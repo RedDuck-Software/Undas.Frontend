@@ -16,7 +16,6 @@ import Collection from "./page-components/Collection";
 import { Container, Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 
-
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
@@ -89,7 +88,6 @@ const CategoriesGameFI: React.FC = () => {
     if (response) {
       setCollections(response);
       setLoading(false);
-
     }
   }
 
