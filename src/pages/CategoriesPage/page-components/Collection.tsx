@@ -88,7 +88,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
 
   async function getListingsData() {
     const response = await getListings();
-
     if (response) {
       setCollectionItems(response);
     }
@@ -98,6 +97,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
     <>
       {itemList.map((i) => {
         if (!collectionItems) return;
+       
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);

@@ -198,7 +198,6 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
-    console.log(collection.collectionId)
     if (collection.collectionId == undefined) {
       alert("Choose collection or create if it doesn`t exist ");
       return;

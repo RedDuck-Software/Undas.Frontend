@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigation, Pagination } from "swiper";
+import { Autoplay,Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -38,10 +38,15 @@ const Slider: React.FC = () => {
       slidesPerView={1}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
-      modules={[Navigation, Pagination]}
+      modules={[Autoplay,Navigation, Pagination]}
       loop={true}
       navigation={true}
       pagination={true}
+      autoplay={{
+        delay: 10000,
+        disableOnInteraction: true,
+      }}
+      
     >
       <UndasDiv>
         <TextGet>
@@ -56,41 +61,41 @@ const Slider: React.FC = () => {
         <CreateButton to="/create-nft">Create</CreateButton>
       </SliderButtonsBlock>
       <SwiperSlide>
-        <CollectionDiv to="/">
+        <CollectionDiv to="/collection/10">
           <IMGdiv>
             <img src={CollectionPrev} />
           </IMGdiv>
-          <CollectionTitle>Collection Title</CollectionTitle>
+          <CollectionTitle>Cosplay</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
         <SliderImage src={SliderBG} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/">
+        <CollectionDiv to="/collection/11">
           <IMGdiv>
             <img src={CollectionPrev2} />
           </IMGdiv>
-          <CollectionTitle>Collection Title</CollectionTitle>
+          <CollectionTitle>Street Arts</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
         <SliderImage src={SliderBG2} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/">
+        <CollectionDiv to="/collection/12">
           <IMGdiv>
             <img src={CollectionPrev3} />
           </IMGdiv>
-          <CollectionTitle>Collection Title</CollectionTitle>
+          <CollectionTitle>Aqaurel arts</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
         <SliderImage src={SliderBG3} alt="slider-image" />
       </SwiperSlide>
       <SwiperSlide>
-        <CollectionDiv to="/">
+        <CollectionDiv to="/collection/13">
           <IMGdiv>
             <img src={CollectionPrev4} />
           </IMGdiv>
-          <CollectionTitle>Collection Title</CollectionTitle>
+          <CollectionTitle>Photo gallery</CollectionTitle>
           <SeeCollection>See collection...</SeeCollection>
         </CollectionDiv>
         <SliderImage src={SliderBG4} alt="slider-image" />

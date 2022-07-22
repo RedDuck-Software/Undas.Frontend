@@ -352,6 +352,7 @@ const Offer: React.FC = () => {
             <NFTCard
               uri={tokenURI ? tokenURI : state.state.state.URI}
               name={tokenName ? tokenName : state.state.state.tokenName}
+              collectionName={state.state.state.collectionName}
             />
           </NFTInfoContainer>
         </SecondCollum>

@@ -530,6 +530,7 @@ const OfferRent: React.FC = () => {
                   <NFTCard
                     uri={URI ? URI : state.state.state.URI}
                     name={name ? name : state.state.state.name}
+                    collectionName = {state.state.state.collectionName}
                   />
                 </NFTInfoContainer>
               </SecondCollum>

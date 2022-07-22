@@ -1,13 +1,14 @@
 import { gql } from "urql";
 
 export const GET_SAME_COLLECTIONS = gql`
-  query collectionItems($collectionId: BigInt!) {
-    tokens(where: { collectionId: $collectionId }) {
+  query collectionItems($collectionId: BigInt!, $tokenId: BigInt!) {
+    tokens(where: { collectionId: $collectionId, id: $tokenId }) {
       name
       uri
       tokenAdress
       id
-      creator
+      owner
+      description
     }
   }
 `;

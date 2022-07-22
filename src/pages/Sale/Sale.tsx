@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useContext, useState, useEffect } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -82,18 +83,20 @@ const Sale: React.FC = () => {
   const [colloteral, setColloteral] = useState(0);
   const [premium, setPremium] = useState(0);
   const [durationInDay, setDurationInDay] = useState(1);
+  const { account } = useWeb3React();
 
   const state: any = useLocation();
 
   const URI = state.state.state.URI;
   const nameFromProps = state.state.state.name;
-  const NFT_ADDRESS = state.state.state.tokenAddress;
+  const tokenAddress = state.state.state.tokenAddress;
   const tokenId = state.state.state.tokenId;
+  const collectionName = state.state.state.collectionName
 
   async function sellToken() {
     if (!connector) return;
     if (tokenId == undefined && tokenId == null) return;
-
+    if(!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -105,25 +108,31 @@ const Sale: React.FC = () => {
       signer,
     );
     const expectedValue = (priceForSale * 2) / 100;
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
-    const approve = await NftContract.setApprovalForAll(
+    const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
+    const isApprovedForAll = await NftContract.isApprovedForAll(
+      account,
       MARKETPLACE_ADDRESS,
-      true,
     );
-    await approve.wait();
+
+    if (!isApprovedForAll) {
+      await (
+        await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
+
 
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
       "ether",
     );
-
+    
     const tx = await MarketplaceContract.bidExternal(
-      NFT_ADDRESS,
+      tokenAddress,
       tokenId,
       formattedPrice,
       false,
       {
-        value: ethers.utils.parseEther(expectedValue.toString()),
+        value: ethers.utils.parseEther(expectedValue.toFixed(18).toString()),
       },
     );
     setLoadingSale(true);
@@ -137,9 +146,9 @@ const Sale: React.FC = () => {
 
   async function stakeToken() {
     if (!connector) return;
-
     if (tokenId == undefined && tokenId == null) return;
-
+    if(!account) return;
+    
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -151,13 +160,18 @@ const Sale: React.FC = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
+    const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
 
-    const approve = await NftContract.setApprovalForAll(
+    const isApprovedForAll = await NftContract.isApprovedForAll(
+      account,
       MARKETPLACE_ADDRESS,
-      true,
     );
-    await approve.wait();
+
+    if (!isApprovedForAll) {
+      await (
+        await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
 
     const utcTimestamp = new Date().getTime();
 
@@ -174,7 +188,7 @@ const Sale: React.FC = () => {
     const amountToPay = (colloteral * 2) / 100;
 
     const tx = await MarketplaceContract.quoteForStakingExternal(
-      NFT_ADDRESS,
+      tokenAddress,
       tokenId,
       formattedColloteral,
       formattedPremium,
@@ -551,7 +565,7 @@ const Sale: React.FC = () => {
                 <ItemAmount>NFT item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                {URI && <NFTCard uri={URI} name={nameFromProps} />}
+                {URI && <NFTCard uri={URI} name={nameFromProps} collectionName={collectionName}/>}
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
