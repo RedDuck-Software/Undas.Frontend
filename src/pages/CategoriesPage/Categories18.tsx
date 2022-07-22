@@ -1,6 +1,4 @@
-import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
@@ -18,6 +16,7 @@ import Collection from "./page-components/Collection";
 import { Container, Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 
+
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
@@ -28,15 +27,14 @@ type CollectionItemProps = {
 };
 
 const CategoriesGameFI: React.FC = () => {
-  const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const collectionsList: CollectionItemProps[] = [];
   const [collections, setCollections] = useState<CollectionItemProps[]>();
   const [loading, setLoading] = useState(true);
 
   const getСollection = async () => {
-    const collections = await fetchData();
-    collections.data.collections.map((i: any) => {
+    const collectionsFromAPI = await fetchData();
+    collectionsFromAPI.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
@@ -57,16 +55,8 @@ const CategoriesGameFI: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
-    }
     getСollectionData();
-    setLoading(false);
-  }, [connector, account]);
-
-  if (!account) {
-    return <Navigate to={"/login"} replace={true} />;
-  }
+  }, [connector]);
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
@@ -77,7 +67,7 @@ const CategoriesGameFI: React.FC = () => {
           collectionName
           owner
           id
-    	  collectionInfo
+    	    collectionInfo
           collectionUrl
           collectionCategory
           
@@ -98,6 +88,8 @@ const CategoriesGameFI: React.FC = () => {
     const response = await getСollection();
     if (response) {
       setCollections(response);
+      setLoading(false);
+
     }
   }
 

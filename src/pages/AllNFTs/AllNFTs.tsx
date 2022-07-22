@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { useQuery } from "urql";
 
+import AllFilterWrap from "./AllFilterWrap";
 import {
   AllNFTContainer,
   MenuWrap,
@@ -17,22 +17,18 @@ import {
   MenuSearchWrap,
   TitleWrap,
 } from "./AllNFTs.styles";
-import NFTListItem from "./page-components/NFTListItem/NFTListItem";
-import { getListingsData } from "./query";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterSelected from "../../components/FilterSelected/FilterSelected";
-import AllGridWrap from "../../components/NFTCard/Grid/AllGridWrap";
 import { Background, PageTitle } from "../../globalStyles";
 import {
-  buyAction,
   rentAction,
+  buyAction,
 } from "../../store/reducers/Filter/filterActions";
-import { ViewMode } from "../../types/viewMode";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
 
-type GridItem = {
+/* type GridItem = {
   id: number;
   URI: string;
   name: string;
@@ -46,7 +42,7 @@ type GridItem = {
   collectionName?: string;
   collectionId?: string;
   collectionOwner?: string;
-};
+}; */
 
 const AllNFTs: React.FC = () => {
   const dispatch = useDispatch();
@@ -56,51 +52,6 @@ const AllNFTs: React.FC = () => {
     price: false,
     event: false,
   });
-  const items2: GridItem[] = [];
-  const [items, setitems] = useState<GridItem[]>();
-
-  const [result] = useQuery({
-    query: getListingsData,
-  });
-
-  const { data, fetching } = result;
-
-  const getListing = async () => {
-    const allNfts = [...data.stakingListings, ...data.listings];
-
-    allNfts.map((i: any) => {
-      const item = {
-        id: i.tokenId,
-        URI: i.tokenURI,
-        name: i.tokenName,
-        priceInNum: i.price,
-        premiumInNum: i.premiumWei,
-        colloteralWei: i.colloteralWei,
-        stakingId: i.id,
-        listingId: i.id,
-        tokenAddress: i.token,
-        tokenOwner: i.seller,
-        collectionName: i.collectionName,
-        collectionId: i.collectionId,
-        collectionOwner: i.collectionOwner,
-      };
-
-      items2.push(item);
-    });
-    return items2;
-  };
-  async function getListingsData2() {
-    const response = await getListing();
-    if (response) {
-      setitems(response);
-    }
-  }
-
-  useEffect(() => {
-    if (fetching) return;
-    getListingsData2();
-  }, [active, priceFilter, fetching]);
-
 
   const { viewMode, viewButtonsRender } = useViewMode();
 
@@ -125,7 +76,6 @@ const AllNFTs: React.FC = () => {
           margBottomXS="40px"
           margBottomM="80px"
         >
-          {/*rm marg after deploy*/}
           <TitleWrap>
             <PageTitle>All NFTs</PageTitle>
           </TitleWrap>
@@ -162,7 +112,7 @@ const AllNFTs: React.FC = () => {
                   </MenuItem>
                 </FilterMenu>
               </Filter>
-              <Filter className={active.event && "event-active"}>
+              <Filter className={active.event && "event-active"} disabled>
                 <FilterItem
                   onClick={() => {
                     if (!active.event) {
@@ -193,20 +143,12 @@ const AllNFTs: React.FC = () => {
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
           <FilterSelected />
-          {viewMode === ViewMode.grid ? (
-            <AllGridWrap
-              getResults={(amount: any) => setResults(amount)}
-              priceFilter={priceFilter}
-            />
-          ) : (
-            <>
-              {items ? (
-                <NFTListItem itemList={items} />
-              ) : (
-                <span>There are no NFTs on the marketplace</span>
-              )}
-            </>
-          )}
+
+          <AllFilterWrap
+            getResults={(amount: any) => setResults(amount)}
+            priceFilterOrder={priceFilter}
+            viewMode={viewMode}
+          />
         </Wrapper>
       </AllNFTContainer>
     </Background>

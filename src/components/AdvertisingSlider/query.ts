@@ -41,36 +41,24 @@ export const GET_NFT_OFFERS = gql`
 `;
 
 export const ITEM_ACTIVITY = gql`
-query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
-  listings(
-    where: {
-      tokenId: $tokenId
-      token: $tokenAddress
-      listingStatus: SOLD
+  query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
+    listings(
+      where: { tokenId: $tokenId, token: $tokenAddress, listingStatus: SOLD }
+    ) {
+      price
+      seller
     }
-  ) {
-    price
-    seller
-  }
-  stakingListings(
-    where: {
-      tokenId: $tokenId
-      token: $tokenAddress
-      stakingStatus: RENTED
+    stakingListings(
+      where: { tokenId: $tokenId, token: $tokenAddress, stakingStatus: RENTED }
+    ) {
+      colloteralWei
+      premiumWei
+      seller
+      taker
     }
-  ) {
-    colloteralWei
-    premiumWei
-    seller
-    taker
+    tokens(where: { id: $tokenId }) {
+      owner
+      price
+    }
   }
-  tokens(
-    where: { 
-      id: $tokenId 
-  }) {
-    owner
-    price
-  }
-}
-
-`
+`;

@@ -13,10 +13,6 @@ import {
   Switch,
   InputSwitch,
   SliderRound,
-  PriceSelect,
-  PriceElement,
-  ApplyBtn,
-  PriceVariations,
   CheckboxInputWrapper,
   CheckboxInput,
   CheckboxLabel,
@@ -28,21 +24,12 @@ import {
   FilterCategoryItemTitle,
   CheckboxInputWrapperCentered,
   MobileListWrap,
-  InputBlock,
-  MinPrice,
-  PriceContainer,
-  InputPriceContainer,
-  ApplyButton,
-  ButtonContainer,
 } from "./ASideFilter.styles";
-import { AsideCollectionList } from "./components";
+import { AsideCollectionList, AsidePrice } from "./components";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   FilterIco,
   StatusIco,
-  PriceIco,
-  UsdIco,
-  EthIco,
   CategoriesIco,
   ChainsIco,
   EthereumIcon,
@@ -53,6 +40,7 @@ import { bsc, solana, ton } from "../../pages/CreateNFT/imports";
 import {
   buyAction,
   hasOffersAction,
+  newAction,
   rentAction,
 } from "../../store/reducers/Filter/filterActions";
 import { addSelectedCategory } from "../../store/reducers/Filter/filterActions";
@@ -140,41 +128,6 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
     collection: false,
     chain: false,
   });
-  const [priceMenu, setPriceMenu] = useState<boolean>(false);
-  const [priceCurrency, setPriceCurrency] = useState([
-    {
-      currency: "eth",
-      text: "Ether (ETH)",
-      ico: <EthIco />,
-      selected: true,
-    },
-    {
-      currency: "usd",
-      text: "United States Dollar (USD)",
-      ico: <UsdIco />,
-      selected: false,
-    },
-  ]);
-
-  const variations = priceCurrency.filter((element) => {
-    if (!element.selected) {
-      return true;
-    }
-  });
-
-  const currencySelector = (currencyItem: any) => {
-    setPriceCurrency((prev) =>
-      prev.map((item) => {
-        if (currencyItem.currency !== item.currency) {
-          item.selected = false;
-        }
-        if (currencyItem.currency === item.currency) {
-          item.selected = true;
-        }
-        return { ...item };
-      }),
-    );
-  };
 
   const handleMobileFilter = () => {
     setIsOpenMobile(!isOpenMobile);
@@ -221,6 +174,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 !active && setActive(true);
               } else setActiveMenu({ status: false });
             }}
+            isActive={activeMenu.status}
           >
             <StatusIco />
             <ElementText>Status</ElementText>
@@ -235,6 +189,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
             <AccordionElement
               onClick={() => {
                 newRef.current.checked = !newRef.current.checked;
+                dispatch(newAction(newRef.current.checked));
               }}
             >
               <span>New</span>
@@ -243,7 +198,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 <SliderRound />
               </Switch>
             </AccordionElement>
-            <AccordionElement>
+            <AccordionElement disabled>
               <span>Staking</span>
               <Switch>
                 <InputSwitch type="checkbox" />
@@ -306,94 +261,12 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
           </AccordionMenu>
 
           {page !== "TopCollection" && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.price) {
-                    setActiveMenu({ price: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ price: false });
-                }}
-              >
-                <PriceIco />
-                <ElementText>Price</ElementText>
-                <AccordionArrow
-                  className={(activeMenu.price && "active-price") || ""}
-                />
-              </HolderElement>
-              <AccordionMenu
-                mh="178px"
-                className={(activeMenu.price && "active-price") || ""}
-              >
-                <AccordionElement padd="15px 15px 20px 15px" direction="column">
-                  {priceCurrency.map((item) => {
-                    if (item.selected)
-                      return (
-                        <PriceContainer key={`${item.ico}-${item.selected}`}>
-                          <PriceElement
-                            className={(priceMenu && "price-menu-active") || ""}
-                            onClick={() => {
-                              !priceMenu
-                                ? setPriceMenu(true)
-                                : setPriceMenu(false);
-                            }}
-                          >
-                            {item.ico}
-                            <span>{item.text}</span>
-                            <AccordionArrow
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
-                            />
-                            <PriceSelect
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
-                            >
-                              {variations.map((item) => {
-                                return (
-                                  <PriceVariations
-                                    key={item.text}
-                                    onClick={() => {
-                                      currencySelector(item);
-                                    }}
-                                  >
-                                    {item.ico}
-                                    <span>{item.text}</span>
-                                  </PriceVariations>
-                                );
-                              })}
-                            </PriceSelect>
-                          </PriceElement>
-                          <InputPriceContainer>
-                            <InputBlock>
-                              <MinPrice
-                                type="number"
-                                id="min"
-                                placeholder="Min"
-                                min="0"
-                              />
-                            </InputBlock>
-                            <InputBlock className="margin-left">
-                              <MinPrice
-                                type="number"
-                                id="max"
-                                placeholder="Max"
-                                min="0"
-                              />
-                            </InputBlock>
-                          </InputPriceContainer>
-                          <ButtonContainer>
-                            <ApplyButton>Apply</ApplyButton>
-                          </ButtonContainer>
-                        </PriceContainer>
-                      );
-                  })}
-
-                  <ApplyBtn>Apply</ApplyBtn>
-                </AccordionElement>
-              </AccordionMenu>
-            </>
+            <AsidePrice
+              activeMenu={activeMenu}
+              setActiveMenu={setActiveMenu}
+              active={active}
+              setActive={setActive}
+            />
           )}
 
           {page !== "Collection" && (
@@ -460,6 +333,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
               <AccordionMenu
                 backgroundColor="rgba(251, 245, 255, 0.7)"
                 pb="15px"
+                pt={activeMenu.chain ? "7px" : "0"}
                 mh="320px" // calculate max-height because of accordion animation bug
                 className={(activeMenu.chain && "active-chains") || ""}
               >
@@ -469,19 +343,19 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                     chainIcon={EthereumIcon}
                   />
                 </AccordionElement>
-                <AccordionElement padd="1">
+                <AccordionElement padd="1" disabled>
                   <FilterChainItem
                     chainName={"Polygon"}
                     chainIcon={PolygonIcon}
                   />
                 </AccordionElement>
-                <AccordionElement padd="2">
+                <AccordionElement padd="2" disabled>
                   <FilterChainItem chainName={"Solana"} chainIcon={solana} />
                 </AccordionElement>
-                <AccordionElement padd="3">
+                <AccordionElement padd="3" disabled>
                   <FilterChainItem chainName={"BSC"} chainIcon={bsc} />
                 </AccordionElement>
-                <AccordionElement padd="4">
+                <AccordionElement padd="4" disabled>
                   <FilterChainItem chainName={"TON"} chainIcon={ton} />
                 </AccordionElement>
               </AccordionMenu>

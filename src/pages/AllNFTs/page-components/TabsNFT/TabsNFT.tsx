@@ -51,11 +51,7 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
     tokenAddress: item.itemLists.tokenAddress,
     URI: item.itemLists.URI,
     colloteralWei: item.itemLists.colloteralWei,
-    premium: ethers.utils.formatEther(
-      item.itemLists.premiumInNum
-        ? item.itemLists.premiumInNum.toString()
-        : "0",
-    ),
+    premium: item.itemLists.premiumInNum ? item.itemLists.premiumInNum : "0",
     stakingId: item.itemLists.stakingId,
     tokenOwner: item.itemLists.tokenOwner,
   };
@@ -130,9 +126,7 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
           <DivDeposit>
             <DepositText>Price</DepositText>
             <EthereumText>
-              {item.itemLists.priceInNum
-                ? ethers.utils.formatEther(item.itemLists.priceInNum.toString())
-                : "-"}
+              {item.itemLists.priceInNum ? item.itemLists.priceInNum : "-"}
             </EthereumText>
           </DivDeposit>
           <DivPrice>
@@ -193,11 +187,7 @@ const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
           <DivPrice>
             <DepositText>Price a Day</DepositText>
             <EthereumText>
-              {item.itemLists.premiumInNum
-                ? ethers.utils.formatEther(
-                    item.itemLists.premiumInNum.toString(),
-                  )
-                : "-"}
+              {item.itemLists.premiumInNum ? item.itemLists.premiumInNum : "-"}
             </EthereumText>
           </DivPrice>
           <DivPeriod>

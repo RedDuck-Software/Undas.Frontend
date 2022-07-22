@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { AsideCollectionItem } from "./AsideCollectionItem";
 
@@ -11,6 +12,7 @@ import {
   AccordionElement,
   SearchInputWrapper,
   MobileListWrap,
+  ClipLoaderWrapper,
 } from "../../ASideFilter.styles";
 import { CollectionsIco } from "../../imports";
 
@@ -31,9 +33,8 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
   const [searchCollectionPattern, setSearchCollectionPattern] =
     useState<string>("");
 
-  const { collections, collectionsError } = useGetCollections(
-    searchCollectionPattern,
-  );
+  const { collections, collectionsLoading, collectionsError } =
+    useGetCollections(searchCollectionPattern);
 
   const handleCollectionSearchInput = (event: any) => {
     const pattern: string = event?.target.value;
@@ -41,7 +42,7 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
   };
 
   useEffect(() => {
-    if (searchInput.length == 0 || searchInput.length >= 2) {
+    if (searchInput.length == 0 || searchInput.length >= 3) {
       setSearchCollectionPattern(searchInput);
     }
   }, [searchInput]);
@@ -84,26 +85,38 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
               />
             </AccordionElement>
             <MobileListWrap>
-              {collections.length > 0 ? (
-                <>
-                  {collections.map((item: any) => {
-                    return (
-                      <AsideCollectionItem
-                        key={`${item.id}-${item.collectionName}-${item.collectionIcon}`}
-                        id={item.id}
-                        collectionName={item.collectionName}
-                        collectionIcon={item.collectionUrl}
-                        //isVerified={item.isVerified}
-                        vol={item.collectionVolume}
-                        floor={
-                          item.tokens.length > 0 ? item.tokens[0].price : ""
-                        }
-                      />
-                    );
-                  })}
-                </>
+              {collectionsLoading ? (
+                <ClipLoaderWrapper>
+                  <ClipLoader
+                    color={"#BD10E0"}
+                    loading={collectionsLoading}
+                    size={125}
+                  />
+                </ClipLoaderWrapper>
               ) : (
-                "No Collections found"
+                <>
+                  {collections.length > 0 ? (
+                    <>
+                      {collections.map((item: any) => {
+                        return (
+                          <AsideCollectionItem
+                            key={`${item.id}-${item.collectionName}-${item.collectionIcon}`}
+                            id={item.id}
+                            collectionName={item.collectionName}
+                            collectionIcon={item.collectionUrl}
+                            //isVerified={item.isVerified}
+                            vol={item.collectionVolume}
+                            floor={
+                              item.tokens.length > 0 ? item.tokens[0].price : ""
+                            }
+                          />
+                        );
+                      })}
+                    </>
+                  ) : (
+                    "No Collections found"
+                  )}
+                </>
               )}
             </MobileListWrap>
           </>

@@ -1,1 +1,2 @@
-export * from "./AsideCollectionList/AsideCollectionList";
+export * from "./AsideCollectionList";
+export * from "./AsidePrice";

@@ -34,18 +34,12 @@ export const GET_NFT_TOP_OFFER = gql`
 export const GET_NFT_LAST_SALES = gql`
   query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
     listings(
-      where: {
-        tokenId: $tokenId
-        token: $tokenAddress
-        listingStatus: SOLD
-      }
+      where: { tokenId: $tokenId, token: $tokenAddress, listingStatus: SOLD }
       orderBy: price
       orderDirection: desc
     ) {
       id
-      price 
+      price
     }
   }
 `;
-
-
