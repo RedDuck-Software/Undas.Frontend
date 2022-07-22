@@ -148,8 +148,11 @@ export const TagName = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  @media (max-width: 768px) {
+    padding: 15px 0;
+  }
   @media (max-width: 576px) {
-    padding: 14px 0;
+    padding: 16px 0;
     max-width: 100%;
   }
 `;
