@@ -94,9 +94,8 @@ export const ContainerPopUp = styled.div`
 export const InputTextArea = styled.textarea`
   width: 320px;
   border: none;
-  margin-top: 20px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 20px 15px 0px;
+  padding: 8px;
   height: 90px;
   resize: none;
   font-family: "Montserrat";

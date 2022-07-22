@@ -51,6 +51,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
   creatorSplit?.splice(8, 24, "...");
 
   const [show, setShow] = useState(false);
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(creator);
     setShow(true);
@@ -64,9 +65,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
         <ImageWrap>
           <ImgCollection src={logo} alt="collection-pic" />
         </ImageWrap>
-        <Wrapper
-          flexBasis="52%"  flexBasisXS="70%"
-        >
+        <Wrapper flexBasis="52%" flexBasisXS="70%">
           <SocialWrap>
             <SiteIco />
             <TwitterIco />
@@ -77,14 +76,16 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
           {/* <MoreInfo>
             <img src={More} alt="more-info" />
           </MoreInfo> */}
-          <MakeComplaint ref={target} onClick={() => setShowTarget(!showTarget)}>
+          <MakeComplaint ref={target} onClick={() => setShowTarget(true)}>
             Make a Complaint
           </MakeComplaint>
-          <Overlay target={target.current} show={show} placement="bottom">
+          <Overlay target={target.current} show={showTarget} placement="bottom">
             {
               <ContainerPopUp>
-                <InputTextArea placeholder="Comment"></InputTextArea>
-                <SendButton>Send</SendButton>
+                <InputTextArea placeholder="Comment" />
+                <SendButton onClick={() => setShowTarget(false)}>
+                  Send
+                </SendButton>
               </ContainerPopUp>
             }
           </Overlay>

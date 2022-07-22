@@ -108,7 +108,7 @@ const CollectionPage: React.FC = () => {
         "LOADING..."
       ) : (
         <ContainerCollection>
-          <Banner src={data.collection.collectionFeatureUrl}></Banner>
+          <Banner src={data.collection.collectionFeatureUrl} />
           <Background>
             <AllNFTContainer>
               <ASideFilter marginTop="208px" page="Collection" />
@@ -206,7 +206,7 @@ const CollectionPage: React.FC = () => {
                         </MenuItem>
                       </FilterMenu>
                     </Filter>
-                    <Filter className={active.event && "event-active"}>
+                    <Filter className={active.event && "event-active"} disabled>
                       <FilterItem
                         onClick={() => {
                           if (!active.event) {
