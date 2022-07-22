@@ -101,7 +101,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
-          console.log(i)
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
             <CollectionBackground
