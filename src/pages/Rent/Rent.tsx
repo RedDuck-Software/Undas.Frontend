@@ -68,6 +68,8 @@ const Rent: React.FC = () => {
   );
   const premium = state.state.state.premium;
   const stakingId = state.state.state.stakingId;
+  const collectionName = state.state.state.collectionName
+  // const owner = '23123'
   const navigate = useNavigate();
 
   async function rentToken(
@@ -97,7 +99,7 @@ const Rent: React.FC = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-    //todo in wei
+
     const amountToPay = (
       +colloteralWei +
       +premium +
@@ -303,7 +305,7 @@ const Rent: React.FC = () => {
             <RightBlock>
               <ItemAmount>Item</ItemAmount>
               <NFTInfoContainer>
-                <NFTCard uri={URI} name={nameFrom} />
+                <NFTCard uri={URI} name={nameFrom} collectionName={collectionName} />
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>

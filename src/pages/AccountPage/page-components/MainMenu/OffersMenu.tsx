@@ -40,7 +40,6 @@ import {
 import { TransactionError } from "../../../../types/global";
 import {
   MARKETPLACE_ADDRESS,
-  NFT_ADDRESS,
 } from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
@@ -228,9 +227,9 @@ const OffersMenu = () => {
     }
   };
 
-  const acceptOfferForNotListedToken = async (offerId: any) => {
+  const acceptOfferForNotListedToken = async (offerId: any,tokenAddress:any) => {
     if (!connector) return;
-
+    if(!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -242,15 +241,19 @@ const OffersMenu = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
     //approve to market
     try {
-      const approve = await NftContract.setApprovalForAll(
-        MARKETPLACE_ADDRESS,
-        true,
-      );
+      const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
 
-      await approve.wait();
+      const isApprovedForAll = await NftContract.isApprovedForAll(
+      account,
+      MARKETPLACE_ADDRESS,
+    );
+    if (!isApprovedForAll) {
+      await (
+        await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
     } catch (error: any) {
       setTransactionError(error);
       setShowTransactionError(true);
@@ -856,7 +859,7 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <AcceptBTN
                             onClick={() =>
-                              acceptOfferForNotListedToken(i.offerId)
+                              acceptOfferForNotListedToken(i.offerId,"0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d")
                             }
                           >
                             Accept

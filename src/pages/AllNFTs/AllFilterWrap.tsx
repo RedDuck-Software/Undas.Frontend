@@ -309,7 +309,6 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
-
   return loading ? (
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />

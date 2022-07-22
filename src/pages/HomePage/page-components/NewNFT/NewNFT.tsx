@@ -34,10 +34,11 @@ const NewNFT: React.FC = () => {
     name: string;
     URI: string;
     tokenAddress: string;
+    collectionName:string;
   }[] = [];
   const [list, setList] =
     useState<
-      { id: number; name: string; URI: string; tokenAddress: string }[]
+      { id: number; name: string; URI: string; tokenAddress: string,collectionName:string; }[]
     >();
 
   const getListings = async () => {
@@ -51,8 +52,8 @@ const NewNFT: React.FC = () => {
         const URI = nft.tokenURI;
         const tokenAddress = nft.token;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-
-        items.push({ priceInNum, id, name, URI, tokenAddress });
+        const collectionName = nft.collectionName
+        items.push({ priceInNum, id, name, URI, tokenAddress,collectionName });
       }
     });
     return items;
@@ -79,24 +80,29 @@ const NewNFT: React.FC = () => {
         </ViewAllBtn>
       </TitleWrap>
       <Swiper
-        slidesPerView={1}
-        spaceBetween={20}
+        slidesPerView={4}
+        spaceBetween={3}
         breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
           },
           1200: {
-            slidesPerView: 4,
-            spaceBetween: 20,
+            slidesPerView: 3,
+            spaceBetween: 10,
           },
           1700: {
-            slidesPerView: 5,
-            spaceBetween: 20,
+            slidesPerView: 4,
+            spaceBetween: 3,
+            
           },
         }}
         className="rent-slider"
@@ -105,12 +111,14 @@ const NewNFT: React.FC = () => {
         navigation={true}
         mousewheel={true}
         effect={"coverflow"}
+        centeredSlides={false}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows: false,
+          
         }}
       >
         {list?.map((item) => {
@@ -131,7 +139,7 @@ const NewNFT: React.FC = () => {
                   );
                 }}
               >
-                <NFTCardHome uri={item.URI} name={item.name} />
+                <NFTCardHome uri={item.URI} name={item.name} collectionName={item.collectionName} />
               </SwiperSlide>
             </>
           );
@@ -155,7 +163,8 @@ const tokensQuery = `
         listingStatus
         price
         tokenDescription
-        tokenName    
+        tokenName
+        collectionName    
       }
     }  
 `;
