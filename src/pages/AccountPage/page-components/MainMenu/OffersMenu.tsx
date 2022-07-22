@@ -763,7 +763,6 @@ const OffersMenu = () => {
                       <OffersTdButton>
                         <AcceptBTN
                           onClick={() =>
-        
                             acceptStakingOffer(i.stakingId, i.taker)
                           }
                         >

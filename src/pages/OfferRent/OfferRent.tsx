@@ -6,7 +6,8 @@ import { Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
 import { createClient } from "urql";
 
-import { info, deleteNFT, eth, usd } from "./imports";
+import { info, eth, usd } from "./imports";
+//you may add "deleteNFT," to imports
 import {
   PageWrapper,
   OfferContainer,
@@ -41,7 +42,7 @@ import {
   ContainerCheckboxCollateral,
   NFTInfoContainer,
   SelectedNFT,
-  ImgDelete,
+  // ImgDelete,
   AddNFTCard,
   AddNFTContainer,
   ButtonInfo,
@@ -564,7 +565,7 @@ const OfferRent: React.FC = () => {
                   loop={false}
                   navigation={true}
                 >
-                  <SwiperSlide>
+                  {/* <SwiperSlide>
                     <NFTCard uri="nft1" name="NFTCard" />
                     <ImgDelete src={deleteNFT} alt="delete-nft-image" />
                   </SwiperSlide>
@@ -575,7 +576,7 @@ const OfferRent: React.FC = () => {
                   <SwiperSlide>
                     <NFTCard uri="nft1" name="NFTCard" />
                     <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                  </SwiperSlide>
+                  </SwiperSlide> */}
                   <SwiperSlide>
                     <AddNFTContainer>
                       <AddNFTCard>

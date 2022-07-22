@@ -9,7 +9,7 @@ const Info: React.FC = () => {
       <InfoWrap>
         <InfoList /*to="/article"*/>
           <MoneyIco />
-          <InfoText>Earn passive income via NFT Stacking</InfoText>
+          <InfoText>Earn passive income via NFT Staking</InfoText>
         </InfoList>
         <InfoList /*to="/article"*/>
           <HandIco />

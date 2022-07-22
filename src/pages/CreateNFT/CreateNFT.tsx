@@ -159,7 +159,7 @@ const CreateNFT: React.FC = () => {
   const [collection, setCollection] = useState<SelectItemType>({
     label: "Select collection",
     icon: "",
-    collectionId: ""
+    collectionId: "",
   });
   const [collectionError, setCollectionError] = useState<any>("");
   const [propertyList, setPropertyList] = useState<Property[]>(
@@ -198,12 +198,13 @@ const CreateNFT: React.FC = () => {
 
   const mintNFT = async () => {
     if (!connector || !account) return;
+
     if (collection.collectionId == undefined) {
       alert("Choose collection or create if it doesn`t exist ");
       return;
     }
     const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),    
+      await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
@@ -291,7 +292,7 @@ const CreateNFT: React.FC = () => {
 
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
-    const data = tokensQuery.data.collections
+    const data = tokensQuery.data.collections;
 
     setCollectionsList(data);
   };
@@ -325,9 +326,7 @@ const CreateNFT: React.FC = () => {
   });
 
   useEffect(() => {
-    
     if (collection.collectionId) {
-      
       setCollectionError("");
     }
   }, [collection]);
