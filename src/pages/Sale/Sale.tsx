@@ -24,7 +24,8 @@ import { UndasGeneralNFT__factory } from "../../typechain";
 import { MARKETPLACE_ADDRESS } from "../../utils/addressHelpers";
 import Context from "../../utils/Context";
 import { bsc, solana } from "../CreateNFT/imports";
-import { info, deleteNFT, eth, usd } from "../OfferRent/imports";
+import { info, eth, usd } from "../OfferRent/imports";
+//you may add "deleteNFT," to imports
 import {
   PageWrapper,
   NameRow,
@@ -44,7 +45,7 @@ import {
   ContainerCheckboxCollateral,
   NFTInfoContainer,
   SelectedNFT,
-  ImgDelete,
+  // ImgDelete,
   AddNFTCard,
   AddNFTContainer,
   OverlayPopUp,
@@ -559,7 +560,7 @@ const Sale: React.FC = () => {
             <>
               <NameRow>
                 <SelectedNFT>NFT item’s selected{"\u00A0"}</SelectedNFT>
-                <SelectedNFT>2</SelectedNFT>
+                <SelectedNFT>0</SelectedNFT>
               </NameRow>
               <SwiperNFT
                 slidesPerView={1}
@@ -583,7 +584,7 @@ const Sale: React.FC = () => {
                 loop={false}
                 navigation={true}
               >
-                <SwiperSlide>
+                {/* <SwiperSlide>
                   <NFTCard uri="nft1" name="NFTCard" />
                   <ImgDelete src={deleteNFT} alt="delete-nft-image" />
                 </SwiperSlide>
@@ -594,7 +595,7 @@ const Sale: React.FC = () => {
                 <SwiperSlide>
                   <NFTCard uri="nft1" name="NFTCard" />
                   <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                </SwiperSlide>
+                </SwiperSlide> */}
                 <SwiperSlide>
                   <AddNFTContainer>
                     <AddNFTCard>

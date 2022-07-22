@@ -6,7 +6,6 @@ import {
   ImageWrap,
   SocialWrap,
   CollectionName,
-  // Description,
   Creator,
   PurpleText,
   // MoreInfo,
@@ -34,14 +33,12 @@ import {
 interface CollectionCardProps {
   name: string;
   creator: string;
-  description: string;
   logo: string;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
   name,
   creator,
-  // description,
   logo,
 }) => {
   const target = useRef(null);
@@ -89,7 +86,6 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
               </ContainerPopUp>
             }
           </Overlay>
-          {/* <Description>{description}</Description> */}
         </Wrapper>
       </Wrapper>
       <CreatorWrapper>

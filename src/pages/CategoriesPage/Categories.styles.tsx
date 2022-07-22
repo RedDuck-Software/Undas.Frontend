@@ -115,7 +115,7 @@ export const CollectionBackground = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
-  opacity: 0.70 
+  opacity: 0.7;
 `;
 
 export const AuthorWrap = styled.div`
@@ -372,4 +372,5 @@ export const CardsWrapper = styled.div`
 
 export const ImageCollection = styled.img`
   width: 100%;
+  height: 100%;
 `;

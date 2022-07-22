@@ -12,7 +12,7 @@ import {
   CostSelect,
   DollarText,
   OwnerContainer,
-  ImgDelete,
+  // ImgDelete,
   TextOffer,
   TimeSelect,
   TextTime,
@@ -50,11 +50,12 @@ import {
   FilterDay,
 } from "./CastomOffer.styles";
 
-import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
+// import NFTCard from "../../../../components/NFTCardOffers/NFTCard";
 import { bsc, solana } from "../../../CreateNFT/imports";
 import { usd } from "../../../OfferRent/imports";
 import ModalsNFT from "../../../OfferRent/page-components/ModalsNFT/ModalsNFT";
-import { deleteNFT, info, eth } from "../../imports";
+import { info, eth } from "../../imports";
+//you may add "deleteNFT," to imports
 
 const CastomOffer: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState<string>("");
@@ -96,7 +97,7 @@ const CastomOffer: React.FC = () => {
           navigation={true}
         >
           <>
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <NFTCard uri="nft1" name="NFTCard" />
               <ImgDelete src={deleteNFT} alt="delete-nft-image" />
             </SwiperSlide>
@@ -107,7 +108,7 @@ const CastomOffer: React.FC = () => {
             <SwiperSlide>
               <NFTCard uri="nft1" name="NFTCard" />
               <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-            </SwiperSlide>
+            </SwiperSlide> */}
             <SwiperSlide>
               <AddNFTContainer>
                 <AddNFTCard>
@@ -206,7 +207,7 @@ const CastomOffer: React.FC = () => {
           navigation={true}
         >
           <>
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <NFTCard uri="nft1" name="NFTCard" />
               <ImgDelete src={deleteNFT} alt="delete-nft-image" />
             </SwiperSlide>
@@ -217,7 +218,7 @@ const CastomOffer: React.FC = () => {
             <SwiperSlide>
               <NFTCard uri="nft1" name="NFTCard" />
               <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-            </SwiperSlide>
+            </SwiperSlide> */}
             <SwiperSlide>
               <AddNFTContainer>
                 <AddNFTCard>
