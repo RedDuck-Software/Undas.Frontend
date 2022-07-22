@@ -48,7 +48,7 @@ const Slider: React.FC = () => {
           Get passive income from your NFT with <TextUndas>UNDAS</TextUndas>
         </TextGet>{" "}
         <TextStacking>
-          Stacking, Renting, Creating, Trading and Exchanging NFT
+          Staking, Renting, Creating, Trading and Exchanging NFT
         </TextStacking>
       </UndasDiv>
       <SliderButtonsBlock>
