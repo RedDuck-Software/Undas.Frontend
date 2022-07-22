@@ -16,7 +16,6 @@ import Collection from "./page-components/Collection";
 import { Container, Background } from "../../globalStyles";
 import Context from "../../utils/Context";
 
-
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
@@ -47,8 +46,8 @@ const CategoriesGameFI: React.FC = () => {
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
-      const collectionFeatureImg = i.collectionFeatureUrl
-      const collectionBannerImg = i.collectionBannerUrl
+      const collectionFeatureImg = i.collectionFeatureUrl;
+      const collectionBannerImg = i.collectionBannerUrl;
 
       collectionsList.push({
         id,
@@ -60,7 +59,7 @@ const CategoriesGameFI: React.FC = () => {
         collectionInfo,
         owner,
         collectionFeatureImg,
-        collectionBannerImg
+        collectionBannerImg,
       });
     });
     return collectionsList;

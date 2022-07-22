@@ -1,5 +1,9 @@
 import { RootState } from "../.."
 
+export const useSearch = (state: RootState) => {
+    return state.search.search
+}
+
 export const useNew = (state: RootState) => {
     return state.newNfts;
 }

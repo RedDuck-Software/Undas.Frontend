@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { FilterImg } from "./imports";
 
-interface IBanner{
+interface IBanner {
   src: string;
 }
 export const Banner = styled.div<IBanner>`

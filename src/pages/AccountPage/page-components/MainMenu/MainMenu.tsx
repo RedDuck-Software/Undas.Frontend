@@ -83,7 +83,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
               </MenuItem>
             </FilterMenu>
           </Filter>
-          <Filter className={active.event && "event-active"}>
+          <Filter className={active.event && "event-active"} disabled>
             <FilterItem
               onClick={() => {
                 if (!active.event) {

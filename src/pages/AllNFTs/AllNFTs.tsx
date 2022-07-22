@@ -24,6 +24,7 @@ import { Background, PageTitle } from "../../globalStyles";
 import {
   rentAction,
   buyAction,
+  searchAction,
 } from "../../store/reducers/Filter/filterActions";
 import useViewMode from "../../utils/hooks/useViewMode";
 import { Wrapper } from "../CategoriesPage/Categories.styles";
@@ -64,6 +65,12 @@ const AllNFTs: React.FC = () => {
       dispatch(buyAction(state.buy));
     }
   }
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value.length >= 3 || event.target.value.length == 0) {
+      dispatch(searchAction(event.target.value));
+    }
+  };
 
   return (
     <Background>
@@ -139,7 +146,12 @@ const AllNFTs: React.FC = () => {
                 </FilterMenu>
               </Filter>
             </SettingsBlock>
-            <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
+            <MenuSearchWrap
+              mw="530px"
+              marginLeft="0"
+              placeholder="Search"
+              onChange={handleSearch}
+            />
             <ResultsTotal>{results} results</ResultsTotal>
           </MenuWrap>
           <FilterSelected />

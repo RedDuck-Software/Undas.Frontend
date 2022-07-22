@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setPriceAction } from "../../../../store/reducers/Filter/filterActions";
+import { IAction, IState } from "../../ASideFilter";
 import {
   HolderElement,
   ElementText,
@@ -20,21 +21,15 @@ import {
   ApplyBtn,
 } from "../../ASideFilter.styles";
 import { EthIco, PriceIco, UsdIco } from "../../imports";
+import { AsideSection } from "../../types";
 
 interface AsidePriceProps {
-  activeMenu: { price: boolean };
-  setActiveMenu: React.Dispatch<React.SetStateAction<{ price: boolean }>>;
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: React.Dispatch<IAction>;
+  state: IState;
 }
 
-export const AsidePrice: React.FC<AsidePriceProps> = ({
-  activeMenu,
-  setActiveMenu,
-  active,
-  setActive,
-}) => {
-  const dispatch = useDispatch();
+export const AsidePrice: React.FC<AsidePriceProps> = ({ dispatch, state }) => {
+  const dispatchRedux = useDispatch();
   const [min, setMin] = useState<string | number | undefined>("");
   const [max, setMax] = useState<string | number | undefined>("");
   const [priceMenu, setPriceMenu] = useState<boolean>(false);
@@ -74,29 +69,27 @@ export const AsidePrice: React.FC<AsidePriceProps> = ({
   };
 
   const handlePriceApply = () => {
-    dispatch(setPriceAction({ min, max }));
+    dispatchRedux(setPriceAction({ min, max }));
   };
 
   return (
     <>
       <HolderElement
         onClick={() => {
-          if (!activeMenu.price) {
-            setActiveMenu({ price: true });
-            !active && setActive(true);
-          } else setActiveMenu({ price: false });
+          if (!state.price) {
+            dispatch({ type: AsideSection.menu, payload: true });
+          }
+          dispatch({ type: AsideSection.price, payload: !state.price });
         }}
-        isActive={activeMenu.price}
+        isActive={state.price}
       >
         <PriceIco />
         <ElementText>Price</ElementText>
-        <AccordionArrow
-          className={(activeMenu.price && "active-price") || ""}
-        />
+        <AccordionArrow className={(state.price && "active-price") || ""} />
       </HolderElement>
       <AccordionMenu
         mh="178px"
-        className={(activeMenu.price && "active-price") || ""}
+        className={(state.price && "active-price") || ""}
       >
         <AccordionElement padd="15px 15px 20px 15px" direction="column">
           {priceCurrency.map((item) => {

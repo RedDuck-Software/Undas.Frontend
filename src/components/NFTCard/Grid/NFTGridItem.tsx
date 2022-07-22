@@ -202,7 +202,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <PriceItem>
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
-              <PriceInEth>{props.price ? props.price: "-"}</PriceInEth>
+              <PriceInEth>{props.price ? props.price : "-"}</PriceInEth>
               <EthLogo />
             </Wrapper>
           </PriceItem>

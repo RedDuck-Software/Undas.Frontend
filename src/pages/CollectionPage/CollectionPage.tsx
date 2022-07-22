@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useQuery } from "urql";
 
 import {
@@ -23,7 +24,7 @@ import { GET_COLLECTION_INFO } from "./query";
 
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
-import { Background } from "../../globalStyles";
+import { Background, ClipLoaderWrapper } from "../../globalStyles";
 import { ViewMode } from "../../types/viewMode";
 import Context from "../../utils/Context";
 import useViewMode from "../../utils/hooks/useViewMode";
@@ -105,7 +106,9 @@ const CollectionPage: React.FC = () => {
   return (
     <>
       {fetching && !data ? (
-        "LOADING..."
+        <ClipLoaderWrapper>
+          <ClipLoader color={"#BD10E0"} loading={fetching} size={250} />
+        </ClipLoaderWrapper>
       ) : (
         <ContainerCollection>
           <Banner src={data.collection.collectionFeatureUrl} />
