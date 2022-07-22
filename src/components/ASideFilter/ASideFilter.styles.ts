@@ -553,12 +553,14 @@ export const ChainItemTitle = styled.div`
   font-size: 14px;
   line-height: 22px;
   color: #232428;
+  margin-bottom: 4px;
 `;
 
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
   width: 16px;
   height: 16px;
+  margin-bottom: 4px;
 `;
 
 export const MobileListWrap = styled.div`

@@ -1,5 +1,10 @@
 import { Filter } from "./types";
 
+export const searchAction = (searchString: string) => ({
+    type: Filter.setSearch,
+    payload: searchString
+})
+
 export const newAction = (newNfts: boolean) => ({
     type: Filter.new,
     payload: newNfts

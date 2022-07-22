@@ -20,6 +20,7 @@ import { hasOffersReducer } from './reducers/Filter/hasOffersReducer';
 import { selectedStatusesReducer } from './reducers/Filter/selectedStatusesReducer';
 import { newReducer } from './reducers/Filter/newReducer';
 import { priceReducer } from './reducers/Filter/priceReducer';
+import { searchReducer } from './reducers/Filter/searchReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   properties: propertyReducer,
   stats: statReducer,
   // filter
+  search: searchReducer,
   newNfts: newReducer,
   stacking: stackingReducer,
   buying: buyingReducer,

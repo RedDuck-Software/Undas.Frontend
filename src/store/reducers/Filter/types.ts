@@ -1,5 +1,7 @@
 export enum Filter {
   clearAll = "CLEAR_ALL",
+  // search by substring
+  setSearch = "SET_SEARCH", 
   // status
   addStatus = "ADD_STATUS",
   removeStatus = "REMOVE_STATUS",

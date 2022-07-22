@@ -277,6 +277,9 @@ export const ClipLoaderWrapper = styled.div`
   justify-content: center;
   margin: auto;
   padding: 6rem;
+  @media (max-width: 900px) {
+    padding: 6rem 0;
+  }
 `;
 
 export default GlobalStyle;
