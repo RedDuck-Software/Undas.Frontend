@@ -17,6 +17,7 @@ export const GET_COLLECTION_INFO = gql`
         name
         uri
         price
+        colloteral
         collectionName
         collectionId
       }

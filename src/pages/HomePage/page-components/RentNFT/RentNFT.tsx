@@ -36,10 +36,11 @@ const RentNFT: React.FC = () => {
     name: string;
     id: number;
     tokenAddress: string;
+    collectionName:string;
   }[] = [];
   const [list, setList] =
     useState<
-      { URI: string; name: string; id: number; tokenAddress: string }[]
+      { URI: string; name: string; id: number; tokenAddress: string,collectionName:string; }[]
     >();
 
   const navigate = useNavigate();
@@ -54,8 +55,10 @@ const RentNFT: React.FC = () => {
         const name = nft.tokenName;
         const URI = nft.tokenURI;
         const tokenAddress = nft.token;
+        const collectionName = nft.collectionName
+
         //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        items.push({ URI, name, id, tokenAddress });
+        items.push({ URI, name, id, tokenAddress,collectionName });
       }
     });
     return items;
@@ -82,24 +85,29 @@ const RentNFT: React.FC = () => {
         </ViewAllBtn>
       </TitleWrap>
       <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
+        slidesPerView={4}
+        spaceBetween={3}
         breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
           },
           1200: {
-            slidesPerView: 4,
-            spaceBetween: 20,
+            slidesPerView: 3,
+            spaceBetween: 10,
           },
           1700: {
-            slidesPerView: 5,
-            spaceBetween: 20,
+            slidesPerView: 4,
+            spaceBetween: 3,
+            
           },
         }}
         className="rent-slider"
@@ -115,6 +123,7 @@ const RentNFT: React.FC = () => {
           depth: 100,
           modifier: 1,
           slideShadows: false,
+          
         }}
       >
         {list?.map((item) => {
@@ -135,7 +144,7 @@ const RentNFT: React.FC = () => {
                   );
                 }}
               >
-                <NFTCardHome uri={item.URI} name={item.name} />
+                <NFTCardHome uri={item.URI} name={item.name} collectionName={item.collectionName}/>
               </SwiperSlide>
             </>
           );
@@ -163,6 +172,7 @@ const tokensStakingQuery = `
     colloteralWei
     premiumWei
     deadlineUTC
+    collectionName
   }
 }
  `;

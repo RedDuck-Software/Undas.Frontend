@@ -137,6 +137,7 @@ export const AuthorWrap = styled.div`
 
 export const CollectionPicWrap = styled.div`
   width: 70px;
+  height: 70px;
   margin-right: 10px;
   display: flex;
   align-items: center;
@@ -144,6 +145,7 @@ export const CollectionPicWrap = styled.div`
   border-radius: 20px;
   & img {
     width: 100%;
+    height: 100%;
     border-radius: 20px;
   }
   @media (max-width: 576px) {
@@ -196,7 +198,8 @@ export const NFTCards = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  width: 30%;
+  width: 120px;
+  height: 120px;
   border-radius: 20px;
 
   @media (max-width: 1200px) {
@@ -243,6 +246,7 @@ export const CollectionTextDiv = styled.div`
 export const CardsWrapper = styled.div`
   position: relative;
   display: flex;
+  justify-content: flex-end;
   gap: 15px;
   flex: 0 1 40%;
   @media (max-width: 1200px) {

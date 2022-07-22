@@ -136,15 +136,6 @@ export const SendButton = styled.button`
     border: 1px solid #873dc1;
   }
 `;
-// export const Description = styled.span`
-//   max-width: 218px;
-//   @media (max-width: 1200px) {
-//     max-width: unset;
-//   }
-//   @media (max-width: 576px) {
-//     display: none;
-//   }
-// `;
 export const SocialWrap = styled.div`
   width: 100%;
   background: rgba(255, 255, 255, 0.4);
