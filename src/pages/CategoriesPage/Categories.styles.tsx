@@ -282,6 +282,8 @@ interface IWrapper {
   margBottomS?: string;
   margBottomXS?: string;
   margBottomM?: string;
+  flexBasis?: string;
+  flexBasisXS?: string;
 }
 
 export const Wrapper = styled.div<IWrapper>`
@@ -299,6 +301,7 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
+  flex-basis: ${(props) => props.flexBasis || ""};
   @media (max-width: 992px) {
     margin-bottom: ${(props) => props.margBottomM};
   }
@@ -307,6 +310,7 @@ export const Wrapper = styled.div<IWrapper>`
   }
   @media (max-width: 576px) {
     margin-bottom: ${(props) => props.margBottomXS};
+    flex-basis: ${(props) => props.flexBasisXS};
   }
 `;
 

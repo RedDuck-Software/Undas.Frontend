@@ -2,6 +2,21 @@ import styled from "styled-components";
 
 import { FilterImg } from "./imports";
 
+interface IBanner{
+  src: string;
+}
+export const Banner = styled.div<IBanner>`
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  @media (max-width: 576px) {
+    height: 60px;
+  }
+`;
 export const Info = styled.ul`
   display: flex;
   border-radius: 0 0 20px 20px;
@@ -49,63 +64,14 @@ export const Amount = styled.span`
     font-size: 12px;
   }
 `;
-export const MakeComplaint = styled.button`
-  background-color: #fff;
-  box-shadow: 0px 0px 5px rgba(124, 124, 124, 0.25);
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #873dc1;
-  padding: 6px 18px;
-  border: none;
-  margin-top: 44px;
-  max-height: 36px;
-  cursor: pointer;
-`;
-export const AddToFav = styled.button`
-  background-color: #fff;
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 18px;
-  color: #873dc1;
-  padding: 6px 18px;
-  border: 1px solid #873dc1;
-  margin-top: 44px;
-  max-height: 36px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  align-self: end;
-  min-width: 200px;
-  transition: all 0.3s;
-  &:hover {
-    cursor: pointer;
-    background: #873dc1;
-    color: #fff;
-  }
-  @media (max-width: 1200px) {
-    position: absolute;
-    margin-top: 50px;
-    top: -100px;
-    z-index: 500;
-    right: -40%;
-  }
-  @media (max-width: 998px) {
-    right: -20%;
-  }
-  @media (max-width: 768px) {
-    right: 0;
-  }
-  @media (max-width: 576px) {
-    right: 15px;
-  }
-`;
+
 export const InfoBox = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
   max-width: 740px;
   flex-wrap: wrap;
+  margin-right: auto;
   @media (max-width: 1200px) {
     margin-left: auto;
     margin-right: auto;
@@ -168,7 +134,7 @@ export const HeadWrapper = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 
   @media (max-width: 1200px) {
     display: block;
@@ -195,93 +161,6 @@ export const ContainerNFT = styled.div`
   display: inline-block;
   padding-bottom: 40px;
 `;
-
-export const ContainerPopUp = styled.div`
-  height: 160px;
-  width: 350px;
-  background: #ffffff;
-  border: 1px solid #7c7c7c;
-  transform: matrix(1, 0, 0, -1, 0, 0);
-  margin-left: -75px;
-  margin-top: 11px;
-  border-radius: 10px;
-  z-index: 500;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 270px;
-    top: -20px;
-    border: 10px solid transparent;
-    border-top: 10px solid #7c7c7c;
-    transform: rotate(180deg);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 270px;
-    top: -20px;
-    border: 10px solid transparent;
-    border-top: 10px solid #7c7c7c;
-    transform: rotate(180deg);
-  }
-  &::after {
-    border-top: 10px solid white;
-    top: -18.5px;
-  }
-  @media (max-width: 576px) {
-    width: 95%;
-    margin-left: unset;
-  }
-`;
-
-export const InputTextArea = styled.textarea`
-  width: 320px;
-  border: none;
-  margin-top: 20px;
-  margin-left: 15px;
-  margin-right: 15px;
-  height: 90px;
-  resize: none;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #232428;
-  &:focus {
-    box-shadow: 0px 0px 5px rgb(135 61 193 / 50%);
-    border: none;
-    outline: none;
-  }
-  @media (max-width: 576px) {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-`;
-
-export const SendButton = styled.button`
-  width: 90px;
-  height: 36px;
-  background: #873dc1;
-  border-radius: 5px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #ffffff;
-  margin-right: 15px;
-  float: right;
-  border: none;
-  &:hover {
-    color: #873dc1;
-    background: #ffffff;
-    border: 1px solid #873dc1;
-  }
-`;
-
 export const MyWrapper = styled.div`
   position: relative;
   display: flex;

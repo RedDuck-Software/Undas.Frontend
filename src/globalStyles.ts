@@ -257,16 +257,18 @@ export const SecondaryButton = styled(Link)`
   }
 `;
 export const Message = styled.div<{ opacity?: boolean }>`
+  width: ${({ opacity }) => (opacity ? "auto" : "0px")};
+  height: ${({ opacity }) => (opacity ? "auto" : "0px")};
   opacity: ${({ opacity }) => (opacity ? "1" : "0")};
   position: fixed;
   top: calc(50% - 32px);
   left: calc(50% - 102px);
-  padding: 20px 45px;
+  padding: ${({ opacity }) => (opacity ? "20px 45px" : "0px")};
   border-radius: 20px;
   background-color: rgba(251, 245, 255, 0.9);
   box-shadow: 0px 4px 10px rgb(135 61 193 / 25%);
   transition: all 0.5s;
-  z-index: 4;
+  z-index: ${({ opacity }) => (opacity ? 4 : -100)};
 `;
 
 export const ClipLoaderWrapper = styled.div`
