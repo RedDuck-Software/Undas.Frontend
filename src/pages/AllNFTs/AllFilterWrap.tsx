@@ -71,6 +71,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
   );
+
+  console.log("newFilter", newFilter);
   const [loading, setLoading] = useState(false);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
@@ -229,6 +231,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
   }, [
     nfts,
     nftsLoading,
+    newFilter.newNfts,
     buyingFilter.buying,
     rentingFilter.stacking,
     hasOfferFilter.hasOffers,
@@ -306,8 +309,6 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
   useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
-
-  console.log("nft", commonList);
 
   return loading ? (
     <ClipLoaderWrapper>

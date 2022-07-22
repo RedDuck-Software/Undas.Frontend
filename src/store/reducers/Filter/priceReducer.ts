@@ -7,8 +7,6 @@ const initialState = {
 export const priceReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case Filter.setPrice:
-        console.log("PRICE REDUCER")
-        console.log(action.payload)
       return { 
         ...state, 
         price: {...action.payload}

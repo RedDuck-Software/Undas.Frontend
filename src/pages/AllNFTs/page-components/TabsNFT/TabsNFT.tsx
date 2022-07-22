@@ -44,8 +44,6 @@ interface CollectionGridWrapperProps {
   itemLists: GridItem;
 }
 const TabsNFT: React.FC<CollectionGridWrapperProps> = (item) => {
-  console.log("itemLIST ITEM", item);
-
   const navigate = useNavigate();
 
   const state = {
