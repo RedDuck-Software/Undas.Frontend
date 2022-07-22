@@ -372,4 +372,5 @@ export const CardsWrapper = styled.div`
 
 export const ImageCollection = styled.img`
   width: 100%;
+  height: 100%;
 `;
