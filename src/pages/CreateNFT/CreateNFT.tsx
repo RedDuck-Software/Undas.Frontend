@@ -309,6 +309,7 @@ const CreateNFT: React.FC = () => {
 
   }
  `;
+
   const client = createClient({
     url: APIURL,
   });

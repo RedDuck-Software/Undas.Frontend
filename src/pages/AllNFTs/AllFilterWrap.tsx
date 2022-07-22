@@ -4,17 +4,22 @@ import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
-import { ClipLoaderWrapper } from "./NFTGridItem.styles";
+import NFTListItem from "./page-components/NFTListItem/NFTListItem";
 
-import CollectionGridWrap from "../../../pages/CollectionPage/page-components/CollectionGridWrap";
+import { ClipLoaderWrapper } from "../../components/NFTCard/Grid/NFTGridItem.styles";
 import {
   useBuy,
   useHasOffers,
+  useNew,
+  usePriceFilter,
   useRent,
   useSelectedCategories,
   useSelectedCollections,
-} from "../../../store/reducers/Filter/helpers";
-import { useGetAllNfts } from "../../../utils/hooks/useGetAllNfts";
+} from "../../store/reducers/Filter/helpers";
+import { ViewMode } from "../../types/viewMode";
+import { useGetAllNfts } from "../../utils/hooks/useGetAllNfts";
+import { priceFilterBetween } from "../../utils/priceFilter";
+import CollectionGridWrap from "../CollectionPage/page-components/CollectionGridWrap";
 
 interface CommonProps {
   id: number;
@@ -39,21 +44,26 @@ interface CommonListProps extends CommonProps {
   premiumInNum?: number;
 }
 
-interface IAllGridWrap {
+interface IAllFilterWrap {
   getResults?: any;
-  priceFilter?: string;
+  priceFilterOrder?: string;
+  viewMode: ViewMode;
 }
 
-const AllGridWrap: React.FC<IAllGridWrap> = ({
-  /* priceFilter, */ getResults,
+const AllFilterWrap: React.FC<IAllFilterWrap> = ({
+  /* priceFilterOrder, */ getResults,
+  viewMode,
 }) => {
+  const newFilter = useSelector(useNew);
   const buyingFilter = useSelector(useBuy);
   const rentingFilter = useSelector(useRent);
   const hasOfferFilter = useSelector(useHasOffers);
+  const priceFilter = useSelector(usePriceFilter);
   const selectedCollectionFilter = useSelector(useSelectedCollections);
   const selectedCategoryFilter = useSelector(useSelectedCategories);
   const { nfts, nftsLoading } = useGetAllNfts(
     {
+      ...newFilter,
       ...buyingFilter,
       ...rentingFilter,
       ...hasOfferFilter,
@@ -61,6 +71,8 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
   );
+
+  console.log("newFilter", newFilter);
   const [loading, setLoading] = useState(false);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
@@ -175,11 +187,11 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
   // }
 
   /* const priceSort = async () => {
-    if (!priceFilter) return nfts;
+    if (!priceFilterOrder) return nfts;
 
     let sortedArr;
 
-    if (priceFilter === "low-to-high") {
+    if (priceFilterOrder === "low-to-high") {
       sortedArr = nfts?.sort(
         (a: { priceInNum: any }, b: { priceInNum: any }) => {
           if (a.priceInNum > b.priceInNum) {
@@ -194,7 +206,7 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
       return sortedArr;
     }
 
-    if (priceFilter === "high-to-low") {
+    if (priceFilterOrder === "high-to-low") {
       sortedArr = nfts?.sort(
         (a: { priceInNum: any }, b: { priceInNum: any }) => {
           if (a.priceInNum < b.priceInNum) {
@@ -211,13 +223,19 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
   }; */
 
   useEffect(() => {
+    if (priceFilter.min == "" && priceFilter.max == "") {
+      setCommonList(nfts);
+      return;
+    }
     setCommonList(nfts);
   }, [
     nfts,
     nftsLoading,
+    newFilter.newNfts,
     buyingFilter.buying,
     rentingFilter.stacking,
     hasOfferFilter.hasOffers,
+    priceFilter,
   ]);
 
   useEffect(() => {
@@ -258,16 +276,61 @@ const AllGridWrap: React.FC<IAllGridWrap> = ({
   ]);
 
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
+    if (!priceFilter) return;
+    if (!priceFilter.min && !priceFilter.max) return;
+
+    if (!priceFilter.min) {
+      const { max } = priceFilter;
+      const result = commonList.filter(priceFilterBetween(0, max));
+      setCommonList(result);
+      return;
+    }
+
+    if (!priceFilter.max) {
+      const { min } = priceFilter;
+      const result = commonList.filter(priceFilterBetween(min, 9999999999999));
+      setCommonList(result);
+      return;
+    }
+
+    if (priceFilter.min && priceFilter.max) {
+      const { min, max } = priceFilter;
+      const result = commonList.filter(priceFilterBetween(min, max));
+      setCommonList(result);
+      return;
+    }
+  }, [priceFilter]);
+
+  useEffect(() => {
     if (commonList) getResults(commonList.length);
   }, [commonList]);
+
   return loading ? (
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
     </ClipLoaderWrapper>
   ) : (
-    <>{commonList && <CollectionGridWrap itemList={commonList} />}</>
+    <>
+      {commonList && commonList.length > 0 ? (
+        <>
+          {viewMode === ViewMode.grid ? (
+            <CollectionGridWrap itemList={commonList} />
+          ) : (
+            <NFTListItem itemList={commonList} />
+          )}
+        </>
+      ) : (
+        "No items found"
+      )}
+    </>
   );
 };
+
 const APIURL =
   "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 
@@ -371,4 +434,4 @@ async function fetchCategoryTokens(
   return data.data;
 }
 
-export default AllGridWrap;
+export default AllFilterWrap;

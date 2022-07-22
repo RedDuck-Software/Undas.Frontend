@@ -116,7 +116,7 @@ const Sale: React.FC = () => {
       priceForSale.toString(),
       "ether",
     );
-      
+
     const tx = await MarketplaceContract.bidExternal(
       NFT_ADDRESS,
       tokenId,

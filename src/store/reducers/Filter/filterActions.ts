@@ -1,5 +1,10 @@
 import { Filter } from "./types";
 
+export const newAction = (newNfts: boolean) => ({
+    type: Filter.new,
+    payload: newNfts
+})
+
 export const rentAction = (stacking: boolean) => ({
     type: Filter.staking,
     payload: stacking,
@@ -13,6 +18,11 @@ export const buyAction = (buying: boolean) => ({
 export const hasOffersAction = (hasOffers: boolean) => ({
     type: Filter.hasOffers,
     payload: hasOffers,
+})
+
+export const setPriceAction = (price: {min: string | number | undefined, max: string | number | undefined}) => ({
+    type: Filter.setPrice,
+    payload: price 
 })
 
 export const addSelectedStatus = (statusName: string) => {

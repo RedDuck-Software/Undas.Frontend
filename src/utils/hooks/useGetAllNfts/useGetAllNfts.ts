@@ -6,6 +6,7 @@ import { useGetRentingNfts } from "../useGetRentingNfts";
 
 export const useGetAllNfts = (
   statusFilter?: {
+    newNfts: boolean;
     buying: boolean;
     stacking: boolean;
     hasOffers: boolean;
@@ -14,10 +15,9 @@ export const useGetAllNfts = (
   isCategories?: boolean,
 ) => {
   const [filteredNfts, setFilteredNfts] = useState<any>([]);
-  // pass hasOffers
   const { listings, listingsError, listingsLoading } = useGetListingNfts();
-  // pass hasOffers
   const { rentings, rentingsError, rentingsLoading } = useGetRentingNfts();
+  // to do: pass hasOffers
   const { mints, mintsError, mintsLoading } = useGetMintedNfts();
 
   const getFilteredNfts = (
@@ -102,7 +102,10 @@ export const useGetAllNfts = (
   ]);
 
   return {
-    nfts: filteredNfts,
+    nfts:
+      statusFilter && statusFilter.newNfts
+        ? filteredNfts.slice(-50)
+        : filteredNfts,
     nftsLoading: listingsLoading || mintsLoading || rentingsLoading,
     nftsError: listingsError || mintsError || rentingsError,
   };
