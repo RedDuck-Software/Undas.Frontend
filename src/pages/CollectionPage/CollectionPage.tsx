@@ -15,6 +15,8 @@ import {
   ContainerCollection,
   ContainerNFT,
   MyWrapper,
+  CollectionDescript,
+  DescriptBtn
 } from "./CollectionPage.styles";
 import { PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
@@ -76,6 +78,8 @@ const CollectionPage: React.FC = () => {
     getListingsData();
   }, [connector, fetching]);
 
+  const [show, setShow] = useState(false);
+
   const getTokenData = async () => {
     if (fetching) return;
     const collectionItem: CommonProps[] = [];
@@ -117,7 +121,6 @@ const CollectionPage: React.FC = () => {
                   <CollectionCard
                     name={data.collection.collectionName}
                     creator={data.collection.owner}
-                    description={data.collection.collectionInfo}
                     logo={data.collection.collectionUrl}
                   />
                   <InfoBox>
@@ -166,21 +169,8 @@ const CollectionPage: React.FC = () => {
                         </MyWrapper>
                       </InfoElement>
                     </Info>
-                    {/* <AddToFav ref={target} onClick={() => setShow(!show)}>
-                      Make a Complaint
-                    </AddToFav>
-                    <Overlay
-                      target={target.current}
-                      show={show}
-                      placement="bottom"
-                    >
-                      {
-                        <ContainerPopUp>
-                          <InputTextArea placeholder="Comment"></InputTextArea>
-                          <SendButton>Send</SendButton>
-                        </ContainerPopUp>
-                      }
-                    </Overlay> */}
+                    <CollectionDescript opacity={show}>{data.collection.collectionInfo}</CollectionDescript>
+                    <DescriptBtn onClick={() => setShow(true)}>Show more</DescriptBtn>
                   </InfoBox>
                 </HeadWrapper>
                 <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">

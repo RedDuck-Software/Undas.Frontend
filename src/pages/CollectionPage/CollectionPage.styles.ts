@@ -17,18 +17,50 @@ export const Banner = styled.div<IBanner>`
     height: 60px;
   }
 `;
+export const HeadWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    display: block;
+    margin-top: 50px;
+  }
+`;
+
+export const InfoBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 740px;
+  flex-wrap: wrap;
+  margin-right: auto;
+  @media (max-width: 1200px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+`;
 export const Info = styled.ul`
   display: flex;
   border-radius: 0 0 20px 20px;
-  box-shadow: inset 0px 0px 3px rgba(135, 61, 193, 0.25);
   background-color: #fff;
   overflow: hidden;
   max-height: 80px;
-  flex-wrap: wrap;
+  margin-left: 20%;
+  @media (max-width: 1200px) {
+    margin: 0 auto
+  }
   @media (max-width: 576px) {
     max-height: unset;
+    flex-wrap: wrap;
+    max-width: 90%;
   }
 `;
+
 export const InfoElement = styled.li`
   padding: 16px 26px;
   display: flex;
@@ -55,6 +87,41 @@ export const InfoElement = styled.li`
     }
   }
 `;
+export const CollectionDescript = styled.div<{ opacity?: boolean }>`
+  height: ${({ opacity }) => (opacity ? "auto" : "70px")};
+  z-index: ${({ opacity }) => (opacity ? 4 : -100)};
+  position: ${({ opacity }) => (opacity ? "absolute" : "relative")};
+  transition: all 0.5s;
+  max-width: 740px;
+  overflow: hidden;
+  top: ${({ opacity }) => (opacity ? "90px" : "0")};
+  left: 0;
+  background-color: ${({ opacity }) => (opacity ? "#fff" : "transparent")};
+  padding: ${({ opacity }) => (opacity ? "0 15px 15px 15px" : "0")};
+  border-radius: 10px;
+  &:after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(180deg,hsla(0,0%,100%,0),#fff);
+    content: "";
+    display: ${({ opacity }) => (opacity ? "none" : "block")};
+  }
+  @media (max-width: 1200px) {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+`;
+export const DescriptBtn = styled.button`
+  border: none;
+  outline: none;
+  color: #873dc1;
+  background: transparent;
+  margin-top: -20px;
+`;
 export const Amount = styled.span`
   font-size: 18px;
   line-height: 22px;
@@ -65,38 +132,10 @@ export const Amount = styled.span`
   }
 `;
 
-export const InfoBox = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 740px;
-  flex-wrap: wrap;
-  margin-right: auto;
-  @media (max-width: 1200px) {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: max-content;
-  }
-`;
-
 export const SelectedFiltersCollection = styled.div`
   width: 100%;
   margin-top: 15px;
   margin-bottom: 20px;
-`;
-export const DispS = styled.div`
-  min-width: 30px;
-  max-width: 30px;
-  height: auto;
-  background: rgba(251, 245, 255, 0.7);
-  box-shadow: inset 0 0 3px rgb(124 124 124 / 50%);
-  margin-right: 15px;
-  overflow: hidden;
-  position: relative;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 export const FilterButton = styled.div`
   height: 36px;
@@ -130,17 +169,7 @@ export const FilterText = styled.span`
     padding-right: 5px;
   }
 `;
-export const HeadWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 
-  @media (max-width: 1200px) {
-    display: block;
-    margin-top: 50px;
-  }
-`;
 export const TextInfo = styled.span`
   font-family: "Montserrat";
   font-style: normal;
@@ -167,3 +196,4 @@ export const MyWrapper = styled.div`
   gap: 5px;
   align-self: center;
 `;
+
