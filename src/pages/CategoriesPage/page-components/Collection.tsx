@@ -24,8 +24,8 @@ import { Verified } from "../imports";
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
-  collectionFeatureUrl?: string;
-  collectionBannerUrl?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -101,11 +101,11 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
-
+          console.log(i)
         return (
           <CollectionCard key={i.id} to={`/collection/${i.id}`}>
             <CollectionBackground
-              src={i.collectionFeatureUrl}
+              src={i.collectionFeatureImg}
               alt="collection-bg"
             />
             <AuthorWrap>
