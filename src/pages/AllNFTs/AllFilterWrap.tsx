@@ -161,7 +161,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
         collectionCategory: collection.collectonCategory,
       });
     });
-    console.log("selectedCategoryCollections", selectedCategoryCollections);
+
     return selectedCategoryCollections;
   };
 
