@@ -1,7 +1,7 @@
 import { gql } from "urql";
 
 export const GET_MINTED_NFTS = gql`
-  {
+  query getMintedNfts {
     tokens(where: { price: null, colloteral: null, premiumWei: null }) {
       id
       name
@@ -9,6 +9,7 @@ export const GET_MINTED_NFTS = gql`
       collectionName
       collectionId
       tokenAdress
+      creator
     }
   }
 `;

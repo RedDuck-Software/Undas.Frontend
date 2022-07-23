@@ -106,7 +106,6 @@ const NewNFT: React.FC = () => {
           1700: {
             slidesPerView: 4,
             spaceBetween: 3,
-            
           },
         }}
         className="rent-slider"
@@ -122,7 +121,6 @@ const NewNFT: React.FC = () => {
           depth: 100,
           modifier: 1,
           slideShadows: false,
-          
         }}
       >
         {list?.map((item) => {
@@ -145,7 +143,11 @@ const NewNFT: React.FC = () => {
                   );
                 }}
               >
-                <NFTCardHome uri={item.URI} name={item.name} collectionName={item.collectionName} />
+                <NFTCardHome
+                  uri={item.URI}
+                  name={item.name}
+                  collectionName={item.collectionName}
+                />
               </SwiperSlide>
             </>
           );

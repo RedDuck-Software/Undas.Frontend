@@ -92,12 +92,12 @@ const Sale: React.FC = () => {
   const nameFromProps = state.state.state.name;
   const tokenAddress = state.state.state.tokenAddress;
   const tokenId = state.state.state.tokenId;
-  const collectionName = state.state.state.collectionName
+  const collectionName = state.state.state.collectionName;
 
   async function sellToken() {
     if (!connector) return;
     if (tokenId == undefined && tokenId == null) return;
-    if(!account) return;
+    if (!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -121,12 +121,11 @@ const Sale: React.FC = () => {
       ).wait();
     }
 
-
     const formattedPrice = ethers.utils.parseUnits(
       priceForSale.toString(),
       "ether",
     );
-    
+
     const tx = await MarketplaceContract.bidExternal(
       tokenAddress,
       tokenId,
@@ -148,8 +147,8 @@ const Sale: React.FC = () => {
   async function stakeToken() {
     if (!connector) return;
     if (tokenId == undefined && tokenId == null) return;
-    if(!account) return;
-    
+    if (!account) return;
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -566,7 +565,13 @@ const Sale: React.FC = () => {
                 <ItemAmount>NFT item</ItemAmount>
               </NameRow>
               <NFTInfoContainer>
-                {URI && <NFTCard uri={URI} name={nameFromProps} collectionName={collectionName}/>}
+                {URI && (
+                  <NFTCard
+                    uri={URI}
+                    name={nameFromProps}
+                    collectionName={collectionName}
+                  />
+                )}
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>

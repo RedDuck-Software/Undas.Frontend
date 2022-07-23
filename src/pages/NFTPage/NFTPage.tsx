@@ -124,8 +124,9 @@ const NFTPage: React.FC = () => {
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
-  const collectionName = state.state.collectionName
-  const collectionId = state.state.collectionId
+  const collectionName = state.state.collectionName;
+  const collectionId = state.state.collectionId;
+
   const getOwner = async () => {
     if (!connector) {
       return;
@@ -204,11 +205,11 @@ const NFTPage: React.FC = () => {
       setShowRent(false);
     }
   }
-  
+
   const createdMultipleQuery = () => {
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
-      variables: { collectionId: +collectionId,tokenId:tokenId },
+      variables: { collectionId: +collectionId, tokenId: tokenId },
     });
     const offersItems = useQuery({
       query: GET_NFT_OFFERS,
@@ -221,7 +222,7 @@ const NFTPage: React.FC = () => {
     });
     return [collectionItems, offersItems, itemActivity];
   };
- 
+
   const [[collectionItemResult], [offersItems], [itemActivity]] =
     createdMultipleQuery();
 
@@ -262,7 +263,7 @@ const NFTPage: React.FC = () => {
 
       setLoading(false);
     }
-    if(data){
+    if (data) {
       if (data.tokens[0]) {
         
         setDescription(data.tokens[0].description);

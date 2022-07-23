@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,6 +21,8 @@ import {
 import { ViewMode } from "../../types/viewMode";
 import { useGetAllNfts } from "../../utils/hooks/useGetAllNfts";
 import { priceFilterBetween } from "../../utils/priceFilter";
+import CreatedCollections from "../AccountPage/page-components/Created/CreatedCollections";
+import { CreatedType } from "../AccountPage/page-components/Created/types";
 import CollectionGridWrap from "../CollectionPage/page-components/CollectionGridWrap";
 
 interface CommonProps {
@@ -47,15 +50,20 @@ interface CommonListProps extends CommonProps {
 }
 
 interface IAllFilterWrap {
+  accountPage?: boolean;
+  createdType?: CreatedType;
   getResults?: any;
   priceFilterOrder?: string;
   viewMode: ViewMode;
 }
 
 const AllFilterWrap: React.FC<IAllFilterWrap> = ({
-  /* priceFilterOrder, */ getResults,
+  /* priceFilterOrder, */ accountPage,
+  getResults,
   viewMode,
+  createdType,
 }) => {
+  const { account } = useWeb3React();
   const searchFilter = useSelector(useSearch);
   const newFilter = useSelector(useNew);
   const buyingFilter = useSelector(useBuy);
@@ -73,6 +81,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     },
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
+    accountPage,
+    account,
   );
   const [loading, setLoading] = useState(false);
 
@@ -86,6 +96,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       buyingFilter.buying,
       rentingFilter.stacking,
       hasOfferFilter.hasOffers,
+      accountPage ? accountPage : false,
+      account,
     );
     const mergedCollections: any[] = [];
     for (const key of Object.keys(tokens)) {
@@ -113,12 +125,76 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     return selectedCollectionTokens;
   };
 
+  const getCreatedCollections = async () => {
+    const query = `{
+      collections(where: { owner: "${account}" }) {
+        collectionName
+        owner
+        id
+        collectionInfo
+        collectionUrl
+        collectionFeatureUrl
+        collectionBannerUrl
+        collectionCategory
+      }
+    }`;
+
+    const collections = await fetchCreatedCollections(
+      selectedCategoryFilter,
+      account,
+      query,
+    );
+
+    const mergedCollections: any[] = [];
+    for (const key of Object.keys(collections)) {
+      const value = collections[key];
+      mergedCollections.push(...value);
+    }
+
+    const selectedCategoryCollections: any = [];
+
+    mergedCollections.map((collection: any) => {
+      selectedCategoryCollections.push({
+        id: collection.id,
+        collectionName: collection.collectionName,
+        collectionUrl: collection.collectionUrl,
+        collectionFeatureUrl: collection.collectionFeatureUrl,
+        owner: collection.owner,
+        collectionInfo: collection.collectionInfo,
+        collectionCategory: collection.collectonCategory,
+      });
+    });
+
+    return selectedCategoryCollections;
+  };
+
+  const getCreatedCollectionsData = async () => {
+    if (accountPage) {
+      let response;
+
+      if (selectedCategoryFilter.length == 0) {
+        response = await getCreatedCollections();
+        if (response) {
+          setCommonList(response);
+        }
+        return;
+      }
+
+      response = await getCreatedCollections();
+      if (response) {
+        setCommonList(response);
+      }
+    }
+  };
+
   const getCategoryTokens = async () => {
     const tokens = await fetchCategoryTokens(
       selectedCategoryFilter,
       buyingFilter.buying,
       rentingFilter.stacking,
       hasOfferFilter.hasOffers,
+      accountPage ? accountPage : false,
+      account,
     );
 
     const mergedCategories: any[] = [];
@@ -272,7 +348,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       setLoading(false);
     }, 800);
 
-    if (selectedCategoryFilter.length == 0) {
+    if (selectedCategoryFilter.length == 0 && !accountPage) {
       setCommonList(nfts);
       return;
     }
@@ -284,6 +360,16 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     rentingFilter.stacking,
     hasOfferFilter.hasOffers,
   ]);
+
+  useEffect(() => {
+    if (accountPage) {
+      if (createdType == CreatedType.nft) {
+        setCommonList(nfts);
+        return;
+      }
+      getCreatedCollectionsData();
+    }
+  }, [selectedCategoryFilter, createdType]);
 
   useEffect(() => {
     setLoading(true);
@@ -346,6 +432,28 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />
     </ClipLoaderWrapper>
+  ) : accountPage ? (
+    <>
+      {createdType == CreatedType.nft ? (
+        <>
+          {commonList && commonList.length > 0 ? (
+            <>
+              {viewMode === ViewMode.grid ? (
+                <CollectionGridWrap itemList={commonList} />
+              ) : (
+                <NFTListItem itemList={commonList} />
+              )}
+            </>
+          ) : (
+            "No items found"
+          )}
+        </>
+      ) : (
+        <>
+          <CreatedCollections createdCollections={commonList} />
+        </>
+      )}
+    </>
   ) : (
     <>
       {commonList && commonList.length > 0 ? (
@@ -371,6 +479,8 @@ const collectionsTokens = (
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) => {
   const query = `{${selectedCollectionFilter.map(
     (item: { id: number | string }) => {
@@ -379,6 +489,7 @@ const collectionsTokens = (
         ${buying ? ", price_not: null" : ""}
         ${stacking ? ", premiumWei_not: null" : ""}
         ${hasOffers ? ", hasOffer: true" : ""}
+        ${accountPage ? `, creator: "${account}"` : ""}
       }) {
           id
           name
@@ -401,6 +512,8 @@ const categoryTokens = (
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) => {
   const query = `{${selectedCategoryFilter.map(
     (item: { categoryName: string }) => {
@@ -411,6 +524,7 @@ const categoryTokens = (
         ${buying ? ", price_not: null" : ""}
         ${stacking ? ", premiumWei_not: null" : ""}
         ${hasOffers ? ", hasOffer: true" : ""}
+        ${accountPage ? `, creator: "${account}"` : ""}
       }) {
           id
           name
@@ -428,6 +542,31 @@ const categoryTokens = (
   return query;
 };
 
+const createdCollections = (selectedCategoryFilter: [], account: any) => {
+  const query = `{${selectedCategoryFilter.map(
+    (item: { categoryName: string }) => {
+      return `      
+      collection_${
+        item.categoryName
+      }: collections(where: { owner: "${account}", collectionCategory: ${item.categoryName.toUpperCase()}
+      }) {
+          collectionName
+          owner
+          id
+          collectionInfo
+          collectionUrl
+          collectionFeatureUrl
+          collectionBannerUrl
+          collectionCategory
+        }
+      `;
+    },
+  )}
+  }`;
+
+  return query;
+};
+
 const client = createClient({
   url: APIURL,
 });
@@ -437,12 +576,16 @@ async function fetchCollectionTokens(
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) {
   const customQuery = collectionsTokens(
     selectedCollections,
     buying,
     stacking,
     hasOffers,
+    accountPage,
+    account,
   );
 
   const data = await client.query(customQuery).toPromise();
@@ -454,15 +597,31 @@ async function fetchCategoryTokens(
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) {
   const customQuery = categoryTokens(
     selectedCategoryFilter,
     buying,
     stacking,
     hasOffers,
+    accountPage,
+    account,
   );
 
   const data = await client.query(customQuery).toPromise();
+  return data.data;
+}
+
+async function fetchCreatedCollections(
+  selectedCategoryFilter: [],
+  account: any,
+  query?: string,
+) {
+  const customQuery = createdCollections(selectedCategoryFilter, account);
+  const data = await client
+    .query(selectedCategoryFilter.length == 0 && query ? query : customQuery)
+    .toPromise();
   return data.data;
 }
 

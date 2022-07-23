@@ -12,11 +12,11 @@ import {
 // import { Platform } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 
-const NFTCardHome: React.FC<{ uri: string; name: string, collectionName:string }> = ({
-  uri,
-  name,
-  collectionName
-}) => {
+const NFTCardHome: React.FC<{
+  uri: string;
+  name: string;
+  collectionName: string;
+}> = ({ uri, name, collectionName }) => {
   return (
     <NFTWrap>
       <Image src={uri} alt="nft-image" />

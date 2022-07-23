@@ -3,7 +3,7 @@ import { useQuery } from "urql";
 
 import { GET_RENTING_NFTS } from "./query";
 
-export const useGetRentingNfts = () => {
+export const useGetRentingNfts = (accountPage?: boolean, account?: any) => {
   const [result] = useQuery({
     query: GET_RENTING_NFTS,
   });
@@ -25,9 +25,17 @@ export const useGetRentingNfts = () => {
         colloteralWei: nft.colloteralWei,
         tokenAddress: nft.token,
         collectionName: nft.collectionName,
+        seller: nft.seller,
         collectionId:nft.collectionId
       });
     });
+
+    if (accountPage) {
+      const result = stakingNfts.filter(
+        (item: { seller: string }) => item.seller == account,
+      );
+      return result;
+    }
 
     return stakingNfts;
   };

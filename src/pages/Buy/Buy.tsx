@@ -56,9 +56,9 @@ const Rent: React.FC = () => {
   const { connector } = useContext(Context);
   const state: any = useLocation();
   const navigate = useNavigate();
-  const uri = state.state.state.URI
-  const name = state.state.state.name
-  const collectionName = state.state.state.collectionName
+  const uri = state.state.state.URI;
+  const name = state.state.state.name;
+  const collectionName = state.state.state.collectionName;
 
   async function buyToken(tokenId: number, priceInNum?: number) {
     if (!connector) {
@@ -118,7 +118,9 @@ const Rent: React.FC = () => {
                   <ContentItemPriceEth>
                     {state.state.state.price}
                   </ContentItemPriceEth>
-                  <ContentItemPriceUsd>{state.state.state.price}</ContentItemPriceUsd>
+                  <ContentItemPriceUsd>
+                    {state.state.state.price}
+                  </ContentItemPriceUsd>
                 </ContentItemPriceWrap>
               </ContentItem>
               <ContentItem className="wrap">

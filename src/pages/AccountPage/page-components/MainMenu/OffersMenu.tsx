@@ -38,9 +38,7 @@ import {
   UndasGeneralNFT__factory,
 } from "../../../../typechain";
 import { TransactionError } from "../../../../types/global";
-import {
-  MARKETPLACE_ADDRESS,
-} from "../../../../utils/addressHelpers";
+import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
@@ -240,9 +238,12 @@ const OffersMenu = () => {
     }
   };
 
-  const acceptOfferForNotListedToken = async (offerId: any,tokenAddress:any) => {
+  const acceptOfferForNotListedToken = async (
+    offerId: any,
+    tokenAddress: any,
+  ) => {
     if (!connector) return;
-    if(!account) return;
+    if (!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -256,17 +257,20 @@ const OffersMenu = () => {
 
     //approve to market
     try {
-      const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
+      const NftContract = UndasGeneralNFT__factory.connect(
+        tokenAddress,
+        signer,
+      );
 
       const isApprovedForAll = await NftContract.isApprovedForAll(
-      account,
-      MARKETPLACE_ADDRESS,
-    );
-    if (!isApprovedForAll) {
-      await (
-        await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
-      ).wait();
-    }
+        account,
+        MARKETPLACE_ADDRESS,
+      );
+      if (!isApprovedForAll) {
+        await (
+          await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+        ).wait();
+      }
     } catch (error: any) {
       setTransactionError(error);
       setShowTransactionError(true);
@@ -873,7 +877,10 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <AcceptBTN
                             onClick={() =>
-                              acceptOfferForNotListedToken(i.offerId,"0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d")
+                              acceptOfferForNotListedToken(
+                                i.offerId,
+                                "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+                              )
                             }
                           >
                             Accept
