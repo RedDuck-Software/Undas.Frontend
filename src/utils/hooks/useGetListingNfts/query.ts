@@ -14,6 +14,7 @@ export const GET_LISTING_NFTS = gql`
       tokenName
       collectionName
       seller
+      collectionId
     }
   }
 `;

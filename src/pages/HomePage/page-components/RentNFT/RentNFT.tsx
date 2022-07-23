@@ -36,17 +36,13 @@ const RentNFT: React.FC = () => {
     name: string;
     id: number;
     tokenAddress: string;
-    collectionName: string;
+    collectionName:string;
+    collectionId:string;
   }[] = [];
-  const [list, setList] = useState<
-    {
-      URI: string;
-      name: string;
-      id: number;
-      tokenAddress: string;
-      collectionName: string;
-    }[]
-  >();
+  const [list, setList] =
+    useState<
+      { URI: string; name: string; id: number; tokenAddress: string,collectionName:string;collectionId:string; }[]
+    >();
 
   const navigate = useNavigate();
 
@@ -55,15 +51,17 @@ const RentNFT: React.FC = () => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        //const price = nft.premiumWei;
-        const id = nft.tokenId;
-        const name = nft.tokenName;
-        const URI = nft.tokenURI;
-        const tokenAddress = nft.token;
-        const collectionName = nft.collectionName;
-
-        //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        items.push({ URI, name, id, tokenAddress, collectionName });
+        if(nft.collectionId){
+          //const price = nft.premiumWei;
+          const id = nft.tokenId;
+          const name = nft.tokenName;
+          const URI = nft.tokenURI;
+          const tokenAddress = nft.token;
+          const collectionName = nft.collectionName
+          const collectionId = nft.collectionId
+          //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+          items.push({ URI, name, id, tokenAddress,collectionName,collectionId });
+       }
       }
     });
     return items;
@@ -142,6 +140,8 @@ const RentNFT: React.FC = () => {
                       state: {
                         tokenId: item.id,
                         tokenAddress: item.tokenAddress,
+                        collectionName:item.collectionName,
+                        collectionId:item.collectionId
                       },
                     },
                   );
@@ -180,6 +180,7 @@ const tokensStakingQuery = `
     premiumWei
     deadlineUTC
     collectionName
+    collectionId
   }
 }
  `;

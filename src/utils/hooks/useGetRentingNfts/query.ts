@@ -16,6 +16,7 @@ export const GET_RENTING_NFTS = gql`
       deadlineUTC
       collectionName
       seller
+      collectionId
     }
   }
 `;

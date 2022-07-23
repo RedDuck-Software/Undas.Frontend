@@ -15,6 +15,7 @@ export const useGetRentingNfts = (accountPage?: boolean, account?: any) => {
     const stakingNfts: any = [];
 
     data.stakingListings.map((nft: any) => {
+
       stakingNfts.push({
         id: nft.tokenId,
         name: nft.tokenName,
@@ -25,6 +26,7 @@ export const useGetRentingNfts = (accountPage?: boolean, account?: any) => {
         tokenAddress: nft.token,
         collectionName: nft.collectionName,
         seller: nft.seller,
+        collectionId:nft.collectionId
       });
     });
 

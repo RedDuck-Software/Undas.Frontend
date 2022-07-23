@@ -78,6 +78,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
 
   const result = offersItemsList;
   const { data, fetching } = result;
+  
   useEffect(() => {
     if (account) {
       setAccount(account);
@@ -104,6 +105,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
   return (
     <NFTWrap
       onClick={(e) => {
+        
         navigate(
           `/nft/buy/tokenAddress=${props.tokenAddress}&id=${props.tokenId}`,
           { state: { ...props } },
