@@ -199,6 +199,7 @@ const NFTPage: React.FC = () => {
 
   async function getShowRent() {
     if (stakingId && status == "ACTIVE") {
+      console.log('da')
       setShowRent(true);
     } else {
       setShowRent(false);
@@ -271,6 +272,8 @@ const NFTPage: React.FC = () => {
     }
     setLoading(false);
   };
+  console.log(colloteral)
+
   useEffect(() => {
     if (fetching) return;
     setItemsForCarousel(data);
@@ -493,7 +496,7 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                    ) : !state.state.premium ? (
+                    ) : !isOwner   ? (
                       <>
                         <RentElement h="76px">
                           <NotListed>Not listed for rent yet</NotListed>
