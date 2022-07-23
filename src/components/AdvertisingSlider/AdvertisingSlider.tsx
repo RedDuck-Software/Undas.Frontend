@@ -28,7 +28,6 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
   collectionId,
 }) => {
   const href = `/collection/${collectionId}`;
-  console.log('collectionId',collectionItems)
   return (
     <Wrap>
       <SliderTitle>More from this collection</SliderTitle>
