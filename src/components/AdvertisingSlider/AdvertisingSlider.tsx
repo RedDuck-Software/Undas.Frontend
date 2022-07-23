@@ -28,6 +28,7 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
   collectionId,
 }) => {
   const href = `/collection/${collectionId}`;
+  console.log('collectionId',collectionItems)
   return (
     <Wrap>
       <SliderTitle>More from this collection</SliderTitle>
@@ -72,6 +73,8 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
                   tokenAddress={i.tokenAdress}
                   tokenId={i.id}
                   owner={i.creator}
+                  collectionId={i.collectionId}
+                  collectionName ={i.collectionName}
                 ></NFTCardForCarousel>
               </SwiperSlide>
             );

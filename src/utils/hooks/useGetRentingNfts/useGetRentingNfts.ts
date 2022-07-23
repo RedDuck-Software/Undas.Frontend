@@ -15,7 +15,6 @@ export const useGetRentingNfts = () => {
     const stakingNfts: any = [];
 
     data.stakingListings.map((nft: any) => {
-      console.log('stakings',nft)
 
       stakingNfts.push({
         id: nft.tokenId,

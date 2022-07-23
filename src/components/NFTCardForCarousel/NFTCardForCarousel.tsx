@@ -18,7 +18,9 @@ const NFTCardForCarousel: React.FC<{
   tokenAddress: string;
   tokenId: string;
   owner: string;
-}> = ({ uri, name, tokenAddress, tokenId, owner }) => {
+  collectionId?:string;
+  collectionName?:string;
+}> = ({ uri, name, tokenAddress, tokenId, owner,collectionId,collectionName }) => {
   const navigate = useNavigate();
   return (
     <NFTWrap
@@ -31,6 +33,8 @@ const NFTCardForCarousel: React.FC<{
             URI: uri,
             name: name,
             tokenOwner: owner,
+            collectionId:collectionId,
+            collectionName:collectionName
           },
         });
       }}

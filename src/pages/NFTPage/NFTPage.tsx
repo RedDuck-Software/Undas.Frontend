@@ -116,7 +116,7 @@ const NFTPage: React.FC = () => {
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
   const [itemHistory, setItemHistory] = useState<any>();
-
+  const [collectionId2,setColId] = useState<any>()
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
@@ -259,9 +259,12 @@ const NFTPage: React.FC = () => {
 
       setLoading(false);
     }
+    console.log(data)
     if(data){
       if (data.tokens[0]) {
-          // console.log(data.tokens[0])
+        if(!collectionId){
+          setColId(data.tokens[0].collectionId)
+        }
         setDescription(data.tokens[0].description);
         setSeller(data.tokens[0].owner);
       }
@@ -291,7 +294,7 @@ const NFTPage: React.FC = () => {
     offersItems.fetching,
     itemActivity.fetching,
   ]);
-
+  console.log(collectionId)
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
   const tokensQuery = `
@@ -623,7 +626,7 @@ const NFTPage: React.FC = () => {
             {itemsForCarousel ? (
               <AdvertisingSlider
                 collectionItems={itemsForCarousel}
-                collectionId={+collectionId}
+                collectionId={+collectionId?collectionId:collectionId2}
               />
             ) : (
               <></>
