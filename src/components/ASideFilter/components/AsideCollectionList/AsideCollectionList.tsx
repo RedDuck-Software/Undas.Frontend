@@ -4,6 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { AsideCollectionItem } from "./AsideCollectionItem";
 
 import { useGetCollections } from "../../../../utils";
+import { IAction, IState } from "../../ASideFilter";
 import {
   HolderElement,
   ElementText,
@@ -15,19 +16,16 @@ import {
   ClipLoaderWrapper,
 } from "../../ASideFilter.styles";
 import { CollectionsIco } from "../../imports";
+import { AsideSection } from "../../types";
 
 interface AsideCollectionListProps {
-  activeMenu: { collection: boolean };
-  setActiveMenu: React.Dispatch<React.SetStateAction<{ collection: boolean }>>;
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: React.Dispatch<IAction>;
+  state: IState;
 }
 
 export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
-  activeMenu,
-  setActiveMenu,
-  active,
-  setActive,
+  dispatch,
+  state,
 }) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchCollectionPattern, setSearchCollectionPattern] =
@@ -51,23 +49,26 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
     <>
       <HolderElement
         onClick={() => {
-          if (!activeMenu.collection) {
-            setActiveMenu({ collection: true });
-            !active && setActive(true);
-          } else setActiveMenu({ collection: false });
+          if (!state.collection) {
+            dispatch({ type: AsideSection.menu, payload: true });
+          }
+          dispatch({
+            type: AsideSection.collections,
+            payload: !state.collection,
+          });
         }}
-        isActive={activeMenu.collection}
+        isActive={state.collection}
       >
         <CollectionsIco />
         <ElementText>Collections</ElementText>
         <AccordionArrow
-          className={(activeMenu.collection && "active-collection") || ""}
+          className={(state.collection && "active-collection") || ""}
         />
       </HolderElement>
       <AccordionMenu
         backgroundColor="rgba(251, 245, 255, 0.7)"
         mh={`${126 + collections.length * 63}px`} // calculate max-height because of accordion animation bug
-        className={(activeMenu.collection && "active-collection") || ""}
+        className={(state.collection && "active-collection") || ""}
       >
         {collectionsError ? (
           <>

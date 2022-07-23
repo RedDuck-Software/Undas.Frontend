@@ -14,6 +14,7 @@ import {
   useNew,
   usePriceFilter,
   useRent,
+  useSearch,
   useSelectedCategories,
   useSelectedCollections,
 } from "../../store/reducers/Filter/helpers";
@@ -58,6 +59,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
   viewMode,
 }) => {
   const { account } = useWeb3React();
+  const searchFilter = useSelector(useSearch);
   const newFilter = useSelector(useNew);
   const buyingFilter = useSelector(useBuy);
   const rentingFilter = useSelector(useRent);
@@ -290,6 +292,24 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       setLoading(false);
     }, 800);
 
+    if (searchFilter.length == 0) {
+      setCommonList(nfts);
+      return;
+    }
+
+    const result = commonList.filter((item: { name: string }) => {
+      return item.name.toLowerCase().includes(searchFilter.toLowerCase());
+    });
+
+    setCommonList(result);
+  }, [searchFilter]);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
     if (!priceFilter) return;
     if (!priceFilter.min && !priceFilter.max) return;
 
@@ -316,8 +336,13 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
   }, [priceFilter]);
 
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
     if (commonList) getResults(commonList.length);
-  }, [commonList]);
+  }, [commonList, viewMode]);
+
   return loading ? (
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />

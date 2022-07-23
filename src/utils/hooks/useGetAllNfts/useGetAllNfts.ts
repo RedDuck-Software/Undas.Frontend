@@ -101,16 +101,20 @@ export const useGetAllNfts = (
     listingsLoading,
     rentingsLoading,
     mintsLoading,
+    statusFilter?.newNfts,
     statusFilter?.buying,
     statusFilter?.stacking,
     statusFilter?.hasOffers,
   ]);
 
+  useEffect(() => {
+    if (statusFilter?.newNfts) {
+      setFilteredNfts(filteredNfts.slice(-50));
+    }
+  }, [statusFilter?.newNfts]);
+
   return {
-    nfts:
-      statusFilter && statusFilter.newNfts
-        ? filteredNfts.slice(-50)
-        : filteredNfts,
+    nfts: statusFilter && filteredNfts,
     nftsLoading: listingsLoading || mintsLoading || rentingsLoading,
     nftsError: listingsError || mintsError || rentingsError,
   };
