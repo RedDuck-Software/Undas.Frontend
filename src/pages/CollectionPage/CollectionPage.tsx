@@ -55,7 +55,7 @@ interface CommonProps {
   collectionName?: string;
   collectionFeatureUrl?: string;
   priceInNum?: number;
-  colloteralWei?:number;
+  colloteralWei?: number;
 }
 
 const CollectionPage: React.FC = () => {
@@ -95,8 +95,8 @@ const CollectionPage: React.FC = () => {
         collectionId: i.collectionId.toString(),
         tokenAddress: "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
         collectionName: i.collectionName,
-        priceInNum: i.price?+ethers.utils.formatEther(i.price):undefined,
-        colloteralWei:i.colloteral
+        priceInNum: i.price ? +ethers.utils.formatEther(i.price) : undefined,
+        colloteralWei: i.colloteral,
       };
       collectionItem.push(item);
     });

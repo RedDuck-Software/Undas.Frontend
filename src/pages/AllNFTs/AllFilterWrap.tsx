@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -45,15 +46,18 @@ interface CommonListProps extends CommonProps {
 }
 
 interface IAllFilterWrap {
+  accountPage?: boolean;
   getResults?: any;
   priceFilterOrder?: string;
   viewMode: ViewMode;
 }
 
 const AllFilterWrap: React.FC<IAllFilterWrap> = ({
-  /* priceFilterOrder, */ getResults,
+  /* priceFilterOrder, */ accountPage,
+  getResults,
   viewMode,
 }) => {
+  const { account } = useWeb3React();
   const newFilter = useSelector(useNew);
   const buyingFilter = useSelector(useBuy);
   const rentingFilter = useSelector(useRent);
@@ -70,9 +74,10 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     },
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
+    accountPage,
+    account,
   );
 
-  console.log("newFilter", newFilter);
   const [loading, setLoading] = useState(false);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
@@ -83,6 +88,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       buyingFilter.buying,
       rentingFilter.stacking,
       hasOfferFilter.hasOffers,
+      accountPage ? accountPage : false,
+      account,
     );
     const mergedCollections: any[] = [];
     for (const key of Object.keys(tokens)) {
@@ -115,6 +122,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       buyingFilter.buying,
       rentingFilter.stacking,
       hasOfferFilter.hasOffers,
+      accountPage ? accountPage : false,
+      account,
     );
 
     const mergedCategories: any[] = [];
@@ -338,6 +347,8 @@ const collectionsTokens = (
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) => {
   const query = `{${selectedCollectionFilter.map(
     (item: { id: number | string }) => {
@@ -346,6 +357,7 @@ const collectionsTokens = (
         ${buying ? ", price_not: null" : ""}
         ${stacking ? ", premiumWei_not: null" : ""}
         ${hasOffers ? ", hasOffer: true" : ""}
+        ${accountPage ? `, owner: ${account}` : ""}
       }) {
           id
           name
@@ -368,6 +380,8 @@ const categoryTokens = (
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) => {
   const query = `{${selectedCategoryFilter.map(
     (item: { categoryName: string }) => {
@@ -378,6 +392,7 @@ const categoryTokens = (
         ${buying ? ", price_not: null" : ""}
         ${stacking ? ", premiumWei_not: null" : ""}
         ${hasOffers ? ", hasOffer: true" : ""}
+        ${accountPage ? `, owner: ${account}` : ""}
       }) {
           id
           name
@@ -404,12 +419,16 @@ async function fetchCollectionTokens(
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) {
   const customQuery = collectionsTokens(
     selectedCollections,
     buying,
     stacking,
     hasOffers,
+    accountPage,
+    account,
   );
 
   const data = await client.query(customQuery).toPromise();
@@ -421,12 +440,16 @@ async function fetchCategoryTokens(
   buying: boolean,
   stacking: boolean,
   hasOffers: boolean,
+  accountPage: boolean,
+  account: any,
 ) {
   const customQuery = categoryTokens(
     selectedCategoryFilter,
     buying,
     stacking,
     hasOffers,
+    accountPage,
+    account,
   );
 
   const data = await client.query(customQuery).toPromise();

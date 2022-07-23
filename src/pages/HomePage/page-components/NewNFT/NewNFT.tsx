@@ -34,12 +34,17 @@ const NewNFT: React.FC = () => {
     name: string;
     URI: string;
     tokenAddress: string;
-    collectionName:string;
+    collectionName: string;
   }[] = [];
-  const [list, setList] =
-    useState<
-      { id: number; name: string; URI: string; tokenAddress: string,collectionName:string; }[]
-    >();
+  const [list, setList] = useState<
+    {
+      id: number;
+      name: string;
+      URI: string;
+      tokenAddress: string;
+      collectionName: string;
+    }[]
+  >();
 
   const getListings = async () => {
     const tokens = await fetchData();
@@ -52,8 +57,8 @@ const NewNFT: React.FC = () => {
         const URI = nft.tokenURI;
         const tokenAddress = nft.token;
         const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-        const collectionName = nft.collectionName
-        items.push({ priceInNum, id, name, URI, tokenAddress,collectionName });
+        const collectionName = nft.collectionName;
+        items.push({ priceInNum, id, name, URI, tokenAddress, collectionName });
       }
     });
     return items;
@@ -102,7 +107,6 @@ const NewNFT: React.FC = () => {
           1700: {
             slidesPerView: 4,
             spaceBetween: 3,
-            
           },
         }}
         className="rent-slider"
@@ -118,7 +122,6 @@ const NewNFT: React.FC = () => {
           depth: 100,
           modifier: 1,
           slideShadows: false,
-          
         }}
       >
         {list?.map((item) => {
@@ -139,7 +142,11 @@ const NewNFT: React.FC = () => {
                   );
                 }}
               >
-                <NFTCardHome uri={item.URI} name={item.name} collectionName={item.collectionName} />
+                <NFTCardHome
+                  uri={item.URI}
+                  name={item.name}
+                  collectionName={item.collectionName}
+                />
               </SwiperSlide>
             </>
           );

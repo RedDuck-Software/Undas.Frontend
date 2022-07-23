@@ -104,14 +104,16 @@ export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   }
 `;
 
-export const CollectionBannerLabelWrapper = styled(CollectionFeaturedLabelWrapper)`
+export const CollectionBannerLabelWrapper = styled(
+  CollectionFeaturedLabelWrapper,
+)`
   max-width: 100%;
 `;
 
 export const CollectionBannerLabel = styled(CollectionFeaturedLabel)`
   margin-top: 1rem;
   width: 100%;
-  & img{
+  & img {
     object-fit: cover;
   }
 `;

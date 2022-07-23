@@ -12,20 +12,21 @@ import {
   CreatedResultsTotal,
   ClipLoaderWrapper,
 } from "./Created.styles";
-import CreatedCollections from "./CreatedCollections";
+//import CreatedCollections from "./CreatedCollections";
 import { CreatedType } from "./types";
 
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-import { ViewMode } from "../../../../types/viewMode";
+//import { ViewMode } from "../../../../types/viewMode";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
+import AllFilterWrap from "../../../AllNFTs/AllFilterWrap";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
-import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
-import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
+//import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
+//import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import { SmallNumber } from "../../AccountPage.styles";
 import { GET_CREATED_COLLECTIONS, GET_CREATED_NFTS } from "../../query";
 import { CreatedCollectionItemProps, CreatedItemProps } from "../../types";
-import NoData from "../NoData/NoData";
+//import NoData from "../NoData/NoData";
 
 const Created: React.FC = () => {
   const { account } = useWeb3React();
@@ -166,7 +167,13 @@ const Created: React.FC = () => {
         </ClipLoaderWrapper>
       ) : (
         <>
-          {createdNfts.length > 0 || createdCollections.length > 0 ? (
+          <AllFilterWrap
+            getResults={(e: any) => console.log(e)}
+            priceFilterOrder={""}
+            viewMode={viewMode}
+            accountPage
+          />
+          {/* {createdNfts.length > 0 || createdCollections.length > 0 ? (
             <>
               {createdType === CreatedType.nft && (
                 <>
@@ -206,7 +213,7 @@ const Created: React.FC = () => {
             </>
           ) : (
             <NoData />
-          )}
+          )} */}
         </>
       )}
     </CreatedWrap>

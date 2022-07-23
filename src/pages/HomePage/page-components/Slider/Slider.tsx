@@ -1,5 +1,5 @@
 import React from "react";
-import { Autoplay,Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -38,7 +38,7 @@ const Slider: React.FC = () => {
       slidesPerView={1}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
-      modules={[Autoplay,Navigation, Pagination]}
+      modules={[Autoplay, Navigation, Pagination]}
       loop={true}
       navigation={true}
       pagination={true}
@@ -46,7 +46,6 @@ const Slider: React.FC = () => {
         delay: 10000,
         disableOnInteraction: true,
       }}
-      
     >
       <UndasDiv>
         <TextGet>

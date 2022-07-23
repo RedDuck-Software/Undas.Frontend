@@ -55,13 +55,13 @@ const InteractionRent: React.FC = () => {
   const tokenAddress = state.state.tokenAddress;
   async function ReturnNFT(stakingId: number) {
     if (!connector) return;
-    if(!account) return;
+    if (!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
-    
+
     const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
 
     const isApprovedForAll = await NftContract.isApprovedForAll(
@@ -73,7 +73,6 @@ const InteractionRent: React.FC = () => {
         await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
       ).wait();
     }
-
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,

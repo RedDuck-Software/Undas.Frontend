@@ -68,7 +68,7 @@ const Rent: React.FC = () => {
   );
   const premium = state.state.state.premium;
   const stakingId = state.state.state.stakingId;
-  const collectionName = state.state.state.collectionName
+  const collectionName = state.state.state.collectionName;
   // const owner = '23123'
   const navigate = useNavigate();
 
@@ -305,7 +305,11 @@ const Rent: React.FC = () => {
             <RightBlock>
               <ItemAmount>Item</ItemAmount>
               <NFTInfoContainer>
-                <NFTCard uri={URI} name={nameFrom} collectionName={collectionName} />
+                <NFTCard
+                  uri={URI}
+                  name={nameFrom}
+                  collectionName={collectionName}
+                />
               </NFTInfoContainer>
             </RightBlock>
           </ContentWrapper>
