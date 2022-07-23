@@ -121,14 +121,12 @@ const NFTPage: React.FC = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-
   const state: any = useLocation();
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
   const collectionName = state.state.collectionName
   const collectionId = state.state.collectionId
-
   const getOwner = async () => {
     if (!connector) {
       return;
@@ -263,6 +261,7 @@ const NFTPage: React.FC = () => {
     }
     if(data){
       if (data.tokens[0]) {
+          // console.log(data.tokens[0])
         setDescription(data.tokens[0].description);
         setSeller(data.tokens[0].owner);
       }

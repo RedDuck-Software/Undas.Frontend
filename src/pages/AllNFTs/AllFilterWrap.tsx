@@ -28,6 +28,7 @@ interface CommonProps {
   URI: string;
   tokenAddress?: string;
   collectionName?: string;
+  collectionId? :string;
 }
 
 export interface ItemsProps extends CommonProps {
@@ -73,10 +74,11 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     selectedCollectionFilter.length > 0 ? true : false,
     selectedCategoryFilter.length > 0 ? true : false,
   );
-
   const [loading, setLoading] = useState(false);
 
   const [commonList, setCommonList] = useState<CommonListProps[]>([]);
+  
+
 
   const getCollectionsTokens = async () => {
     const tokens = await fetchCollectionTokens(
@@ -91,8 +93,9 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
       mergedCollections.push(...value);
     }
     const selectedCollectionTokens: any = [];
-
+    
     mergedCollections.map((nft: any) => {
+      
       const priceInNum = nft.price
         ? Number(ethers.utils.formatUnits(nft.price, 18))
         : 0;
@@ -126,6 +129,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     const selectedCategoryTokens: any = [];
 
     mergedCategories.map((nft: any) => {
+      
+
       const priceInNum = nft.price
         ? Number(ethers.utils.formatUnits(nft.price, 18))
         : 0;
@@ -145,6 +150,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
 
   async function getCollectionsTokensData() {
     const response = await getCollectionsTokens();
+    
     if (response) {
       if (selectedCategoryFilter.length > 0) {
         const result = new Map(
@@ -159,14 +165,17 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
 
   async function getCategoriesTokensData() {
     const response = await getCategoryTokens();
+    
     if (response) {
       if (selectedCollectionFilter.length > 0) {
         const result = new Map(
           [...commonList, ...response].map((item: any) => [item["name"], item]),
         ).values();
+
         setCommonList(Array.from(result));
         return;
       }
+      
       setCommonList(response);
     }
   }
@@ -332,7 +341,7 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     }, 800);
     if (commonList) getResults(commonList.length);
   }, [commonList, viewMode]);
-
+  
   return loading ? (
     <ClipLoaderWrapper>
       <ClipLoader color={"#BD10E0"} loading={loading} size={150} />

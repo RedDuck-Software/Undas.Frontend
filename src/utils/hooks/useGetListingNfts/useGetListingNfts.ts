@@ -23,6 +23,7 @@ export const useGetListingNfts = () => {
         priceInNum: Number(ethers.utils.formatUnits(nft.price, 18)),
         tokenAddress: nft.token,
         collectionName: nft.collectionName,
+        collectionId: nft.collectionId
       });
     });
 

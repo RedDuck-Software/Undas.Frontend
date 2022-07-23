@@ -196,7 +196,7 @@ const Sale: React.FC = () => {
       deadlineUTC,
       false,
       {
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+        value: ethers.utils.parseEther(amountToPay.toFixed(18).toString()),
       },
     );
 

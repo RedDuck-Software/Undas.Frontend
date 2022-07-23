@@ -135,52 +135,59 @@ const OffersMenu = () => {
     setOwner(singerAddress);
   };
 
-  const cancelListingOffer = async (listingId: any) => {
-    if (!connector) return;
+  // const cancelListingOffer = async (listingId: any) => {
+  //   console.log('dasdas')
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+  //   if (!connector) return;
 
-    const signer = provider.getSigner(0);
+  //   const provider = new ethers.providers.Web3Provider(
+  //     await connector.getProvider(),
+  //   );
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
-    try {
-      const tx = await MarketplaceContract.cancelListingOffer(listingId);
-      await tx.wait();
-    } catch (error: any) {
-      setTransactionError(error);
-      setShowTransactionError(true);
-    }
-  };
+  //   const signer = provider.getSigner(0);
 
-  const removeStakingOffer = async (stakingId: number) => {
-    if (!connector) return;
+  //   const MarketplaceContract = Marketplace__factory.connect(
+  //     MARKETPLACE_ADDRESS,
+  //     signer,
+  //   );
+  //   try {
+  //     const tx = await MarketplaceContract.cancelListingOffer(listingId,{
+  //       gasLimit:100000
+  //     });
+  //     await tx.wait();
+  //   } catch (error: any) {
+  //     setTransactionError(error);
+  //     setShowTransactionError(true);
+  //   }
+  // };
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+  // const removeStakingOffer = async (stakingId: number) => {
+  //   console.log('dasdas')
 
-    const signer = provider.getSigner(0);
+  //   if (!connector) return;
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+  //   const provider = new ethers.providers.Web3Provider(
+  //     await connector.getProvider(),
+  //   );
 
-    try {
-      const tx = await MarketplaceContract.removeStakingOffer(stakingId);
-      await tx.wait();
-    } catch (error: any) {
-      setTransactionError(error);
-      setShowTransactionError(true);
-    }
-  };
+  //   const signer = provider.getSigner(0);
+
+  //   const MarketplaceContract = Marketplace__factory.connect(
+  //     MARKETPLACE_ADDRESS,
+  //     signer,
+  //   );
+
+  //   try {
+  //     const tx = await MarketplaceContract.removeStakingOffer(stakingId);
+  //     await tx.wait();
+  //   } catch (error: any) {
+  //     setTransactionError(error);
+  //     setShowTransactionError(true);
+  //   }
+  // };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
+    
     if (!connector) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -197,7 +204,7 @@ const OffersMenu = () => {
       const tx = await MarketplaceContract.acceptStakingOffer(
         stakingId,
         taker,
-        false,
+        false
       );
       await tx.wait();
     } catch (error: any) {
@@ -206,7 +213,11 @@ const OffersMenu = () => {
     }
   };
   const acceptBuyingOffer = async (listingId: any, taker: any) => {
+   
+
     if (!connector) return;
+    
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -217,9 +228,11 @@ const OffersMenu = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-
+      
     try {
-      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
+      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker,{
+        gasLimit:2000000
+      });
       await tx.wait();
     } catch (error: any) {
       setTransactionError(error);
@@ -259,11 +272,12 @@ const OffersMenu = () => {
       setShowTransactionError(true);
     }
 
-    //todo put hardcoded to env
     try {
       const tx = await MarketplaceContract.acceptOfferForNotListedToken(
         offerId,
-        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",{
+          gasLimit:2000000
+        }
       );
 
       await tx.wait();
@@ -823,7 +837,7 @@ const OffersMenu = () => {
                           <MakeOfferBTN>Make offer</MakeOfferBTN>
                         </OffersTdButton>
                         <OffersTdButton>
-                          <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
+                          <DenyBTN onClick={() => alert("We are working on it")}>
                             Deny
                           </DenyBTN>
                         </OffersTdButton>
@@ -933,7 +947,7 @@ const OffersMenu = () => {
                       </OffersTdButton>
                       <OffersTdButton>
                         <DenyBTN
-                          onClick={() => removeStakingOffer(i.stakingId)}
+                          onClick={() => alert('we are working on it')}
                         >
                           Cancel
                         </DenyBTN>
@@ -974,7 +988,7 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <DenyBTN
                             onClick={() => {
-                              cancelListingOffer(i.listingId);
+                              alert('We are working on it');
                             }}
                           >
                             Cancel
