@@ -172,6 +172,7 @@ const Created: React.FC = () => {
             priceFilterOrder={""}
             viewMode={viewMode}
             accountPage
+            createdType={createdType}
           />
           {/* {createdNfts.length > 0 || createdCollections.length > 0 ? (
             <>

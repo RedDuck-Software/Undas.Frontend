@@ -17,8 +17,14 @@ export const useGetAllNfts = (
   account?: any,
 ) => {
   const [filteredNfts, setFilteredNfts] = useState<any>([]);
-  const { listings, listingsError, listingsLoading } = useGetListingNfts();
-  const { rentings, rentingsError, rentingsLoading } = useGetRentingNfts();
+  const { listings, listingsError, listingsLoading } = useGetListingNfts(
+    accountPage,
+    account,
+  );
+  const { rentings, rentingsError, rentingsLoading } = useGetRentingNfts(
+    accountPage,
+    account,
+  );
   // to do: pass hasOffers
   const { mints, mintsError, mintsLoading } = useGetMintedNfts(
     accountPage,
