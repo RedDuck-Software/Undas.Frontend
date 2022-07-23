@@ -116,19 +116,16 @@ const NFTPage: React.FC = () => {
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
   const [itemHistory, setItemHistory] = useState<any>();
-
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
-
   const state: any = useLocation();
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
   const collectionName = state.state.collectionName
   const collectionId = state.state.collectionId
-
   const getOwner = async () => {
     if (!connector) {
       return;
@@ -241,21 +238,25 @@ const NFTPage: React.FC = () => {
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
-      setSeller(tokensQuery.data.listings[0].seller);
+      if(!seller){
+        setSeller(tokensQuery.data.listings[0].seller);
+      }
       setStatus(tokensQuery.data.listings[0].listingStatus);
       setLoading(false);
     }
 
     if (
       tokensQuery.data.stakingListings[0] &&
-      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE" 
     ) {
       setName(tokensQuery.data.stakingListings[0].tokenName);
       setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
       setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
-      setSeller(tokensQuery.data.stakingListings[0].seller);
+      if(!seller){
+        setSeller(tokensQuery.data.stakingListings[0].seller);
+      }
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
 
@@ -263,12 +264,14 @@ const NFTPage: React.FC = () => {
     }
     if(data){
       if (data.tokens[0]) {
+        
         setDescription(data.tokens[0].description);
         setSeller(data.tokens[0].owner);
       }
     }
     setLoading(false);
   };
+
   useEffect(() => {
     if (fetching) return;
     setItemsForCarousel(data);
@@ -292,7 +295,6 @@ const NFTPage: React.FC = () => {
     offersItems.fetching,
     itemActivity.fetching,
   ]);
-
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
   const tokensQuery = `
@@ -492,7 +494,7 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                    ) : !state.state.premium ? (
+                    ) : !isOwner   ? (
                       <>
                         <RentElement h="76px">
                           <NotListed>Not listed for rent yet</NotListed>

@@ -72,6 +72,8 @@ const AdvertisingSlider: React.FC<CollectionGridWrapperProps> = ({
                   tokenAddress={i.tokenAdress}
                   tokenId={i.id}
                   owner={i.creator}
+                  collectionId={i.collectionId}
+                  collectionName ={i.collectionName}
                 ></NFTCardForCarousel>
               </SwiperSlide>
             );
