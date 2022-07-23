@@ -50,7 +50,6 @@ const RentNFT: React.FC = () => {
     const tokens = await fetchStakingData();
 
     tokens.stakingListings.map((nft: any) => {
-      console.log(nft)
       if (nft.stakingStatus == "ACTIVE") {
         if(nft.collectionId){
           //const price = nft.premiumWei;
@@ -131,7 +130,6 @@ const RentNFT: React.FC = () => {
         }}
       >
         {list?.map((item) => {
-          console.log(item)
           return (
             <>
               <SwiperSlide
