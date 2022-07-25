@@ -167,13 +167,13 @@ const AccountPage: React.FC = () => {
               </TabsMenu>
             </Wrapper>
             <Wrapper disp="flex">
-            {tab !== "reward" && <ASideFilter marginTop="70px" accountPage />}
-            {tab === "" && <MainMenu nftList={myNfts ? myNfts : []} />}
-            {tab === "favourite" && <FavouriteMenu />}
-            {tab === "offers" && offersMenu}
-            {tab === "reward" && <RewardMenu />}
-            {tab === "rent" && <Rent />}
-            {tab === "created" && <Created />}
+              {tab !== "reward" && <ASideFilter marginTop="70px" accountPage />}
+              {tab === "" && <MainMenu nftList={myNfts ? myNfts : []} />}
+              {tab === "favourite" && <FavouriteMenu />}
+              {tab === "offers" && offersMenu}
+              {tab === "reward" && <RewardMenu />}
+              {tab === "rent" && <Rent />}
+              {tab === "created" && <Created />}
             </Wrapper>
           </Wrapper>
         </AccountContainer>
