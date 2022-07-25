@@ -25,7 +25,7 @@ export const FirstPartner = styled.a`
   background: url(${Partner1}) no-repeat center/contain;
   height: 80px;
   width: 60px;
-  transition: all 0.5s ease-in;
+  transition: all 0.3s linear;
   &:hover {
     background: url(${Partner1Colored}) no-repeat center/contain;
   }
@@ -39,7 +39,7 @@ export const SecondPartner = styled.a`
   background: url(${Partner2}) no-repeat center/contain;
   height: 30px;
   width: 120px;
-  transition: all 0.5s ease-in;
+  transition: all 0.3s linear;
   &:hover {
     background: url(${Partner2Colored}) no-repeat center/contain;
   }
