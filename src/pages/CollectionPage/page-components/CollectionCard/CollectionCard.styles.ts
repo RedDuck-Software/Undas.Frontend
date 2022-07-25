@@ -21,7 +21,7 @@ export const CardWrap = styled.div`
   }
 `;
 export const ImageWrap = styled.div`
-  min-width: 100px;
+  width: 100px;
   height: 100px;
   position: relative;
   border-radius: 10px;
