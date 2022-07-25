@@ -31,7 +31,9 @@ export const HeadWrapper = styled.div`
 export const BodyWrapper = styled.div`
   display: flex;
 `;
-export const ContentWrap = styled.div``;
+export const ContentWrap = styled.div`
+  width: 100%;
+`;
 export const InfoBox = styled.div`
   position: relative;
   display: flex;

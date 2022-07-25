@@ -117,7 +117,7 @@ const AccountPage: React.FC = () => {
       <Background>
         <AccountContainer>
           <AccountCard profile={account} disconnect={disconnect} />
-          <Wrapper w="100%" marg="0 0 40px 0">
+          <Wrapper w="100%">
             <Wrapper w="100%" marg="15px 0 0 0">
               <TabsMenu>
                 <Tab
@@ -166,7 +166,7 @@ const AccountPage: React.FC = () => {
                 </Tab>
               </TabsMenu>
             </Wrapper>
-            <Wrapper disp="flex">
+            <Wrapper disp="flex" w="100%">
               {tab !== "reward" && <ASideFilter marginTop="70px" accountPage />}
               {tab === "" && <MainMenu nftList={myNfts ? myNfts : []} />}
               {tab === "favourite" && <FavouriteMenu />}

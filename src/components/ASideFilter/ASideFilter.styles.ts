@@ -90,6 +90,7 @@ export const ASideWrap = styled.div<IASideWrap>`
     max-height: 100%;
     background: rgba(251, 245, 255, 0.5);
     backdrop-filter: blur(10px);
+    margin-top: 0;
   }
 `;
 
