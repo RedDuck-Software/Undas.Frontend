@@ -26,6 +26,11 @@ export const ImageWrap = styled.div`
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  & img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
   @media (max-width: 576px) {
     width: 60px;
     height: 60px;
