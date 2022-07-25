@@ -13,6 +13,7 @@ export const Banner = styled.div<IBanner>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  background-color: #ebdfff;
   @media (max-width: 576px) {
     height: 60px;
   }
