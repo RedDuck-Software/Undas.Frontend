@@ -213,6 +213,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
       <ASideWrap
         className={(state.menu && "active") || ""}
         isOpenMobile={isOpenMobile}
+        marginTop="-30px"
       >
         <Holder marginTop={marginTop}>
           <HolderElement

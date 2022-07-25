@@ -28,7 +28,10 @@ export const HeadWrapper = styled.div`
     margin-top: 50px;
   }
 `;
-
+export const BodyWrapper = styled.div`
+  display: flex;
+`;
+export const ContentWrap = styled.div``;
 export const InfoBox = styled.div`
   position: relative;
   display: flex;

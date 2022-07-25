@@ -55,8 +55,12 @@ export const HolderElement = styled.li<{ isActive?: boolean }>`
     padding-right: 1rem;
   }
 `;
-
-export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
+interface IASideWrap {
+  marginTop?: string;
+  isOpenMobile?: boolean;
+}
+export const ASideWrap = styled.div<IASideWrap>`
+  margin-top: ${(props) => props.marginTop || ""};
   min-width: 30px;
   max-width: 30px;
   height: auto;
