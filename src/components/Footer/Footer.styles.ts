@@ -332,3 +332,37 @@ export const MobileMenuInner = styled.div`
     margin-top: 20px;
   }
 `;
+
+export const ContactEmail = styled.div`
+  margin-top: 40px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: right;
+  color: #232428;
+  @media (max-width: 869px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  @media (max-width: 576px) {
+    margin-top: 20px;
+    align-self: center;
+  }
+`;
+
+export const EmailAdress = styled.span`
+  margin-left: 10px;
+  &:hover {
+    opacity: 0.6;
+    color: #232428;
+  }
+`;
+
+export const EmailAdressCEO = styled.div`
+  &:hover {
+    opacity: 0.6;
+    color: #232428;
+  }
+`;
