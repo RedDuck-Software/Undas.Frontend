@@ -76,6 +76,7 @@ export const InfoText = styled.span`
   font-size: 16px;
   line-height: 17px;
   color: #232428;
+  text-align: justify;
   @media (max-width: 576px) {
     font-size: 14px;
   }
