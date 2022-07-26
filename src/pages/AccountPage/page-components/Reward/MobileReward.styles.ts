@@ -7,6 +7,7 @@ export const MobileRewardMenuWrap = styled.div`
   padding: 40px 0;
   @media (max-width: 992px) {
     display: block;
+    width: 100%;
   }
   @media (max-width: 768px) {
     padding: 20px 0 0;

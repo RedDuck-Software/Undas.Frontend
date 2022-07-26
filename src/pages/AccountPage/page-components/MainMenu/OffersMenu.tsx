@@ -185,7 +185,6 @@ const OffersMenu = () => {
   // };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
-    
     if (!connector) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -202,7 +201,7 @@ const OffersMenu = () => {
       const tx = await MarketplaceContract.acceptStakingOffer(
         stakingId,
         taker,
-        false
+        false,
       );
       await tx.wait();
     } catch (error: any) {
@@ -211,10 +210,7 @@ const OffersMenu = () => {
     }
   };
   const acceptBuyingOffer = async (listingId: any, taker: any) => {
-   
-
     if (!connector) return;
-    
 
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
@@ -226,11 +222,15 @@ const OffersMenu = () => {
       MARKETPLACE_ADDRESS,
       signer,
     );
-      
+
     try {
-      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker,{
-        gasLimit:2000000
-      });
+      const tx = await MarketplaceContract.acceptListingOffer(
+        listingId,
+        taker,
+        {
+          gasLimit: 2000000,
+        },
+      );
       await tx.wait();
     } catch (error: any) {
       setTransactionError(error);
@@ -279,9 +279,10 @@ const OffersMenu = () => {
     try {
       const tx = await MarketplaceContract.acceptOfferForNotListedToken(
         offerId,
-        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",{
-          gasLimit:2000000
-        }
+        "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+        {
+          gasLimit: 2000000,
+        },
       );
 
       await tx.wait();
@@ -841,7 +842,9 @@ const OffersMenu = () => {
                           <MakeOfferBTN>Make offer</MakeOfferBTN>
                         </OffersTdButton>
                         <OffersTdButton>
-                          <DenyBTN onClick={() => alert("We are working on it")}>
+                          <DenyBTN
+                            onClick={() => alert("We are working on it")}
+                          >
                             Deny
                           </DenyBTN>
                         </OffersTdButton>
@@ -953,9 +956,7 @@ const OffersMenu = () => {
                         <MakeOfferBTN>Edit Offer</MakeOfferBTN>
                       </OffersTdButton>
                       <OffersTdButton>
-                        <DenyBTN
-                          onClick={() => alert('we are working on it')}
-                        >
+                        <DenyBTN onClick={() => alert("we are working on it")}>
                           Cancel
                         </DenyBTN>
                       </OffersTdButton>
@@ -995,7 +996,7 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <DenyBTN
                             onClick={() => {
-                              alert('We are working on it');
+                              alert("We are working on it");
                             }}
                           >
                             Cancel

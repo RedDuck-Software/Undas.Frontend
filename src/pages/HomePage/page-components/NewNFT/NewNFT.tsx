@@ -34,12 +34,19 @@ const NewNFT: React.FC = () => {
     name: string;
     URI: string;
     tokenAddress: string;
-    collectionName:string;
-    collectionId:string;
+    collectionName: string;
+    collectionId: string;
   }[] = [];
   const [list, setList] =
     useState<
-      { id: number; name: string; URI: string; tokenAddress: string,collectionName:string,collectionId:string; }[]
+      {
+        id: number;
+        name: string;
+        URI: string;
+        tokenAddress: string;
+        collectionName: string;
+        collectionId: string;
+      }[]
     >();
 
   const getListings = async () => {
@@ -47,16 +54,24 @@ const NewNFT: React.FC = () => {
 
     tokens.map((nft: any) => {
       if (nft.listingStatus == "ACTIVE") {
-        if(nft.collectionId){
+        if (nft.collectionId) {
           const price = nft.price;
           const id = nft.tokenId;
           const name = nft.tokenName;
           const URI = nft.tokenURI;
           const tokenAddress = nft.token;
           const priceInNum = Number(ethers.utils.formatUnits(price, 18));
-          const collectionName = nft.collectionName
-          const collectionId = nft.collectionId
-          items.push({ priceInNum, id, name, URI, tokenAddress,collectionName,collectionId });
+          const collectionName = nft.collectionName;
+          const collectionId = nft.collectionId;
+          items.push({
+            priceInNum,
+            id,
+            name,
+            URI,
+            tokenAddress,
+            collectionName,
+            collectionId,
+          });
         }
       }
     });
@@ -136,8 +151,8 @@ const NewNFT: React.FC = () => {
                       state: {
                         tokenId: item.id,
                         tokenAddress: item.tokenAddress,
-                        collectionName:item.collectionName,
-                        collectionId:item.collectionId
+                        collectionName: item.collectionName,
+                        collectionId: item.collectionId,
                       },
                     },
                   );

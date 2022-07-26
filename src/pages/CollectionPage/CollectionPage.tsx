@@ -18,6 +18,8 @@ import {
   MyWrapper,
   CollectionDescript,
   DescriptBtn,
+  BodyWrapper,
+  ContentWrap,
 } from "./CollectionPage.styles";
 import { PurpleEthIco } from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
@@ -122,7 +124,6 @@ const CollectionPage: React.FC = () => {
           <Banner src={data.collection.collectionFeatureUrl} />
           <Background>
             <AllNFTContainer>
-              <ASideFilter marginTop="208px" page="Collection" />
               <ContainerNFT>
                 <HeadWrapper>
                   <CollectionCard
@@ -184,77 +185,92 @@ const CollectionPage: React.FC = () => {
                     </DescriptBtn>
                   </InfoBox>
                 </HeadWrapper>
-                <MenuWrap marg="40px 0 20px 0" justifyContent="space-between">
-                  <SettingsBlock>
-                    <>{viewButtonsRender}</>
-                    <Filter className={active.price && "price-active"}>
-                      <FilterItem
-                        onClick={() => {
-                          if (!active.price) {
-                            setActive({ price: true });
-                          } else setActive({ price: false });
-                        }}
-                      >
-                        <FilterTitle>Sort by Price</FilterTitle>
-                        <Arrow className={active.price && "price-active"} />
-                      </FilterItem>
-                      <FilterMenu className={active.price && "price-active"}>
-                        <MenuItem hover={true}>
-                          <span>Price: Low to High</span>
-                        </MenuItem>
-                        <MenuItem hover={true}>
-                          <span>Price: High to Low</span>
-                        </MenuItem>
-                      </FilterMenu>
-                    </Filter>
-                    <Filter className={active.event && "event-active"} disabled>
-                      <FilterItem
-                        onClick={() => {
-                          if (!active.event) {
-                            setActive({ event: true });
-                          } else setActive({ event: false });
-                        }}
-                      >
-                        <FilterTitle>Sort by Event</FilterTitle>
-                        <Arrow className={active.event && "event-active"} />
-                      </FilterItem>
-                      <FilterMenu className={active.event && "event-active"}>
-                        <MenuItem hover={true}>
-                          <span>Newly Created</span>
-                        </MenuItem>
-                        <MenuItem hover={true}>
-                          <span>Recently Sold</span>
-                        </MenuItem>
-                        <MenuItem hover={true}>
-                          <span>Recently Posted</span>
-                        </MenuItem>
-                        <MenuItem hover={true}>
-                          <span>Recently Staking</span>
-                        </MenuItem>
-                      </FilterMenu>
-                    </Filter>
-                  </SettingsBlock>
-                  <MenuSearchWrap
-                    mw="530px"
-                    marginLeft="0"
-                    placeholder="Search"
-                  />
-                  <ResultsTotal>
-                    {data ? data.collection.tokens.length : "0"} results
-                  </ResultsTotal>
-                </MenuWrap>
-                <SelectedFiltersCollection></SelectedFiltersCollection>
-                {viewMode === ViewMode.grid ? (
-                  <CollectionGridWrap itemList={list} />
-                ) : (
-                  <>
-                    {list ? (
-                      <NFTListItem itemList={list} />
+                <BodyWrapper>
+                  <ASideFilter marginTop="70px" page="Collection" />
+                  <ContentWrap>
+                    <MenuWrap
+                      marg="40px 0 20px 0"
+                      justifyContent="space-between"
+                    >
+                      <SettingsBlock>
+                        <>{viewButtonsRender}</>
+                        <Filter className={active.price && "price-active"}>
+                          <FilterItem
+                            onClick={() => {
+                              if (!active.price) {
+                                setActive({ price: true });
+                              } else setActive({ price: false });
+                            }}
+                          >
+                            <FilterTitle>Sort by Price</FilterTitle>
+                            <Arrow className={active.price && "price-active"} />
+                          </FilterItem>
+                          <FilterMenu
+                            className={active.price && "price-active"}
+                          >
+                            <MenuItem hover={true}>
+                              <span>Price: Low to High</span>
+                            </MenuItem>
+                            <MenuItem hover={true}>
+                              <span>Price: High to Low</span>
+                            </MenuItem>
+                          </FilterMenu>
+                        </Filter>
+                        <Filter
+                          className={active.event && "event-active"}
+                          disabled
+                        >
+                          <FilterItem
+                            onClick={() => {
+                              if (!active.event) {
+                                setActive({ event: true });
+                              } else setActive({ event: false });
+                            }}
+                          >
+                            <FilterTitle>Sort by Event</FilterTitle>
+                            <Arrow className={active.event && "event-active"} />
+                          </FilterItem>
+                          <FilterMenu
+                            className={active.event && "event-active"}
+                          >
+                            <MenuItem hover={true}>
+                              <span>Newly Created</span>
+                            </MenuItem>
+                            <MenuItem hover={true}>
+                              <span>Recently Sold</span>
+                            </MenuItem>
+                            <MenuItem hover={true}>
+                              <span>Recently Posted</span>
+                            </MenuItem>
+                            <MenuItem hover={true}>
+                              <span>Recently Staking</span>
+                            </MenuItem>
+                          </FilterMenu>
+                        </Filter>
+                      </SettingsBlock>
+                      <MenuSearchWrap
+                        mw="530px"
+                        marginLeft="0"
+                        placeholder="Search"
+                      />
+                      <ResultsTotal>
+                        {data ? data.collection.tokens.length : "0"} results
+                      </ResultsTotal>
+                    </MenuWrap>
+                    <SelectedFiltersCollection></SelectedFiltersCollection>
+                    {viewMode === ViewMode.grid ? (
+                      <CollectionGridWrap itemList={list} />
                     ) : (
-                      <span>There are no NFTs on the marketplace</span>
+                      <>
+                        {list ? (
+                          <NFTListItem itemList={list} />
+                        ) : (
+                          <span>There are no NFTs on the marketplace</span>
+                        )}
+                      </>
                     )}
-                  </>
-                )}
+                  </ContentWrap>
+                </BodyWrapper>
               </ContainerNFT>
               <FilterMobileButton />
             </AllNFTContainer>

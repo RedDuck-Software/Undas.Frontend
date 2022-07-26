@@ -84,10 +84,8 @@ export const SmallNumber = styled.span`
   margin-left: auto;
 `;
 export const FavouriteWrap = styled.div`
-  padding-bottom: 80px;
-  @media (max-width: 992px) {
-    padding-bottom: 40px;
-  }
+  width: 100%;
+  padding-bottom: 40px;
   @media (max-width: 768px) {
     padding-bottom: 20px;
   }

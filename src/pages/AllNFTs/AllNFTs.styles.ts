@@ -151,7 +151,7 @@ export const Filter = styled.ul<{ disabled?: boolean }>`
     disabled
       ? `
     opacity: 0.6;
-    z-index: 100;
+    z-index: 2;
     &:before {
       content: '';
       cursor: not-allowed;

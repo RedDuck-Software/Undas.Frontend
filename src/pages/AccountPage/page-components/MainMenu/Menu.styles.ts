@@ -74,6 +74,7 @@ export const FavouriteResultsTotal = styled(ResultsTotal)`
 
 //Offers
 export const OfferMenuWrap = styled.div`
+  width: 100%;
   margin-top: 40px;
   @media (max-width: 576px) {
     margin-top: 15px;
