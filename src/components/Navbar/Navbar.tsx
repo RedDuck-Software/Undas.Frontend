@@ -121,9 +121,9 @@ const Navbar = () => {
                     <PhotoIco />
                     Photography
                   </MenuList>
-                  <MenuList to="/categories-gimefi">
+                  <MenuList to="/categories-metaverses">
                     <GameFi />
-                    GameFi
+                    Metaverses
                   </MenuList>
                   {/* <MenuList to="/categories">
                     <MetaversesIcon/>
@@ -298,7 +298,7 @@ const Navbar = () => {
                 top="2rem"
                 xlWidth="90px"
               >
-                <MenuList to="/">RU</MenuList>
+                {/*<MenuList to="/">RU</MenuList>*/}
                 <MenuList to="/" className="last">
                   中国人
                 </MenuList>

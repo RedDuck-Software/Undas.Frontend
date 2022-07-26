@@ -37,7 +37,7 @@ import {
   CategoriesRwa,
   CategoriesArt,
   CategoriesNew,
-  CategoriesGameFI,
+  CategoriesMetaverses,
   CategoriesSport,
   CategoriesPhoto,
   CategoriesCelebrity,
@@ -168,7 +168,10 @@ const App: React.FC = () => {
               <Route path="/productforsale/:id" element={<ProductForSale />} />
               <Route path="/categories-rwa" element={<CategoriesRwa />} />
               <Route path="/categories-art" element={<CategoriesArt />} />
-              <Route path="/categories-gimefi" element={<CategoriesGameFI />} />
+              <Route
+                path="/categories-metaverses"
+                element={<CategoriesMetaverses />}
+              />
               <Route path="/categories-new" element={<CategoriesNew />} />
               <Route path="/categories-sport" element={<CategoriesSport />} />
               <Route path="/categories-photo" element={<CategoriesPhoto />} />

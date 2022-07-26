@@ -28,8 +28,8 @@ const Recommended: React.FC = () => {
       </TitleWrap>
       <MobileInner>
         <CategoriesWrap>
-          <CategoryWrap to="/categories-gimefi" gridArea="1 / 1 / 4 / 3">
-            <Name>GameFi</Name>
+          <CategoryWrap to="/categories-metaverses" gridArea="1 / 1 / 4 / 3">
+            <Name>Metaverses</Name>
             <Image src={MetaversesImg} alt="category-img" />
           </CategoryWrap>
           <CategoryWrap to="/categories-sport" gridArea="1 / 3 / 3 / 5">

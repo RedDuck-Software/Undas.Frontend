@@ -27,7 +27,7 @@ type CollectionItemProps = {
   owner?: string;
 };
 
-const CategoriesGameFI: React.FC = () => {
+const CategoriesMetaverses: React.FC = () => {
   const { connector } = useContext(Context);
   const collectionsList: CollectionItemProps[] = [];
   const [collections, setCollections] = useState<CollectionItemProps[]>();
@@ -112,14 +112,14 @@ const CategoriesGameFI: React.FC = () => {
         <Container>
           <Info>
             <div>
-              <Title>GameFI</Title>
+              <Title>Metaverses</Title>
             </div>
             <InfoCard>
               <InfoText>
                 On this page you can enjoy a selection of interesting
                 collections. This section provides you with collections in the
-                GameFI category. The GameFI category is NFT collections for
-                blockchain games.
+                Metaverses category. The Metaverses category is NFT collections
+                for who will tell you about our metaverses.
               </InfoText>
             </InfoCard>
           </Info>
@@ -138,4 +138,4 @@ const CategoriesGameFI: React.FC = () => {
   );
 };
 
-export default CategoriesGameFI;
+export default CategoriesMetaverses;
