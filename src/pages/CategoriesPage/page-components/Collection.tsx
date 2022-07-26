@@ -6,7 +6,6 @@ import { createClient } from "urql";
 import {
   CollectionCard,
   AuthorWrap,
-  CollectionBackground,
   CollectionPicWrap,
   CollectionText,
   NFTCards,
@@ -102,11 +101,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
         return (
-          <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground
-              src={i.collectionFeatureImg}
-              alt="collection-bg"
-            />
+          <CollectionCard key={i.id} to={`/collection/${i.id}`} bg={i.collectionFeatureImg}>
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />
