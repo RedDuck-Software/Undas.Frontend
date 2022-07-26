@@ -147,6 +147,8 @@ export const CollectionPicWrap = styled.div`
   overflow: hidden;
   & img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 20px;
   }
   @media (max-width: 992px) {
@@ -373,4 +375,5 @@ export const CardsWrapper = styled.div`
 export const ImageCollection = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;

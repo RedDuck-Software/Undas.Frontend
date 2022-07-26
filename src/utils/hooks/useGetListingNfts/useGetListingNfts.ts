@@ -24,7 +24,7 @@ export const useGetListingNfts = (accountPage?: boolean, account?: any) => {
         tokenAddress: nft.token,
         collectionName: nft.collectionName,
         seller: nft.seller,
-        collectionId: nft.collectionId
+        collectionId: nft.collectionId,
       });
     });
 

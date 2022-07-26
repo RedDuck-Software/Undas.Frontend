@@ -20,6 +20,7 @@ import {
   ContainerFilters,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
+import { Wrapper } from "../../../CategoriesPage/Categories.styles";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import NoData from "../NoData/NoData";
 
@@ -116,6 +117,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
           <FilterSelected />
         </ContainerFilters>
       </MenuWrap>
+      <Wrapper marg="0 0 40px 0" w="100%">
       {list && list.length > 0 ? (
         viewMode === ViewMode.grid ? (
           <CollectionGridWrap itemList={list} />
@@ -131,6 +133,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
       ) : (
         <NoData />
       )}
+      </Wrapper>
     </div>
   );
 };

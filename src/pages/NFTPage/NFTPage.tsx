@@ -239,7 +239,7 @@ const NFTPage: React.FC = () => {
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
-      if(!seller){
+      if (!seller) {
         setSeller(tokensQuery.data.listings[0].seller);
       }
       setStatus(tokensQuery.data.listings[0].listingStatus);
@@ -248,14 +248,14 @@ const NFTPage: React.FC = () => {
 
     if (
       tokensQuery.data.stakingListings[0] &&
-      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE" 
+      tokensQuery.data.stakingListings[0].stakingStatus == "ACTIVE"
     ) {
       setName(tokensQuery.data.stakingListings[0].tokenName);
       setTokenURI(tokensQuery.data.stakingListings[0].tokenURI);
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
       setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
-      if(!seller){
+      if (!seller) {
         setSeller(tokensQuery.data.stakingListings[0].seller);
       }
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
@@ -265,7 +265,6 @@ const NFTPage: React.FC = () => {
     }
     if (data) {
       if (data.tokens[0]) {
-        
         setDescription(data.tokens[0].description);
         setSeller(data.tokens[0].owner);
       }
@@ -495,7 +494,7 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                    ) : !isOwner   ? (
+                    ) : !isOwner ? (
                       <>
                         <RentElement h="76px">
                           <NotListed>Not listed for rent yet</NotListed>

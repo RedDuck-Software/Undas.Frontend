@@ -83,7 +83,7 @@ export const NFTWrap = styled.div`
 export const Image = styled.img`
   width: 100%;
   border-radius: 10px;
-  height: 340px;
+  height: 480px;
   min-height: 340px;
   object-fit: cover;
   background-color: #fff;

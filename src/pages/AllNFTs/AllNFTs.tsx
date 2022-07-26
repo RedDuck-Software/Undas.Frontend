@@ -75,7 +75,7 @@ const AllNFTs: React.FC = () => {
   return (
     <Background>
       <AllNFTContainer>
-        <ASideFilter marginTop="160px" />
+        <ASideFilter marginTop="190px" />
         <Wrapper
           w="100%"
           marg="0 0 120px 0"

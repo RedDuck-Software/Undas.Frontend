@@ -6,10 +6,8 @@ import { CollectionBG } from "./imports";
 import { ResultsTotal, SettingsBlock } from "../../../AllNFTs/AllNFTs.styles";
 
 export const CreatedWrap = styled.div`
-  padding-bottom: 80px;
-  @media (max-width: 992px) {
-    padding-bottom: 40px;
-  }
+  width: 100%;
+  padding-bottom: 40px;
   @media (max-width: 768px) {
     padding-bottom: 20px;
   }
@@ -69,7 +67,7 @@ export const CreatedButton = styled.button`
 `;
 export const CreatedResultsTotal = styled(ResultsTotal)`
   @media (max-width: 1200px) {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
     text-align: right;
     order: 3;
   }
@@ -147,6 +145,7 @@ export const CollectionPicWrap = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 20px;
+    object-fit: cover;
   }
   @media (max-width: 576px) {
     height: 60px;

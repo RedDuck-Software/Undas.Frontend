@@ -5,6 +5,7 @@ import BgImg from "../../assets/bg-img.png";
 
 //RewardMenu
 export const RewardMenuWrap = styled.div`
+  width: 100%;
   padding: 60px 0;
   @media (max-width: 992px) {
     display: none;

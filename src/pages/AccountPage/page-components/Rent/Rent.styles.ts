@@ -3,10 +3,8 @@ import styled from "styled-components";
 import { ResultsTotal, SettingsBlock } from "../../../AllNFTs/AllNFTs.styles";
 
 export const RentWrap = styled.div`
-  padding-bottom: 80px;
-  @media (max-width: 992px) {
-    padding-bottom: 40px;
-  }
+  width: 100%;
+  padding-bottom: 40px;
   @media (max-width: 768px) {
     padding-bottom: 20px;
   }
