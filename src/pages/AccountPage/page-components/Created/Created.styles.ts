@@ -87,6 +87,7 @@ export const CollectionCard = styled(Link)<{ bg?: string }>`
   position: relative;
   cursor: pointer;
   width: 100%;
+  height: 160px;
   padding: 20px;
   background: url(${({ bg }) => (bg ? bg : CollectionBG)}) no-repeat center /
     cover;
@@ -112,45 +113,124 @@ export const CollectionCard = styled(Link)<{ bg?: string }>`
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
-  min-width: 470px;
-  margin-top: 45px;
   background: rgba(35, 36, 40, 0.7);
   backdrop-filter: blur(50px);
   border-radius: 20px;
-  flex: 0 0 60%;
+  gap: 10px;
+  flex: 0 1 60%;
   @media (max-width: 1200px) {
+    flex: 0 0 100%;
     width: 100%;
-    position: absolute;
-    margin-top: 110px;
-  }
-  @media (max-width: 768px) {
-    margin-top: 90px;
   }
   @media (max-width: 576px) {
-    height: 95px;
-    margin-top: 70px;
-    align-items: unset;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    padding: 10px 5px;
   }
 `;
 
 export const CollectionPicWrap = styled.div`
-  width: 70px;
-  height: 70px;
-  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+  height: 90px;
+  width: 90px;
+  overflow: hidden;
   & img {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
     object-fit: cover;
+    border-radius: 20px;
+  }
+  @media (max-width: 992px) {
+    height: 80px;
+    width: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 70px;
+    width: 70px;
   }
   @media (max-width: 576px) {
-    height: 60px;
-    width: 60px;
-    align-items: unset;
+    flex: 0 0 20%;
+    & img {
+      height: 60px;
+      width: 60px;
+    }
+  }
+`;
+export const NameWrap = styled.div`
+  flex: 0 1 40%;
+  @media (max-width: 1200px) {
+    flex: 0 1 30%;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+`;
+export const CollectionName = styled.div`
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+`;
+export const NameNft = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 20px 0 0;
+  align-items: center;
+  gap: 10px;
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @media (max-width: 576px) {
+    max-width: 100%;
+  }
+`;
+export const OwnerName = styled.div`
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  @media (max-width: 992px) {
+    max-width: 220px;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 15px;
+    max-width: 165px;
+  }
+  @media (max-width: 576px) {
+    max-width: 95%;
+  }
+`;
+export const CollectionTextDiv = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 0 0 auto;
+  flex: 0 1 50%;
+  @media (max-width: 1200px) {
+    flex: 0 1 60%;
+  }
+  @media (max-width: 992px) {
+    flex: 0 1 50%;
+  }
+  @media (max-width: 576px) {
+    flex: 0 0 100%;
+    padding: 0 15px;
   }
 `;
 export const CollectionText = styled.span`
@@ -165,16 +245,18 @@ export const CollectionText = styled.span`
   -webkit-box-orient: vertical;
   padding-right: 10px;
   @media (max-width: 1200px) {
-    width: 65%;
-    font-size: 12px;
+    width: 100%;
+    padding-right: 0;
   }
   @media (max-width: 768px) {
-    width: 100%;
+    font-size: 12px;
+    line-height: 15px;
   }
   @media (max-width: 576px) {
     font-style: normal;
     font-size: 10px;
     line-height: 12px;
+    -webkit-line-clamp: 2;
   }
 `;
 interface IPlatform {
@@ -215,39 +297,10 @@ export const NFTCards = styled.div`
     border-radius: 10px;
   }
 `;
-
-export const NameNft = styled.div`
-  position: relative;
-  display: flex;
-  margin: 0 20px 0 0;
-  align-items: center;
-  gap: 10px;
-
-  @media (max-width: 576px) {
-    margin-top: 10px;
-  }
-`;
-
-export const CollectionTextDiv = styled.div`
-  position: relative;
-  display: flex;
-  max-width: 320px;
-  margin: 0 0 0 auto;
-
-  @media (max-width: 1200px) {
-  }
-  @media (max-width: 992px) {
-  }
-  @media (max-width: 768px) {
-  }
-`;
-
 export const CardsWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-end;
   gap: 15px;
-  flex: 0 1 40%;
   @media (max-width: 1200px) {
     position: absolute;
     right: 15px;
@@ -259,13 +312,11 @@ export const CardsWrapper = styled.div`
     margin-top: 10px;
   }
 `;
-
 export const ImageCollection = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
-
 export const ClipLoaderWrapper = styled.div`
   display: flex;
   align-items: center;

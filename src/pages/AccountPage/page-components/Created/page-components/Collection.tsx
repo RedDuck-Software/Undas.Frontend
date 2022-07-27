@@ -6,6 +6,9 @@ import {
   CollectionCard,
   AuthorWrap,
   CollectionPicWrap,
+  NameWrap,
+  CollectionName,
+  OwnerName,
   CollectionText,
   NFTCards,
   Platform,
@@ -106,14 +109,14 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />
               </CollectionPicWrap>
-              <div>
+              <NameWrap>
                 <NameNft>
-                  <CollectionText>{i.collectionName}</CollectionText>
+                  <CollectionName>{i.collectionName}</CollectionName>
                   <img src={Verified} alt="verified-ico" />
                   <Platform>UND</Platform>
                 </NameNft>
-                <CollectionText>created by you</CollectionText>
-              </div>
+                <OwnerName>created by you</OwnerName>
+              </NameWrap>
               <CollectionTextDiv>
                 <CollectionText>{i.collectionInfo}</CollectionText>
               </CollectionTextDiv>

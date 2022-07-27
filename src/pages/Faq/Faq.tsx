@@ -17,6 +17,7 @@ import {
   AccordionBody,
   AccordionContainer,
   PageFAQTitle,
+  StickyInner,
 } from "./Faq.styles";
 
 import { Background, Container } from "../../globalStyles";
@@ -98,6 +99,7 @@ const Faq: React.FC = () => {
                         <UndasLink href="#">UNDAS</UndasLink>
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
                     <TabText>
@@ -114,6 +116,7 @@ const Faq: React.FC = () => {
                         in the field for rent: make an offer
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
                     <TabText>
@@ -125,6 +128,7 @@ const Faq: React.FC = () => {
                         The pledge and its amount are determined by the owner of the NFT.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fourth">
                     <TabText>
@@ -137,6 +141,7 @@ const Faq: React.FC = () => {
                         button becomes active on the NFT card.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
                     <TabText>
@@ -148,6 +153,7 @@ const Faq: React.FC = () => {
                         leaves the staking and passes to a new buyer, respectively, the staking stops.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth">
                     <TabText>
@@ -160,6 +166,7 @@ const Faq: React.FC = () => {
                         additional payment in one direction or the other are possible.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="seventh">
                     <TabText>
@@ -170,6 +177,7 @@ const Faq: React.FC = () => {
                         This is an offer where you offer liquidity against the user&#39;s NFT, or request liquidity against your own NFT.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="eighth">
                     <TabText>
@@ -182,6 +190,7 @@ const Faq: React.FC = () => {
                         commissions on the platform.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="ninth">
                     <TabText>
@@ -193,6 +202,7 @@ const Faq: React.FC = () => {
                         stay tuned for news and updates.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="tenth">
                     <TabText>
@@ -206,6 +216,7 @@ const Faq: React.FC = () => {
                         We are open for cooperation.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

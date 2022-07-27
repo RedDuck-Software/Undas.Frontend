@@ -34,7 +34,10 @@ export const TabButton = styled(Nav.Link)`
     line-height: 32px;
   }
 `;
-export const TabText = styled.div``;
+export const TabText = styled.div`
+    position: sticky;
+    top: 70px;
+`;
 export const ContentTitle = styled.h2`
   font-weight: 500;
   font-size: 18px;
@@ -218,4 +221,9 @@ export const PageFAQTitle = styled.h1`
     font-size: 20px;
     line-height: 24px;
   }
+`;
+export const StickyInner = styled.div`
+  width: 100%;
+  height: 900px;
+  background: transparent;
 `;
