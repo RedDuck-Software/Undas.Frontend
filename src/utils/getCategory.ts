@@ -21,8 +21,8 @@ export const getCategory = (category: Category): ICategory => {
       return { icon: sportIcon, label: "Sports" };
     case Category.photography:
       return { icon: photoIcon, label: "Photography" };
-    case Category.gamefi:
-      return { icon: gamefi, label: "GameFi" };
+    case Category.metaverses:
+      return { icon: gamefi, label: "Metaverses" };
     case Category.celebrity:
       return { icon: celebrityIcon, label: "Celebrity" };
     case Category.rwaNFT:
