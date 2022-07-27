@@ -28,7 +28,7 @@ import {
   LoginMenuIco,
   Ico18,
   ReferralIco,
-  GameFi,
+  Metaverses,
 } from "./imports";
 import {
   Header,
@@ -122,7 +122,7 @@ const Navbar = () => {
                     Photography
                   </MenuList>
                   <MenuList to="/categories-metaverses">
-                    <GameFi />
+                    <Metaverses />
                     Metaverses
                   </MenuList>
                   {/* <MenuList to="/categories">
