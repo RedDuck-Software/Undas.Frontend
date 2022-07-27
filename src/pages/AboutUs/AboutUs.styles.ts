@@ -110,6 +110,7 @@ export const OurTeamWrap = styled.div`
 
 export const OurTeamTitle = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 export const Link = styled.a`
@@ -135,11 +136,7 @@ export const Link = styled.a`
     color: #232428;
     text-decoration: underline;
   }
-
-  @media (max-width: 992px) {
-    margin-left: auto;
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 773px) {
     font-size: 20px;
     margin-left: none;
     margin-right: auto;
@@ -514,7 +511,7 @@ export const SubTitleOurTeamSmallSize = styled.h2`
   }
 `;
 
-export const Download = styled.span`
+export const Download = styled.a`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -535,7 +532,7 @@ export const Download = styled.span`
     margin-left: -30px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 773px) {
     display: block;
   }
   @media (max-width: 576px) {
@@ -580,5 +577,78 @@ export const TextDateSmallSize = styled.span`
 
   @media (max-width: 576px) {
     display: block;
+  }
+`;
+
+export const Presentation = styled.span`
+  display: flex;
+  @media (max-width: 773px) {
+    width: 100%;
+  }
+`;
+
+export const WhitePaper = styled.span`
+  display: flex;
+  @media (max-width: 773px) {
+    width: 100%;
+  }
+`;
+
+export const GitHabContainer = styled.div`
+  display: flex;
+  min-height: 100px;
+  background: #f2f2f2;
+  margin-top: 80px;
+  margin-bottom: 60px;
+`;
+
+export const GitHubImage = styled.img`
+  height: 36px;
+  align-self: center;
+  @media (max-width: 578px) {
+    height: 24px;
+  }
+`;
+
+export const ImageBox = styled.div`
+  display: flex;
+  min-height: 100px;
+`;
+
+export const LinkBox = styled.div`
+  min-height: 100px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media (max-width: 768px) {
+    margin-left: 15px;
+    justify-content: flex-start;
+  }
+`;
+
+export const LinkGitHub = styled.a`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #7c7c7c;
+  text-decoration: none;
+  &:hover {
+    color: #873dc1;
+    text-decoration: underline;
+  }
+  @media (max-width: 992px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  @media (max-width: 624px) {
+    font-size: 12px;
+    line-height: 14px;
   }
 `;

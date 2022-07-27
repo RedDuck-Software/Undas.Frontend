@@ -359,7 +359,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                   <CategoryItem {...getCategory(Category.artwork)} />
                   <CategoryItem {...getCategory(Category.sport)} />
                   <CategoryItem {...getCategory(Category.photography)} />
-                  <CategoryItem {...getCategory(Category.gamefi)} />
+                  <CategoryItem {...getCategory(Category.metaverses)} />
                   <CategoryItem {...getCategory(Category.celebrity)} />
                   <CategoryItem {...getCategory(Category.rwaNFTLong)} />
                   <CategoryItem {...getCategory(Category.plus18)} />

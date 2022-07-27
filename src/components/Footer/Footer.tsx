@@ -20,6 +20,9 @@ import {
   Year,
   FooterIconLink,
   MobileMenuInner,
+  ContactEmail,
+  EmailAdress,
+  EmailAdressCEO,
 } from "./Footer.styles";
 import {
   Twitter,
@@ -121,6 +124,14 @@ const Footer = () => {
               <FooterIcon src={Instagram} />
             </FooterIconLink>*/}
           </FooterIconsWrapper>
+          <ContactEmail>
+            E-mail:{" "}
+            <EmailAdress>
+              {" "}
+              info@undas.io <br></br>
+            </EmailAdress>
+            <EmailAdressCEO> ceo@undas.io</EmailAdressCEO>
+          </ContactEmail>
         </RightSideWrapper>
       </FooterContainer>
       <BottomWrapper>

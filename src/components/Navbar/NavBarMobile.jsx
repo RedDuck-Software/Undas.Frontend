@@ -63,9 +63,9 @@ const NavBarMobile = ({ open }) => {
             <MobileStyledLink to="/">
               <LanguageTitle>en</LanguageTitle>
             </MobileStyledLink>
-            <MobileStyledLink to="/">
+            {/*<MobileStyledLink to="/">
               <LanguageTitle>RU</LanguageTitle>
-            </MobileStyledLink>
+              </MobileStyledLink>*/}
             <MobileStyledLink to="/">
               <LanguageTitle>中国人</LanguageTitle>
             </MobileStyledLink>
@@ -138,9 +138,9 @@ const NavBarMobile = ({ open }) => {
                 <PhotoIco />
                 Photography
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories-gimefi">
+              <HeaderDropdownItem href="categories-metaverses">
                 <GameFi />
-                GameFi
+                Metaverses
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories-celebrity">
                 <CelebrityIco />

@@ -82,7 +82,7 @@ const CategoryList: React.FC<{ setCategory: any }> = ({ setCategory }) => {
       <SelectItem
         setSelected={setCategory}
         categoryId={3}
-        {...getCategory(Category.gamefi)}
+        {...getCategory(Category.metaverses)}
       />
       <SelectItem
         setSelected={setCategory}

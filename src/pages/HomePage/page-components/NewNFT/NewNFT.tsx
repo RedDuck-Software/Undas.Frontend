@@ -37,17 +37,16 @@ const NewNFT: React.FC = () => {
     collectionName: string;
     collectionId: string;
   }[] = [];
-  const [list, setList] =
-    useState<
-      {
-        id: number;
-        name: string;
-        URI: string;
-        tokenAddress: string;
-        collectionName: string;
-        collectionId: string;
-      }[]
-    >();
+  const [list, setList] = useState<
+    {
+      id: number;
+      name: string;
+      URI: string;
+      tokenAddress: string;
+      collectionName: string;
+      collectionId: string;
+    }[]
+  >();
 
   const getListings = async () => {
     const tokens = await fetchData();

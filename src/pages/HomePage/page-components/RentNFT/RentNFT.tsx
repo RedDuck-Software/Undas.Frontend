@@ -39,17 +39,16 @@ const RentNFT: React.FC = () => {
     collectionName: string;
     collectionId: string;
   }[] = [];
-  const [list, setList] =
-    useState<
-      {
-        URI: string;
-        name: string;
-        id: number;
-        tokenAddress: string;
-        collectionName: string;
-        collectionId: string;
-      }[]
-    >();
+  const [list, setList] = useState<
+    {
+      URI: string;
+      name: string;
+      id: number;
+      tokenAddress: string;
+      collectionName: string;
+      collectionId: string;
+    }[]
+  >();
 
   const navigate = useNavigate();
 

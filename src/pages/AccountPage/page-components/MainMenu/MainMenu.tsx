@@ -118,21 +118,21 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
         </ContainerFilters>
       </MenuWrap>
       <Wrapper marg="0 0 40px 0" w="100%">
-      {list && list.length > 0 ? (
-        viewMode === ViewMode.grid ? (
-          <CollectionGridWrap itemList={list} />
+        {list && list.length > 0 ? (
+          viewMode === ViewMode.grid ? (
+            <CollectionGridWrap itemList={list} />
+          ) : (
+            <>
+              {list ? (
+                <NFTListItem itemList={list} />
+              ) : (
+                <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
+          )
         ) : (
-          <>
-            {list ? (
-              <NFTListItem itemList={list} />
-            ) : (
-              <span>There are no NFTs on the marketplace</span>
-            )}
-          </>
-        )
-      ) : (
-        <NoData />
-      )}
+          <NoData />
+        )}
       </Wrapper>
     </div>
   );

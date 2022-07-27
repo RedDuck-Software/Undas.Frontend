@@ -26,7 +26,7 @@ export const ImageWrap = styled.div`
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  & img{
+  & img {
     object-fit: cover;
     width: 100%;
     height: 100%;

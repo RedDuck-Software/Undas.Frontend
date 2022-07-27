@@ -30,8 +30,15 @@ import {
   TextQuarter,
   TextDate,
   TextDateSmallSize,
+  WhitePaper,
+  Presentation,
+  GitHabContainer,
+  GitHubImage,
+  ImageBox,
+  LinkBox,
+  LinkGitHub,
 } from "./AboutUs.styles";
-import { ArticleImg } from "./imports";
+import { ArticleImg, GitHub } from "./imports";
 import Road from "./Roadmap/Road";
 import AboutSlider from "./Slider/Slider";
 import TeammateCards from "./TeammateCard/TeammateCard";
@@ -129,16 +136,57 @@ const AboutUs: React.FC = () => {
           <OurTeamWrap>
             <OurTeamTitle>
               <SubTitleOurTeam>Our Team</SubTitleOurTeam>
-              <Link href="#" target="_blank">
-                White Paper
-              </Link>
-              <Download>Download</Download>
+              <WhitePaper>
+                <Link href="./files/WhitePaper.pdf" target="_blank" download>
+                  White Paper
+                </Link>
+                <Download
+                  href="./files/WhitePaper.pdf"
+                  target="_blank"
+                  download
+                >
+                  Download
+                </Download>
+              </WhitePaper>
+              <Presentation>
+                <Link href="./Undas.pdf" download>
+                  Presentation
+                </Link>
+                <Download
+                  href="./files/WhitePaper.pdf"
+                  target="_blank"
+                  download
+                >
+                  Download
+                </Download>
+              </Presentation>
             </OurTeamTitle>
             <SubTitleOurTeamSmallSize>Our Team</SubTitleOurTeamSmallSize>
             <OurTeamContent>
               <TeammateCards />
             </OurTeamContent>
           </OurTeamWrap>
+        </Container>
+
+        <GitHabContainer>
+          <Container>
+            <ImageBox>
+              <GitHubImage src={GitHub} alt="GitHub-logo" />
+              <LinkBox>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.SubGraph">
+                  https://github.com/RedDuck-Software/Undas.SubGraph
+                </LinkGitHub>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.Contracts">
+                  https://github.com/RedDuck-Software/Undas.Contracts
+                </LinkGitHub>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.Frontend">
+                  https://github.com/RedDuck-Software/Undas.Frontend
+                </LinkGitHub>
+              </LinkBox>
+            </ImageBox>
+          </Container>
+        </GitHabContainer>
+        <Container>
           <Roadmap>
             <SubTitleRoadmap>Roadmap</SubTitleRoadmap>
             <RoadMapContent>
