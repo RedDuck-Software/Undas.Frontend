@@ -76,19 +76,21 @@ export const InfoText = styled.span`
   font-size: 16px;
   line-height: 17px;
   color: #232428;
+  text-align: justify;
   @media (max-width: 576px) {
     font-size: 14px;
   }
 `;
 
-export const CollectionCard = styled(Link)`
+export const CollectionCard = styled(Link)<{ bg?: string }>`
   margin: 20px 0;
   position: relative;
   cursor: pointer;
   width: 100%;
   height: 160px;
   padding: 20px;
-  background-color: hotpink;
+  background: url(${({ bg }) => (bg ? bg : "hotpink")}) no-repeat center /
+    cover;
   border-radius: 20px;
   overflow: hidden;
   display: flex;
@@ -107,17 +109,6 @@ export const CollectionCard = styled(Link)`
     height: 165px;
   }
 `;
-
-export const CollectionBackground = styled.img`
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.7;
-`;
-
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
@@ -359,7 +350,6 @@ export const CardsWrapper = styled.div`
   position: relative;
   display: flex;
   gap: 15px;
-
   @media (max-width: 1200px) {
     position: absolute;
     right: 15px;

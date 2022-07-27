@@ -17,6 +17,7 @@ import {
   AccordionBody,
   AccordionContainer,
   PageFAQTitle,
+  StickyInner,
 } from "./Faq.styles";
 
 import { Background, Container } from "../../globalStyles";
@@ -101,6 +102,7 @@ const Faq: React.FC = () => {
                         <UndasLink href="#">UNDAS</UndasLink>
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
                     <TabText>
@@ -117,6 +119,7 @@ const Faq: React.FC = () => {
                         offer
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
                     <TabText>
@@ -130,6 +133,7 @@ const Faq: React.FC = () => {
                         and its amount are determined by the owner of the NFT.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fourth">
                     <TabText>
@@ -145,6 +149,7 @@ const Faq: React.FC = () => {
                         becomes active on the NFT card.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
                     <TabText>
@@ -157,6 +162,7 @@ const Faq: React.FC = () => {
                         new buyer, respectively, the staking stops.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="sixth">
                     <TabText>
@@ -169,6 +175,7 @@ const Faq: React.FC = () => {
                         possible.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="seventh">
                     <TabText>
@@ -179,6 +186,7 @@ const Faq: React.FC = () => {
                         NFT.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="eighth">
                     <TabText>
@@ -190,6 +198,7 @@ const Faq: React.FC = () => {
                         paid commissions on the platform.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="ninth">
                     <TabText>
@@ -202,6 +211,7 @@ const Faq: React.FC = () => {
                         updates.
                       </ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                   <Tab.Pane eventKey="tenth">
                     <TabText>
@@ -216,6 +226,7 @@ const Faq: React.FC = () => {
                       </ContentText>
                       <ContentText>We are open for cooperation.</ContentText>
                     </TabText>
+                    <StickyInner></StickyInner>
                   </Tab.Pane>
                 </Tab.Content>
               </Col>
