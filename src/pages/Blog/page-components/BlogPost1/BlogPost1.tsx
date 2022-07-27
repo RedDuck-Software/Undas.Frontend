@@ -15,30 +15,35 @@ import {
   ColoredArticleText,
   Colored,
   CardsWrap,
-} from "./ArticlePage.styles";
+} from "./BlogPost1.styles";
 
 import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
-import { Inspiration1, News2, News3, ArticleBig, Heart } from "../../imports";
+import { ArticleBig2, News2, News3, ArticleBig, Heart } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
 
 const CardsSection: React.FC = () => {
   return (
     <>
       <BlogCard
-        image={Inspiration1}
-        titleText={"Lorem ipsum dolor sit, amet consectetur adipisicing elit."}
-        date={"06.06.2022"}
+        image={ArticleBig2}
+        titleText={"UNDAS: new mechanics of NFT markets"}
+        date={"27.07.2022"}
+        adress={"/blog-post-2"}
       />
       <BlogCard
         image={News2}
-        titleText={"Lorem ipsum adipisicing elit."}
-        date={"06.06.2022"}
+        titleText={
+          "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
+        }
+        date={"22.07.2022"}
+        adress={"/blog-post-3"}
       />
       <BlogCard
         image={News3}
-        titleText={"Lorem ipsum dolor sit, amet elit adipisicing elit."}
-        date={"06.06.2022"}
+        titleText={"SGM and Undas Partnership"}
+        date={"22.07.2022"}
+        adress={"/blog-post-4"}
       />
     </>
   );

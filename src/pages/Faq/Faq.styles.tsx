@@ -35,8 +35,8 @@ export const TabButton = styled(Nav.Link)`
   }
 `;
 export const TabText = styled.div`
-    position: sticky;
-    top: 70px;
+  position: sticky;
+  top: 70px;
 `;
 export const ContentTitle = styled.h2`
   font-weight: 500;

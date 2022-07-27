@@ -89,8 +89,7 @@ export const CollectionCard = styled(Link)<{ bg?: string }>`
   width: 100%;
   height: 160px;
   padding: 20px;
-  background: url(${({ bg }) => (bg ? bg : "hotpink")}) no-repeat center /
-    cover;
+  background: url(${({ bg }) => (bg ? bg : "hotpink")}) no-repeat center / cover;
   border-radius: 20px;
   overflow: hidden;
   display: flex;

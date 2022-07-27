@@ -2,12 +2,10 @@ import React from "react";
 
 import { BlogWrap } from "./Blog.styles";
 import {
-  WebsiteTips1,
   WebsiteTips2,
   WebsiteTips3,
   Inspiration1,
-  Inspiration2,
-  Inspiration3,
+  ArticleBig2,
 } from "./imports";
 import BlogMainGrid from "./page-components/BlogMainGrid/BlogMainGrid";
 import BlogPageGrid from "./page-components/BlogPageGrid/BlogPageGrid";
@@ -23,34 +21,29 @@ import {
 
 const Posts: BlogPost[] = [
   {
-    image: WebsiteTips1,
-    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-    date: "09.06.2022",
+    image: ArticleBig2,
+    titleText: "UNDAS: new mechanics of NFT markets",
+    date: "20.07.2022",
+    adress: "/blog-post-2",
   },
   {
     image: WebsiteTips2,
-    titleText: "Lorem ipsum dolor sit, amet consectetur",
-    date: "22.05.2022",
-  },
-  {
-    image: WebsiteTips3,
-    titleText: "Lorem ipsum amet consectetur adipisicing elit.",
-    date: "09.05.2022",
+    titleText:
+      "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people",
+    date: "22.07.2022",
+    adress: "/blog-post-3",
   },
   {
     image: Inspiration1,
-    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-    date: "10.06.2022",
+    titleText: "SGM and Undas Partnership",
+    date: "25.07.2022",
+    adress: "/blog-post-4",
   },
   {
-    image: Inspiration2,
-    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-    date: "09.06.2022",
-  },
-  {
-    image: Inspiration3,
-    titleText: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-    date: "09.06.2022",
+    image: WebsiteTips3,
+    titleText: "Undas.io launched on Goerli Testne",
+    date: "27.07.2022",
+    adress: "/blog-post-5",
   },
 ];
 const Blog: React.FC = () => {
