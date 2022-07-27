@@ -2,7 +2,7 @@ import plus18 from "../icons/18.svg";
 import allNFTsIcon from "../icons/all-nfts.svg";
 import artworkIcon from "../icons/art-work.svg";
 import celebrityIcon from "../icons/celebrity.svg";
-import gamefi from "../icons/metaverses.svg";
+import metaverses from "../icons/metaverses.svg";
 import newIcon from "../icons/new-stars.svg";
 import photoIcon from "../icons/photography.svg";
 import rwaNFTIcon from "../icons/rwa-nft.svg";
@@ -21,8 +21,8 @@ export const getCategory = (category: Category): ICategory => {
       return { icon: sportIcon, label: "Sports" };
     case Category.photography:
       return { icon: photoIcon, label: "Photography" };
-    case Category.gamefi:
-      return { icon: gamefi, label: "GameFi" };
+    case Category.metaverses:
+      return { icon: metaverses, label: "Metaverses" };
     case Category.celebrity:
       return { icon: celebrityIcon, label: "Celebrity" };
     case Category.rwaNFT:

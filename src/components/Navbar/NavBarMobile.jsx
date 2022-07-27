@@ -30,7 +30,7 @@ import {
   CreateIco,
   MobileFavoriteIco,
   MobileAccountIco,
-  GameFi,
+  Metaverses,
   ReddditIco,
   Ico18,
 } from "./imports";
@@ -139,7 +139,7 @@ const NavBarMobile = ({ open }) => {
                 Photography
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories-metaverses">
-                <GameFi />
+                <Metaverses />
                 Metaverses
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories-celebrity">

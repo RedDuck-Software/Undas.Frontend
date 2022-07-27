@@ -46,7 +46,7 @@ const Footer = () => {
             <TopicText href="categories-art">Artwork</TopicText>
             <TopicText href="categories-sport">Sport</TopicText>
             <TopicText href="categories-photo">Photography</TopicText>
-            <TopicText href="categories-gimefi">GameFi</TopicText>
+            <TopicText href="categories-metaverses">Metaverses</TopicText>
             <TopicText href="categories-celebrity">Celebrity</TopicText>
             <TopicText href="categories-rwa">rwaNFT</TopicText>
             <TopicText href="categories-18plus">18+ NFTs</TopicText>
@@ -72,7 +72,7 @@ const Footer = () => {
             <Dropdown.Item href="categories-art">Artwork</Dropdown.Item>
             <Dropdown.Item href="categories-sport">Sport</Dropdown.Item>
             <Dropdown.Item href="categories-photo">Photography</Dropdown.Item>
-            <Dropdown.Item href="categories-gimefi">GameFi</Dropdown.Item>
+            <Dropdown.Item href="categories-metaverses">Metaverses</Dropdown.Item>
             <Dropdown.Item href="categories-celebrity">Celebrity</Dropdown.Item>
             <Dropdown.Item href="categories-rwa">rwaNFT</Dropdown.Item>
             <Dropdown.Item href="categories-18plus">18+ NFTs</Dropdown.Item>

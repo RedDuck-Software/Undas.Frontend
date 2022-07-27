@@ -83,7 +83,7 @@ const AboutUs: React.FC = () => {
                   </p>
                   <p>
                     The project team worked on the creation of various projects
-                    in the Defi and GameFi sectors of the crypto market, as well
+                    in the Defi and Metaverses sectors of the crypto market, as well
                     as on traditional fintech solutions for banks. Nevertheless,
                     in our opinion, it is the NFT technology that will truly
                     open the door to the world of WEB 3.0, and we at{" "}
