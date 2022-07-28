@@ -193,10 +193,7 @@ const reducer = (state: IState, action: IAction) => {
   return result;
 };
 
-const ASideFilter: React.FC<ASideFilterProps> = ({
-  marginTop,
-  page,
-}) => {
+const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchRedux = useDispatch();
   const [isOpenMobile, setIsOpenMobile] = useState(false);
