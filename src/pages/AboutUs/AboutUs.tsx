@@ -13,7 +13,7 @@ import {
   OurTeamContent,
   Roadmap,
   ArticleText,
-  Link,
+  StyledLink,
   RoadMapContent,
   AchievementСontainer,
   ContainerHead,
@@ -26,7 +26,6 @@ import {
   /*SubTitleBuilding,*/
   SubTitleOurTeam,
   SubTitleOurTeamSmallSize,
-  Download,
   TextQuarter,
   TextDate,
   TextDateSmallSize,
@@ -137,28 +136,14 @@ const AboutUs: React.FC = () => {
             <OurTeamTitle>
               <SubTitleOurTeam>Our Team</SubTitleOurTeam>
               <WhitePaper>
-                <Link href="./files/WhitePaper.pdf" target="_blank" download>
+                <StyledLink to="/WhitePaper.pdf" target="_blank" download>
                   White Paper
-                </Link>
-                <Download
-                  href="./files/WhitePaper.pdf"
-                  target="_blank"
-                  download
-                >
-                  Download
-                </Download>
+                </StyledLink>
               </WhitePaper>
               <Presentation>
-                <Link href="./Undas.pdf" download>
+                <StyledLink to="/Undas.pdf" target="_blank" download>
                   Presentation
-                </Link>
-                <Download
-                  href="./files/WhitePaper.pdf"
-                  target="_blank"
-                  download
-                >
-                  Download
-                </Download>
+                </StyledLink>
               </Presentation>
             </OurTeamTitle>
             <SubTitleOurTeamSmallSize>Our Team</SubTitleOurTeamSmallSize>

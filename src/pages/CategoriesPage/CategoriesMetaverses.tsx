@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { CollectionGameBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -110,6 +111,7 @@ const CategoriesMetaverses: React.FC = () => {
       </Banner>
       <Background>
         <Container>
+        <PageWrapper>
           <Info>
             <div>
               <Title>Metaverses</Title>
@@ -132,6 +134,7 @@ const CategoriesMetaverses: React.FC = () => {
               </h1>
             )}
           </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

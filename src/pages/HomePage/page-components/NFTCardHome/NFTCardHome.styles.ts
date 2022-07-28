@@ -87,9 +87,11 @@ export const Image = styled.img`
   min-height: 340px;
   object-fit: cover;
   background-color: #fff;
-  @media (max-width: 992px) {
-    height: 300px;
-    min-height: 300px;
+  @media (max-width: 768px) {
+    height: 360px;
+  }
+  @media (max-width: 576px) {
+    height: 340px;
   }
 `;
 export const CollectionWrapper = styled(Wrapper)`

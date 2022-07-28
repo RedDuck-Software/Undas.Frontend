@@ -99,6 +99,9 @@ export const CollectionFeaturedLabelWrapper = styled.div`
 export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   width: 350px;
   height: 100px;
+  & img {
+    object-fit: cover;
+  }
   @media (max-width: 576px) {
     width: 100%;
   }
