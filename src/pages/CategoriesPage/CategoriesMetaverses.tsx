@@ -68,7 +68,7 @@ const CategoriesMetaverses: React.FC = () => {
 
   const createdTokensQuery = `
     {
-          collections(where:{collectionCategory:GAMEFI}){
+          collections(where:{collectionCategory:METAVERSE}){
           collectionName
           owner
           id

@@ -46,18 +46,20 @@ export const GET_NFT_OFFERS = gql`
 export const ITEM_ACTIVITY = gql`
   query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
     listings(
-      where: { tokenId: $tokenId, token: $tokenAddress, listingStatus: SOLD }
+      where: { tokenId: $tokenId, token: $tokenAddress }
     ) {
       price
       seller
+      listingStatus
     }
     stakingListings(
-      where: { tokenId: $tokenId, token: $tokenAddress, stakingStatus: RENTED }
+      where: { tokenId: $tokenId, token: $tokenAddress }
     ) {
       colloteralWei
       premiumWei
       seller
       taker
+      stakingStatus
     }
     tokens(where: { id: $tokenId }) {
       owner
