@@ -72,7 +72,9 @@ const Footer = () => {
             <Dropdown.Item href="categories-art">Artwork</Dropdown.Item>
             <Dropdown.Item href="categories-sport">Sport</Dropdown.Item>
             <Dropdown.Item href="categories-photo">Photography</Dropdown.Item>
-            <Dropdown.Item href="categories-metaverses">Metaverses</Dropdown.Item>
+            <Dropdown.Item href="categories-metaverses">
+              Metaverses
+            </Dropdown.Item>
             <Dropdown.Item href="categories-celebrity">Celebrity</Dropdown.Item>
             <Dropdown.Item href="categories-rwa">rwaNFT</Dropdown.Item>
             <Dropdown.Item href="categories-18plus">18+ NFTs</Dropdown.Item>
