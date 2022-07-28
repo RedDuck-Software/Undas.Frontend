@@ -182,7 +182,7 @@ export const Input = styled.input`
   outline: none;
   margin-top: 1rem;
   font-size: 1.25rem;
-  padding: 20px;
+  padding: 20px 140px 20px 20px;
   color: #7c7c7c;
   width: 100%;
 
