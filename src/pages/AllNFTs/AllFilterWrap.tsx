@@ -415,6 +415,8 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     }
   }, [priceFilter]);
 
+
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -514,8 +516,18 @@ const categoryTokens = (
     (item: { categoryName: string }) => {
       return `
         tokens_${
-          item.categoryName
-        }: tokens(where: {collectionCategory: ${item.categoryName.toUpperCase()}
+          item.categoryName === "18+NFTs"
+            ? "EXPLICIT"
+            : item.categoryName === "Real World Asset NFT"
+            ? "RWANFT"
+            : item.categoryName
+        }: tokens(where: {collectionCategory: ${
+        item.categoryName === "18+NFTs"
+          ? "EXPLICIT"
+          : item.categoryName === "Real World Asset NFT"
+          ? "RWANFT"
+          : item.categoryName.toUpperCase()
+      }
         ${buying ? ", price_not: null" : ""}
         ${stacking ? ", premiumWei_not: null" : ""}
         ${hasOffers ? ", hasOffer: true" : ""}
