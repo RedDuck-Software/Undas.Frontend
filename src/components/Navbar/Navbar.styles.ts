@@ -54,7 +54,7 @@ export const SearchWrapper = styled.div`
     max-width: 100%;
   }
   @media (min-width: 1700px) {
-    max-width: 100%;
+    max-width: 870px;
     width: 45vw;
   }
 `;
