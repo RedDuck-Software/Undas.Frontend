@@ -20,6 +20,18 @@ export const Banner = styled.div`
     }
   }
 `;
+export const PageWrapper = styled.div`
+  padding: 20px 0 80px;
+  @media (max-width: 992px){
+    padding-bottom: 60px;
+  }
+  @media (max-width: 768px){
+    padding-bottom: 40px;
+  }
+  @media (max-width: 576px){
+    padding: 0 0 20px;
+  }
+`;
 
 export const Info = styled.div`
   display: flex;
@@ -89,7 +101,8 @@ export const CollectionCard = styled(Link)<{ bg?: string }>`
   width: 100%;
   height: 160px;
   padding: 20px;
-  background: url(${({ bg }) => (bg ? bg : "hotpink")}) no-repeat center / cover;
+  background: url(${({ bg }) => (bg ? bg : "#ebdfff")}) no-repeat center / cover;
+  background-color: #ebdfff;
   border-radius: 20px;
   overflow: hidden;
   display: flex;

@@ -159,6 +159,7 @@ export const NFTItemPreview = styled.img`
   height: inherit;
   border: inherit;
   border-radius: inherit;
+  object-fit: cover;
 `;
 
 export const CreateInput = styled.input`

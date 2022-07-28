@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { CollectionArtBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -117,6 +118,7 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
+          <PageWrapper>
           <Info>
             <div>
               <Title>Artwork</Title>
@@ -138,6 +140,7 @@ const CategoriesGameFI: React.FC = () => {
               </h1>
             )}
           </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>
