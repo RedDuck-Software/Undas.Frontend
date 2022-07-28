@@ -111,29 +111,29 @@ const CategoriesMetaverses: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-        <PageWrapper>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>Metaverses</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  Metaverses category. The Metaverses category is NFT
+                  collections for who will tell you about our metaverses.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>Metaverses</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                Metaverses category. The Metaverses category is NFT collections
-                for who will tell you about our metaverses.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
           </PageWrapper>
         </Container>
       </Background>

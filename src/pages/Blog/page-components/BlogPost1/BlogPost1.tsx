@@ -28,7 +28,7 @@ const CardsSection: React.FC = () => {
       <BlogCard
         image={ArticleBig2}
         titleText={"UNDAS: new mechanics of NFT markets"}
-        date={"27.07.2022"}
+        date={"25.07.2022"}
         adress={"/blog-post-2"}
       />
       <BlogCard
@@ -36,7 +36,7 @@ const CardsSection: React.FC = () => {
         titleText={
           "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
         }
-        date={"22.07.2022"}
+        date={"23.07.2022"}
         adress={"/blog-post-3"}
       />
       <BlogCard
@@ -58,8 +58,7 @@ const ArticlePage: React.FC = () => {
             <BlockContainer>
               <ArticleTitle>Welcome to UNDAS: Project History</ArticleTitle>
               <ArticleDescription>
-                <ArticleDescriptionItem>NEWS</ArticleDescriptionItem>
-                <ArticleDescriptionItem>JULY 18, 2022</ArticleDescriptionItem>
+                <ArticleDescriptionItem>JULY 27, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>3 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
               <ArticleImage src={ArticleBig}></ArticleImage>

@@ -16,7 +16,7 @@ import {
   Colored,
   CardsWrap,
   List,
-  Link,
+  StyledLink,
 } from "./BlogPost2.styles";
 
 import Partners from "../../../../components/Partners/Partners";
@@ -28,24 +28,24 @@ const CardsSection: React.FC = () => {
   return (
     <>
       <BlogCard
-        image={ArticleBig2}
-        titleText={"UNDAS: new mechanics of NFT markets"}
-        date={"27.07.2022"}
-        adress={"/blog-post-2"}
-      />
-      <BlogCard
         image={News2}
         titleText={
           "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
         }
-        date={"22.07.2022"}
-        adress={"/blog-post-2"}
+        date={"23.07.2022"}
+        adress={"/blog-post-3"}
       />
       <BlogCard
         image={News3}
         titleText={"SGM and Undas Partnership"}
         date={"22.07.2022"}
-        adress={"/blog-post-2"}
+        adress={"/blog-post-4"}
+      />
+      <BlogCard
+        image={ArticleBig2}
+        titleText={"Undas.io launched on Goerli Testnet"}
+        date={"21.07.2022"}
+        adress={"/blog-post-5"}
       />
     </>
   );
@@ -60,8 +60,7 @@ const BlogPost2: React.FC = () => {
             <BlockContainer>
               <ArticleTitle>UNDAS: new mechanics of NFT markets</ArticleTitle>
               <ArticleDescription>
-                <ArticleDescriptionItem>NEWS</ArticleDescriptionItem>
-                <ArticleDescriptionItem>JULY 20, 2022</ArticleDescriptionItem>
+                <ArticleDescriptionItem>JULY 25, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>2 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
               <ArticleImage src={ArticleBig2}></ArticleImage>
@@ -106,7 +105,7 @@ const BlogPost2: React.FC = () => {
                     other users secured by NFT.
                   </li>
                   <li>
-                    NFT splitting - sell our NFTs in parts and buy parts of the
+                    NFT splitting – sell our NFTs in parts and buy parts of the
                     most expensive and top collections to hedge your risks on
                     NFT portfolios
                   </li>
@@ -127,9 +126,9 @@ const BlogPost2: React.FC = () => {
                 {" "}
                 We return 90 percent of the commission that users pay back to
                 the project community:<br></br>
-                30% - NFT staking<br></br>
-                30% - UND token hold<br></br>
-                30% - payment for trading transactions, cashback option for
+                30% – NFT staking<br></br>
+                30% – UND token hold<br></br>
+                30% – payment for trading transactions, cashback option for
                 traders.
               </ArticleText>
               <ArticleText>
@@ -139,9 +138,9 @@ const BlogPost2: React.FC = () => {
                 topic for another articleJ If you are interested in all the new
                 mechanics of <Colored>UNDAS</Colored>, you can check out the
                 white paper project at the link:{" "}
-                <Link href="./files/WhitePaper.pdf" target="_blank" download>
+                <StyledLink to="/WhitePaper.pdf" target="_blank" download>
                   White Paper{" "}
-                </Link>
+                </StyledLink>
                 It&apos;s big but it&apos;s worth it!
               </ArticleText>
               <ColoredArticleText>Join the Undas community!</ColoredArticleText>

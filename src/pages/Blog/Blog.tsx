@@ -1,12 +1,7 @@
 import React from "react";
 
 import { BlogWrap } from "./Blog.styles";
-import {
-  WebsiteTips2,
-  WebsiteTips3,
-  Inspiration1,
-  ArticleBig2,
-} from "./imports";
+import { ArticleBig2, SGM } from "./imports";
 import BlogMainGrid from "./page-components/BlogMainGrid/BlogMainGrid";
 import BlogPageGrid from "./page-components/BlogPageGrid/BlogPageGrid";
 import { BlogPost } from "./types";
@@ -23,26 +18,26 @@ const Posts: BlogPost[] = [
   {
     image: ArticleBig2,
     titleText: "UNDAS: new mechanics of NFT markets",
-    date: "20.07.2022",
+    date: "25.07.2022",
     adress: "/blog-post-2",
   },
   {
-    image: WebsiteTips2,
+    image: SGM,
     titleText:
       "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people",
-    date: "22.07.2022",
+    date: "23.07.2022",
     adress: "/blog-post-3",
   },
   {
-    image: Inspiration1,
+    image: SGM,
     titleText: "SGM and Undas Partnership",
-    date: "25.07.2022",
+    date: "22.07.2022",
     adress: "/blog-post-4",
   },
   {
-    image: WebsiteTips3,
+    image: SGM,
     titleText: "Undas.io launched on Goerli Testne",
-    date: "27.07.2022",
+    date: "21.07.2022",
     adress: "/blog-post-5",
   },
 ];

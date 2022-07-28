@@ -22,13 +22,13 @@ export const Banner = styled.div`
 `;
 export const PageWrapper = styled.div`
   padding: 20px 0 80px;
-  @media (max-width: 992px){
+  @media (max-width: 992px) {
     padding-bottom: 60px;
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     padding-bottom: 40px;
   }
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     padding: 0 0 20px;
   }
 `;
