@@ -101,9 +101,8 @@ export const CollectionCard = styled(Link)<{ bg?: string }>`
   width: 100%;
   height: 160px;
   padding: 20px;
-  background: url(${({ bg }) => (bg ? bg : "#ebdfff")}) no-repeat center /
-    cover;
-  background-color: #ebdfff;
+  background:  ${({bg}) => bg ? `url(${bg}) no-repeat center /
+    cover` : "#ebdfff"};
   border-radius: 20px;
   overflow: hidden;
   display: flex;
