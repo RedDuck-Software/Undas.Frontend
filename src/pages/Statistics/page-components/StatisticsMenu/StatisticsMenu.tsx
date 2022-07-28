@@ -50,7 +50,7 @@ const StatisticsRow: React.FC<StatisticsRowProps> = ({ action }) => {
           <img
             src={ItemImg}
             alt="item image"
-            className="Statistics-item-image"
+            className="statistics-item-image"
           />
         </ItemIcon>
         <NameContainer>
