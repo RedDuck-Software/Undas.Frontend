@@ -34,6 +34,7 @@ export const BodyWrapper = styled.div`
 `;
 export const ContentWrap = styled.div`
   width: 100%;
+  padding-bottom: 40px;
 `;
 export const InfoBox = styled.div`
   position: relative;
@@ -198,7 +199,6 @@ export const ContainerNFT = styled.div`
   position: relative;
   width: 100%;
   display: inline-block;
-  padding-bottom: 40px;
 `;
 export const MyWrapper = styled.div`
   position: relative;
