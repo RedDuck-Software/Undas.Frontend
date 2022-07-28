@@ -39,10 +39,12 @@ export const InfoBox = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   max-width: 740px;
   flex-wrap: wrap;
-  margin-right: auto;
+  margin: 0 auto;
+
   @media (max-width: 1200px) {
     margin-left: auto;
     margin-right: auto;
@@ -51,12 +53,12 @@ export const InfoBox = styled.div`
   }
 `;
 export const Info = styled.ul`
+  position: relative;
   display: flex;
   border-radius: 0 0 20px 20px;
   background-color: #fff;
   overflow: hidden;
   max-height: 80px;
-  margin-left: 20%;
   @media (max-width: 1200px) {
     margin: 0 auto;
   }
@@ -93,17 +95,20 @@ export const InfoElement = styled.li`
     }
   }
 `;
+
 export const CollectionDescript = styled.div<{ opacity?: boolean }>`
+  display: flex;
+  flex-direction: column;
   height: ${({ opacity }) => (opacity ? "auto" : "70px")};
-  z-index: ${({ opacity }) => (opacity ? 4 : -100)};
-  position: ${({ opacity }) => (opacity ? "absolute" : "relative")};
-  transition: all 0.5s;
-  max-width: 740px;
+  //z-index: ${({ opacity }) => (opacity ? 4 : -100)};
+  position: ${({ opacity }) => (opacity ? "" : "relative")};
+  //transition: all 0.5s;
+  width: ${({ opacity }) => (opacity ? "740px" : "100%")};
+  max-width: "740px";
   overflow: hidden;
   top: ${({ opacity }) => (opacity ? "90px" : "0")};
   left: 0;
   background-color: ${({ opacity }) => (opacity ? "#fff" : "transparent")};
-  padding: ${({ opacity }) => (opacity ? "0 15px 15px 15px" : "0")};
   border-radius: 10px;
   &:after {
     position: absolute;
@@ -126,7 +131,6 @@ export const DescriptBtn = styled.button`
   outline: none;
   color: #873dc1;
   background: transparent;
-  margin-top: -20px;
 `;
 export const Amount = styled.span`
   font-size: 18px;

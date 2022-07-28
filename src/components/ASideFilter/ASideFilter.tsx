@@ -193,7 +193,10 @@ const reducer = (state: IState, action: IAction) => {
   return result;
 };
 
-const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
+const ASideFilter: React.FC<ASideFilterProps> = ({
+  marginTop,
+  page,
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchRedux = useDispatch();
   const [isOpenMobile, setIsOpenMobile] = useState(false);
@@ -213,7 +216,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
       <ASideWrap
         className={(state.menu && "active") || ""}
         isOpenMobile={isOpenMobile}
-        marginTop="-30px"
+        marginTop={"-30px"}
       >
         <Holder marginTop={marginTop}>
           <HolderElement

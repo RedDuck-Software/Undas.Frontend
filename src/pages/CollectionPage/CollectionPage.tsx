@@ -180,13 +180,13 @@ const CollectionPage: React.FC = () => {
                     <CollectionDescript opacity={show}>
                       {data.collection.collectionInfo}
                     </CollectionDescript>
-                    <DescriptBtn onClick={() => setShow(true)}>
-                      Show more
+                    <DescriptBtn onClick={() => setShow(!show)}>
+                      {show ? "Hide" : "Show more"}
                     </DescriptBtn>
                   </InfoBox>
                 </HeadWrapper>
                 <BodyWrapper>
-                  <ASideFilter marginTop="70px" page="Collection" />
+                  <ASideFilter marginTop={"70px"} page="Collection" />
                   <ContentWrap>
                     <MenuWrap
                       marg="40px 0 20px 0"

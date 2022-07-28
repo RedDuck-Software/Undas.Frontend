@@ -11,7 +11,8 @@ export const CardWrap = styled.div`
   font-weight: 400;
   font-size: 12px;
   color: #232428;
-  width: 40%;
+  max-width: 460px;
+  max-height: 245px;
   margin-top: -70px;
   margin-right: 15px;
   @media (max-width: 1200px) {
