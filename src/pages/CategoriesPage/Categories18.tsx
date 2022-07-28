@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { Collection18Banner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -102,28 +103,30 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>18+ NFTs</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  18+ NFTs category. The 18+ NFTs category is dedicated to
+                  explicit NFT pictures.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>18+ NFTs</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                18+ NFTs category. The 18+ NFTs category is dedicated to
-                explicit NFT pictures.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

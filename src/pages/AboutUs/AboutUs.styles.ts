@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { DownloadIco } from "./imports";
@@ -113,7 +114,7 @@ export const OurTeamTitle = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Link = styled.a`
+export const StyledLink = styled(Link)`
   color: #873dc1;
   font-weight: 400;
   font-size: 24px;
@@ -508,35 +509,6 @@ export const SubTitleOurTeamSmallSize = styled.h2`
   @media (max-width: 576px) {
     font-size: 16px;
     margin-top: 20px;
-  }
-`;
-
-export const Download = styled.a`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #7c7c7c;
-  display: none;
-  padding-top: 6px;
-  margin-left: auto;
-
-  &::before {
-    content: "";
-    width: 16px;
-    height: 20px;
-    background-image: url(${DownloadIco});
-    background-size: cover;
-    position: absolute;
-    margin-left: -30px;
-  }
-
-  @media (max-width: 773px) {
-    display: block;
-  }
-  @media (max-width: 576px) {
-    font-size: 16px;
   }
 `;
 

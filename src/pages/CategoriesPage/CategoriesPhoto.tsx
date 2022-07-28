@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { CollectionPhotoBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -110,28 +111,30 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>Photography</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  Photography category. The Photography category is collections
+                  of photos from the best photographers in the NFT world.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>Photography</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                Photography category. The Photography category is collections of
-                photos from the best photographers in the NFT world.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

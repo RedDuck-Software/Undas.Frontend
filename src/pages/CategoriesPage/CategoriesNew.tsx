@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { CollectionBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -110,28 +111,30 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>New NFTs</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  NEW category. The NEW category is the latest collections added
+                  to our site.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>New NFTs</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                NEW category. The NEW category is the latest collections added
-                to our site.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

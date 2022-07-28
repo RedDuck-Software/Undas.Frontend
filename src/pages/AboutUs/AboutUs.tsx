@@ -13,7 +13,7 @@ import {
   OurTeamContent,
   Roadmap,
   ArticleText,
-  Link,
+  StyledLink,
   RoadMapContent,
   AchievementСontainer,
   ContainerHead,
@@ -26,7 +26,6 @@ import {
   /*SubTitleBuilding,*/
   SubTitleOurTeam,
   SubTitleOurTeamSmallSize,
-  Download,
   TextQuarter,
   TextDate,
   TextDateSmallSize,
@@ -83,10 +82,10 @@ const AboutUs: React.FC = () => {
                   </p>
                   <p>
                     The project team worked on the creation of various projects
-                    in the Defi and Metaverses sectors of the crypto market, as well
-                    as on traditional fintech solutions for banks. Nevertheless,
-                    in our opinion, it is the NFT technology that will truly
-                    open the door to the world of WEB 3.0, and we at{" "}
+                    in the Defi and Metaverses sectors of the crypto market, as
+                    well as on traditional fintech solutions for banks.
+                    Nevertheless, in our opinion, it is the NFT technology that
+                    will truly open the door to the world of WEB 3.0, and we at{" "}
                     <span>UNDAS</span> are happy to become one of the pioneers!
                   </p>
                 </ArticleText>
@@ -137,28 +136,14 @@ const AboutUs: React.FC = () => {
             <OurTeamTitle>
               <SubTitleOurTeam>Our Team</SubTitleOurTeam>
               <WhitePaper>
-                <Link href="./files/WhitePaper.pdf" target="_blank" download>
+                <StyledLink to="/WhitePaper.pdf" target="_blank" download>
                   White Paper
-                </Link>
-                <Download
-                  href="./files/WhitePaper.pdf"
-                  target="_blank"
-                  download
-                >
-                  Download
-                </Download>
+                </StyledLink>
               </WhitePaper>
               <Presentation>
-                <Link href="./Undas.pdf" download>
+                <StyledLink to="/Undas.pdf" target="_blank" download>
                   Presentation
-                </Link>
-                <Download
-                  href="./files/WhitePaper.pdf"
-                  target="_blank"
-                  download
-                >
-                  Download
-                </Download>
+                </StyledLink>
               </Presentation>
             </OurTeamTitle>
             <SubTitleOurTeamSmallSize>Our Team</SubTitleOurTeamSmallSize>
