@@ -101,7 +101,11 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
         return (
-          <CollectionCard key={i.id} to={`/collection/${i.id}`} bg={i.collectionFeatureImg}>
+          <CollectionCard
+            key={i.id}
+            to={`/collection/${i.id}`}
+            bg={i.collectionFeatureImg}
+          >
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />

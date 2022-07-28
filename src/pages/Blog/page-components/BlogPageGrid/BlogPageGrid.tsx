@@ -18,6 +18,7 @@ const BlogPageGrid: React.FC<BlogPageGridProps> = ({ posts }) => {
             image={post.image}
             titleText={post.titleText}
             date={post.date}
+            adress={post.adress}
           />
         );
       })}

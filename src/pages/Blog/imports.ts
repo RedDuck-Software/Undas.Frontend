@@ -3,8 +3,7 @@ import BusinessTips2 from "./assets/business-tips-2.png";
 import BusinessTips3 from "./assets/business-tips-3.png";
 import Heart from "./assets/heart.svg";
 import Inspiration1 from "./assets/inspiration-1.png";
-import Inspiration2 from "./assets/inspiration-2.png";
-import Inspiration3 from "./assets/inspiration-3.png";
+import ArticleBig2 from "./assets/newMechanics.png";
 import News1 from "./assets/news-1.png";
 import News2 from "./assets/news-2.png";
 import News3 from "./assets/news-3.png";
@@ -27,11 +26,10 @@ export {
   BusinessTips2,
   BusinessTips3,
   Inspiration1,
-  Inspiration2,
-  Inspiration3,
+  ArticleBig2,
+  ArticleBig,
   News1,
   News2,
   News3,
-  ArticleBig,
   Heart,
 };

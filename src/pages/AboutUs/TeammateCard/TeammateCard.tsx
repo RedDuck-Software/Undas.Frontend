@@ -37,40 +37,6 @@ const TeammateCards = () => {
         <>
           <ColTeamCard>
             <TeamCard>
-              <CardImg variant="top" src={GermanFounder} />
-              <CardBody>
-                <TeamCardTitle>German</TeamCardTitle>
-                <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
-                {/* If you will want some Description
-                    <Card.Text>
-
-                    </Card.Text> */}
-                <TeamCardLink
-                  href="https://www.linkedin.com/in/german-solovyov/"
-                  target="_blank"
-                >
-                  <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-              </CardBody>
-            </TeamCard>
-          </ColTeamCard>
-          <ColTeamCard>
-            <TeamCard>
-              <CardImg variant="top" src={ErvinMigirov} />
-              <CardBody>
-                <TeamCardTitle>Ervin</TeamCardTitle>
-                <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
-                <TeamCardLink
-                  href="https://www.linkedin.com/in/ervin-migirov-37024a6a/"
-                  target="_blank"
-                >
-                  <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-              </CardBody>
-            </TeamCard>
-          </ColTeamCard>
-          <ColTeamCard>
-            <TeamCard>
               <CardImg variant="top" src={ArtemFranz} />
               <CardBody>
                 <TeamCardTitle>Artem</TeamCardTitle>
@@ -105,6 +71,40 @@ const TeammateCards = () => {
           </ColTeamCard>
           <ColTeamCard>
             <TeamCard>
+              <CardImg variant="top" src={GermanFounder} />
+              <CardBody>
+                <TeamCardTitle>German</TeamCardTitle>
+                <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
+                {/* If you will want some Description
+                    <Card.Text>
+
+                    </Card.Text> */}
+                <TeamCardLink
+                  href="https://www.linkedin.com/in/german-solovyov/"
+                  target="_blank"
+                >
+                  <img src={LinkedInIco} alt="icon" />
+                </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
+              <CardImg variant="top" src={ErvinMigirov} />
+              <CardBody>
+                <TeamCardTitle>Ervin</TeamCardTitle>
+                <TeamCardTitleSurname>Founder</TeamCardTitleSurname>
+                <TeamCardLink
+                  href="https://www.linkedin.com/in/ervin-migirov-37024a6a/"
+                  target="_blank"
+                >
+                  <img src={LinkedInIco} alt="icon" />
+                </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
               <CardImg variant="top" src={StasnislavStefanyshynCVO} />
               <CardBody>
                 <TeamCardTitle>Stanislav</TeamCardTitle>
@@ -119,6 +119,39 @@ const TeammateCards = () => {
                 >
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
+              <CardImg variant="top" src={DanilDeveloper} />
+              <CardBody>
+                <TeamCardTitle>Danil</TeamCardTitle>
+                <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
+                <TeamCardLink
+                  href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/"
+                  target="_blank"
+                >
+                  <img src={LinkedInIco} alt="icon" />
+                </TeamCardLink>
+              </CardBody>
+            </TeamCard>
+          </ColTeamCard>
+          <ColTeamCard>
+            <TeamCard>
+              <CardImg variant="top" src={KostiantynMininkov} />
+              <CardBody>
+                <TeamCardTitle>Kostiantyn</TeamCardTitle>
+                <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
+                <TeamCardLink
+                  href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/"
+                  target="_blank"
+                >
+                  <img src={LinkedInIco} alt="icon" />
+                </TeamCardLink>
+                {/* <TeamCardLink href="#">
+                  <img src={TwitterIco} alt="icon" />
+                </TeamCardLink>*/}
               </CardBody>
             </TeamCard>
           </ColTeamCard>
@@ -158,24 +191,6 @@ const TeammateCards = () => {
           </ColTeamCard>
           <ColTeamCard>
             <TeamCard>
-              <CardImg variant="top" src={KostiantynMininkov} />
-              <CardBody>
-                <TeamCardTitle>Kostiantyn</TeamCardTitle>
-                <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink
-                  href="https://www.linkedin.com/in/kostiantyn-mininkov-9869a4217/"
-                  target="_blank"
-                >
-                  <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-                {/* <TeamCardLink href="#">
-                  <img src={TwitterIco} alt="icon" />
-                </TeamCardLink>*/}
-              </CardBody>
-            </TeamCard>
-          </ColTeamCard>
-          <ColTeamCard>
-            <TeamCard>
               <CardImg variant="top" src={AndriiShvaika} />
               <CardBody>
                 <TeamCardTitle>Andrii</TeamCardTitle>
@@ -210,22 +225,6 @@ const TeammateCards = () => {
           </ColTeamCard>
           <ColTeamCard>
             <TeamCard>
-              <CardImg variant="top" src={AnnaTsysMetaverses} />
-              <CardBody>
-                <TeamCardTitle>Anna</TeamCardTitle>
-                <TeamCardTitleSurname>Metaverses</TeamCardTitleSurname>
-                {/* If you will want some Description
-                    <Card.Text>
-
-                    </Card.Text> */}
-                <TeamCardLink href="#" target="_blank">
-                  <img src={LinkedInIco} alt="icon" />
-                </TeamCardLink>
-              </CardBody>
-            </TeamCard>
-          </ColTeamCard>
-          <ColTeamCard>
-            <TeamCard>
               <CardImg variant="top" src={IlyaArkhipovArtDirector} />
               <CardBody>
                 <TeamCardTitle>Ilya</TeamCardTitle>
@@ -238,14 +237,15 @@ const TeammateCards = () => {
           </ColTeamCard>
           <ColTeamCard>
             <TeamCard>
-              <CardImg variant="top" src={DanilDeveloper} />
+              <CardImg variant="top" src={AnnaTsysMetaverses} />
               <CardBody>
-                <TeamCardTitle>Danil</TeamCardTitle>
-                <TeamCardTitleSurname>Developer</TeamCardTitleSurname>
-                <TeamCardLink
-                  href="https://www.linkedin.com/in/danil-dovgal-2a96a5243/"
-                  target="_blank"
-                >
+                <TeamCardTitle>Anna</TeamCardTitle>
+                <TeamCardTitleSurname>Metaverses</TeamCardTitleSurname>
+                {/* If you will want some Description
+                    <Card.Text>
+
+                    </Card.Text> */}
+                <TeamCardLink href="#" target="_blank">
                   <img src={LinkedInIco} alt="icon" />
                 </TeamCardLink>
               </CardBody>
