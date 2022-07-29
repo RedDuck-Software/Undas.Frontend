@@ -74,6 +74,7 @@ export const BigCardWrap = styled(CardWrap)`
 `;
 export const ImageWrap = styled.div`
   border-radius: 10px 10px 0 0;
+  height: 180px;
   position: relative;
 `;
 export const BigImageWrap = styled(ImageWrap)`
@@ -92,6 +93,7 @@ export const BigImageWrap = styled(ImageWrap)`
 
 export const BigImage = styled(Image)`
   border-radius: 10px 0 0 10px;
+  height: 338px;
   @media (max-width: 576px) {
     border-radius: 10px 10px 0 0;
   }

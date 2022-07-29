@@ -152,7 +152,6 @@ const AboutUs: React.FC = () => {
             </OurTeamContent>
           </OurTeamWrap>
         </Container>
-
         <GitHabContainer>
           <Container>
             <ImageBox>

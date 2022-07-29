@@ -208,7 +208,7 @@ const CollectionPage: React.FC = () => {
       searchFilter,
     ),
   );
-  
+
   return (
     <>
       {fetching && !data ? (

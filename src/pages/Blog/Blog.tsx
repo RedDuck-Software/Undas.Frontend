@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BlogWrap } from "./Blog.styles";
-import { ArticleBig2, SGM } from "./imports";
+import { ArticleBig2, Blog3, Blog5, SGM } from "./imports";
 import BlogMainGrid from "./page-components/BlogMainGrid/BlogMainGrid";
 import BlogPageGrid from "./page-components/BlogPageGrid/BlogPageGrid";
 import { BlogPost } from "./types";
@@ -22,7 +22,7 @@ const Posts: BlogPost[] = [
     adress: "/blog-post-2",
   },
   {
-    image: SGM,
+    image: Blog3,
     titleText:
       "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people",
     date: "23.07.2022",
@@ -35,7 +35,7 @@ const Posts: BlogPost[] = [
     adress: "/blog-post-4",
   },
   {
-    image: SGM,
+    image: Blog5,
     titleText: "Undas.io launched on Goerli Testne",
     date: "21.07.2022",
     adress: "/blog-post-5",

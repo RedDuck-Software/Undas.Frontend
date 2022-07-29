@@ -21,14 +21,14 @@ import {
 
 import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
-import { News2, News3, ArticleBig2, Heart } from "../../imports";
+import { ArticleBig2, Heart, Blog3, SGM, Blog5 } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
 
 const CardsSection: React.FC = () => {
   return (
     <>
       <BlogCard
-        image={News2}
+        image={Blog3}
         titleText={
           "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
         }
@@ -36,13 +36,13 @@ const CardsSection: React.FC = () => {
         adress={"/blog-post-3"}
       />
       <BlogCard
-        image={News3}
+        image={SGM}
         titleText={"SGM and Undas Partnership"}
         date={"22.07.2022"}
         adress={"/blog-post-4"}
       />
       <BlogCard
-        image={ArticleBig2}
+        image={Blog5}
         titleText={"Undas.io launched on Goerli Testnet"}
         date={"21.07.2022"}
         adress={"/blog-post-5"}

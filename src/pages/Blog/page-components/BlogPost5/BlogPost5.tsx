@@ -20,7 +20,7 @@ import {
 
 import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
-import { News2, News3, ArticleBig2, Heart } from "../../imports";
+import { ArticleBig2, Heart, Blog5, Blog3, SGM } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
 
 const CardsSection: React.FC = () => {
@@ -33,7 +33,7 @@ const CardsSection: React.FC = () => {
         adress={"/blog-post-2"}
       />
       <BlogCard
-        image={News2}
+        image={Blog3}
         titleText={
           "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
         }
@@ -41,7 +41,7 @@ const CardsSection: React.FC = () => {
         adress={"/blog-post-3"}
       />
       <BlogCard
-        image={News3}
+        image={SGM}
         titleText={"SGM and Undas Partnership"}
         date={"22.07.2022"}
         adress={"/blog-post-4"}
@@ -63,7 +63,7 @@ const BlogPost5: React.FC = () => {
                 <ArticleDescriptionItem>JULY 21, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>1 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
-              <ArticleImage src={ArticleBig2}></ArticleImage>
+              <ArticleImage src={Blog5}></ArticleImage>
               <ArticleText>
                 We are pleased to announce the launch of the MVP of the{" "}
                 <Colored>UNDAS</Colored> project! The platform is in test mode,
