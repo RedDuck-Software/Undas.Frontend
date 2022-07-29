@@ -35,64 +35,123 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
           <ActivityTd>Date</ActivityTd>
         </ActivityHeadTr>
         {items.data.listings.map((item: any) => {
-          return (
-            <ActivityTr key={item}>
-              <ActivityTd>
-                <ActivityText>Sale</ActivityText>
-              </ActivityTd>
-              <ActivityTd>
-                <EtherIcon />
-                <PriceText>
-                  {ethers.utils.formatEther(item.price.toString())}
-                </PriceText>
-                <ActivityText>ETH</ActivityText>
-              </ActivityTd>
-              <ActivityTd>
-                <ActivityColorText color="#5D3F92">
-                  0xdA0....49154
-                </ActivityColorText>
-              </ActivityTd>
-              <ActivityTd>
-                <ActivityColorText color="#5D3F92">
-                  0xf35....C8ACd
-                </ActivityColorText>
-              </ActivityTd>
-              <ActivityTd>Day ago</ActivityTd>
-            </ActivityTr>
-          );
+          if(item.listingStatus == "ACTIVE"){
+            return (
+              <ActivityTr key={item}>
+                <ActivityTd>
+                  <ActivityText>Listed</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <EtherIcon />
+                  <PriceText>
+                    {ethers.utils.formatEther(item.price.toString())}
+                  </PriceText>
+                  <ActivityText>ETH</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0xdA0...49154
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                  0xA24...09c6A
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>Day ago</ActivityTd>
+              </ActivityTr>
+            );
+          }
+          if(item.listingStatus == "SOLD"){
+            return (
+              <ActivityTr key={item}>
+                <ActivityTd>
+                  <ActivityText>Listed</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <EtherIcon />
+                  <PriceText>
+                    {ethers.utils.formatEther(item.price.toString())}
+                  </PriceText>
+                  <ActivityText>ETH</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0xdA0...49154
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0xf35...C8ACd
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>Day ago</ActivityTd>
+              </ActivityTr>
+            );
+          }
+          
         })}
         {items.data.stakingListings.map((item: any) => {
-          return (
-            <ActivityTr key={item}>
-              <ActivityTd>
-                <ActivityText>Rent</ActivityText>
-              </ActivityTd>
-              <ActivityTd>
-                <EtherIcon />
-                <PriceText>
-                  {ethers.utils.formatEther(item.colloteralWei.toString())}
-                </PriceText>
-                <ActivityText>ETH</ActivityText>
-              </ActivityTd>
-              <ActivityTd>
-                <ActivityColorText color="#5D3F92">
-                  0x454...7720
-                </ActivityColorText>
-              </ActivityTd>
-              <ActivityTd>
-                <ActivityColorText color="#5D3F92">
-                  0x1DE...93a24
-                </ActivityColorText>
-              </ActivityTd>
-              <ActivityTd>Day ago</ActivityTd>
-            </ActivityTr>
-          );
+          if(item.stakingStatus == "ACTIVE"){
+            return (
+              <ActivityTr key={item}>
+                <ActivityTd>
+                  <ActivityText>Added to rent</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <EtherIcon />
+                  <PriceText>
+                    {ethers.utils.formatEther(item.colloteralWei.toString())}
+                  </PriceText>
+                  <ActivityText>ETH</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0x454...7720
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0x1DE...93a24
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>Day ago</ActivityTd>
+              </ActivityTr>
+            );
+          }
+          if(item.stakingStatus == "RENTED"){
+            return (
+              <ActivityTr key={item}>
+                <ActivityTd>
+                  <ActivityText>Rented</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <EtherIcon />
+                  <PriceText>
+                    {ethers.utils.formatEther(item.colloteralWei.toString()) + '/' + ethers.utils.formatEther(item.premiumWei.toString())}
+                  </PriceText>
+                  <ActivityText>ETH</ActivityText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0x454...7720
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>
+                  <ActivityColorText color="#5D3F92">
+                    0x1DE...93a24
+                  </ActivityColorText>
+                </ActivityTd>
+                <ActivityTd>Day ago</ActivityTd>
+              </ActivityTr>
+            );
+          }
         })}
         {items.data.tokens.map((item: any) => {
           return (
             <ActivityTr key={item}>
               <ActivityTd>
-                <ActivityText>Mint</ActivityText>
+                <ActivityText>Minted</ActivityText>
               </ActivityTd>
               <ActivityTd>
                 <EtherIcon />

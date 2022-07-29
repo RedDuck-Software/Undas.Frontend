@@ -136,7 +136,6 @@ const Buy: React.FC<BuyProps> = ({
 
     getProductPrice();
   }, [connector, web3React]);
-
   return (
     <>
       {showBuy === false && isOwner === true ? (
@@ -160,15 +159,7 @@ const Buy: React.FC<BuyProps> = ({
             </InfoButton>
           </ButtonWrap>
         </BuyBar>
-      ) : !isOwner ? (
-        <BuyBar>
-          <ButtonWrap>
-            <Wrapper disp="flex" alignItems="center">
-              Not listed for sale yet
-            </Wrapper>
-          </ButtonWrap>
-        </BuyBar>
-      ) : (
+      ) : !isOwner && (state.price || priceInNum) ? (
         <BuyBar>
           <span>Current price</span>
           <Wrapper disp="flex" alignItems="center">
@@ -204,6 +195,49 @@ const Buy: React.FC<BuyProps> = ({
             </InfoButton>
           </ButtonWrap>
         </BuyBar>
+      ) : isOwner ? (
+        <BuyBar>
+          <span>Current price</span>
+          <Wrapper disp="flex" alignItems="center">
+            <PriceWrap>
+              <EthIco />
+              <PriceText>
+                {ethers.utils.formatUnits(priceInNum.toString(), "ether")}
+              </PriceText>
+              <PriceInUSD>{`($${priceInEth})`}</PriceInUSD>
+            </PriceWrap>
+          </Wrapper>
+          <ButtonWrap>
+            <InfoButton
+              bg="#873DC1"
+              onClick={() => buyToken(id, priceInNum)}
+              className="colored-btn"
+            >
+              Buy now
+            </InfoButton>
+            <InfoButton
+              fc="#873DC1" 
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(
+                  `/offer-sale/tokenAddress=${tokenAddress}&id=${tokenId}`,
+                  { state: { state } },
+                );
+              }}
+            >
+              Make offer
+            </InfoButton>
+          </ButtonWrap>
+        </BuyBar>
+      ) : (
+        <BuyBar>
+          <ButtonWrap>
+            <Wrapper disp="flex" alignItems="center">
+              You have not listed for sale yet
+            </Wrapper>
+          </ButtonWrap>
+        </BuyBar>
+        
       )}
     </>
   );

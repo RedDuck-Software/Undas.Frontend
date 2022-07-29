@@ -111,8 +111,7 @@ const NFTPage: React.FC = () => {
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
-  // const [collectionName, setcollectionName] = useState<string>("No collection");
-  const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("");
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
   const [itemHistory, setItemHistory] = useState<any>();
@@ -120,6 +119,7 @@ const NFTPage: React.FC = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
   const [isOwner, setIsOwner] = useState(true);
+
   const state: any = useLocation();
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
@@ -239,9 +239,9 @@ const NFTPage: React.FC = () => {
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
-      if (!seller) {
-        setSeller(tokensQuery.data.listings[0].seller);
-      }
+        if (!seller) {
+          setSeller(tokensQuery.data.listings[0].seller);
+        }
       setStatus(tokensQuery.data.listings[0].listingStatus);
       setLoading(false);
     }
@@ -255,9 +255,9 @@ const NFTPage: React.FC = () => {
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
       setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
-      if (!seller) {
-        setSeller(tokensQuery.data.stakingListings[0].seller);
-      }
+        if (!seller) {
+          setSeller(tokensQuery.data.stakingListings[0].seller);
+        }
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
 
@@ -280,9 +280,9 @@ const NFTPage: React.FC = () => {
     getShowBuy();
     getShowRent();
     getOwner();
-    if (itemActivity.data) {
-      setItemHistory(itemActivity);
-    }
+      if (itemActivity.data) {
+        setItemHistory(itemActivity);
+      }
   }, [
     connector,
     listingId,
@@ -297,6 +297,7 @@ const NFTPage: React.FC = () => {
   ]);
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
@@ -494,13 +495,7 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                    ) : !isOwner ? (
-                      <>
-                        <RentElement h="76px">
-                          <NotListed>Not listed for rent yet</NotListed>
-                        </RentElement>
-                      </>
-                    ) : (
+                    ) : !isOwner && (state.colloterarWei || colloteral) ? (
                       <>
                         <RentElement className="center">
                           <span>Deposit</span>
@@ -560,6 +555,73 @@ const NFTPage: React.FC = () => {
                           </ContainerButton>
                         </RentElement>
                       </>
+                    ) : isOwner ? (
+                      <>
+                        <RentElement className="center">
+                          <span>Deposit</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                colloteral.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
+                            <PriceInUSD>($18 465,32)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement className="center">
+                          <span>Price for 1 Rental</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                premium.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
+                            <PriceInUSD>($36,93)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement className="center">
+                          <span>Period</span>
+                          <RentalPeriod placeholder="7 for 90 days" />
+                        </RentElement>
+                        <RentElement h="unset">
+                          <ContainerButton>
+                            <InfoButton
+                              bg="#873DC1"
+                              className="colored-btn"
+                              onClick={() =>
+                                rentToken(stakingId, colloteral, premium)
+                              }
+                            >
+                              Rent
+                            </InfoButton>
+                            <InfoButton
+                              fc="#873DC1"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                  { state: { ...state } },
+                                );
+                              }}
+                            >
+                              Make offer
+                            </InfoButton>
+                          </ContainerButton>
+                        </RentElement>
+                      </>
+                    ): (
+                      <RentElement>
+                        <ContainerButton>
+                          <Wrapper disp="flex" alignItems="center">
+                            You have not listed for rent yet
+                          </Wrapper>
+                        </ContainerButton>
+                      </RentElement>
+                      
                     )}
                   </SaleBlock>
                 </Wrapper>
