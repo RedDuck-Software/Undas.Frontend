@@ -26,7 +26,7 @@ export const Favorite = styled.img`
   width: 16px;
   height: 16px;
   z-index: 2;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;

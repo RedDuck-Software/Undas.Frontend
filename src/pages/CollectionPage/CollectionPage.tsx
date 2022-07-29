@@ -330,10 +330,7 @@ const CollectionPage: React.FC = () => {
                 <BodyWrapper>
                   <ASideFilter marginTop={"140px"} page="Collection" />
                   <ContentWrap>
-                    <MenuWrap
-                      marg="20px 0"
-                      justifyContent="space-between"
-                    >
+                    <MenuWrap marg="20px 0" justifyContent="space-between">
                       <DescriptionWrapper>
                         <CollectionDescript opacity={show}>
                           {data.collection.collectionInfo}

@@ -17,7 +17,6 @@ import { heart } from "../../../AllNFTs/page-components/NFTListItem/imports";
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 
-
 interface CollectionCardProps {
   name: string;
   creator: string;
