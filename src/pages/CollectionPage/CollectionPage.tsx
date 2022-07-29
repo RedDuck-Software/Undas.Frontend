@@ -215,20 +215,9 @@ const CollectionPage: React.FC = () => {
     searchFilter,
   ]);
 
-  console.log(data);
-  console.log(
-    GET_COLLECTION_INFO(
-      params.id ? params.id : 0,
-      buyingFilter.buying,
-      rentingFilter.stacking,
-      hasOfferFilter.hasOffers,
-      searchFilter,
-    ),
-  );
-
   const target = useRef(null);
   const [showTarget, setShowTarget] = useState(false);
-  
+
   return (
     <>
       {fetching && !data ? (

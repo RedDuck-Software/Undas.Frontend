@@ -378,7 +378,9 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     }
 
     const result = commonList.filter((item: { name: string }) => {
-      return item.name.toLowerCase().includes(searchFilter.toLowerCase());
+      if(item.name) {
+        return item.name.toLowerCase().includes(searchFilter.toLowerCase());
+      } 
     });
 
     setCommonList(result);
