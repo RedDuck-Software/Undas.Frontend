@@ -12,17 +12,18 @@ import {
 // import { Platform } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 
-const NFTCardHome: React.FC<{ uri: string; name: string }> = ({
-  uri,
-  name,
-}) => {
+const NFTCardHome: React.FC<{
+  uri: string;
+  name: string;
+  collectionName: string;
+}> = ({ uri, name, collectionName }) => {
   return (
     <NFTWrap>
       <Image src={uri} alt="nft-image" />
       <AboutWrapper disp="flex">
         <Name>{name}</Name>
         <CollectionWrapper disp="flex" alignItems="center" gap="10px">
-          <CollectionText>Collection Name</CollectionText>
+          <CollectionText>{collectionName}</CollectionText>
           <img src={Verified} alt="verified-ico" />
           {/* <Platform col="#873DC1" fs="16px">
             UND

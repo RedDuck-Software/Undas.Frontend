@@ -15,6 +15,8 @@ export const GET_RENTING_NFTS = gql`
       premiumWei
       deadlineUTC
       collectionName
+      seller
+      collectionId
     }
   }
 `;

@@ -118,6 +118,9 @@ export const CategoriesWrap = styled.ul`
   @media (max-width: 768px) {
     padding-top: 0;
   }
+  @media (min-width: 1700px) {
+    grid-column-gap: 80px;
+  }
 `;
 
 interface ICategory {

@@ -38,10 +38,7 @@ import {
   UndasGeneralNFT__factory,
 } from "../../../../typechain";
 import { TransactionError } from "../../../../types/global";
-import {
-  MARKETPLACE_ADDRESS,
-  NFT_ADDRESS,
-} from "../../../../utils/addressHelpers";
+import { MARKETPLACE_ADDRESS } from "../../../../utils/addressHelpers";
 import Context from "../../../../utils/Context";
 import { CartIco, HandShakeIco } from "../../../NFTPage/imports";
 import {
@@ -136,51 +133,56 @@ const OffersMenu = () => {
     setOwner(singerAddress);
   };
 
-  const cancelListingOffer = async (listingId: any) => {
-    if (!connector) return;
+  // const cancelListingOffer = async (listingId: any) => {
+  //   console.log('dasdas')
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+  //   if (!connector) return;
 
-    const signer = provider.getSigner(0);
+  //   const provider = new ethers.providers.Web3Provider(
+  //     await connector.getProvider(),
+  //   );
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+  //   const signer = provider.getSigner(0);
 
-    try {
-      const tx = await MarketplaceContract.cancelListingOffer(listingId);
-      await tx.wait();
-    } catch (error: any) {
-      setTransactionError(error);
-      setShowTransactionError(true);
-    }
-  };
+  //   const MarketplaceContract = Marketplace__factory.connect(
+  //     MARKETPLACE_ADDRESS,
+  //     signer,
+  //   );
+  //   try {
+  //     const tx = await MarketplaceContract.cancelListingOffer(listingId,{
+  //       gasLimit:100000
+  //     });
+  //     await tx.wait();
+  //   } catch (error: any) {
+  //     setTransactionError(error);
+  //     setShowTransactionError(true);
+  //   }
+  // };
 
-  const removeStakingOffer = async (stakingId: number) => {
-    if (!connector) return;
+  // const removeStakingOffer = async (stakingId: number) => {
+  //   console.log('dasdas')
 
-    const provider = new ethers.providers.Web3Provider(
-      await connector.getProvider(),
-    );
+  //   if (!connector) return;
 
-    const signer = provider.getSigner(0);
+  //   const provider = new ethers.providers.Web3Provider(
+  //     await connector.getProvider(),
+  //   );
 
-    const MarketplaceContract = Marketplace__factory.connect(
-      MARKETPLACE_ADDRESS,
-      signer,
-    );
+  //   const signer = provider.getSigner(0);
 
-    try {
-      const tx = await MarketplaceContract.removeStakingOffer(stakingId);
-      await tx.wait();
-    } catch (error: any) {
-      setTransactionError(error);
-      setShowTransactionError(true);
-    }
-  };
+  //   const MarketplaceContract = Marketplace__factory.connect(
+  //     MARKETPLACE_ADDRESS,
+  //     signer,
+  //   );
+
+  //   try {
+  //     const tx = await MarketplaceContract.removeStakingOffer(stakingId);
+  //     await tx.wait();
+  //   } catch (error: any) {
+  //     setTransactionError(error);
+  //     setShowTransactionError(true);
+  //   }
+  // };
 
   const acceptStakingOffer = async (stakingId: number, taker: string) => {
     if (!connector) return;
@@ -209,6 +211,7 @@ const OffersMenu = () => {
   };
   const acceptBuyingOffer = async (listingId: any, taker: any) => {
     if (!connector) return;
+
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -221,7 +224,13 @@ const OffersMenu = () => {
     );
 
     try {
-      const tx = await MarketplaceContract.acceptListingOffer(listingId, taker);
+      const tx = await MarketplaceContract.acceptListingOffer(
+        listingId,
+        taker,
+        {
+          gasLimit: 2000000,
+        },
+      );
       await tx.wait();
     } catch (error: any) {
       setTransactionError(error);
@@ -229,9 +238,12 @@ const OffersMenu = () => {
     }
   };
 
-  const acceptOfferForNotListedToken = async (offerId: any) => {
+  const acceptOfferForNotListedToken = async (
+    offerId: any,
+    tokenAddress: any,
+  ) => {
     if (!connector) return;
-
+    if (!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
@@ -243,25 +255,34 @@ const OffersMenu = () => {
       signer,
     );
 
-    const NftContract = UndasGeneralNFT__factory.connect(NFT_ADDRESS, signer);
     //approve to market
     try {
-      const approve = await NftContract.setApprovalForAll(
-        MARKETPLACE_ADDRESS,
-        true,
+      const NftContract = UndasGeneralNFT__factory.connect(
+        tokenAddress,
+        signer,
       );
 
-      await approve.wait();
+      const isApprovedForAll = await NftContract.isApprovedForAll(
+        account,
+        MARKETPLACE_ADDRESS,
+      );
+      if (!isApprovedForAll) {
+        await (
+          await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+        ).wait();
+      }
     } catch (error: any) {
       setTransactionError(error);
       setShowTransactionError(true);
     }
 
-    //todo put hardcoded to env
     try {
       const tx = await MarketplaceContract.acceptOfferForNotListedToken(
         offerId,
         "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+        {
+          gasLimit: 2000000,
+        },
       );
 
       await tx.wait();
@@ -626,6 +647,7 @@ const OffersMenu = () => {
         owner
         tokenAdress
         offerStatus
+        stakingId
         
     }
   }
@@ -673,7 +695,6 @@ const OffersMenu = () => {
 
     return data.data;
   }
-
   return {
     offersCounter: rentingOffersList.length + buyingOffersList.length,
     offersMenu: (
@@ -821,7 +842,9 @@ const OffersMenu = () => {
                           <MakeOfferBTN>Make offer</MakeOfferBTN>
                         </OffersTdButton>
                         <OffersTdButton>
-                          <DenyBTN onClick={() => alert("deny NOT READY :( ")}>
+                          <DenyBTN
+                            onClick={() => alert("We are working on it")}
+                          >
                             Deny
                           </DenyBTN>
                         </OffersTdButton>
@@ -857,7 +880,10 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <AcceptBTN
                             onClick={() =>
-                              acceptOfferForNotListedToken(i.offerId)
+                              acceptOfferForNotListedToken(
+                                i.offerId,
+                                "0x19CF92bC45Bc202DC4d4eE80f50ffE49CB09F91d",
+                              )
                             }
                           >
                             Accept
@@ -930,9 +956,7 @@ const OffersMenu = () => {
                         <MakeOfferBTN>Edit Offer</MakeOfferBTN>
                       </OffersTdButton>
                       <OffersTdButton>
-                        <DenyBTN
-                          onClick={() => removeStakingOffer(i.stakingId)}
-                        >
+                        <DenyBTN onClick={() => alert("we are working on it")}>
                           Cancel
                         </DenyBTN>
                       </OffersTdButton>
@@ -972,7 +996,7 @@ const OffersMenu = () => {
                         <OffersTdButton>
                           <DenyBTN
                             onClick={() => {
-                              cancelListingOffer(i.listingId);
+                              alert("We are working on it");
                             }}
                           >
                             Cancel

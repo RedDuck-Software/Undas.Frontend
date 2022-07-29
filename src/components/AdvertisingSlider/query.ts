@@ -7,7 +7,10 @@ export const GET_SAME_COLLECTIONS = gql`
       uri
       tokenAdress
       id
-      creator
+      owner
+      description
+      collectionId
+      collectionName
     }
   }
 `;
@@ -41,36 +44,22 @@ export const GET_NFT_OFFERS = gql`
 `;
 
 export const ITEM_ACTIVITY = gql`
-query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
-  listings(
-    where: {
-      tokenId: $tokenId
-      token: $tokenAddress
-      listingStatus: SOLD
+  query collectionItems($tokenId: BigInt!, $tokenAddress: String!) {
+    listings(where: { tokenId: $tokenId, token: $tokenAddress }) {
+      price
+      seller
+      listingStatus
     }
-  ) {
-    price
-    seller
-  }
-  stakingListings(
-    where: {
-      tokenId: $tokenId
-      token: $tokenAddress
-      stakingStatus: RENTED
+    stakingListings(where: { tokenId: $tokenId, token: $tokenAddress }) {
+      colloteralWei
+      premiumWei
+      seller
+      taker
+      stakingStatus
     }
-  ) {
-    colloteralWei
-    premiumWei
-    seller
-    taker
+    tokens(where: { id: $tokenId }) {
+      owner
+      price
+    }
   }
-  tokens(
-    where: { 
-      id: $tokenId 
-  }) {
-    owner
-    price
-  }
-}
-
-`
+`;

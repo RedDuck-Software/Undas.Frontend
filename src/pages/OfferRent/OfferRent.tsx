@@ -6,7 +6,8 @@ import { Navigation } from "swiper";
 import { SwiperSlide } from "swiper/react";
 import { createClient } from "urql";
 
-import { info, deleteNFT, eth, usd } from "./imports";
+import { info, eth, usd } from "./imports";
+//you may add "deleteNFT," to imports
 import {
   PageWrapper,
   OfferContainer,
@@ -41,7 +42,7 @@ import {
   ContainerCheckboxCollateral,
   NFTInfoContainer,
   SelectedNFT,
-  ImgDelete,
+  // ImgDelete,
   AddNFTCard,
   AddNFTContainer,
   ButtonInfo,
@@ -118,15 +119,13 @@ const OfferRent: React.FC = () => {
       signer,
     );
 
-    const amountToPay = (colloteral + premium + (premium * 20) / 100).toFixed(
-      7,
-    );
+    const amountToPay = colloteral + premium + (premium * 20) / 100;
     const tx = await MarketplaceContract.stakingOffer(
       listingId,
       ethers.utils.parseUnits(colloteral.toString(), "ether"),
       ethers.utils.parseUnits(premium.toString(), "ether"),
       {
-        value: ethers.utils.parseUnits(amountToPay.toString(), "ether"),
+        value: ethers.utils.parseEther(amountToPay.toFixed(18).toString()),
       },
     );
 
@@ -530,6 +529,7 @@ const OfferRent: React.FC = () => {
                   <NFTCard
                     uri={URI ? URI : state.state.state.URI}
                     name={name ? name : state.state.state.name}
+                    collectionName={state.state.state.collectionName}
                   />
                 </NFTInfoContainer>
               </SecondCollum>
@@ -563,7 +563,7 @@ const OfferRent: React.FC = () => {
                   loop={false}
                   navigation={true}
                 >
-                  <SwiperSlide>
+                  {/* <SwiperSlide>
                     <NFTCard uri="nft1" name="NFTCard" />
                     <ImgDelete src={deleteNFT} alt="delete-nft-image" />
                   </SwiperSlide>
@@ -574,7 +574,7 @@ const OfferRent: React.FC = () => {
                   <SwiperSlide>
                     <NFTCard uri="nft1" name="NFTCard" />
                     <ImgDelete src={deleteNFT} alt="delete-nft-image" />
-                  </SwiperSlide>
+                  </SwiperSlide> */}
                   <SwiperSlide>
                     <AddNFTContainer>
                       <AddNFTCard>

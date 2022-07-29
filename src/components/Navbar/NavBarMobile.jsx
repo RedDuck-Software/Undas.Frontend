@@ -30,7 +30,7 @@ import {
   CreateIco,
   MobileFavoriteIco,
   MobileAccountIco,
-  GameFi,
+  Metaverses,
   ReddditIco,
   Ico18,
 } from "./imports";
@@ -63,9 +63,9 @@ const NavBarMobile = ({ open }) => {
             <MobileStyledLink to="/">
               <LanguageTitle>en</LanguageTitle>
             </MobileStyledLink>
-            <MobileStyledLink to="/">
+            {/*<MobileStyledLink to="/">
               <LanguageTitle>RU</LanguageTitle>
-            </MobileStyledLink>
+              </MobileStyledLink>*/}
             <MobileStyledLink to="/">
               <LanguageTitle>中国人</LanguageTitle>
             </MobileStyledLink>
@@ -138,9 +138,9 @@ const NavBarMobile = ({ open }) => {
                 <PhotoIco />
                 Photography
               </HeaderDropdownItem>
-              <HeaderDropdownItem href="categories-gimefi">
-                <GameFi />
-                GameFi
+              <HeaderDropdownItem href="categories-metaverses">
+                <Metaverses />
+                Metaverses
               </HeaderDropdownItem>
               <HeaderDropdownItem href="categories-celebrity">
                 <CelebrityIco />

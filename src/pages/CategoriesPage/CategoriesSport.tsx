@@ -9,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { CollectionSportBanner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -22,6 +23,8 @@ type CollectionItemProps = {
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   owner?: string;
 };
 
@@ -40,6 +43,8 @@ const CategoriesGameFI: React.FC = () => {
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
+      const collectionFeatureImg = i.collectionFeatureUrl;
+      const collectionBannerImg = i.collectionBannerUrl;
 
       collectionsList.push({
         id,
@@ -48,6 +53,8 @@ const CategoriesGameFI: React.FC = () => {
         collectionName,
         collectionInfo,
         owner,
+        collectionFeatureImg,
+        collectionBannerImg,
       });
     });
     return collectionsList;
@@ -66,14 +73,15 @@ const CategoriesGameFI: React.FC = () => {
           collectionName
           owner
           id
-    	  collectionInfo
+    	    collectionInfo
           collectionUrl
           collectionCategory
+          collectionFeatureUrl
+          collectionBannerUrl
           
 	    }
     }
  `;
-
   const client = createClient({
     url: APIURL,
   });
@@ -102,28 +110,30 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>Sport</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  Sport category. The Sport category is a collection of NTFs
+                  with a sport theme.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>Sport</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                Sport category. The Sport category is a collection of NTFs with
-                a sport theme.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

@@ -34,18 +34,19 @@ export const TabButton = styled(Nav.Link)`
     line-height: 32px;
   }
 `;
-export const TabText = styled.div``;
+export const TabText = styled.div`
+  position: sticky;
+  top: 70px;
+`;
 export const ContentTitle = styled.h2`
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   color: #232428;
   margin-bottom: 30px;
-  max-width: 300px;
   @media (min-width: 1700px) {
     font-size: 24px;
     line-height: 32px;
-    max-width: 60%;
   }
 `;
 export const ContentText = styled.p`
@@ -82,23 +83,6 @@ export const UndasLink = styled.a`
   &:hover {
     color: #873dc1;
     text-decoration: underline;
-    font-weight: 600;
-  }
-  @media (min-width: 1700px) {
-    font-size: 20px;
-    line-height: 30px;
-  }
-`;
-export const AddToWatchlistLink = styled.a`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  text-decoration: underline;
-  color: #873dc1;
-  cursor: pointer;
-  transition: all 0.3s;
-  &:hover {
-    color: #873dc1;
     font-weight: 600;
   }
   @media (min-width: 1700px) {
@@ -237,4 +221,9 @@ export const PageFAQTitle = styled.h1`
     font-size: 20px;
     line-height: 24px;
   }
+`;
+export const StickyInner = styled.div`
+  width: 100%;
+  height: 900px;
+  background: transparent;
 `;

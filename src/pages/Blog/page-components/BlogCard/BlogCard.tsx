@@ -15,12 +15,13 @@ import {
 interface BlogCard {
   image: string;
   titleText: string;
+  adress: string;
   date: string | number;
 }
 
-const BlogCard: React.FC<BlogCard> = ({ image, titleText, date }) => {
+const BlogCard: React.FC<BlogCard> = ({ image, titleText, date, adress }) => {
   return (
-    <CardWrap to="/article">
+    <CardWrap to={adress}>
       <ImageWrap>
         <Inner />
         <Image src={image} alt="article-image" />

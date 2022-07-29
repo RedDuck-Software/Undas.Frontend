@@ -13,6 +13,8 @@ export const GET_LISTING_NFTS = gql`
       tokenDescription
       tokenName
       collectionName
+      seller
+      collectionId
     }
   }
 `;

@@ -70,15 +70,15 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
     });
     const lastSales = useQuery({
       query: GET_NFT_LAST_SALES,
-      variables:  { tokenId: props.tokenId, tokenAddress: props.tokenAddress }
-    })
-    return [offersItems,lastSales];
+      variables: { tokenId: props.tokenId, tokenAddress: props.tokenAddress },
+    });
+    return [offersItems, lastSales];
   };
-  const [[offersItemsList],[lastSalesList]] = createdMultipleQuery();
-  
+  const [[offersItemsList], [lastSalesList]] = createdMultipleQuery();
+
   const result = offersItemsList;
   const { data, fetching } = result;
-  
+
   useEffect(() => {
     if (account) {
       setAccount(account);
@@ -96,12 +96,12 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
         );
       }
     }
-    if(lastSalesList.data){
-      if(lastSalesList.data.listings[0]){
-        setLastSales(lastSalesList.data.listings[0].price)
+    if (lastSalesList.data) {
+      if (lastSalesList.data.listings[0]) {
+        setLastSales(lastSalesList.data.listings[0].price);
       }
     }
-  }, [account, userAccount, fetching,lastSalesList.fetching]);
+  }, [account, userAccount, fetching, lastSalesList.fetching]);
   return (
     <NFTWrap
       onClick={(e) => {
@@ -202,7 +202,7 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
           <PriceItem>
             <span>Price</span>
             <Wrapper disp="flex" gap="6px">
-              <PriceInEth>{props.price ?? "-"}</PriceInEth>
+              <PriceInEth>{props.price ? props.price : "-"}</PriceInEth>
               <EthLogo />
             </Wrapper>
           </PriceItem>
@@ -237,7 +237,8 @@ const NFTGridItem: React.FC<NFTGridItemProps> = (props) => {
               <PriceInEth>
                 {lastSales
                   ? ethers.utils.formatUnits(lastSales.toString(), "ether")
-                  : "-"}</PriceInEth>
+                  : "-"}
+              </PriceInEth>
               <EthLogo />
             </Wrapper>
           </PriceItem>

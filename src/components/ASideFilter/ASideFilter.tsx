@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -13,10 +13,6 @@ import {
   Switch,
   InputSwitch,
   SliderRound,
-  PriceSelect,
-  PriceElement,
-  ApplyBtn,
-  PriceVariations,
   CheckboxInputWrapper,
   CheckboxInput,
   CheckboxLabel,
@@ -28,31 +24,24 @@ import {
   FilterCategoryItemTitle,
   CheckboxInputWrapperCentered,
   MobileListWrap,
-  InputBlock,
-  MinPrice,
-  PriceContainer,
-  InputPriceContainer,
-  ApplyButton,
-  ButtonContainer,
 } from "./ASideFilter.styles";
-import { AsideCollectionList } from "./components";
+import { AsideCollectionList, AsidePrice } from "./components";
 import FilterMobileButton from "./FilterMobileButton/FilterMobileButton";
 import {
   FilterIco,
   StatusIco,
-  PriceIco,
-  UsdIco,
-  EthIco,
   CategoriesIco,
   ChainsIco,
   EthereumIcon,
 } from "./imports";
+import { AsideSection } from "./types";
 
 import { PolygonIcon } from "../../pages/AllNFTs/imports";
 import { bsc, solana, ton } from "../../pages/CreateNFT/imports";
 import {
   buyAction,
   hasOffersAction,
+  newAction,
   rentAction,
 } from "../../store/reducers/Filter/filterActions";
 import { addSelectedCategory } from "../../store/reducers/Filter/filterActions";
@@ -65,7 +54,7 @@ interface CategoryItemProps {
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
-  const dispatch = useDispatch();
+  const dispatchRedux = useDispatch();
 
   return (
     <CheckboxLabel htmlFor={label}>
@@ -76,7 +65,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
             className="custom-checkbox"
             id={label}
             mr="15px"
-            onClick={() => dispatch(addSelectedCategory(icon, label))}
+            onClick={() => dispatchRedux(addSelectedCategory(icon, label))}
           />
           <CheckboxLabel htmlFor={label} />
         </CheckboxInputWrapperCentered>
@@ -92,17 +81,20 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon }) => {
 interface FilterChainItemProps {
   chainName: string;
   chainIcon: string;
+  checked?: boolean;
 }
 
 const FilterChainItem: React.FC<FilterChainItemProps> = ({
   chainName,
   chainIcon,
+  checked,
 }) => {
   return (
     <CheckboxLabel>
       <FilterChainItemWrapper>
         <CheckboxInputWrapper mb="-4px">
           <CheckboxInput
+            checked={checked}
             type="checkbox"
             className="custom-checkbox"
             id={chainName}
@@ -129,52 +121,82 @@ interface ASideFilterProps {
   page?: string;
 }
 
+export interface IState {
+  status: boolean;
+  price: boolean;
+  category: boolean;
+  collection: boolean;
+  chain: boolean;
+  menu: boolean;
+}
+
+export interface IAction {
+  type: string;
+  payload: boolean;
+}
+
+const initialState: IState = {
+  status: false,
+  price: false,
+  category: false,
+  collection: false,
+  chain: false,
+  menu: true,
+};
+
+const reducer = (state: IState, action: IAction) => {
+  switch (action.type) {
+    case AsideSection.status:
+      return {
+        ...state,
+        status: action.payload,
+      };
+    case AsideSection.price:
+      return {
+        ...state,
+        price: action.payload,
+      };
+    case AsideSection.categories:
+      return {
+        ...state,
+        category: action.payload,
+      };
+    case AsideSection.collections:
+      return {
+        ...state,
+        collection: action.payload,
+      };
+    case AsideSection.chains:
+      return {
+        ...state,
+        chain: action.payload,
+      };
+    case AsideSection.menu:
+      return {
+        ...state,
+        menu: action.payload,
+      };
+    case AsideSection.reset:
+      return {
+        status: false,
+        price: false,
+        category: false,
+        collection: false,
+        chain: false,
+        menu: false,
+      };
+    default:
+      break;
+  }
+  const result = { ...state };
+  result[action.type as keyof typeof initialState] = action.payload;
+  return result;
+};
+
 const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
-  const dispatch = useDispatch();
-  const [active, setActive] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const dispatchRedux = useDispatch();
   const [isOpenMobile, setIsOpenMobile] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<any>({
-    status: false,
-    price: false,
-    category: false,
-    collection: false,
-    chain: false,
-  });
-  const [priceMenu, setPriceMenu] = useState<boolean>(false);
-  const [priceCurrency, setPriceCurrency] = useState([
-    {
-      currency: "eth",
-      text: "Ether (ETH)",
-      ico: <EthIco />,
-      selected: true,
-    },
-    {
-      currency: "usd",
-      text: "United States Dollar (USD)",
-      ico: <UsdIco />,
-      selected: false,
-    },
-  ]);
-
-  const variations = priceCurrency.filter((element) => {
-    if (!element.selected) {
-      return true;
-    }
-  });
-
-  const currencySelector = (currencyItem: any) => {
-    setPriceCurrency((prev) =>
-      prev.map((item) => {
-        if (currencyItem.currency !== item.currency) {
-          item.selected = false;
-        }
-        if (currencyItem.currency === item.currency) {
-          item.selected = true;
-        }
-        return { ...item };
-      }),
-    );
-  };
 
   const handleMobileFilter = () => {
     setIsOpenMobile(!isOpenMobile);
@@ -189,24 +211,19 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
   return (
     <>
       <ASideWrap
-        className={(active && "active") || ""}
+        className={(state.menu && "active") || ""}
         isOpenMobile={isOpenMobile}
+        marginTop={"-30px"}
       >
         <Holder marginTop={marginTop}>
           <HolderElement
-            isActive={active}
+            isActive={state.menu}
             onClick={() => {
-              !active && setActive(true);
-              if (active) {
-                setActiveMenu({
-                  status: false,
-                  price: false,
-                  category: false,
-                  collection: false,
-                  chain: false,
-                });
-                setActive(false);
+              if (state.menu) {
+                dispatch({ type: AsideSection.reset, payload: true });
+                return;
               }
+              dispatch({ type: AsideSection.menu, payload: !state.menu });
             }}
           >
             <FilterIco />
@@ -216,25 +233,27 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
 
           <HolderElement
             onClick={() => {
-              if (!activeMenu.status) {
-                setActiveMenu({ status: true });
-                !active && setActive(true);
-              } else setActiveMenu({ status: false });
+              if (!state.status) {
+                dispatch({ type: AsideSection.menu, payload: true });
+              }
+              dispatch({ type: AsideSection.status, payload: !state.status });
             }}
+            isActive={state.status}
           >
             <StatusIco />
             <ElementText>Status</ElementText>
             <AccordionArrow
-              className={(activeMenu.status && "active-status") || ""}
+              className={(state.status && "active-status") || ""}
             />
           </HolderElement>
           <AccordionMenu
             mh="224px"
-            className={(activeMenu.status && "active-status") || ""}
+            className={(state.status && "active-status") || ""}
           >
             <AccordionElement
               onClick={() => {
                 newRef.current.checked = !newRef.current.checked;
+                dispatchRedux(newAction(newRef.current.checked));
               }}
             >
               <span>New</span>
@@ -243,7 +262,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 <SliderRound />
               </Switch>
             </AccordionElement>
-            <AccordionElement>
+            <AccordionElement disabled>
               <span>Staking</span>
               <Switch>
                 <InputSwitch type="checkbox" />
@@ -253,7 +272,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
             <AccordionElement
               onClick={() => {
                 buyingRef.current.checked = !buyingRef.current.checked;
-                dispatch(buyAction(buyingRef.current.checked));
+                dispatchRedux(buyAction(buyingRef.current.checked));
               }}
             >
               <span>Buy now</span>
@@ -267,7 +286,7 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                 <AccordionElement
                   onClick={() => {
                     stakingRef.current.checked = !stakingRef.current.checked;
-                    dispatch(rentAction(stakingRef.current.checked));
+                    dispatchRedux(rentAction(stakingRef.current.checked));
                   }}
                 >
                   <span>Rent</span>
@@ -281,7 +300,9 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
                   onClick={() => {
                     hasOffersRef.current.checked =
                       !hasOffersRef.current.checked;
-                    dispatch(hasOffersAction(hasOffersRef.current.checked));
+                    dispatchRedux(
+                      hasOffersAction(hasOffersRef.current.checked),
+                    );
                   }}
                 >
                   <span>Has Offers</span>
@@ -306,123 +327,39 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
           </AccordionMenu>
 
           {page !== "TopCollection" && (
-            <>
-              <HolderElement
-                onClick={() => {
-                  if (!activeMenu.price) {
-                    setActiveMenu({ price: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ price: false });
-                }}
-              >
-                <PriceIco />
-                <ElementText>Price</ElementText>
-                <AccordionArrow
-                  className={(activeMenu.price && "active-price") || ""}
-                />
-              </HolderElement>
-              <AccordionMenu
-                mh="178px"
-                className={(activeMenu.price && "active-price") || ""}
-              >
-                <AccordionElement padd="15px 15px 20px 15px" direction="column">
-                  {priceCurrency.map((item) => {
-                    if (item.selected)
-                      return (
-                        <PriceContainer key={`${item.ico}-${item.selected}`}>
-                          <PriceElement
-                            className={(priceMenu && "price-menu-active") || ""}
-                            onClick={() => {
-                              !priceMenu
-                                ? setPriceMenu(true)
-                                : setPriceMenu(false);
-                            }}
-                          >
-                            {item.ico}
-                            <span>{item.text}</span>
-                            <AccordionArrow
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
-                            />
-                            <PriceSelect
-                              className={
-                                (priceMenu && "price-menu-active") || ""
-                              }
-                            >
-                              {variations.map((item) => {
-                                return (
-                                  <PriceVariations
-                                    key={item.text}
-                                    onClick={() => {
-                                      currencySelector(item);
-                                    }}
-                                  >
-                                    {item.ico}
-                                    <span>{item.text}</span>
-                                  </PriceVariations>
-                                );
-                              })}
-                            </PriceSelect>
-                          </PriceElement>
-                          <InputPriceContainer>
-                            <InputBlock>
-                              <MinPrice
-                                type="number"
-                                id="min"
-                                placeholder="Min"
-                                min="0"
-                              />
-                            </InputBlock>
-                            <InputBlock className="margin-left">
-                              <MinPrice
-                                type="number"
-                                id="max"
-                                placeholder="Max"
-                                min="0"
-                              />
-                            </InputBlock>
-                          </InputPriceContainer>
-                          <ButtonContainer>
-                            <ApplyButton>Apply</ApplyButton>
-                          </ButtonContainer>
-                        </PriceContainer>
-                      );
-                  })}
-
-                  <ApplyBtn>Apply</ApplyBtn>
-                </AccordionElement>
-              </AccordionMenu>
-            </>
+            <AsidePrice dispatch={dispatch} state={state} />
           )}
 
           {page !== "Collection" && (
             <>
               <HolderElement
                 onClick={() => {
-                  if (!activeMenu.category) {
-                    setActiveMenu({ category: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ category: false });
+                  if (!state.category) {
+                    dispatch({ type: AsideSection.menu, payload: true });
+                  }
+                  dispatch({
+                    type: AsideSection.categories,
+                    payload: !state.category,
+                  });
                 }}
-                isActive={activeMenu.category}
+                isActive={state.category}
               >
                 <CategoriesIco />
                 <ElementText>Categories</ElementText>
                 <AccordionArrow
-                  className={(activeMenu.category && "active-category") || ""}
+                  className={(state.category && "active-category") || ""}
                 />
               </HolderElement>
               <AccordionMenu
                 backgroundColor="rgba(251, 245, 255, 0.7)"
                 mh={`${60 + 8 * 60}px`} // calculate max-height because of accordion animation bug
-                className={(activeMenu.category && "active-category") || ""}
+                className={(state.category && "active-category") || ""}
               >
                 <MobileListWrap>
                   <CategoryItem {...getCategory(Category.artwork)} />
                   <CategoryItem {...getCategory(Category.sport)} />
                   <CategoryItem {...getCategory(Category.photography)} />
-                  <CategoryItem {...getCategory(Category.gamefi)} />
+                  <CategoryItem {...getCategory(Category.metaverses)} />
                   <CategoryItem {...getCategory(Category.celebrity)} />
                   <CategoryItem {...getCategory(Category.rwaNFTLong)} />
                   <CategoryItem {...getCategory(Category.plus18)} />
@@ -432,56 +369,56 @@ const ASideFilter: React.FC<ASideFilterProps> = ({ marginTop, page }) => {
           )}
 
           {page !== "TopCollection" && page !== "Collection" && (
-            <AsideCollectionList
-              activeMenu={activeMenu}
-              setActiveMenu={setActiveMenu}
-              active={active}
-              setActive={setActive}
-            />
+            <AsideCollectionList dispatch={dispatch} state={state} />
           )}
 
           {page !== "Collection" && (
             <>
               <HolderElement
                 onClick={() => {
-                  if (!activeMenu.chain) {
-                    setActiveMenu({ chain: true });
-                    !active && setActive(true);
-                  } else setActiveMenu({ chain: false });
+                  if (!state.chain) {
+                    dispatch({ type: AsideSection.menu, payload: true });
+                  }
+                  dispatch({
+                    type: AsideSection.chains,
+                    payload: !state.chain,
+                  });
                 }}
-                isActive={activeMenu.chain}
+                isActive={state.chain}
               >
                 <ChainsIco />
                 <ElementText>Chains</ElementText>
                 <AccordionArrow
-                  className={(activeMenu.chain && "active-chains") || ""}
+                  className={(state.chain && "active-chains") || ""}
                 />
               </HolderElement>
               <AccordionMenu
                 backgroundColor="rgba(251, 245, 255, 0.7)"
                 pb="15px"
+                pt={state.chain ? "7px" : "0"}
                 mh="320px" // calculate max-height because of accordion animation bug
-                className={(activeMenu.chain && "active-chains") || ""}
+                className={(state.chain && "active-chains") || ""}
               >
                 <AccordionElement padd="0">
                   <FilterChainItem
                     chainName={"Ethereum"}
                     chainIcon={EthereumIcon}
+                    checked
                   />
                 </AccordionElement>
-                <AccordionElement padd="1">
+                <AccordionElement padd="1" disabled>
                   <FilterChainItem
                     chainName={"Polygon"}
                     chainIcon={PolygonIcon}
                   />
                 </AccordionElement>
-                <AccordionElement padd="2">
+                <AccordionElement padd="2" disabled>
                   <FilterChainItem chainName={"Solana"} chainIcon={solana} />
                 </AccordionElement>
-                <AccordionElement padd="3">
+                <AccordionElement padd="3" disabled>
                   <FilterChainItem chainName={"BSC"} chainIcon={bsc} />
                 </AccordionElement>
-                <AccordionElement padd="4">
+                <AccordionElement padd="4" disabled>
                   <FilterChainItem chainName={"TON"} chainIcon={ton} />
                 </AccordionElement>
               </AccordionMenu>

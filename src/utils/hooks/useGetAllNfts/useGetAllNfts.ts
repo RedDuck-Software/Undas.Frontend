@@ -6,19 +6,30 @@ import { useGetRentingNfts } from "../useGetRentingNfts";
 
 export const useGetAllNfts = (
   statusFilter?: {
+    newNfts: boolean;
     buying: boolean;
     stacking: boolean;
     hasOffers: boolean;
   },
   isCollections?: boolean,
   isCategories?: boolean,
+  accountPage?: boolean,
+  account?: any,
 ) => {
   const [filteredNfts, setFilteredNfts] = useState<any>([]);
-  // pass hasOffers
-  const { listings, listingsError, listingsLoading } = useGetListingNfts();
-  // pass hasOffers
-  const { rentings, rentingsError, rentingsLoading } = useGetRentingNfts();
-  const { mints, mintsError, mintsLoading } = useGetMintedNfts();
+  const { listings, listingsError, listingsLoading } = useGetListingNfts(
+    accountPage,
+    account,
+  );
+  const { rentings, rentingsError, rentingsLoading } = useGetRentingNfts(
+    accountPage,
+    account,
+  );
+  // to do: pass hasOffers
+  const { mints, mintsError, mintsLoading } = useGetMintedNfts(
+    accountPage,
+    account,
+  );
 
   const getFilteredNfts = (
     buying: boolean,
@@ -96,13 +107,20 @@ export const useGetAllNfts = (
     listingsLoading,
     rentingsLoading,
     mintsLoading,
+    statusFilter?.newNfts,
     statusFilter?.buying,
     statusFilter?.stacking,
     statusFilter?.hasOffers,
   ]);
 
+  useEffect(() => {
+    if (statusFilter?.newNfts) {
+      setFilteredNfts(filteredNfts.slice(-50));
+    }
+  }, [statusFilter?.newNfts]);
+
   return {
-    nfts: filteredNfts,
+    nfts: statusFilter && filteredNfts,
     nftsLoading: listingsLoading || mintsLoading || rentingsLoading,
     nftsError: listingsError || mintsError || rentingsError,
   };

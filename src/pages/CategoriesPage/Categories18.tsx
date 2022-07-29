@@ -1,6 +1,4 @@
-import { useWeb3React } from "@web3-react/core";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { createClient } from "urql";
 
@@ -11,6 +9,7 @@ import {
   InfoCard,
   InfoText,
   LoaderWrapper,
+  PageWrapper,
 } from "./Categories.styles";
 import { Collection18Banner } from "./imports";
 import Collection from "./page-components/Collection";
@@ -24,25 +23,28 @@ type CollectionItemProps = {
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   owner?: string;
 };
 
 const CategoriesGameFI: React.FC = () => {
-  const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const collectionsList: CollectionItemProps[] = [];
   const [collections, setCollections] = useState<CollectionItemProps[]>();
   const [loading, setLoading] = useState(true);
 
   const getСollection = async () => {
-    const collections = await fetchData();
-    collections.data.collections.map((i: any) => {
+    const collectionsFromAPI = await fetchData();
+    collectionsFromAPI.data.collections.map((i: any) => {
       const id = i.id;
       const collectionCategory = i.collectionCategory;
       const collectionUrl = i.collectionUrl;
       const collectionName = i.collectionName;
       const owner = i.owner;
       const collectionInfo = i.collectionInfo;
+      const collectionFeatureImg = i.collectionFeatureUrl;
+      const collectionBannerImg = i.collectionBannerUrl;
 
       collectionsList.push({
         id,
@@ -51,22 +53,16 @@ const CategoriesGameFI: React.FC = () => {
         collectionName,
         collectionInfo,
         owner,
+        collectionFeatureImg,
+        collectionBannerImg,
       });
     });
     return collectionsList;
   };
 
   useEffect(() => {
-    if (!connector || !account) {
-      return console.log("loading");
-    }
     getСollectionData();
-    setLoading(false);
-  }, [connector, account]);
-
-  if (!account) {
-    return <Navigate to={"/login"} replace={true} />;
-  }
+  }, [connector]);
 
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
@@ -77,9 +73,11 @@ const CategoriesGameFI: React.FC = () => {
           collectionName
           owner
           id
-    	  collectionInfo
+    	    collectionInfo
           collectionUrl
           collectionCategory
+          collectionFeatureUrl
+          collectionBannerUrl      
           
 	    }
     }
@@ -98,6 +96,7 @@ const CategoriesGameFI: React.FC = () => {
     const response = await getСollection();
     if (response) {
       setCollections(response);
+      setLoading(false);
     }
   }
 
@@ -112,28 +111,30 @@ const CategoriesGameFI: React.FC = () => {
       </Banner>
       <Background>
         <Container>
-          <Info>
+          <PageWrapper>
+            <Info>
+              <div>
+                <Title>18+ NFTs</Title>
+              </div>
+              <InfoCard>
+                <InfoText>
+                  On this page you can enjoy a selection of interesting
+                  collections. This section provides you with collections in the
+                  18+ NFTs category. The 18+ NFTs category is dedicated to
+                  explicit NFT pictures.
+                </InfoText>
+              </InfoCard>
+            </Info>
             <div>
-              <Title>18+ NFTs</Title>
+              {collections?.length ? (
+                <Collection itemList={collections} />
+              ) : (
+                <h1 className="text-center">
+                  No collections have been created at this category
+                </h1>
+              )}
             </div>
-            <InfoCard>
-              <InfoText>
-                On this page you can enjoy a selection of interesting
-                collections. This section provides you with collections in the
-                18+ NFTs category. The 18+ NFTs category is dedicated to
-                explicit NFT pictures.
-              </InfoText>
-            </InfoCard>
-          </Info>
-          <div>
-            {collections?.length ? (
-              <Collection itemList={collections} />
-            ) : (
-              <h1 className="text-center">
-                No collections have been created at this category
-              </h1>
-            )}
-          </div>
+          </PageWrapper>
         </Container>
       </Background>
     </>

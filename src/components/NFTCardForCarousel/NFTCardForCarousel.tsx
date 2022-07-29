@@ -12,22 +12,41 @@ import {
 } from "./NFTCardForCarousel.styles";
 
 //todo all collection names
-const NFTCardForCarousel: React.FC<{ uri: string; name: string,tokenAddress:string,tokenId:string,owner:string }> = ({
+const NFTCardForCarousel: React.FC<{
+  uri: string;
+  name: string;
+  tokenAddress: string;
+  tokenId: string;
+  owner: string;
+  collectionId?: string;
+  collectionName?: string;
+}> = ({
   uri,
   name,
   tokenAddress,
   tokenId,
-  owner
+  owner,
+  collectionId,
+  collectionName,
 }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
-    <NFTWrap onClick={(e) => {
-      e.stopPropagation();
-      navigate(
-        `/nft/buy/tokenAddress=${tokenAddress}?id=${tokenId}`,
-        { state:{ tokenId:tokenId,tokenAddress:tokenAddress,URI:uri,name:name,tokenOwner:owner }},
-      );
-    }}>
+    <NFTWrap
+      onClick={(e) => {
+        e.stopPropagation();
+        navigate(`/nft/buy/tokenAddress=${tokenAddress}?id=${tokenId}`, {
+          state: {
+            tokenId: tokenId,
+            tokenAddress: tokenAddress,
+            URI: uri,
+            name: name,
+            tokenOwner: owner,
+            collectionId: collectionId,
+            collectionName: collectionName,
+          },
+        });
+      }}
+    >
       <NFTAbout>
         <AboutWrapper
           disp="flex"

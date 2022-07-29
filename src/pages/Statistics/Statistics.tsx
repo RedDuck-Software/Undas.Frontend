@@ -65,7 +65,7 @@ const ActivityPage: React.FC = () => {
       <Container>
         <Wrapper w="100%">
           <AccountContainer>
-            <ASideFilter marginTop="140px" />
+            <ASideFilter marginTop="170px" />
             <Wrapper w="100%">
               <Wrapper w="100%">
                 <StatisticsText>Statistics</StatisticsText>

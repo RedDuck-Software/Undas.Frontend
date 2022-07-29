@@ -125,7 +125,7 @@ export const ViewButton = styled.button`
     background-color: #edd2ff;
   }
 `;
-export const Filter = styled.ul`
+export const Filter = styled.ul<{ disabled?: boolean }>`
   width: 160px;
   position: relative;
   cursor: pointer;
@@ -146,6 +146,25 @@ export const Filter = styled.ul`
   @media (max-width: 576px) {
     width: 100%;
   }
+
+  ${({ disabled }) =>
+    disabled
+      ? `
+    opacity: 0.6;
+    z-index: 2;
+    &:before {
+      content: '';
+      cursor: not-allowed;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: 99999;
+    }
+  `
+      : "opacity: 1;"}
 `;
 export const FilterItem = styled.li`
   display: flex;

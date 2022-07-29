@@ -55,8 +55,12 @@ export const HolderElement = styled.li<{ isActive?: boolean }>`
     padding-right: 1rem;
   }
 `;
-
-export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
+interface IASideWrap {
+  marginTop?: string;
+  isOpenMobile?: boolean;
+}
+export const ASideWrap = styled.div<IASideWrap>`
+  margin-top: ${(props) => props.marginTop || ""};
   min-width: 30px;
   max-width: 30px;
   height: auto;
@@ -86,6 +90,7 @@ export const ASideWrap = styled.div<{ isOpenMobile?: boolean }>`
     max-height: 100%;
     background: rgba(251, 245, 255, 0.5);
     backdrop-filter: blur(10px);
+    margin-top: 0;
   }
 `;
 
@@ -152,11 +157,13 @@ export const AccordionArrow = styled(Arrow)`
 
 interface IAccordionMenu {
   mh?: string;
+  pt?: string;
   pb?: string;
   backgroundColor?: string;
 }
 
 export const AccordionMenu = styled.ul<IAccordionMenu>`
+  ${({ pt }) => (pt ? `padding-top: ${pt};` : "")}
   list-style: none;
   width: 100%;
   transition: all ease-in-out 0.25s;
@@ -184,6 +191,7 @@ export const AccordionMenu = styled.ul<IAccordionMenu>`
 interface IAccElement {
   padd?: string;
   direction?: string;
+  disabled?: boolean;
 }
 
 export const AccordionElement = styled.li<IAccElement>`
@@ -210,6 +218,25 @@ export const AccordionElement = styled.li<IAccElement>`
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  ${({ disabled }) =>
+    disabled
+      ? `
+    opacity: 0.6;
+    z-index: 100;
+    &:before {
+      content: '';
+      cursor: not-allowed;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: 99999;
+    }
+  `
+      : "opacity: 1;"}
 `;
 
 //Toggle switch
@@ -518,7 +545,8 @@ export const FilterChainItemWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  margin-top: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   margin-left: 15px;
   &.last {
     margin-bottom: 15px;
@@ -530,12 +558,14 @@ export const ChainItemTitle = styled.div`
   font-size: 14px;
   line-height: 22px;
   color: #232428;
+  margin-bottom: 4px;
 `;
 
 export const ChainItemIcon = styled.img`
   margin-right: 10px;
   width: 16px;
   height: 16px;
+  margin-bottom: 4px;
 `;
 
 export const MobileListWrap = styled.div`
@@ -620,5 +650,12 @@ export const ApplyButton = styled.button`
 export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
+`;
+
+export const ClipLoaderWrapper = styled.div`
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
   justify-content: center;
 `;

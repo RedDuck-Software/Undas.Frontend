@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
 
 import {
   CardWrap,
   ImageWrap,
   SocialWrap,
   CollectionName,
-  Description,
   Creator,
   PurpleText,
-  MoreInfo,
+  // MoreInfo,
   ImgCollection,
-  DescriptionS,
   CreatorWrapper,
+  MakeComplaint,
+  ContainerPopUp,
+  InputTextArea,
+  SendButton,
 } from "./CollectionCard.styles";
 
+import { Message } from "../../../../globalStyles";
+import { CopyIco } from "../../../AccountPage/page-components/AccountCard/AccountCard.styles";
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
 import {
@@ -22,34 +27,42 @@ import {
   DiscordIco,
   InstagramIco,
   SiteIco,
-  More,
+  // More,
 } from "../../imports";
 
 interface CollectionCardProps {
   name: string;
   creator: string;
-  description: string;
   logo: string;
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
   name,
   creator,
-  description,
   logo,
 }) => {
+  const target = useRef(null);
+  const [showTarget, setShowTarget] = useState(false);
+
+  const creatorSplit = creator?.split("");
+  creatorSplit?.splice(8, 24, "...");
+
+  const [show, setShow] = useState(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(creator);
+    setShow(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
+  };
   return (
     <CardWrap>
-      <Wrapper disp="flex" gap="20px">
+      <Wrapper disp="flex" gap="20px" justifyContent="space-between">
         <ImageWrap>
           <ImgCollection src={logo} alt="collection-pic" />
         </ImageWrap>
-        <Wrapper
-          disp="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          w="100%"
-        >
+        <Wrapper flexBasis="52%" flexBasisXS="70%">
           <SocialWrap>
             <SiteIco />
             <TwitterIco />
@@ -57,20 +70,33 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
             <DiscordIco />
             <InstagramIco />
           </SocialWrap>
-          <MoreInfo>
+          {/* <MoreInfo>
             <img src={More} alt="more-info" />
-          </MoreInfo>
-          <Description>{description}</Description>
+          </MoreInfo> */}
+          <MakeComplaint ref={target} onClick={() => setShowTarget(true)}>
+            Make a Complaint
+          </MakeComplaint>
+          <Overlay target={target.current} show={showTarget} placement="bottom">
+            {
+              <ContainerPopUp>
+                <InputTextArea placeholder="Comment" />
+                <SendButton onClick={() => setShowTarget(false)}>
+                  Send
+                </SendButton>
+              </ContainerPopUp>
+            }
+          </Overlay>
         </Wrapper>
       </Wrapper>
-      <DescriptionS>{description}</DescriptionS>
       <CreatorWrapper>
         <CollectionName>{name}</CollectionName>
         <img src={Verified} alt="verified-ico" />
         <Platform>UND</Platform>
       </CreatorWrapper>
-      <Creator>
-        Creator <PurpleText>{creator}</PurpleText>
+      <Creator onClick={copyToClipboard}>
+        Creator <PurpleText>{creatorSplit?.join("")}</PurpleText>
+        <CopyIco />
+        <Message opacity={show}>Adress is Copied!</Message>
       </Creator>
     </CardWrap>
   );

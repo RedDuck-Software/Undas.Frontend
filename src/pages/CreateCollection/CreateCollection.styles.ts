@@ -99,6 +99,9 @@ export const CollectionFeaturedLabelWrapper = styled.div`
 export const CollectionFeaturedLabel = styled(CollectionLogoLabel)`
   width: 350px;
   height: 100px;
+  & img {
+    object-fit: cover;
+  }
   @media (max-width: 576px) {
     width: 100%;
   }
@@ -113,6 +116,9 @@ export const CollectionBannerLabelWrapper = styled(
 export const CollectionBannerLabel = styled(CollectionFeaturedLabel)`
   margin-top: 1rem;
   width: 100%;
+  & img {
+    object-fit: cover;
+  }
 `;
 
 export const AddBannerBlock = styled.div``;

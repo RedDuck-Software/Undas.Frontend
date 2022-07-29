@@ -19,7 +19,7 @@ import { ReactComponent as FavoriteIco } from "../../icons/favorite.svg";
 import { ReactComponent as InstagramIco } from "../../icons/instagram-dropdown.svg";
 import { ReactComponent as LoginMenuIco } from "../../icons/login-dropdown.svg";
 import { ReactComponent as MetaversesIcon } from "../../icons/metaverses.svg";
-import { ReactComponent as GameFi } from "../../icons/metaverses.svg";
+import { ReactComponent as Metaverses } from "../../icons/metaverses.svg";
 import { ReactComponent as MyCollectionIco } from "../../icons/my-collections.svg";
 import { ReactComponent as NewIcon } from "../../icons/new-stars.svg";
 import { ReactComponent as PhotoIco } from "../../icons/photography.svg";
@@ -70,6 +70,6 @@ export {
   ReddditIco,
   Ico18,
   ReferralIco,
-  GameFi,
+  Metaverses,
   AchievementsIco,
 };

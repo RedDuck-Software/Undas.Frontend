@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { AsideCollectionItem } from "./AsideCollectionItem";
 
 import { useGetCollections } from "../../../../utils";
+import { IAction, IState } from "../../ASideFilter";
 import {
   HolderElement,
   ElementText,
@@ -11,29 +13,26 @@ import {
   AccordionElement,
   SearchInputWrapper,
   MobileListWrap,
+  ClipLoaderWrapper,
 } from "../../ASideFilter.styles";
 import { CollectionsIco } from "../../imports";
+import { AsideSection } from "../../types";
 
 interface AsideCollectionListProps {
-  activeMenu: { collection: boolean };
-  setActiveMenu: React.Dispatch<React.SetStateAction<{ collection: boolean }>>;
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: React.Dispatch<IAction>;
+  state: IState;
 }
 
 export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
-  activeMenu,
-  setActiveMenu,
-  active,
-  setActive,
+  dispatch,
+  state,
 }) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchCollectionPattern, setSearchCollectionPattern] =
     useState<string>("");
 
-  const { collections, collectionsError } = useGetCollections(
-    searchCollectionPattern,
-  );
+  const { collections, collectionsLoading, collectionsError } =
+    useGetCollections(searchCollectionPattern);
 
   const handleCollectionSearchInput = (event: any) => {
     const pattern: string = event?.target.value;
@@ -41,7 +40,7 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
   };
 
   useEffect(() => {
-    if (searchInput.length == 0 || searchInput.length >= 2) {
+    if (searchInput.length == 0 || searchInput.length >= 3) {
       setSearchCollectionPattern(searchInput);
     }
   }, [searchInput]);
@@ -50,23 +49,26 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
     <>
       <HolderElement
         onClick={() => {
-          if (!activeMenu.collection) {
-            setActiveMenu({ collection: true });
-            !active && setActive(true);
-          } else setActiveMenu({ collection: false });
+          if (!state.collection) {
+            dispatch({ type: AsideSection.menu, payload: true });
+          }
+          dispatch({
+            type: AsideSection.collections,
+            payload: !state.collection,
+          });
         }}
-        isActive={activeMenu.collection}
+        isActive={state.collection}
       >
         <CollectionsIco />
         <ElementText>Collections</ElementText>
         <AccordionArrow
-          className={(activeMenu.collection && "active-collection") || ""}
+          className={(state.collection && "active-collection") || ""}
         />
       </HolderElement>
       <AccordionMenu
         backgroundColor="rgba(251, 245, 255, 0.7)"
         mh={`${126 + collections.length * 63}px`} // calculate max-height because of accordion animation bug
-        className={(activeMenu.collection && "active-collection") || ""}
+        className={(state.collection && "active-collection") || ""}
       >
         {collectionsError ? (
           <>
@@ -84,26 +86,38 @@ export const AsideCollectionList: React.FC<AsideCollectionListProps> = ({
               />
             </AccordionElement>
             <MobileListWrap>
-              {collections.length > 0 ? (
-                <>
-                  {collections.map((item: any) => {
-                    return (
-                      <AsideCollectionItem
-                        key={`${item.id}-${item.collectionName}-${item.collectionIcon}`}
-                        id={item.id}
-                        collectionName={item.collectionName}
-                        collectionIcon={item.collectionUrl}
-                        //isVerified={item.isVerified}
-                        vol={item.collectionVolume}
-                        floor={
-                          item.tokens.length > 0 ? item.tokens[0].price : ""
-                        }
-                      />
-                    );
-                  })}
-                </>
+              {collectionsLoading ? (
+                <ClipLoaderWrapper>
+                  <ClipLoader
+                    color={"#BD10E0"}
+                    loading={collectionsLoading}
+                    size={125}
+                  />
+                </ClipLoaderWrapper>
               ) : (
-                "No Collections found"
+                <>
+                  {collections.length > 0 ? (
+                    <>
+                      {collections.map((item: any) => {
+                        return (
+                          <AsideCollectionItem
+                            key={`${item.id}-${item.collectionName}-${item.collectionIcon}`}
+                            id={item.id}
+                            collectionName={item.collectionName}
+                            collectionIcon={item.collectionUrl}
+                            //isVerified={item.isVerified}
+                            vol={item.collectionVolume}
+                            floor={
+                              item.tokens.length > 0 ? item.tokens[0].price : ""
+                            }
+                          />
+                        );
+                      })}
+                    </>
+                  ) : (
+                    "No Collections found"
+                  )}
+                </>
               )}
             </MobileListWrap>
           </>

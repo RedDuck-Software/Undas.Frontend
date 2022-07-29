@@ -18,7 +18,7 @@ import { ArticleBig } from "../../imports";
 
 const BlogBigCard: React.FC = () => {
   return (
-    <BigCardWrap to="/article">
+    <BigCardWrap to="/blog-post">
       <BigImageWrap>
         <Inner />
         <BigImage src={ArticleBig} alt="card-image" />
@@ -33,7 +33,7 @@ const BlogBigCard: React.FC = () => {
           </BigCardText>
         </BigCardTextWrap>
         <CardFooter>
-          <Date>18.07.2022</Date>
+          <Date>27.07.2022</Date>
           <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </BigCardBody>

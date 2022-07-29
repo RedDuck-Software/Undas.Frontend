@@ -37,7 +37,7 @@ import {
   CategoriesRwa,
   CategoriesArt,
   CategoriesNew,
-  CategoriesGameFI,
+  CategoriesMetaverses,
   CategoriesSport,
   CategoriesPhoto,
   CategoriesCelebrity,
@@ -55,9 +55,13 @@ import {
   Rent,
   Buy,
   Sale,
-  ArticlePage,
   ClaimUND,
   InteractionRent,
+  BlogPost1,
+  BlogPost2,
+  BlogPost3,
+  BlogPost4,
+  BlogPost5,
 } from "./pages";
 import NFTPageSell from "./pages/NFTPage/NFTPageSell/NFTPageSell";
 import OfferFotNotListedNft from "./pages/OfferFotNotListedNft/OfferFotNotListedNft";
@@ -168,7 +172,10 @@ const App: React.FC = () => {
               <Route path="/productforsale/:id" element={<ProductForSale />} />
               <Route path="/categories-rwa" element={<CategoriesRwa />} />
               <Route path="/categories-art" element={<CategoriesArt />} />
-              <Route path="/categories-gimefi" element={<CategoriesGameFI />} />
+              <Route
+                path="/categories-metaverses"
+                element={<CategoriesMetaverses />}
+              />
               <Route path="/categories-new" element={<CategoriesNew />} />
               <Route path="/categories-sport" element={<CategoriesSport />} />
               <Route path="/categories-photo" element={<CategoriesPhoto />} />
@@ -214,7 +221,11 @@ const App: React.FC = () => {
               <Route path="/buy/:address:id" element={<Buy />} />
               <Route path="/nft/sale/:id" element={<Sale />} />
               <Route path="/sale" element={<Sale />} />
-              <Route path="/article" element={<ArticlePage />} />
+              <Route path="/blog-post" element={<BlogPost1 />} />
+              <Route path="/blog-post-2" element={<BlogPost2 />} />
+              <Route path="/blog-post-3" element={<BlogPost3 />} />
+              <Route path="/blog-post-4" element={<BlogPost4 />} />
+              <Route path="/blog-post-5" element={<BlogPost5 />} />
               <Route path="/claim-UND-test" element={<ClaimUND />} />
               <Route
                 path="/interaction-rent/:address:id"

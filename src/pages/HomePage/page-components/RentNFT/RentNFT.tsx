@@ -36,11 +36,19 @@ const RentNFT: React.FC = () => {
     name: string;
     id: number;
     tokenAddress: string;
+    collectionName: string;
+    collectionId: string;
   }[] = [];
-  const [list, setList] =
-    useState<
-      { URI: string; name: string; id: number; tokenAddress: string }[]
-    >();
+  const [list, setList] = useState<
+    {
+      URI: string;
+      name: string;
+      id: number;
+      tokenAddress: string;
+      collectionName: string;
+      collectionId: string;
+    }[]
+  >();
 
   const navigate = useNavigate();
 
@@ -49,13 +57,24 @@ const RentNFT: React.FC = () => {
 
     tokens.stakingListings.map((nft: any) => {
       if (nft.stakingStatus == "ACTIVE") {
-        //const price = nft.premiumWei;
-        const id = nft.tokenId;
-        const name = nft.tokenName;
-        const URI = nft.tokenURI;
-        const tokenAddress = nft.token;
-        //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
-        items.push({ URI, name, id, tokenAddress });
+        if (nft.collectionId) {
+          //const price = nft.premiumWei;
+          const id = nft.tokenId;
+          const name = nft.tokenName;
+          const URI = nft.tokenURI;
+          const tokenAddress = nft.token;
+          const collectionName = nft.collectionName;
+          const collectionId = nft.collectionId;
+          //const premiumInNum = Number(ethers.utils.formatUnits(price, 18));
+          items.push({
+            URI,
+            name,
+            id,
+            tokenAddress,
+            collectionName,
+            collectionId,
+          });
+        }
       }
     });
     return items;
@@ -82,24 +101,28 @@ const RentNFT: React.FC = () => {
         </ViewAllBtn>
       </TitleWrap>
       <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
+        slidesPerView={4}
+        spaceBetween={3}
         breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
           },
           1200: {
-            slidesPerView: 4,
-            spaceBetween: 20,
+            slidesPerView: 3,
+            spaceBetween: 10,
           },
           1700: {
-            slidesPerView: 5,
-            spaceBetween: 20,
+            slidesPerView: 4,
+            spaceBetween: 3,
           },
         }}
         className="rent-slider"
@@ -130,12 +153,18 @@ const RentNFT: React.FC = () => {
                       state: {
                         tokenId: item.id,
                         tokenAddress: item.tokenAddress,
+                        collectionName: item.collectionName,
+                        collectionId: item.collectionId,
                       },
                     },
                   );
                 }}
               >
-                <NFTCardHome uri={item.URI} name={item.name} />
+                <NFTCardHome
+                  uri={item.URI}
+                  name={item.name}
+                  collectionName={item.collectionName}
+                />
               </SwiperSlide>
             </>
           );
@@ -163,6 +192,8 @@ const tokensStakingQuery = `
     colloteralWei
     premiumWei
     deadlineUTC
+    collectionName
+    collectionId
   }
 }
  `;

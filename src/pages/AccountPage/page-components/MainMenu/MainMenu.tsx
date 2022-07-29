@@ -20,6 +20,7 @@ import {
   ContainerFilters,
 } from "../../../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
+import { Wrapper } from "../../../CategoriesPage/Categories.styles";
 import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import NoData from "../NoData/NoData";
 
@@ -83,7 +84,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
               </MenuItem>
             </FilterMenu>
           </Filter>
-          <Filter className={active.event && "event-active"}>
+          <Filter className={active.event && "event-active"} disabled>
             <FilterItem
               onClick={() => {
                 if (!active.event) {
@@ -116,21 +117,23 @@ const MainMenu: React.FC<MainMenuProps> = ({ nftList }) => {
           <FilterSelected />
         </ContainerFilters>
       </MenuWrap>
-      {list && list.length > 0 ? (
-        viewMode === ViewMode.grid ? (
-          <CollectionGridWrap itemList={list} />
+      <Wrapper marg="0 0 40px 0" w="100%">
+        {list && list.length > 0 ? (
+          viewMode === ViewMode.grid ? (
+            <CollectionGridWrap itemList={list} />
+          ) : (
+            <>
+              {list ? (
+                <NFTListItem itemList={list} />
+              ) : (
+                <span>There are no NFTs on the marketplace</span>
+              )}
+            </>
+          )
         ) : (
-          <>
-            {list ? (
-              <NFTListItem itemList={list} />
-            ) : (
-              <span>There are no NFTs on the marketplace</span>
-            )}
-          </>
-        )
-      ) : (
-        <NoData />
-      )}
+          <NoData />
+        )}
+      </Wrapper>
     </div>
   );
 };

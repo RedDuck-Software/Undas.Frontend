@@ -20,6 +20,18 @@ export const Banner = styled.div`
     }
   }
 `;
+export const PageWrapper = styled.div`
+  padding: 20px 0 80px;
+  @media (max-width: 992px) {
+    padding-bottom: 60px;
+  }
+  @media (max-width: 768px) {
+    padding-bottom: 40px;
+  }
+  @media (max-width: 576px) {
+    padding: 0 0 20px;
+  }
+`;
 
 export const Info = styled.div`
   display: flex;
@@ -76,19 +88,24 @@ export const InfoText = styled.span`
   font-size: 16px;
   line-height: 17px;
   color: #232428;
+  text-align: justify;
   @media (max-width: 576px) {
     font-size: 14px;
   }
 `;
 
-export const CollectionCard = styled(Link)`
+export const CollectionCard = styled(Link)<{ bg?: string }>`
   margin: 20px 0;
   position: relative;
   cursor: pointer;
   width: 100%;
   height: 160px;
   padding: 20px;
-  background-color: hotpink;
+  background: ${({ bg }) =>
+    bg
+      ? `url(${bg}) no-repeat center /
+    cover`
+      : "#ebdfff"};
   border-radius: 20px;
   overflow: hidden;
   display: flex;
@@ -107,16 +124,6 @@ export const CollectionCard = styled(Link)`
     height: 165px;
   }
 `;
-
-export const CollectionBackground = styled.img`
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-`;
-
 export const AuthorWrap = styled.div`
   display: flex;
   align-items: center;
@@ -141,10 +148,22 @@ export const CollectionPicWrap = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  flex: 0 0 10%;
+  height: 90px;
+  width: 90px;
+  overflow: hidden;
   & img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 20px;
+  }
+  @media (max-width: 992px) {
+    height: 80px;
+    width: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 70px;
+    width: 70px;
   }
   @media (max-width: 576px) {
     flex: 0 0 20%;
@@ -200,9 +219,13 @@ export const OwnerName = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  @media (max-width: 992px) {
+    max-width: 220px;
+  }
   @media (max-width: 768px) {
     font-size: 12px;
     line-height: 15px;
+    max-width: 165px;
   }
   @media (max-width: 576px) {
     max-width: 95%;
@@ -215,6 +238,9 @@ export const CollectionTextDiv = styled.div`
   flex: 0 1 50%;
   @media (max-width: 1200px) {
     flex: 0 1 60%;
+  }
+  @media (max-width: 992px) {
+    flex: 0 1 50%;
   }
   @media (max-width: 576px) {
     flex: 0 0 100%;
@@ -264,6 +290,8 @@ interface IWrapper {
   margBottomS?: string;
   margBottomXS?: string;
   margBottomM?: string;
+  flexBasis?: string;
+  flexBasisXS?: string;
 }
 
 export const Wrapper = styled.div<IWrapper>`
@@ -281,6 +309,7 @@ export const Wrapper = styled.div<IWrapper>`
   flex-wrap: ${(props) => props.flexWrap || ""};
   background-color: ${(props) => props.bg || ""};
   cursor: ${(props) => props.curs || ""};
+  flex-basis: ${(props) => props.flexBasis || ""};
   @media (max-width: 992px) {
     margin-bottom: ${(props) => props.margBottomM};
   }
@@ -289,6 +318,7 @@ export const Wrapper = styled.div<IWrapper>`
   }
   @media (max-width: 576px) {
     margin-bottom: ${(props) => props.margBottomXS};
+    flex-basis: ${(props) => props.flexBasisXS};
   }
 `;
 
@@ -335,7 +365,6 @@ export const CardsWrapper = styled.div`
   position: relative;
   display: flex;
   gap: 15px;
-
   @media (max-width: 1200px) {
     position: absolute;
     right: 15px;
@@ -350,4 +379,6 @@ export const CardsWrapper = styled.div`
 
 export const ImageCollection = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;

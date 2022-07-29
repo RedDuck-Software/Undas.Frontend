@@ -6,7 +6,6 @@ import { createClient } from "urql";
 import {
   CollectionCard,
   AuthorWrap,
-  CollectionBackground,
   CollectionPicWrap,
   CollectionText,
   NFTCards,
@@ -24,8 +23,8 @@ import { Verified } from "../imports";
 type CollectionItemProps = {
   id: number;
   collectionUrl: string;
-  collectionFeatureUrl?: string;
-  collectionBannerUrl?: string;
+  collectionFeatureImg?: string;
+  collectionBannerImg?: string;
   collectionCategory: string;
   collectionInfo?: string;
   collectionName?: string;
@@ -53,7 +52,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
   const items: CollectionWithCards[] = [];
   const getListings = async () => {
     const tokens = await fetchData();
-
     tokens.data.tokens.map((i: any) => {
       const uri = i.uri;
       const collectionId = i.collectionId;
@@ -75,7 +73,7 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
 
   const tokensQuery = `
     {
-      tokens(orderDirection:asc){
+      tokens(first:200 orderDirection:asc){
         uri
         collectionId
       }
@@ -85,29 +83,26 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
     const data = await client.query(tokensQuery).toPromise();
     return data;
   }
-
   async function getListingsData() {
     const response = await getListings();
-
     if (response) {
       setCollectionItems(response);
     }
   }
-
   return (
     <>
       {itemList.map((i) => {
         if (!collectionItems) return;
+
         const result = collectionItems
           .filter((nft) => nft.collectionId == i.id)
           .slice(0, 3);
-
         return (
-          <CollectionCard key={i.id} to={`/collection/${i.id}`}>
-            <CollectionBackground
-              src={i.collectionFeatureUrl}
-              alt="collection-bg"
-            />
+          <CollectionCard
+            key={i.id}
+            to={`/collection/${i.id}`}
+            bg={i.collectionFeatureImg}
+          >
             <AuthorWrap>
               <CollectionPicWrap>
                 <img src={i.collectionUrl} alt="collection-pic" />

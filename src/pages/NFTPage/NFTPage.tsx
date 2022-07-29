@@ -111,13 +111,10 @@ const NFTPage: React.FC = () => {
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
-  const [collectionName, setcollectionName] = useState<string>("No collection");
-  const [collectionId, setCollectionId] = useState("0");
   const [status, setStatus] = useState("");
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
-  const [itemHistory, setItemHistory] = useState<any>()
-
+  const [itemHistory, setItemHistory] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [showBuy, setShowBuy] = useState(true);
   const [showRent, setShowRent] = useState(true);
@@ -127,6 +124,8 @@ const NFTPage: React.FC = () => {
   const URI = state.state.URI;
   const nameFromProps = state.state.name;
   const tokenId = state.state.tokenId;
+  const collectionName = state.state.collectionName;
+  const collectionId = state.state.collectionId;
 
   const getOwner = async () => {
     if (!connector) {
@@ -143,7 +142,7 @@ const NFTPage: React.FC = () => {
     if (!seller) {
       setSeller(state.state.tokenOwner);
     }
- 
+
     if (singerAddress == seller || singerAddress == state.state.tokenOwner) {
       setIsOwner(false);
     }
@@ -193,7 +192,6 @@ const NFTPage: React.FC = () => {
       return;
     }
     if (listingId && status == "ACTIVE") {
-
       setShowBuy(true);
     } else {
       setShowBuy(false);
@@ -209,27 +207,26 @@ const NFTPage: React.FC = () => {
   }
 
   const createdMultipleQuery = () => {
-
     const collectionItems = useQuery({
       query: GET_SAME_COLLECTIONS,
-      variables: { collectionId: +collectionId },
+      variables: { collectionId: +collectionId, tokenId: tokenId },
     });
-
     const offersItems = useQuery({
       query: GET_NFT_OFFERS,
       variables: { tokenId: tokenId, tokenAddress: state.state.tokenAddress },
     });
 
     const itemActivity = useQuery({
-      query:ITEM_ACTIVITY,
-      variables: {tokenId: tokenId, tokenAddress: state.state.tokenAddress }
-    })
+      query: ITEM_ACTIVITY,
+      variables: { tokenId: tokenId, tokenAddress: state.state.tokenAddress },
+    });
     return [collectionItems, offersItems, itemActivity];
   };
-  const [[collectionItemResult], [offersItems], [itemActivity]] = createdMultipleQuery();
+
+  const [[collectionItemResult], [offersItems], [itemActivity]] =
+    createdMultipleQuery();
 
   const { data, fetching } = collectionItemResult;
-
   const getTokenData = async () => {
     const tokensQuery = await fetchData();
 
@@ -242,11 +239,11 @@ const NFTPage: React.FC = () => {
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
-      setSeller(tokensQuery.data.listings[0].seller);
+      if (!seller) {
+        setSeller(tokensQuery.data.listings[0].seller);
+      }
       setStatus(tokensQuery.data.listings[0].listingStatus);
       setLoading(false);
-      setCollectionId(tokensQuery.data.listings[0].collectionId);
-    
     }
 
     if (
@@ -258,33 +255,23 @@ const NFTPage: React.FC = () => {
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
       setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
-      setSeller(tokensQuery.data.stakingListings[0].seller);
+      if (!seller) {
+        setSeller(tokensQuery.data.stakingListings[0].seller);
+      }
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
-      setCollectionId(tokensQuery.data.stakingListings[0].collectionId);
 
       setLoading(false);
-
- 
     }
-
-    if(tokensQuery.data.tokens[0]){
-
-      setcollectionName(
-        tokensQuery.data.tokens[0].collectionName
-          ? tokensQuery.data.tokens[0].collectionName
-          : "No collection",
-      );
-      setCollectionId(
-        tokensQuery.data.tokens[0].collectionId
-          ? tokensQuery.data.tokens[0].collectionId
-          : "0",
-      );
-      setDescription(tokensQuery.data.tokens[0].description);
-      setSeller(tokensQuery.data.tokens[0].owner)
+    if (data) {
+      if (data.tokens[0]) {
+        setDescription(data.tokens[0].description);
+        setSeller(data.tokens[0].owner);
+      }
     }
     setLoading(false);
   };
+
   useEffect(() => {
     if (fetching) return;
     setItemsForCarousel(data);
@@ -293,10 +280,9 @@ const NFTPage: React.FC = () => {
     getShowBuy();
     getShowRent();
     getOwner();
-    if(itemActivity.data){  
-        setItemHistory(itemActivity)
+    if (itemActivity.data) {
+      setItemHistory(itemActivity);
     }
-    
   }, [
     connector,
     listingId,
@@ -307,11 +293,11 @@ const NFTPage: React.FC = () => {
     fetching,
     collectionId,
     offersItems.fetching,
-    itemActivity.fetching
+    itemActivity.fetching,
   ]);
-
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
+
   const tokensQuery = `
 {
   listings(where:{tokenId:"${state.state.tokenId}" token:"${state.state.tokenAddress}"}){
@@ -349,7 +335,7 @@ const NFTPage: React.FC = () => {
   }
 }
  `;
-  const path = `/collection/${collectionId}`
+  const path = `/collection/${collectionId}`;
   const client = createClient({
     url: APIURL,
   });
@@ -357,7 +343,6 @@ const NFTPage: React.FC = () => {
     const data = await client.query(tokensQuery).toPromise();
     return data;
   }
-
   return (
     <Background>
       {!loading && !isOwner && (
@@ -409,9 +394,7 @@ const NFTPage: React.FC = () => {
                   </Platform>
                 </Name>
                 <Name>
-                  <NameNft>
-                    {nameFromProps ? nameFromProps : name}
-                  </NameNft>
+                  <NameNft>{nameFromProps ? nameFromProps : name}</NameNft>
                 </Name>
               </NameInner>
               <NavMenu>
@@ -499,7 +482,7 @@ const NFTPage: React.FC = () => {
                           <NotListed>Not listed for rent yet</NotListed>
                           <InfoButton
                             fc="#873DC1"
-                            disabled={!isOwner}
+                            disabled={true}
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate(
@@ -512,13 +495,7 @@ const NFTPage: React.FC = () => {
                           </InfoButton>
                         </RentElement>
                       </>
-                    ) : !state.state.premium ? (
-                      <>
-                        <RentElement h="76px">
-                          <NotListed>Not listed for rent yet</NotListed>
-                        </RentElement>
-                      </>
-                    ) : (
+                    ) : !isOwner && (state.colloterarWei || colloteral) ? (
                       <>
                         <RentElement className="center">
                           <span>Deposit</span>
@@ -578,6 +555,72 @@ const NFTPage: React.FC = () => {
                           </ContainerButton>
                         </RentElement>
                       </>
+                    ) : isOwner ? (
+                      <>
+                        <RentElement className="center">
+                          <span>Deposit</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                colloteral.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
+                            <PriceInUSD>($18 465,32)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement className="center">
+                          <span>Price for 1 Rental</span>
+                          <Wrapper disp="flex" alignItems="center">
+                            <EthIco />
+                            <PriceText>
+                              {ethers.utils.formatUnits(
+                                premium.toString(),
+                                "ether",
+                              )}
+                            </PriceText>
+                            <PriceInUSD>($36,93)</PriceInUSD>
+                          </Wrapper>
+                        </RentElement>
+                        <RentElement className="center">
+                          <span>Period</span>
+                          <RentalPeriod placeholder="7 for 90 days" />
+                        </RentElement>
+                        <RentElement h="unset">
+                          <ContainerButton>
+                            <InfoButton
+                              bg="#873DC1"
+                              className="colored-btn"
+                              onClick={() =>
+                                rentToken(stakingId, colloteral, premium)
+                              }
+                            >
+                              Rent
+                            </InfoButton>
+                            <InfoButton
+                              fc="#873DC1"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/offer-rent/tokenAddress=${state.state.tokenAddress}&id=${state.state.tokenId}`,
+                                  { state: { ...state } },
+                                );
+                              }}
+                            >
+                              Make offer
+                            </InfoButton>
+                          </ContainerButton>
+                        </RentElement>
+                      </>
+                    ) : (
+                      <RentElement>
+                        <ContainerButton>
+                          <Wrapper disp="flex" alignItems="center">
+                            You have not listed for rent yet
+                          </Wrapper>
+                        </ContainerButton>
+                      </RentElement>
                     )}
                   </SaleBlock>
                 </Wrapper>
@@ -596,20 +639,14 @@ const NFTPage: React.FC = () => {
                 <Staking />
               </Accordion>
               <Accordion name="Item Activity" ico={<ItemActivityIco />}>
-                {itemHistory ? (
-                <ItemActivity items={itemHistory}/>
-                ) : (
-                  ''
-                  )}
+                {itemHistory ? <ItemActivity items={itemHistory} /> : ""}
               </Accordion>
               <Accordion name="Description" classLabel="half-width">
-              {description ? (
+                {description ? (
                   <Description text={description} creator={seller} />
                 ) : (
-                  <Description text='No description' creator="no-data" />
+                  <Description text="No description" creator="no-data" />
                 )}
-               
-                
               </Accordion>
               <Accordion
                 name="Details"

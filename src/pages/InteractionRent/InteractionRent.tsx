@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
@@ -46,6 +47,7 @@ const InteractionRent: React.FC = () => {
   // const [, setAutoRedirect] = useState<boolean>(false);
   // const [loading, setLoading] = useState<boolean>(false);
   const { connector } = useContext(Context);
+  const { account } = useWeb3React();
 
   const state: any = useLocation();
   const stakingId = state.state.tokenId;
@@ -53,19 +55,24 @@ const InteractionRent: React.FC = () => {
   const tokenAddress = state.state.tokenAddress;
   async function ReturnNFT(stakingId: number) {
     if (!connector) return;
-
+    if (!account) return;
     const provider = new ethers.providers.Web3Provider(
       await connector.getProvider(),
     );
 
     const signer = provider.getSigner(0);
 
-    const NFTContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
-    const approve = await NFTContract.setApprovalForAll(
+    const NftContract = UndasGeneralNFT__factory.connect(tokenAddress, signer);
+
+    const isApprovedForAll = await NftContract.isApprovedForAll(
+      account,
       MARKETPLACE_ADDRESS,
-      true,
     );
-    await approve.wait();
+    if (!isApprovedForAll) {
+      await (
+        await NftContract.setApprovalForAll(MARKETPLACE_ADDRESS, true)
+      ).wait();
+    }
 
     const MarketplaceContract = Marketplace__factory.connect(
       MARKETPLACE_ADDRESS,

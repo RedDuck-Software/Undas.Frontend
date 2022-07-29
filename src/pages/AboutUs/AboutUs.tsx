@@ -13,7 +13,7 @@ import {
   OurTeamContent,
   Roadmap,
   ArticleText,
-  Link,
+  StyledLink,
   RoadMapContent,
   AchievementСontainer,
   ContainerHead,
@@ -26,12 +26,18 @@ import {
   /*SubTitleBuilding,*/
   SubTitleOurTeam,
   SubTitleOurTeamSmallSize,
-  Download,
   TextQuarter,
   TextDate,
   TextDateSmallSize,
+  WhitePaper,
+  Presentation,
+  GitHabContainer,
+  GitHubImage,
+  ImageBox,
+  LinkBox,
+  LinkGitHub,
 } from "./AboutUs.styles";
-import { ArticleImg } from "./imports";
+import { ArticleImg, GitHub } from "./imports";
 import Road from "./Roadmap/Road";
 import AboutSlider from "./Slider/Slider";
 import TeammateCards from "./TeammateCard/TeammateCard";
@@ -76,10 +82,10 @@ const AboutUs: React.FC = () => {
                   </p>
                   <p>
                     The project team worked on the creation of various projects
-                    in the Defi and GameFi sectors of the crypto market, as well
-                    as on traditional fintech solutions for banks. Nevertheless,
-                    in our opinion, it is the NFT technology that will truly
-                    open the door to the world of WEB 3.0, and we at{" "}
+                    in the Defi and Metaverses sectors of the crypto market, as
+                    well as on traditional fintech solutions for banks.
+                    Nevertheless, in our opinion, it is the NFT technology that
+                    will truly open the door to the world of WEB 3.0, and we at{" "}
                     <span>UNDAS</span> are happy to become one of the pioneers!
                   </p>
                 </ArticleText>
@@ -129,16 +135,43 @@ const AboutUs: React.FC = () => {
           <OurTeamWrap>
             <OurTeamTitle>
               <SubTitleOurTeam>Our Team</SubTitleOurTeam>
-              <Link href="#" target="_blank">
-                White Paper
-              </Link>
-              <Download>Download</Download>
+              <WhitePaper>
+                <StyledLink to="/WhitePaper.pdf" target="_blank" download>
+                  White Paper
+                </StyledLink>
+              </WhitePaper>
+              <Presentation>
+                <StyledLink to="/Undas.pdf" target="_blank" download>
+                  Presentation
+                </StyledLink>
+              </Presentation>
             </OurTeamTitle>
             <SubTitleOurTeamSmallSize>Our Team</SubTitleOurTeamSmallSize>
             <OurTeamContent>
               <TeammateCards />
             </OurTeamContent>
           </OurTeamWrap>
+        </Container>
+
+        <GitHabContainer>
+          <Container>
+            <ImageBox>
+              <GitHubImage src={GitHub} alt="GitHub-logo" />
+              <LinkBox>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.SubGraph">
+                  https://github.com/RedDuck-Software/Undas.SubGraph
+                </LinkGitHub>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.Contracts">
+                  https://github.com/RedDuck-Software/Undas.Contracts
+                </LinkGitHub>
+                <LinkGitHub href="https://github.com/RedDuck-Software/Undas.Frontend">
+                  https://github.com/RedDuck-Software/Undas.Frontend
+                </LinkGitHub>
+              </LinkBox>
+            </ImageBox>
+          </Container>
+        </GitHabContainer>
+        <Container>
           <Roadmap>
             <SubTitleRoadmap>Roadmap</SubTitleRoadmap>
             <RoadMapContent>
