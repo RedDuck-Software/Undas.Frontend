@@ -24,38 +24,40 @@ const Promo: React.FC = () => {
       }}
     >
       <SwiperSlide>
-        <PromoSlide to="/blog">
+        <PromoSlide to="/blog-post">
+          <Container>
+            <SlideText>Welcome to UNDAS: Project History</SlideText>
+          </Container>
+        </PromoSlide>
+      </SwiperSlide>
+      <SwiperSlide>
+        <PromoSlide to="/blog-post-2">
+          <Container>
+            <SlideText>UNDAS: new mechanics of NFT markets</SlideText>
+          </Container>
+        </PromoSlide>
+      </SwiperSlide>
+      <SwiperSlide>
+        <PromoSlide to="/blog-post-3">
           <Container>
             <SlideText>
-              Hot Offer! Add your NTF and save 50% on commission!
+              BCG: By 2030, the number of cryptocurrency users will reach 1
+              billion people
             </SlideText>
           </Container>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
-        <PromoSlide to="/blog/website-tips">
+        <PromoSlide to="/blog-post-4">
           <Container>
-            <SlideText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-              quisquam.
-            </SlideText>
+            <SlideText>SGM and Undas Partnership</SlideText>
           </Container>
         </PromoSlide>
       </SwiperSlide>
       <SwiperSlide>
-        <PromoSlide to="/article">
+        <PromoSlide to="/blog-post-5">
           <Container>
-            <SlideText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque hic
-              voluptatibus rem saepe incidunt sunt?
-            </SlideText>
-          </Container>
-        </PromoSlide>
-      </SwiperSlide>
-      <SwiperSlide>
-        <PromoSlide to="/blog">
-          <Container>
-            <SlideText>Lorem ipsum dolor sit amet.</SlideText>
+            <SlideText>Undas.io launched on Goerli Testnet</SlideText>
           </Container>
         </PromoSlide>
       </SwiperSlide>

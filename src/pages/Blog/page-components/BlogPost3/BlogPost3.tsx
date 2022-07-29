@@ -21,7 +21,7 @@ import {
 
 import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
-import { News2, News3, ArticleBig2, Heart } from "../../imports";
+import { ArticleBig2, Heart, Graf, Blog3, SGM, Blog5 } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
 
 const CardsSection: React.FC = () => {
@@ -34,13 +34,13 @@ const CardsSection: React.FC = () => {
         adress={"/blog-post-2"}
       />
       <BlogCard
-        image={News3}
+        image={SGM}
         titleText={"SGM and Undas Partnership"}
         date={"23.07.2022"}
         adress={"/blog-post-4"}
       />
       <BlogCard
-        image={News2}
+        image={Blog5}
         titleText={"Undas.io launched on Goerli Testnet"}
         date={"21.07.2022"}
         adress={"/blog-post-5"}
@@ -64,7 +64,7 @@ const BlogPost3: React.FC = () => {
                 <ArticleDescriptionItem>JULY 23, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>3 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
-              <ArticleImage src={ArticleBig2}></ArticleImage>
+              <ArticleImage src={Blog3}></ArticleImage>
               <ArticleText>
                 Global management consulting firm Boston Consulting Group (BCG)
                 said that the adoption of cryptocurrencies is likely to
@@ -83,7 +83,7 @@ const BlogPost3: React.FC = () => {
                 continue, the total number of crypto users is likely to reach 1
                 billion by 2030,” the report says.
               </ArticleText>
-              <Schedule src={ArticleBig2}></Schedule>
+              <Schedule src={Graf}></Schedule>
               <ArticleText>
                 {" "}
                 We at <Colored>UNDAS</Colored> consider this estimate to be even

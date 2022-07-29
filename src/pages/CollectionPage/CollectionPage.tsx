@@ -228,7 +228,7 @@ const CollectionPage: React.FC = () => {
 
   const target = useRef(null);
   const [showTarget, setShowTarget] = useState(false);
-
+  
   return (
     <>
       {fetching && !data ? (

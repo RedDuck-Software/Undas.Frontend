@@ -138,7 +138,7 @@ export const StyledLink = styled(Link)`
     text-decoration: underline;
   }
   @media (max-width: 773px) {
-    font-size: 20px;
+    font-size: 18px;
     margin-left: none;
     margin-right: auto;
     margin: 0 20px 0 0;
@@ -147,7 +147,7 @@ export const StyledLink = styled(Link)`
     }
   }
   @media (max-width: 576px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 
@@ -570,7 +570,6 @@ export const GitHabContainer = styled.div`
   display: flex;
   min-height: 100px;
   background: #f2f2f2;
-  margin-top: 80px;
   margin-bottom: 60px;
 `;
 
@@ -596,6 +595,7 @@ export const LinkBox = styled.div`
   @media (max-width: 768px) {
     margin-left: 15px;
     justify-content: flex-start;
+    gap: 10px;
   }
 `;
 
@@ -607,6 +607,9 @@ export const LinkGitHub = styled.a`
   line-height: 24px;
   color: #7c7c7c;
   text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: center;
   &:hover {
     color: #873dc1;
     text-decoration: underline;
@@ -618,6 +621,7 @@ export const LinkGitHub = styled.a`
   @media (max-width: 768px) {
     font-size: 14px;
     line-height: 16px;
+    text-align: left;
   }
   @media (max-width: 624px) {
     font-size: 12px;
