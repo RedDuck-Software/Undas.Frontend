@@ -64,7 +64,6 @@ const Collection: React.FC<CollectionGridWrapperProps> = ({ itemList }) => {
     getListingsData();
   }, [account]);
 
-
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/qweblessed/only-one-nft-marketplace";
 

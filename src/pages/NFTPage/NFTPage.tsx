@@ -111,7 +111,7 @@ const NFTPage: React.FC = () => {
   const [listingId, setListingId] = useState(0);
   const [stakingId, setStakingId] = useState(0);
   const [seller, setSeller] = useState<string>();
-    const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("");
   const [itemsForCarousel, setItemsForCarousel] = useState<any>();
   const [itemsForOffer, setItemsForOffer] = useState<any>();
   const [itemHistory, setItemHistory] = useState<any>();
@@ -239,9 +239,9 @@ const NFTPage: React.FC = () => {
       setPriceInNum(tokensQuery.data.listings[0].price);
       setDescription(tokensQuery.data.listings[0].tokenDescription);
       setListingId(tokensQuery.data.listings[0].id);
-        if (!seller) {
-          setSeller(tokensQuery.data.listings[0].seller);
-        }
+      if (!seller) {
+        setSeller(tokensQuery.data.listings[0].seller);
+      }
       setStatus(tokensQuery.data.listings[0].listingStatus);
       setLoading(false);
     }
@@ -255,9 +255,9 @@ const NFTPage: React.FC = () => {
       setDescription(tokensQuery.data.stakingListings[0].tokenDescription);
       setStatus(tokensQuery.data.stakingListings[0].stakingStatus);
       setStakingId(tokensQuery.data.stakingListings[0].id);
-        if (!seller) {
-          setSeller(tokensQuery.data.stakingListings[0].seller);
-        }
+      if (!seller) {
+        setSeller(tokensQuery.data.stakingListings[0].seller);
+      }
       setColloteral(tokensQuery.data.stakingListings[0].colloteralWei);
       setPremium(tokensQuery.data.stakingListings[0].premiumWei);
 
@@ -280,9 +280,9 @@ const NFTPage: React.FC = () => {
     getShowBuy();
     getShowRent();
     getOwner();
-      if (itemActivity.data) {
-        setItemHistory(itemActivity);
-      }
+    if (itemActivity.data) {
+      setItemHistory(itemActivity);
+    }
   }, [
     connector,
     listingId,
@@ -613,7 +613,7 @@ const NFTPage: React.FC = () => {
                           </ContainerButton>
                         </RentElement>
                       </>
-                    ): (
+                    ) : (
                       <RentElement>
                         <ContainerButton>
                           <Wrapper disp="flex" alignItems="center">
@@ -621,7 +621,6 @@ const NFTPage: React.FC = () => {
                           </Wrapper>
                         </ContainerButton>
                       </RentElement>
-                      
                     )}
                   </SaleBlock>
                 </Wrapper>

@@ -38,6 +38,7 @@ export const GET_COLLECTION_INFO = (
   listing?: string | number,
   renting?: string | number,
   hasOffer?: boolean,
+  subString?: string,
 ) => `
   query getCollectionInfo {
     collection(id: ${collectionId}) {
@@ -51,11 +52,12 @@ export const GET_COLLECTION_INFO = (
       collectionVolume
       collectionItemsAmount
       tokens${
-        listing || renting || hasOffer
+        listing || renting || hasOffer || subString
           ? `(where: {
             ${listing ? "price_not: null" : ""}
             ${renting ? "colloteral_not: null" : ""}
             ${hasOffer ? "hasOffer: true" : ""}
+            ${subString ? `name_contains_nocase: "${subString}"` : ""}
           })`
           : ""
       } {
