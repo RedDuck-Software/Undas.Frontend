@@ -1,5 +1,6 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { useState, useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useQuery } from "urql";
@@ -12,23 +13,20 @@ import {
   CreatedResultsTotal,
   ClipLoaderWrapper,
 } from "./Created.styles";
-//import CreatedCollections from "./CreatedCollections";
 import { CreatedType } from "./types";
 
 import FilterSelected from "../../../../components/FilterSelected/FilterSelected";
-//import { ViewMode } from "../../../../types/viewMode";
+import { searchAction } from "../../../../store/reducers/Filter/filterActions";
 import Context from "../../../../utils/Context";
 import useViewMode from "../../../../utils/hooks/useViewMode";
 import AllFilterWrap from "../../../AllNFTs/AllFilterWrap";
 import { MenuSearchWrap, MenuWrap } from "../../../AllNFTs/AllNFTs.styles";
-//import NFTListItem from "../../../AllNFTs/page-components/NFTListItem/NFTListItem";
-//import CollectionGridWrap from "../../../CollectionPage/page-components/CollectionGridWrap";
 import { SmallNumber } from "../../AccountPage.styles";
 import { GET_CREATED_COLLECTIONS, GET_CREATED_NFTS } from "../../query";
 import { CreatedCollectionItemProps, CreatedItemProps } from "../../types";
-//import NoData from "../NoData/NoData";
 
 const Created: React.FC = () => {
+  const dispatch = useDispatch();
   const { account } = useWeb3React();
   const { connector } = useContext(Context);
   const { viewMode, viewButtonsRender } = useViewMode();
@@ -37,6 +35,7 @@ const Created: React.FC = () => {
   const [createdCollections, setCreatedCollections] = useState<
     CreatedCollectionItemProps[]
   >([]);
+  const [counter, setCounter] = useState<string>("0");
 
   const createdMultipleQuery = () => {
     const nfts = useQuery({
@@ -108,6 +107,12 @@ const Created: React.FC = () => {
     }
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value.length >= 3 || event.target.value.length == 0) {
+      dispatch(searchAction(event.target.value));
+    }
+  };
+
   useEffect(() => {
     if (!connector || !account) {
       return console.log("loading");
@@ -146,13 +151,15 @@ const Created: React.FC = () => {
           </CreatedSelect>
           {createdType === CreatedType.nft && viewButtonsRender}
         </CreatedSettingsBlock>
-        <MenuSearchWrap mw="530px" marginLeft="0" placeholder="Search" />
-        <CreatedResultsTotal>
-          {createdType === CreatedType.nft
-            ? createdNfts.length
-            : createdCollections.length}{" "}
-          results
-        </CreatedResultsTotal>
+
+        <MenuSearchWrap
+          mw="530px"
+          marginLeft="0"
+          placeholder="Search"
+          onChange={handleSearch}
+        />
+
+        <CreatedResultsTotal>{counter} results</CreatedResultsTotal>
       </MenuWrap>
 
       <FilterSelected />
@@ -166,56 +173,13 @@ const Created: React.FC = () => {
           />
         </ClipLoaderWrapper>
       ) : (
-        <>
-          <AllFilterWrap
-            getResults={(e: any) => console.log(e)}
-            priceFilterOrder={""}
-            viewMode={viewMode}
-            accountPage
-            createdType={createdType}
-          />
-          {/* {createdNfts.length > 0 || createdCollections.length > 0 ? (
-            <>
-              {createdType === CreatedType.nft && (
-                <>
-                  {nftsResult.fetching ? (
-                    <ClipLoader
-                      color={"#BD10E0"}
-                      loading={collectionsResult.fetching}
-                      size={250}
-                    />
-                  ) : (
-                    <>
-                      {viewMode === ViewMode.grid ? (
-                        <CollectionGridWrap itemList={createdNfts} />
-                      ) : (
-                        <NFTListItem itemList={createdNfts} />
-                      )}
-                    </>
-                  )}
-                </>
-              )}
-
-              {createdType === CreatedType.collection && (
-                <>
-                  {collectionsResult.fetching ? (
-                    <ClipLoader
-                      color={"#BD10E0"}
-                      loading={collectionsResult.fetching}
-                      size={250}
-                    />
-                  ) : (
-                    <CreatedCollections
-                      createdCollections={createdCollections}
-                    />
-                  )}
-                </>
-              )}
-            </>
-          ) : (
-            <NoData />
-          )} */}
-        </>
+        <AllFilterWrap
+          getResults={(amount: string) => setCounter(amount)}
+          priceFilterOrder={""}
+          viewMode={viewMode}
+          accountPage
+          createdType={createdType}
+        />
       )}
     </CreatedWrap>
   );
