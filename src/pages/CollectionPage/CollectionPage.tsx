@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React, { useState, useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useQuery } from "urql";
@@ -30,11 +30,13 @@ import { GET_COLLECTION_INFO } from "./query";
 import ASideFilter from "../../components/ASideFilter/ASideFilter";
 import FilterMobileButton from "../../components/ASideFilter/FilterMobileButton/FilterMobileButton";
 import { Background, ClipLoaderWrapper } from "../../globalStyles";
+import { searchAction } from "../../store/reducers/Filter/filterActions";
 import {
   useBuy,
   useRent,
   useHasOffers,
   usePriceFilter,
+  useSearch,
 } from "../../store/reducers/Filter/helpers";
 import { ViewMode } from "../../types/viewMode";
 import Context from "../../utils/Context";
@@ -71,10 +73,12 @@ interface CommonProps {
 
 const CollectionPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
   const buyingFilter = useSelector(useBuy);
   const rentingFilter = useSelector(useRent);
   const hasOfferFilter = useSelector(useHasOffers);
   const priceFilter = useSelector(usePriceFilter);
+  const searchFilter = useSelector(useSearch);
   const params = useParams();
   const [result] = useQuery({
     query: GET_COLLECTION_INFO(
@@ -82,6 +86,7 @@ const CollectionPage: React.FC = () => {
       buyingFilter.buying,
       rentingFilter.stacking,
       hasOfferFilter.hasOffers,
+      searchFilter,
     ),
   });
   const { data, fetching } = result;
@@ -96,6 +101,7 @@ const CollectionPage: React.FC = () => {
   const { connector } = useContext(Context);
 
   const [list, setList] = useState<CommonProps[]>([]);
+
   useEffect(() => {
     if (priceFilter.min == "" && priceFilter.max == "") {
       getListingsData();
@@ -108,6 +114,7 @@ const CollectionPage: React.FC = () => {
     rentingFilter.stacking,
     hasOfferFilter.hasOffers,
     priceFilter,
+    searchFilter,
   ]);
 
   const [show, setShow] = useState(false);
@@ -160,9 +167,7 @@ const CollectionPage: React.FC = () => {
     if (!priceFilter.max) {
       const { min } = priceFilter;
       const result = list.filter(priceFilterBetween(min, 9999999999999));
-      console.log(result);
       setList(result);
-      console.log(list);
       return;
     }
 
@@ -174,6 +179,12 @@ const CollectionPage: React.FC = () => {
     }
   }, [priceFilter]);
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value.length >= 3 || event.target.value.length == 0) {
+      dispatch(searchAction(event.target.value));
+    }
+  };
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -184,8 +195,20 @@ const CollectionPage: React.FC = () => {
     rentingFilter.stacking,
     hasOfferFilter.hasOffers,
     priceFilter,
+    searchFilter,
   ]);
 
+  console.log(data);
+  console.log(
+    GET_COLLECTION_INFO(
+      params.id ? params.id : 0,
+      buyingFilter.buying,
+      rentingFilter.stacking,
+      hasOfferFilter.hasOffers,
+      searchFilter,
+    ),
+  );
+  
   return (
     <>
       {fetching && !data ? (
@@ -325,6 +348,7 @@ const CollectionPage: React.FC = () => {
                         mw="530px"
                         marginLeft="0"
                         placeholder="Search"
+                        onChange={handleSearch}
                       />
                       <ResultsTotal>{list.length} results</ResultsTotal>
                     </MenuWrap>

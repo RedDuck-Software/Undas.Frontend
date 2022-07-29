@@ -216,7 +216,7 @@ const Buy: React.FC<BuyProps> = ({
               Buy now
             </InfoButton>
             <InfoButton
-              fc="#873DC1" 
+              fc="#873DC1"
               onClick={(e) => {
                 e.stopPropagation();
                 navigate(
@@ -237,7 +237,6 @@ const Buy: React.FC<BuyProps> = ({
             </Wrapper>
           </ButtonWrap>
         </BuyBar>
-        
       )}
     </>
   );

@@ -35,7 +35,7 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
           <ActivityTd>Date</ActivityTd>
         </ActivityHeadTr>
         {items.data.listings.map((item: any) => {
-          if(item.listingStatus == "ACTIVE"){
+          if (item.listingStatus == "ACTIVE") {
             return (
               <ActivityTr key={item}>
                 <ActivityTd>
@@ -55,14 +55,14 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
                 </ActivityTd>
                 <ActivityTd>
                   <ActivityColorText color="#5D3F92">
-                  0xA24...09c6A
+                    0xA24...09c6A
                   </ActivityColorText>
                 </ActivityTd>
                 <ActivityTd>Day ago</ActivityTd>
               </ActivityTr>
             );
           }
-          if(item.listingStatus == "SOLD"){
+          if (item.listingStatus == "SOLD") {
             return (
               <ActivityTr key={item}>
                 <ActivityTd>
@@ -89,10 +89,9 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
               </ActivityTr>
             );
           }
-          
         })}
         {items.data.stakingListings.map((item: any) => {
-          if(item.stakingStatus == "ACTIVE"){
+          if (item.stakingStatus == "ACTIVE") {
             return (
               <ActivityTr key={item}>
                 <ActivityTd>
@@ -119,7 +118,7 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
               </ActivityTr>
             );
           }
-          if(item.stakingStatus == "RENTED"){
+          if (item.stakingStatus == "RENTED") {
             return (
               <ActivityTr key={item}>
                 <ActivityTd>
@@ -128,7 +127,9 @@ const ItemActivity: React.FC<ItemActivityItems> = ({ items }) => {
                 <ActivityTd>
                   <EtherIcon />
                   <PriceText>
-                    {ethers.utils.formatEther(item.colloteralWei.toString()) + '/' + ethers.utils.formatEther(item.premiumWei.toString())}
+                    {ethers.utils.formatEther(item.colloteralWei.toString()) +
+                      "/" +
+                      ethers.utils.formatEther(item.premiumWei.toString())}
                   </PriceText>
                   <ActivityText>ETH</ActivityText>
                 </ActivityTd>

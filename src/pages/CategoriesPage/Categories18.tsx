@@ -54,7 +54,7 @@ const CategoriesGameFI: React.FC = () => {
         collectionInfo,
         owner,
         collectionFeatureImg,
-        collectionBannerImg
+        collectionBannerImg,
       });
     });
     return collectionsList;
