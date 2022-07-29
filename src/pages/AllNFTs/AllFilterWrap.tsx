@@ -415,8 +415,6 @@ const AllFilterWrap: React.FC<IAllFilterWrap> = ({
     }
   }, [priceFilter]);
 
-
-
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
