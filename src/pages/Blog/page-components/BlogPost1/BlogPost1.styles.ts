@@ -62,6 +62,7 @@ export const ArticleDescriptionItem = styled.li`
 export const ArticleImage = styled.img`
   width: 100%;
   border-radius: 10px;
+  background-color: white;
 `;
 export const ArticleText = styled.p`
   text-indent: 3ch;

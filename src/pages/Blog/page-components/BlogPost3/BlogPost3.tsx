@@ -16,6 +16,7 @@ import {
   Colored,
   CardsWrap,
   Schedule,
+  StyledLink,
 } from "./BlogPost3.styles";
 
 import Partners from "../../../../components/Partners/Partners";
@@ -29,22 +30,20 @@ const CardsSection: React.FC = () => {
       <BlogCard
         image={ArticleBig2}
         titleText={"UNDAS: new mechanics of NFT markets"}
-        date={"27.07.2022"}
+        date={"25.07.2022"}
         adress={"/blog-post-2"}
-      />
-      <BlogCard
-        image={News2}
-        titleText={
-          "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
-        }
-        date={"22.07.2022"}
-        adress={"/blog-post-3"}
       />
       <BlogCard
         image={News3}
         titleText={"SGM and Undas Partnership"}
-        date={"22.07.2022"}
+        date={"23.07.2022"}
         adress={"/blog-post-4"}
+      />
+      <BlogCard
+        image={News2}
+        titleText={"Undas.io launched on Goerli Testnet"}
+        date={"21.07.2022"}
+        adress={"/blog-post-5"}
       />
     </>
   );
@@ -62,8 +61,7 @@ const BlogPost3: React.FC = () => {
                 billion people
               </ArticleTitle>
               <ArticleDescription>
-                <ArticleDescriptionItem>NEWS</ArticleDescriptionItem>
-                <ArticleDescriptionItem>JULY 22, 2022</ArticleDescriptionItem>
+                <ArticleDescriptionItem>JULY 23, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>3 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
               <ArticleImage src={ArticleBig2}></ArticleImage>
@@ -75,7 +73,6 @@ const BlogPost3: React.FC = () => {
                 researchers said the rollout is likely to result in about a
                 billion users in the sector by 2030.
               </ArticleText>
-              <Schedule src={ArticleBig2}></Schedule>
               <ArticleText>
                 The report notes that the forecast is reflected in the spread of
                 the Internet in the 1990s. “If we use the number of
@@ -86,15 +83,20 @@ const BlogPost3: React.FC = () => {
                 continue, the total number of crypto users is likely to reach 1
                 billion by 2030,” the report says.
               </ArticleText>
+              <Schedule src={ArticleBig2}></Schedule>
               <ArticleText>
                 {" "}
                 We at <Colored>UNDAS</Colored> consider this estimate to be even
                 conservative despite the impressive forecasts. According to the
                 studies that we got acquainted with when preparing the analysis
-                of the crypto market for our white paper, we see that the number
-                of users of crypto exchanges has already exceeded 200 million
-                users and it doubles almost 2 times every year, so some studies
-                predict an increase to 800 million users already in 2025.
+                of the crypto market for our{" "}
+                <StyledLink to="/WhitePaper.pdf" target="_blank" download>
+                  White Paper
+                </StyledLink>
+                , we see that the number of users of crypto exchanges has
+                already exceeded 200 million users and it doubles almost 2 times
+                every year, so some studies predict an increase to 800 million
+                users already in 2025.
               </ArticleText>
               <ColoredArticleText>
                 Whatever it was, we are only at the very beginning of the

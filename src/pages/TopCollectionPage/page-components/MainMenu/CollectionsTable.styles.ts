@@ -49,7 +49,9 @@ export const ItemIcon = styled.div`
   height: 50px;
   margin-right: 10px;
   & .offers-item-image {
-    width: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
   }
 `;
 export const ItemName = styled.span`

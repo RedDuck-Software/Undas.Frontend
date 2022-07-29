@@ -33,7 +33,7 @@ const BlogBigCard: React.FC = () => {
           </BigCardText>
         </BigCardTextWrap>
         <CardFooter>
-          <Date>18.07.2022</Date>
+          <Date>27.07.2022</Date>
           <CardLink href="article">See more...</CardLink>
         </CardFooter>
       </BigCardBody>

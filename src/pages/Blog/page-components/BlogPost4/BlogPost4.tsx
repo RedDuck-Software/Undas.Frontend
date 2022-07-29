@@ -20,7 +20,7 @@ import {
 
 import Partners from "../../../../components/Partners/Partners";
 import { Background, Container } from "../../../../globalStyles";
-import { News2, News3, ArticleBig2, Heart } from "../../imports";
+import { News2, News3, ArticleBig2, Heart, SGM } from "../../imports";
 import BlogCard from "../BlogCard/BlogCard";
 
 const CardsSection: React.FC = () => {
@@ -29,7 +29,7 @@ const CardsSection: React.FC = () => {
       <BlogCard
         image={ArticleBig2}
         titleText={"UNDAS: new mechanics of NFT markets"}
-        date={"27.07.2022"}
+        date={"25.07.2022"}
         adress={"/blog-post-2"}
       />
       <BlogCard
@@ -37,14 +37,14 @@ const CardsSection: React.FC = () => {
         titleText={
           "BCG: By 2030, the number of cryptocurrency users will reach 1 billion people"
         }
-        date={"22.07.2022"}
+        date={"23.07.2022"}
         adress={"/blog-post-3"}
       />
       <BlogCard
         image={News3}
-        titleText={"SGM and Undas Partnership"}
-        date={"22.07.2022"}
-        adress={"/blog-post-4"}
+        titleText={"Undas.io launched on Goerli Testnet"}
+        date={"21.07.2022"}
+        adress={"/blog-post-5"}
       />
     </>
   );
@@ -59,11 +59,10 @@ const BlogPost4: React.FC = () => {
             <BlockContainer>
               <ArticleTitle>SGM and Undas Partnership</ArticleTitle>
               <ArticleDescription>
-                <ArticleDescriptionItem>NEWS</ArticleDescriptionItem>
                 <ArticleDescriptionItem>JULY 22, 2022</ArticleDescriptionItem>
                 <ArticleDescriptionItem>1 MIN READ</ArticleDescriptionItem>
               </ArticleDescription>
-              <ArticleImage src={ArticleBig2}></ArticleImage>
+              <ArticleImage src={SGM}></ArticleImage>
               <ArticleText>
                 SGM <LinkSGM>(https://sgm.team/)</LinkSGM> is an ecosystem of
                 cross-platform applications that provide users with all the

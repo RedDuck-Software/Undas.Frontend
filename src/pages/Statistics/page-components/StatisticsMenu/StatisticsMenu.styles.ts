@@ -47,8 +47,10 @@ export const ItemIcon = styled.div`
   width: 50px;
   height: 50px;
   margin-right: 5px;
-  & .Statistics-item-image {
-    width: 100%;
+  & .statistics-item-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
   }
 
   @media (max-width: 576px) {

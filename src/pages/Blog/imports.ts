@@ -7,6 +7,7 @@ import ArticleBig2 from "./assets/newMechanics.png";
 import News1 from "./assets/news-1.png";
 import News2 from "./assets/news-2.png";
 import News3 from "./assets/news-3.png";
+import SGM from "./assets/sgm.png";
 import SmImg1 from "./assets/sm-card-1.png";
 import SmImg2 from "./assets/sm-card-2.png";
 import SmImg3 from "./assets/sm-card-3.png";
@@ -32,4 +33,5 @@ export {
   News2,
   News3,
   Heart,
+  SGM,
 };

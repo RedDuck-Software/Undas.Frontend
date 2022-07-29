@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { PageTitle } from "../../../../globalStyles";
@@ -62,6 +63,9 @@ export const ArticleDescriptionItem = styled.li`
 export const ArticleImage = styled.img`
   width: 100%;
   border-radius: 10px;
+  background-color: white;
+  display: block;
+  margin: 0 auto;
 `;
 export const ArticleText = styled.p`
   text-indent: 3ch;
@@ -126,7 +130,7 @@ export const List = styled.ul`
   padding-left: 16px;
   text-align: justify;
 `;
-export const Link = styled.a`
+export const StyledLink = styled(Link)`
   color: #873dc1;
   font-weight: 400;
   font-size: 16px;
