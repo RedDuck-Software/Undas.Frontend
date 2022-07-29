@@ -36,7 +36,7 @@ const Posts: BlogPost[] = [
   },
   {
     image: Blog5,
-    titleText: "Undas.io launched on Goerli Testne",
+    titleText: "Undas.io launched on Goerli Testnet",
     date: "21.07.2022",
     adress: "/blog-post-5",
   },
