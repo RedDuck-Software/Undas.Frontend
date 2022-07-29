@@ -335,9 +335,11 @@ const CollectionPage: React.FC = () => {
                         <CollectionDescript opacity={show}>
                           {data.collection.collectionInfo}
                         </CollectionDescript>
-                        <DescriptBtn onClick={() => setShow(!show)}>
-                          {show ? "Hide" : "Show more"}
-                        </DescriptBtn>
+                        {data.collection.collectionInfo.length > 175 && (
+                          <DescriptBtn onClick={() => setShow(!show)}>
+                            {show ? "Hide" : "Show more"}
+                          </DescriptBtn>
+                        )}
                       </DescriptionWrapper>
                       <SettingsBlock>
                         <>{viewButtonsRender}</>
