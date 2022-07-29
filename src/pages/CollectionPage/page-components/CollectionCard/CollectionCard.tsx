@@ -1,34 +1,22 @@
-import React, { useState, useRef } from "react";
-import Overlay from "react-bootstrap/Overlay";
+import React, { useState } from "react";
 
 import {
   CardWrap,
   ImageWrap,
-  SocialWrap,
   CollectionName,
   Creator,
   PurpleText,
-  // MoreInfo,
   ImgCollection,
   CreatorWrapper,
-  MakeComplaint,
-  ContainerPopUp,
-  InputTextArea,
-  SendButton,
+  Favorite,
 } from "./CollectionCard.styles";
 
 import { Message } from "../../../../globalStyles";
 import { CopyIco } from "../../../AccountPage/page-components/AccountCard/AccountCard.styles";
+import { heart } from "../../../AllNFTs/page-components/NFTListItem/imports";
 import { Platform, Wrapper } from "../../../CategoriesPage/Categories.styles";
 import { Verified } from "../../../CategoriesPage/imports";
-import {
-  TwitterIco,
-  TelegramIco,
-  DiscordIco,
-  InstagramIco,
-  SiteIco,
-  // More,
-} from "../../imports";
+
 
 interface CollectionCardProps {
   name: string;
@@ -41,9 +29,6 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
   creator,
   logo,
 }) => {
-  const target = useRef(null);
-  const [showTarget, setShowTarget] = useState(false);
-
   const creatorSplit = creator?.split("");
   creatorSplit?.splice(8, 24, "...");
 
@@ -58,41 +43,22 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
   };
   return (
     <CardWrap>
-      <Wrapper disp="flex" gap="20px" justifyContent="space-between">
+      <Wrapper
+        disp="flex"
+        gap="20px"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Favorite src={heart} alt="heart-image" />
         <ImageWrap>
           <ImgCollection src={logo} alt="collection-pic" />
         </ImageWrap>
-        <Wrapper flexBasis="52%" flexBasisXS="70%">
-          <SocialWrap>
-            <SiteIco />
-            <TwitterIco />
-            <TelegramIco />
-            <DiscordIco />
-            <InstagramIco />
-          </SocialWrap>
-          {/* <MoreInfo>
-            <img src={More} alt="more-info" />
-          </MoreInfo> */}
-          <MakeComplaint ref={target} onClick={() => setShowTarget(true)}>
-            Make a Complaint
-          </MakeComplaint>
-          <Overlay target={target.current} show={showTarget} placement="bottom">
-            {
-              <ContainerPopUp>
-                <InputTextArea placeholder="Comment" />
-                <SendButton onClick={() => setShowTarget(false)}>
-                  Send
-                </SendButton>
-              </ContainerPopUp>
-            }
-          </Overlay>
-        </Wrapper>
+        <CreatorWrapper>
+          <CollectionName>{name}</CollectionName>
+          <img src={Verified} alt="verified-ico" />
+          <Platform col="#873DC1">UND</Platform>
+        </CreatorWrapper>
       </Wrapper>
-      <CreatorWrapper>
-        <CollectionName>{name}</CollectionName>
-        <img src={Verified} alt="verified-ico" />
-        <Platform>UND</Platform>
-      </CreatorWrapper>
       <Creator onClick={copyToClipboard}>
         Creator <PurpleText>{creatorSplit?.join("")}</PurpleText>
         <CopyIco />
