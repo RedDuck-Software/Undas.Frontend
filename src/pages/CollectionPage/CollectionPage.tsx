@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import Overlay from "react-bootstrap/Overlay";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -21,8 +22,23 @@ import {
   DescriptBtn,
   BodyWrapper,
   ContentWrap,
+  DescriptionWrapper,
+  SocialWrap,
+  // MoreInfo,
+  MakeComplaint,
+  ContainerPopUp,
+  InputTextArea,
+  SendButton,
 } from "./CollectionPage.styles";
-import { PurpleEthIco } from "./imports";
+import {
+  PurpleEthIco,
+  TwitterIco,
+  TelegramIco,
+  DiscordIco,
+  InstagramIco,
+  SiteIco,
+  // More,
+} from "./imports";
 import CollectionCard from "./page-components/CollectionCard/CollectionCard";
 import CollectionGridWrap from "./page-components/CollectionGridWrap";
 import { GET_COLLECTION_INFO } from "./query";
@@ -56,6 +72,7 @@ import {
   ResultsTotal,
 } from "../AllNFTs/AllNFTs.styles";
 import NFTListItem from "../AllNFTs/page-components/NFTListItem/NFTListItem";
+import { Wrapper } from "../CategoriesPage/Categories.styles";
 
 interface CommonProps {
   id: number;
@@ -209,6 +226,9 @@ const CollectionPage: React.FC = () => {
     ),
   );
 
+  const target = useRef(null);
+  const [showTarget, setShowTarget] = useState(false);
+  
   return (
     <>
       {fetching && !data ? (
@@ -273,21 +293,54 @@ const CollectionPage: React.FC = () => {
                         </MyWrapper>
                       </InfoElement>
                     </Info>
-                    <CollectionDescript opacity={show}>
-                      {data.collection.collectionInfo}
-                    </CollectionDescript>
-                    <DescriptBtn onClick={() => setShow(!show)}>
-                      {show ? "Hide" : "Show more"}
-                    </DescriptBtn>
                   </InfoBox>
+                  <Wrapper>
+                    <SocialWrap>
+                      <SiteIco />
+                      <TwitterIco />
+                      <TelegramIco />
+                      <DiscordIco />
+                      <InstagramIco />
+                    </SocialWrap>
+                    {/* <MoreInfo>
+                      <img src={More} alt="more-info" />
+                    </MoreInfo> */}
+                    <MakeComplaint
+                      ref={target}
+                      onClick={() => setShowTarget(true)}
+                    >
+                      Make a Complaint
+                    </MakeComplaint>
+                    <Overlay
+                      target={target.current}
+                      show={showTarget}
+                      placement="bottom"
+                    >
+                      {
+                        <ContainerPopUp>
+                          <InputTextArea placeholder="Comment" />
+                          <SendButton onClick={() => setShowTarget(false)}>
+                            Send
+                          </SendButton>
+                        </ContainerPopUp>
+                      }
+                    </Overlay>
+                  </Wrapper>
                 </HeadWrapper>
                 <BodyWrapper>
-                  <ASideFilter marginTop={"70px"} page="Collection" />
+                  <ASideFilter marginTop={"140px"} page="Collection" />
                   <ContentWrap>
-                    <MenuWrap
-                      marg="40px 0 20px 0"
-                      justifyContent="space-between"
-                    >
+                    <MenuWrap marg="20px 0" justifyContent="space-between">
+                      <DescriptionWrapper>
+                        <CollectionDescript opacity={show}>
+                          {data.collection.collectionInfo}
+                        </CollectionDescript>
+                        {data.collection.collectionInfo.length > 175 && (
+                          <DescriptBtn onClick={() => setShow(!show)}>
+                            {show ? "Hide" : "Show more"}
+                          </DescriptBtn>
+                        )}
+                      </DescriptionWrapper>
                       <SettingsBlock>
                         <>{viewButtonsRender}</>
                         <Filter className={active.price && "price-active"}>
