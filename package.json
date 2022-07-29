@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ethersproject/abi": "^5.0.0",
+    "@ethersproject/bytes": "^5.0.0",
+    "@ethersproject/providers": "^5.0.0",
     "@hookform/resolvers": "^2.8.8",
     "@metamask/detect-provider": "^1.2.0",
     "@reduxjs/toolkit": "^1.7.1",
