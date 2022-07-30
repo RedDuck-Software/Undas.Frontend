@@ -16,6 +16,9 @@ import {
   Colored,
   CardsWrap,
   LinkMail,
+  TopLinkWrapper,
+  TopLink,
+  ContainerHead,
 } from "./BlogPost5.styles";
 
 import Partners from "../../../../components/Partners/Partners";
@@ -54,6 +57,12 @@ const BlogPost5: React.FC = () => {
   return (
     <Background>
       <Container>
+        <TopLinkWrapper>
+          <ContainerHead>
+            <TopLink href="/">Home</TopLink>
+            <TopLink href="blog">Blog</TopLink>
+          </ContainerHead>
+        </TopLinkWrapper>
         <ArticleWrap>
           <ArticleMainBlock>
             <BlockContainer>

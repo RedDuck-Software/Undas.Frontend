@@ -80,11 +80,13 @@ export const ImageWrap = styled.div`
 export const BigImageWrap = styled(ImageWrap)`
   width: 50%;
   border-radius: 10px 0 0 10px;
+  height: 100%;
   @media (max-width: 1200px) {
     width: 70%;
   }
   @media (max-width: 992px) {
     width: 80%;
+    height: auto;
   }
   @media (max-width: 576px) {
     width: 100%;
@@ -93,7 +95,7 @@ export const BigImageWrap = styled(ImageWrap)`
 
 export const BigImage = styled(Image)`
   border-radius: 10px 0 0 10px;
-  height: 338px;
+  height: 100%;
   @media (max-width: 576px) {
     border-radius: 10px 10px 0 0;
   }

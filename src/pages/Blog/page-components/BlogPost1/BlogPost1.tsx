@@ -15,6 +15,9 @@ import {
   ColoredArticleText,
   Colored,
   CardsWrap,
+  TopLinkWrapper,
+  TopLink,
+  ContainerHead,
 } from "./BlogPost1.styles";
 
 import Partners from "../../../../components/Partners/Partners";
@@ -53,6 +56,12 @@ const ArticlePage: React.FC = () => {
   return (
     <Background>
       <Container>
+        <TopLinkWrapper>
+          <ContainerHead>
+            <TopLink href="/">Home</TopLink>
+            <TopLink href="blog">Blog</TopLink>
+          </ContainerHead>
+        </TopLinkWrapper>
         <ArticleWrap>
           <ArticleMainBlock>
             <BlockContainer>
