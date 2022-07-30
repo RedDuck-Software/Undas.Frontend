@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { PageTitle } from "../../../../globalStyles";
 import { ViewAllBtn } from "../../../HomePage/page-components/Recomended/Recommended.styles";
+import { back } from "../../../OfferRent/imports";
 
 export const ArticleWrap = styled.div`
   padding: 80px 0 120px;
@@ -131,5 +132,45 @@ export const LinkMail = styled.a`
   &:hover {
     color: #873dc1;
     text-decoration: underline;
+  }
+`;
+export const TopLinkWrapper = styled.div`
+  width: 100%;
+  padding: 15px;
+  background: #fbf5ff;
+  box-shadow: inset 0px 0px 2px #7c7c7c;
+`;
+export const TopLink = styled.a`
+  text-decoration: none;
+  max-width: 80rem;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #873dc1;
+  transition: all 0.3s ease-in;
+  &::before {
+    content: url(${back});
+    vertical-align: middle;
+    padding-right: 12px;
+  }
+  &:hover {
+    color: #873dc1;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+export const ContainerHead = styled.div`
+  z-index: 99;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  gap: 15px;
+  @media (max-width: 469px) {
+    padding: 0 1rem;
+  }
+  @media (min-width: 1700px) {
+    max-width: 105rem;
   }
 `;
